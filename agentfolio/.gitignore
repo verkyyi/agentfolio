@@ -1,0 +1,20 @@
+node_modules/
+dist/
+.astro/
+.env
+.env.local
+
+# Temp files written by Claude during workflow runs
+.commit-message
+.fix-failed
+/tmp/
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db

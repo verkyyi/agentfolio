@@ -1,0 +1,214 @@
+name: Coder Agent
+
+on:
+  issues:
+    types: [labeled]
+
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
+
+jobs:
+  code:
+    # Only fire when 'agent-ready' label is added
+    if: github.event.label.name == 'agent-ready'
+    runs-on: ubuntu-latest
+    env:
+      APP_NAME: portfolio
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          # Need write access to push branches
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install Claude Code CLI
+        run: npm install -g @anthropic-ai/claude-code
+
+      - name: Install project dependencies
+        run: npm ci
+
+      - name: Read current state
+        id: state
+        run: |
+          echo "Reading project_state.md and FEATURE_STATUS.md"
+          PROJECT_STATE=$(cat state/project_state.md)
+          FEATURE_STATUS=$(cat apps/${APP_NAME}/FEATURE_STATUS.md)
+          APP_CLAUDE=$(cat apps/${APP_NAME}/CLAUDE.md)
+          ROOT_CLAUDE=$(cat CLAUDE.md)
+          echo "STATE_READ=true" >> $GITHUB_OUTPUT
+
+      - name: Create feature branch
+        id: branch
+        run: |
+          ISSUE_NUM="${{ github.event.issue.number }}"
+          BRANCH="fix/issue-${ISSUE_NUM}"
+          git checkout -b "$BRANCH"
+          echo "BRANCH=$BRANCH" >> $GITHUB_OUTPUT
+
+      - name: Build coder prompt
+        run: |
+          ISSUE_NUM="${{ github.event.issue.number }}"
+          ISSUE_TITLE="${{ github.event.issue.title }}"
+
+          cat > /tmp/coder_prompt.txt << PROMPT
+          $(cat CLAUDE.md)
+
+          ---
+
+          $(cat apps/${APP_NAME}/CLAUDE.md)
+
+          ---
+
+          ## Current Project State
+          $(cat state/project_state.md)
+
+          ## Feature Status
+          $(cat apps/${APP_NAME}/FEATURE_STATUS.md)
+
+          ---
+
+          ## Your Task
+          Fix the issue described below. You are the coder agent.
+
+          Issue #${ISSUE_NUM}: ${ISSUE_TITLE}
+
+          Full issue body:
+          ${{ github.event.issue.body }}
+
+          ## Instructions:
+          1. Understand the issue from the body above
+          2. Find the relevant code in src/ or content/
+          3. Implement the fix
+          4. Run: npm run build (must succeed before proceeding)
+          5. Update apps/${APP_NAME}/FEATURE_STATUS.md:
+             - Mark any relevant items as [x] if now fixed
+          6. Update state/project_state.md:
+             - Record what you did
+             - Note: opened PR for issue #${ISSUE_NUM}
+          7. Update state/agent_log.md:
+             - Append: TIMESTAMP | coder.yml | fix issue #${ISSUE_NUM} | [outcome]
+          8. Write .commit-message:
+             fix: [brief description of fix] (closes #${ISSUE_NUM})
+
+          ## Constraints:
+          - Only modify files relevant to the fix
+          - Do NOT modify workflow YAML files
+          - Do NOT modify CLAUDE.md files (that's a needs-review change)
+          - Build must pass after your changes
+          - If you cannot fix it in 3 attempts, write to .fix-failed with reason
+
+          PROMPT
+
+          echo "Coder prompt written"
+
+      - name: Run Claude coder agent
+        run: |
+          claude -p "$(cat /tmp/coder_prompt.txt)" \
+            --allowedTools "bash,read,write,edit" \
+            --max-turns 30
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+
+      - name: Check if fix was attempted or failed
+        id: check
+        run: |
+          if [ -f ".fix-failed" ]; then
+            echo "FAILED=true" >> $GITHUB_OUTPUT
+            echo "REASON=$(cat .fix-failed)" >> $GITHUB_OUTPUT
+          else
+            echo "FAILED=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Handle fix failure
+        if: steps.check.outputs.FAILED == 'true'
+        run: |
+          gh issue comment ${{ github.event.issue.number }} \
+            --body "**Coder agent:** Could not automatically fix this issue.
+
+          Reason: ${{ steps.check.outputs.REASON }}
+
+          This issue has been escalated for manual review." \
+            --repo ${{ github.repository }}
+
+          gh issue edit ${{ github.event.issue.number }} \
+            --remove-label "agent-ready" \
+            --add-label "needs-review" \
+            --repo ${{ github.repository }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Commit fix
+        if: steps.check.outputs.FAILED == 'false'
+        run: |
+          git config user.name "agentfolio[bot]"
+          git config user.email "agentfolio[bot]@users.noreply.github.com"
+          git add .
+          rm -f .commit-message .fix-failed
+
+          if git diff --staged --quiet; then
+            echo "No changes staged — nothing to commit"
+            exit 0
+          fi
+
+          COMMIT_MSG=$(cat .commit-message 2>/dev/null || \
+            echo "fix: address issue #${{ github.event.issue.number }}")
+          git commit -m "$COMMIT_MSG"
+          git push origin ${{ steps.branch.outputs.BRANCH }}
+
+      - name: Open pull request
+        if: steps.check.outputs.FAILED == 'false'
+        id: pr
+        run: |
+          ISSUE_NUM="${{ github.event.issue.number }}"
+          ISSUE_TITLE="${{ github.event.issue.title }}"
+          BRANCH="${{ steps.branch.outputs.BRANCH }}"
+
+          # Determine if this is safe to auto-merge based on changed files
+          CHANGED=$(git diff --name-only origin/main...HEAD)
+          echo "Changed files: $CHANGED"
+
+          # Check if any needs-review files were touched
+          NEEDS_REVIEW=false
+          if echo "$CHANGED" | grep -qE "CLAUDE\.md|\.yml|schema"; then
+            NEEDS_REVIEW=true
+          fi
+
+          # Open the PR
+          PR_URL=$(gh pr create \
+            --title "fix: ${ISSUE_TITLE} (closes #${ISSUE_NUM})" \
+            --body "Fixes #${ISSUE_NUM}
+
+          **Changed files:**
+          \`\`\`
+          ${CHANGED}
+          \`\`\`
+
+          *Opened by agentfolio coder agent*" \
+            --head "$BRANCH" \
+            --base main \
+            --repo ${{ github.repository }})
+
+          PR_NUMBER=$(echo "$PR_URL" | grep -oP '(?<=/pull/)\d+')
+          echo "PR_NUMBER=$PR_NUMBER" >> $GITHUB_OUTPUT
+          echo "NEEDS_REVIEW=$NEEDS_REVIEW" >> $GITHUB_OUTPUT
+
+          # Label the PR
+          if [ "$NEEDS_REVIEW" = "true" ]; then
+            gh pr edit "$PR_NUMBER" --add-label "needs-review" --repo ${{ github.repository }}
+          else
+            gh pr edit "$PR_NUMBER" --add-label "auto-merge" --repo ${{ github.repository }}
+          fi
+
+          # Comment on the issue
+          gh issue comment "$ISSUE_NUM" \
+            --body "**Coder agent:** Fix implemented. See PR #${PR_NUMBER}." \
+            --repo ${{ github.repository }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

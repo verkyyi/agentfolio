@@ -1,0 +1,90 @@
+name: Reviewer Agent
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  review:
+    # Only review PRs opened by the bot
+    if: github.event.pull_request.user.login == 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+
+      - name: Get PR diff
+        id: diff
+        run: |
+          git fetch origin main
+          DIFF=$(git diff origin/main...HEAD --name-only)
+          echo "CHANGED_FILES<<EOF" >> $GITHUB_OUTPUT
+          echo "$DIFF" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      - name: Run reviewer with Claude Code Action
+        uses: anthropics/claude-code-action@v1
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          prompt: |
+            Read CLAUDE.md and apps/portfolio/CLAUDE.md for the auto-merge rules.
+
+            You are the reviewer agent. Review this PR from the coder agent.
+
+            PR #${{ github.event.pull_request.number }}
+            Title: ${{ github.event.pull_request.title }}
+            Branch: ${{ github.event.pull_request.head.ref }}
+
+            Changed files:
+            ${{ steps.diff.outputs.CHANGED_FILES }}
+
+            ## Review checklist:
+
+            AUTO-MERGE safe if ALL of these are true:
+            - [ ] No CLAUDE.md files modified
+            - [ ] No .yml workflow files modified
+            - [ ] No auth/config files modified
+            - [ ] No schema files modified
+            - [ ] Changes are limited to: src/ content/ state/ public/
+            - [ ] Build would pass (check for obvious syntax errors)
+
+            NEEDS-REVIEW if ANY of these are true:
+            - CLAUDE.md was modified
+            - Workflow files were modified
+            - New pages or major layout changes
+            - Any file not in the safe list above
+
+            ## Your actions:
+
+            1. Review the changed files list above
+            2. Apply the checklist
+            3. Execute one of:
+
+            If AUTO-MERGE safe:
+              gh pr review ${{ github.event.pull_request.number }} \
+                --approve \
+                --body "**Reviewer agent:** Changes look safe. Enabling auto-merge." \
+                --repo ${{ github.repository }}
+              gh pr merge ${{ github.event.pull_request.number }} \
+                --auto --squash \
+                --repo ${{ github.repository }}
+
+            If NEEDS-REVIEW:
+              gh pr review ${{ github.event.pull_request.number }} \
+                --request-changes \
+                --body "**Reviewer agent:** This PR requires human review because: [reason].
+                Changes affecting [list files] need manual approval." \
+                --repo ${{ github.repository }}
+              gh pr edit ${{ github.event.pull_request.number }} \
+                --add-label "needs-review" \
+                --repo ${{ github.repository }}
+
+            4. Do nothing else. Classification and labeling only.
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

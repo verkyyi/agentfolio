@@ -1,0 +1,49 @@
+name: Feedback
+description: Leave feedback about this profile
+title: "[feedback] "
+labels: ["feedback"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to leave feedback.
+        This will be triaged by an AI agent within minutes.
+
+  - type: dropdown
+    id: type
+    attributes:
+      label: Type
+      description: What kind of feedback is this?
+      options:
+        - Bug (something is broken)
+        - Suggestion (something could be better)
+        - Question
+        - Other
+    validations:
+      required: true
+
+  - type: input
+    id: page
+    attributes:
+      label: Where on the profile?
+      description: Which section or page is this about?
+      placeholder: e.g. Projects section, Skills, Contact link
+    validations:
+      required: false
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: What happened? What did you expect?
+      placeholder: Describe the issue or suggestion...
+    validations:
+      required: true
+
+  - type: input
+    id: browser
+    attributes:
+      label: Browser / Device (optional)
+      placeholder: e.g. Safari on iPhone 15, Chrome on Windows
+    validations:
+      required: false

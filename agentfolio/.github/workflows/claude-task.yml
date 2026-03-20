@@ -1,0 +1,141 @@
+name: Claude Task (Manual)
+
+on:
+  workflow_dispatch:
+    inputs:
+      prompt:
+        description: 'What should Claude do?'
+        required: true
+        type: string
+      open_pr:
+        description: 'Open a PR instead of committing directly?'
+        required: false
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
+env:
+  APP_NAME: portfolio
+
+jobs:
+  task:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install Claude Code CLI
+        run: npm install -g @anthropic-ai/claude-code
+
+      - name: Install project dependencies
+        run: npm ci
+
+      - name: Create branch if PR requested
+        if: inputs.open_pr == true
+        id: branch
+        run: |
+          BRANCH="task/manual-$(date -u +%Y%m%d-%H%M%S)"
+          git checkout -b "$BRANCH"
+          echo "BRANCH=$BRANCH" >> $GITHUB_OUTPUT
+
+      - name: Build task prompt
+        run: |
+          cat > /tmp/task_prompt.txt << PROMPT
+          $(cat CLAUDE.md)
+          ---
+          $(cat apps/${APP_NAME}/CLAUDE.md)
+          ---
+
+          ## Current State
+          $(cat state/project_state.md)
+
+          ## Feature Status
+          $(cat apps/${APP_NAME}/FEATURE_STATUS.md)
+
+          ---
+
+          ## Task from Developer
+          ${{ inputs.prompt }}
+
+          ## Instructions
+          Complete the task above. You have full access to:
+          - Read and write all project files
+          - Run bash commands (npm, git status, etc.)
+          - Create GitHub Issues if needed
+
+          After completing:
+          1. Update state/project_state.md with what you did
+          2. Append to state/agent_log.md:
+             TIMESTAMP | claude-task.yml | manual task | [outcome]
+          3. Write .commit-message with a descriptive message
+          4. If the task involved FEATURE_STATUS items, update them
+
+          Do NOT use git commit or git push — the workflow handles that.
+          PROMPT
+
+      - name: Run Claude agent
+        run: |
+          claude -p "$(cat /tmp/task_prompt.txt)" \
+            --allowedTools "bash,read,write,edit" \
+            --max-turns 50
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Commit directly to main
+        if: inputs.open_pr == false
+        run: |
+          git config user.name "agentfolio[bot]"
+          git config user.email "agentfolio[bot]@users.noreply.github.com"
+          git add .
+          rm -f .commit-message
+
+          if git diff --staged --quiet; then
+            echo "No changes from task"
+          else
+            COMMIT_MSG=$(cat .commit-message 2>/dev/null || \
+              echo "feat: manual task via claude-task.yml")
+            git commit -m "$COMMIT_MSG"
+            git push
+          fi
+
+      - name: Open PR
+        if: inputs.open_pr == true
+        run: |
+          git config user.name "agentfolio[bot]"
+          git config user.email "agentfolio[bot]@users.noreply.github.com"
+          git add .
+          rm -f .commit-message
+
+          if git diff --staged --quiet; then
+            echo "No changes from task"
+            exit 0
+          fi
+
+          COMMIT_MSG=$(cat .commit-message 2>/dev/null || \
+            echo "feat: manual task")
+          git commit -m "$COMMIT_MSG"
+          git push origin ${{ steps.branch.outputs.BRANCH }}
+
+          gh pr create \
+            --title "$COMMIT_MSG" \
+            --body "Manual task via claude-task.yml
+
+          **Prompt:** ${{ inputs.prompt }}
+
+          *Review before merging.*" \
+            --head "${{ steps.branch.outputs.BRANCH }}" \
+            --base main \
+            --label "needs-review" \
+            --repo ${{ github.repository }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

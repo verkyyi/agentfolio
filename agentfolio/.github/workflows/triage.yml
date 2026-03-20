@@ -1,0 +1,97 @@
+name: Triage Feedback
+
+on:
+  issues:
+    types: [opened, reopened]
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  triage:
+    # Only run on issues labeled 'feedback' or with [feedback] in title
+    if: |
+      contains(github.event.issue.labels.*.name, 'feedback') ||
+      contains(github.event.issue.title, '[feedback]') ||
+      contains(github.event.issue.title, '[bug]')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run triage with Claude Code Action
+        uses: anthropics/claude-code-action@v1
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          # Pattern C: official action handles lightweight issue triage
+          prompt: |
+            Read the root CLAUDE.md and apps/portfolio/CLAUDE.md for context.
+
+            You are the triage agent. Classify this GitHub Issue and take action.
+
+            Issue #${{ github.event.issue.number }}
+            Title: ${{ github.event.issue.title }}
+            Body:
+            ${{ github.event.issue.body }}
+
+            Submitted by: ${{ github.event.issue.user.login }}
+
+            ## Classification rules:
+            - BUG: something is broken, not working, displaying wrong, link is broken
+            - UX-REQUEST: suggestion to improve something that works but could be better
+            - POSITIVE: positive feedback, thank you, compliment
+            - SPAM: promotional, unrelated, bot-generated
+            - QUESTION: asking for information
+
+            ## Your actions:
+
+            1. Classify the issue using the rules above.
+
+            2. Use the GitHub CLI to:
+
+            For BUG:
+              gh issue edit ${{ github.event.issue.number }} \
+                --remove-label "feedback" \
+                --add-label "bug,agent-ready" \
+                --repo ${{ github.repository }}
+              gh issue comment ${{ github.event.issue.number }} \
+                --body "**Triage:** Classified as a bug. The agent will investigate and open a fix PR shortly." \
+                --repo ${{ github.repository }}
+
+            For UX-REQUEST:
+              gh issue edit ${{ github.event.issue.number }} \
+                --remove-label "feedback" \
+                --add-label "ux-request,needs-review" \
+                --repo ${{ github.repository }}
+              gh issue comment ${{ github.event.issue.number }} \
+                --body "**Triage:** Classified as a UX suggestion. Queued for the owner's review." \
+                --repo ${{ github.repository }}
+
+            For POSITIVE:
+              gh issue edit ${{ github.event.issue.number }} \
+                --remove-label "feedback" \
+                --add-label "positive" \
+                --repo ${{ github.repository }}
+              gh issue comment ${{ github.event.issue.number }} \
+                --body "**Triage:** Thank you for the positive feedback! This has been logged." \
+                --repo ${{ github.repository }}
+              gh issue close ${{ github.event.issue.number }} \
+                --repo ${{ github.repository }}
+
+            For SPAM:
+              gh issue edit ${{ github.event.issue.number }} \
+                --add-label "spam" \
+                --repo ${{ github.repository }}
+              gh issue close ${{ github.event.issue.number }} \
+                --repo ${{ github.repository }}
+
+            For QUESTION:
+              gh issue edit ${{ github.event.issue.number }} \
+                --remove-label "feedback" \
+                --add-label "question" \
+                --repo ${{ github.repository }}
+
+            3. Do nothing else. Do not modify any files. This is classification only.
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
