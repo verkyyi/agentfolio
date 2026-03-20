@@ -3,28 +3,32 @@
 # Read at start of every workflow run.
 # Committed to repo — git history is the full audit trail.
 
-Last updated: (not yet initialized)
-Updated by: scaffold init
+Last updated: 2026-03-20T20:10:46Z
+Updated by: evolve.yml
 
 ## Last Session
-Action: Initial scaffold setup
+Action: First self-evolution run (evolve.yml)
 Done:
-- Repository created from template
-- Awaiting onboard.yml run to populate content
+- Researched 3 external sources: godagoo/claude-code-always-on, humanlayer/humanlayer, actions/runner
+- Confirmed both apps/ folders (profile, scaffold) have CLAUDE.md — no orphans
+- Noted actions/runner v2.333.0 is current latest
+- Corrected stale project_state.md reference to onboard.yml (replaced by discover.yml)
+- No failure log entries found — failure log still empty
+- No structural changes proposed this run
 
 In progress: none
-Next agent: Run onboard.yml via Actions → Run workflow
+
+Next agent: Run discover.yml to initialize apps/profile content, or run the coder workflow on a feature issue
 
 ## Open Items
-(empty — onboard.yml will populate after first run)
+- apps/profile content not yet populated — discover.yml or manual issue needed
+- No issues currently open on the repo
 
 ## Metrics Snapshot
-(empty — growth.yml will populate after first Monday run)
+(empty — analyze.yml will populate after first weekly run)
 
 ## Notes for Next Agent
-Run onboard.yml first. It will:
-1. Fetch your GitHub profile and repos
-2. Write content/projects/*.md for each repo
-3. Write content/profile.json with your details
-4. Write apps/portfolio/CLAUDE.md constitution
-5. Commit everything and trigger a Pages deploy
+The scaffold is healthy. No regressions or failures logged.
+- To start the profile app: open a GitHub Issue labeled project:profile and trigger the coder workflow
+- To discover a new app: use the discover.yml workflow with an APP_NAME input
+- actions/runner v2.333.0 is current — runner version in workflows may be checked against this
