@@ -60,7 +60,33 @@ try {
 
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: system-ui, sans-serif; background: #fff; color: #111; }
+  body {
+    font-family: system-ui, -apple-system, sans-serif;
+    background: #0f0c29;
+    background: linear-gradient(160deg, #0f0c29 0%, #1a1145 30%, #1e1b4b 60%, #0f172a 100%);
+    color: #e2e8f0;
+    min-height: 100vh;
+  }
+  body::before {
+    content: '';
+    position: fixed;
+    top: -200px;
+    right: -200px;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(139,92,246,0.12), transparent 70%);
+    pointer-events: none;
+  }
+  body::after {
+    content: '';
+    position: fixed;
+    bottom: -100px;
+    left: -100px;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(59,130,246,0.08), transparent 70%);
+    pointer-events: none;
+  }
 
   .agent-badge {
     position: fixed;
@@ -70,21 +96,22 @@ try {
     align-items: center;
     gap: 6px;
     font-size: 11px;
-    color: #666;
-    background: rgba(255,255,255,0.92);
-    border: 1px solid #e0e0e0;
+    color: #94a3b8;
+    background: rgba(15,12,41,0.9);
+    border: 1px solid rgba(139,92,246,0.2);
     border-radius: 20px;
-    padding: 5px 12px;
-    backdrop-filter: blur(8px);
+    padding: 6px 14px;
+    backdrop-filter: blur(12px);
     z-index: 50;
   }
 
   .agent-dot {
     width: 6px;
     height: 6px;
-    background: #22c55e;
+    background: #34d399;
     border-radius: 50%;
     animation: pulse 2s infinite;
+    box-shadow: 0 0 8px rgba(52,211,153,0.4);
   }
 
   @keyframes pulse {
@@ -93,7 +120,7 @@ try {
   }
 
   .agent-link {
-    color: inherit;
+    color: #a78bfa;
     text-decoration: underline;
     text-underline-offset: 2px;
   }

@@ -1,6 +1,6 @@
 ---
 // src/pages/index.astro
-// Repo profile page — reads state files at build time via fs.
+// Repo profile page — Cosmic design. Reads state files at build time via fs.
 
 import { readFileSync, readdirSync } from 'fs';
 import { join } from 'path';
@@ -88,13 +88,13 @@ const recentActivity = agentLogEntries.slice(-10).reverse();
 ---
 
 <Base>
-  <main class="max-w-2xl mx-auto px-6 py-16">
+  <main class="cosmic-main">
 
     <!-- Hero -->
-    <section class="mb-14">
-      <h1 class="text-3xl font-bold tracking-tight mb-2">Agentfolio</h1>
-      <p class="text-gray-500 text-sm mb-4">A self-evolving scaffold for autonomous web projects</p>
-      <p class="text-gray-600 leading-relaxed">
+    <section class="cosmic-section">
+      <div class="hero-label">Self-Evolving Scaffold</div>
+      <h1 class="hero-title">Agentfolio</h1>
+      <p class="hero-subtitle">
         The repo is the system. GitHub Actions workflows triage feedback, fix bugs,
         discover projects, and evolve their own code — daily. Every agent action is a commit.
         The scaffold's first project is itself.
@@ -102,44 +102,38 @@ const recentActivity = agentLogEntries.slice(-10).reverse();
     </section>
 
     <!-- Stats -->
-    <section class="mb-14">
-      <h2 class="text-xs font-medium tracking-widest uppercase text-gray-400 mb-5">
-        Stats
-      </h2>
-      <div class="grid grid-cols-3 gap-4">
-        <div class="text-center p-4 rounded-lg bg-gray-50 border border-gray-100">
-          <div class="text-2xl font-bold text-gray-900">{totalActions}</div>
-          <div class="text-xs text-gray-500 mt-1">agent actions</div>
+    <section class="cosmic-section">
+      <div class="section-header">Stats</div>
+      <div class="stats-grid">
+        <div class="stat-card stat-purple">
+          <div class="stat-value">{totalActions}</div>
+          <div class="stat-label">agent actions</div>
         </div>
-        <div class="text-center p-4 rounded-lg bg-gray-50 border border-gray-100">
-          <div class="text-2xl font-bold text-gray-900">{uniqueWorkflows}</div>
-          <div class="text-xs text-gray-500 mt-1">active workflows</div>
+        <div class="stat-card stat-blue">
+          <div class="stat-value">{uniqueWorkflows}</div>
+          <div class="stat-label">active workflows</div>
         </div>
-        <div class="text-center p-4 rounded-lg bg-gray-50 border border-gray-100">
-          <div class="text-2xl font-bold text-gray-900">{totalFailures}</div>
-          <div class="text-xs text-gray-500 mt-1">failures prevented</div>
+        <div class="stat-card stat-green">
+          <div class="stat-value">{totalFailures}</div>
+          <div class="stat-label">failures prevented</div>
         </div>
       </div>
     </section>
 
     <!-- Recent Activity -->
     {recentActivity.length > 0 && (
-      <section class="mb-14">
-        <h2 class="text-xs font-medium tracking-widest uppercase text-gray-400 mb-5">
-          Recent Activity
-        </h2>
-        <div class="space-y-2">
+      <section class="cosmic-section">
+        <div class="section-header">Recent Activity</div>
+        <div>
           {recentActivity.map(entry => (
-            <div class="flex items-start gap-3 text-sm">
-              <time class="text-xs text-gray-400 shrink-0 pt-0.5 w-16" datetime={entry.timestamp}>
+            <div class="activity-item">
+              <time class="activity-time" datetime={entry.timestamp}>
                 {entry.timestamp ? new Date(entry.timestamp).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) : ''}
               </time>
-              <span class="text-[10px] px-1.5 py-0.5 rounded bg-gray-50 text-gray-500 border border-gray-100 shrink-0">
-                {entry.workflow}
-              </span>
-              <span class="text-gray-600">{entry.action}</span>
+              <span class="activity-badge">{entry.workflow}</span>
+              <span class="activity-text">{entry.action}</span>
               {entry.outcome && (
-                <span class="text-gray-400 text-xs ml-auto shrink-0">{entry.outcome}</span>
+                <span class="activity-outcome">{entry.outcome}</span>
               )}
             </div>
           ))}
@@ -149,18 +143,14 @@ const recentActivity = agentLogEntries.slice(-10).reverse();
 
     <!-- Capabilities -->
     {skills.length > 0 && (
-      <section class="mb-14">
-        <h2 class="text-xs font-medium tracking-widest uppercase text-gray-400 mb-5">
-          Capabilities
-        </h2>
-        <div class="space-y-3">
+      <section class="cosmic-section">
+        <div class="section-header">Capabilities</div>
+        <div>
           {skills.map(skill => (
-            <div class="group">
-              <div class="flex items-center gap-2 mb-0.5">
-                <span class="font-medium text-sm text-gray-900">{skill.name}</span>
-              </div>
+            <div class="capability">
+              <div class="capability-name">{skill.name}</div>
               {skill.firstLine && (
-                <p class="text-xs text-gray-500 leading-relaxed">{skill.firstLine}</p>
+                <p class="capability-desc">{skill.firstLine}</p>
               )}
             </div>
           ))}
@@ -170,17 +160,13 @@ const recentActivity = agentLogEntries.slice(-10).reverse();
 
     <!-- Research -->
     {researchEntries.length > 0 && (
-      <section class="mb-14">
-        <h2 class="text-xs font-medium tracking-widest uppercase text-gray-400 mb-5">
-          Recent Research
-        </h2>
-        <div class="space-y-2">
+      <section class="cosmic-section">
+        <div class="section-header">Recent Research</div>
+        <div>
           {researchEntries.map(entry => (
-            <div class="flex items-start gap-3 text-sm">
-              <span class="text-[10px] px-1.5 py-0.5 rounded bg-blue-50 text-blue-500 border border-blue-100 shrink-0">
-                {entry.source}
-              </span>
-              <span class="text-gray-600">{entry.finding}</span>
+            <div class="research-item">
+              <span class="research-badge">{entry.source}</span>
+              <span class="research-text">{entry.finding}</span>
             </div>
           ))}
         </div>
@@ -189,40 +175,240 @@ const recentActivity = agentLogEntries.slice(-10).reverse();
 
     <!-- Failure Log -->
     {failureEntries.length > 0 && (
-      <section class="mb-14">
-        <h2 class="text-xs font-medium tracking-widest uppercase text-gray-400 mb-5">
-          Mistakes It Won't Make Again
-        </h2>
-        <div class="space-y-2 pl-3 border-l-2 border-red-100">
+      <section class="cosmic-section">
+        <div class="section-header">Mistakes It Won't Make Again</div>
+        <div class="failure-list">
           {failureEntries.map(entry => (
-            <p class="text-sm text-gray-600">{entry}</p>
+            <p class="failure-entry">{entry}</p>
           ))}
         </div>
       </section>
     )}
 
     <!-- Getting Started -->
-    <section>
-      <h2 class="text-xs font-medium tracking-widest uppercase text-gray-400 mb-5">
-        Getting Started
-      </h2>
-      <div class="space-y-3 text-sm text-gray-600">
-        <ol class="list-decimal list-inside space-y-1.5">
-          <li>Fork this repo</li>
-          <li>Add <code class="text-xs bg-gray-50 px-1 py-0.5 rounded">CLAUDE_CODE_OAUTH_TOKEN</code> to your repo secrets</li>
-          <li>Enable GitHub Pages (Source: GitHub Actions)</li>
-          <li>Drop your project in <code class="text-xs bg-gray-50 px-1 py-0.5 rounded">apps/your-project/</code></li>
-          <li>Run the "Discover Project" workflow</li>
-        </ol>
-        <div class="flex gap-4 mt-4">
-          <a href="https://github.com/verkyyi/agentfolio"
-             target="_blank" rel="noopener noreferrer"
-             class="text-gray-600 hover:text-gray-900 transition-colors underline underline-offset-2">
-            View on GitHub →
-          </a>
-        </div>
-      </div>
+    <section class="cosmic-section">
+      <div class="section-header">Getting Started</div>
+      <ol class="steps">
+        <li>Fork this repo</li>
+        <li>Add <code>CLAUDE_CODE_OAUTH_TOKEN</code> to your repo secrets</li>
+        <li>Enable GitHub Pages (Source: GitHub Actions)</li>
+        <li>Drop your project in <code>apps/your-project/</code></li>
+        <li>Run the "Discover Project" workflow</li>
+      </ol>
+      <a href="https://github.com/verkyyi/agentfolio" target="_blank" rel="noopener noreferrer" class="cta-link">
+        View on GitHub →
+      </a>
     </section>
 
   </main>
 </Base>
+
+<style>
+  .cosmic-main {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 64px 24px;
+    position: relative;
+  }
+  .cosmic-section { margin-bottom: 56px; }
+
+  /* Hero */
+  .hero-label {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #a78bfa;
+    margin-bottom: 12px;
+  }
+  .hero-title {
+    font-size: 40px;
+    font-weight: 800;
+    letter-spacing: -1px;
+    background: linear-gradient(135deg, #c084fc, #60a5fa, #34d399);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 12px;
+  }
+  .hero-subtitle {
+    font-size: 14px;
+    color: #94a3b8;
+    line-height: 1.6;
+    max-width: 480px;
+  }
+
+  /* Section headers */
+  .section-header {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #7c3aed;
+    margin-bottom: 20px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(124,58,237,0.2);
+  }
+
+  /* Stats */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+  .stat-card {
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    transition: border-color 0.3s, background 0.3s;
+  }
+  .stat-card:hover { background: rgba(139,92,246,0.12); }
+  .stat-purple {
+    background: rgba(139,92,246,0.08);
+    border: 1px solid rgba(139,92,246,0.15);
+  }
+  .stat-purple .stat-value { color: #c084fc; }
+  .stat-blue {
+    background: rgba(96,165,250,0.08);
+    border: 1px solid rgba(96,165,250,0.15);
+  }
+  .stat-blue .stat-value { color: #60a5fa; }
+  .stat-green {
+    background: rgba(52,211,153,0.08);
+    border: 1px solid rgba(52,211,153,0.15);
+  }
+  .stat-green .stat-value { color: #34d399; }
+  .stat-value { font-size: 28px; font-weight: 800; }
+  .stat-label { font-size: 11px; color: #64748b; margin-top: 4px; letter-spacing: 0.5px; }
+
+  /* Activity feed */
+  .activity-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(139,92,246,0.08);
+    font-size: 13px;
+  }
+  .activity-item:last-child { border-bottom: none; }
+  .activity-time {
+    color: #475569;
+    font-size: 11px;
+    width: 52px;
+    flex-shrink: 0;
+    padding-top: 2px;
+  }
+  .activity-badge {
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 4px;
+    background: rgba(139,92,246,0.15);
+    color: #a78bfa;
+    border: 1px solid rgba(139,92,246,0.25);
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+  .activity-text { color: #cbd5e1; }
+  .activity-outcome { color: #475569; font-size: 11px; margin-left: auto; flex-shrink: 0; }
+
+  /* Capabilities */
+  .capability {
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(139,92,246,0.08);
+  }
+  .capability:last-child { border-bottom: none; }
+  .capability-name {
+    font-weight: 600;
+    font-size: 14px;
+    color: #e2e8f0;
+    margin-bottom: 4px;
+  }
+  .capability-desc {
+    font-size: 12px;
+    color: #64748b;
+    line-height: 1.5;
+  }
+
+  /* Research */
+  .research-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(59,130,246,0.08);
+    font-size: 13px;
+  }
+  .research-item:last-child { border-bottom: none; }
+  .research-badge {
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 4px;
+    background: rgba(59,130,246,0.12);
+    color: #60a5fa;
+    border: 1px solid rgba(59,130,246,0.25);
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+  .research-text { color: #94a3b8; }
+
+  /* Failure log */
+  .failure-list {
+    padding-left: 12px;
+    border-left: 2px solid rgba(239,68,68,0.3);
+  }
+  .failure-entry {
+    font-size: 13px;
+    color: #94a3b8;
+    padding: 6px 0;
+  }
+
+  /* Getting started */
+  .steps {
+    list-style: none;
+    counter-reset: step;
+    padding: 0;
+  }
+  .steps li {
+    counter-increment: step;
+    padding: 8px 0 8px 32px;
+    position: relative;
+    font-size: 14px;
+    color: #94a3b8;
+    line-height: 1.5;
+  }
+  .steps li::before {
+    content: counter(step);
+    position: absolute;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: rgba(139,92,246,0.15);
+    border: 1px solid rgba(139,92,246,0.3);
+    color: #a78bfa;
+    font-size: 11px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 9px;
+  }
+  .steps code {
+    font-size: 12px;
+    background: rgba(139,92,246,0.1);
+    border: 1px solid rgba(139,92,246,0.2);
+    padding: 1px 6px;
+    border-radius: 4px;
+    color: #c084fc;
+    font-family: 'SF Mono', 'Fira Code', monospace;
+  }
+  .cta-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 16px;
+    color: #a78bfa;
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.2s;
+  }
+  .cta-link:hover { color: #c084fc; }
+</style>

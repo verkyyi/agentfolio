@@ -62,6 +62,25 @@ jobs:
           - git log --oneline -20 — recent changes
           - ls apps/ — any folders without CLAUDE.md?
 
+          ## STEP 2b: Design Evaluation (profile page)
+
+          Read src/pages/index.astro and src/layouts/Base.astro.
+          Evaluate the profile page design for:
+          - Visual consistency (colors, spacing, typography)
+          - Readability (contrast ratios, font sizes, line heights)
+          - Responsiveness (does the layout work on mobile?)
+          - Polish (hover states, transitions, alignment)
+          - Content presentation (are sections well-organized?)
+
+          If you identify a concrete CSS/layout improvement:
+          - For minor fixes (spacing, color tweaks, typos): write directly
+          - For structural layout changes: propose via .proposed-change.md
+
+          Design improvements follow the same autonomy rules as other changes.
+          Keep the Cosmic design language: deep purple gradients, neon accents
+          (purple #a78bfa, blue #60a5fa, green #34d399), dark backgrounds,
+          glowing effects.
+
           ## STEP 3: Log this run
 
           ALWAYS append a line to state/agent_log.md:
