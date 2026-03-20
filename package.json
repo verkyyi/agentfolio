@@ -2,7 +2,7 @@
   "name": "agentfolio",
   "type": "module",
   "version": "0.1.0",
-  "description": "A Claude Code-powered living portfolio scaffold",
+  "description": "A self-evolving scaffold for autonomous web projects",
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
