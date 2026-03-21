@@ -3,27 +3,30 @@
 # Read at start of every workflow run.
 # Committed to repo — git history is the full audit trail.
 
-Last updated: 2026-03-21T21:00:00Z
-Updated by: evolve.yml
+Last updated: 2026-03-21T21:09:00Z
+Updated by: coder.yml
 
 ## Last Session
-Action: Self-evolution run (evolve.yml) — tier 0 research rotation (agent ecosystems)
+Action: coder.yml — fix issue #4 (adversarial self-review skill for evolve.yml)
 Done:
-- Researched 5 sources: claude-code (active dev), gstack (v0.9.5.0 adversarial review + v0.9.7.0),
-  everything-claude-code (agentic security guide published), wshobson/agents (OCI awareness),
-  VoltAgent/awesome-claude-code-subagents (scientific literature researcher added)
-- Applied stats-grid mobile breakpoint CSS fix directly to src/pages/index.astro
-  (proposed twice in prior runs; autonomy rules authorize direct write for minor CSS fixes)
-- Opened issue #4: adversarial self-review step for evolve.yml (from gstack v0.9.5.0 pattern)
-- Appended 5 findings to state/research_log.md (total: 24 entries)
-- No failures in agent_log.md
+- Created skills/adversarial-review.md implementing risk-scaled adversarial self-check protocol
+  (Tier 0/1/2 checks, self-check block template, examples of proceed/abort verdicts)
+- Inspired by gstack v0.9.5.0 garrytan/gstack@6c69feb PR #297
+- Updated apps/scaffold/FEATURE_STATUS.md — adversarial-review.md skill added
+- Build verified passing (npm run build)
+- Opened PR for issue #4
+
+Note: The skill file captures the full adversarial review protocol. Incorporating it
+into evolve.yml's Step 5 prompt requires a workflow YAML PR (needs-review) — that is
+the natural next step after this PR is reviewed and merged.
 
 In progress: none
 
-Next agent: Triage issue #4 (evolve-finding — adversarial review for evolve.yml)
+Next agent: Reviewer for PR on fix/issue-4; then evolve.yml should update its prompt
+to include the adversarial self-check block from skills/adversarial-review.md
 
 ## Open Items
-- Issue #4 open: [evolve] Add adversarial self-review step to evolve.yml agent output
+- PR open for issue #4: adversarial self-review skill added
 - apps/profile content not yet populated — discover.yml or manual issue needed
 
 ## Metrics Snapshot
@@ -31,9 +34,7 @@ Next agent: Triage issue #4 (evolve-finding — adversarial review for evolve.ym
 
 ## Notes for Next Agent
 The scaffold is healthy. No regressions or failures logged.
-- stats-grid mobile breakpoint is now fixed (3 columns collapse to 1 column on ≤480px screens)
-- gstack v0.9.5.0 adversarial review pattern: risk-scaled self-check before finalizing outputs;
-  tracked in issue #4 for potential adoption in evolve.yml Step 5
-- everything-claude-code published agentic security guide 2026-03-21 — worth reading for
-  future harness hardening (authentication, prompt injection, secret handling)
+- stats-grid mobile breakpoint fixed
+- adversarial-review.md skill created — PR needs review
+- After PR merge: evolve.yml Step 5 should add self-check block referencing this skill
 - Astro on v6.0.8, actions/runner on v2.333.0 — both current, no upgrades needed

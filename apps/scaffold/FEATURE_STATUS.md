@@ -20,3 +20,4 @@
 - [x] feedback-intake.md
 - [x] seo.md
 - [x] Skills updated for self-evolving architecture
+- [x] adversarial-review.md — risk-scaled self-check protocol for evolve.yml Step 5
