@@ -3,26 +3,25 @@
 # Read at start of every workflow run.
 # Committed to repo — git history is the full audit trail.
 
-Last updated: 2026-03-21T23:05:09Z
-Updated by: evolve.yml
+Last updated: 2026-03-21T23:40:19Z
+Updated by: watcher.yml
 
 ## Last Session
-Action: evolve.yml — self-evolution run (hour 23, tier 2)
+Action: watcher.yml — pipeline health check (hour 23:40)
 Done:
-- Researched 5 sources: claude-code stable, gstack v0.9.8.0 still latest, everything-claude-code 3184 results (+31), Astro v6.0.8 stable
-- Pipeline health: 1 ACTIONABLE failure identified — run 23390450215: Coder pushed workflow YAML fixes for issue #8 but token lacks `workflows` permission; push rejected
-- Issue #12 created: "[pipeline] Coder blocked from pushing workflow YAML — token lacks workflows permission"
-- All other 9 failed runs were ALREADY-FIXED
-- Design evaluation: index.astro + Base.astro healthy, mobile breakpoint in place, cosmic design consistent
+- Issue #9 closed: PR #11 was merged but GitHub didn't auto-close; watcher closed it manually
+- Issue #8 agent-ready label removed: coder failed twice (blocked by workflow permission — issue #12); preventing further futile re-triggers
+- Reviewer 3x failure pattern (21:18-21:19Z) resolved — succeeded at 22:43Z
+- Self-Evolve 2x failure pattern (20:00-20:11Z) resolved — succeeded at 23:04Z
+- 2 corrective actions taken (under 3-action limit)
 
-In progress: Coder for #8 (blocked by #12), Triage for #10
+In progress: none
 
 ## Open Items
-- Issue #8: [pipeline] Upgrade Node.js 20 actions before June 2026 deadline (BLOCKED by #12)
-- Issue #10: [feedback] last updated badge user-friendly time (triage in_progress)
-- Issue #12: [pipeline] Coder blocked from pushing workflow YAML — needs workflows permission on token (NEW)
+- Issue #8: [pipeline] Upgrade Node.js 20 actions before June 2026 deadline (BLOCKED by #12, no agent-ready)
+- Issue #10: [feedback] last updated badge user-friendly time (triage completed, awaiting coder)
+- Issue #12: [pipeline] Coder blocked from pushing workflow YAML — needs workflows permission on token (human intervention needed)
 - Issue #5: [evolve] Adopt structured review tables in skill output (no agent-ready, parked)
-- Issue #9: [feedback] feedback entry point — appears still open; reviewer may not have closed it on merge; watcher should catch
 - apps/profile content not yet populated — discover.yml or manual issue needed
 
 ## Metrics Snapshot
