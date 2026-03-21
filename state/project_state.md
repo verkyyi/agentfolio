@@ -3,18 +3,16 @@
 # Read at start of every workflow run.
 # Committed to repo — git history is the full audit trail.
 
-Last updated: 2026-03-20T20:10:46Z
-Updated by: evolve.yml
+Last updated: 2026-03-21T00:00:00Z
+Updated by: claude-task.yml
 
 ## Last Session
-Action: First self-evolution run (evolve.yml)
+Action: Manual task — hello/connectivity check (claude-task.yml)
 Done:
-- Researched 3 external sources: godagoo/claude-code-always-on, humanlayer/humanlayer, actions/runner
-- Confirmed both apps/ folders (profile, scaffold) have CLAUDE.md — no orphans
-- Noted actions/runner v2.333.0 is current latest
-- Corrected stale project_state.md reference to onboard.yml (replaced by discover.yml)
-- No failure log entries found — failure log still empty
-- No structural changes proposed this run
+- Received and acknowledged manual "say hello" task
+- Confirmed agent is operational and responsive
+- Updated state/project_state.md and state/agent_log.md
+- No code changes made (task required none)
 
 In progress: none
 
