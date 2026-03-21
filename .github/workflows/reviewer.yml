@@ -33,8 +33,8 @@ jobs:
           echo "NUMBER=$NUM" >> $GITHUB_OUTPUT
 
           # Get PR details
-          gh pr view "$NUM" --json headRefSha,headRefName,title --repo ${{ github.repository }} > /tmp/pr.json
-          SHA=$(jq -r '.headRefSha' /tmp/pr.json)
+          gh pr view "$NUM" --json headRefOid,headRefName,title --repo ${{ github.repository }} > /tmp/pr.json
+          SHA=$(jq -r '.headRefOid' /tmp/pr.json)
           BRANCH=$(jq -r '.headRefName' /tmp/pr.json)
           TITLE=$(jq -r '.title' /tmp/pr.json)
           echo "SHA=$SHA" >> $GITHUB_OUTPUT
