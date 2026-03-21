@@ -70,29 +70,60 @@ jobs:
 
           ## Your actions:
 
-          1. Classify the issue using the rules above.
+          ### Step 1: Classify the issue using the rules above.
 
-          2. Use the GitHub CLI to add labels and comment:
+          ### Step 2: Elaborate and rewrite the issue body.
+
+          Read the codebase to understand what the issue is about. Then rewrite
+          the issue body into a unified format using gh issue edit --body.
+
+          Use this template:
+
+          ## Summary
+          One clear sentence explaining what needs to happen.
+
+          ## Context
+          Why this matters. What triggered this issue. Link to source if from evolve.
+          Reference specific files, functions, or lines of code that are relevant.
+
+          ## Acceptance Criteria
+          - [ ] Concrete, testable checklist of what "done" looks like
+          - [ ] Each item should be verifiable by the coder agent
+
+          ## Affected Files
+          List the files that likely need changes (use Glob/Grep/Read to find them).
+
+          ## Notes
+          Any constraints, gotchas, or related issues.
+
+          ---
+          *Triaged by agentfolio triage agent*
+
+          IMPORTANT: Preserve the original issue title. Keep the [evolve] or
+          [pipeline] prefix if present. The elaborated body should give the
+          coder agent everything it needs to implement without guessing.
+
+          ### Step 3: Add labels and comment.
 
           For BUG:
             gh issue edit ${NUM} --add-label "bug,agent-ready" --repo ${{ github.repository }}
-            gh issue comment ${NUM} --body "**Triage:** Classified as a bug. The coder agent will investigate and open a fix PR shortly." --repo ${{ github.repository }}
+            gh issue comment ${NUM} --body "**Triage:** Classified as a bug. Issue elaborated. The coder agent will investigate and open a fix PR shortly." --repo ${{ github.repository }}
 
           For FEATURE:
             gh issue edit ${NUM} --add-label "feature,agent-ready" --repo ${{ github.repository }}
-            gh issue comment ${NUM} --body "**Triage:** Classified as a feature request. The coder agent will implement this shortly." --repo ${{ github.repository }}
+            gh issue comment ${NUM} --body "**Triage:** Classified as a feature request. Issue elaborated. The coder agent will implement this shortly." --repo ${{ github.repository }}
 
           For EVOLVE-IDEA:
             gh issue edit ${NUM} --add-label "agent-ready" --repo ${{ github.repository }}
-            gh issue comment ${NUM} --body "**Triage:** Evolve-generated idea triaged. The coder agent will implement this shortly." --repo ${{ github.repository }}
+            gh issue comment ${NUM} --body "**Triage:** Evolve-generated idea triaged and elaborated. The coder agent will implement this shortly." --repo ${{ github.repository }}
 
           For PIPELINE-FIX:
             gh issue edit ${NUM} --add-label "agent-ready" --repo ${{ github.repository }}
-            gh issue comment ${NUM} --body "**Triage:** Pipeline failure identified. The coder agent will investigate and fix shortly." --repo ${{ github.repository }}
+            gh issue comment ${NUM} --body "**Triage:** Pipeline failure identified and elaborated. The coder agent will investigate and fix shortly." --repo ${{ github.repository }}
 
           For UX-REQUEST:
             gh issue edit ${NUM} --add-label "ux-request,needs-review" --repo ${{ github.repository }}
-            gh issue comment ${NUM} --body "**Triage:** Classified as a UX suggestion. Queued for the owner's review." --repo ${{ github.repository }}
+            gh issue comment ${NUM} --body "**Triage:** Classified as a UX suggestion. Issue elaborated. Queued for the owner's review." --repo ${{ github.repository }}
 
           For POSITIVE:
             gh issue edit ${NUM} --add-label "positive" --repo ${{ github.repository }}
@@ -106,14 +137,14 @@ jobs:
           For QUESTION:
             gh issue edit ${NUM} --add-label "question" --repo ${{ github.repository }}
 
-          3. Do nothing else. Do not modify any files. This is classification only.
+          ### Step 4: Do not modify any repo files. Issue elaboration and classification only.
           PROMPT
 
       - name: Run triage
         run: |
           claude -p "$(cat /tmp/triage_prompt.txt)" \
-            --allowedTools "Bash(gh:*) Read" \
-            --max-turns 10
+            --allowedTools "Bash(gh:*) Bash(git:*) Bash(ls:*) Read Glob Grep" \
+            --max-turns 15
         env:
           CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           GITHUB_TOKEN: ${{ github.token }}
