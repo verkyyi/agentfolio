@@ -203,7 +203,56 @@ jobs:
           If a new referrer appeared, note it — this tells us where exposure is coming from.
           If a specific page is getting more traffic, consider creating an issue to improve it.
 
-          ## STEP 2d: SEO & Discoverability (once per day, hour 12 UTC only)
+          ## STEP 2d: Adoption Tracking (once per day, hour 06 UTC — same gate as 2c)
+
+          Search for public repos that were created from our template or forked
+          from us. These are real users — learn from how they use the scaffold.
+
+          ```bash
+          # Search for repos with our evolve.yml signature (unique to agentfolio)
+          ADOPTERS=$(curl -s -H "Authorization: token $GITHUB_TOKEN" \
+            "https://api.github.com/search/repositories?q=agentfolio+in:name+fork:true&sort=updated&per_page=10" \
+            | head -c 2000)
+
+          # Also search for repos containing our workflow files
+          ADOPTERS2=$(curl -s -H "Authorization: token $GITHUB_TOKEN" \
+            "https://api.github.com/search/code?q=self-evolution+agent+for+Agentfolio+in:file+language:yaml&per_page=5" \
+            | head -c 2000)
+
+          # Check forks directly
+          FORKS_LIST=$(curl -s -H "Authorization: token $GITHUB_TOKEN" \
+            "https://api.github.com/repos/verkyyi/agentfolio/forks?sort=newest&per_page=10" \
+            | head -c 2000)
+          ```
+
+          Read existing state/adopters.md to see which repos we already know about.
+
+          For each NEW repo found (not already in adopters.md):
+          1. Note its name, owner, creation date, and last push date
+          2. Check what they changed: did they modify workflows? Add new apps?
+             Remove features? Rename things?
+          3. Append to state/adopters.md:
+             TIMESTAMP | repo_full_name | created | last_push | notes
+
+          For EXISTING repos in adopters.md:
+          - Check if they have new commits since last check
+          - Note what they're actively working on
+
+          Analysis — look for patterns across adopters:
+          - What do users keep vs. remove? (tells us what's valuable)
+          - What do they modify first? (tells us what's confusing or wrong)
+          - What new apps/ do they add? (tells us use cases)
+          - Do they change workflow frequencies? (tells us our defaults are wrong)
+          - Do they add new research sources? (tells us gaps in our coverage)
+
+          If you find a pattern (3+ adopters did the same thing), create an issue:
+          "[adopter-insight] Users keep removing X" or "[adopter-insight] Users all add Y"
+          Label: "adopter-insight,project:scaffold"
+
+          Append to research_log.md:
+          TIMESTAMP | adoption-tracking | X repos found, Y new, Z active | [key patterns]
+
+          ## STEP 2e: SEO & Discoverability (once per day, hour 12 UTC only)
 
           If the current hour is 12 UTC (check with `date -u +%H`), do these:
 
@@ -331,6 +380,7 @@ jobs:
         run: |
           gh label create "evolve-finding" --color "7057ff" --description "Issue created by evolve.yml" --force
           gh label create "pipeline-fix" --color "d73a4a" --description "Pipeline failure to fix" --force
+          gh label create "adopter-insight" --color "1d76db" --description "Pattern found from adopter usage" --force
           gh label create "agent-ready" --color "0e8a16" --description "Ready for coder agent" --force
           gh label create "needs-review" --color "fbca04" --description "Needs human review" --force
           gh label create "project:scaffold" --color "c5def5" --description "Scaffold project" --force
