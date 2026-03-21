@@ -16,3 +16,8 @@
 2026-03-21T20:11:27Z | affaan-m/everything-claude-code (core) | Chinese docs sync PR #728 merged 2026-03-21 — community contribution pace steady | no action
 2026-03-21T20:11:27Z | github-trending (tier 2) | everything-claude-code remains #1 result for claude+code+agent (3153 total matches); no new breakout repos identified | no action
 2026-03-21T20:11:27Z | withastro/astro (tier 2) | v6.0.8 confirmed latest release — stable, no new release since last run | no action
+2026-03-21T21:00:00Z | anthropics/claude-code (core) | CHANGELOG updated 2026-03-20 — active daily development, no breaking changes | no action
+2026-03-21T21:00:00Z | garrytan/gstack (core) | v0.9.7.0 (plan file review report) and v0.9.5.0 (auto-scaled adversarial review + Search Before Building) all merged 2026-03-21 | issue created — adversarial review pattern for evolve.yml
+2026-03-21T21:00:00Z | affaan-m/everything-claude-code (core) | published "Shorthand Guide to Everything Agentic Security" 2026-03-21 — security patterns for agent harnesses | noted for future harness security review
+2026-03-21T21:00:00Z | wshobson/agents (tier 0) | OCI awareness added to agents (2026-03-17) — container platform detection in agent prompts | no action — not relevant to current harness
+2026-03-21T21:00:00Z | VoltAgent/awesome-claude-code-subagents (tier 0) | scientific literature researcher subagent added; README updates 2026-03-19 | no action

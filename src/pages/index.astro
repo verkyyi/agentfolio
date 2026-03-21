@@ -279,6 +279,14 @@ const recentActivity = agentLogEntries.slice(-10).reverse();
   .stat-value { font-size: 28px; font-weight: 800; }
   .stat-label { font-size: 11px; color: #64748b; margin-top: 4px; letter-spacing: 0.5px; }
 
+  @media (max-width: 480px) {
+    .stats-grid {
+      grid-template-columns: 1fr;
+      gap: 8px;
+    }
+    .stat-card { padding: 16px; }
+  }
+
   /* Activity feed */
   .activity-item {
     display: flex;

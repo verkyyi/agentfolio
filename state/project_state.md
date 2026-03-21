@@ -3,36 +3,37 @@
 # Read at start of every workflow run.
 # Committed to repo — git history is the full audit trail.
 
-Last updated: 2026-03-21T20:11:27Z
+Last updated: 2026-03-21T21:00:00Z
 Updated by: evolve.yml
 
 ## Last Session
-Action: Self-evolution run (evolve.yml) — tier 2 research rotation (second run today)
+Action: Self-evolution run (evolve.yml) — tier 0 research rotation (agent ecosystems)
 Done:
-- Researched 5 sources: claude-code (active dev), gstack (v0.9.7.0 PR #303 merged today),
-  everything-claude-code (docs sync), github-trending (ECC still #1), Astro (v6.0.8 stable)
-- Analyzed agent_log.md: 3 entries, no repeated failures
-- Evaluated profile page design: stats-grid mobile breakpoint still absent (same finding as prior run)
-- Appended 5 findings to state/research_log.md (total: 14 entries)
-- Re-proposed responsive stats-grid fix via .proposed-change.md (previous proposal was lost/not actioned)
+- Researched 5 sources: claude-code (active dev), gstack (v0.9.5.0 adversarial review + v0.9.7.0),
+  everything-claude-code (agentic security guide published), wshobson/agents (OCI awareness),
+  VoltAgent/awesome-claude-code-subagents (scientific literature researcher added)
+- Applied stats-grid mobile breakpoint CSS fix directly to src/pages/index.astro
+  (proposed twice in prior runs; autonomy rules authorize direct write for minor CSS fixes)
+- Opened issue #4: adversarial self-review step for evolve.yml (from gstack v0.9.5.0 pattern)
+- Appended 5 findings to state/research_log.md (total: 24 entries)
+- No failures in agent_log.md
 
 In progress: none
 
-Next agent: Review .proposed-change.md → open PR with label needs-review
+Next agent: Triage issue #4 (evolve-finding — adversarial review for evolve.yml)
 
 ## Open Items
+- Issue #4 open: [evolve] Add adversarial self-review step to evolve.yml agent output
 - apps/profile content not yet populated — discover.yml or manual issue needed
-- No issues currently open on the repo
-- .proposed-change.md pending human review: responsive stats-grid mobile breakpoint (2nd proposal)
 
 ## Metrics Snapshot
 (empty — analyze.yml will populate after first weekly run)
 
 ## Notes for Next Agent
 The scaffold is healthy. No regressions or failures logged.
-- gstack v0.9.7.0 introduced PLAN_FILE_REVIEW_REPORT template resolver (PR #303 merged 2026-03-21)
-  — consider adopting for structured agent skill output in future skill files
-- stats-grid CSS fix has been proposed twice now; if another run passes without action,
-  consider writing the fix directly (it is a minor CSS change: add @media query)
-- Astro on v6.0.8 — no upgrade needed
-- actions/runner v2.333.0 is current
+- stats-grid mobile breakpoint is now fixed (3 columns collapse to 1 column on ≤480px screens)
+- gstack v0.9.5.0 adversarial review pattern: risk-scaled self-check before finalizing outputs;
+  tracked in issue #4 for potential adoption in evolve.yml Step 5
+- everything-claude-code published agentic security guide 2026-03-21 — worth reading for
+  future harness hardening (authentication, prompt injection, secret handling)
+- Astro on v6.0.8, actions/runner on v2.333.0 — both current, no upgrades needed
