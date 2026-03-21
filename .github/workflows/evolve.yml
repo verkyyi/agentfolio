@@ -172,18 +172,36 @@ jobs:
           Append to state/research_log.md:
           TIMESTAMP | growth-metrics | stars:X forks:Y views:Z uniques:U | [note any significant changes]
 
-          Write metrics to state/growth_metrics.md (overwrite):
+          Also fetch referrers and popular paths:
+          ```bash
+          REFERRERS=$(curl -s -H "Authorization: token $GITHUB_TOKEN" \
+            "https://api.github.com/repos/verkyyi/agentfolio/traffic/popular/referrers")
+          PATHS=$(curl -s -H "Authorization: token $GITHUB_TOKEN" \
+            "https://api.github.com/repos/verkyyi/agentfolio/traffic/popular/paths")
+          ```
+
+          Write ALL metrics to state/growth_metrics.md (overwrite):
           ```
           # Growth Metrics
           Last updated: TIMESTAMP
           Stars: X | Forks: Y | Watchers: Z
           Views (14d): X | Unique visitors (14d): Y
           Open issues: X
-          Top referrers: [list]
+
+          ## Referrers
+          <!-- Format: referrer | views | uniques -->
+          referrer1 | 100 | 50
+          referrer2 | 20 | 10
+
+          ## Popular Pages
+          <!-- Format: path | views | uniques -->
+          /path1 | 50 | 30
+          /path2 | 20 | 10
           ```
 
           If stars or forks increased since last check, note it.
           If a new referrer appeared, note it — this tells us where exposure is coming from.
+          If a specific page is getting more traffic, consider creating an issue to improve it.
 
           ## STEP 2d: SEO & Discoverability (once per day, hour 12 UTC only)
 

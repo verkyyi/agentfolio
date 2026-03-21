@@ -6,4 +6,9 @@ Last updated: not yet
 Stars: 0 | Forks: 0 | Watchers: 0
 Views (14d): 0 | Unique visitors (14d): 0
 Open issues: 0
-Top referrers: none yet
+
+## Referrers
+<!-- Format: referrer | views | uniques -->
+
+## Popular Pages
+<!-- Format: path | views | uniques -->

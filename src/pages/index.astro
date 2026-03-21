@@ -92,6 +92,21 @@ try {
   if (uniquesMatch) growthMetrics.uniques = uniquesMatch[1];
 } catch {}
 
+// Parse referrers from growth metrics
+let referrers: Array<{name: string; views: string; uniques: string}> = [];
+try {
+  const metricsContent = readFileSync(join(process.cwd(), 'state/growth_metrics.md'), 'utf-8');
+  const refSection = metricsContent.split('## Referrers')[1]?.split('##')[0] || '';
+  referrers = refSection
+    .split('\n')
+    .filter(l => l.trim() && !l.startsWith('<!--') && l.includes('|'))
+    .map(line => {
+      const parts = line.split('|').map(p => p.trim());
+      return { name: parts[0], views: parts[1] || '0', uniques: parts[2] || '0' };
+    })
+    .slice(0, 5);
+} catch {}
+
 // Stats
 const totalActions = agentLogEntries.length;
 const uniqueWorkflows = new Set(agentLogEntries.map(e => e.workflow)).size;
@@ -184,6 +199,24 @@ const recentActivity = agentLogEntries.slice(-10).reverse();
         </div>
       </div>
     </section>
+
+    <!-- Traffic Sources -->
+    {referrers.length > 0 && (
+      <section class="cosmic-section">
+        <div class="section-header">Where Visitors Come From</div>
+        <div class="referrers-list">
+          {referrers.map(ref => (
+            <div class="referrer-item">
+              <span class="referrer-name">{ref.name}</span>
+              <span class="referrer-stats">{ref.views} views · {ref.uniques} unique</span>
+            </div>
+          ))}
+        </div>
+        <p class="referrer-note">
+          {growthMetrics.views} total views · {growthMetrics.uniques} unique visitors (14 days)
+        </p>
+      </section>
+    )}
 
     <!-- Codex -->
     <section class="cosmic-section">
@@ -458,6 +491,21 @@ const recentActivity = agentLogEntries.slice(-10).reverse();
     .pipeline-arrow { display: none; }
     .hero-ctas { flex-direction: column; }
   }
+
+  /* Referrers */
+  .referrers-list { margin-bottom: 12px; }
+  .referrer-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(139,92,246,0.08);
+    font-size: 13px;
+  }
+  .referrer-item:last-child { border-bottom: none; }
+  .referrer-name { color: #e2e8f0; font-weight: 500; }
+  .referrer-stats { color: #64748b; font-size: 12px; }
+  .referrer-note { font-size: 11px; color: #475569; }
 
   /* Activity feed */
   .activity-item {
