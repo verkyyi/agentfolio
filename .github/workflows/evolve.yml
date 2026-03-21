@@ -143,7 +143,7 @@ jobs:
               --body "## Source\nWhat research finding or analysis inspired this.\n\n## Proposed Change\nWhat should be changed, why, and which files.\n\n## Evidence\nLink to commit/release/repo that inspired this.\n\n---\n*Created by evolve.yml self-evolution agent*" \
               --label "evolve-finding,project:scaffold")
             ISSUE_NUM=$(echo "$ISSUE_URL" | grep -oP '\d+$')
-            echo "$ISSUE_NUM" >> /tmp/new_issues.txt
+            echo "$ISSUE_NUM" >> .new_issues.txt
           - The pipeline will automatically triage and route each issue
           - Maximum TWO issues per run
 
@@ -195,11 +195,11 @@ jobs:
 
       - name: Trigger triage for new issues
         run: |
-          if [ -f /tmp/new_issues.txt ]; then
+          if [ -f .new_issues.txt ]; then
             while read -r NUM; do
               echo "Triggering triage for issue #$NUM"
               gh workflow run triage.yml -f issue_number="$NUM"
-            done < /tmp/new_issues.txt
+            done < .new_issues.txt
           else
             echo "No new issues created this run"
           fi
