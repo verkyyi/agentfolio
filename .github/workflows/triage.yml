@@ -144,7 +144,7 @@ jobs:
         run: |
           claude -p "$(cat /tmp/triage_prompt.txt)" \
             --allowedTools "Bash(gh:*) Bash(git:*) Bash(ls:*) Read Glob Grep" \
-            --max-turns 15
+            --max-turns 25
         env:
           CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           GITHUB_TOKEN: ${{ github.token }}
