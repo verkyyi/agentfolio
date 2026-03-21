@@ -2,7 +2,7 @@ name: Self-Evolve
 
 on:
   schedule:
-    - cron: '0 3 * * *'
+    - cron: '0 * * * *'
   workflow_dispatch:
 
 permissions:
@@ -34,24 +34,61 @@ jobs:
 
           ## STEP 1: Research (REQUIRED — always execute these commands)
 
-          Run these curl commands and capture the output:
+          Research uses a rotating tier system. Run the CORE sources every time,
+          plus ONE rotating set based on the current hour.
 
           ```bash
           TIMESTAMP=$(date -u +%Y-%m-%dT%H:%M:%SZ)
+          HOUR=$(date -u +%H)
+          TIER=$(( HOUR % 3 ))
 
-          # Fetch reference repo commits
-          REPO1=$(curl -s "https://api.github.com/repos/godagoo/claude-code-always-on/commits?per_page=3" | head -c 500)
-          REPO2=$(curl -s "https://api.github.com/repos/humanlayer/humanlayer/commits?per_page=3" | head -c 500)
-          ACTIONS=$(curl -s "https://api.github.com/repos/actions/runner/releases?per_page=2" | head -c 500)
+          # === CORE (every run) ===
+          # Claude Code itself — releases, new features, breaking changes
+          CLAUDE_CODE=$(curl -s -H "Authorization: token $GITHUB_TOKEN" \
+            "https://api.github.com/repos/anthropics/claude-code/commits?per_page=3" | head -c 800)
+
+          # Garry Tan's gstack — harness engineering patterns, skills, slash commands
+          GSTACK=$(curl -s -H "Authorization: token $GITHUB_TOKEN" \
+            "https://api.github.com/repos/garrytan/gstack/commits?per_page=3" | head -c 800)
+
+          # Everything Claude Code — harness optimization, skills, instincts
+          ECC=$(curl -s -H "Authorization: token $GITHUB_TOKEN" \
+            "https://api.github.com/repos/affaan-m/everything-claude-code/commits?per_page=3" | head -c 800)
+
+          # === ROTATING TIER $TIER ===
+          if [ "$TIER" -eq 0 ]; then
+            # Tier 0: Agent ecosystems
+            R1=$(curl -s -H "Authorization: token $GITHUB_TOKEN" \
+              "https://api.github.com/repos/wshobson/agents/commits?per_page=3" | head -c 800)
+            R2=$(curl -s -H "Authorization: token $GITHUB_TOKEN" \
+              "https://api.github.com/repos/VoltAgent/awesome-claude-code-subagents/commits?per_page=3" | head -c 800)
+          elif [ "$TIER" -eq 1 ]; then
+            # Tier 1: Original references + infrastructure
+            R1=$(curl -s -H "Authorization: token $GITHUB_TOKEN" \
+              "https://api.github.com/repos/godagoo/claude-code-always-on/commits?per_page=3" | head -c 800)
+            R2=$(curl -s -H "Authorization: token $GITHUB_TOKEN" \
+              "https://api.github.com/repos/humanlayer/humanlayer/commits?per_page=3" | head -c 800)
+            R3=$(curl -s -H "Authorization: token $GITHUB_TOKEN" \
+              "https://api.github.com/repos/actions/runner/releases?per_page=2" | head -c 800)
+          else
+            # Tier 2: Trending + framework
+            R1=$(curl -s -H "Authorization: token $GITHUB_TOKEN" \
+              "https://api.github.com/search/repositories?q=claude+code+agent+pushed:>$(date -u -d '7 days ago' +%Y-%m-%d)&sort=stars&per_page=5" | head -c 1500)
+            R2=$(curl -s -H "Authorization: token $GITHUB_TOKEN" \
+              "https://api.github.com/repos/withastro/astro/releases?per_page=2" | head -c 800)
+          fi
           ```
 
           Then append findings to state/research_log.md. For each source,
           add ONE line in this exact format:
           TIMESTAMP | source-name | one-line summary of what you found | action taken or "no action"
 
+          Label which tier was used: (core), (tier 0), (tier 1), or (tier 2).
+
           Example:
-          2026-03-20T03:00:00Z | humanlayer/humanlayer | no new commits in past week | no action
-          2026-03-20T03:00:00Z | actions/runner | v2.322.0 released with node24 support | noted for future update
+          2026-03-20T03:00:00Z | anthropics/claude-code (core) | v1.2.3 released with hooks improvement | reviewing for harness updates
+          2026-03-20T03:00:00Z | garrytan/gstack (core) | new /architect skill added | analyzing for adoption
+          2026-03-20T03:00:00Z | github-trending (tier 2) | repo X trending with 500 stars — autonomous test runner | noted for review
 
           ## STEP 2: Analyze
 
@@ -133,6 +170,7 @@ jobs:
             --max-turns 30
         env:
           CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          GITHUB_TOKEN: ${{ github.token }}
 
       - name: Setup git config
         run: |
