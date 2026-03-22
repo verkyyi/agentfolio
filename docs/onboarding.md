@@ -193,6 +193,9 @@ Action: Initial setup — agentfolio scaffold installed
 # Learned Rules
 # Rules learned from human feedback. Read by all workflows before acting.
 # Add rules here and agents will follow them on every run.
+
+## Infrastructure Protection
+- Workflows in .github/workflows/ are managed infrastructure. Do NOT modify, create PRs for, or suggest changes to workflow YAML files. Workflow improvements come from upstream agentfolio releases via the scaffold version check. If you detect a workflow issue, create an issue describing the problem but do not attempt to fix it.
 ```
 
 ---
