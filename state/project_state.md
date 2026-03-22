@@ -3,20 +3,22 @@
 # Read at start of every workflow run.
 # Committed to repo — git history is the full audit trail.
 
-Last updated: 2026-03-22T07:44:00Z
-Updated by: watcher.yml (health check)
+Last updated: 2026-03-22T07:50:00Z
+Updated by: coder.yml (fix issue #5)
 
 ## Last Session
-Action: watcher.yml — pipeline health check
+Action: coder.yml — fix issue #5 (structured review tables)
 
 Done:
-- Closed issue #23 (PR #24 merged 07:43Z with "closes #23"; GitHub did not auto-close)
-- Re-triggered reviewer for PR #19 (0 reviews after prior run — silent reviewer failure)
-- Re-triggered reviewer for PR #20 (0 reviews after prior run — silent reviewer failure)
-- Re-queued issue #8 with agent-ready: unblocked by #12 close (WORKFLOW_PAT now available for workflow YAML pushes)
-- Triggered triage for issue #5 (open 10h+ with no "Triaged by agentfolio" comment)
+- Added structured findings table (Trigger | Why | Status | Findings) to skills/adversarial-review.md after Pre-Merge Gate section
+- Table marked as optional/lightweight — required only for Tier 1/2 or non-PASS gate reviews; Tier 0 state-file updates exempt
+- Included filled example with one PASS row and one BLOCK row
+- Added pattern note: all future review skill files must adopt this table format
+- Added reference note to skills/harness.md under Reviewer Workflow section
+- Build passing (exit 0); FEATURE_STATUS updated
+- Opened PR for issue #5 (auto-merge)
 
-In progress: PRs #19 (reviewer re-triggered) and #20 (reviewer re-triggered); issue #8 coder queued; issue #5 triage queued
+In progress: PRs #19 (reviewer re-triggered) and #20 (reviewer re-triggered); issue #8 coder queued
 
 ## Open Items (priority order)
 1. Issue #8: [agent-ready — UNBLOCKED] Upgrade Node.js 20 actions before June 2026 deadline (WORKFLOW_PAT now available via #12 fix)
@@ -24,7 +26,7 @@ In progress: PRs #19 (reviewer re-triggered) and #20 (reviewer re-triggered); is
 3. PR #20: [reviewer re-triggered] Agentic security patterns — supply chain hygiene + prompt injection defense (closes #17)
 4. Issue #22: [needs-review] Submit to hesreallyhim/awesome-claude-code (29k stars) — first growth action
 5. Issue #10: [needs-review — awaiting human] Last-updated badge user-friendly time
-6. Issue #5: [triage queued] Adopt structured review tables in skill output (gstack v0.9.7.0)
+6. Issue #5: [PR opened — auto-merge] Structured findings table added to adversarial-review.md (closes #5)
 7. Issue #21: [feature] Add DeerFlow repo to external sources
 8. Profile page: 5/8 sections still unchecked — live stats, evolution timeline, capabilities inventory, architecture diagram, getting started guide
 9. apps/profile content not yet populated — discover.yml or manual issue needed
