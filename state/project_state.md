@@ -4,22 +4,15 @@
 # Committed to repo — git history is the full audit trail.
 
 Last updated: 2026-03-22T08:10:00Z
-Updated by: coder.yml (fix issue #28)
+Updated by: reviewer.yml (merge PR #32 — fix issue #28)
 
 ## Last Session
-Action: coder.yml — fix issue #28 (token utilization feedback loop)
+Action: reviewer.yml — merged PR #32 (token utilization feedback loop, closes #28)
 
 Done:
-- Created state/usage_log.md (append-only, 7-day rolling window)
-- Phase 1 pilot: instrumented coder.yml, watcher.yml, evolve.yml with --output-format json > /tmp/claude_output.json + usage logging step
-- Phase 2: added watcher responsibility #8 (token utilization analysis) — skips if <20 data lines; detects under/overutilization signals; creates max 1 optimization issue per run
-- Phase 3 rollout: instrumented all 7 remaining workflows (reviewer, triage, analyze, claude-task, discover, feedback-learner, growth)
-- Added dedicated usage log commit steps for reviewer.yml and triage.yml (had no state commit)
-- Updated feedback-learner.yml to commit usage_log.md in both lesson/no-lesson paths
-- Each logging step includes 7-day rolling truncation via awk date comparison
-- JSON field extraction: model from modelUsage keys, total input tokens (input + cache_creation + cache_read), output_tokens, num_turns, total_cost_usd; all with "unknown" fallbacks
-- Build passing (exit 0); FEATURE_STATUS updated
-- Opened PR for issue #28 (needs-review)
+- Merged PR #32: --output-format json + usage logging in all 10 workflows + watcher responsibility #8 (token utilization analysis)
+- Also merged since last state write (main): PR #29 — state/** and skills/** added to deploy.yml path triggers
+- Build passing (exit 0)
 
 In progress: PRs #19 (reviewer re-triggered) and #20 (reviewer re-triggered); issue #8 coder queued
 

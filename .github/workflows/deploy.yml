@@ -7,6 +7,8 @@ on:
       - 'src/**'
       - 'content/**'
       - 'public/**'
+      - 'state/**'
+      - 'skills/**'
       - 'astro.config.*'
       - 'package.json'
       - 'package-lock.json'
