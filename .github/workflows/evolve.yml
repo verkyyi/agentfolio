@@ -101,6 +101,8 @@ jobs:
               "https://api.github.com/repos/humanlayer/humanlayer/commits?per_page=3" | head -c 800)
             R3=$(curl -s -H "Authorization: token $GITHUB_TOKEN" \
               "https://api.github.com/repos/actions/runner/releases?per_page=2" | head -c 800)
+            # OpenAI harness engineering blog — foundational patterns for agent harnesses
+            R4=$(curl -s "https://openai.com/index/harness-engineering/" | head -c 1500)
           else
             # Tier 2: Trending + framework
             R1=$(curl -s -H "Authorization: token $GITHUB_TOKEN" \
