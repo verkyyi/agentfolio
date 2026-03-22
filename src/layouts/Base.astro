@@ -94,16 +94,11 @@ try {
     const repo = 'verkyyi/agentfolio';
     const api = 'https://api.github.com/repos/' + repo;
 
-    // Fetch repo stats (commit count via contributor stats)
-    fetch(api)
-      .then(r => r.json())
-      .then(data => {
-        const el = document.querySelector('[data-live="commits"]');
-        // open_issues is not what we want for commits; use a separate call
-      })
-      .catch(() => {});
+    // Fetch repo stats via search API (returns total_count, no pagination issues)
+    const owner = repo.split('/')[0];
+    const name = repo.split('/')[1];
 
-    // Commit count from default branch
+    // Commit count
     fetch(api + '/commits?per_page=1')
       .then(r => {
         const link = r.headers.get('Link') || '';
@@ -115,23 +110,21 @@ try {
       })
       .catch(() => {});
 
-    // Closed issues count
-    fetch(api + '/issues?state=closed&per_page=1')
-      .then(r => {
-        const link = r.headers.get('Link') || '';
-        const match = link.match(/page=(\d+)>; rel="last"/);
+    // Closed issues count (search API — reliable total_count)
+    fetch('https://api.github.com/search/issues?q=repo:' + repo + '+type:issue+state:closed&per_page=1')
+      .then(r => r.json())
+      .then(data => {
         const el = document.querySelector('[data-live="issues-closed"]');
-        if (el) el.textContent = match ? match[1] : '0';
+        if (el && data.total_count !== undefined) el.textContent = data.total_count;
       })
       .catch(() => {});
 
-    // Merged PRs count
-    fetch(api + '/pulls?state=closed&per_page=1')
-      .then(r => {
-        const link = r.headers.get('Link') || '';
-        const match = link.match(/page=(\d+)>; rel="last"/);
+    // Merged PRs count (search API — reliable total_count)
+    fetch('https://api.github.com/search/issues?q=repo:' + repo + '+type:pr+is:merged&per_page=1')
+      .then(r => r.json())
+      .then(data => {
         const el = document.querySelector('[data-live="prs-merged"]');
-        if (el) el.textContent = match ? match[1] : '0';
+        if (el && data.total_count !== undefined) el.textContent = data.total_count;
       })
       .catch(() => {});
   </script>

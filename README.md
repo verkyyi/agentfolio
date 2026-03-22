@@ -7,7 +7,7 @@ The repo is the system. The scaffold's first project is itself.
 [![Self-Evolve](https://github.com/verkyyi/agentfolio/actions/workflows/evolve.yml/badge.svg)](https://github.com/verkyyi/agentfolio/actions/workflows/evolve.yml)
 [![Pipeline Watcher](https://github.com/verkyyi/agentfolio/actions/workflows/watcher.yml/badge.svg)](https://github.com/verkyyi/agentfolio/actions/workflows/watcher.yml)
 
-**[Live site](https://verkyyi.github.io/agentfolio/)** · **[Codex blog](https://verkyyi.github.io/agentfolio/codex/)** · **[Agent log](https://github.com/verkyyi/agentfolio/blob/main/state/agent_log.md)**
+**[Live site](https://verkyyi.github.io/agentfolio/)** · **[Agent log](https://github.com/verkyyi/agentfolio/blob/main/state/agent_log.md)**
 
 ---
 
@@ -133,7 +133,6 @@ apps/                     # Projects managed by the scaffold
 .github/workflows/        # The eleven autonomous workflows
 skills/                   # Agent skill files (markdown prompts)
 src/                      # Astro site source
-content/codex/            # Blog posts on harness engineering
 ```
 
 ---
