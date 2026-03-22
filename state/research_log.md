@@ -60,3 +60,11 @@
 2026-03-22T05:25:54Z | github-trending (tier 2) | 3044 repos for "claude code agent" pushed >2026-03-15; everything-claude-code top result; no new breakout repo | no action
 2026-03-22T05:25:54Z | withastro/astro (tier 2) | v6.0.8 latest — minor patch, no breaking changes | no action
 2026-03-22T05:25:54Z | pipeline-health | 10 failed runs checked: all ALREADY-FIXED (Pipeline Watcher 05:05, Self-Evolve 04:37, Coder 04:29 all succeeded) | 0 issues created
+2026-03-22T06:16:08Z | anthropics/claude-code (core) | latest commit 2026-03-20 CHANGELOG update — no major release since last check | no action
+2026-03-22T06:16:08Z | garrytan/gstack (core) | v0.9.9.0 still latest — PR #307 "harden /office-hours diagnostic rigor" anti-sycophancy (already tracked in issue #13) | no action
+2026-03-22T06:16:08Z | affaan-m/everything-claude-code (core) | credits restored commit 2026-03-22T02:48:20Z — no new harness patterns | no action
+2026-03-22T06:16:08Z | wshobson/agents (tier 0) | 2026-03-17 PR #452 merged — OCI awareness added across agents and skills (Oracle Cloud Infrastructure context injection pattern) | noted — cloud platform awareness not immediately relevant to GitHub-only harness
+2026-03-22T06:16:08Z | VoltAgent/awesome-claude-code-subagents (tier 0) | README updated 2026-03-19 — community curation active, no new structural patterns | no action
+2026-03-22T06:16:08Z | pipeline-health | 10 failed runs checked: Coder (23397120424) ACTIONABLE but covered by existing #12 (workflow YAML push blocked); Weekly Analysis (23391999315) TRANSIENT (clean tree commit, benign); 8 others ALREADY-FIXED | 0 new issues created
+2026-03-22T06:16:08Z | growth-metrics | stars:1 forks:0 watchers:0 open_issues:10; traffic API returns 403 (GitHub App lacks push access — expected) | first real metrics capture
+2026-03-22T06:16:08Z | adoption-tracking | 0 forks found, 0 adopters detected; search for agentfolio repos returns only own repo | no action
