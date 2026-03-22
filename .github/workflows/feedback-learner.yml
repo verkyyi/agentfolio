@@ -176,7 +176,7 @@ jobs:
 
           claude -p "$(cat /tmp/learner_prompt.txt)" \
             --allowedTools "Bash(gh:*) Read Write Edit" \
-            --model claude-opus-4-6 \
+            --model opus \
             --effort max \
             --max-turns 25 \
             --permission-mode bypassPermissions \
