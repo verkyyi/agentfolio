@@ -3,19 +3,18 @@
 # Read at start of every workflow run.
 # Committed to repo — git history is the full audit trail.
 
-Last updated: 2026-03-22T07:56:00Z
-Updated by: coder.yml (fix issue #26)
+Last updated: 2026-03-22T08:10:00Z
+Updated by: coder.yml (fix issue #29)
 
 ## Last Session
-Action: coder.yml — fix issue #26 (optimize Claude CLI configuration)
+Action: coder.yml — fix issue #29 (sync profile page with state/skills changes)
 
 Done:
-- Added tiered model/effort/fallback/permission-mode flags to all 10 workflow Claude CLI invocations
-- Tier 1 (coder, claude-task): claude-opus-4-6 + effort max + fallback sonnet-4-6 + bypassPermissions; coder max-turns 30→40
-- Tier 2 (reviewer, evolve, triage): claude-sonnet-4-6 + effort high + fallback haiku-4-5 + bypassPermissions; reviewer max-turns 15→30, triage 25→30
-- Tier 3 (watcher, growth, analyze, discover, feedback-learner): claude-haiku-4-5-20251001 + effort medium + bypassPermissions; analyze/discover 20→25, feedback-learner 10→25
-- Build passing (exit 0); FEATURE_STATUS updated
-- Opened PR for issue #26 (needs-review)
+- Added state/** and skills/** to deploy.yml path triggers so evolve.yml state commits trigger redeploy
+- Updated apps/profile/FEATURE_STATUS.md: checked off "Build-time data extraction from state files" and "Auto-refresh via evolve.yml → deploy.yml pipeline"
+- Updated apps/scaffold/FEATURE_STATUS.md: added auto-redeploy item
+- Build passing (exit 0)
+- Opened PR for issue #29 (needs-review — workflow YAML change)
 
 In progress: PRs #19 (reviewer re-triggered) and #20 (reviewer re-triggered); issue #8 coder queued
 
