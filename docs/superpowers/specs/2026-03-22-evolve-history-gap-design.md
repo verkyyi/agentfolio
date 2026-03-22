@@ -19,7 +19,7 @@ Change `--state open` to `--state all` in the Step 5 dedup check in `.github/wor
 gh issue list --state open --label evolve-finding --json title -q '.[].title'
 
 # After
-gh issue list --state all --label evolve-finding --json title -q '.[].title'
+gh issue list --state all --limit 100 --label evolve-finding --json title -q '.[].title'
 ```
 
 ## Scope
@@ -37,7 +37,7 @@ gh issue list --state all --label evolve-finding --json title -q '.[].title'
 
 ## Risk
 
-- `--state all` returns more titles as issues accumulate. At current volume (~20 total issues, ~10 with `evolve-finding` label), this is negligible. Would only matter at hundreds of issues, which is months away.
+- `--state all` returns more titles as issues accumulate. `--limit 100` (vs default 30) ensures dedup coverage as the issue count grows. At current volume (8 `evolve-finding` issues), this is negligible.
 - No behavioral change for any other workflow.
 
 ## Test Plan
