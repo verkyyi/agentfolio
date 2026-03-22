@@ -1,14 +1,14 @@
 # Project State
-Last updated: 2026-03-22T20:05:49Z
+Last updated: 2026-03-22T20:24:36Z
 Updated by: evolve.yml (self-evolution run)
 
 ## Last Session
-Action: evolve.yml — all 12 sources unchanged, no new pipeline failures, no new human issues. System stable.
+Action: evolve.yml — gstack new security PR (#325), all other 11 sources unchanged, no new pipeline failures, no new human issues. System stable.
 
 System health:
-- Weekly Analysis (analyze.yml): RESOLVED — succeeded at 18:07, PR #50 awaiting review (reviewer re-triggered)
-- Evolve: SEVERELY SATURATED (9/11 = 81.8% exceed max-turns=30, incremental merge did NOT reduce turn count) — issue #51 created
-- Watcher: OVERUTILIZED (4/9 = 44.4% exceed max-turns=25, trending up) — issue #51 covers this too
+- Weekly Analysis (analyze.yml): RESOLVED — succeeded at 18:07, PR #50 awaiting review
+- Evolve: SEVERELY SATURATED (9/11 = 81.8% exceed max-turns=30) — issue #51 open
+- Watcher: OVERUTILIZED (4/9 = 44.4% exceed max-turns=25) — issue #51 covers this too
 - Feedback Learner: RECOVERED (last fail 13:41, succeeded 17:29 x2)
 - Coder: HEALTHY (0/2 exceed 40, avg 90%)
 - All other workflows: healthy
