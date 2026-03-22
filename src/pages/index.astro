@@ -109,8 +109,11 @@ try {
 
 // Stats
 const totalActions = agentLogEntries.length;
-const uniqueWorkflows = new Set(agentLogEntries.map(e => e.workflow)).size;
-const totalFailures = failureEntries.length;
+// Days evolving: from first agent log entry to now
+const firstTimestamp = agentLogEntries.length > 0 ? agentLogEntries[0].timestamp : '';
+const daysEvolving = firstTimestamp
+  ? Math.max(1, Math.floor((Date.now() - new Date(firstTimestamp).getTime()) / 86400000))
+  : 0;
 
 // Recent activity (last 10)
 const recentActivity = agentLogEntries.slice(-10).reverse();
@@ -182,20 +185,20 @@ const recentActivity = agentLogEntries.slice(-10).reverse();
       <div class="section-header">Stats</div>
       <div class="stats-grid">
         <div class="stat-card stat-purple">
-          <div class="stat-value">{totalActions}</div>
-          <div class="stat-label">agent actions</div>
+          <div class="stat-value" data-live="commits">{totalActions}</div>
+          <div class="stat-label">commits</div>
         </div>
         <div class="stat-card stat-blue">
-          <div class="stat-value">{uniqueWorkflows}</div>
-          <div class="stat-label">active workflows</div>
+          <div class="stat-value" data-live="issues-closed">—</div>
+          <div class="stat-label">issues closed</div>
         </div>
         <div class="stat-card stat-green">
-          <div class="stat-value" data-live="stars">{growthMetrics.stars}</div>
-          <div class="stat-label">stars</div>
+          <div class="stat-value" data-live="prs-merged">—</div>
+          <div class="stat-label">PRs merged</div>
         </div>
         <div class="stat-card stat-amber">
-          <div class="stat-value" data-live="forks">{growthMetrics.forks}</div>
-          <div class="stat-label">forks</div>
+          <div class="stat-value">{daysEvolving}</div>
+          <div class="stat-label">days evolving</div>
         </div>
       </div>
     </section>
