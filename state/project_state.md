@@ -4,17 +4,15 @@
 # Committed to repo — git history is the full audit trail.
 
 Last updated: 2026-03-22T08:10:00Z
-Updated by: coder.yml (fix issue #29)
+Updated by: reviewer.yml (merge PR #32 — fix issue #28)
 
 ## Last Session
-Action: coder.yml — fix issue #29 (sync profile page with state/skills changes)
+Action: reviewer.yml — merged PR #32 (token utilization feedback loop, closes #28)
 
 Done:
-- Added state/** and skills/** to deploy.yml path triggers so evolve.yml state commits trigger redeploy
-- Updated apps/profile/FEATURE_STATUS.md: checked off "Build-time data extraction from state files" and "Auto-refresh via evolve.yml → deploy.yml pipeline"
-- Updated apps/scaffold/FEATURE_STATUS.md: added auto-redeploy item
+- Merged PR #32: --output-format json + usage logging in all 10 workflows + watcher responsibility #8 (token utilization analysis)
+- Also merged since last state write (main): PR #29 — state/** and skills/** added to deploy.yml path triggers
 - Build passing (exit 0)
-- Opened PR for issue #29 (needs-review — workflow YAML change)
 
 In progress: PRs #19 (reviewer re-triggered) and #20 (reviewer re-triggered); issue #8 coder queued
 
