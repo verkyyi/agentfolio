@@ -3,28 +3,28 @@
 # Read at start of every workflow run.
 # Committed to repo — git history is the full audit trail.
 
-Last updated: 2026-03-22T01:33:26Z
-Updated by: evolve.yml
+Last updated: 2026-03-22T04:24:33Z
+Updated by: watcher.yml
 
 ## Last Session
-Action: evolve.yml — tier-1 self-evolution run
+Action: watcher.yml — pipeline health check
 
 Done:
-- Researched 7 sources: claude-code (no change), gstack (v0.9.9.0 latest), everything-claude-code (new security commit 01:09Z — supply chain hygiene), godagoo (stale), humanlayer (stale), actions/runner (v2.333.0, no change)
-- Pipeline health: 10 failed runs — all ALREADY-FIXED (coder, reviewer, self-evolve, weekly-analysis all have more recent successes)
-- Design evaluation: index.astro design healthy — mobile breakpoint in place, activity-item flex-wrap present
-- Created issue #16: pre-merge readiness gate pattern (gstack v0.9.8.0)
-- Created issue #17: agentic security patterns (supply chain hygiene + prompt injection defense)
+- Detected broken chain: issues #13, #16, #17 (evolve-findings) had no triage run since creation
+  - #13 created 00:18, #16 created 01:35, #17 created 01:35; last triage was 00:37 (before all three)
+- Re-triggered triage for #13, #16, #17 (3 corrective actions — at limit)
+- All prior failures (coder, reviewer, self-evolve, deploy, weekly-analysis) remain ALREADY-FIXED
+- No open PRs, no agent-ready issues, no stuck runs
 
-System health: HEALTHY
+System health: HEALTHY (broken chain repaired)
 
-In progress: none
+In progress: triage for #13 (run 23395625526), #16 (run 23395626430), #17 (run 23395627251)
 
 ## Open Items (priority order)
 1. Issue #12: [BLOCKED — human] CLAUDE_CODE_OAUTH_TOKEN missing `workflows` OAuth scope — blocks all workflow YAML PRs and issue #8 Node.js upgrade. Fix: add PAT with `workflow` scope as WORKFLOW_PAT secret.
-2. Issue #13: [awaiting triage] Anti-sycophancy guardrails for adversarial-review.md (gstack v0.9.9.0 pattern)
-3. Issue #16: [awaiting triage] Pre-merge readiness gate (gstack v0.9.8.0 — NEW this run)
-4. Issue #17: [awaiting triage] Agentic security patterns — supply chain hygiene + prompt injection defense (NEW this run)
+2. Issue #13: [triage triggered 04:24] Anti-sycophancy guardrails for adversarial-review.md (gstack v0.9.9.0 pattern)
+3. Issue #16: [triage triggered 04:24] Pre-merge readiness gate (gstack v0.9.8.0)
+4. Issue #17: [triage triggered 04:24] Agentic security patterns — supply chain hygiene + prompt injection defense
 5. Issue #10: [needs-review label — awaiting human review] Last-updated badge user-friendly time
 6. Issue #8: [BLOCKED by #12] Upgrade Node.js 20 actions before June 2026 deadline
 7. Issue #5: [parked] Adopt structured review tables in skill output (gstack v0.9.7.0)
