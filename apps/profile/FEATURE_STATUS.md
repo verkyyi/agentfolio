@@ -10,5 +10,5 @@
 
 ## Infrastructure
 - [x] Content schemas for repo profile data
-- [ ] Build-time data extraction from state files
-- [ ] Auto-refresh via evolve.yml → deploy.yml pipeline
+- [x] Build-time data extraction from state files
+- [x] Auto-refresh via evolve.yml → deploy.yml pipeline
