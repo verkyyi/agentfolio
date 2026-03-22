@@ -28,17 +28,26 @@ Workflows determine which project they operate on:
 
 ## Session Protocol
 
-ON START (every workflow run):
+ON START (every workflow run AND every CLI session):
 1. Read state/project_state.md — what happened last
 2. Read apps/${APP_NAME}/CLAUDE.md — project-specific rules
 3. Read apps/${APP_NAME}/FEATURE_STATUS.md — what's done and pending
 4. Check current event: issue body, PR diff, workflow input
 
-ON STOP (every workflow run):
+ON STOP (every workflow run AND every CLI session):
 1. Write session summary to state/project_state.md
 2. Update state/agent_log.md (append one line)
 3. Update apps/${APP_NAME}/FEATURE_STATUS.md if anything changed
 4. Commit all state/ changes with message: "state: [summary]"
+
+CLI SESSION CLOSE (enforced by SessionEnd hook):
+When the user ends a CLI session (exits, /clear, closes terminal):
+- The SessionEnd hook auto-commits any uncommitted state/ changes
+- To ensure a useful summary exists, Claude MUST update state files
+  BEFORE the session ends — do not wait to be asked
+- When you detect the conversation is wrapping up (user says "done",
+  "thanks", "that's all", asks to commit, or context is being compressed),
+  proactively update state/project_state.md and state/agent_log.md
 
 ## Autonomy Rules (scaffold defaults — app CLAUDE.md may override)
 
