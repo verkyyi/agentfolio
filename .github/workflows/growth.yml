@@ -188,7 +188,6 @@ jobs:
       - name: Run growth strategist
         run: |
           claude -p "$(cat /tmp/growth_prompt.txt)" \
-            --allowedTools "Bash(gh:*) Bash(git:*) Bash(curl:*) Bash(date:*) Bash(grep:*) Bash(tail:*) Bash(head:*) Bash(cat:*) Bash(echo:*) Read Write Edit Glob Grep" \
             --model opus \
             --effort max \
             --max-turns 25 \

@@ -182,7 +182,6 @@ jobs:
       - name: Run triage
         run: |
           claude -p "$(cat /tmp/triage_prompt.txt)" \
-            --allowedTools "Bash(gh:*) Bash(git:*) Bash(ls:*) Read Glob Grep" \
             --model opus \
             --effort max \
             --max-turns 30 \

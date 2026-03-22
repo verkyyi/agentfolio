@@ -175,7 +175,6 @@ jobs:
           PROMPT
 
           claude -p "$(cat /tmp/learner_prompt.txt)" \
-            --allowedTools "Bash(gh:*) Read Write Edit" \
             --model opus \
             --effort max \
             --max-turns 25 \

@@ -174,7 +174,6 @@ jobs:
         if: steps.human.outputs.SKIP != 'true'
         run: |
           claude -p "$(cat /tmp/coder_prompt.txt)" \
-            --allowedTools "Bash Read Write Edit Glob Grep" \
             --model opus \
             --effort max \
             --max-turns 40 \

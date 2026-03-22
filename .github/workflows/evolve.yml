@@ -397,7 +397,6 @@ jobs:
       - name: Run Claude Code
         run: |
           claude -p "$(cat /tmp/prompt.txt)" \
-            --allowedTools "Bash(curl:*) Bash(git:*) Bash(gh:*) Bash(ls:*) Bash(cat:*) Bash(date:*) Bash(grep:*) Bash(head:*) Bash(tail:*) Bash(wc:*) Bash(echo:*) Bash(printf:*) Bash(mkdir:*) Read Write Edit Glob Grep" \
             --model opus \
             --effort max \
             --max-turns 30 \

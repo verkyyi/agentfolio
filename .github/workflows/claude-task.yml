@@ -90,7 +90,6 @@ jobs:
       - name: Run Claude agent
         run: |
           claude -p "$(cat /tmp/task_prompt.txt)" \
-            --allowedTools "Bash Read Write Edit Glob Grep" \
             --model opus \
             --effort max \
             --max-turns 50 \

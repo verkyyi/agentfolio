@@ -251,7 +251,6 @@ jobs:
       - name: Run watcher
         run: |
           claude -p "$(cat /tmp/watcher_prompt.txt)" \
-            --allowedTools "Bash(gh:*) Bash(git:*) Bash(date:*) Bash(grep:*) Bash(tail:*) Read Write Edit Glob Grep" \
             --model opus \
             --effort max \
             --max-turns 25 \
