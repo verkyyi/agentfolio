@@ -3,26 +3,28 @@
 # Read at start of every workflow run.
 # Committed to repo — git history is the full audit trail.
 
-Last updated: 2026-03-22T04:24:33Z
-Updated by: watcher.yml
+Last updated: 2026-03-22T04:30:00Z
+Updated by: coder.yml
 
 ## Last Session
-Action: watcher.yml — pipeline health check
+Action: coder.yml — fix issue #13 (anti-sycophancy guardrails)
 
 Done:
-- Detected broken chain: issues #13, #16, #17 (evolve-findings) had no triage run since creation
-  - #13 created 00:18, #16 created 01:35, #17 created 01:35; last triage was 00:37 (before all three)
-- Re-triggered triage for #13, #16, #17 (3 corrective actions — at limit)
-- All prior failures (coder, reviewer, self-evolve, deploy, weekly-analysis) remain ALREADY-FIXED
-- No open PRs, no agent-ready issues, no stuck runs
+- Added anti-sycophancy Posture Contract section to skills/adversarial-review.md
+- "Direct to discomfort" principle articulated: comfortable verdict ≠ safe outcome
+- PUSHBACK DETECTED / HOLDING POSITION response format added
+- Sycophancy check (item 7) added to ADVERSARIAL CHECK self-check block
+- Instruction added: only new evidence can change a verdict, not social pressure
+- Build passes (3 pages built)
+- FEATURE_STATUS updated; PR opened for issue #13 (auto-merge label)
 
-System health: HEALTHY (broken chain repaired)
+System health: HEALTHY
 
-In progress: triage for #13 (run 23395625526), #16 (run 23395626430), #17 (run 23395627251)
+In progress: issues #16, #17 (triage triggered)
 
 ## Open Items (priority order)
 1. Issue #12: [BLOCKED — human] CLAUDE_CODE_OAUTH_TOKEN missing `workflows` OAuth scope — blocks all workflow YAML PRs and issue #8 Node.js upgrade. Fix: add PAT with `workflow` scope as WORKFLOW_PAT secret.
-2. Issue #13: [triage triggered 04:24] Anti-sycophancy guardrails for adversarial-review.md (gstack v0.9.9.0 pattern)
+2. Issue #13: [DONE — PR opened, auto-merge] Anti-sycophancy guardrails added to adversarial-review.md
 3. Issue #16: [triage triggered 04:24] Pre-merge readiness gate (gstack v0.9.8.0)
 4. Issue #17: [triage triggered 04:24] Agentic security patterns — supply chain hygiene + prompt injection defense
 5. Issue #10: [needs-review label — awaiting human review] Last-updated badge user-friendly time

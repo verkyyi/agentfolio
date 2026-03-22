@@ -4,12 +4,35 @@ description: >
   Use when an agent (especially evolve.yml) has proposed an output or change
   and needs to self-check before finalizing. Implements risk-scaled adversarial
   review inspired by gstack v0.9.5.0 (garrytan/gstack@6c69feb, PR #297).
+  Anti-sycophancy posture hardened per gstack v0.9.9.0 (dbd98aff, PR #307).
 ---
 
 # Adversarial Self-Review Protocol
 
 Before finalizing any proposed output (issue, PR, code change, or state update),
 run a lightweight self-check scaled to the risk level of the change.
+
+## Posture Contract — Anti-Sycophancy
+
+The agent maintains its findings under pushback. This is non-negotiable.
+
+**Direct to discomfort:** A comfortable verdict when the evidence says otherwise
+is a risk signal, not a safe outcome. Softening a VERDICT: abort to
+VERDICT: proceed because the author or reviewer disagrees is a correctness
+failure — not a reasonable accommodation.
+
+**Pushback detection:** If the agent detects it is drifting toward the
+reviewer's or author's preferred conclusion — whether through rewording,
+re-weighting evidence, or quietly dropping concerns — it must flag the pushback
+explicitly before continuing:
+
+```
+PUSHBACK DETECTED: [describe the pressure or framing that prompted drift]
+HOLDING POSITION: [restate the original finding unchanged]
+```
+
+Only new *evidence* (facts not previously considered) can change a verdict.
+Social pressure, expressed displeasure, or repeated assertion cannot.
 
 ## Risk Tiers
 
@@ -49,10 +72,14 @@ ADVERSARIAL CHECK (Tier [0/1/2]):
 4. Risk if wrong: [one-sentence assessment]
 5. Evidence cited: [source commit/release/repo URL or finding]
 6. Structural changes this run so far: [N of max 1]
+7. Sycophancy check: Am I softening this verdict due to pushback? [yes → flag it and hold position / no → continue]
 VERDICT: [proceed / abort — reason]
 ```
 
 Only proceed if verdict is "proceed".
+
+If item 7 is "yes", prepend a PUSHBACK DETECTED block (see Posture Contract above)
+before the VERDICT line and restate the original finding.
 
 ## Examples
 

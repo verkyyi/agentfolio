@@ -32,3 +32,4 @@
 - [x] seo.md
 - [x] Skills updated for self-evolving architecture
 - [x] adversarial-review.md — risk-scaled self-check protocol for evolve.yml Step 5
+- [x] adversarial-review.md — anti-sycophancy posture contract (gstack v0.9.9.0, closes #13)
