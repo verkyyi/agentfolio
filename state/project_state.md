@@ -3,11 +3,11 @@
 # Read at start of every workflow run.
 # Committed to repo — git history is the full audit trail.
 
-Last updated: 2026-03-22T12:52:00Z
-Updated by: watcher.yml (health check, HUMAN_ACTIVE)
+Last updated: 2026-03-22T13:45:00Z
+Updated by: feedback-learner.yml (issue #42 closure)
 
 ## Last Session
-Action: watcher.yml — health check (HUMAN_ACTIVE mode, observe only)
+Action: feedback-learner.yml — extracted lesson from issue #42 (onboarding verification steps)
 
 Findings:
 - Weekly Analysis 3x consecutive failure (00:22, 06:17, 12:08) — benign: git commit on clean tree in "Create improvement PR" step; needs pipeline-fix issue (step should check for changes before committing)
