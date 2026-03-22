@@ -1,32 +1,13 @@
 ---
-import { readFileSync } from 'fs';
-import { join } from 'path';
-
 interface Props {
   title?: string;
   description?: string;
 }
 
-const { title = 'Agentfolio — Self-Evolving Scaffold', description = 'A self-evolving scaffold for autonomous web projects' } = Astro.props;
-
-// Read agent_log.md at build time for agent badge
-let lastAgentTimestamp = '';
-let lastAgentAction = '';
-try {
-  const logPath = join(process.cwd(), 'state/agent_log.md');
-  const logContent = readFileSync(logPath, 'utf-8');
-  const lines = logContent
-    .split('\n')
-    .filter(l => l.trim() && !l.startsWith('#') && !l.startsWith('<!--') && l.includes('|'));
-  if (lines.length > 0) {
-    const lastLine = lines[lines.length - 1];
-    const parts = lastLine.split('|').map(p => p.trim());
-    lastAgentTimestamp = parts[0] || '';
-    const workflow = parts[1] || '';
-    const action = parts[2] || '';
-    lastAgentAction = `${workflow}: ${action}`;
-  }
-} catch {}
+const {
+  title = 'Agentfolio — Self-evolving GitHub Actions for any repo',
+  description = 'Add an autonomous dev pipeline to your GitHub repo. 11 workflows that research, triage, code, review, and deploy.'
+} = Astro.props;
 ---
 
 <!doctype html>
@@ -51,155 +32,18 @@ try {
 </head>
 <body>
   <slot />
-
-  {lastAgentTimestamp && (
-    <div class="agent-badge" aria-label="This site is maintained by an AI agent">
-      <span class="agent-dot" />
-      <span>
-        maintained by agent ·
-        <a href="https://github.com/verkyyi/agentfolio/commits/main" target="_blank" rel="noopener noreferrer" class="agent-link">
-          last update <span class="relative-time" data-time={lastAgentTimestamp}></span>
-        </a>
-      </span>
-    </div>
-  )}
-
-  <script>
-    function formatRelative(iso) {
-      const now = Date.now();
-      const then = new Date(iso).getTime();
-      const diff = now - then;
-      const mins = Math.floor(diff / 60000);
-      const hours = Math.floor(diff / 3600000);
-      const days = Math.floor(diff / 86400000);
-      if (mins < 1) return 'just now';
-      if (mins < 60) return mins + 'm ago';
-      if (hours < 24) return hours + 'h ago';
-      if (days === 1) return 'yesterday';
-      if (days < 7) return days + 'd ago';
-      if (days < 30) return Math.floor(days / 7) + 'w ago';
-      return new Date(iso).toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
-    }
-
-    // Update all relative timestamps
-    function updateTimes() {
-      document.querySelectorAll('.relative-time').forEach(el => {
-        el.textContent = formatRelative(el.dataset.time);
-      });
-    }
-    updateTimes();
-    setInterval(updateTimes, 60000);
-
-    // Live stats from GitHub API
-    const repo = 'verkyyi/agentfolio';
-    const api = 'https://api.github.com/repos/' + repo;
-
-    // Fetch repo stats via search API (returns total_count, no pagination issues)
-    const owner = repo.split('/')[0];
-    const name = repo.split('/')[1];
-
-    // Commit count
-    fetch(api + '/commits?per_page=1')
-      .then(r => {
-        const link = r.headers.get('Link') || '';
-        const match = link.match(/page=(\d+)>; rel="last"/);
-        if (match) {
-          const el = document.querySelector('[data-live="commits"]');
-          if (el) el.textContent = match[1];
-        }
-      })
-      .catch(() => {});
-
-    // Closed issues count (search API — reliable total_count)
-    fetch('https://api.github.com/search/issues?q=repo:' + repo + '+type:issue+state:closed&per_page=1')
-      .then(r => r.json())
-      .then(data => {
-        const el = document.querySelector('[data-live="issues-closed"]');
-        if (el && data.total_count !== undefined) el.textContent = data.total_count;
-      })
-      .catch(() => {});
-
-    // Merged PRs count (search API — reliable total_count)
-    fetch('https://api.github.com/search/issues?q=repo:' + repo + '+type:pr+is:merged&per_page=1')
-      .then(r => r.json())
-      .then(data => {
-        const el = document.querySelector('[data-live="prs-merged"]');
-        if (el && data.total_count !== undefined) el.textContent = data.total_count;
-      })
-      .catch(() => {});
-  </script>
 </body>
 </html>
 
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  html {
-    overflow-x: hidden;
-  }
+  html { overflow-x: hidden; }
   body {
     font-family: system-ui, -apple-system, sans-serif;
-    background: #0f0c29;
-    background: linear-gradient(160deg, #0f0c29 0%, #1a1145 30%, #1e1b4b 60%, #0f172a 100%);
-    color: #e2e8f0;
+    background: #0d1117;
+    color: #e6edf3;
     min-height: 100vh;
     overflow-x: hidden;
     width: 100%;
-  }
-  body::before {
-    content: '';
-    position: fixed;
-    top: -200px;
-    right: -200px;
-    width: 600px;
-    height: 600px;
-    background: radial-gradient(circle, rgba(139,92,246,0.12), transparent 70%);
-    pointer-events: none;
-  }
-  body::after {
-    content: '';
-    position: fixed;
-    bottom: -100px;
-    left: -100px;
-    width: 400px;
-    height: 400px;
-    background: radial-gradient(circle, rgba(59,130,246,0.08), transparent 70%);
-    pointer-events: none;
-  }
-
-  .agent-badge {
-    position: fixed;
-    bottom: 16px;
-    right: 16px;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 11px;
-    color: #94a3b8;
-    background: rgba(15,12,41,0.9);
-    border: 1px solid rgba(139,92,246,0.2);
-    border-radius: 20px;
-    padding: 6px 14px;
-    backdrop-filter: blur(12px);
-    z-index: 50;
-  }
-
-  .agent-dot {
-    width: 6px;
-    height: 6px;
-    background: #34d399;
-    border-radius: 50%;
-    animation: pulse 2s infinite;
-    box-shadow: 0 0 8px rgba(52,211,153,0.4);
-  }
-
-  @keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.3; }
-  }
-
-  .agent-link {
-    color: #a78bfa;
-    text-decoration: underline;
-    text-underline-offset: 2px;
   }
 </style>

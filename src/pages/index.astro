@@ -1,551 +1,389 @@
 ---
-// src/pages/index.astro
-// Repo profile page — Cosmic design. Reads state files at build time via fs.
-
-import { readFileSync, readdirSync } from 'fs';
-import { join } from 'path';
 import Base from '../layouts/Base.astro';
-
-// Read agent_log.md — parse pipe-delimited entries
-let agentLogEntries: Array<{timestamp: string; workflow: string; action: string; outcome: string}> = [];
-try {
-  const logContent = readFileSync(join(process.cwd(), 'state/agent_log.md'), 'utf-8');
-  const lines = logContent
-    .split('\n')
-    .filter(l => l.trim() && !l.startsWith('#') && !l.startsWith('<!--') && l.includes('|'));
-  agentLogEntries = lines.map(line => {
-    const parts = line.split('|').map(p => p.trim());
-    return {
-      timestamp: parts[0] || '',
-      workflow: parts[1] || '',
-      action: parts[2] || '',
-      outcome: parts[3] || '',
-    };
-  });
-} catch {}
-
-// Read skill files from skills/ directory
-let skills: Array<{name: string; firstLine: string}> = [];
-try {
-  const skillFiles = readdirSync(join(process.cwd(), 'skills'))
-    .filter(f => f.endsWith('.md'))
-    .sort();
-  skills = skillFiles.map(f => {
-    const content = readFileSync(join(process.cwd(), 'skills', f), 'utf-8');
-    // Strip YAML frontmatter if present
-    let body = content;
-    if (body.startsWith('---')) {
-      const endIdx = body.indexOf('---', 3);
-      if (endIdx !== -1) body = body.slice(endIdx + 3);
-    }
-    // Extract description from frontmatter
-    const fmMatch = content.match(/description:\s*>\s*\n([\s\S]*?)(?=\n\w|\n---)/);
-    const fmDesc = fmMatch ? fmMatch[1].replace(/\n\s*/g, ' ').trim() : '';
-    // Fallback: first non-heading, non-comment line from body
-    const lines = body.split('\n').filter(l => l.trim());
-    const descLine = fmDesc || lines.find(l => !l.startsWith('#') && !l.startsWith('<!--') && !l.startsWith('---') && l.trim().length > 10)?.trim() || '';
-    return {
-      name: f.replace('.md', ''),
-      firstLine: descLine.slice(0, 150),
-    };
-  });
-} catch {}
-
-// Read CLAUDE.md failure log entries (lines starting with "# 20" — date-prefixed)
-let failureEntries: string[] = [];
-try {
-  const claudeContent = readFileSync(join(process.cwd(), 'CLAUDE.md'), 'utf-8');
-  failureEntries = claudeContent
-    .split('\n')
-    .filter(l => /^# \d{4}/.test(l))
-    .map(l => l.replace(/^# /, ''));
-} catch {}
-
-// Read research_log.md
-let researchEntries: Array<{timestamp: string; source: string; finding: string}> = [];
-try {
-  const researchContent = readFileSync(join(process.cwd(), 'state/research_log.md'), 'utf-8');
-  const lines = researchContent
-    .split('\n')
-    .filter(l => l.trim() && !l.startsWith('#') && l.includes('|'));
-  researchEntries = lines.map(line => {
-    const parts = line.split('|').map(p => p.trim());
-    return {
-      timestamp: parts[0] || '',
-      source: parts[1] || '',
-      finding: parts[2] || '',
-    };
-  }).slice(-5);
-} catch {}
-
-// Read growth metrics
-let growthMetrics = { stars: '0', forks: '0', views: '0', uniques: '0' };
-try {
-  const metricsContent = readFileSync(join(process.cwd(), 'state/growth_metrics.md'), 'utf-8');
-  const starsMatch = metricsContent.match(/Stars:\s*(\d+)/);
-  const forksMatch = metricsContent.match(/Forks:\s*(\d+)/);
-  const viewsMatch = metricsContent.match(/Views \(14d\):\s*(\d+)/);
-  const uniquesMatch = metricsContent.match(/Unique visitors \(14d\):\s*(\d+)/);
-  if (starsMatch) growthMetrics.stars = starsMatch[1];
-  if (forksMatch) growthMetrics.forks = forksMatch[1];
-  if (viewsMatch) growthMetrics.views = viewsMatch[1];
-  if (uniquesMatch) growthMetrics.uniques = uniquesMatch[1];
-} catch {}
-
-// Parse referrers from growth metrics
-let referrers: Array<{name: string; views: string; uniques: string}> = [];
-try {
-  const metricsContent = readFileSync(join(process.cwd(), 'state/growth_metrics.md'), 'utf-8');
-  const refSection = metricsContent.split('## Referrers')[1]?.split('##')[0] || '';
-  referrers = refSection
-    .split('\n')
-    .filter(l => l.trim() && !l.startsWith('<!--') && l.includes('|'))
-    .map(line => {
-      const parts = line.split('|').map(p => p.trim());
-      return { name: parts[0], views: parts[1] || '0', uniques: parts[2] || '0' };
-    })
-    .slice(0, 5);
-} catch {}
-
-// Stats
-const totalActions = agentLogEntries.length;
-// Days evolving: from first agent log entry to now
-const firstTimestamp = agentLogEntries.length > 0 ? agentLogEntries[0].timestamp : '';
-const daysEvolving = firstTimestamp
-  ? Math.max(1, Math.floor((Date.now() - new Date(firstTimestamp).getTime()) / 86400000))
-  : 0;
-
-// Recent activity (last 10)
-const recentActivity = agentLogEntries.slice(-10).reverse();
-
-// Human-friendly workflow descriptions
-const workflowVerbs: Record<string, string> = {
-  'evolve.yml': 'Researched improvements',
-  'coder.yml': 'Wrote a fix',
-  'reviewer.yml': 'Reviewed and merged a PR',
-  'watcher.yml': 'Checked pipeline health',
-  'triage.yml': 'Triaged an issue',
-  'deploy': 'Deployed the site',
-  'growth.yml': 'Analyzed growth',
-  'feedback-learner.yml': 'Learned from feedback',
-  'analyze.yml': 'Ran weekly analysis',
-  'discover': 'Discovered a project',
-  'cli-session': 'Human + agent session',
-  'claude-task.yml': 'Ran a manual task',
-};
-const latestEntry = recentActivity[0];
-const latestVerb = latestEntry
-  ? (workflowVerbs[latestEntry.workflow] || latestEntry.workflow)
-  : '';
 ---
 
 <Base>
-  <main class="cosmic-main">
+  <main class="page">
 
     <!-- Hero -->
-    <section class="cosmic-section">
-      <div class="hero-label">Self-Evolving Scaffold</div>
-      <h1 class="hero-title">Agentfolio</h1>
-      <p class="hero-subtitle">
-        Add an autonomous dev team to your GitHub repo. It triages issues,
-        writes code, reviews PRs, deploys, and improves its own workflows.
-        Every hour. No server required.
+    <section class="hero">
+      <p class="wordmark">Agentfolio</p>
+      <h1 class="headline">Self-evolving GitHub Actions for any repo</h1>
+      <p class="subtitle">
+        11 workflows that research, triage, code, review, and deploy — autonomously.
+        Add to your project with Claude Code.
       </p>
-      <div class="hero-ctas">
-        <a href="https://github.com/verkyyi/agentfolio/blob/main/docs/onboarding.md" target="_blank" rel="noopener noreferrer" class="cta-primary">
-          Add to Your Repo
-        </a>
-        <a href="https://github.com/verkyyi/agentfolio" target="_blank" rel="noopener noreferrer" class="cta-secondary">
-          View Source
-        </a>
+      <div class="hero-actions">
+        <a href="#get-started" class="btn-primary">Get Started</a>
+        <a href="https://github.com/verkyyi/agentfolio" target="_blank" rel="noopener noreferrer" class="btn-secondary">View on GitHub</a>
       </div>
     </section>
 
-    <!-- Live Pipeline -->
-    <section class="cosmic-section">
-      <div class="section-header">Live Pipeline</div>
+    <!-- What It Does -->
+    <section class="section">
+      <h2 class="section-label">What it does</h2>
+      <div class="capabilities">
+        <div class="capability">
+          <span class="cap-name">Evolve</span>
+          <span class="cap-desc">Researches your ecosystem hourly, opens issues</span>
+        </div>
+        <div class="capability">
+          <span class="cap-name">Triage</span>
+          <span class="cap-desc">Classifies and routes every new issue</span>
+        </div>
+        <div class="capability">
+          <span class="cap-name">Code + Review</span>
+          <span class="cap-desc">Implements on branches, reviews its own PRs</span>
+        </div>
+        <div class="capability">
+          <span class="cap-name">Deploy</span>
+          <span class="cap-desc">Builds and ships on merge</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="section">
+      <h2 class="section-label">How it works</h2>
       <div class="pipeline">
-        <div class="pipeline-step">
-          <div class="pipeline-icon">🔍</div>
-          <div class="pipeline-name">Evolve</div>
-          <div class="pipeline-freq">every hour</div>
+        <div class="pipe-step">
+          <span class="pipe-name">Evolve</span>
+          <span class="pipe-freq">hourly</span>
         </div>
-        <div class="pipeline-arrow">→</div>
-        <div class="pipeline-step">
-          <div class="pipeline-icon">📋</div>
-          <div class="pipeline-name">Triage</div>
-          <div class="pipeline-freq">per issue</div>
+        <span class="pipe-arrow" aria-hidden="true"></span>
+        <div class="pipe-step">
+          <span class="pipe-name">Triage</span>
+          <span class="pipe-freq">per issue</span>
         </div>
-        <div class="pipeline-arrow">→</div>
-        <div class="pipeline-step">
-          <div class="pipeline-icon">⚡</div>
-          <div class="pipeline-name">Code</div>
-          <div class="pipeline-freq">per issue</div>
+        <span class="pipe-arrow" aria-hidden="true"></span>
+        <div class="pipe-step">
+          <span class="pipe-name">Code</span>
+          <span class="pipe-freq">per issue</span>
         </div>
-        <div class="pipeline-arrow">→</div>
-        <div class="pipeline-step">
-          <div class="pipeline-icon">✓</div>
-          <div class="pipeline-name">Review</div>
-          <div class="pipeline-freq">per PR</div>
+        <span class="pipe-arrow" aria-hidden="true"></span>
+        <div class="pipe-step">
+          <span class="pipe-name">Review</span>
+          <span class="pipe-freq">per PR</span>
         </div>
-        <div class="pipeline-arrow">→</div>
-        <div class="pipeline-step">
-          <div class="pipeline-icon">🚀</div>
-          <div class="pipeline-name">Deploy</div>
-          <div class="pipeline-freq">on merge</div>
-        </div>
-      </div>
-      <div class="pipeline-sub">
-        <span class="pipeline-watcher">🛡️ Watcher monitors every 30 min · self-heals broken chains</span>
-      </div>
-    </section>
-
-    <!-- Stats -->
-    <section class="cosmic-section">
-      <div class="section-header">Stats</div>
-      <div class="stats-grid">
-        <div class="stat-card stat-purple">
-          <div class="stat-value" data-live="commits">{totalActions}</div>
-          <div class="stat-label">commits</div>
-        </div>
-        <div class="stat-card stat-blue">
-          <div class="stat-value" data-live="issues-closed">—</div>
-          <div class="stat-label">issues closed</div>
-        </div>
-        <div class="stat-card stat-green">
-          <div class="stat-value" data-live="prs-merged">—</div>
-          <div class="stat-label">PRs merged</div>
-        </div>
-        <div class="stat-card stat-amber">
-          <div class="stat-value">{daysEvolving}</div>
-          <div class="stat-label">days evolving</div>
+        <span class="pipe-arrow" aria-hidden="true"></span>
+        <div class="pipe-step">
+          <span class="pipe-name">Deploy</span>
+          <span class="pipe-freq">on merge</span>
         </div>
       </div>
     </section>
 
-    <!-- Traffic Sources -->
-    {referrers.length > 0 && (
-      <section class="cosmic-section">
-        <div class="section-header">Where Visitors Come From</div>
-        <div class="referrers-list">
-          {referrers.map(ref => (
-            <div class="referrer-item">
-              <span class="referrer-name">{ref.name}</span>
-              <span class="referrer-stats">{ref.views} views · {ref.uniques} unique</span>
-            </div>
-          ))}
+    <!-- Use Cases -->
+    <section class="section">
+      <h2 class="section-label">Best for</h2>
+      <div class="use-cases">
+        <div class="use-case">
+          <h3 class="uc-title">Open-source projects</h3>
+          <p class="uc-desc">Auto-triage issues, research your ecosystem, ship fixes</p>
         </div>
-        <p class="referrer-note">
-          {growthMetrics.views} total views · {growthMetrics.uniques} unique visitors (14 days)
-        </p>
-      </section>
-    )}
-
-    <!-- Latest Action (single line to show it's alive) -->
-    {latestEntry && (
-      <section class="cosmic-section">
-        <div class="latest-action">
-          <span class="latest-dot" />
-          <span class="latest-text">{latestVerb}</span>
-          <time class="relative-time latest-time" data-time={latestEntry.timestamp}>
-            {new Date(latestEntry.timestamp).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
-          </time>
+        <div class="use-case">
+          <h3 class="uc-title">Personal websites</h3>
+          <p class="uc-desc">Content updates, self-healing deploys, zero maintenance</p>
         </div>
-      </section>
-    )}
+        <div class="use-case">
+          <h3 class="uc-title">Any GitHub repo</h3>
+          <p class="uc-desc">Add autonomous CI to what you already have</p>
+        </div>
+      </div>
+    </section>
 
-    <!-- Add to Your Repo -->
-    <section class="cosmic-section">
-      <div class="section-header">Add to Your Repo</div>
-      <p class="add-desc">
-        Open your project in Claude Code and run:
-      </p>
+    <!-- Get Started -->
+    <section class="section" id="get-started">
+      <h2 class="section-label">Get started</h2>
+      <ol class="steps">
+        <li>Open Claude Code in your repo</li>
+        <li>Paste this prompt:</li>
+      </ol>
       <div class="code-block">
         <code>Set up agentfolio in this repo. Follow https://github.com/verkyyi/agentfolio/blob/main/docs/onboarding.md</code>
       </div>
-      <p class="add-desc">
-        Claude analyzes your codebase, shows you which workflows fit,
-        asks a few questions, and configures everything. Takes about 2 minutes.
+      <ol class="steps" start="3">
+        <li>Claude analyzes your stack, writes config, copies workflows</li>
+        <li>Push and enable GitHub Actions</li>
+      </ol>
+      <p class="started-note">
+        Works best with public repos deployed to GitHub Pages.
+        Open-source projects and personal websites are ideal starting points.
       </p>
-      <div class="use-ctas">
-        <a href="https://github.com/verkyyi/agentfolio/blob/main/docs/onboarding.md" target="_blank" rel="noopener noreferrer" class="cta-primary">
-          Setup Guide
-        </a>
-        <a href="https://github.com/verkyyi/agentfolio" target="_blank" rel="noopener noreferrer" class="cta-secondary">
-          View Source
-        </a>
-      </div>
     </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <a href="https://github.com/verkyyi/agentfolio" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <span class="footer-sep">·</span>
+      <span>MIT License</span>
+      <span class="footer-sep">·</span>
+      <span>Built with Astro</span>
+    </footer>
 
   </main>
 </Base>
 
 <style>
-  .cosmic-main {
+  .page {
     max-width: 640px;
     margin: 0 auto;
-    padding: 64px 24px;
-    position: relative;
+    padding: 48px 20px;
   }
-  .cosmic-section { margin-bottom: 56px; }
 
   /* Hero */
-  .hero-label {
-    font-size: 11px;
-    letter-spacing: 3px;
+  .hero {
+    text-align: center;
+    padding: 40px 0 48px;
+  }
+  .wordmark {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 2px;
     text-transform: uppercase;
-    color: #a78bfa;
-    margin-bottom: 12px;
+    color: #7d8590;
+    margin-bottom: 16px;
   }
-  .hero-title {
-    font-size: 40px;
-    font-weight: 800;
-    letter-spacing: -1px;
-    background: linear-gradient(135deg, #c084fc, #60a5fa, #34d399);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    margin-bottom: 12px;
+  .headline {
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.3;
+    color: #e6edf3;
+    margin-bottom: 16px;
   }
-  .hero-subtitle {
-    font-size: 14px;
-    color: #94a3b8;
+  .subtitle {
+    font-size: 15px;
+    color: #7d8590;
     line-height: 1.6;
-    max-width: 480px;
+    margin-bottom: 32px;
   }
-
-  /* Hero CTAs */
-  .hero-ctas {
+  .hero-actions {
     display: flex;
+    flex-direction: column;
     gap: 12px;
-    margin-top: 24px;
   }
-  .cta-primary {
+  .btn-primary {
     display: inline-flex;
+    justify-content: center;
     align-items: center;
-    padding: 10px 24px;
-    background: linear-gradient(135deg, #7c3aed, #6d28d9);
+    padding: 12px 24px;
+    background: #238636;
     color: #fff;
     font-size: 14px;
     font-weight: 600;
-    border-radius: 8px;
+    border-radius: 6px;
     text-decoration: none;
-    transition: all 0.2s;
-    border: 1px solid rgba(139,92,246,0.3);
+    min-height: 44px;
   }
-  .cta-primary:hover {
-    background: linear-gradient(135deg, #8b5cf6, #7c3aed);
-    box-shadow: 0 0 20px rgba(139,92,246,0.3);
-  }
-  .cta-secondary {
+  .btn-primary:hover { background: #2ea043; }
+  .btn-secondary {
     display: inline-flex;
+    justify-content: center;
     align-items: center;
-    padding: 10px 24px;
+    padding: 12px 24px;
     background: transparent;
-    color: #a78bfa;
+    color: #e6edf3;
     font-size: 14px;
     font-weight: 600;
-    border-radius: 8px;
+    border-radius: 6px;
     text-decoration: none;
-    border: 1px solid rgba(139,92,246,0.3);
-    transition: all 0.2s;
+    border: 1px solid #30363d;
+    min-height: 44px;
   }
-  .cta-secondary:hover {
-    background: rgba(139,92,246,0.1);
-    border-color: rgba(139,92,246,0.5);
+  .btn-secondary:hover { border-color: #8b949e; }
+
+  /* Desktop: inline buttons */
+  @media (min-width: 640px) {
+    .hero { padding: 64px 0 56px; }
+    .headline { font-size: 36px; }
+    .hero-actions {
+      flex-direction: row;
+      justify-content: center;
+    }
+  }
+
+  /* Sections */
+  .section {
+    padding: 32px 0;
+    border-top: 1px solid #21262d;
+  }
+  .section-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #7d8590;
+    margin-bottom: 20px;
+  }
+
+  /* Capabilities */
+  .capabilities {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .capability {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .cap-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: #e6edf3;
+  }
+  .cap-desc {
+    font-size: 14px;
+    color: #7d8590;
+    line-height: 1.5;
+  }
+
+  @media (min-width: 640px) {
+    .capabilities {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
   }
 
   /* Pipeline */
   .pipeline {
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+  }
+  .pipe-step {
+    display: flex;
     justify-content: space-between;
-    gap: 4px;
-    padding: 20px 0;
-    overflow-x: auto;
+    align-items: center;
+    padding: 12px 16px;
+    background: #161b22;
+    border: 1px solid #21262d;
+    border-radius: 6px;
   }
-  .pipeline-step {
-    text-align: center;
-    flex-shrink: 0;
-  }
-  .pipeline-icon {
-    font-size: 20px;
-    margin-bottom: 6px;
-  }
-  .pipeline-name {
-    font-size: 12px;
-    font-weight: 600;
-    color: #e2e8f0;
-  }
-  .pipeline-freq {
-    font-size: 10px;
-    color: #64748b;
-    margin-top: 2px;
-  }
-  .pipeline-arrow {
-    color: #475569;
+  .pipe-name {
     font-size: 14px;
-    flex-shrink: 0;
+    font-weight: 600;
+    color: #e6edf3;
   }
-  .pipeline-sub {
-    text-align: center;
-    padding-top: 8px;
-    border-top: 1px solid rgba(139,92,246,0.1);
+  .pipe-freq {
+    font-size: 12px;
+    color: #7d8590;
   }
-  .pipeline-watcher {
-    font-size: 11px;
-    color: #64748b;
+  .pipe-arrow {
+    display: flex;
+    justify-content: center;
+    padding: 4px 0;
+    color: #30363d;
+    font-size: 0;
   }
-
-  /* Section headers */
-  .section-header {
-    font-size: 10px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: #7c3aed;
-    margin-bottom: 20px;
-    padding-bottom: 8px;
-    border-bottom: 1px solid rgba(124,58,237,0.2);
+  .pipe-arrow::after {
+    content: '\2193'; /* down arrow */
+    font-size: 14px;
   }
 
-  /* Stats */
-  .stats-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
+  @media (min-width: 640px) {
+    .pipeline {
+      flex-direction: row;
+      align-items: center;
+      gap: 0;
+    }
+    .pipe-step {
+      flex: 1;
+      flex-direction: column;
+      text-align: center;
+      gap: 4px;
+    }
+    .pipe-arrow {
+      padding: 0 4px;
+    }
+    .pipe-arrow::after {
+      content: '\2192'; /* right arrow */
+    }
+  }
+
+  /* Use Cases */
+  .use-cases {
+    display: flex;
+    flex-direction: column;
     gap: 12px;
   }
-  .stat-card {
-    border-radius: 12px;
-    padding: 20px;
-    text-align: center;
-    transition: border-color 0.3s, background 0.3s;
+  .use-case {
+    padding: 16px;
+    background: #161b22;
+    border: 1px solid #21262d;
+    border-radius: 6px;
   }
-  .stat-card:hover { background: rgba(139,92,246,0.12); }
-  .stat-purple {
-    background: rgba(139,92,246,0.08);
-    border: 1px solid rgba(139,92,246,0.15);
-  }
-  .stat-purple .stat-value { color: #c084fc; }
-  .stat-blue {
-    background: rgba(96,165,250,0.08);
-    border: 1px solid rgba(96,165,250,0.15);
-  }
-  .stat-blue .stat-value { color: #60a5fa; }
-  .stat-green {
-    background: rgba(52,211,153,0.08);
-    border: 1px solid rgba(52,211,153,0.15);
-  }
-  .stat-green .stat-value { color: #34d399; }
-  .stat-amber {
-    background: rgba(251,191,36,0.08);
-    border: 1px solid rgba(251,191,36,0.15);
-  }
-  .stat-amber .stat-value { color: #fbbf24; }
-  .stat-value { font-size: 28px; font-weight: 800; }
-  .stat-label { font-size: 11px; color: #64748b; margin-top: 4px; letter-spacing: 0.5px; }
-
-  @media (max-width: 480px) {
-    .cosmic-main { padding: 40px 16px; }
-    .stats-grid {
-      grid-template-columns: repeat(2, 1fr);
-      gap: 8px;
-    }
-    .stat-card { padding: 16px; }
-    .pipeline { flex-wrap: wrap; justify-content: center; gap: 8px; }
-    .pipeline-arrow { display: none; }
-    .hero-ctas { flex-direction: column; }
-
-    .latest-action { flex-wrap: wrap; }
-    .latest-text { white-space: normal; }
-  }
-
-  /* Referrers */
-  .referrers-list { margin-bottom: 12px; }
-  .referrer-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 8px 0;
-    border-bottom: 1px solid rgba(139,92,246,0.08);
-    font-size: 13px;
-  }
-  .referrer-item:last-child { border-bottom: none; }
-  .referrer-name { color: #e2e8f0; font-weight: 500; }
-  .referrer-stats { color: #64748b; font-size: 12px; }
-  .referrer-note { font-size: 11px; color: #475569; }
-
-  /* Latest action */
-  .latest-action {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 12px;
-    color: #64748b;
-    padding: 10px 16px;
-    background: rgba(139,92,246,0.06);
-    border: 1px solid rgba(139,92,246,0.12);
-    border-radius: 8px;
-  }
-  .latest-dot {
-    width: 6px;
-    height: 6px;
-    background: #34d399;
-    border-radius: 50%;
-    flex-shrink: 0;
-    animation: pulse 2s infinite;
-    box-shadow: 0 0 6px rgba(52,211,153,0.4);
-  }
-  @keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.3; }
-  }
-  .latest-badge {
-    font-size: 10px;
-    padding: 1px 6px;
-    border-radius: 4px;
-    background: rgba(139,92,246,0.15);
-    color: #a78bfa;
-    border: 1px solid rgba(139,92,246,0.25);
-    flex-shrink: 0;
-    white-space: nowrap;
-  }
-  .latest-text {
-    color: #cbd5e1;
-  }
-  .latest-time {
-    color: #475569;
-    margin-left: auto;
-    flex-shrink: 0;
-  }
-
-  /* Add to repo */
-  .add-desc {
+  .uc-title {
     font-size: 14px;
-    color: #94a3b8;
-    line-height: 1.6;
+    font-weight: 600;
+    color: #e6edf3;
+    margin-bottom: 4px;
+  }
+  .uc-desc {
+    font-size: 14px;
+    color: #7d8590;
+    line-height: 1.5;
+  }
+
+  @media (min-width: 640px) {
+    .use-cases {
+      flex-direction: row;
+    }
+    .use-case {
+      flex: 1;
+    }
+  }
+
+  /* Get Started */
+  .steps {
+    padding-left: 20px;
     margin-bottom: 16px;
   }
+  .steps li {
+    font-size: 14px;
+    color: #e6edf3;
+    line-height: 1.8;
+  }
   .code-block {
-    background: rgba(15,12,41,0.8);
-    border: 1px solid rgba(139,92,246,0.2);
-    border-radius: 8px;
-    padding: 14px 18px;
+    background: #161b22;
+    border: 1px solid #21262d;
+    border-radius: 6px;
+    padding: 16px;
     margin-bottom: 16px;
     overflow-x: auto;
   }
   .code-block code {
     font-size: 13px;
-    color: #c084fc;
-    font-family: 'SF Mono', 'Fira Code', monospace;
-    line-height: 1.5;
+    color: #e6edf3;
+    font-family: ui-monospace, 'SF Mono', 'Fira Code', monospace;
+    line-height: 1.6;
     white-space: pre-wrap;
     word-break: break-word;
   }
-  .use-ctas {
-    display: flex;
-    gap: 12px;
+  .started-note {
+    font-size: 13px;
+    color: #7d8590;
+    line-height: 1.6;
+    margin-top: 16px;
   }
-  @media (max-width: 480px) {
-    .use-ctas { flex-direction: column; }
+
+  /* Footer */
+  .footer {
+    padding: 32px 0;
+    border-top: 1px solid #21262d;
+    text-align: center;
+    font-size: 13px;
+    color: #7d8590;
+  }
+  .footer a {
+    color: #7d8590;
+    text-decoration: none;
+  }
+  .footer a:hover { color: #e6edf3; }
+  .footer-sep {
+    margin: 0 8px;
+    color: #30363d;
   }
 </style>
