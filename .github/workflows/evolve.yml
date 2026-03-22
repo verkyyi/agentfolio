@@ -419,6 +419,7 @@ jobs:
           IMPORTANT CONFIG RULES:
           - Use ONLY the Research Sources listed in the config for Step 1.
           - For each source, fetch: curl -s -H "Authorization: token $GITHUB_TOKEN" "https://api.github.com/repos/<source>/commits?per_page=3" | head -c 800
+          - If the config has a "Search Queries" section, also run each search query. Replace {7_DAYS_AGO} with the actual date 7 days ago.
           - Skip Steps 2b/2c/2d/2e based on Workflow Fit and Repo Profile in the config.
           - Use the Build section commands — do NOT assume npm.
           - Replace project:scaffold with the repo name in all labels.

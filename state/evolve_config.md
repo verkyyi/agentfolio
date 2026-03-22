@@ -42,6 +42,9 @@ claude-task: HIGH
 - withastro/astro
 - verkyyi/agentfolio
 
+## Search Queries
+- github-trending: https://api.github.com/search/repositories?q=claude+code+agent+pushed:>{7_DAYS_AGO}&sort=stars&per_page=5
+
 ## User Answers
 Deploy: GitHub Pages via deploy.yml
 Tests: npm run build (Astro build validates)
