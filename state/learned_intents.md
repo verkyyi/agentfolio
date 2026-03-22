@@ -13,3 +13,5 @@
 2026-03-22T09:08:39Z | issue #9 | ADD_CAPABILITY | add feedback entry point on public website | noted
 2026-03-22T09:08:39Z | issue #23 | FIX_PROCESS | watcher monitors process health but not outcome health — issues stall silently | noted
 2026-03-22T09:08:39Z | PATTERN | FIX_PROCESS | FIX_PROCESS threshold met (3 issues: #35,#26,#23) — user consistently flags pipeline reliability gaps; issue #36 created as latest pipeline fix | issue #36 created
+2026-03-22T12:52:37Z | issue #40 | IMPROVE_QUALITY | closed issues count shows 0 on profile page (bug) | noted
+2026-03-22T12:52:37Z | issue #38 | ADD_CAPABILITY | README auto-sync — keep README consistent with repo changes automatically | noted (already logged at 09:08 as ADD_CAPABILITY)
