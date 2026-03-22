@@ -1,42 +1,56 @@
 # Project State
-# This file is written by every workflow run at exit.
-# Read at start of every workflow run.
-# Committed to repo — git history is the full audit trail.
-
 Last updated: 2026-03-22T13:45:00Z
-Updated by: feedback-learner.yml (issue #42 closure)
+Updated by: CLI session (human + Claude Code)
 
 ## Last Session
-Action: feedback-learner.yml — extracted lesson from issue #42 (onboarding verification steps)
+Action: CLI session — evolve history gap, generic evolve, atomic state writes, issue cleanup
 
-Findings:
-- Weekly Analysis 3x consecutive failure (00:22, 06:17, 12:08) — benign: git commit on clean tree in "Create improvement PR" step; needs pipeline-fix issue (step should check for changes before committing)
-- Feedback Learner failure (12:20) — created issue #41 but HTTP 403 on workflow dispatch (triage.yml); likely missing actions:write permission in workflow YAML
-- Issue #38: PR #39 merged at 12:18 but GitHub didn't auto-close issue (known pattern); needs manual close
-- Issue #41: created by feedback-learner, has agent-ready, no triage comment yet (30 min old)
-- Issue #40: correctly triaged and deferred (HUMAN_ACTIVE)
-- Issue #22: correctly held (needs-human, 7-day cooldown)
-- No open PRs, no stuck runs, no unblocking opportunities
+Done:
+- Fixed evolve dedup: --state all --limit 100 (closes history gap)
+- Fixed #36: removed --fallback-model from haiku workflows
+- Upgraded all 10 workflows to opus/max with model aliases (auto-upgrade on new releases)
+- Removed --allowedTools from all workflows (redundant with bypassPermissions)
+- Added deterministic issue close to reviewer (closingIssuesReferences API)
+- Added DeerFlow + awesome-claude-code + OpenAI blog as research sources
+- Removed Codex blog section (was a misunderstanding)
+- Made repo fork-ready: dynamic repo refs, site URL, onboarding docs
+- Built generic evolve system: config-driven workflows for any repo
+  - Onboarding gate on all 11 workflows (state/evolve_config.md)
+  - Config injection into all prompts (LLM-level adaptation)
+  - Dynamic research sources, conditional analysis steps
+  - Config-driven build/test commands (no hardcoded npm)
+  - 7-day re-check + scaffold version check
+  - Workflow YAML frozen for adopters via learned rule
+  - Interactive onboarding doc (11 steps with repo analysis + Q&A)
+- Atomic state writes via GitHub API (scripts/commit-state.sh)
+  - Replaces git add/commit/push for state files
+  - SHA-based optimistic locking, retry on 409
+  - No more push conflicts between concurrent workflows
+- Frontend: client-side live timestamps, stats via GitHub search API
+- Frontend: simplified page (single latest-action line, 4 self-evolution stats)
+- Fixed #40: closed issues count (search API), #41: Codex refs, #42: onboarding gaps
+- Closed #38 (README auto-maintenance — evolve handles it)
+- Added MIT license
 
-## Open Items (priority order)
-1. [ACTION NEEDED] Weekly Analysis 3x failure — create pipeline-fix issue: analyze.yml "Create improvement PR" step needs guard (`git diff --cached --quiet || git commit`)
-2. [ACTION NEEDED] Feedback Learner dispatch failure — add `actions: write` permission to feedback-learner.yml or remove triage dispatch step
-3. [CLEANUP] Issue #38 should be closed (PR #39 merged with "closes #38")
-4. Issue #41: agent-ready, awaiting coder (remove Codex blog link from README)
-5. Issue #40: bug (closed-issues count always 0), triaged, awaiting human
-6. Issue #22: [needs-human] Submit to awesome-claude-code — 7-day cooldown
-7. Triage comment format mismatch: watcher checks "Triaged by agentfolio" but triage writes varying formats; causes unnecessary re-triggers
+Key decisions:
+- Model aliases (opus/sonnet) instead of hardcoded IDs — auto-upgrade
+- LLM-level config adaptation over bash-level branching — simpler
+- Single-project focus for adopters (no apps/ directory)
+- Workflow YAML frozen for adopters, self-evolving for agentfolio
+- GitHub API for state writes, git for code changes
 
-## Deferred
-- Evolve history gap: evolve doesn't read research_log.md or check closed issues for deduplication
+## Open Items
+1. Issue #22: [needs-human] Submit to awesome-claude-code — waiting until March 27 (7-day repo age)
 
 ## Critical Note for Next Agent
-- WORKFLOW_PAT secret is configured — coder can push workflow YAML changes
-- Issue #22 has been triaged (2 duplicate triage comments); do NOT re-trigger triage again
-- Weekly Analysis failures are benign (clean tree) but need a workflow fix
-- Feedback Learner can create issues but cannot dispatch workflows — issue #41 was created but never triaged
+- All workflows now gate on state/evolve_config.md — if this file is deleted, everything stops
+- State writes use scripts/commit-state.sh (GitHub API) — no more git push for state/
+- Evolve reads Research Sources from config, not hardcoded curl commands
+- Model aliases (opus/sonnet) auto-resolve to latest — no manual version bumps needed
 
 ## Metrics Snapshot
-Period: 2026-03-15 to 2026-03-22
-- Total commits: 75+
-- Stars: 1 | Forks: 0 | Adopters: 0
+Period: 2026-03-22 CLI session
+- Commits this session: 61
+- Issues closed: #5, #8, #10, #13, #17, #21, #26, #28, #29, #31, #33, #35, #36, #38, #40, #41, #42
+- Issues remaining: 1 (#22)
+- PRs closed: #37
