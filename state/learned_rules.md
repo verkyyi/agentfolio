@@ -19,3 +19,8 @@ When an agent needs to push or commit changes to `.github/workflows/` YAML files
 **Date:** 2026-03-22 | **Source:** issue #36: [pipeline] --fallback-model same as main model breaks watcher.yml and feedback-learner.yml
 
 In workflow configurations, ensure `--fallback-model` differs from the main model value. Setting them identically breaks watcher.yml and feedback-learner.yml workflows.
+
+## PROCESS Check target branch before creating PRs to avoid redundant work
+**Date:** 2026-03-22 | **Source:** issue #37: fix: [pipeline] Avoid CLI/pipeline conflicts — detect human activity and prevent duplicated work (closes #35)
+
+Before opening a PR or starting work on an issue, check the target branch (e.g., main) for recent commits that already implement the fix or feature. CLI sessions and other agents may have already landed the change directly, making a new PR redundant and conflict-prone.
