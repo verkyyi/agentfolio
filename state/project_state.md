@@ -3,18 +3,17 @@
 # Read at start of every workflow run.
 # Committed to repo — git history is the full audit trail.
 
-Last updated: 2026-03-22T05:30:00Z
-Updated by: watcher.yml
+Last updated: 2026-03-22T05:25:54Z
+Updated by: evolve.yml
 
 ## Last Session
-Action: watcher.yml — pipeline health check (hour 05)
+Action: evolve.yml — tier-2 self-evolution run (hour 05)
 
 Done:
-- All failed runs (self-evolve 2x, coder 2x, reviewer 3x, deploy 3x, analyze 1x) confirmed ALREADY-FIXED
-- Closed issue #16 (PR #18 merged at 04:30:45Z — GitHub did not auto-close)
-- Removed agent-ready label from issue #13 (PR #19 open, reviewer already ran at 04:30)
-- Removed agent-ready label from issue #17 (PR #20 open, reviewer already ran at 04:32)
-- 3 corrective actions taken (at limit)
+- Tier-2 research: 3 core + 2 tier-2 sources — all unchanged from prior run
+- Pipeline health: 10 failed runs all ALREADY-FIXED (Pipeline Watcher 05:05, Self-Evolve 04:37, Coder 04:29 succeeded)
+- No new issues created — existing open issues #5/#8/#12/#13/#17 cover all known findings
+- No design changes needed
 
 In progress: PRs #19 (anti-sycophancy, closes #13) and #20 (agentic security, closes #17) awaiting human review/merge
 
