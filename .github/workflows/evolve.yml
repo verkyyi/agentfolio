@@ -179,7 +179,7 @@ jobs:
           ```bash
           # GitHub repo stats
           REPO_STATS=$(curl -s -H "Authorization: token $GITHUB_TOKEN" \
-            "https://api.github.com/repos/verkyyi/agentfolio")
+            "https://api.github.com/repos/$GITHUB_REPOSITORY")
           STARS=$(echo "$REPO_STATS" | grep -o '"stargazers_count":[0-9]*' | cut -d: -f2)
           FORKS=$(echo "$REPO_STATS" | grep -o '"forks_count":[0-9]*' | cut -d: -f2)
           WATCHERS=$(echo "$REPO_STATS" | grep -o '"subscribers_count":[0-9]*' | cut -d: -f2)
@@ -187,13 +187,13 @@ jobs:
 
           # Traffic (last 14 days — requires push access)
           TRAFFIC=$(curl -s -H "Authorization: token $GITHUB_TOKEN" \
-            "https://api.github.com/repos/verkyyi/agentfolio/traffic/views")
+            "https://api.github.com/repos/$GITHUB_REPOSITORY/traffic/views")
           VIEWS=$(echo "$TRAFFIC" | grep -o '"count":[0-9]*' | head -1 | cut -d: -f2)
           UNIQUES=$(echo "$TRAFFIC" | grep -o '"uniques":[0-9]*' | head -1 | cut -d: -f2)
 
           # Referrers
           REFERRERS=$(curl -s -H "Authorization: token $GITHUB_TOKEN" \
-            "https://api.github.com/repos/verkyyi/agentfolio/traffic/popular/referrers" | head -c 500)
+            "https://api.github.com/repos/$GITHUB_REPOSITORY/traffic/popular/referrers" | head -c 500)
           ```
 
           Append to state/research_log.md:
@@ -202,9 +202,9 @@ jobs:
           Also fetch referrers and popular paths:
           ```bash
           REFERRERS=$(curl -s -H "Authorization: token $GITHUB_TOKEN" \
-            "https://api.github.com/repos/verkyyi/agentfolio/traffic/popular/referrers")
+            "https://api.github.com/repos/$GITHUB_REPOSITORY/traffic/popular/referrers")
           PATHS=$(curl -s -H "Authorization: token $GITHUB_TOKEN" \
-            "https://api.github.com/repos/verkyyi/agentfolio/traffic/popular/paths")
+            "https://api.github.com/repos/$GITHUB_REPOSITORY/traffic/popular/paths")
           ```
 
           Write ALL metrics to state/growth_metrics.md (overwrite):
@@ -248,7 +248,7 @@ jobs:
 
           # Check forks directly
           FORKS_LIST=$(curl -s -H "Authorization: token $GITHUB_TOKEN" \
-            "https://api.github.com/repos/verkyyi/agentfolio/forks?sort=newest&per_page=10" \
+            "https://api.github.com/repos/$GITHUB_REPOSITORY/forks?sort=newest&per_page=10" \
             | head -c 2000)
           ```
 

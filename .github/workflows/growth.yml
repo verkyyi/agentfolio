@@ -50,7 +50,7 @@ jobs:
 
           echo "" >> /tmp/growth_context.txt
           echo "=== REPO STATS ===" >> /tmp/growth_context.txt
-          gh api repos/verkyyi/agentfolio --jq '{stars: .stargazers_count, forks: .forks_count, watchers: .subscribers_count, open_issues: .open_issues_count}' >> /tmp/growth_context.txt
+          gh api repos/${{ github.repository }} --jq '{stars: .stargazers_count, forks: .forks_count, watchers: .subscribers_count, open_issues: .open_issues_count}' >> /tmp/growth_context.txt
 
           echo "" >> /tmp/growth_context.txt
           echo "=== EXISTING RELEASES ===" >> /tmp/growth_context.txt
@@ -58,7 +58,7 @@ jobs:
 
           echo "" >> /tmp/growth_context.txt
           echo "=== EXISTING DISCUSSIONS ===" >> /tmp/growth_context.txt
-          gh api repos/verkyyi/agentfolio/discussions --jq '.[].title' >> /tmp/growth_context.txt 2>/dev/null || echo "(none or disabled)" >> /tmp/growth_context.txt
+          gh api repos/${{ github.repository }}/discussions --jq '.[].title' >> /tmp/growth_context.txt 2>/dev/null || echo "(none or disabled)" >> /tmp/growth_context.txt
         env:
           GH_TOKEN: ${{ github.token }}
 
@@ -125,7 +125,7 @@ jobs:
             - "How our self-healing pipeline caught and fixed X"
             - "What we learned from analyzing X repos"
             - "Architecture decision: why we chose blacklist over whitelist"
-          - Use: gh api repos/verkyyi/agentfolio/discussions -X POST ...
+          - Use: gh api repos/${{ github.repository }}/discussions -X POST ...
           - Check existing discussions to avoid duplicates.
           - Make it genuinely useful, not promotional.
 
