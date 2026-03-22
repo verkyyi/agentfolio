@@ -64,6 +64,7 @@ jobs:
           - EVOLVE-IDEA: issue created by evolve.yml (title starts with [evolve]) — an actionable improvement inspired by external research
           - PIPELINE-FIX: workflow/CI failure (title starts with [pipeline]) — a bug in the automation pipeline
           - ADOPTER-INSIGHT: pattern from real user behavior (title starts with [adopter-insight]) — improvement based on how people actually use the scaffold
+          - GROWTH-ACTION: distribution/marketing task (title starts with [growth]) — requires manual execution on external platforms
           - UX-REQUEST: suggestion to improve something that works but could be better
           - POSITIVE: positive feedback, thank you, compliment
           - SPAM: promotional, unrelated, bot-generated
@@ -125,6 +126,10 @@ jobs:
           For ADOPTER-INSIGHT:
             gh issue edit ${NUM} --add-label "agent-ready" --repo ${{ github.repository }}
             gh issue comment ${NUM} --body "**Triage:** Adopter insight identified — this is based on real user behavior. The coder agent will implement this improvement shortly." --repo ${{ github.repository }}
+
+          For GROWTH-ACTION:
+            gh issue edit ${NUM} --add-label "needs-review" --repo ${{ github.repository }}
+            gh issue comment ${NUM} --body "**Triage:** Growth action identified. This requires action on an external platform — flagged for human review." --repo ${{ github.repository }}
 
           For UX-REQUEST:
             gh issue edit ${NUM} --add-label "ux-request,needs-review" --repo ${{ github.repository }}

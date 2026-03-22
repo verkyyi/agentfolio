@@ -47,15 +47,16 @@ Each link in the chain is an explicit `gh workflow run` call — no reliance on 
 
 ---
 
-## The nine workflows
+## The ten workflows
 
 | Workflow | Trigger | What it does |
 |---|---|---|
-| `evolve.yml` | Hourly | Researches 10 repos (rotating tiers), creates improvement issues |
+| `evolve.yml` | Hourly | Researches 10 repos (rotating tiers), tracks adopters, creates improvement issues |
 | `triage.yml` | Issue opened / dispatched | Classifies, elaborates with acceptance criteria, routes to coder |
 | `coder.yml` | agent-ready label / dispatched | Implements fix on feature branch, opens PR |
 | `reviewer.yml` | PR opened / dispatched | Reviews code, runs build, merges or blocks |
 | `watcher.yml` | Every 30 min | Monitors pipeline health, re-triggers broken chains |
+| `growth.yml` | Twice daily | Discovers distribution opportunities, creates releases, measures impact |
 | `feedback-learner.yml` | Human comment/review | Extracts lasting lessons into learned rules |
 | `deploy.yml` | Source files pushed to main | Astro build → GitHub Pages |
 | `analyze.yml` | Every 6 hours | Strategic analysis of past activity |
