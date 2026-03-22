@@ -49,6 +49,13 @@ jobs:
             >> /tmp/system_state.txt
 
           echo "" >> /tmp/system_state.txt
+          echo "=== RECENTLY CLOSED ISSUES (last 24h) ===" >> /tmp/system_state.txt
+          gh issue list --state closed --limit 10 \
+            --json number,title,labels,closedAt \
+            -q '.[] | "#\(.number) | \(.title) | \([.labels[].name] | join(",")) | closed: \(.closedAt)"' \
+            >> /tmp/system_state.txt
+
+          echo "" >> /tmp/system_state.txt
           echo "=== OPEN PRS ===" >> /tmp/system_state.txt
           gh pr list --state open --limit 10 \
             --json number,title,labels,createdAt,updatedAt \
@@ -103,6 +110,21 @@ jobs:
           ### 5. Cleanup
           - Close issues that were fixed (PR merged that references the issue)
           - Remove "agent-ready" label from issues that already have a PR open
+
+          ### 6. Unblock issues after infrastructure fixes
+          When a "needs-human" or "pipeline-fix" issue is recently closed (see RECENTLY CLOSED ISSUES),
+          check if any open issues with "needs-human" label are now unblocked by that fix.
+
+          How to evaluate:
+          - Read the closed issue to understand what infrastructure problem was resolved
+          - Read each open "needs-human" issue to understand what blocker it hit
+          - If the closed fix resolves the blocker (e.g. a missing PAT was added, a permission
+            was granted, a service was configured), the blocked issue is now unblockable
+          - For unblocked issues:
+            1. Remove "needs-human" label
+            2. Add "agent-ready" label
+            3. Comment: "**Watcher:** Blocker resolved (see #N). Re-queuing for the coder agent."
+            4. This counts toward the 3 corrective actions per run limit
 
           ## How to take corrective action:
           - Re-trigger triage: gh workflow run triage.yml -f issue_number=N
