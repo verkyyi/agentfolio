@@ -40,3 +40,10 @@
 2026-03-22T00:16:11Z | wshobson/agents (tier 0) | OCI awareness added 2026-03-17 — container platform detection in agent prompts (PR #452 merged) | no action — not relevant to current harness
 2026-03-22T00:16:11Z | VoltAgent/awesome-claude-code-subagents (tier 0) | README updated 2026-03-19 — no major new subagents catalogued | no action
 2026-03-22T00:16:11Z | pipeline-health | 10 failed runs checked: 2 coder failures ALREADY-FIXED (watcher removed agent-ready, tracked in #12); 3 reviewer failures ALREADY-FIXED; 2 evolve failures ALREADY-FIXED; 3 deploy failures ALREADY-FIXED | no action
+2026-03-22T01:33:26Z | anthropics/claude-code (core) | CHANGELOG last updated 2026-03-20 — no new commits since last run, active development continues | no action
+2026-03-22T01:33:26Z | garrytan/gstack (core) | v0.9.9.0 still latest (2026-03-21T23:55:47Z) — anti-sycophancy hardening; no new release since last run | no action — already tracked in issue #13
+2026-03-22T01:33:26Z | affaan-m/everything-claude-code (core) | NEW commit 2026-03-22T01:09:52Z — security: remove supply chain risks, external promotions, unauthorized credits from README; zenith.chat/awesome-agent-skills refs purged | noted — supply chain hygiene pattern; issue to be created combining with 2026-03-21 agentic security guide
+2026-03-22T01:33:26Z | godagoo/claude-code-always-on (tier 1) | last commit 2026-02-03 — no new activity | no action
+2026-03-22T01:33:26Z | humanlayer/humanlayer (tier 1) | last commit 2026-01-07 — no new activity | no action
+2026-03-22T01:33:26Z | actions/runner (tier 1) | v2.333.0 confirmed latest — no new release | no action
+2026-03-22T01:33:26Z | pipeline-health | 10 failed runs checked: Weekly Analysis ALREADY-FIXED (benign clean-tree commit); Coder 3x ALREADY-FIXED (succeeded 00:40); Reviewer 3x ALREADY-FIXED (succeeded 00:41); Self-Evolve 3x ALREADY-FIXED (succeeded 00:15) | 0 issues created
