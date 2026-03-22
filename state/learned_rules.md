@@ -14,3 +14,8 @@ The evolve agent (and agents in general) should include an adversarial self-revi
 **Date:** 2026-03-22 | **Source:** issue #12: [pipeline] Coder blocked from pushing workflow YAML — token lacks workflows permission
 
 When an agent needs to push or commit changes to `.github/workflows/` YAML files, it must use the `WORKFLOW_PAT` token (which has the `workflows` permission), not the standard `GITHUB_TOKEN`, which lacks that permission and will be rejected by GitHub.
+
+## AVOID Set --fallback-model to same value as main model in workflows
+**Date:** 2026-03-22 | **Source:** issue #36: [pipeline] --fallback-model same as main model breaks watcher.yml and feedback-learner.yml
+
+In workflow configurations, ensure `--fallback-model` differs from the main model value. Setting them identically breaks watcher.yml and feedback-learner.yml workflows.
