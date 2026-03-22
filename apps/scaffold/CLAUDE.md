@@ -19,6 +19,10 @@ ANALYZE — what the agent examines:
 - External research (Anthropic blog, GitHub changelog, reference repos)
 - state/agent_log.md for action patterns
 
+SECURITY — read on every run:
+- skills/security-audit.md — prompt injection defense, secret hygiene,
+  capability scoping, and supply chain hygiene for the research phase
+
 PROPOSE — how improvements are suggested:
 - One structural PR per evolve.yml run maximum
 - Each PR must cite the failure or inefficiency that triggered it

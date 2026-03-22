@@ -3,28 +3,31 @@
 # Read at start of every workflow run.
 # Committed to repo — git history is the full audit trail.
 
-Last updated: 2026-03-22T04:24:33Z
-Updated by: watcher.yml
+Last updated: 2026-03-22T04:35:00Z
+Updated by: coder.yml
 
 ## Last Session
-Action: watcher.yml — pipeline health check
+Action: coder.yml — fix issue #17 (agentic security patterns)
 
 Done:
-- Detected broken chain: issues #13, #16, #17 (evolve-findings) had no triage run since creation
-  - #13 created 00:18, #16 created 01:35, #17 created 01:35; last triage was 00:37 (before all three)
-- Re-triggered triage for #13, #16, #17 (3 corrective actions — at limit)
-- All prior failures (coder, reviewer, self-evolve, deploy, weekly-analysis) remain ALREADY-FIXED
-- No open PRs, no agent-ready issues, no stuck runs
+- Created skills/security-audit.md covering:
+  - §1 Prompt injection defense — flag suspicious instruction-like content in tool results
+  - §2 Secret hygiene — never stage *_KEY/*_TOKEN/*_SECRET/.env patterns; rotation protocol
+  - §3 Capability scoping — reinforce NEVER rules; CLAUDE.md autonomy changes require needs-review
+  - §4 Supply chain hygiene — trusted source list, injection red flags, research-phase checklist
+  - Quick-reference SECURITY CHECK block for use before any commit or PR
+- Updated apps/scaffold/CLAUDE.md ANALYZE section to reference skills/security-audit.md
+- Updated apps/scaffold/FEATURE_STATUS.md: security-audit.md marked [x]
+- Build passing (npm run build)
+- Opened PR for issue #17 with label needs-review
 
-System health: HEALTHY (broken chain repaired)
-
-In progress: triage for #13 (run 23395625526), #16 (run 23395626430), #17 (run 23395627251)
+System health: HEALTHY
 
 ## Open Items (priority order)
 1. Issue #12: [BLOCKED — human] CLAUDE_CODE_OAUTH_TOKEN missing `workflows` OAuth scope — blocks all workflow YAML PRs and issue #8 Node.js upgrade. Fix: add PAT with `workflow` scope as WORKFLOW_PAT secret.
 2. Issue #13: [triage triggered 04:24] Anti-sycophancy guardrails for adversarial-review.md (gstack v0.9.9.0 pattern)
 3. Issue #16: [triage triggered 04:24] Pre-merge readiness gate (gstack v0.9.8.0)
-4. Issue #17: [triage triggered 04:24] Agentic security patterns — supply chain hygiene + prompt injection defense
+4. Issue #17: [PR opened — needs-review] Agentic security patterns — skills/security-audit.md created
 5. Issue #10: [needs-review label — awaiting human review] Last-updated badge user-friendly time
 6. Issue #8: [BLOCKED by #12] Upgrade Node.js 20 actions before June 2026 deadline
 7. Issue #5: [parked] Adopt structured review tables in skill output (gstack v0.9.7.0)

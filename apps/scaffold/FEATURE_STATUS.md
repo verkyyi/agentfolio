@@ -32,3 +32,4 @@
 - [x] seo.md
 - [x] Skills updated for self-evolving architecture
 - [x] adversarial-review.md — risk-scaled self-check protocol for evolve.yml Step 5
+- [x] security-audit.md — prompt injection defense, secret hygiene, capability scoping, supply chain hygiene (closes #17)
