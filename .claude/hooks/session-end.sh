@@ -3,6 +3,17 @@
 # This ensures session summaries (written by Claude during the session)
 # are always committed, even if the human closes the terminal abruptly.
 
+# Skip in GitHub Actions — workflow runs handle their own state commits
+if [ -n "$GITHUB_ACTIONS" ]; then
+  exit 0
+fi
+
+# Skip in non-interactive mode (-p/--print) — these are headless runs
+# that manage their own lifecycle (e.g. workflow-dispatched claude -p)
+if [ -n "$CLAUDE_CODE_PRINT_MODE" ]; then
+  exit 0
+fi
+
 INPUT=$(cat)
 CWD=$(echo "$INPUT" | jq -r '.cwd')
 SESSION_ID=$(echo "$INPUT" | jq -r '.session_id')
