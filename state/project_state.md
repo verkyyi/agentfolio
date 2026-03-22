@@ -3,11 +3,11 @@
 # Read at start of every workflow run.
 # Committed to repo — git history is the full audit trail.
 
-Last updated: 2026-03-22T05:25:54Z
-Updated by: evolve.yml
+Last updated: 2026-03-22T06:00:00Z
+Updated by: growth.yml
 
 ## Last Session
-Action: evolve.yml — tier-2 self-evolution run (hour 05)
+Action: growth.yml — first growth strategy run
 
 Done:
 - Tier-2 research: 3 core + 2 tier-2 sources — all unchanged from prior run
