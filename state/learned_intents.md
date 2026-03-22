@@ -16,3 +16,4 @@
 2026-03-22T12:52:37Z | issue #40 | IMPROVE_QUALITY | closed issues count shows 0 on profile page (bug) | noted
 2026-03-22T12:52:37Z | issue #38 | ADD_CAPABILITY | README auto-sync — keep README consistent with repo changes automatically | noted (already logged at 09:08 as ADD_CAPABILITY)
 2026-03-22T14:07:52Z | issue #43 | ADD_CAPABILITY | evolve site content evaluation for non-framework sites — expand Step 2b to evaluate all site types | noted
+2026-03-22T15:08:52Z | issue #44 | FIX_PROCESS | reduce workflow run time — agent re-explores entire repo every run, wasting tokens and time | noted
