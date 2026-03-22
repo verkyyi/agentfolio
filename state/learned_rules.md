@@ -40,7 +40,7 @@ Don't propose optimizations where the added complexity (e.g., caching layers, ch
 
 When a dedicated periodic check already handles a concern (e.g., daily evolve SEO/discoverability step for README consistency), don't scatter the same check into every workflow run. A daily check is sufficient for files that change infrequently — adding it everywhere is over-engineering.
 
-## QUALITY Evaluate site content regardless of framework
-**Date:** 2026-03-22 | **Source:** issue #43: Evolve skips site content evaluation for non-framework sites
+## PROCESS Use incremental exploration, not full repo scans every run
+**Date:** 2026-03-22 | **Source:** issue #44: Reduce workflow run time: agent re-explores entire repo every run
 
-The evolve agent must evaluate site content (pages, copy, structure) for all sites, not only those using a recognized framework. Content quality assessment should be framework-agnostic — a static HTML site or unconventional stack deserves the same content review as an Astro or Next.js project.
+Agents must not re-explore the entire repository from scratch on every workflow run. Instead, read state files (project_state.md, FEATURE_STATUS.md) and use targeted file reads for the task at hand. Reserve broad codebase exploration for genuinely new or unfamiliar contexts.
