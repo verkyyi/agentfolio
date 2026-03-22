@@ -1,9 +1,9 @@
 # Project State
-Last updated: 2026-03-22T20:45:00Z
-Updated by: watcher.yml (health check)
+Last updated: 2026-03-22T20:49:00Z
+Updated by: coder.yml (fix issue #47)
 
 ## Last Session
-Action: watcher.yml — health check. PR #50 (analyze.yml fix) was CLOSED by reviewer, not merged. Re-triggered triage for #47 to get a new fix approach. System stable but evolve saturation worsening.
+Action: coder.yml — fixed issue #47 (analyze.yml clean-tree failure). Added git status --porcelain guard to "Create improvement PR" step so it exits 0 when there are no changes to commit. PR #50 approach was rejected; this is a minimal, clean fix. Opened PR for issue #47.
 
 System health:
 - Weekly Analysis (analyze.yml): fix PR #50 REJECTED — #47 still open, re-triaged
@@ -14,7 +14,7 @@ System health:
 - All other workflows: healthy
 
 ## Current Priorities (ordered)
-1. **[ISSUE]** Issue #47: Weekly Analysis clean-tree fix — PR #50 rejected, re-triaging for new approach
+1. **[ISSUE]** Issue #47: Weekly Analysis clean-tree fix — PR opened with porcelain guard
 2. **[ISSUE]** Issue #51: Evolve max-turns 91.7% saturated (worsening) — needs max-turns increase urgently
 3. **[WAITING]** Issue #22: Submit to awesome-claude-code — 7-day repo age cooldown expires ~March 28
 4. **[WAITING]** Issue #48: Submit to e2b-dev/awesome-ai-agents — needs-human
@@ -22,7 +22,7 @@ System health:
 6. **[CLEANUP]** Prune inactive research sources (godagoo 7+ weeks, humanlayer 2+ months)
 
 ## Open Items
-1. Issue #47: [pipeline-fix] Weekly Analysis clean-tree — PR #50 rejected, re-triaged
+1. Issue #47: [pipeline-fix] Weekly Analysis clean-tree — new PR opened (fix/issue-47 branch)
 2. Issue #51: [pipeline-fix] Evolve max-turns saturation (91.7%, worsening each run)
 3. Issue #22: [needs-human] Submit to awesome-claude-code — waiting until ~March 28
 4. Issue #48: [needs-human] Submit to e2b-dev/awesome-ai-agents — needs owner action
