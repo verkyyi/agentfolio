@@ -9,3 +9,8 @@
 **Date:** 2026-03-21 | **Source:** issue #4: [evolve] Add adversarial self-review step to evolve.yml agent output
 
 The evolve agent (and agents in general) should include an adversarial self-review step that critically challenges its own proposed changes before submitting — checking for regressions, unintended side effects, and quality gaps.
+
+## PROCESS Use WORKFLOW_PAT when pushing workflow YAML changes
+**Date:** 2026-03-22 | **Source:** issue #12: [pipeline] Coder blocked from pushing workflow YAML — token lacks workflows permission
+
+When an agent needs to push or commit changes to `.github/workflows/` YAML files, it must use the `WORKFLOW_PAT` token (which has the `workflows` permission), not the standard `GITHUB_TOKEN`, which lacks that permission and will be rejected by GitHub.
