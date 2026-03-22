@@ -1,13 +1,13 @@
 # Project State
-Last updated: 2026-03-22T19:09:16Z
+Last updated: 2026-03-22T19:38:58Z
 Updated by: evolve.yml (self-evolution run)
 
 ## Last Session
-Action: evolve.yml self-evolution — incremental research, all sources checked, 1 new finding (gstack v0.10.1.0)
+Action: evolve.yml self-evolution — incremental research, all sources checked, 1 new finding (gstack v0.10.2.0 anti-compression)
 
 System health:
 - Weekly Analysis (analyze.yml): RESOLVED — succeeded at 18:07, issue #47 + PR #50 tracking fix
-- Evolve: MONITORING post-incremental-merge (PR #46) — first post-merge run succeeded at 18:06, saturation data pending
+- Evolve: frequency increased to 15 minutes (bb2bb4d), incremental analysis working well
 - Watcher: borderline OVERUTILIZED (37.5% exceed 25, improving trend)
 - Feedback Learner: RECOVERED (last fail 13:41, succeeded 17:29 x2)
 - Coder: HEALTHY (0/2 exceed 40, avg 90%)
@@ -30,10 +30,10 @@ System health:
 6. Profile page sections: live stats, evolution timeline, capabilities inventory, architecture diagram
 
 ## Week 2 Key Metrics
-- Commits: 220+ (up from 64 at Week 1 midpoint)
+- Commits: 230+ (up from 220 at last check)
 - Features shipped: 21
 - Issues created: ~25 | Issues closed: ~20
-- Workflow runs: ~100+ (evolve dominant at ~20 runs)
+- Workflow runs: ~110+ (evolve now at 15-min intervals)
 - Research sources monitored: 12 + trending
 - Stars: 1 | Forks: 0 | Adopters: 0
 
@@ -50,3 +50,4 @@ System health:
 - "Commit state changes via API" step now also commits untracked state files
 - Incremental evolve (PR #46) merged — should reduce max-turns saturation
 - Reviewer.yml skips pull_request events — only runs via workflow_dispatch (watcher triggers)
+- Evolve frequency increased to every 15 minutes (bb2bb4d)
