@@ -33,6 +33,7 @@
 - [x] Skills updated for self-evolving architecture
 - [x] adversarial-review.md — risk-scaled self-check protocol for evolve.yml Step 5
 - [x] pre-merge gate — CI + risk-assessment + blocking-issue checks added to adversarial-review.md; referenced from harness.md reviewer guidance (closes #16)
+- [x] structured findings table — Trigger/Why/Status/Findings table added to adversarial-review.md; machine-readable output for non-trivial reviews; pattern note for future skill files; referenced from harness.md (closes #5)
 
 ## Watcher Improvements
 - [x] Pipeline outcome health checks (responsibility #7) — triage comment detection, coder handoff detection, reviewer silent-failure detection; corrective action limit raised 3→5 (closes #23)

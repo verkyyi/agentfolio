@@ -144,3 +144,38 @@ ADVERSARIAL CHECK (Tier 2):
 6. Structural changes this run so far: 0 of max 1
 VERDICT: abort — duplicate issue already exists (#4)
 ```
+
+---
+
+## Findings Table
+
+After completing the Adversarial Check and/or Pre-Merge Gate, append a findings
+table to your review output for **non-trivial** changes. This makes agent review
+output grep-parseable in state files and agent_log.md entries.
+
+**When to use:** Tier 1 and Tier 2 changes, or any Pre-Merge Gate with a non-PASS
+verdict. Skip for Tier 0 state-file updates (append-only log entries) — filling
+out the table for every routine state write is unnecessary overhead.
+
+### Table Format
+
+```
+| Trigger | Why | Status | Findings |
+|---------|-----|--------|----------|
+| [what triggered this review] | [reason it matters] | PASS / BLOCK / WARN | [detail or "none"] |
+```
+
+### Example — One PASS row, one BLOCK row
+
+```
+| Trigger | Why | Status | Findings |
+|---------|-----|--------|----------|
+| PR #19: anti-sycophancy guardrails | Tier 2 skill behavioral change | PASS | CI green, no autonomy promotion, cites gstack v0.9.9.0 |
+| PR #20: agentic security patterns | High-risk: research-inspired change | BLOCK | Missing one-sentence risk assessment for supply-chain rule |
+```
+
+### Pattern Note for Future Review Skill Files
+
+Any new review skill file added to `skills/` should adopt this findings table
+pattern. The table is the machine-readable output contract; the ADVERSARIAL CHECK
+and PRE-MERGE GATE blocks remain the human-readable reasoning chain.

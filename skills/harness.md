@@ -110,6 +110,10 @@ if CI is failing, if a high-risk file (`.github/workflows/`, `CLAUDE.md`
 autonomy rules) was changed without an explicit one-sentence risk assessment,
 or if any open blocking issue is linked to the PR.
 
+After the gate, append a findings table (Trigger | Why | Status | Findings) for
+non-trivial reviews. All review skill files follow this pattern — see
+`skills/adversarial-review.md` § Findings Table.
+
 ## Autonomy Gates
 See CLAUDE.md for the full list. Quick reference:
 - AUTO: state files, failure log entries, skill wording improvements, FEATURE_STATUS
