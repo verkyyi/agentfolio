@@ -120,16 +120,25 @@ jobs:
             gh issue comment ${NUM} --body "**Triage:** Evolve-generated idea triaged and elaborated. The coder agent will implement this shortly." --repo ${{ github.repository }}
 
           For PIPELINE-FIX:
-            gh issue edit ${NUM} --add-label "agent-ready" --repo ${{ github.repository }}
-            gh issue comment ${NUM} --body "**Triage:** Pipeline failure identified and elaborated. The coder agent will investigate and fix shortly." --repo ${{ github.repository }}
+            First determine if the fix requires human infrastructure action (creating secrets/PATs,
+            changing GitHub App permissions, configuring external services, repository settings changes)
+            vs. a code fix the agent can make (editing workflow YAML, fixing scripts, updating configs).
+
+            If the agent CAN fix it (code/config changes):
+              gh issue edit ${NUM} --add-label "agent-ready" --repo ${{ github.repository }}
+              gh issue comment ${NUM} --body "**Triage:** Pipeline failure identified and elaborated. The coder agent will investigate and fix shortly." --repo ${{ github.repository }}
+
+            If it REQUIRES human action (secrets, permissions, external service config):
+              gh issue edit ${NUM} --add-label "needs-human,pipeline-fix" --repo ${{ github.repository }}
+              gh issue comment ${NUM} --body "**Triage:** Pipeline failure identified. This requires human infrastructure action (secrets, permissions, or external configuration) that the agent cannot perform. Flagged for the owner." --repo ${{ github.repository }}
 
           For ADOPTER-INSIGHT:
             gh issue edit ${NUM} --add-label "agent-ready" --repo ${{ github.repository }}
             gh issue comment ${NUM} --body "**Triage:** Adopter insight identified — this is based on real user behavior. The coder agent will implement this improvement shortly." --repo ${{ github.repository }}
 
           For GROWTH-ACTION:
-            gh issue edit ${NUM} --add-label "needs-review" --repo ${{ github.repository }}
-            gh issue comment ${NUM} --body "**Triage:** Growth action identified. This requires action on an external platform — flagged for human review." --repo ${{ github.repository }}
+            gh issue edit ${NUM} --add-label "needs-human,growth-action" --repo ${{ github.repository }}
+            gh issue comment ${NUM} --body "**Triage:** Growth action identified. This requires action on an external platform — flagged for the owner." --repo ${{ github.repository }}
 
           For UX-REQUEST:
             gh issue edit ${NUM} --add-label "ux-request,needs-review" --repo ${{ github.repository }}

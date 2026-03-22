@@ -30,6 +30,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.WORKFLOW_PAT || github.token }}
 
       - name: Resolve issue
         id: issue
@@ -152,17 +154,32 @@ jobs:
         if: steps.check.outputs.FAILED == 'true'
         run: |
           NUM=${{ steps.issue.outputs.NUMBER }}
+          REASON="${{ steps.check.outputs.REASON }}"
+
+          # Detect infrastructure/permission failures that require human action
+          if echo "$REASON" | grep -qiE 'permission|token|secret|credential|PAT|workflow.*permission|auth|forbidden|403'; then
+            LABEL="needs-human"
+            COMMENT="**Coder agent:** This issue requires human infrastructure action (permissions, secrets, or tokens).
+
+          Reason: ${REASON}
+
+          A human must resolve the infrastructure prerequisite before the agent can proceed."
+          else
+            LABEL="needs-review"
+            COMMENT="**Coder agent:** Could not automatically fix this issue.
+
+          Reason: ${REASON}
+
+          This issue has been escalated for manual review."
+          fi
+
           gh issue comment "$NUM" \
-            --body "**Coder agent:** Could not automatically fix this issue.
-
-          Reason: ${{ steps.check.outputs.REASON }}
-
-          This issue has been escalated for manual review." \
+            --body "$COMMENT" \
             --repo ${{ github.repository }}
 
           gh issue edit "$NUM" \
             --remove-label "agent-ready" \
-            --add-label "needs-review" \
+            --add-label "$LABEL" \
             --repo ${{ github.repository }}
         env:
           GH_TOKEN: ${{ github.token }}
