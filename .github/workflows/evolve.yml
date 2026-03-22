@@ -390,10 +390,10 @@ jobs:
         run: |
           claude -p "$(cat /tmp/prompt.txt)" \
             --allowedTools "Bash(curl:*) Bash(git:*) Bash(gh:*) Bash(ls:*) Bash(cat:*) Bash(date:*) Bash(grep:*) Bash(head:*) Bash(tail:*) Bash(wc:*) Bash(echo:*) Bash(printf:*) Bash(mkdir:*) Read Write Edit Glob Grep" \
-            --model claude-sonnet-4-6 \
-            --effort high \
+            --model claude-opus-4-6 \
+            --effort max \
             --max-turns 30 \
-            --fallback-model claude-haiku-4-5-20251001 \
+            --fallback-model claude-sonnet-4-6 \
             --permission-mode bypassPermissions \
             --output-format json \
             > /tmp/claude_output.json

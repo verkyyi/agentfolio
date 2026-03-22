@@ -176,8 +176,8 @@ jobs:
 
           claude -p "$(cat /tmp/learner_prompt.txt)" \
             --allowedTools "Bash(gh:*) Read Write Edit" \
-            --model claude-haiku-4-5-20251001 \
-            --effort medium \
+            --model claude-opus-4-6 \
+            --effort max \
             --max-turns 25 \
             --permission-mode bypassPermissions \
             --output-format json \

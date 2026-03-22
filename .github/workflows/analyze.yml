@@ -67,8 +67,8 @@ jobs:
         run: |
           claude -p "$(cat /tmp/prompt.txt)" \
             --allowedTools "Bash Read Write Edit Glob Grep" \
-            --model claude-haiku-4-5-20251001 \
-            --effort medium \
+            --model claude-opus-4-6 \
+            --effort max \
             --max-turns 25 \
             --permission-mode bypassPermissions \
             --output-format json \

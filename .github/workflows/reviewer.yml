@@ -137,10 +137,10 @@ jobs:
         run: |
           claude -p "$(cat /tmp/review_prompt.txt)" \
             --allowedTools "Bash(npm:*) Bash(gh:*) Bash(git:*) Read Glob Grep" \
-            --model claude-sonnet-4-6 \
-            --effort high \
+            --model claude-opus-4-6 \
+            --effort max \
             --max-turns 30 \
-            --fallback-model claude-haiku-4-5-20251001 \
+            --fallback-model claude-sonnet-4-6 \
             --permission-mode bypassPermissions \
             --output-format json \
             > /tmp/claude_output.json
