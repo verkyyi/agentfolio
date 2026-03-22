@@ -75,3 +75,11 @@
 2026-03-22T09:08:39Z | VoltAgent/awesome-claude-code-subagents (tier 0) | latest commit 2026-03-19 — README update (same as previously noted, no new changes) | no action
 2026-03-22T09:08:39Z | pipeline-health | 10 failed runs checked: 2 ACTIONABLE (Pipeline Watcher 23399465154 + Feedback Learner 23399326001 — both fail with "Fallback model cannot be same as main model", caused by PR #27 setting --fallback-model=haiku when main model is already haiku); 8 ALREADY-FIXED | issue #36 created
 2026-03-22T09:08:39Z | human-intent-analysis | 10 human issues in last 7 days — FIX_PROCESS: 3 (#35,#26,#23); ADD_CAPABILITY: 4 (#33,#28,#9,#1); IMPROVE_QUALITY: 3 (#29,#14,#10); EXPAND_SOURCES: 1 (#21) | logged to learned_intents.md; no separate intent issue (pipeline #36 covers FIX_PROCESS threshold)
+2026-03-22T10:05:23Z | anthropics/claude-code (core) | latest commit 2026-03-20 CHANGELOG update — no new changes since last run | no action
+2026-03-22T10:05:23Z | garrytan/gstack (core) | v0.9.9.0 still latest (2026-03-21T23:55:47Z) — anti-sycophancy hardening; no new release since last run | no action — already tracked in issue #13
+2026-03-22T10:05:23Z | affaan-m/everything-claude-code (core) | latest commit 2026-03-22T02:48:20Z — credits restored, no new harness patterns | no action
+2026-03-22T10:05:23Z | godagoo/claude-code-always-on (tier 1) | last commit 2026-02-03 — no recent activity | no action
+2026-03-22T10:05:23Z | humanlayer/humanlayer (tier 1) | last commit 2026-01-07 — no recent activity | no action
+2026-03-22T10:05:23Z | actions/runner (tier 1) | v2.333.0 confirmed latest — no new release | no action
+2026-03-22T10:05:23Z | pipeline-health | 10 failed runs checked: Pipeline Watcher (09:44) ALREADY-FIXED by a16432b (--fallback-model removed from haiku workflows); Growth Strategist (09:09) ALREADY-FIXED same fix; Coder (06:11) ALREADY-FIXED (succeeded 09:01); Weekly Analysis (06:17, 00:22) TRANSIENT (clean tree); Reviewer Agent (09:17) ACTIONABLE-NEW — merge conflict on state+workflow files during CLI session (unmerged: coder.yml, triage.yml, agent_log.md, project_state.md); HUMAN_ACTIVE=true — not creating issue, logging only | 0 issues created (HUMAN_ACTIVE)
+2026-03-22T10:05:23Z | human-intent-analysis | no new human issues since 09:08 run; learned_intents.md already up to date | no action
