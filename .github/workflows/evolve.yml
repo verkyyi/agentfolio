@@ -84,6 +84,10 @@ jobs:
           ECC=$(curl -s -H "Authorization: token $GITHUB_TOKEN" \
             "https://api.github.com/repos/affaan-m/everything-claude-code/commits?per_page=3" | head -c 800)
 
+          # Awesome Claude Code — curated list of tools, skills, and patterns (29k stars)
+          ACC=$(curl -s -H "Authorization: token $GITHUB_TOKEN" \
+            "https://api.github.com/repos/hesreallyhim/awesome-claude-code/commits?per_page=3" | head -c 800)
+
           # === ROTATING TIER $TIER ===
           if [ "$TIER" -eq 0 ]; then
             # Tier 0: Agent ecosystems
