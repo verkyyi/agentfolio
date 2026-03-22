@@ -9,9 +9,6 @@ permissions:
   contents: write
   pull-requests: write
 
-env:
-  APP_NAME: scaffold
-
 jobs:
   analyze:
     runs-on: ubuntu-latest
@@ -42,8 +39,7 @@ jobs:
           1. Read state/agent_log.md entries from the past 7 days
           2. Read state/research_log.md entries from the past 7 days
           3. Review git log from the past 7 days
-          4. Check apps/scaffold/FEATURE_STATUS.md — what progressed?
-          5. Check apps/profile/FEATURE_STATUS.md — what progressed?
+          4. If FEATURE_STATUS.md exists at the path in the Evolve Config, include it — what progressed?
 
           ### What to look for
           - Recurring failures or patterns in agent_log
@@ -62,9 +58,16 @@ jobs:
           If clear improvements are identified, write them to
           .proposed-change.md (same format as evolve.yml — one per run max).
 
+          ## Evolve Config
+          $(cat state/evolve_config.md)
+
+          Use the project name from the config for labels (not "project:scaffold").
+          When a workflow is marked SKIP in the config, ignore its failures in health checks.
+          Read CLAUDE.md from the path in the Project section of the config.
+
           ## Context
           $(cat CLAUDE.md)
-          $(cat apps/scaffold/CLAUDE.md)
+          $(cat $(grep '^CLAUDE.md:' state/evolve_config.md | cut -d' ' -f2))
 
           ## Current State
           $(cat state/project_state.md)
