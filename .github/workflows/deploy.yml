@@ -31,17 +31,32 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Check onboarding complete
+        run: |
+          if [ ! -f state/evolve_config.md ]; then
+            echo "::warning::Onboarding not complete. Run: claude 'Set up agentfolio. Follow https://github.com/verkyyi/agentfolio/blob/main/docs/onboarding.md'"
+            exit 0
+          fi
+
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: npm
 
-      - name: Install dependencies
-        run: npm ci
+      - name: Install project dependencies
+        run: |
+          INSTALL_CMD=$(grep '^install:' state/evolve_config.md | cut -d: -f2- | xargs)
+          if [ -n "$INSTALL_CMD" ]; then
+            eval "$INSTALL_CMD"
+          fi
 
-      - name: Build Astro site
-        run: npm run build
+      - name: Build
+        run: |
+          BUILD_CMD=$(grep '^build:' state/evolve_config.md | cut -d: -f2- | xargs)
+          if [ -n "$BUILD_CMD" ] && [ "$BUILD_CMD" != "(none)" ]; then
+            eval "$BUILD_CMD"
+          fi
         env:
           SITE_URL: https://${{ github.repository_owner }}.github.io
           BASE_PATH: /${{ github.event.repository.name }}

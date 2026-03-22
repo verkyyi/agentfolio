@@ -22,6 +22,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Check onboarding complete
+        run: |
+          if [ ! -f state/evolve_config.md ]; then
+            echo "::warning::Onboarding not complete. Run: claude 'Set up agentfolio. Follow https://github.com/verkyyi/agentfolio/blob/main/docs/onboarding.md'"
+            exit 0
+          fi
+
       - name: Check for recent human activity
         id: human
         run: |
@@ -56,7 +63,17 @@ jobs:
           LEARNED_RULES=$(cat state/learned_rules.md)
 
           cat > /tmp/triage_prompt.txt << PROMPT
-          Read the root CLAUDE.md and apps/scaffold/CLAUDE.md for context.
+          Read the root CLAUDE.md and $(grep '^CLAUDE.md:' state/evolve_config.md | cut -d' ' -f2) for context.
+
+          ## Evolve Config
+          $(cat state/evolve_config.md)
+
+          Use the project name from the config for labels (not "project:scaffold").
+          When a workflow is marked SKIP in the config, ignore its failures in health checks.
+          Read CLAUDE.md from the path in the Project section of the config.
+
+          Adapt triage categories to match the project described in the Evolve Config.
+          Use the repo name as the project label (e.g., \`project:<reponame>\`) instead of hardcoding \`project:scaffold\`.
 
           ## Learned Rules (from human feedback — MUST follow these)
           ${LEARNED_RULES}
