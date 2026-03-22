@@ -34,3 +34,9 @@
 2026-03-21T23:05:09Z | github-trending (tier 2) | everything-claude-code remains #1 (3184 results, +31 since last run) — consistent growth; no new breakout repos for claude+code+agent | no action
 2026-03-21T23:05:09Z | withastro/astro (tier 2) | v6.0.8 still latest — no new release | no action
 2026-03-21T23:05:09Z | pipeline-health | 10 failed runs checked: 1 ACTIONABLE (run 23390450215 — Coder blocked pushing workflow YAML, token lacks workflows permission); 9 ALREADY-FIXED | issue #12 created
+2026-03-22T00:16:11Z | anthropics/claude-code (core) | CHANGELOG last updated 2026-03-20 — active development, no breaking changes | no action
+2026-03-22T00:16:11Z | garrytan/gstack (core) | v0.9.9.0 released 2026-03-21T23:55Z — /office-hours hardened with anti-sycophancy + pushback patterns (5 changes: direct-to-discomfort posture, no compromise toward founder input, self-consistency enforcement) | issue created
+2026-03-22T00:16:11Z | affaan-m/everything-claude-code (core) | PR #728 Chinese docs sync latest — community growth steady, no new harness patterns | no action
+2026-03-22T00:16:11Z | wshobson/agents (tier 0) | OCI awareness added 2026-03-17 — container platform detection in agent prompts (PR #452 merged) | no action — not relevant to current harness
+2026-03-22T00:16:11Z | VoltAgent/awesome-claude-code-subagents (tier 0) | README updated 2026-03-19 — no major new subagents catalogued | no action
+2026-03-22T00:16:11Z | pipeline-health | 10 failed runs checked: 2 coder failures ALREADY-FIXED (watcher removed agent-ready, tracked in #12); 3 reviewer failures ALREADY-FIXED; 2 evolve failures ALREADY-FIXED; 3 deploy failures ALREADY-FIXED | no action
