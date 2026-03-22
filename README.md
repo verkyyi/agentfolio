@@ -62,6 +62,29 @@ You can steer the agent at any time using these actions:
 
 Human corrections compound. Say it once and the system remembers permanently.
 
+### Claiming an issue for CLI work
+
+Add the `human-wip` label to any issue you want to work on manually. The pipeline
+will skip that issue entirely (coder won't touch it, watcher won't re-trigger it,
+triage won't auto-queue it). The pipeline also auto-detects human commits pushed
+to `main` within the last 2 hours and enters a cautious mode:
+
+| Workflow | Normal mode | Human-active mode |
+|---|---|---|
+| `triage.yml` | Adds `agent-ready`, triggers coder | Adds `triaged` only, human decides when to queue |
+| `coder.yml` | Implements fix, opens PR | Skips `human-wip` issues; runs normally on `agent-ready` issues |
+| `evolve.yml` | Research + state writes + issue creation | Read-only: research + logs only, no state writes or new issues |
+| `watcher.yml` | Health check + corrective actions | Health check only, no re-triggers or label changes |
+
+### Ending a CLI session
+
+When you're done working in the CLI:
+
+1. Update `state/project_state.md` with what you did
+2. Append a line to `state/agent_log.md`
+3. Remove `human-wip` labels: `gh issue edit N --remove-label human-wip`
+4. Commit and push
+
 ---
 
 ## The ten workflows

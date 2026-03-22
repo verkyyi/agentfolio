@@ -22,6 +22,20 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Check for human activity
+        id: human_check
+        run: |
+          HUMAN_ACTIVE=false
+          # Check for recent human commits (2-hour window)
+          git fetch origin main --quiet 2>/dev/null || true
+          HUMAN_COMMITS=$(git log origin/main --since="2 hours ago" --format="%an" | grep -v "agentfolio\[bot\]" || true)
+          if [ -n "$HUMAN_COMMITS" ]; then
+            HUMAN_ACTIVE=true
+            echo "::notice::Human activity detected in last 2 hours"
+          fi
+          echo "HUMAN_ACTIVE=$HUMAN_ACTIVE" >> $GITHUB_ENV
+          echo "HUMAN_ACTIVE=$HUMAN_ACTIVE" >> $GITHUB_OUTPUT
+
       - name: Install Claude Code
         run: npm install -g @anthropic-ai/claude-code
 
@@ -206,6 +220,20 @@ jobs:
 
           # Now append the dynamic data outside the quoted heredoc
           cat >> /tmp/watcher_prompt.txt << PROMPTEND
+
+          ## Human Activity Mode
+          HUMAN_ACTIVE=${HUMAN_ACTIVE}
+
+          If HUMAN_ACTIVE is true:
+          - HEALTH-CHECK ONLY: Log findings but skip ALL corrective actions
+          - Do NOT re-trigger any workflows
+          - Do NOT change any labels
+          - Do NOT create or close issues
+          - Still check system health and log findings to state/agent_log.md
+          - Add "(health-check only — human activity detected)" to your log entry
+
+          Always skip corrective actions for issues/PRs with the 'human-wip' label,
+          regardless of HUMAN_ACTIVE status.
 
           ## Current system state:
           ${SYSTEM_STATE}

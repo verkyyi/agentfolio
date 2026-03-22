@@ -26,6 +26,20 @@ jobs:
         with:
           fetch-depth: 50
 
+      - name: Check for human activity
+        id: human_check
+        run: |
+          HUMAN_ACTIVE=false
+          # Check for recent human commits (2-hour window)
+          git fetch origin main --quiet 2>/dev/null || true
+          HUMAN_COMMITS=$(git log origin/main --since="2 hours ago" --format="%an" | grep -v "agentfolio\[bot\]" || true)
+          if [ -n "$HUMAN_COMMITS" ]; then
+            HUMAN_ACTIVE=true
+            echo "::notice::Human activity detected in last 2 hours"
+          fi
+          echo "HUMAN_ACTIVE=$HUMAN_ACTIVE" >> $GITHUB_ENV
+          echo "HUMAN_ACTIVE=$HUMAN_ACTIVE" >> $GITHUB_OUTPUT
+
       - name: Install Claude Code
         run: npm install -g @anthropic-ai/claude-code
 
@@ -361,6 +375,20 @@ jobs:
           $(cat state/learned_rules.md)
           PROMPT
 
+          # Append human activity mode (unquoted heredoc for variable expansion)
+          cat >> /tmp/prompt.txt << HUMAN_MODE
+
+          ## Human Activity Mode
+          HUMAN_ACTIVE=${HUMAN_ACTIVE}
+
+          If HUMAN_ACTIVE is true (human has pushed commits in the last 2 hours):
+          - READ-ONLY MODE: Run research (Step 1) and log findings normally
+          - Still append to state/research_log.md and state/agent_log.md
+          - Do NOT write to state/project_state.md (skip Step 4)
+          - Do NOT create new GitHub issues (skip Step 5 issue creation)
+          - Safe changes (failure log entries, skill wording) are still allowed
+          HUMAN_MODE
+
       - name: Run Claude Code
         run: |
           claude -p "$(cat /tmp/prompt.txt)" \
@@ -403,6 +431,7 @@ jobs:
           git config user.email "agentfolio[bot]@users.noreply.github.com"
 
       - name: Auto-commit safe changes
+        if: env.HUMAN_ACTIVE != 'true'
         run: |
           git add state/ CLAUDE.md skills/ README.md public/robots.txt src/layouts/Base.astro src/pages/index.astro
           if ! git diff --cached --quiet; then
@@ -412,6 +441,7 @@ jobs:
           fi
 
       - name: Trigger triage for new issues
+        if: env.HUMAN_ACTIVE != 'true'
         run: |
           if [ -f .new_issues.txt ]; then
             while read -r NUM; do
@@ -425,7 +455,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
 
       - name: Trigger discovery if needed
-        if: hashFiles('.trigger-discovery.txt') != ''
+        if: env.HUMAN_ACTIVE != 'true' && hashFiles('.trigger-discovery.txt') != ''
         run: |
           APP=$(cat .trigger-discovery.txt)
           gh workflow run discover.yml -f app_name="$APP"
@@ -440,6 +470,8 @@ jobs:
           gh label create "adopter-insight" --color "1d76db" --description "Pattern found from adopter usage" --force
           gh label create "intent-driven" --color "5319e7" --description "Issue driven by human intent analysis" --force
           gh label create "agent-ready" --color "0e8a16" --description "Ready for coder agent" --force
+          gh label create "human-wip" --color "e4e669" --description "Human is actively working on this — pipeline should skip" --force
+          gh label create "triaged" --color "c2e0c6" --description "Issue triaged but not auto-queued for coder" --force
           gh label create "needs-review" --color "fbca04" --description "Needs human review" --force
           gh label create "project:scaffold" --color "c5def5" --description "Scaffold project" --force
         env:

@@ -40,3 +40,4 @@
 2026-03-22T08:10:00Z | coder.yml | fix issue #28 — token utilization feedback loop: --output-format json + usage logging in all 10 workflows + watcher responsibility #8 | success
 2026-03-22T08:10:00Z | coder.yml | fix issue #29 — added state/** and skills/** to deploy.yml path triggers for profile page auto-redeploy | success
 2026-03-22T08:28:00Z | coder.yml | fix issue #33 — human intent learning + PR close handling + interaction guide: feedback-learner PR rejection flow, coder issue comments, evolve Step 2f intent analysis, README interaction docs, learned_intents.md | success
+2026-03-22T09:16:00Z | coder.yml | fix issue #35 — human activity detection: added 2h commit window + human-wip label to coder/evolve/watcher/triage; evolve read-only mode, watcher health-check-only mode, triage triaged-instead-of-agent-ready; README end-of-session protocol | success

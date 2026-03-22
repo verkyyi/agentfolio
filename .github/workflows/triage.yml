@@ -31,6 +31,36 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
 
+      - name: Check for human activity
+        id: human_check
+        run: |
+          NUM=${{ steps.issue.outputs.NUMBER }}
+          HUMAN_WIP=false
+          HUMAN_ACTIVE=false
+
+          # Check for human-wip label (explicit human claim on this issue)
+          LABELS=$(gh issue view "$NUM" --json labels -q '.labels[].name')
+          if echo "$LABELS" | grep -q "human-wip"; then
+            HUMAN_WIP=true
+            echo "::notice::Issue #$NUM has human-wip label — will not add agent-ready"
+          fi
+
+          # Check for recent human commits (2-hour window)
+          git fetch origin main --quiet 2>/dev/null || true
+          HUMAN_COMMITS=$(git log origin/main --since="2 hours ago" --format="%an" | grep -v "agentfolio\[bot\]" || true)
+          if [ -n "$HUMAN_COMMITS" ]; then
+            HUMAN_ACTIVE=true
+            echo "::notice::Human activity detected in last 2 hours"
+          fi
+
+          echo "HUMAN_WIP=$HUMAN_WIP" >> $GITHUB_OUTPUT
+          echo "HUMAN_ACTIVE=$HUMAN_ACTIVE" >> $GITHUB_OUTPUT
+          # Export to env for use in prompt building
+          echo "HUMAN_WIP=$HUMAN_WIP" >> $GITHUB_ENV
+          echo "HUMAN_ACTIVE=$HUMAN_ACTIVE" >> $GITHUB_ENV
+        env:
+          GH_TOKEN: ${{ github.token }}
+
       - name: Install Claude Code
         run: npm install -g @anthropic-ai/claude-code
 
@@ -57,6 +87,18 @@ jobs:
 
           Body:
           ${BODY}
+
+          ## Human Activity Status
+          HUMAN_ACTIVE=${HUMAN_ACTIVE}
+          HUMAN_WIP=${HUMAN_WIP}
+
+          If HUMAN_ACTIVE is true OR HUMAN_WIP is true:
+          - Use 'triaged' label instead of 'agent-ready' in ALL classifications below
+          - Do NOT add 'agent-ready' label under any circumstance
+          - Append "(not auto-queued — human activity detected)" to your triage comment
+
+          If HUMAN_ACTIVE is false AND HUMAN_WIP is false:
+          - Follow normal classification rules below (use 'agent-ready' where specified)
 
           ## Classification rules:
           - BUG: something is broken, not working, displaying wrong, link is broken
@@ -106,6 +148,10 @@ jobs:
           coder agent everything it needs to implement without guessing.
 
           ### Step 3: Add labels and comment.
+
+          IMPORTANT: If HUMAN_ACTIVE is true or HUMAN_WIP is true, replace
+          'agent-ready' with 'triaged' in ALL of the following classifications.
+          Append "(not auto-queued — human activity detected)" to the triage comment.
 
           For BUG:
             gh issue edit ${NUM} --add-label "bug,agent-ready" --repo ${{ github.repository }}
@@ -208,6 +254,7 @@ jobs:
           fi
 
       - name: Trigger coder if agent-ready
+        if: steps.human_check.outputs.HUMAN_ACTIVE != 'true' && steps.human_check.outputs.HUMAN_WIP != 'true'
         run: |
           NUM=${{ steps.issue.outputs.NUMBER }}
           LABELS=$(gh issue view "$NUM" --json labels -q '.labels[].name')

@@ -54,18 +54,49 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
 
+      - name: Check for human activity
+        id: human_check
+        run: |
+          NUM=${{ steps.issue.outputs.NUMBER }}
+          SKIP=false
+
+          # Check for human-wip label (explicit human claim on this issue)
+          LABELS=$(gh issue view "$NUM" --json labels -q '.labels[].name')
+          if echo "$LABELS" | grep -q "human-wip"; then
+            SKIP=true
+            echo "::notice::Issue #$NUM has human-wip label — skipping coder"
+          fi
+
+          # Check for recent human commits (2-hour window)
+          git fetch origin main --quiet 2>/dev/null || true
+          HUMAN_COMMITS=$(git log origin/main --since="2 hours ago" --format="%an" | grep -v "agentfolio\[bot\]" || true)
+          if [ -n "$HUMAN_COMMITS" ]; then
+            echo "HUMAN_ACTIVE=true" >> $GITHUB_OUTPUT
+            echo "::notice::Human activity detected in last 2 hours"
+          else
+            echo "HUMAN_ACTIVE=false" >> $GITHUB_OUTPUT
+          fi
+
+          echo "SKIP=$SKIP" >> $GITHUB_OUTPUT
+        env:
+          GH_TOKEN: ${{ github.token }}
+
       - name: Setup Node
+        if: steps.human_check.outputs.SKIP != 'true'
         uses: actions/setup-node@v4
         with:
           node-version: 20
 
       - name: Install Claude Code CLI
+        if: steps.human_check.outputs.SKIP != 'true'
         run: npm install -g @anthropic-ai/claude-code
 
       - name: Install project dependencies
+        if: steps.human_check.outputs.SKIP != 'true'
         run: npm ci
 
       - name: Create feature branch
+        if: steps.human_check.outputs.SKIP != 'true'
         id: branch
         run: |
           ISSUE_NUM=${{ steps.issue.outputs.NUMBER }}
@@ -74,6 +105,7 @@ jobs:
           echo "BRANCH=$BRANCH" >> $GITHUB_OUTPUT
 
       - name: Build coder prompt
+        if: steps.human_check.outputs.SKIP != 'true'
         run: |
           ISSUE_NUM=${{ steps.issue.outputs.NUMBER }}
           ISSUE_TITLE=$(jq -r '.title' /tmp/issue.json)
@@ -141,6 +173,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
 
       - name: Run Claude coder agent
+        if: steps.human_check.outputs.SKIP != 'true'
         run: |
           claude -p "$(cat /tmp/coder_prompt.txt)" \
             --allowedTools "Bash Read Write Edit Glob Grep" \
@@ -176,6 +209,7 @@ jobs:
           awk -v c="$CUTOFF" 'NR==1{print;next} $0>=c' state/usage_log.md > /tmp/usage_trimmed.md && mv /tmp/usage_trimmed.md state/usage_log.md
 
       - name: Check if fix was attempted or failed
+        if: steps.human_check.outputs.SKIP != 'true'
         id: check
         run: |
           if [ -f ".fix-failed" ]; then
@@ -186,7 +220,7 @@ jobs:
           fi
 
       - name: Handle fix failure
-        if: steps.check.outputs.FAILED == 'true'
+        if: steps.human_check.outputs.SKIP != 'true' && steps.check.outputs.FAILED == 'true'
         run: |
           NUM=${{ steps.issue.outputs.NUMBER }}
           REASON="${{ steps.check.outputs.REASON }}"
@@ -220,7 +254,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
 
       - name: Commit fix
-        if: steps.check.outputs.FAILED == 'false'
+        if: steps.human_check.outputs.SKIP != 'true' && steps.check.outputs.FAILED == 'false'
         run: |
           git config user.name "agentfolio[bot]"
           git config user.email "agentfolio[bot]@users.noreply.github.com"
@@ -238,7 +272,7 @@ jobs:
           git push origin ${{ steps.branch.outputs.BRANCH }}
 
       - name: Open pull request
-        if: steps.check.outputs.FAILED == 'false'
+        if: steps.human_check.outputs.SKIP != 'true' && steps.check.outputs.FAILED == 'false'
         id: pr
         run: |
           ISSUE_NUM=${{ steps.issue.outputs.NUMBER }}
@@ -272,7 +306,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
 
       - name: Trigger reviewer
-        if: steps.check.outputs.FAILED == 'false' && steps.pr.outputs.PR_NUMBER != ''
+        if: steps.human_check.outputs.SKIP != 'true' && steps.check.outputs.FAILED == 'false' && steps.pr.outputs.PR_NUMBER != ''
         run: |
           echo "Triggering reviewer for PR #${{ steps.pr.outputs.PR_NUMBER }}"
           gh workflow run reviewer.yml -f pr_number="${{ steps.pr.outputs.PR_NUMBER }}"

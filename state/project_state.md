@@ -3,24 +3,24 @@
 # Read at start of every workflow run.
 # Committed to repo — git history is the full audit trail.
 
-Last updated: 2026-03-22T08:28:00Z
-Updated by: coder.yml (fix issue #33 — human intent learning, PR close handling, interaction guide)
+Last updated: 2026-03-22T09:16:00Z
+Updated by: coder.yml (fix issue #35 — human activity detection for pipeline conflict prevention)
 
 ## Last Session
-Action: coder.yml — implemented issue #33 (human intent learning, PR close handling, interaction guide)
+Action: coder.yml — implemented issue #35 (human activity detection + human-wip label)
 
 Done:
-- feedback-learner.yml: added `pull_request: [closed]` trigger + rejection handling (re-adds agent-ready to linked issue, posts rejection context, re-triggers coder via existing RETRIGGER_CODER action); merged PRs skipped via job if condition
-- coder.yml: added issue comments fetch (`gh issue view --json comments`) to "Build coder prompt" step so re-triggered coders see rejection context
-- evolve.yml: added Step 2f Human Intent Analysis between 2e and 3 (query human-created issues, categorize intent, append to state/learned_intents.md, create max 1 intent-driven issue when 2+ issues share a category); max issues per run raised 2→3 (research + intent); added intent-driven label to Ensure labels step
-- README.md: added "Interacting with the Pipeline" section documenting comment-on-issue, close-PR-without-merge, not-planned, permanent rules, agent-ready label, claude-task
-- state/learned_intents.md: created as empty placeholder with header
+- coder.yml: added "Check for human activity" step — checks human-wip label (skips issue) + git log 2h window for non-bot commits; all downstream steps gated with `steps.human_check.outputs.SKIP != 'true'`
+- evolve.yml: added "Check for human activity" step + prompt appendix for read-only mode (skips state writes + issue creation when HUMAN_ACTIVE); auto-commit, trigger triage, trigger discovery steps gated; human-wip + triaged labels added to Ensure labels step
+- watcher.yml: added "Check for human activity" step + prompt section for health-check-only mode (skips corrective actions when HUMAN_ACTIVE); human-wip issues always skipped regardless of HUMAN_ACTIVE
+- triage.yml: added "Check for human activity" step — checks human-wip label + human commits; prompt updated to use 'triaged' instead of 'agent-ready' when human active; "Trigger coder if agent-ready" step gated on both HUMAN_ACTIVE and HUMAN_WIP
+- README.md: added "Claiming an issue for CLI work" section (human-wip label, human-active mode table) + "Ending a CLI session" protocol
 - Build passing (exit 0)
 
-In progress: PR for issue #33 (needs-review — workflow YAML changes)
+In progress: PR for issue #35 (needs-review — workflow YAML changes)
 
 ## Open Items (priority order)
-1. Issue #33: [PR opened — needs-review] Human intent learning, PR close handling, interaction guide
+1. Issue #35: [PR opened — needs-review] Human activity detection for pipeline conflict prevention
 2. Issue #8: [agent-ready — UNBLOCKED] Upgrade Node.js 20 actions before June 2026 deadline
 3. PR #19: [reviewer re-triggered] Anti-sycophancy guardrails for adversarial-review.md (closes #13)
 4. PR #20: [reviewer re-triggered] Agentic security patterns — supply chain hygiene + prompt injection defense (closes #17)
@@ -35,8 +35,8 @@ Period: 2026-03-15 to 2026-03-22 (first full week tracked)
 - Stars: 1 | Forks: 0 | Adopters: 0
 
 ## Notes for Next Agent
-- PR for issue #33 modifies 3 workflow YAML files — must use WORKFLOW_PAT for push and labeled needs-review per autonomy rules
-- feedback-learner.yml permissions changed from issues:read to issues:write (needed for label manipulation and commenting)
-- evolve max issues raised from 2 to 3 (2 research + 1 intent)
-- state/learned_intents.md auto-covered by evolve.yml git add state/
+- PR for issue #35 modifies 4 workflow YAML files — must use WORKFLOW_PAT for push and labeled needs-review per autonomy rules
+- Detection logic: `git log origin/main --since="2 hours ago" --format="%an" | grep -v "agentfolio\[bot\]"` — filters out bot commits
+- human-wip label (yellow #e4e669) created by evolve.yml Ensure labels step
+- triaged label (green #c2e0c6) created by evolve.yml Ensure labels step
 - PRs #19 and #20 still awaiting human review

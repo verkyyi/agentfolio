@@ -60,3 +60,12 @@
 - [x] evolve.yml: Step 2f Human Intent Analysis (categorize human issues, track in learned_intents.md, create intent-driven issues)
 - [x] README.md: "Interacting with the Pipeline" section documenting human interaction protocol
 - [x] state/learned_intents.md: created as append-only placeholder for intent tracking
+
+## Human Activity Detection (closes #35)
+- [x] human-wip label created via evolve.yml Ensure labels step (yellow #e4e669)
+- [x] triaged label created via evolve.yml Ensure labels step (green #c2e0c6)
+- [x] coder.yml: human-wip label skips issue; human activity check step added
+- [x] evolve.yml: human activity check + read-only mode (no state writes, no issue creation)
+- [x] watcher.yml: human activity check + health-check only mode (no corrective actions); human-wip issues skipped
+- [x] triage.yml: human activity check + triaged label instead of agent-ready; human-wip skips agent-ready; coder trigger gated
+- [x] README.md: CLI session claiming + end-of-session protocol documented
