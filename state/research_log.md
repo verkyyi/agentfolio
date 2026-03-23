@@ -573,3 +573,18 @@
 2026-03-23T17:06:25Z | github-trending | 3256 repos (+8 from 3248), no breakout | no action
 2026-03-23T17:06:25Z | openai-harness-blog | Cloudflare blocked (persistent) | no action
 2026-03-23T17:06:25Z | pipeline-health | same 10 failed runs, all pre-date last evolve at 16:33. 0 new failures, 0 issues created | no action
+2026-03-23T17:33:35Z | anthropics/claude-code | 6aadfbd unchanged since last run | no action
+2026-03-23T17:33:35Z | garrytan/gstack | f4bbfaa NEW — feat: CI evals on Ubicloud, 12 parallel runners + Docker image (v0.11.10.0) | not harness-relevant (CI eval infra)
+2026-03-23T17:33:35Z | affaan-m/everything-claude-code | df4f2df unchanged since last run | no action
+2026-03-23T17:33:35Z | hesreallyhim/awesome-claude-code | 57c29ce unchanged since last run | no action
+2026-03-23T17:33:35Z | bytedance/deer-flow | 8b0f3fe unchanged since last run | no action
+2026-03-23T17:33:35Z | wshobson/agents | 1ad2f00 unchanged since last run | no action
+2026-03-23T17:33:35Z | VoltAgent/awesome-claude-code-subagents | fba002a unchanged since last run | no action
+2026-03-23T17:33:35Z | godagoo/claude-code-always-on | 00854ad stale (2026-02-03) | no action
+2026-03-23T17:33:35Z | humanlayer/humanlayer | bdea199 stale (2026-01-07) | no action
+2026-03-23T17:33:35Z | actions/runner | e17e7aa unchanged since last run | no action
+2026-03-23T17:33:35Z | withastro/astro | 08ab586 unchanged since last run | no action
+2026-03-23T17:33:35Z | verkyyi/tokenman | 6a4cad6 state commits (internal) | no action
+2026-03-23T17:33:35Z | github-trending | 3267 repos (+11 from 3256), no breakout | no action
+2026-03-23T17:33:35Z | openai-harness-blog | Cloudflare blocked (persistent) | no action
+2026-03-23T17:33:35Z | pipeline-health | same 10 failed runs, all pre-date last evolve at 17:06. 0 new failures, 0 issues created | no action
