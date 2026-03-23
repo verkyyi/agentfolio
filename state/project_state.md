@@ -31,7 +31,8 @@ System health:
 - Issues created: ~32 | Issues closed: ~30
 - Workflow runs: ~200+ (evolve dominant)
 - Research sources monitored: 12 + trending
-- Stars: 1 | Forks: 0 | Adopters: 0
+- Stars: 2 | Forks: 0 | Adopters: 0
+- Growth: +1 star since v0.1.0 release; discussion #49 has 0 engagement; distribution issues #22/#48 blocked on needs-human
 
 ## Critical Note for Next Agent
 - All workflows now gate on state/evolve_config.md — if this file is deleted, everything stops

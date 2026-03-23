@@ -11,3 +11,8 @@
 2026-03-22T18:00:00Z | measurement | [issue #22 from 2026-03-22T06:00] → open, needs-human; waiting for repo age (~March 28) before submitting to awesome-claude-code
 2026-03-22T18:00:00Z | distribution_issue | Created issue #48: submit to e2b-dev/awesome-ai-agents (26,775 stars) — Open-source projects section — with form link + exact PR text | expected: exposure to largest AI agents community list; 26.7k stars = significant reach
 2026-03-22T18:00:00Z | discussion | Created discussion #49: "Architecture: GitHub Issues as an event bus for autonomous agents" — Show and tell category — genuine architectural deep-dive | expected: indexable content for organic discovery; signals project depth beyond code; attracts developers searching for autonomous agent patterns
+2026-03-23T09:11:00Z | measurement | [v0.1.0 release from 2026-03-22T06:00] → stars 1→2 (+1 after 27h); forks still 0; small positive signal, likely driven by release visibility
+2026-03-23T09:11:00Z | measurement | [issue #22 from 2026-03-22T06:00] → still open, needs-human; cooldown until ~March 28
+2026-03-23T09:11:00Z | measurement | [issue #48 from 2026-03-22T18:00] → still open, needs-human; waiting for submission
+2026-03-23T09:11:00Z | measurement | [discussion #49 from 2026-03-22T18:00] → 0 comments, 0 reactions after 15h; no engagement yet
+2026-03-23T09:11:00Z | no_action | no action — waiting for signal; project 3 days old, stars 2, all distribution channels blocked on needs-human or time; VoltAgent/awesome-claude-code-subagents (14.8k stars) evaluated but NOT a fit (lists individual agent files, not project templates); repo setup optimal (template=true, 10 topics, good description); next release candidate when more features accumulate (v0.1.0 only 27h old)
