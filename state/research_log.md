@@ -633,3 +633,14 @@
 2026-03-23T20:20:51Z | github-trending | 3337 repos (+30 from 3307), no breakout | no action
 2026-03-23T20:20:51Z | openai-harness-blog | Cloudflare blocked (persistent) | no action
 2026-03-23T20:20:51Z | pipeline-health | same 10 failed runs, all pre-date last evolve at 19:07. 0 new failures, 0 issues created | no action
+2026-03-23T20:34:28Z | garrytan/gstack | deep-dive: 10 new commits since f4bbfaa. v0.9.9.1 cross-model outside voice in plan reviews (Codex/subagent challenges primary review, tension detection + auto-TODOs). v0.11.6.0 /cso v2 infrastructure-first security audit (15 phases, finding fingerprints, variant analysis). v0.11.10.0 CI evals on Ubicloud (12 parallel runners, artifact comparison). v0.11.9.0 auto-heal stale installs. v0.11.7.0 /review satisfies ship readiness gate. | issue #64 created (cross-model outside voice); /cso covered by existing #17
+2026-03-23T20:34:28Z | anthropics/claude-code | deep-dive: v2.1.81 CHANGELOG — --bare flag for scripted -p calls (skips hooks/LSP/plugins, requires ANTHROPIC_API_KEY), --channels permission relay, background agent race fix, plan mode clear-context hidden by default | issue #63 created (--bare flag investigation)
+2026-03-23T20:34:28Z | affaan-m/everything-claude-code | deep-dive: df4f2df 6 gap-closing skills; Kiro IDE integration (4 PRs: base structure, agents, skills, steering files); skill-comply (automated behavioral compliance measurement); santa-method (multi-agent adversarial verification with convergence loop) | no issue — interesting patterns but not immediately actionable for our harness
+2026-03-23T20:34:28Z | VoltAgent/awesome-claude-code-subagents | deep-dive: fba002a Rails version-aware expert, Expo React Native expert, FastAPI + RL agents. Framework-specific experts, not harness patterns | no action
+2026-03-23T20:34:28Z | bytedance/deer-flow | SHA scan: 8b0f3fe unchanged | no action
+2026-03-23T20:34:28Z | wshobson/agents | SHA scan: 1ad2f00 unchanged (stale since 2026-03-17) | no action
+2026-03-23T20:34:28Z | hesreallyhim/awesome-claude-code | SHA scan: 018dc1d unchanged (bot ticker commit) | no action
+2026-03-23T20:34:28Z | actions/runner | SHA scan: e17e7aa unchanged | no action
+2026-03-23T20:34:28Z | withastro/astro | SHA scan: 47694d0 unchanged | no action
+2026-03-23T20:34:28Z | verkyyi/tokenman | SHA scan: 02f20af (state commits only) | no action
+2026-03-23T20:34:28Z | pipeline-health | 5 recent failures: 1 NEW (Deploy 20:29), 4 pre-existing. Not 3+ new, no forced PIPELINE_WATCH | no action
