@@ -1,9 +1,9 @@
 # Project State
-Last updated: 2026-03-23T20:46:32Z
-Updated by: evolve.yml (PIPELINE_WATCH posture)
+Last updated: 2026-03-23T21:28:05Z
+Updated by: evolve.yml (HORIZON_SCAN posture)
 
 ## Last Session
-Action: evolve.yml — PIPELINE_WATCH (staleness override, 2 active Deploy failures). Found Deploy broken by e2e config with no test files (commit 67a8974) — fixed directly, issue #65 created+closed. 10 failures analyzed: 2 ACTIONABLE (fixed), 8 ALREADY-FIXED/INTERMITTENT. Cost trend: $62/50 runs, evolve dominant. All 10 Active source SHAs unchanged.
+Action: evolve.yml — HORIZON_SCAN (staleness override, 9 runs since last). Searched 4 query sets, evaluated 40+ repos in the claude code agent ecosystem. Added 4 new Watch List entries: claude-mem (39K stars, session memory compression), vibe-kanban (24K, PR-issue linking), trailofbits/skills (4K, security audit skills), antigravity-awesome-skills (27K, 1304+ skill catalog). All 10 Active SHAs unchanged. 0 forks/adopters. 0 issues created — Watch List feeding run.
 
 System health:
 - Evolve: SEVERELY SATURATED (structural, stable, 91%+ exceed max-turns)
