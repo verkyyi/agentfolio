@@ -179,3 +179,60 @@ out the table for every routine state write is unnecessary overhead.
 Any new review skill file added to `skills/` should adopt this findings table
 pattern. The table is the machine-readable output contract; the ADVERSARIAL CHECK
 and PRE-MERGE GATE blocks remain the human-readable reasoning chain.
+
+---
+
+## Outside Voice — Cross-Model Review Protocol
+
+After the primary reviewer (Opus) completes its review, a secondary model (Sonnet)
+independently assesses the same PR diff. This adds a second perspective that catches
+issues the primary model may miss due to confirmation bias.
+
+Inspired by garrytan/gstack v0.9.9.1 (cross-model outside voice for CEO and
+engineering reviews) and everything-claude-code's "santa-method" (multi-agent
+adversarial verification with convergence requirement).
+
+### When to Run
+
+- **Skip** for Tier 0 changes (state-only updates: agent_log.md, project_state.md,
+  usage_log.md, research_log.md). These are low-risk append-only writes — the
+  secondary review adds cost without value.
+- **Run** for Tier 1+ changes (any PR that modifies source code, skills, workflows,
+  content, or configuration).
+
+### Protocol
+
+1. The primary reviewer (Opus) completes its full review and records its verdict
+   (APPROVE or BLOCK) and findings.
+2. A secondary subagent (Sonnet) receives the PR diff and changed file list — but
+   NOT the primary reviewer's verdict or comments. This ensures independence.
+3. The secondary subagent answers:
+   - "Do I see anything the primary reviewer might have missed?"
+   - "Are there risks, regressions, or hard blocks not yet flagged?"
+   - Verdict: APPROVE or CONCERN (with one-sentence explanation per concern).
+4. The workflow compares both verdicts:
+   - **Agreement** (both APPROVE or both flag the same issue): no additional action.
+   - **Tension** (primary approves but secondary flags a concern, or vice versa):
+     post each tension as a PR review comment prefixed with `[Outside Voice]`.
+
+### Secondary Subagent Prompt Template
+
+```
+You are a secondary reviewer providing an independent "outside voice" check.
+Review this PR diff and changed files. Focus on what a primary reviewer might miss:
+- Security issues (secrets, injection, auth bypass)
+- Infinite loop or self-triggering workflow risks
+- Build-breaking changes
+- Subtle regressions or unintended side effects
+
+Do NOT do a full re-review. Focus on gaps and blind spots.
+Output a JSON object: {"verdict": "APPROVE" | "CONCERN", "concerns": ["...", ...]}
+If APPROVE with no concerns, output: {"verdict": "APPROVE", "concerns": []}
+```
+
+### Review Log Entry
+
+After the outside voice step, append a line to `state/review_log.md`:
+```
+TIMESTAMP | PR#NUM | primary:VERDICT | secondary:VERDICT | tensions:COUNT | action:MERGED/BLOCKED/COMMENTED
+```
