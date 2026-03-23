@@ -1,12 +1,12 @@
 # Project State
-Last updated: 2026-03-23T09:55:00Z
-Updated by: watcher.yml (health check)
+Last updated: 2026-03-23T10:08:31Z
+Updated by: evolve.yml (self-evolution run)
 
 ## Last Session
-Action: watcher.yml — health check. All clear. No new failures since 06:26. All workflows healthy. PR #55 approved 10h+ awaiting human merge. #22+#48 correctly held (needs-human). No broken chains, no stuck runs. Token utilization: evolve severely saturated (73.1%), watcher overutilized (66.7%), both stable — prior fixes deployed, structural root cause. 0 corrective actions.
+Action: evolve.yml — self-evolution run. 12 sources + trending + OpenAI blog checked. 2 source changes: deer-flow a29134d (pre-tool-call guardrails middleware — agent safety pattern, noted for review), astro fa73fbb (client config build fix, not impacting). 10 sources unchanged. Trending +17 (3148 total, no breakout). No new pipeline failures (10 failed runs all pre-date last evolve). Steps 2b-2h skipped (incremental, hour 10). 0 issues created.
 
 System health:
-- Evolve: SEVERELY SATURATED (73.1% exceed max-turns=45) — stable, 2 fixes deployed, workflows succeeding
+- Evolve: SEVERELY SATURATED (73.1% exceed max-turns=45) — stable, workflows succeeding
 - Watcher: OVERUTILIZED (66.7% exceed max-turns=30) — stable
 - Weekly Analysis: 1 FAILURE (06:26 stale branch) — #59 closed, fix deployed, awaiting next scheduled run
 - Reviewer Agent: HEALTHY — succeeded at 06:06
@@ -47,7 +47,8 @@ System health:
 - Reviewer.yml has a bug: README sync step doesn't handle dirty working tree (issue #53 closed, PR #55 APPROVED — awaiting human merge)
 - PR #55 approved by reviewer — human merge needed for workflow YAML change (8h+ pending)
 - analyze.yml stale branch bug fixed (issue #59 closed, fix deployed — awaiting next analyze run to confirm)
-- Evolve severely saturated (80% exceed max-turns=45) — lightweight gate helps when sources unchanged but not when sources change; workflows still succeeding
-- Watcher overutilized (71.4% exceed max-turns=30) — trending up, but completing work
+- Evolve severely saturated (73.1% exceed max-turns=45) — lightweight gate helps when sources unchanged but not when sources change; workflows still succeeding
+- Watcher overutilized (66.7% exceed max-turns=30) — stable, completing work
 - Feedback Learner healthy — succeeded 07:38, idle when no merged PRs (expected)
 - Site content updated: hero headline now action-oriented, pac-man branding, broken logo removed, SSL/CNAME for tokenman.io
+- deer-flow introduced pre-tool-call guardrails middleware (#1240) — interesting agent safety pattern, noted for future reference
