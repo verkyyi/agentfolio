@@ -11,7 +11,7 @@
   </defs>
   <!-- Pac-man body -->
   <path
-    d="M 60 60 L 96.77 86.27 A 45.6 45.6 0 1 1 96.77 33.73 Z"
+    d="M 60 60 L 97.35 33.84 A 45.6 45.6 0 1 1 97.35 86.16 Z"
     fill="url(#bodyGrad)"
     filter="url(#glow)"
   />
