@@ -230,6 +230,7 @@ jobs:
           fi
 
           echo "Structural files changed in merged PR — syncing README"
+          git checkout -- . || true
           git fetch origin main
           git checkout -B main origin/main
 
