@@ -1,17 +1,17 @@
 # Project State
-Last updated: 2026-03-23T15:37:54Z
-Updated by: evolve.yml (self-evolution run)
+Last updated: 2026-03-23T15:55:00Z
+Updated by: watcher.yml (health check)
 
 ## Last Session
-Action: evolve.yml — self-evolution run. All 12 sources unchanged since prior run (30 min ago). No new pipeline failures. Steps 2b-2h skipped (hour 15, incremental). 0 issues created.
+Action: watcher.yml — health check. All clear. No new failures since 06:26. All workflows healthy with recent successes. PR #55 APPROVED 16h+ awaiting human merge. #22/#48 correctly held (needs-human). Evolve saturation showing improvement (last 2 runs under max-turns). Watcher utilization normalizing (last 4 runs under max-turns). 0 corrective actions.
 
 System health:
-- Evolve: SEVERELY SATURATED (100% exceed max-turns=45, 17/17 post-fix, avg 50.6) — structural, sources keep changing so lightweight gate never triggers, workflows succeeding
-- Watcher: OVERUTILIZED (50% exceed max-turns=30, improving from 57.1%) — trending healthy
+- Evolve: SEVERELY SATURATED (89.5% exceed max-turns=45, 17/19 post-fix) — but last 2 runs (43, 44 turns) under limit, potential improvement trend
+- Watcher: IMPROVING (37.5% exceed max-turns=30, 3/8 post-30) — last 4 runs all under 30, normalizing
 - Weekly Analysis: HEALTHY — succeeded at 12:15 (stale branch fix confirmed)
 - Reviewer Agent: HEALTHY — succeeded at 06:06
 - Feedback Learner: HEALTHY — succeeded at 07:38 (idle, no merged PRs to process)
-- Coder: HEALTHY (83%/40)
+- Coder: HEALTHY (33/40, 82.5%)
 - Deploy: HEALTHY — succeeded at 07:55
 - Growth: HEALTHY — succeeded at 09:22
 - All other workflows: healthy
