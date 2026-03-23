@@ -1,9 +1,9 @@
 # Project State
-Last updated: 2026-03-23T22:25:09Z
-Updated by: evolve.yml (PATTERN_HUNT posture)
+Last updated: 2026-03-23T22:47:00Z
+Updated by: watcher.yml (health check)
 
 ## Last Session
-Action: evolve.yml — PATTERN_HUNT (address portfolio imbalance from SYNTHESIS). Deep-dived 4 sources: awesome-claude-code (cross-reference catalog), deer-flow (GuardrailMiddleware, covered by #67), trailofbits/skills (SKILL.md quality standard, issue #68 created), antigravity-awesome-skills (NPX distribution, confirms #66). All 10 Active SHAs unchanged. 5 findings, 1 issue created (#68). Portfolio rebalanced: deer-flow now has 1 pattern hit.
+Action: watcher.yml — health check. Re-triggered triage for #63 and #64 (both >2h, no triage comments). Deploy RECOVERING (fix deployed, no run since). Evolve haiku fallback at 21:55 indicates rate limit hit. All other workflows healthy.
 
 System health:
 - Evolve: SEVERELY SATURATED (structural, stable, 90% exceed max-turns=45)
@@ -12,24 +12,30 @@ System health:
 - Reviewer Agent: HEALTHY — succeeded at 06:06
 - Feedback Learner: HEALTHY/IDLE — succeeded at 07:38
 - Coder: HEALTHY (33/40 avg, 83%)
-- Deploy: RECOVERING — 2 failures at 20:29+20:44 (#65 fix deployed, no run since)
+- Deploy: RECOVERING — 2 failures at 20:29+20:44 (#65 fix deployed, no run since ~2h)
 - Growth: HEALTHY — succeeded at 18:16
 - Analyze: HEALTHY — succeeded at 18:23
 - All other workflows: healthy
 
 ## Current Priorities (ordered)
 1. **[PR]** PR #55: fix reviewer.yml state reset — APPROVED 21h+, awaiting human merge (workflow YAML)
-2. **[NEW]** Issue #64: Adopt cross-model outside voice for reviewer — awaiting triage
-3. **[NEW]** Issue #63: Investigate --bare flag for workflows — awaiting triage
+2. **[NEW]** Issue #68: Adopt SKILL.md quality standard — awaiting triage
+3. **[NEW]** Issue #67: Adopt hooks-based guardrail enforcement — awaiting triage
+4. **[NEW]** Issue #66: Package harness patterns as installable skills — awaiting triage
+5. **[NEW]** Issue #64: Adopt cross-model outside voice for reviewer — triage re-triggered by watcher
+6. **[NEW]** Issue #63: Investigate --bare flag for workflows — triage re-triggered by watcher
 4. **[WAITING]** Issue #48: Submit to e2b-dev/awesome-ai-agents — needs-human
 5. **[WAITING]** Issue #22: Submit to awesome-claude-code — 7-day cooldown expires ~March 28
 
 ## Open Items
-1. PR #55: fix(workflow) reviewer.yml state reset — APPROVED, needs human merge
-2. Issue #64: [evolve-finding] cross-model outside voice for reviewer — awaiting triage
-3. Issue #63: [evolve-finding] --bare flag for workflows — awaiting triage
-4. Issue #48: [needs-human] Submit to e2b-dev/awesome-ai-agents — needs-human
-5. Issue #22: [needs-human] Submit to awesome-claude-code — waiting until ~March 28
+1. PR #55: fix(workflow) reviewer.yml state reset — APPROVED 23h+, needs human merge
+2. Issue #68: [evolve-finding] SKILL.md quality standard — awaiting triage
+3. Issue #67: [evolve-finding] hooks-based guardrail enforcement — awaiting triage
+4. Issue #66: [evolve-finding] package harness as installable skills — awaiting triage
+5. Issue #64: [evolve-finding] cross-model outside voice — triage re-triggered
+6. Issue #63: [evolve-finding] --bare flag for workflows — triage re-triggered
+7. Issue #48: [needs-human] Submit to e2b-dev/awesome-ai-agents — needs-human
+8. Issue #22: [needs-human] Submit to awesome-claude-code — waiting until ~March 28
 
 ## Week 2 Key Metrics
 - Commits: 300+ (advancing with state commits)
