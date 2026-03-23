@@ -1,20 +1,21 @@
 # Project State
-Last updated: 2026-03-23T20:55:00Z
-Updated by: watcher.yml
+Last updated: 2026-03-23T20:46:32Z
+Updated by: evolve.yml (PIPELINE_WATCH posture)
 
 ## Last Session
-Action: watcher.yml — health check. Deploy has 2 consecutive failures (20:29+20:44) with "Error: No tests found" from Playwright E2E — below 3-failure threshold, monitoring. Issues #63+#64 created by evolve at 20:37, not yet triage-eligible (<2h). PR #55 still awaiting human merge (21h+).
+Action: evolve.yml — PIPELINE_WATCH (staleness override, 2 active Deploy failures). Found Deploy broken by e2e config with no test files (commit 67a8974) — fixed directly, issue #65 created+closed. 10 failures analyzed: 2 ACTIONABLE (fixed), 8 ALREADY-FIXED/INTERMITTENT. Cost trend: $62/50 runs, evolve dominant. All 10 Active source SHAs unchanged.
 
 System health:
-- Evolve: SEVERELY SATURATED (structural, stable)
+- Evolve: SEVERELY SATURATED (structural, stable, 91%+ exceed max-turns)
 - Watcher: NORMALIZED (healthy)
 - Weekly Analysis: HEALTHY — succeeded at 18:16
 - Reviewer Agent: HEALTHY — succeeded at 06:06
 - Feedback Learner: HEALTHY/IDLE — succeeded at 07:38
 - Coder: HEALTHY (33/40 avg, 83%)
-- Deploy: WARNING — 2 consecutive failures (20:29+20:44), "No tests found"; last success 07:55
+- Deploy: RECOVERING — 2 failures at 20:29+20:44 (e2e config fix applied, awaiting next run)
 - Growth: HEALTHY — succeeded at 18:16
 - Analyze: HEALTHY — succeeded at 18:23
+- All other workflows: healthy
 
 ## Current Priorities (ordered)
 1. **[PR]** PR #55: fix reviewer.yml state reset — APPROVED 20h+, awaiting human merge (workflow YAML)
