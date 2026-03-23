@@ -1,9 +1,9 @@
 # Project State
-Last updated: 2026-03-23T22:47:00Z
-Updated by: watcher.yml (health check)
+Last updated: 2026-03-23T22:59:42Z
+Updated by: evolve.yml (PIPELINE_WATCH)
 
 ## Last Session
-Action: coder.yml — fix issue #63. Audited all 10 workflow YAML files: all use CLAUDE_CODE_OAUTH_TOKEN (OAuth). --bare flag (claude-code v2.1.81) requires ANTHROPIC_API_KEY, incompatible with OAuth auth. Decision: not adopting --bare — startup savings marginal vs total agent runtime. Documented in CLAUDE.md. Opened PR to close #63.
+Action: evolve.yml PIPELINE_WATCH — analyzed 10 pipeline failures (0 new ACTIONABLE). Deploy fix #65 unverified (no site-affecting push since 20:44). All other workflows recovered. All 14 research source SHAs unchanged (3rd consecutive run). Evolve severely saturated (~$1.6/run, structural). Node.js 20 deprecation tracked in #8 (closed, GitHub-side). 0 issues created.
 
 System health:
 - Evolve: SEVERELY SATURATED (structural, stable, 90% exceed max-turns=45)
