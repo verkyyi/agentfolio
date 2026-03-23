@@ -1,7 +1,7 @@
 # Research Sources
 # Managed by evolve.yml. Claude adds, prunes, and annotates freely.
 # Seeded from evolve_config.md on first run.
-# Last updated: 2026-03-23T20:34:28Z
+# Last updated: 2026-03-23T21:28:05Z
 
 ## Active Sources
 
@@ -67,6 +67,30 @@
 
 ## Watch List
 <!-- Sources under evaluation. Promoted to Active or Dropped after 3+ observations over 7+ days. -->
+
+### thedotmack/claude-mem
+- **Why:** Session memory plugin (39K stars) — auto-captures sessions, AI-compresses context, injects relevance-filtered memory into future sessions
+- **Look for:** Compression strategies, relevance filtering, context injection patterns, memory lifecycle management
+- **Added:** 2026-03-23 (horizon scan) | **Observations:** 1 | **First seen:** 2026-03-23
+- **Notes:** v10.6.2 active (Mar 21). Their compress→filter→inject pipeline is more sophisticated than our simple state/ read/write. Could improve how we manage project_state.md context.
+
+### BloopAI/vibe-kanban
+- **Why:** Agent management platform (24K stars) — PR-issue linking, multi-provider orchestration, kanban-style agent task management
+- **Look for:** PR-issue linking automation, relay architecture, agent task queuing, multi-model coordination
+- **Added:** 2026-03-23 (horizon scan) | **Observations:** 1 | **First seen:** 2026-03-23
+- **Notes:** v0.1.36, very active (multiple commits Mar 23). feat: link PRs to issues directly (fa00afc) — interesting automation pattern. Rust+TS monorepo.
+
+### trailofbits/skills
+- **Why:** Security-focused Claude Code skills (4K stars) from top security firm — audit workflows, vulnerability detection, semgrep rules
+- **Look for:** Security audit skill structure, semgrep rule patterns, skill-improver tooling, SKILL.md format conventions
+- **Added:** 2026-03-23 (horizon scan) | **Observations:** 1 | **First seen:** 2026-03-23
+- **Notes:** Last commit Mar 17. Added Codex support (aab484c). skill-improver plugin, semgrep-rule-creator. Could inform our security posture and skill file format.
+
+### sickn33/antigravity-awesome-skills
+- **Why:** Largest skill catalog (27K stars, 1304+ skills) — installable via CLI, bundles, multi-platform (Claude Code, Codex, Gemini CLI, Cursor)
+- **Look for:** Skill packaging/distribution model, CLI installer patterns, bundle organization, cross-platform skill format
+- **Added:** 2026-03-23 (horizon scan) | **Observations:** 1 | **First seen:** 2026-03-23
+- **Notes:** v8.7.1, very active (Mar 23). npm-based distribution. Massive catalog — useful for pattern discovery and understanding skill ecosystem conventions.
 
 ## Dropped Sources
 <!-- Removed sources with reason. Kept for history so we don't re-discover them. -->
