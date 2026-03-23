@@ -3,7 +3,7 @@ Last updated: 2026-03-23T22:47:00Z
 Updated by: watcher.yml (health check)
 
 ## Last Session
-Action: coder.yml — implement cross-model outside voice for reviewer agent (issue #64). Added Outside Voice protocol to skills/adversarial-review.md, secondary Sonnet subagent step to reviewer.yml (with tier-based skip for state-only PRs), tension detection and PR commenting, review log persistence to state/review_log.md. Build passes. Opened PR for issue #64.
+Action: coder.yml — fix issue #63. Audited all 10 workflow YAML files: all use CLAUDE_CODE_OAUTH_TOKEN (OAuth). --bare flag (claude-code v2.1.81) requires ANTHROPIC_API_KEY, incompatible with OAuth auth. Decision: not adopting --bare — startup savings marginal vs total agent runtime. Documented in CLAUDE.md. Opened PR to close #63.
 
 System health:
 - Evolve: SEVERELY SATURATED (structural, stable, 90% exceed max-turns=45)
@@ -23,7 +23,7 @@ System health:
 3. **[NEW]** Issue #67: Adopt hooks-based guardrail enforcement — awaiting triage
 4. **[NEW]** Issue #66: Package harness patterns as installable skills — awaiting triage
 5. **[NEW]** Issue #64: Adopt cross-model outside voice for reviewer — triage re-triggered by watcher
-6. **[NEW]** Issue #63: Investigate --bare flag for workflows — triage re-triggered by watcher
+6. **[IN PR]** Issue #63: Investigate --bare flag for workflows — PR opened, not adopting
 4. **[WAITING]** Issue #48: Submit to e2b-dev/awesome-ai-agents — needs-human
 5. **[WAITING]** Issue #22: Submit to awesome-claude-code — 7-day cooldown expires ~March 28
 
@@ -33,7 +33,7 @@ System health:
 3. Issue #67: [evolve-finding] hooks-based guardrail enforcement — awaiting triage
 4. Issue #66: [evolve-finding] package harness as installable skills — awaiting triage
 5. Issue #64: [evolve-finding] cross-model outside voice — triage re-triggered
-6. Issue #63: [evolve-finding] --bare flag for workflows — triage re-triggered
+6. Issue #63: [evolve-finding] --bare flag for workflows — PR opened, closing
 7. Issue #48: [needs-human] Submit to e2b-dev/awesome-ai-agents — needs-human
 8. Issue #22: [needs-human] Submit to awesome-claude-code — waiting until ~March 28
 
