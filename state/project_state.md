@@ -1,19 +1,20 @@
 # Project State
-Last updated: 2026-03-23T16:33:38Z
-Updated by: evolve.yml (self-evolution run)
+Last updated: 2026-03-23T16:55:00Z
+Updated by: watcher.yml (health check)
 
 ## Last Session
-Action: evolve.yml — self-evolution run. 1 source change (deer-flow 79acc39 podcast TTS error handling — not harness-relevant). 11 sources unchanged. Trending +10 (3248). No new pipeline failures. Steps 2b-2h skipped (hour 16, incremental). 0 issues created.
+Action: watcher.yml — health check. No new failures since 06:26. All workflows healthy. PR #55 APPROVED 17h+ awaiting human merge (workflow YAML). #22+#48 correctly held (needs-human, growth-action). No broken chains, no stuck runs. No needs-human unblocked by recent closes. 0 corrective actions.
 
 System health:
-- Evolve: SEVERELY SATURATED (89.5% exceed max-turns=45, 17/19 post-fix) — last 2 runs under limit, potential improvement trend
-- Watcher: IMPROVING (37.5% exceed max-turns=30, 3/8 post-30) — last 4 runs all under 30, normalizing
+- Evolve: SEVERELY SATURATED (19/21 post-fix exceed max-turns=45, 90.5%, avg 49.9 — structural, improvement trend at 15:10-15:41 didn't hold)
+- Watcher: NORMALIZED (last 5 runs all under max-turns=30, 0/5 exceed — effectively healthy)
 - Weekly Analysis: HEALTHY — succeeded at 12:15 (stale branch fix confirmed)
 - Reviewer Agent: HEALTHY — succeeded at 06:06
-- Feedback Learner: HEALTHY — succeeded at 07:38 (idle, no merged PRs to process)
-- Coder: HEALTHY (33/40, 82.5%)
+- Feedback Learner: HEALTHY/IDLE — succeeded at 07:38 (no merged PRs to process)
+- Coder: HEALTHY (35/40 avg, 87.5%)
 - Deploy: HEALTHY — succeeded at 07:55
 - Growth: HEALTHY — succeeded at 09:22
+- Analyze: HEALTHY — succeeded at 12:19
 - All other workflows: healthy
 
 ## Current Priorities (ordered)
@@ -47,8 +48,8 @@ System health:
 - Reviewer.yml has a bug: README sync step doesn't handle dirty working tree (issue #53 closed, PR #55 APPROVED — awaiting human merge)
 - PR #55 approved by reviewer — human merge needed for workflow YAML change (16h+ pending)
 - analyze.yml stale branch bug fixed (issue #59 closed, fix deployed — Weekly Analysis succeeded at 12:15, confirming fix)
-- Evolve severely saturated (89.5% exceed max-turns=45, 17/19 post-fix) — last 2 under limit, improving
-- Watcher improving (37.5% exceed max-turns=30) — last 4 under 30, normalizing
+- Evolve severely saturated (90.5% exceed max-turns=45, 19/21 post-fix, avg 49.9) — structural, improvement trend at 15:10-15:41 didn't hold
+- Watcher NORMALIZED (last 5 runs all under max-turns=30, 0/5 exceed) — effectively healthy
 - Feedback Learner healthy — succeeded 07:38, idle when no merged PRs (expected)
 - Site content updated: hero headline now action-oriented, pac-man branding, broken logo removed, SSL/CNAME for tokenman.io
 - README minor inaccuracy: says "10 external sources across rotating tiers" — actually 12 sources, all checked every run (no rotation). Not issueworthy given existing #38 coverage.
