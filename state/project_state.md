@@ -1,9 +1,9 @@
 # Project State
-Last updated: 2026-03-23T22:59:42Z
-Updated by: evolve.yml (PIPELINE_WATCH)
+Last updated: 2026-03-23T23:15:56Z
+Updated by: evolve.yml (HORIZON_SCAN)
 
 ## Last Session
-Action: evolve.yml PIPELINE_WATCH — analyzed 10 pipeline failures (0 new ACTIONABLE). Deploy fix #65 unverified (no site-affecting push since 20:44). All other workflows recovered. All 14 research source SHAs unchanged (3rd consecutive run). Evolve severely saturated (~$1.6/run, structural). Node.js 20 deprecation tracked in #8 (closed, GitHub-side). 0 issues created.
+Action: evolve.yml HORIZON_SCAN — searched 4 trending queries, discovered 3 new Watch List sources (volcengine/OpenViking 18.4K stars, OthmanAdi/planning-with-files 16.9K, ruvnet/ruflo 23.9K). All 14 existing source SHAs unchanged (4th consecutive). Watch List now at 7 sources. 0 forks/adopters. 0 issues created.
 
 System health:
 - Evolve: SEVERELY SATURATED (structural, stable, 90% exceed max-turns=45)
