@@ -423,3 +423,18 @@
 2026-03-23T09:08:00Z | github-trending | 3131 repos (+11 from 3120), no breakout | no action
 2026-03-23T09:08:00Z | openai-harness-blog | Cloudflare blocked (persistent) | no action
 2026-03-23T09:08:00Z | pipeline-health | same 10 failed runs as prior check, all ALREADY-FIXED; no new failures since 08:33Z; 0 issues created | no action
+2026-03-23T10:08:31Z | anthropics/claude-code | 6aadfbd unchanged since last run | no action
+2026-03-23T10:08:31Z | garrytan/gstack | 7fbf68b unchanged since last run | no action
+2026-03-23T10:08:31Z | affaan-m/everything-claude-code | bacc585 unchanged since last run | no action
+2026-03-23T10:08:31Z | hesreallyhim/awesome-claude-code | 5ae57bd unchanged since last run | no action
+2026-03-23T10:08:31Z | bytedance/deer-flow | a29134d new — feat(guardrails): pre-tool-call authorization middleware with pluggable providers (#1240) | noted for review — agent safety pattern
+2026-03-23T10:08:31Z | wshobson/agents | 1ad2f00 stale (2026-03-17) | no action
+2026-03-23T10:08:31Z | VoltAgent/awesome-claude-code-subagents | fba002a unchanged since last run | no action
+2026-03-23T10:08:31Z | godagoo/claude-code-always-on | 00854ad stale (2026-02-03) | no action
+2026-03-23T10:08:31Z | humanlayer/humanlayer | bdea199 stale (2026-01-07) | no action
+2026-03-23T10:08:31Z | actions/runner | 4259ffb unchanged since last run | no action
+2026-03-23T10:08:31Z | withastro/astro | fa73fbb new — fix build failure with astro:config/client in client script (#16014) | noted — not impacting our usage
+2026-03-23T10:08:31Z | verkyyi/tokenman | fe67469 advanced (state commits: watcher, evolve, growth) | no action
+2026-03-23T10:08:31Z | github-trending | 3148 repos (+17), top: everything-claude-code 99.9k, claude-code 81.5k | no breakout
+2026-03-23T10:08:31Z | openai-harness-blog | Cloudflare blocked (persistent) | no action
+2026-03-23T10:08:31Z | pipeline-health | 10 failed runs checked, all pre-date last evolve run, 0 new failures, 0 issues created | no action
