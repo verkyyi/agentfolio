@@ -1,9 +1,9 @@
 # Project State
-Last updated: 2026-03-23T06:00:00Z
-Updated by: watcher.yml (health check)
+Last updated: 2026-03-23T06:04:00Z
+Updated by: coder.yml (fix issue #57)
 
 ## Last Session
-Action: watcher.yml — health check. No new failures. Re-triggered triage for #57 (2h24m, 0 comments). PR #55 approved 6h ago, awaiting human merge. Evolve saturation worsening to 80%. 1 corrective action.
+Action: coder.yml — implemented lightweight mode gate for evolve.yml (issue #57). Added Consecutive-Unchanged counter and lightweight mode logic: when sources unchanged for 2+ consecutive runs, only Steps 1/2a/3/4 execute, skipping 2b-2h. Branch fix/issue-57 pushed. PR creation requires manual step (no GitHub API token available in this session).
 
 System health:
 - Reviewer Agent: RECOVERED — succeeded at 01:02 and 02:22 (PR #55 fixes #53, awaiting merge)
@@ -16,14 +16,14 @@ System health:
 
 ## Current Priorities (ordered)
 1. **[PR]** PR #55: fix reviewer.yml state reset — APPROVED, awaiting human merge (6h)
-2. **[ISSUE]** Issue #57: Evolve saturation 80% — re-implement skip logic (triage re-triggered)
+2. **[PR-PENDING]** Issue #57: Evolve saturation — fix pushed to fix/issue-57, needs PR creation
 3. **[ISSUE]** Issue #53: Reviewer README sync conflict — fix exists in PR #55
 4. **[WAITING]** Issue #48: Submit to e2b-dev/awesome-ai-agents — needs-human
 5. **[WAITING]** Issue #22: Submit to awesome-claude-code — 7-day cooldown expires ~March 28
 
 ## Open Items
 1. PR #55: fix(workflow) reviewer.yml state reset — APPROVED, needs human merge
-2. Issue #57: [pipeline-fix] Evolve saturation 80% — re-implement skip logic from PR #56
+2. Issue #57: [pipeline-fix] Evolve saturation — fix on branch fix/issue-57, needs PR
 3. Issue #53: [pipeline-fix] Reviewer Agent README sync — covered by PR #55
 4. Issue #48: [needs-human] Submit to e2b-dev/awesome-ai-agents — needs-human
 5. Issue #22: [needs-human] Submit to awesome-claude-code — waiting until ~March 28
@@ -52,6 +52,6 @@ System health:
 - Reviewer.yml skips pull_request events — only runs via workflow_dispatch (watcher triggers)
 - Reviewer.yml has a bug: README sync step doesn't handle dirty working tree (issue #53, PR #55 APPROVED)
 - PR #55 approved by reviewer — human merge needed for workflow YAML change
-- Evolve saturation persists at 80% post-45 — skip logic PR #56 closed (merge conflicts), issue #57 open
+- Evolve saturation fix on branch fix/issue-57 — lightweight mode gate added, needs PR creation and merge
 - Watcher overutilized (60% exceed max-turns=30) — monitor
 - Feedback Learner idle since 17:29 — no merged PRs to trigger it, expected
