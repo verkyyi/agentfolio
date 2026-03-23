@@ -39,6 +39,7 @@ for i in $(seq 1 $MAX_RETRIES); do
   # Check success
   if echo "$RESULT" | grep -q '"content"'; then
     echo "Updated $FILE_PATH"
+    git checkout -- "$FILE_PATH" 2>/dev/null || true
     exit 0
   fi
 

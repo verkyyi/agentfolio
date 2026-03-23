@@ -141,6 +141,16 @@ jobs:
             changing GitHub App permissions, configuring external services, repository settings changes)
             vs. a code fix the agent can make (editing workflow YAML, fixing scripts, updating configs).
 
+            Strong signals that this IS agent-fixable (bias toward agent-ready):
+            - Issue body contains a "Proposed Fix" or "Suggested Fix" section
+            - Issue references specific file paths in .github/workflows/ or scripts/
+            - Issue contains concrete code snippets or one-line changes
+            - Issue was created by watcher.yml (title starts with [pipeline])
+            - Issue has a label "likely-agent-fixable"
+
+            If ANY of these signals are present AND the fix does NOT require secrets/permissions/
+            external service config, classify as agent-fixable.
+
             If the agent CAN fix it (code/config changes):
               gh issue edit ${NUM} --add-label "agent-ready" --repo ${{ github.repository }}
               gh issue comment ${NUM} --body "**Triage:** Pipeline failure identified and elaborated. The coder agent will investigate and fix shortly." --repo ${{ github.repository }}

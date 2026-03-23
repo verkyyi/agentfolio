@@ -104,6 +104,9 @@ jobs:
           - Get the failure logs: gh run view <id> --log-failed 2>&1 | tail -20
           - Create a [pipeline] issue if one doesn't exist for this failure pattern
           - Include the error message and suggested fix in the issue body
+          - If the failure is in workflow YAML, scripts, or config (NOT secrets/permissions/
+            external services), also add the label "likely-agent-fixable" to the issue.
+            This tells the triage agent to classify it as agent-ready without hesitation.
 
           ### 3. Detect stuck runs
           - Runs in_progress for >30 minutes may be stuck
