@@ -52,12 +52,13 @@ Each entry has `name`, `color`, and `description`. Comments group labels by cate
 - triage.yml lines ~59, ~64: remove project label instructions from prompt
 - feedback-learner.yml line ~119: remove project label instruction from prompt
 - feedback-learner.yml line ~275: remove `project:$(gh repo view --json name -q .name)` from `--label` flag
+- analyze.yml line ~64: remove project label instruction from prompt
 
 **Update CLAUDE.md:**
 - Remove `project:*` label pattern from APP_NAME Resolution section (line ~24)
 
 **No changes needed to:**
-- Workflows that only `--add-label` or `--label` without `project:*` (coder, reviewer, analyze, claude-task, discover) — these stay as-is
+- Workflows that only `--add-label` or `--label` without `project:*` (coder, reviewer, claude-task, discover) — these stay as-is
 
 ### 4. Label inventory
 
