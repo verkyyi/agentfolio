@@ -1,24 +1,24 @@
 # Project State
-Last updated: 2026-03-23T17:33:35Z
-Updated by: evolve.yml (self-evolution run)
+Last updated: 2026-03-23T18:00:00Z
+Updated by: watcher.yml (health check)
 
 ## Last Session
-Action: evolve.yml — incremental self-evolution run. 1 external source change (gstack f4bbfaa CI evals on Ubicloud v0.11.10.0 — not harness-relevant). 11 sources unchanged. Trending at 3267 (+11). No new pipeline failures. All time-gated steps skipped (hour 17). 0 issues created.
+Action: watcher.yml — health check. No new failures since 06:26 (11+ hours). All workflows healthy. PR #55 APPROVED 18h+ awaiting human merge (workflow YAML). #22+#48 correctly held (needs-human, growth-action). 0 corrective actions.
 
 System health:
-- Evolve: SEVERELY SATURATED (19/21 post-fix exceed max-turns=45, 90.5%, avg 49.9 — structural, improvement trend at 15:10-15:41 didn't hold)
-- Watcher: NORMALIZED (last 5 runs all under max-turns=30, 0/5 exceed — effectively healthy)
+- Evolve: SEVERELY SATURATED (21/23 post-fix exceed max-turns=45, 91.3%, avg 49.8 — structural, stable)
+- Watcher: NORMALIZED (3/10 exceed 30, last 6 all under, avg 27.2 — healthy)
 - Weekly Analysis: HEALTHY — succeeded at 12:15 (stale branch fix confirmed)
 - Reviewer Agent: HEALTHY — succeeded at 06:06
 - Feedback Learner: HEALTHY/IDLE — succeeded at 07:38 (no merged PRs to process)
-- Coder: HEALTHY (35/40 avg, 87.5%)
+- Coder: HEALTHY (33/40 avg, 83%)
 - Deploy: HEALTHY — succeeded at 07:55
 - Growth: HEALTHY — succeeded at 09:22
 - Analyze: HEALTHY — succeeded at 12:19
 - All other workflows: healthy
 
 ## Current Priorities (ordered)
-1. **[PR]** PR #55: fix reviewer.yml state reset — APPROVED 16h+, awaiting human merge (workflow YAML)
+1. **[PR]** PR #55: fix reviewer.yml state reset — APPROVED 18h+, awaiting human merge (workflow YAML)
 2. **[WAITING]** Issue #48: Submit to e2b-dev/awesome-ai-agents — needs-human
 3. **[WAITING]** Issue #22: Submit to awesome-claude-code — 7-day cooldown expires ~March 28
 
@@ -48,8 +48,8 @@ System health:
 - Reviewer.yml has a bug: README sync step doesn't handle dirty working tree (issue #53 closed, PR #55 APPROVED — awaiting human merge)
 - PR #55 approved by reviewer — human merge needed for workflow YAML change (16h+ pending)
 - analyze.yml stale branch bug fixed (issue #59 closed, fix deployed — Weekly Analysis succeeded at 12:15, confirming fix)
-- Evolve severely saturated (90.5% exceed max-turns=45, 19/21 post-fix, avg 49.9) — structural, improvement trend at 15:10-15:41 didn't hold
-- Watcher NORMALIZED (last 5 runs all under max-turns=30, 0/5 exceed) — effectively healthy
+- Evolve severely saturated (91.3% exceed max-turns=45, 21/23 post-fix, avg 49.8) — structural, stable
+- Watcher NORMALIZED (3/10 exceed 30, last 6 all under, avg 27.2) — healthy
 - Feedback Learner healthy — succeeded 07:38, idle when no merged PRs (expected)
 - Site content updated: hero headline now action-oriented, pac-man branding, broken logo removed, SSL/CNAME for tokenman.io
 - README minor inaccuracy: says "10 external sources across rotating tiers" — actually 12 sources, all checked every run (no rotation). Not issueworthy given existing #38 coverage.
