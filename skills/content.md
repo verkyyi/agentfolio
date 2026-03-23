@@ -15,7 +15,7 @@ The content/ folder is a file-based CMS. There is no dashboard.
 Files ARE the CMS. The agent writes and updates them; Astro reads
 them at build time via content collections.
 
-Content can serve any project that Agentfolio manages. Each project
+Content can serve any project that Tokenman manages. Each project
 decides its own content structure by declaring collections in
 src/content.config.ts.
 

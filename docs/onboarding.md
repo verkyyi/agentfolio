@@ -1,4 +1,4 @@
-# Agentfolio Onboarding
+# Tokenman Onboarding
 
 Instructions for Claude Code. Follow each step in order during a CLI session in the user's repo.
 
@@ -18,15 +18,15 @@ If any prerequisite is missing, stop and tell the user what to fix first.
 Run these commands in the user's repo root:
 
 ```bash
-git clone --depth=1 https://github.com/verkyyi/agentfolio.git /tmp/agentfolio
+git clone --depth=1 https://github.com/verkyyi/tokenman.git /tmp/tokenman
 mkdir -p .github/workflows
-cp /tmp/agentfolio/.github/workflows/*.yml .github/workflows/
-cp -r /tmp/agentfolio/skills/ skills/
-cp /tmp/agentfolio/scripts/commit-state.sh scripts/commit-state.sh
+cp /tmp/tokenman/.github/workflows/*.yml .github/workflows/
+cp -r /tmp/tokenman/skills/ skills/
+cp /tmp/tokenman/scripts/commit-state.sh scripts/commit-state.sh
 chmod +x scripts/commit-state.sh
-cp /tmp/agentfolio/CLAUDE.md CLAUDE.md
+cp /tmp/tokenman/CLAUDE.md CLAUDE.md
 mkdir -p state
-rm -rf /tmp/agentfolio
+rm -rf /tmp/tokenman
 ```
 
 ---
@@ -98,7 +98,7 @@ Ask each question and wait for the user's answer before proceeding to the next.
 Before asking question 4 above, build the watch list:
 
 - Map each major dependency found in Step 2 to its GitHub repo (e.g. `react` → `facebook/react`, `fastapi` → `tiangolo/fastapi`)
-- Always include `verkyyi/agentfolio`
+- Always include `verkyyi/tokenman`
 - Limit to the 8 most relevant repos to keep the list focused
 
 Present the list for confirmation in question 4. Record the confirmed list.
@@ -142,7 +142,7 @@ claude-task: [HIGH/MEDIUM/SKIP — reason]
 
 ## Research Sources
 [list of confirmed repos, one per line, format: owner/repo]
-- verkyyi/agentfolio
+- verkyyi/tokenman
 
 ## User Answers
 Deploy: [answer]
@@ -167,7 +167,7 @@ Last updated: [today's date]
 Updated by: onboarding
 
 ## Last Session
-Action: Initial setup — agentfolio scaffold installed
+Action: Initial setup — tokenman scaffold installed
 
 ## Open Items
 (none yet — evolve.yml will populate on first run)
@@ -198,7 +198,7 @@ Action: Initial setup — agentfolio scaffold installed
 # Add rules here and agents will follow them on every run.
 
 ## Infrastructure Protection
-- Workflows in .github/workflows/ are managed infrastructure. Do NOT modify, create PRs for, or suggest changes to workflow YAML files. Workflow improvements come from upstream agentfolio releases via the scaffold version check. If you detect a workflow issue, create an issue describing the problem but do not attempt to fix it.
+- Workflows in .github/workflows/ are managed infrastructure. Do NOT modify, create PRs for, or suggest changes to workflow YAML files. Workflow improvements come from upstream tokenman releases via the scaffold version check. If you detect a workflow issue, create an issue describing the problem but do not attempt to fix it.
 ```
 
 ---
@@ -250,7 +250,7 @@ Before pushing, verify these repo settings:
 
 ```bash
 git add .github/ state/ skills/ scripts/ CLAUDE.md
-git commit -m "feat: add agentfolio autonomous pipeline"
+git commit -m "feat: add tokenman autonomous pipeline"
 git push
 ```
 

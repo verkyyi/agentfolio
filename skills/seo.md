@@ -38,7 +38,7 @@ Maintained in src/layouts/Base.astro. Describes the scaffold itself.
 {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
-  "name": "Agentfolio",
+  "name": "Tokenman",
   "url": "[site_url]",
   "description": "[scaffold description from CLAUDE.md]",
   "applicationCategory": "DeveloperApplication",
@@ -53,7 +53,7 @@ Maintained in src/layouts/Base.astro. Describes the scaffold itself.
 {
   "@context": "https://schema.org",
   "@type": "SoftwareSourceCode",
-  "name": "Agentfolio",
+  "name": "Tokenman",
   "codeRepository": "[github url]",
   "description": "[one sentence]",
   "runtimePlatform": "GitHub Actions",

@@ -32,7 +32,7 @@ curl -s \
   "https://api.github.com/[endpoint]"
 ```
 
-## Key Endpoints Used in Agentfolio
+## Key Endpoints Used in Tokenman
 
 ### User Profile
 ```bash

@@ -15,7 +15,7 @@ godagoo/claude-code-always-on: 00854ad | stale (2026-02-03)
 humanlayer/humanlayer: bdea199 | stale (2026-01-07)
 actions/runner: 4259ffb | dependabot bump flatted — unchanged
 withastro/astro: 2dcd8d5 | fix(fonts): too many builds (#16007) — unchanged
-verkyyi/agentfolio: 2a6546b | state commits (watcher health checks)
+verkyyi/tokenman: 2a6546b | state commits (watcher health checks)
 github-trending: 3055 repos (+32), no breakout
 openai-harness-blog: Cloudflare blocked (persistent)
 

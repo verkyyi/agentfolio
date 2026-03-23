@@ -25,7 +25,7 @@ jobs:
       - name: Check onboarding complete
         run: |
           if [ ! -f state/evolve_config.md ]; then
-            echo "::warning::Onboarding not complete. Run: claude 'Set up agentfolio. Follow https://github.com/verkyyi/agentfolio/blob/main/docs/onboarding.md'"
+            echo "::warning::Onboarding not complete. Run: claude 'Set up tokenman. Follow https://github.com/verkyyi/tokenman/blob/main/docs/onboarding.md'"
             exit 0
           fi
 
@@ -85,7 +85,7 @@ jobs:
           AGENT_LOG=$(tail -30 state/agent_log.md)
 
           cat > /tmp/watcher_prompt.txt << 'PROMPTSTART'
-          You are the pipeline watcher — the self-healing guardian of Agentfolio.
+          You are the pipeline watcher — the self-healing guardian of Tokenman.
           You monitor the entire automated pipeline and take corrective action
           when things go wrong. You run every 30 minutes.
 
@@ -140,10 +140,10 @@ jobs:
 
           **For each open issue:**
 
-          - If open >2 hours and has no comment containing "Triaged by agentfolio triage agent":
+          - If open >2 hours and has no comment containing "Triaged by tokenman triage agent":
             the issue was never triaged. Re-trigger triage regardless of existing labels.
             This catches pre-labeled issues created by evolve.yml that triage never processed.
-            Command: gh issue view N --json comments -q '.comments[].body' | grep -q "Triaged by agentfolio"
+            Command: gh issue view N --json comments -q '.comments[].body' | grep -q "Triaged by tokenman"
             If grep finds nothing → re-trigger triage.
 
           - If the issue has a coder agent comment (containing "Coder agent:") indicating a

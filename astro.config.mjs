@@ -4,7 +4,7 @@ import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
   site: process.env.SITE_URL || 'https://verkyyi.github.io',
-  base: process.env.BASE_PATH || '/agentfolio',
+  base: process.env.BASE_PATH || '/tokenman',
   integrations: [
     tailwind(),
     sitemap(),

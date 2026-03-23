@@ -33,7 +33,7 @@ jobs:
       - name: Check onboarding complete
         run: |
           if [ ! -f state/evolve_config.md ]; then
-            echo "::warning::Onboarding not complete. Run: claude 'Set up agentfolio. Follow https://github.com/verkyyi/agentfolio/blob/main/docs/onboarding.md'"
+            echo "::warning::Onboarding not complete. Run: claude 'Set up tokenman. Follow https://github.com/verkyyi/tokenman/blob/main/docs/onboarding.md'"
             exit 0
           fi
 
@@ -100,8 +100,8 @@ jobs:
 
       - name: Git identity
         run: |
-          git config user.name "agentfolio[bot]"
-          git config user.email "agentfolio[bot]@users.noreply.github.com"
+          git config user.name "tokenman"
+          git config user.email "tokenman@users.noreply.github.com"
 
       - name: Run Claude agent
         run: |

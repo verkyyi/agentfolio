@@ -2,7 +2,7 @@
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Transform Agentfolio from a personal portfolio scaffold into a self-evolving, general-purpose harness whose first project is itself.
+**Goal:** Transform Tokenman from a personal portfolio scaffold into a self-evolving, general-purpose harness whose first project is itself.
 
 **Architecture:** Incremental transform — strip portfolio-specific content and pages, generalize workflows with dynamic APP_NAME resolution, add `apps/scaffold/` for self-referential evolution rules, add `apps/profile/` for repo profile page, introduce `evolve.yml` and `analyze.yml` workflows, create `state/research_log.md` for external knowledge tracking.
 
@@ -319,7 +319,7 @@ Rewrite the harness constitution to reflect the self-evolving architecture, new 
 Replace the entire contents with:
 
 ```markdown
-# Agentfolio — Scaffold Constitution
+# Tokenman — Scaffold Constitution
 # Harness rules only. No project-specific knowledge lives here.
 # Project context: read apps/${APP_NAME}/CLAUDE.md
 
@@ -476,7 +476,7 @@ Review and strip any portfolio-specific typography or badge classes that are no 
 
 - [ ] **Step 5: Update package.json**
 
-Update the `name` field to `agentfolio` (not portfolio). Update `description`. Remove any portfolio-specific scripts if present.
+Update the `name` field to `tokenman` (not portfolio). Update `description`. Remove any portfolio-specific scripts if present.
 
 - [ ] **Step 6: Add ephemeral workflow files to .gitignore**
 
@@ -656,7 +656,7 @@ jobs:
       - name: Build discovery prompt
         run: |
           cat > /tmp/prompt.txt << 'PROMPT'
-          You are the project discovery agent for Agentfolio.
+          You are the project discovery agent for Tokenman.
 
           ## Your Task
           Scan the apps/ directory for projects that need setup.
@@ -798,7 +798,7 @@ jobs:
       - name: Build evolution prompt
         run: |
           cat > /tmp/prompt.txt << 'PROMPT'
-          You are the self-evolution agent for Agentfolio.
+          You are the self-evolution agent for Tokenman.
 
           ## Your Task
           Analyze the scaffold and propose improvements. You have two phases:
@@ -960,7 +960,7 @@ jobs:
       - name: Build analysis prompt
         run: |
           cat > /tmp/prompt.txt << 'PROMPT'
-          You are the weekly analysis agent for Agentfolio.
+          You are the weekly analysis agent for Tokenman.
 
           ## Your Task
           Produce a strategic analysis of the scaffold's past week.
@@ -1090,7 +1090,7 @@ rmdir src/pages/projects src/pages/api
 Update the layout to remove portfolio-specific markup (JSON-LD for Person, portfolio OG tags). Keep the HTML shell, agent badge logic, and basic meta tags. Update title and description for the scaffold.
 
 Key changes:
-- Title: "Agentfolio — Self-Evolving Scaffold"
+- Title: "Tokenman — Self-Evolving Scaffold"
 - Description: repo description instead of personal bio
 - Remove JSON-LD Person schema
 - Keep agent badge logic (reads state/agent_log.md at build time)
@@ -1105,7 +1105,7 @@ Replace portfolio page with repo profile page. The page should:
 3. Read skill files from `skills/` directory via `fs.readdirSync` + `fs.readFileSync` (no content collections — skill files lack frontmatter)
 4. Read CLAUDE.md failure log entries via `fs.readFileSync` and parse lines starting with `# 20` (date-prefixed entries)
 5. Render sections:
-   - **Hero**: "Agentfolio" title, tagline, brief description
+   - **Hero**: "Tokenman" title, tagline, brief description
    - **Stats**: count of agent log entries, unique workflows, failure log entries
    - **Recent Activity**: last 10 agent log entries as a timeline
    - **Capabilities**: list skills with descriptions
@@ -1209,7 +1209,7 @@ Replace portfolio README with scaffold README.
 - [ ] **Step 1: Rewrite README.md**
 
 ```markdown
-# Agentfolio
+# Tokenman
 
 **A self-evolving scaffold for autonomous web projects.**
 The repo is the system. The scaffold's first project is itself.
@@ -1218,7 +1218,7 @@ The repo is the system. The scaffold's first project is itself.
 
 ## What it is
 
-Agentfolio is a harness of GitHub Actions workflows that make any web project
+Tokenman is a harness of GitHub Actions workflows that make any web project
 agent-powered. The agent triages feedback, fixes bugs, discovers new projects,
 and evolves its own workflows and skills over time.
 

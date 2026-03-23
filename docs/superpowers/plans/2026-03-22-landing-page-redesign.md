@@ -2,7 +2,7 @@
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Replace the current agent dashboard with a clean, mobile-first developer-tool landing page that explains Agentfolio and drives adoption.
+**Goal:** Replace the current agent dashboard with a clean, mobile-first developer-tool landing page that explains Tokenman and drives adoption.
 
 **Architecture:** Complete rewrite of `src/pages/index.astro` (remove all state file reads and client-side JS) and simplification of `src/layouts/Base.astro` (remove agent badge, GitHub API calls, relative-time scripts). Single-page static site with 6 sections using scoped CSS.
 
@@ -38,7 +38,7 @@ interface Props {
 }
 
 const {
-  title = 'Agentfolio — Self-evolving GitHub Actions for any repo',
+  title = 'Tokenman — Self-evolving GitHub Actions for any repo',
   description = 'Add an autonomous dev pipeline to your GitHub repo. 11 workflows that research, triage, code, review, and deploy.'
 } = Astro.props;
 ---
@@ -55,7 +55,7 @@ const {
   <meta property="og:title" content={title} />
   <meta property="og:description" content={description} />
   <meta property="og:url" content={Astro.url.href} />
-  <meta property="og:site_name" content="Agentfolio" />
+  <meta property="og:site_name" content="Tokenman" />
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content={title} />
   <meta name="twitter:description" content={description} />
@@ -84,7 +84,7 @@ const {
 
 - [ ] **Step 2: Verify the build compiles**
 
-Run: `cd /home/dev/projects/agentfolio && npm run build`
+Run: `cd /home/dev/projects/tokenman && npm run build`
 Expected: Build succeeds (the page will be unstyled but functional)
 
 - [ ] **Step 3: Commit**
@@ -117,7 +117,7 @@ import Base from '../layouts/Base.astro';
 
     <!-- Hero -->
     <section class="hero">
-      <p class="wordmark">Agentfolio</p>
+      <p class="wordmark">Tokenman</p>
       <h1 class="headline">Self-evolving GitHub Actions for any repo</h1>
       <p class="subtitle">
         11 workflows that research, triage, code, review, and deploy — autonomously.
@@ -125,7 +125,7 @@ import Base from '../layouts/Base.astro';
       </p>
       <div class="hero-actions">
         <a href="#get-started" class="btn-primary">Get Started</a>
-        <a href="https://github.com/verkyyi/agentfolio" target="_blank" rel="noopener noreferrer" class="btn-secondary">View on GitHub</a>
+        <a href="https://github.com/verkyyi/tokenman" target="_blank" rel="noopener noreferrer" class="btn-secondary">View on GitHub</a>
       </div>
     </section>
 
@@ -214,7 +214,7 @@ import Base from '../layouts/Base.astro';
 
 - [ ] **Step 2: Verify build and preview**
 
-Run: `cd /home/dev/projects/agentfolio && npm run build`
+Run: `cd /home/dev/projects/tokenman && npm run build`
 Expected: Build succeeds. Single page with centered hero.
 
 - [ ] **Step 3: Commit**
@@ -314,7 +314,7 @@ Append to the `<style>` block:
 
 - [ ] **Step 3: Verify build**
 
-Run: `cd /home/dev/projects/agentfolio && npm run build`
+Run: `cd /home/dev/projects/tokenman && npm run build`
 Expected: Build succeeds.
 
 - [ ] **Step 4: Commit**
@@ -435,7 +435,7 @@ Append to the `<style>` block:
 
 - [ ] **Step 3: Verify build**
 
-Run: `cd /home/dev/projects/agentfolio && npm run build`
+Run: `cd /home/dev/projects/tokenman && npm run build`
 Expected: Build succeeds.
 
 - [ ] **Step 4: Commit**
@@ -520,7 +520,7 @@ Append to the `<style>` block:
 
 - [ ] **Step 3: Verify build**
 
-Run: `cd /home/dev/projects/agentfolio && npm run build`
+Run: `cd /home/dev/projects/tokenman && npm run build`
 Expected: Build succeeds.
 
 - [ ] **Step 4: Commit**
@@ -552,7 +552,7 @@ Insert after the Use Cases section, before `</main>`:
         <li>Paste this prompt:</li>
       </ol>
       <div class="code-block">
-        <code>Set up agentfolio in this repo. Follow https://github.com/verkyyi/agentfolio/blob/main/docs/onboarding.md</code>
+        <code>Set up tokenman in this repo. Follow https://github.com/verkyyi/tokenman/blob/main/docs/onboarding.md</code>
       </div>
       <ol class="steps" start="3">
         <li>Claude analyzes your stack, writes config, copies workflows</li>
@@ -566,7 +566,7 @@ Insert after the Use Cases section, before `</main>`:
 
     <!-- Footer -->
     <footer class="footer">
-      <a href="https://github.com/verkyyi/agentfolio" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a href="https://github.com/verkyyi/tokenman" target="_blank" rel="noopener noreferrer">GitHub</a>
       <span class="footer-sep">·</span>
       <span>MIT License</span>
       <span class="footer-sep">·</span>
@@ -633,7 +633,7 @@ Append to the `<style>` block:
 
 - [ ] **Step 3: Verify full build**
 
-Run: `cd /home/dev/projects/agentfolio && npm run build`
+Run: `cd /home/dev/projects/tokenman && npm run build`
 Expected: Build succeeds. All 6 sections present in the output.
 
 - [ ] **Step 4: Commit**
@@ -654,7 +654,7 @@ Preview the built site, check mobile and desktop rendering, fix any issues.
 
 - [ ] **Step 1: Build and preview**
 
-Run: `cd /home/dev/projects/agentfolio && npm run build && npm run preview`
+Run: `cd /home/dev/projects/tokenman && npm run build && npm run preview`
 Open the preview URL. Check:
 - All 6 sections render correctly
 - Mobile view (375px): buttons stack, pipeline is vertical, cards stack

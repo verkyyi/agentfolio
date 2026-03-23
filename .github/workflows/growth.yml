@@ -27,7 +27,7 @@ jobs:
       - name: Check onboarding complete
         run: |
           if [ ! -f state/evolve_config.md ]; then
-            echo "::warning::Onboarding not complete. Run: claude 'Set up agentfolio. Follow https://github.com/verkyyi/agentfolio/blob/main/docs/onboarding.md'"
+            echo "::warning::Onboarding not complete. Run: claude 'Set up tokenman. Follow https://github.com/verkyyi/tokenman/blob/main/docs/onboarding.md'"
             exit 0
           fi
 
@@ -76,7 +76,7 @@ jobs:
           RECENT_COMMITS=$(git log --oneline -20)
 
           cat > /tmp/growth_prompt.txt << 'PROMPTSTART'
-          You are the growth strategist for Agentfolio — a self-evolving scaffold
+          You are the growth strategist for Tokenman — a self-evolving scaffold
           for autonomous web projects. Your job is to increase adoption: more
           stars, forks, template users, and community engagement.
 

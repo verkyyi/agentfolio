@@ -58,8 +58,8 @@ Every workflow has a "commit state" step near the end. Replace the git pattern w
 ```yaml
       - name: Commit state changes
         run: |
-          git config user.name "agentfolio[bot]"
-          git config user.email "agentfolio[bot]@users.noreply.github.com"
+          git config user.name "tokenman"
+          git config user.email "tokenman@users.noreply.github.com"
           git add state/
           if ! git diff --cached --quiet; then
             git commit -m "state: workflow-name summary"
@@ -122,7 +122,7 @@ Only **state/ files** move to API writes. Everything else stays as-is.
 
 - **API errors**: If GitHub API is down, state updates fail. Mitigated by retry loop. State is still in the local workspace — next run picks it up.
 - **Token permissions**: `${{ github.token }}` needs `contents: write` — already set in all workflows.
-- **Commit attribution**: API commits show as the GitHub App, not `agentfolio[bot]`. Minor cosmetic difference.
+- **Commit attribution**: API commits show as the GitHub App, not `tokenman`. Minor cosmetic difference.
 
 ## Test Plan
 

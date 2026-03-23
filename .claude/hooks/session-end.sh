@@ -32,7 +32,7 @@ if git diff --cached --quiet; then
 fi
 
 # Commit and push
-git config user.name "agentfolio[bot]" 2>/dev/null || true
+git config user.name "tokenman" 2>/dev/null || true
 git commit -m "state: CLI session ended — $(date -u +%Y-%m-%dT%H:%M)" 2>/dev/null || exit 0
 git pull --rebase origin main 2>/dev/null || true
 git push origin main 2>/dev/null || true

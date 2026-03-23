@@ -1,19 +1,19 @@
-# Agentfolio
+# Tokenman
 
 **A self-evolving scaffold for autonomous web projects.**
 The repo is the system. The scaffold's first project is itself.
 
-[![Deploy](https://github.com/verkyyi/agentfolio/actions/workflows/deploy.yml/badge.svg)](https://github.com/verkyyi/agentfolio/actions/workflows/deploy.yml)
-[![Self-Evolve](https://github.com/verkyyi/agentfolio/actions/workflows/evolve.yml/badge.svg)](https://github.com/verkyyi/agentfolio/actions/workflows/evolve.yml)
-[![Pipeline Watcher](https://github.com/verkyyi/agentfolio/actions/workflows/watcher.yml/badge.svg)](https://github.com/verkyyi/agentfolio/actions/workflows/watcher.yml)
+[![Deploy](https://github.com/verkyyi/tokenman/actions/workflows/deploy.yml/badge.svg)](https://github.com/verkyyi/tokenman/actions/workflows/deploy.yml)
+[![Self-Evolve](https://github.com/verkyyi/tokenman/actions/workflows/evolve.yml/badge.svg)](https://github.com/verkyyi/tokenman/actions/workflows/evolve.yml)
+[![Pipeline Watcher](https://github.com/verkyyi/tokenman/actions/workflows/watcher.yml/badge.svg)](https://github.com/verkyyi/tokenman/actions/workflows/watcher.yml)
 
-**[Live site](https://verkyyi.github.io/agentfolio/)** · **[Agent log](https://github.com/verkyyi/agentfolio/blob/main/state/agent_log.md)**
+**[Live site](https://verkyyi.github.io/tokenman/)** · **[Agent log](https://github.com/verkyyi/tokenman/blob/main/state/agent_log.md)**
 
 ---
 
 ## What it is
 
-Agentfolio is a harness of GitHub Actions workflows that make any web project
+Tokenman is a harness of GitHub Actions workflows that make any web project
 fully autonomous. The agent researches improvements, triages issues, writes code,
 reviews PRs, and deploys — all without human intervention.
 

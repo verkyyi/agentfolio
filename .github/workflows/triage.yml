@@ -25,7 +25,7 @@ jobs:
       - name: Check onboarding complete
         run: |
           if [ ! -f state/evolve_config.md ]; then
-            echo "::warning::Onboarding not complete. Run: claude 'Set up agentfolio. Follow https://github.com/verkyyi/agentfolio/blob/main/docs/onboarding.md'"
+            echo "::warning::Onboarding not complete. Run: claude 'Set up tokenman. Follow https://github.com/verkyyi/tokenman/blob/main/docs/onboarding.md'"
             exit 0
           fi
 
@@ -116,7 +116,7 @@ jobs:
           Any constraints, gotchas, or related issues.
 
           ---
-          *Triaged by agentfolio triage agent*
+          *Triaged by tokenman triage agent*
 
           IMPORTANT: Preserve the original issue title. Keep the [evolve] or
           [pipeline] prefix if present. The elaborated body should give the

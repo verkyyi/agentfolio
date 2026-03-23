@@ -24,7 +24,7 @@ The agent reads the Evolve Config's `Stack` and `deploy` fields to determine whi
 
 **Framework sites** (unchanged from current):
 - Visual consistency, readability, responsiveness, polish, content presentation
-- Design language evaluation (e.g., Cosmic theme for agentfolio)
+- Design language evaluation (e.g., Cosmic theme for tokenman)
 
 **Static HTML sites** (new):
 - Content completeness: bio/about, projects/work, contact info

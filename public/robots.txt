@@ -1,5 +1,5 @@
 # robots.txt
-# Maintained by agentfolio.
+# Maintained by tokenman.
 # AI crawlers explicitly welcomed — this profile is AI-ready.
 
 User-agent: *
@@ -22,4 +22,4 @@ User-agent: CCBot
 Allow: /
 
 # Sitemap location
-Sitemap: https://verkyyi.github.io/agentfolio/sitemap-index.xml
+Sitemap: https://verkyyi.github.io/tokenman/sitemap-index.xml

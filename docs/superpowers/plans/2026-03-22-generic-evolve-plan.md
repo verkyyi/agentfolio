@@ -2,7 +2,7 @@
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Make the agentfolio scaffold work for any single-project repo by replacing hardcoded agentfolio references with config-driven behavior, gated by an interactive onboarding step.
+**Goal:** Make the tokenman scaffold work for any single-project repo by replacing hardcoded tokenman references with config-driven behavior, gated by an interactive onboarding step.
 
 **Architecture:** A config file (`state/evolve_config.md`) generated during interactive CLI onboarding drives all workflow behavior. Every workflow checks for this file immediately after checkout — no file means no execution. The config is injected into each workflow's prompt so Claude adapts behavior (LLM-level adaptation, not bash-level branching).
 
@@ -35,16 +35,16 @@ In each workflow, find the `- uses: actions/checkout@v4` step (including any `wi
       - name: Check onboarding complete
         run: |
           if [ ! -f state/evolve_config.md ]; then
-            echo "::warning::Onboarding not complete. Run: claude 'Set up agentfolio. Follow https://github.com/verkyyi/agentfolio/blob/main/docs/onboarding.md'"
+            echo "::warning::Onboarding not complete. Run: claude 'Set up tokenman. Follow https://github.com/verkyyi/tokenman/blob/main/docs/onboarding.md'"
             exit 0
           fi
 ```
 
 Note for `deploy.yml`: This workflow has two jobs (`build` and `deploy`). Add the gate only to the `build` job. The `deploy` job has `needs: build`, so if build exits early, deploy won't run.
 
-- [ ] **Step 2: Create config file for agentfolio itself**
+- [ ] **Step 2: Create config file for tokenman itself**
 
-Since agentfolio needs the config to keep running, create `state/evolve_config.md`:
+Since tokenman needs the config to keep running, create `state/evolve_config.md`:
 
 ```markdown
 # Evolve Config
@@ -89,7 +89,7 @@ claude-task: HIGH
 - humanlayer/humanlayer
 - actions/runner
 - withastro/astro
-- verkyyi/agentfolio
+- verkyyi/tokenman
 
 ## User Answers
 Deploy: GitHub Pages via deploy.yml
@@ -101,7 +101,7 @@ Bypass permissions confirmed: Yes
 CLAUDE.md: ./CLAUDE.md
 ```
 
-Note: `verkyyi/agentfolio` in agentfolio's own config is redundant (evolve already runs inside the repo). Harmless — Claude will just see its own recent commits.
+Note: `verkyyi/tokenman` in tokenman's own config is redundant (evolve already runs inside the repo). Harmless — Claude will just see its own recent commits.
 
 - [ ] **Step 3: Commit**
 
@@ -417,17 +417,17 @@ Add after Step 2g:
           ## STEP 2h: Scaffold Version Check
 
           Read the "Version" field from the Evolve Config header.
-          Fetch the latest agentfolio release:
+          Fetch the latest tokenman release:
 
           ```bash
           LATEST=$(curl -s -H "Authorization: token $GITHUB_TOKEN" \
-            "https://api.github.com/repos/verkyyi/agentfolio/releases/latest" \
+            "https://api.github.com/repos/verkyyi/tokenman/releases/latest" \
             | grep -o '"tag_name":"[^"]*"' | cut -d'"' -f4)
           ```
 
           If LATEST is newer than the Version field, create an issue:
-          "[upgrade] Agentfolio scaffold update available: $LATEST"
-          Body: "A new version of the agentfolio scaffold is available. Run a Claude Code
+          "[upgrade] Tokenman scaffold update available: $LATEST"
+          Body: "A new version of the tokenman scaffold is available. Run a Claude Code
           session to review and apply the changes."
           Label: "needs-review"
 
@@ -456,7 +456,7 @@ The onboarding doc becomes instructions that Claude follows during a CLI session
 
 The doc should instruct Claude to:
 
-1. **Copy scaffold files** from agentfolio (workflows, state, skills, CLAUDE.md)
+1. **Copy scaffold files** from tokenman (workflows, state, skills, CLAUDE.md)
 2. **Analyze the repo**:
    - Read package.json / requirements.txt / go.mod / Cargo.toml / pyproject.toml
    - List file extensions to detect language mix
@@ -497,7 +497,7 @@ git commit -m "docs: rewrite onboarding as interactive CLI guide with repo analy
         Open your project in Claude Code and run:
       </p>
       <div class="code-block">
-        <code>Set up agentfolio in this repo. Follow https://github.com/verkyyi/agentfolio/blob/main/docs/onboarding.md</code>
+        <code>Set up tokenman in this repo. Follow https://github.com/verkyyi/tokenman/blob/main/docs/onboarding.md</code>
       </div>
       <p class="add-desc">
         Claude analyzes your codebase, shows you which workflows fit,
@@ -524,7 +524,7 @@ git commit -m "fix(frontend): update profile page to reflect interactive onboard
 
 ### Task 8: End-to-end verification
 
-- [ ] **Step 1: Verify agentfolio config is valid**
+- [ ] **Step 1: Verify tokenman config is valid**
 
 ```bash
 cat state/evolve_config.md

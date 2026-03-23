@@ -1,4 +1,4 @@
-# Agentfolio — Scaffold Constitution
+# Tokenman — Scaffold Constitution
 # Harness rules only. No project-specific knowledge lives here.
 # Project context: read apps/${APP_NAME}/CLAUDE.md
 

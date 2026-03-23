@@ -40,7 +40,7 @@ claude-task: HIGH
 - humanlayer/humanlayer
 - actions/runner
 - withastro/astro
-- verkyyi/agentfolio
+- verkyyi/tokenman
 
 ## Search Queries
 - github-trending: https://api.github.com/search/repositories?q=claude+code+agent+pushed:>{7_DAYS_AGO}&sort=stars&per_page=5

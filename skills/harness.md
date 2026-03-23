@@ -1,13 +1,13 @@
 ---
 name: harness
 description: >
-  Use when working on the Agentfolio harness itself: daemon workflows,
+  Use when working on the Tokenman harness itself: daemon workflows,
   state file management, event routing, approval gates, GitHub Actions
   YAML, or the overall harness architecture. Also use when the agent
   needs to understand how the system works before making changes.
 ---
 
-# Agentfolio Harness
+# Tokenman Harness
 
 ## Architecture
 - Runtime: GitHub Actions (8 workflows)

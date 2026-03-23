@@ -5,7 +5,7 @@
 
 ## Goal
 
-Replace the current self-referential agent dashboard with a clear, developer-tool-minimal landing page that explains what Agentfolio is and motivates users to adopt it on their own repo.
+Replace the current self-referential agent dashboard with a clear, developer-tool-minimal landing page that explains what Tokenman is and motivates users to adopt it on their own repo.
 
 ## Audience
 
@@ -39,7 +39,7 @@ Six sections, top to bottom:
 
 ### 1. Hero (centered)
 
-- "Agentfolio" as text wordmark (no image/logo)
+- "Tokenman" as text wordmark (no image/logo)
 - Tagline: "Self-evolving GitHub Actions for any repo"
 - Subtitle: ~20 words — "11 workflows that research, triage, code, review, and deploy — autonomously. Add to your project with Claude Code."
 - Primary CTA button: "Get Started" (anchor link to section 5)
@@ -90,7 +90,7 @@ Three compact cards:
 The onboarding steps:
 
 1. Open Claude Code in your repo
-2. Tell Claude to apply Agentfolio workflows
+2. Tell Claude to apply Tokenman workflows
 3. Claude writes config, copies workflows
 4. Push and enable GitHub Actions
 

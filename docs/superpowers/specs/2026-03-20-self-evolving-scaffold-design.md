@@ -8,7 +8,7 @@
 
 ## Overview
 
-Transform Agentfolio from a personal portfolio scaffold into a general-purpose, self-evolving harness. The scaffold's first project is itself — it uses its own workflows to improve its own workflows, its own CLAUDE.md to refine its own CLAUDE.md. A repo profile page replaces the portfolio as the public face.
+Transform Tokenman from a personal portfolio scaffold into a general-purpose, self-evolving harness. The scaffold's first project is itself — it uses its own workflows to improve its own workflows, its own CLAUDE.md to refine its own CLAUDE.md. A repo profile page replaces the portfolio as the public face.
 
 ### Core Principles
 
