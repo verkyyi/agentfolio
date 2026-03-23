@@ -453,3 +453,18 @@
 2026-03-23T10:34:25Z | github-trending | 3156 repos (+8 since last run), no breakout | no action
 2026-03-23T10:34:25Z | openai-harness-blog | Cloudflare blocked (persistent) | no action
 2026-03-23T10:34:25Z | pipeline-health | same 10 failed runs, all pre-date last evolve. 0 new failures, 0 issues created | no action
+2026-03-23T11:31:58Z | anthropics/claude-code | 6aadfbd — CHANGELOG update 2026-03-20 | unchanged since last run
+2026-03-23T11:31:58Z | garrytan/gstack | 7fbf68b — cross-model outside voice v0.9.9.1 | unchanged since last run
+2026-03-23T11:31:58Z | affaan-m/everything-claude-code | df4f2df — 6 gap-closing skills (browser QA, design system, product lens, canary watch, benchmark, safety guard) | NEW — competitive positioning vs gstack, not directly harness-applicable
+2026-03-23T11:31:58Z | hesreallyhim/awesome-claude-code | 5ae57bd — automated ticker data + SVG update | unchanged since last run
+2026-03-23T11:31:58Z | bytedance/deer-flow | 3be1d84 — fix(hotkey): open settings with hotkey (#1259) | NEW — minor UI fix, not relevant
+2026-03-23T11:31:58Z | wshobson/agents | 1ad2f00 — OCI awareness (2026-03-17) | stale
+2026-03-23T11:31:58Z | VoltAgent/awesome-claude-code-subagents | fba002a — Rails version-aware expert (#123) | unchanged since last run
+2026-03-23T11:31:58Z | godagoo/claude-code-always-on | 00854ad — stale (2026-02-03) | stale
+2026-03-23T11:31:58Z | humanlayer/humanlayer | bdea199 — stale (2026-01-07) | stale
+2026-03-23T11:31:58Z | actions/runner | 4259ffb — dependabot bump flatted | unchanged since last run
+2026-03-23T11:31:58Z | withastro/astro | 15b25e8 — refactor: move image tests to unit tests (#16004) | NEW — internal refactoring, not relevant
+2026-03-23T11:31:58Z | verkyyi/tokenman | 3e29f6c — state commits (evolve + watcher) | internal only
+2026-03-23T11:31:58Z | github-trending | 3163 repos (+7 since last run), no breakout | no action
+2026-03-23T11:31:58Z | openai-harness-blog | Cloudflare blocked (persistent) | no action
+2026-03-23T11:31:58Z | pipeline-health | same 10 failed runs, all pre-date last evolve. 0 new failures, 0 issues created | no action
