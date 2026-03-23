@@ -151,7 +151,22 @@ jobs:
           git config user.name "tokenman"
           git config user.email "tokenman@users.noreply.github.com"
 
+      - name: Detect change tier
+        id: tier
+        run: |
+          CHANGED="${{ steps.diff.outputs.CHANGED_FILES }}"
+          # Tier 0: only state/ files changed
+          NON_STATE=$(echo "$CHANGED" | grep -v '^state/' | head -1 || true)
+          if [ -z "$NON_STATE" ]; then
+            echo "TIER=0" >> $GITHUB_OUTPUT
+            echo "Change tier: 0 (state-only)"
+          else
+            echo "TIER=1" >> $GITHUB_OUTPUT
+            echo "Change tier: 1+ (non-state files changed)"
+          fi
+
       - name: Run reviewer
+        id: primary_review
         run: |
           claude -p "$(cat /tmp/review_prompt.txt)" \
             --model opus \
@@ -161,9 +176,139 @@ jobs:
             --permission-mode bypassPermissions \
             --output-format json \
             > /tmp/claude_output.json
+
+          # Extract primary verdict from PR state after review
+          NUM=${{ steps.pr.outputs.NUMBER }}
+          REVIEWS=$(gh pr view "$NUM" --json reviews --jq '.reviews[-1].state' --repo ${{ github.repository }} 2>/dev/null || echo "UNKNOWN")
+          if echo "$REVIEWS" | grep -qi "APPROVED"; then
+            echo "VERDICT=APPROVE" >> $GITHUB_OUTPUT
+          else
+            echo "VERDICT=BLOCK" >> $GITHUB_OUTPUT
+          fi
         env:
           CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           GITHUB_TOKEN: ${{ github.token }}
+
+      - name: Outside voice — secondary model review
+        if: steps.tier.outputs.TIER != '0'
+        id: outside_voice
+        run: |
+          NUM=${{ steps.pr.outputs.NUMBER }}
+          TITLE="${{ steps.pr.outputs.TITLE }}"
+          CHANGED="${{ steps.diff.outputs.CHANGED_FILES }}"
+
+          DIFF_CONTENT=$(git diff origin/main...HEAD 2>/dev/null | head -3000)
+
+          cat > /tmp/outside_voice_prompt.txt << 'OVEOF'
+          You are a secondary reviewer providing an independent "outside voice" check.
+          You have NOT seen the primary reviewer's verdict — your assessment is independent.
+
+          Review the PR diff and changed files below. Focus on what a primary reviewer
+          might miss:
+          - Security issues (secrets, injection, auth bypass)
+          - Infinite loop or self-triggering workflow risks
+          - Build-breaking changes
+          - Subtle regressions or unintended side effects
+
+          Do NOT do a full re-review. Focus on gaps and blind spots.
+          Output ONLY a JSON object on the last line:
+          {"verdict": "APPROVE" | "CONCERN", "concerns": ["...", ...]}
+          If APPROVE with no concerns: {"verdict": "APPROVE", "concerns": []}
+          OVEOF
+
+          cat >> /tmp/outside_voice_prompt.txt << CTXEOF
+
+          PR #${NUM}: ${TITLE}
+          Changed files: ${CHANGED}
+
+          Diff (truncated to 3000 lines):
+          ${DIFF_CONTENT}
+          CTXEOF
+
+          claude -p "$(cat /tmp/outside_voice_prompt.txt)" \
+            --model sonnet \
+            --effort high \
+            --max-turns 10 \
+            --fallback-model haiku \
+            --permission-mode bypassPermissions \
+            --output-format text \
+            > /tmp/outside_voice_output.txt 2>/dev/null || true
+
+          # Parse the secondary verdict
+          if [ -f /tmp/outside_voice_output.txt ]; then
+            # Extract last JSON line from output
+            SECONDARY_JSON=$(grep -o '{"verdict":[^}]*}' /tmp/outside_voice_output.txt | tail -1 || echo '{}')
+            SECONDARY_VERDICT=$(echo "$SECONDARY_JSON" | jq -r '.verdict // "UNKNOWN"' 2>/dev/null || echo "UNKNOWN")
+            CONCERNS=$(echo "$SECONDARY_JSON" | jq -r '.concerns // [] | join("; ")' 2>/dev/null || echo "")
+          else
+            SECONDARY_VERDICT="UNKNOWN"
+            CONCERNS=""
+          fi
+
+          echo "VERDICT=$SECONDARY_VERDICT" >> $GITHUB_OUTPUT
+          echo "CONCERNS=$CONCERNS" >> $GITHUB_OUTPUT
+          echo "Secondary verdict: $SECONDARY_VERDICT"
+          if [ -n "$CONCERNS" ]; then
+            echo "Concerns: $CONCERNS"
+          fi
+        env:
+          CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          GITHUB_TOKEN: ${{ github.token }}
+
+      - name: Post tensions as PR comments
+        if: steps.tier.outputs.TIER != '0' && steps.outside_voice.outputs.VERDICT == 'CONCERN' && steps.primary_review.outputs.VERDICT == 'APPROVE'
+        run: |
+          NUM=${{ steps.pr.outputs.NUMBER }}
+          CONCERNS="${{ steps.outside_voice.outputs.CONCERNS }}"
+          if [ -n "$CONCERNS" ]; then
+            BODY="[Outside Voice] Secondary model (Sonnet) flagged concerns while primary (Opus) approved:\n\n${CONCERNS}\n\nThis tension is logged for review. The primary verdict stands unless a human intervenes."
+            gh pr comment "$NUM" --body "$BODY" --repo ${{ github.repository }} || true
+          fi
+        env:
+          GH_TOKEN: ${{ github.token }}
+
+      - name: Persist review log
+        if: always()
+        run: |
+          TIMESTAMP=$(date -u +%Y-%m-%dT%H:%M:%SZ)
+          NUM=${{ steps.pr.outputs.NUMBER }}
+          PRIMARY="${{ steps.primary_review.outputs.VERDICT }}"
+          TIER="${{ steps.tier.outputs.TIER }}"
+
+          if [ "$TIER" = "0" ]; then
+            SECONDARY="SKIPPED"
+            TENSIONS="0"
+          else
+            SECONDARY="${{ steps.outside_voice.outputs.VERDICT }}"
+            SECONDARY="${SECONDARY:-UNKNOWN}"
+            if [ "$PRIMARY" = "APPROVE" ] && [ "$SECONDARY" = "CONCERN" ]; then
+              TENSIONS="1"
+            elif [ "$PRIMARY" = "BLOCK" ] && [ "$SECONDARY" = "APPROVE" ]; then
+              TENSIONS="1"
+            else
+              TENSIONS="0"
+            fi
+          fi
+
+          # Determine final action
+          STATE=$(gh pr view "$NUM" --json state --jq '.state' --repo ${{ github.repository }} 2>/dev/null || echo "UNKNOWN")
+          if [ "$STATE" = "MERGED" ]; then
+            ACTION="MERGED"
+          elif [ "$PRIMARY" = "BLOCK" ]; then
+            ACTION="BLOCKED"
+          elif [ "$TENSIONS" = "1" ]; then
+            ACTION="COMMENTED"
+          else
+            ACTION="MERGED"
+          fi
+
+          mkdir -p state
+          if [ ! -f state/review_log.md ]; then
+            printf '# Review Log\n# Format: TIMESTAMP | PR#NUM | primary:VERDICT | secondary:VERDICT | tensions:COUNT | action:RESULT\n' > state/review_log.md
+          fi
+          echo "${TIMESTAMP} | PR#${NUM} | primary:${PRIMARY} | secondary:${SECONDARY} | tensions:${TENSIONS} | action:${ACTION}" >> state/review_log.md
+        env:
+          GH_TOKEN: ${{ github.token }}
 
       - name: Close linked issues if PR was merged
         if: always()
