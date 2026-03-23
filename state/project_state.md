@@ -1,9 +1,9 @@
 # Project State
-Last updated: 2026-03-23T10:55:00Z
-Updated by: watcher.yml (health check)
+Last updated: 2026-03-23T11:31:58Z
+Updated by: evolve.yml (self-evolution run)
 
 ## Last Session
-Action: watcher.yml — health check. All clear. No new failures since 06:26. All workflows healthy. PR #55 approved 11h+ awaiting human merge. #22+#48 correctly held (needs-human). 0 corrective actions.
+Action: evolve.yml — self-evolution run. 3 source changes (everything-claude-code, deer-flow, astro — none harness-relevant). 9 sources unchanged. Trending +7 (3163). No new pipeline failures. 0 issues created.
 
 System health:
 - Evolve: SEVERELY SATURATED (89.5% exceed max-turns=45, worsening from 82.4%, avg 48.8 turns) — structural, workflows succeeding
@@ -47,8 +47,9 @@ System health:
 - Reviewer.yml has a bug: README sync step doesn't handle dirty working tree (issue #53 closed, PR #55 APPROVED — awaiting human merge)
 - PR #55 approved by reviewer — human merge needed for workflow YAML change (8h+ pending)
 - analyze.yml stale branch bug fixed (issue #59 closed, fix deployed — awaiting next analyze run to confirm)
-- Evolve severely saturated (73.1% exceed max-turns=45) — lightweight gate helps when sources unchanged but not when sources change; workflows still succeeding
-- Watcher overutilized (66.7% exceed max-turns=30) — stable, completing work
+- Evolve severely saturated (89.5% exceed max-turns=45) — lightweight gate helps when sources unchanged but not when sources change; workflows still succeeding
+- Watcher severely saturated (70% exceed max-turns=30) — stable, completing work
 - Feedback Learner healthy — succeeded 07:38, idle when no merged PRs (expected)
 - Site content updated: hero headline now action-oriented, pac-man branding, broken logo removed, SSL/CNAME for tokenman.io
 - deer-flow introduced pre-tool-call guardrails middleware (#1240) — interesting agent safety pattern, noted for future reference
+- everything-claude-code added 6 gap-closing skills (browser QA, design system, product lens, canary watch, benchmark, safety guard) — competitive vs gstack, not directly applicable to tokenman harness
