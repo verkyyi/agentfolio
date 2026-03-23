@@ -72,7 +72,7 @@
 - **Why:** Session memory plugin (39K stars) — auto-captures sessions, AI-compresses context, injects relevance-filtered memory into future sessions
 - **Look for:** Compression strategies, relevance filtering, context injection patterns, memory lifecycle management
 - **Added:** 2026-03-23 (horizon scan) | **Observations:** 1 | **First seen:** 2026-03-23
-- **Notes:** v10.6.2 active (Mar 21). Their compress→filter→inject pipeline is more sophisticated than our simple state/ read/write. Could improve how we manage project_state.md context.
+- **Notes:** v10.6.2 active (Mar 21). Their compress-filter-inject pipeline is more sophisticated than our simple state/ read/write. Could improve how we manage project_state.md context.
 
 ### BloopAI/vibe-kanban
 - **Why:** Agent management platform (24K stars) — PR-issue linking, multi-provider orchestration, kanban-style agent task management
