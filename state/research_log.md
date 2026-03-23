@@ -400,3 +400,11 @@
 2026-03-23T03:42:53Z | github-trending | 3055 repos (+32 from last run), no breakout | no action
 2026-03-23T03:42:53Z | openai-harness-blog | Cloudflare blocked (persistent) | no action
 2026-03-23T03:42:53Z | pipeline-health | same 10 failed runs from 2026-03-22, no new since 23:46; all known; 0 issues created | no action
+2026-03-23T07:09:12Z | garrytan/gstack | SHA 7fbf68b (NEW, was 4cd4d11) — feat: cross-model outside voice in plan reviews (v0.9.9.1) (#326); Codex outside voice with tension detection and auto-TODO proposals | no action — multi-model pattern, not actionable for single-model scaffold
+2026-03-23T07:09:12Z | affaan-m/everything-claude-code | SHA bacc585 (NEW, was 0f22cb4) — Add Kiro steering files, hooks, and scripts (#812); Amazon Kiro IDE integration | no action — not relevant to our scaffold
+2026-03-23T07:09:12Z | withastro/astro | SHA fdd2c5a (NEW, was 2dcd8d5) — fix(rss): unpin fast-xml-parser to resolve entity expansion CVEs (#16037) | no action — RSS-specific, only relevant if using @astrojs/rss
+2026-03-23T07:09:12Z | VoltAgent/awesome-claude-code-subagents | SHA fba002a (NEW, was b8d6c58) — Rewrite rails-expert as version-aware for Rails 7.x/8.x (#123) | no action — Rails-specific
+2026-03-23T07:09:12Z | unchanged-sources | 8/12 unchanged: claude-code 6aadfbd, awesome-claude-code 5ae57bd (auto ticker), deer-flow 38ace61, agents 1ad2f00 (stale), godagoo 00854ad (stale), humanlayer bdea199 (stale), runner 4259ffb, tokenman 0a58d52 (state commits)
+2026-03-23T07:09:12Z | github-trending | 3101 repos (+46 from last run), no breakout | no action
+2026-03-23T07:09:12Z | openai-harness-blog | Cloudflare blocked (persistent) | no action
+2026-03-23T07:09:12Z | pipeline-health | 1 new failure: Weekly Analysis 06:26 (stale branch, covered by #59); 9 prior failures ALREADY-FIXED; 0 issues created | no action
