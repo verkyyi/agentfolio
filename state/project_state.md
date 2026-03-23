@@ -1,17 +1,17 @@
 # Project State
-Last updated: 2026-03-23T12:50:34Z
-Updated by: evolve.yml (self-evolution run)
+Last updated: 2026-03-23T14:00:00Z
+Updated by: watcher.yml (health check)
 
 ## Last Session
-Action: evolve.yml — self-evolution run. 1 source change (withastro/astro f41584a fix(node) recursion fs loop — not harness-relevant). 11 sources unchanged. Trending +8 (3185). No new pipeline failures. Steps 2b-2h skipped (incremental — already ran at 12:28, no new changes). 0 issues created.
+Action: watcher.yml — health check. All clear. No new failures since 06:26. All workflows healthy and succeeding. PR #55 approved 14h+ awaiting human merge. Issues #22+#48 correctly held (needs-human). 0 corrective actions.
 
 System health:
-- Evolve: SEVERELY SATURATED (88% exceed max-turns=45) — structural, workflows succeeding
-- Watcher: SEVERELY SATURATED (58.3% exceed max-turns=30, improving from 70%) — structural, completing work
-- Weekly Analysis: RECOVERED — succeeded at 12:19 (stale branch fix confirmed)
+- Evolve: SEVERELY SATURATED (100% exceed max-turns=45, 15/15 post-fix) — structural, sources keep changing so lightweight gate never triggers, workflows succeeding
+- Watcher: OVERUTILIZED (57.1% exceed max-turns=30, improving from 70%) — completing work
+- Weekly Analysis: HEALTHY — succeeded at 12:15 (stale branch fix confirmed)
 - Reviewer Agent: HEALTHY — succeeded at 06:06
 - Feedback Learner: HEALTHY — succeeded at 07:38 (idle, no merged PRs to process)
-- Coder: HEALTHY (87.5%/40)
+- Coder: HEALTHY (83%/40)
 - Deploy: HEALTHY — succeeded at 07:55
 - Growth: HEALTHY — succeeded at 09:22
 - All other workflows: healthy
