@@ -12,7 +12,7 @@ System health:
 - Reviewer: HEALTHY — succeeded at 04:29, 3 successes since last failure
 - Triage: HEALTHY — succeeded at 04:21
 - Weekly Analysis: HEALTHY — succeeded at 06:24
-- Growth: HEALTHY but STALLED — 2 stars flat, 0 forks, 0 adopters
+- Growth: HEALTHY but STALLED — 2 stars flat, 0 forks, 0 adopters; v0.2.0 released (20 PRs)
 - Analyze: IMPROVING (36/40, was 39-40/40)
 - Feedback Learner: RECOVERING — #72 fix merged, no trigger since
 - Deploy: RECOVERING — no trigger since #65 fix
@@ -23,7 +23,7 @@ System health:
 3. **[INVESTIGATE]** GitHub auto-close misses — 6 issues manually closed this week, persistent platform gap
 4. **[WAITING]** Issue #48: Submit to e2b-dev/awesome-ai-agents — needs-human
 5. **[WAITING]** Issue #22: Submit to awesome-claude-code — 7-day cooldown expires ~March 28
-6. **[PLAN]** v0.2.0 release — accumulate features for growth signal
+6. **[DONE]** v0.2.0 release — created 2026-03-24, 20 PRs, "Self-Directing Research & Resilience"
 
 ## Open Items
 1. PR #55: [approved] fix(workflow) reviewer.yml state reset — APPROVED 30h+, needs human merge
