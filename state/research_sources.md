@@ -1,7 +1,7 @@
 # Research Sources
 # Managed by evolve.yml. Claude adds, prunes, and annotates freely.
 # Seeded from evolve_config.md on first run.
-# Last updated: 2026-03-24T01:54:48Z
+# Last updated: 2026-03-24T03:00:12Z
 
 ## Active Sources
 
@@ -26,20 +26,20 @@
 ### hesreallyhim/awesome-claude-code
 - **Why:** Curated ecosystem catalog — discover new tools, libraries, and patterns
 - **Look for:** New entries in Orchestrators/Tools/Skills sections, trending repos referenced
-- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-03-23 | **Pattern hits:** 0
-- **Notes:** Categories: Skills, Workflows, Tooling, Hooks, Slash-Commands, CLAUDE.md Files, Status Lines, Alternative Clients. Recent additions: parry (prompt injection scanner), RIPER workflow, ccpm (project management). Value is cross-reference for HORIZON SCAN, not direct patterns. SHA 15a1693 NEW (was 018dc1d) — queue for next PATTERN_HUNT deep-dive.
+- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-03-24 | **Pattern hits:** 0
+- **Notes:** Categories: Skills, Workflows, Tooling, Hooks, Slash-Commands, CLAUDE.md Files, Status Lines, Alternative Clients. Recent additions: parry (prompt injection scanner), RIPER workflow, ccpm (project management). Value is cross-reference for HORIZON SCAN, not direct patterns. SHA 15a1693 deep-dived: all commits are automated ticker/SVG updates, 0 actionable entries.
 
 ### bytedance/deer-flow
 - **Why:** Multi-agent orchestration patterns from a major tech company
 - **Look for:** Agent coordination, state management, tool orchestration, LLM provider patterns
-- **Added:** 2026-03-21 (seed) | **Last deep:** 2026-03-23 | **Pattern hits:** 1
-- **Notes:** Very active (5+ commits/day). GuardrailMiddleware: pre-tool-call authorization with pluggable providers (AllowlistProvider, OAP passport, custom class-path), fail-closed option, numbered middleware chain (11 positions). Covered by #67. SHA 48a1975 NEW (was 8b0f3fe) — queue for next PATTERN_HUNT deep-dive.
+- **Added:** 2026-03-21 (seed) | **Last deep:** 2026-03-24 | **Pattern hits:** 1
+- **Notes:** Very active (5+ commits/day). GuardrailMiddleware covered by #67. Deep-dived 2026-03-24: 4 new commits since 8b0f3fe — token usage per-turn indicator (#1229), CI lint-check.yml separated from tests (#1276), SubtaskCard tool-call filtering (#1242), i18n build fix (#1274). All frontend-specific, 0 harness patterns. Latest SHA: d0049ad.
 
 ### wshobson/agents
 - **Why:** Agent framework patterns — autonomous agent architectures
 - **Look for:** Retry patterns, memory management, tool selection, agent lifecycle
-- **Added:** 2026-03-20 (seed) | **Last deep:** never | **Pattern hits:** 0
-- **Notes:** Monitor for novel agent architecture ideas.
+- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-03-24 | **Pattern hits:** 0
+- **Notes:** 32K stars, 3504 forks. Plugin/skill catalog for Claude Code (OCI awareness, gallery-researcher, deployment engineer). 5 open PRs (Mar 19-22) including block-no-verify hook (already covered by CLAUDE.md). Primarily a plugin catalog, not harness architecture. Last commit Mar 17.
 
 ### VoltAgent/awesome-claude-code-subagents
 - **Why:** Subagent patterns and skill registry — how others structure agent delegation
@@ -95,8 +95,8 @@
 ### volcengine/OpenViking
 - **Why:** Self-evolving context database (18.4K stars) — unified context management (memory, resources, skills) via file system paradigm, hierarchical context delivery
 - **Look for:** "ov doctor" diagnostic patterns, loop memory optimization, context/memory/loop separation, self-evolving architecture
-- **Added:** 2026-03-23 (horizon scan) | **Observations:** 2 | **First seen:** 2026-03-23
-- **Notes:** Very active (5+ commits/day). SHA 50e1ff9. Python. Bot agent has context.py/loop.py/memory.py separation. "ov doctor" diagnostic command merged (#851). Multi-read tool and loop memory optimization (#895). Could inspire a /health skill for our harness.
+- **Added:** 2026-03-23 (horizon scan) | **Observations:** 3 | **First seen:** 2026-03-23
+- **Notes:** Very active (5+ commits/day). SHA a34744a (was 50e1ff9 — semantic queue concurrency fix #905). Python. Bot agent has context.py/loop.py/memory.py separation. "ov doctor" diagnostic command merged (#851). Multi-read tool and loop memory optimization (#895). Could inspire a /health skill for our harness.
 
 ### OthmanAdi/planning-with-files
 - **Why:** Persistent markdown planning skill (16.9K stars) — Manus-style file-based planning for Claude Code
@@ -113,8 +113,8 @@
 ### SethGammon/Citadel
 - **Why:** Agent orchestration harness (220 stars) — closest architecture to tokenman. Campaign persistence, parallel worktrees, circuit breaker, quality gate hooks
 - **Look for:** Circuit breaker implementation, quality gate patterns, campaign persistence, fleet coordination, lifecycle hooks
-- **Added:** 2026-03-24 (horizon scan) | **Observations:** 1 | **First seen:** 2026-03-24
-- **Notes:** SHA 28da845. 24 skills, 3 agents, 8 lifecycle hooks. PostToolUseFailure circuit breaker (3 failures → suggest alternative, 5 trips → hard stop). PreCompact/Restore-Compact for context preservation. Protect-files on Edit/Write. Pattern hit: circuit breaker (issue #76).
+- **Added:** 2026-03-24 (horizon scan) | **Observations:** 2 | **First seen:** 2026-03-24
+- **Notes:** SHA 0f7a04a (was 28da845 — Windows hook path compatibility fix #11). 24 skills, 3 agents, 8 lifecycle hooks. PostToolUseFailure circuit breaker (3 failures → suggest alternative, 5 trips → hard stop). PreCompact/Restore-Compact for context preservation. Protect-files on Edit/Write. Pattern hit: circuit breaker (issue #76).
 
 ### anthropics/claude-plugins-official
 - **Why:** Official Anthropic plugin directory (14.3K stars) — distribution channel for Claude Code plugins with standard format
