@@ -1,19 +1,19 @@
 # Project State
-Last updated: 2026-03-24T07:08:25Z
-Updated by: evolve.yml (SYNTHESIS posture)
+Last updated: 2026-03-24T07:50:00Z
+Updated by: watcher.yml (health check)
 
 ## Last Session
-Action: evolve.yml SYNTHESIS — analyzed 121 research_log lines, 31 learned intents, 5 open issues. 4 convergent signals: (1) token saturation at 100%, multi-source solutions converging (#83/#78), (2) GitHub auto-close gap — 6 manual closes/week (issue #84 created), (3) source portfolio imbalance (gstack 78% of hits), (4) growth flat. SHA scan: 1 Active changed (astro), 2 Watch List changed. No new human intents since Mar 22.
+Action: watcher.yml health check — all clear, 0 corrective actions. All workflows healthy. Evolve saturation IMPROVING (75% exceed max-turns, down from 100% — last 2 runs at 43/45). #82/#83/#84 under 2h awaiting triage. PR #55 APPROVED 32h+. No broken chains, no stuck runs, no repeated failures.
 
 System health:
-- Evolve: SEVERELY SATURATED WORSENING (100% of last 10 exceed max-turns=45, avg 53.1 turns — #83 created to address)
-- Watcher: HEALTHY (1/8 exceed 30, 12.5%)
+- Evolve: IMPROVING (6/8 last exceed max-turns=45, 75%, down from 100% — last 2 runs at 43/45, positive trend)
+- Watcher: BORDERLINE (1/3 recent exceed 30, 33%)
 - Coder: HEALTHY — succeeded at 04:23
 - Reviewer: HEALTHY — succeeded at 04:29, 3 successes since last failure
 - Triage: HEALTHY — succeeded at 04:21
 - Weekly Analysis: HEALTHY — succeeded at 06:24
 - Growth: HEALTHY but STALLED — 2 stars flat, 0 forks, 0 adopters
-- Analyze: NEAR-LIMIT but IMPROVING (last run 36/40, was 39-40/40)
+- Analyze: IMPROVING (36/40, was 39-40/40)
 - Feedback Learner: RECOVERING — #72 fix merged, no trigger since
 - Deploy: RECOVERING — no trigger since #65 fix
 
