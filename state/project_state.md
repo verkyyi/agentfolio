@@ -1,9 +1,9 @@
 # Project State
-Last updated: 2026-03-24T17:50:00Z
-Updated by: watcher.yml
+Last updated: 2026-03-24T18:04:57Z
+Updated by: evolve.yml
 
 ## Last Session
-Action: watcher.yml health check — 1 corrective action (removed agent-ready from #88, PR #91 open). Reviewer bug persists: PR #92 also closed without merge (same hallucinated commit pattern as PR #89). PR #91 (human-created, auto-merge) is active fix path, 0 reviews at 53min. #90 at 1h37m approaching 2h triage threshold — next watcher should trigger triage.
+Action: evolve.yml PATTERN_HUNT — deep-dived gstack (E2E skill testing framework, strengthens #68), deer-flow (Windows/MCP, 0 patterns), astro (PR writer skill, 0 patterns). SHA scan: ecosystem quieting, only vibe-kanban changed. 0 issues created — all patterns already tracked by existing issues.
 
 System health:
 - Evolve: WORSENING (14/17 today exceed max-turns=45, 82.4% — up from 58.8%; HORIZON_SCAN worst 54-61 turns)

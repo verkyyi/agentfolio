@@ -1,7 +1,7 @@
 # Research Sources
 # Managed by evolve.yml. Claude adds, prunes, and annotates freely.
 # Seeded from evolve_config.md on first run.
-# Last updated: 2026-03-24T17:34:54Z
+# Last updated: 2026-03-24T18:04:57Z
 
 ## Active Sources
 
@@ -9,13 +9,13 @@
 - **Why:** The runtime we build on — releases, breaking changes, new hooks, CLI flags
 - **Look for:** CHANGELOG entries, new hook types, permission changes, SDK updates
 - **Added:** 2026-03-20 (seed) | **Last deep:** 2026-03-23 | **Pattern hits:** 1
-- **Notes:** Protected source — never drop. Check CHANGELOG and releases, not just commits. v2.1.81: --bare flag (issue #63).
+- **Notes:** Protected source — never drop. Check CHANGELOG and releases, not just commits. v2.1.81: --bare flag (issue #63). SHA 6aadfbd unchanged 9th consecutive.
 
 ### garrytan/gstack
 - **Why:** Harness engineering patterns — skills, slash commands, review protocols, agent orchestration
 - **Look for:** New skill files, workflow patterns, agent guardrails, PR review techniques, structured output formats
-- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-03-24 | **Pattern hits:** 8
-- **Notes:** Most productive source so far. v0.9.7-v0.11.3 yielded adversarial review, structured tables, anti-sycophancy, pre-merge gate, security patterns. v0.9.9.1: cross-model outside voice (issue #64). v0.11.6.0: /cso v2 infrastructure-first security audit (covered by #17). v0.11.10.0: CI evals with parallel runners (no evals framework yet). v0.11.9.0: auto-heal stale installs + Codex 1024-char description guard (build-time validation, not issueworthy). v0.11.7.0: zsh glob compat + /review satisfies ship readiness gate. v0.11.12.0 (SHA dc5e053, PR #425): tiered preamble system (T1-T4) — skills pay for only needed context, ~40% token reduction for lightweight skills. WorktreeManager for E2E test isolation with SHA-256 dedup. Modular resolver arch. Token budget dashboard. Issue #83 (tiered preamble). v0.11.12.0 PR #424: triple-voice multi-model review with cascading context + consensus tables + degradation matrix (evolution of #64). PR #359 (v0.11.6.0): dynamic skill discovery (filesystem scan), three-dot scope drift (our reviewer already uses this), --local install flag. v0.11.15.0 (SHA 6156122, PR #449): E2E tests for skill output verification (plan-review-report, codex-offered), gen:skill-docs template regeneration. Strengthens #68 quality direction.
+- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-03-24T18:04 | **Pattern hits:** 8
+- **Notes:** Most productive source so far. v0.9.7-v0.11.3 yielded adversarial review, structured tables, anti-sycophancy, pre-merge gate, security patterns. v0.9.9.1: cross-model outside voice (issue #64). v0.11.6.0: /cso v2 infrastructure-first security audit (covered by #17). v0.11.10.0: CI evals with parallel runners (no evals framework yet). v0.11.9.0: auto-heal stale installs + Codex 1024-char description guard (build-time validation, not issueworthy). v0.11.7.0: zsh glob compat + /review satisfies ship readiness gate. v0.11.12.0 (SHA dc5e053, PR #425): tiered preamble system (T1-T4) — skills pay for only needed context, ~40% token reduction for lightweight skills. WorktreeManager for E2E test isolation with SHA-256 dedup. Modular resolver arch. Token budget dashboard. Issue #83 (tiered preamble). v0.11.12.0 PR #424: triple-voice multi-model review with cascading context + consensus tables + degradation matrix (evolution of #64). PR #359 (v0.11.6.0): dynamic skill discovery (filesystem scan), three-dot scope drift (our reviewer already uses this), --local install flag. v0.11.15.0 (SHA 6156122, PR #449): E2E skill testing framework (runSkillTest with temp dirs, output verification, cost tracking, concurrent execution) + gen:skill-docs template regeneration. Strengthens #68 quality direction. Premature for our 8-skill set.
 
 ### affaan-m/everything-claude-code
 - **Why:** Community harness patterns, skill collections, optimization techniques
@@ -32,8 +32,8 @@
 ### bytedance/deer-flow
 - **Why:** Multi-agent orchestration patterns from a major tech company
 - **Look for:** Agent coordination, state management, tool orchestration, LLM provider patterns
-- **Added:** 2026-03-21 (seed) | **Last deep:** 2026-03-24T14:11 | **Pattern hits:** 1
-- **Notes:** Very active (5+ commits/day). GuardrailMiddleware covered by #67. Deep-dived 2026-03-24T14:11: symlink-aware skill scanning (#1292, followlinks=True in os.walk for custom skills dir — relevant to future #66 but not adoptable now) + subprocess security fix (#1289, os.system→subprocess, Python-specific). Latest SHA: 067b19a (was 6bf5267, queue for next PH).
+- **Added:** 2026-03-21 (seed) | **Last deep:** 2026-03-24T18:04 | **Pattern hits:** 1
+- **Notes:** Very active (5+ commits/day). GuardrailMiddleware covered by #67. Deep-dived 2026-03-24T14:11: symlink-aware skill scanning (#1292, followlinks=True in os.walk for custom skills dir — relevant to future #66 but not adoptable now) + subprocess security fix (#1289, os.system→subprocess, Python-specific). Deep-dived 2026-03-24T18:04: Windows Makefile compat (#1297), MCP sync wrapper (#1287, async-to-sync with ThreadPoolExecutor). Both platform-specific, 0 harness patterns.
 
 ### wshobson/agents
 - **Why:** Agent framework patterns — autonomous agent architectures
@@ -50,8 +50,8 @@
 ### withastro/astro
 - **Why:** Web framework we use — security fixes, breaking changes, new features
 - **Look for:** Security advisories, breaking changes in minor/major releases, new content collection features
-- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-03-24T14:11 | **Pattern hits:** 0
-- **Notes:** Only actionable for security fixes or features that affect our site build. Deep-dived 2026-03-24T14:11: head propagation refactor (#15999), StaticHtml React optimization (#14917), server island crash fix (#16048). All framework internals, 0 harness patterns. Latest SHA: ba58e0d (was 7f43fba, queue for next PH).
+- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-03-24T18:04 | **Pattern hits:** 0
+- **Notes:** Only actionable for security fixes or features that affect our site build. Deep-dived 2026-03-24T14:11: head propagation refactor (#15999), StaticHtml React optimization (#14917), server island crash fix (#16048). Deep-dived 2026-03-24T18:04: svgo update (#16064), turbo-run-affected (#15621, monorepo-specific CI filtering), PR writer skill (#16060, convention-encoding SKILL.md — already covered by our CLAUDE.md). 0 harness patterns.
 
 ### verkyyi/tokenman
 - **Why:** Self-reference — track forks, adopters, and how the scaffold is used
@@ -72,7 +72,7 @@
 - **Why:** Agent management platform (24K stars) — PR-issue linking, multi-provider orchestration, kanban-style agent task management
 - **Look for:** PR-issue linking automation, relay architecture, agent task queuing, multi-model coordination
 - **Added:** 2026-03-23 (horizon scan) | **Observations:** 10 | **First seen:** 2026-03-23
-- **Notes:** v0.1.36+, very active (SHA da45800, was 8a0e4c9 — continued active dev). feat: link PRs to issues directly — interesting automation pattern. Rust+TS monorepo.
+- **Notes:** v0.1.36+, very active (SHA e96323b, was da45800 — continued active dev). feat: link PRs to issues directly — interesting automation pattern. Rust+TS monorepo.
 
 ### trailofbits/skills
 - **Why:** Security-focused Claude Code skills (4K stars) from top security firm — audit workflows, vulnerability detection, semgrep rules
