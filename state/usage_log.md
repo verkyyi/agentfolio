@@ -117,21 +117,4 @@
 2026-03-23T20:40:06Z | evolve | model:claude-opus-4-6 | in:1467852 | out:16426 | turns:62 | cost:1.5726715 | posture:unknown | issues:0
 2026-03-23T20:52:30Z | evolve | model:claude-opus-4-6 | in:2267706 | out:16449 | turns:57 | cost:1.9665924999999997 | posture:PATTERN_HUNT | issues:2
 2026-03-23T21:17:54Z | evolve | model:claude-opus-4-6 | in:1208087 | out:14528 | turns:46 | cost:1.3412609999999998 | posture:HORIZON_SCAN | issues:0
-2026-03-23T21:33:51Z | evolve | model:claude-opus-4-6 | in:1603196 | out:15551 | turns:50 | cost:1.6180577500000002 | posture:HORIZON_SCAN | issues:0
-2026-03-23T21:50:29Z | watcher | model:claude-opus-4-6 | in:661649 | out:10358 | turns:23 | cost:0.9995844999999999
-2026-03-23T21:55:11Z | evolve | model:claude-haiku-4-5-20251001 | in:90564 | out:36 | turns:1 | cost:2.8170606500000006 | posture:SYNTHESIS | issues:0
-2026-03-23T22:15:50Z | evolve | model:claude-opus-4-6 | in:2097316 | out:19947 | turns:73 | cost:2.00026125 | posture:PATTERN_HUNT | issues:0
-2026-03-23T22:30:35Z | evolve | model:claude-opus-4-6 | in:1963867 | out:16963 | turns:51 | cost:1.893485 | posture:PATTERN_HUNT | issues:0
-2026-03-23T22:49:25Z | evolve | model:claude-opus-4-6 | in:1571027 | out:11961 | turns:43 | cost:1.5579125 | posture:PIPELINE_WATCH | issues:0
-2026-03-23T22:54:08Z | reviewer | model:claude-opus-4-6 | in:101603 | out:1567 | turns:7 | cost:0.23135775000000003
-2026-03-23T23:05:00Z | evolve | model:claude-opus-4-6 | in:1628222 | out:15276 | turns:49 | cost:1.62325125 | posture:PIPELINE_WATCH | issues:0
-2026-03-23T23:20:43Z | evolve | model:claude-opus-4-6 | in:1502329 | out:14925 | turns:50 | cost:1.4941120000000003 | posture:HORIZON_SCAN | issues:0
-2026-03-23T23:49:17Z | evolve | model:claude-opus-4-6 | in:1201523 | out:16834 | turns:47 | cost:1.4543917499999999 | posture:PATTERN_HUNT | issues:0
-2026-03-24T00:02:47Z | evolve | model:claude-opus-4-6 | in:1245748 | out:16026 | turns:53 | cost:1.4630284999999998 | posture:HORIZON_SCAN | issues:0
-2026-03-24T00:05:46Z | feedback-learner | model:unknown | in:unknown | out:unknown | turns:unknown | cost:unknown
-2026-03-24T00:24:12Z | analyze | model:claude-opus-4-6 | in:1297600 | out:10760 | turns:40 | cost:1.3479774999999998
-2026-03-24T00:45:53Z | evolve | model:claude-opus-4-6 | in:2805539 | out:26643 | turns:63 | cost:2.6105054999999995 | posture:SYNTHESIS | issues:0
-2026-03-24T01:05:04Z | coder | model:claude-opus-4-6 | in:2145222 | out:18465 | turns:61 | cost:2.043672
-2026-03-24T01:19:58Z | reviewer | model:claude-opus-4-6 | in:1233518 | out:8236 | turns:59 | cost:1.3920725000000003
-2026-03-24T01:59:57Z | evolve | model:claude-opus-4-6 | in:1490800 | out:14835 | turns:42 | cost:1.5512734999999995 | posture:SYNTHESIS | issues:0
-2026-03-24T02:25:25Z | watcher | model:claude-opus-4-6 | in:1215179 | out:19784 | turns:51 | cost:1.5915867500000003
+2026-03-24T02:26:19Z | reviewer | model:claude-opus-4-6 | in:474990 | out:3145 | turns:24 | cost:0.7706112500000001
