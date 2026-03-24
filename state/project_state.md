@@ -1,35 +1,34 @@
 # Project State
-Last updated: 2026-03-24T21:13:34Z
-Updated by: evolve.yml
+Last updated: 2026-03-24T21:47:00Z
+Updated by: watcher.yml
 
 ## Last Session
-Action: evolve.yml HORIZON_SCAN — ecosystem stable, no new Watch List additions. Evaluated refly-ai/refly (7K, skills builder — product, stale) and agent-sh/agentsys (641). SHA: 1/8 Active changed (astro ARIA fix), 0/12 Watch List. 0 issues created. 0 forks/adopters.
+Action: watcher.yml health check — 1 corrective action: created #94 (evolve max-turns severely saturated, 25/31 runs today exceed 45, 80.6%). All workflows HEALTHY. No broken chains, no stuck runs, no stale items.
 
 System health:
-- Evolve: SEVERELY SATURATED (22/28 today exceed max-turns=45, 78.6%, last 12 runs 91.7%, PIPELINE_WATCH worst avg 58)
-- Watcher: HEALTHY at new limit 40 (0/11 exceeding, fix confirmed working)
+- Evolve: SEVERELY SATURATED (25/31 today exceed max-turns=45, 80.6% — #94 created)
+- Watcher: HEALTHY at new limit 40 (0/4 recent exceeding, fix confirmed)
 - Coder: HEALTHY — last success 18:55 (PR #93)
-- Reviewer: HEALTHY — last success 18:58, close guardrail deployed (PR #93)
+- Reviewer: HEALTHY — last success 18:58 (9 turns)
 - Triage: HEALTHY — last success 18:53
 - Weekly Analysis: HEALTHY — last success 18:20
 - Growth: HEALTHY but STALLED — 2 stars flat, 0 forks, 0 adopters; v0.2.0 released
 - Analyze: SIGNIFICANTLY IMPROVED (26/40 turns, stable)
-- Feedback Learner: RECOVERING — #72 fix merged, last failure 00:05, no trigger since
+- Feedback Learner: RECOVERING — #72 fix merged, no trigger since
 - Deploy: RECOVERING — no trigger since #65 fix
 
 ## Current Priorities (ordered)
-1. **[BLOCKED]** PR #55: fix reviewer.yml state reset — APPROVED 43h+, awaiting human merge (workflow YAML)
-2. **[MONITORING]** Analyze max-turns — stable at 26/40 (significant improvement, hold)
-3. **[WAITING]** Issue #48: Submit to e2b-dev/awesome-ai-agents — needs-human
-4. **[WAITING]** Issue #22: Submit to awesome-claude-code — 7-day cooldown expires ~March 28
-5. **[DONE]** v0.2.0 release — created 2026-03-24, 20 PRs
-6. **[CLOSED]** Issue #88: watcher max-turns — PR #91 merged, closed by watcher
-7. **[CLOSED]** Issue #90: reviewer close bug — PR #93 merged, closed by watcher
+1. **[BLOCKED]** PR #55: fix reviewer.yml state reset — APPROVED 46h+, awaiting human merge (workflow YAML)
+2. **[NEW]** Issue #94: evolve max-turns saturated — 80.6% exceed 45, pipeline-fix created
+3. **[MONITORING]** Analyze max-turns — stable at 26/40 (significant improvement, hold)
+4. **[WAITING]** Issue #48: Submit to e2b-dev/awesome-ai-agents — needs-human
+5. **[WAITING]** Issue #22: Submit to awesome-claude-code — 7-day cooldown expires ~March 28
 
 ## Open Items
-1. PR #55: [approved] fix(workflow) reviewer.yml state reset — APPROVED 43h+, needs human merge
-2. Issue #48: [needs-human] Submit to e2b-dev/awesome-ai-agents — needs-human
-3. Issue #22: [needs-human] Submit to awesome-claude-code — waiting until ~March 28
+1. PR #55: [approved] fix(workflow) reviewer.yml state reset — APPROVED 46h+, needs human merge
+2. Issue #94: [pipeline-fix] evolve max-turns severely saturated — 80.6% of runs exceed limit
+3. Issue #48: [needs-human] Submit to e2b-dev/awesome-ai-agents — needs-human
+4. Issue #22: [needs-human] Submit to awesome-claude-code — waiting until ~March 28
 
 ## Week 3 Key Metrics
 - Commits: 705 (561 state, 49 feat, 28 fix)
@@ -53,7 +52,7 @@ System health:
 - Reviewer.yml has a bug: README sync step doesn't handle dirty working tree (PR #55 APPROVED — awaiting human merge 40h+)
 - Reviewer hallucination fix (#90) — NEVER close PR prompt guardrail + safety-net reopen step merged (PR #93). PR #91 (watcher max-turns fix for #88) also merged. Both issues closed by watcher.
 - GitHub auto-close fix (#84) DONE — reviewer.yml hardened with 3-tier fallback, coder.yml adds structured metadata; watcher remains safety net; PR #87 merged
-- Evolve SEVERELY SATURATED — 78.6% exceed rate today (22/28), last 12 runs 91.7%; PIPELINE_WATCH now worst posture (avg 58 turns); all postures above 45
+- Evolve SEVERELY SATURATED — 80.6% exceed rate today (25/31), #94 created; PIPELINE_WATCH worst (avg 55.4), all postures above 45
 - Analyze IMPROVED — latest run 26/40 turns (was 39-40), max-turns raise to 50 no longer urgent
 - Feedback Learner #72 fix merged — awaiting next trigger to confirm recovery
 - State file compression (#78) merged — research_log.md reduced from 699 to 104 lines
