@@ -32,6 +32,10 @@ ON START (every workflow run AND every CLI session):
 2. Read apps/${APP_NAME}/CLAUDE.md — project-specific rules
 3. Read apps/${APP_NAME}/FEATURE_STATUS.md — what's done and pending
 4. Check current event: issue body, PR diff, workflow input
+5. For log files, read only recent entries (not the full file):
+   - state/agent_log.md — last 30 lines (tail -30)
+   - state/research_log.md — last 30 lines (tail -30)
+   - state/research_log_archive.md — do NOT read (historical reference only)
 
 ON STOP (every workflow run AND every CLI session):
 1. Write session summary to state/project_state.md
@@ -91,6 +95,21 @@ Preferred order for file operations:
 1. GitHub API (for GitHub data — richest, most structured)
 2. curl (for external HTTP — RSS, blogs, changelogs)
 3. Standard unix tools (grep, jq, sed — for parsing)
+
+## State File Maintenance
+
+### Rolling Archive (research_log.md)
+When research_log.md exceeds 100 entries, run `scripts/archive-research-log.sh`
+to move older entries to `state/research_log_archive.md`. The archive file is
+NOT read during session start — it exists only for historical reference.
+The archive script preserves the append-only contract: data is moved, not deleted.
+
+### SHA-scan Compaction
+When writing sha-scan entries to research_log.md, if all sources are unchanged
+for N consecutive runs (N >= 2), write a single summary line instead of
+per-source entries:
+  TIMESTAMP | sha-scan | All N sources unchanged (Xth consecutive) | no action
+Only expand to per-source detail when a source actually changes.
 
 ## Commit Message Convention
 feat(content): add new content for [topic]
