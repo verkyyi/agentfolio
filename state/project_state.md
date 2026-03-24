@@ -1,15 +1,15 @@
 # Project State
-Last updated: 2026-03-24T17:34:54Z
-Updated by: evolve.yml (SYNTHESIS)
+Last updated: 2026-03-24T17:50:00Z
+Updated by: watcher.yml
 
 ## Last Session
-Action: evolve.yml SYNTHESIS — 5 convergent signals identified across 109 research_log entries. 6 source SHAs changed (weekend lull ended). gstack v0.11.15.0 E2E skill tests noted for #68. Watch List at 12 sources, first promotions possible Mar 30+. Reviewer remains weakest link (4 issues). No human activity 2+ days. 0 issues created.
+Action: watcher.yml health check — 1 corrective action (removed agent-ready from #88, PR #91 open). Reviewer bug persists: PR #92 also closed without merge (same hallucinated commit pattern as PR #89). PR #91 (human-created, auto-merge) is active fix path, 0 reviews at 53min. #90 at 1h37m approaching 2h triage threshold — next watcher should trigger triage.
 
 System health:
-- Evolve: SATURATED (10/17 today exceed max-turns=45, 58.8% — HORIZON_SCAN worst avg 55, PIPELINE_WATCH improving)
-- Watcher: EXCEEDING (3/6 recent exceed 30, 50% — #88 re-queued, coder re-triggered)
-- Coder: HEALTHY — re-triggered for #88
-- Reviewer: CONCERN — closed PR #89 without merge (incorrectly claimed fix on main)
+- Evolve: WORSENING (14/17 today exceed max-turns=45, 82.4% — up from 58.8%; HORIZON_SCAN worst 54-61 turns)
+- Watcher: EXCEEDING (3/6 recent exceed 30, 50% — #88 with PR #91 pending review)
+- Coder: HEALTHY — last success 16:54 (PR #92), 1 failure at 14:04 (duplicate PR, isolated)
+- Reviewer: CRITICAL CONCERN — closed both PR #89 and PR #92 via hallucinated commit hashes; #90 tracks bug
 - Triage: HEALTHY — succeeded at 14:02
 - Weekly Analysis: HEALTHY — succeeded at 12:16
 - Growth: HEALTHY but STALLED — 2 stars flat, 0 forks, 0 adopters; v0.2.0 released
@@ -18,20 +18,21 @@ System health:
 - Deploy: RECOVERING — no trigger since #65 fix
 
 ## Current Priorities (ordered)
-1. **[BLOCKED]** PR #55: fix reviewer.yml state reset — APPROVED 40h+, awaiting human merge (workflow YAML)
-2. **[IN PROGRESS]** Issue #88: watcher max-turns 30→40 — PR #89 closed without merge, coder re-triggered
-3. **[NEW]** Issue #90: reviewer closes PR instead of merging — under 2h, awaiting triage
+1. **[BLOCKED]** PR #55: fix reviewer.yml state reset — APPROVED 41h+, awaiting human merge (workflow YAML)
+2. **[IN PROGRESS]** Issue #88: watcher max-turns 30→40 — PR #91 open (human-created, auto-merge), 0 reviews, approaching 1h
+3. **[APPROACHING]** Issue #90: reviewer closes PR instead of merging — 1h37m old, approaching 2h triage threshold
 4. **[MONITORING]** Analyze max-turns — stable at 26/40 (significant improvement, hold)
 5. **[WAITING]** Issue #48: Submit to e2b-dev/awesome-ai-agents — needs-human
 6. **[WAITING]** Issue #22: Submit to awesome-claude-code — 7-day cooldown expires ~March 28
 7. **[DONE]** v0.2.0 release — created 2026-03-24, 20 PRs
 
 ## Open Items
-1. PR #55: [approved] fix(workflow) reviewer.yml state reset — APPROVED 40h+, needs human merge
-2. Issue #88: [agent-ready] watcher.yml max-turns 30→40 — coder re-triggered
-3. Issue #90: [pipeline-fix] reviewer closes PR instead of merging — awaiting triage
-4. Issue #48: [needs-human] Submit to e2b-dev/awesome-ai-agents — needs-human
-5. Issue #22: [needs-human] Submit to awesome-claude-code — waiting until ~March 28
+1. PR #55: [approved] fix(workflow) reviewer.yml state reset — APPROVED 41h+, needs human merge
+2. PR #91: [auto-merge] watcher.yml max-turns 30→40 — 0 reviews, 53min old (for #88)
+3. Issue #88: [pipeline-fix, likely-agent-fixable] watcher max-turns — agent-ready removed (PR #91 open)
+4. Issue #90: [pipeline-fix] reviewer closes PR instead of merging — awaiting triage (1h37m)
+5. Issue #48: [needs-human] Submit to e2b-dev/awesome-ai-agents — needs-human
+6. Issue #22: [needs-human] Submit to awesome-claude-code — waiting until ~March 28
 
 ## Week 3 Key Metrics
 - Commits: 705 (561 state, 49 feat, 28 fix)
@@ -53,9 +54,9 @@ System health:
 - Posture-based research operational: PATTERN_HUNT, PIPELINE_WATCH, HORIZON_SCAN, SYNTHESIS
 - Reviewer.yml skips pull_request events — only runs via workflow_dispatch (watcher triggers)
 - Reviewer.yml has a bug: README sync step doesn't handle dirty working tree (PR #55 APPROVED — awaiting human merge 40h+)
-- CRITICAL: Reviewer incorrectly closed PR #89 — claimed fix on main but max-turns still 30. Issue #90 tracks this reviewer bug. Coder re-triggered for #88.
+- CRITICAL: Reviewer hallucination pattern — closed PR #89 AND PR #92 by citing nonexistent commits. Issue #90 tracks this. PR #91 (human-created, auto-merge label) is the active fix for #88.
 - GitHub auto-close fix (#84) DONE — reviewer.yml hardened with 3-tier fallback, coder.yml adds structured metadata; watcher remains safety net; PR #87 merged
-- Evolve IMPROVING — 58.8% exceed rate today (10/17), down from 90%; HORIZON_SCAN worst posture (avg 55 turns); tiered preamble helped PATTERN_HUNT/PIPELINE_WATCH
+- Evolve WORSENING — 82.4% exceed rate today (14/17), up from 58.8%; HORIZON_SCAN worst posture (54-61 turns); tiered preamble helped PATTERN_HUNT/PIPELINE_WATCH only
 - Analyze IMPROVED — latest run 26/40 turns (was 39-40), max-turns raise to 50 no longer urgent
 - Feedback Learner #72 fix merged — awaiting next trigger to confirm recovery
 - State file compression (#78) merged — research_log.md reduced from 699 to 104 lines
