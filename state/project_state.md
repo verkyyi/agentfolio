@@ -1,9 +1,9 @@
 # Project State
-Last updated: 2026-03-24T08:49:00Z
-Updated by: watcher.yml
+Last updated: 2026-03-24T08:56:00Z
+Updated by: coder.yml
 
 ## Last Session
-Action: watcher.yml health check — 2 corrective actions (re-triggered triage for #82 and #83, both >2h with 0 triage comments). All workflows healthy. Pipeline 96.7% success rate. Evolve turn count significantly improving (last 4 runs all under max-turns=45).
+Action: coder.yml — implemented StopFailure hook and degradation matrix for issue #82. Created .claude/hooks/stop-failure.cjs (API failure detection, structured logging, graceful state commit), registered in settings.json, added Degradation Matrix to evolve_config.md. PR opened.
 
 System health:
 - Evolve: IMPROVING (8/12 last exceed max-turns=45, 66.7%, last 4 all under — 43, 43, 38, 43)
@@ -56,6 +56,7 @@ System health:
 - Feedback Learner #72 fix merged — awaiting next trigger to confirm recovery
 - State file compression (#78) merged — research_log.md reduced from 699 to 104 lines
 - Circuit breaker (#76) merged — PostToolUseFailure hook with 3-failure threshold
+- StopFailure hook (#82) — API-level failure handling (rate limits, auth errors), complements circuit breaker
 - 4 standalone skill packages created (#66) — adversarial-review, session-protocol, harness, feedback-intake
 - SKILL.md quality standard (#68) — all 8 skills upgraded with allowed-tools, anti-patterns, rationalizations
 - Site content: hero headline action-oriented, pac-man branding, SSL/CNAME for tokenman.io
