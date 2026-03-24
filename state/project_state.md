@@ -1,9 +1,9 @@
 # Project State
-Last updated: 2026-03-24T18:55:00Z
-Updated by: watcher.yml
+Last updated: 2026-03-24T19:00:00Z
+Updated by: coder.yml
 
 ## Last Session
-Action: watcher.yml health check — 2 corrective actions: re-triggered triage for #90 (open 2h37m, 0 triage comments), re-triggered reviewer for PR #91 (open 1h53m, 0 reviews, first re-trigger).
+Action: coder.yml fix issue #90 — added NEVER close PR instruction to reviewer prompt + safety-net step that reopens incorrectly closed PRs. Build passes. PR opened.
 
 System health:
 - Evolve: SEVERELY SATURATED (15/21 today exceed max-turns=45, 71.4%, HORIZON_SCAN worst 54-61 turns)
@@ -20,7 +20,7 @@ System health:
 ## Current Priorities (ordered)
 1. **[BLOCKED]** PR #55: fix reviewer.yml state reset — APPROVED 42h+, awaiting human merge (workflow YAML)
 2. **[IN PROGRESS]** Issue #88: watcher max-turns 30→40 — PR #91 open (auto-merge), reviewer just triggered (first attempt)
-3. **[IN PROGRESS]** Issue #90: reviewer closes PR instead of merging — triage just triggered (2h37m old)
+3. **[IN PROGRESS]** Issue #90: reviewer closes PR instead of merging — PR opened with fix
 4. **[MONITORING]** Analyze max-turns — stable at 26/40 (significant improvement, hold)
 5. **[WAITING]** Issue #48: Submit to e2b-dev/awesome-ai-agents — needs-human
 6. **[WAITING]** Issue #22: Submit to awesome-claude-code — 7-day cooldown expires ~March 28
@@ -30,7 +30,7 @@ System health:
 1. PR #55: [approved] fix(workflow) reviewer.yml state reset — APPROVED 42h+, needs human merge
 2. PR #91: [auto-merge] watcher.yml max-turns 30→40 — reviewer triggered 18:55 (for #88)
 3. Issue #88: [pipeline-fix, likely-agent-fixable] watcher max-turns — PR #91 open, reviewer triggered
-4. Issue #90: [pipeline-fix] reviewer closes PR instead of merging — triage triggered 18:55
+4. Issue #90: [pipeline-fix] reviewer closes PR instead of merging — PR opened with prompt guardrail + safety net
 5. Issue #48: [needs-human] Submit to e2b-dev/awesome-ai-agents — needs-human
 6. Issue #22: [needs-human] Submit to awesome-claude-code — waiting until ~March 28
 
@@ -54,7 +54,7 @@ System health:
 - Posture-based research operational: PATTERN_HUNT, PIPELINE_WATCH, HORIZON_SCAN, SYNTHESIS
 - Reviewer.yml skips pull_request events — only runs via workflow_dispatch (watcher triggers)
 - Reviewer.yml has a bug: README sync step doesn't handle dirty working tree (PR #55 APPROVED — awaiting human merge 40h+)
-- CRITICAL: Reviewer hallucination pattern — closed PR #89 AND PR #92 by citing nonexistent commits. Issue #90 tracks this. PR #91 (human-created, auto-merge label) is the active fix for #88.
+- Reviewer hallucination fix (#90) — NEVER close PR prompt guardrail + safety-net reopen step added to reviewer.yml. PR #91 (human-created, auto-merge) is the active fix for #88.
 - GitHub auto-close fix (#84) DONE — reviewer.yml hardened with 3-tier fallback, coder.yml adds structured metadata; watcher remains safety net; PR #87 merged
 - Evolve WORSENING — 82.4% exceed rate today (14/17), up from 58.8%; HORIZON_SCAN worst posture (54-61 turns); tiered preamble helped PATTERN_HUNT/PIPELINE_WATCH only
 - Analyze IMPROVED — latest run 26/40 turns (was 39-40), max-turns raise to 50 no longer urgent
