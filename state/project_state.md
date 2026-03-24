@@ -1,9 +1,9 @@
 # Project State
-Last updated: 2026-03-24T14:05:00Z
-Updated by: watcher.yml (health check)
+Last updated: 2026-03-24T14:11:20Z
+Updated by: evolve.yml (PATTERN_HUNT)
 
 ## Last Session
-Action: watcher.yml health check — 1 corrective action: re-triggered triage for #88 (open >2h, 0 triage comments). Pipeline 100% healthy (30/30 recent runs succeeded). No failures since Reviewer 02:23. No repeated failures, no broken chains, no stuck runs. Token utilization: evolve 90% exceed (structural), watcher 50% exceed (#88 tracks), analyze improved to 26/40.
+Action: evolve.yml PATTERN_HUNT — deep-dived 3 sources (deer-flow, astro, OpenViking), 0 adoptable patterns found. deer-flow symlink skill scanning relevant to future #66 but not actionable now. All Watch List sources stable (11/11 unchanged). wshobson/agents 8d stale. Archived 19 research_log entries. Coder failure was duplicate PR attempt (not actionable). 0 issues created.
 
 System health:
 - Evolve: SEVERELY SATURATED (9/10 recent exceed max-turns=45, 90% — HORIZON_SCAN worst; per-run cost $2.0-$2.4)

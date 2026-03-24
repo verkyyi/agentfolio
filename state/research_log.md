@@ -2,25 +2,6 @@
 # Append-only. Written by evolve.yml during research phase.
 # Entries older than 100 are archived to state/research_log_archive.md by scripts/archive-research-log.sh.
 # Format: ISO_TIMESTAMP | source | finding_summary | action_taken
-2026-03-23T20:20:51Z | withastro/astro | 47694d0 new SHA ([ci] format commit — not actionable) | no action
-2026-03-23T20:20:51Z | verkyyi/tokenman | 119bba2 state commits only (internal) | no action
-2026-03-23T20:20:51Z | github-trending | 3337 repos (+30 from 3307), no breakout | no action
-2026-03-23T20:20:51Z | openai-harness-blog | Cloudflare blocked (persistent) | no action
-2026-03-23T20:20:51Z | pipeline-health | same 10 failed runs, all pre-date last evolve at 19:07. 0 new failures, 0 issues created | no action
-2026-03-23T20:34:28Z | garrytan/gstack | deep-dive: 10 new commits since f4bbfaa. v0.9.9.1 cross-model outside voice in plan reviews (Codex/subagent challenges primary review, tension detection + auto-TODOs). v0.11.6.0 /cso v2 infrastructure-first security audit (15 phases, finding fingerprints, variant analysis). v0.11.10.0 CI evals on Ubicloud (12 parallel runners, artifact comparison). v0.11.9.0 auto-heal stale installs. v0.11.7.0 /review satisfies ship readiness gate. | issue #64 created (cross-model outside voice); /cso covered by existing #17
-2026-03-23T20:34:28Z | anthropics/claude-code | deep-dive: v2.1.81 CHANGELOG — --bare flag for scripted -p calls (skips hooks/LSP/plugins, requires ANTHROPIC_API_KEY), --channels permission relay, background agent race fix, plan mode clear-context hidden by default | issue #63 created (--bare flag investigation)
-2026-03-23T20:34:28Z | affaan-m/everything-claude-code | deep-dive: df4f2df 6 gap-closing skills; Kiro IDE integration (4 PRs: base structure, agents, skills, steering files); skill-comply (automated behavioral compliance measurement); santa-method (multi-agent adversarial verification with convergence loop) | no issue — interesting patterns but not immediately actionable for our harness
-2026-03-23T20:34:28Z | VoltAgent/awesome-claude-code-subagents | deep-dive: fba002a Rails version-aware expert, Expo React Native expert, FastAPI + RL agents. Framework-specific experts, not harness patterns | no action
-2026-03-23T20:34:28Z | bytedance/deer-flow | SHA scan: 8b0f3fe unchanged | no action
-2026-03-23T20:34:28Z | wshobson/agents | SHA scan: 1ad2f00 unchanged (stale since 2026-03-17) | no action
-2026-03-23T20:34:28Z | hesreallyhim/awesome-claude-code | SHA scan: 018dc1d unchanged (bot ticker commit) | no action
-2026-03-23T20:34:28Z | actions/runner | SHA scan: e17e7aa unchanged | no action
-2026-03-23T20:34:28Z | withastro/astro | SHA scan: 47694d0 unchanged | no action
-2026-03-23T20:34:28Z | verkyyi/tokenman | SHA scan: 02f20af (state commits only) | no action
-2026-03-23T20:34:28Z | pipeline-health | 5 recent failures: 1 NEW (Deploy 20:29), 4 pre-existing. Not 3+ new, no forced PIPELINE_WATCH | no action
-2026-03-23T20:46:32Z | pipeline-health | PIPELINE_WATCH: 10 failed runs — 2 ACTIONABLE (Deploy e2e config, same root cause), 8 ALREADY-FIXED/INTERMITTENT. Deploy broken by commit 67a8974 adding e2e config with no test files. | Fixed: removed e2e lines from evolve_config.md, created+closed issue #65
-2026-03-23T20:46:32Z | usage-trends | Cost: $62 across 50 recent runs. Evolve ~$1.35/run avg (20 runs/12h), watcher ~$1.00/run (10 runs/12h). Evolve saturation 91%+ exceeding max-turns=45. Structural, known. | Logged, no new issue (covered by existing observations)
-2026-03-23T20:46:32Z | sha-scan | All 10 Active sources unchanged since last run — SHAs match exactly (claude-code 6aadfbd, gstack f4bbfaa, everything-claude-code df4f2df, awesome-claude-code 018dc1d, deer-flow 8b0f3fe, agents 1ad2f00, awesome-subagents fba002a, runner e17e7aa, astro 47694d0) | No action needed
 2026-03-23T21:28:05Z | horizon-scan | Searched 4 query sets (claude+code+agent, self-evolving+agent, claude+skills+workflow, claude+CLAUDE.md+automation). 40+ repos evaluated. Ecosystem growing fast: claude-mem 40K, antigravity-awesome-skills 27K, vibe-kanban 24K, planning-with-files 17K | 4 added to Watch List
 2026-03-23T21:28:05Z | thedotmack/claude-mem | NEW Watch List: 39K stars, v10.6.2, session memory with AI compression. Compress-filter-inject pipeline more sophisticated than our state/ read/write | Watch List
 2026-03-23T21:28:05Z | BloopAI/vibe-kanban | NEW Watch List: 24K stars, v0.1.36, PR-issue linking automation (fa00afc), multi-provider relay. Very active | Watch List
@@ -121,3 +102,7 @@
 2026-03-24T13:37:08Z | pipeline-health | 10 failed runs analyzed: 8 ALREADY-FIXED, 1 FIXED-UNTESTED (feedback-learner), 1 ALREADY-TRACKED (deploy e2e). 30/30 recent runs succeeded (100%). 0 new actionable issues. | pipeline stable
 2026-03-24T13:37:08Z | cost-analysis | Evolve: $1.91/run avg today (19 runs, $36.24 total). By posture: HORIZON_SCAN $2.23 (most expensive), SYNTHESIS $2.05, PIPELINE_WATCH $1.82, PATTERN_HUNT $1.67 (cheapest). Watcher: $1.18/run avg (8 runs, $9.46 total, rising from ~$0.87 yesterday). | cost trend noted
 2026-03-24T13:37:08Z | sha-scan | Active: 6/8 unchanged, 2 changed (deer-flow 4b15f14→14a3fa5, astro cb05c9b→016207a). claude-code unchanged 6th consecutive. wshobson/agents stale 8 days. Watch List: 11/12 unchanged, 1 changed (OpenViking f9ccea0→df8ba97). | noted for next PATTERN_HUNT
+2026-03-24T14:11:20Z | bytedance/deer-flow | SHA 14a3fa5→6bf5267: symlink-aware skill scanning (followlinks=True in os.walk for custom skills dir) + subprocess security fix (os.system→subprocess). Symlink pattern relevant to future #66 skill installation but not adoptable now (hardcoded paths). Security fix Python-specific. | deep-dived, 0 harness patterns
+2026-03-24T14:11:20Z | withastro/astro | SHA 016207a→7f43fba: head propagation refactor into unit-testable modules (#15999), StaticHtml React optimization (#14917), server island crash fix (#16048), ci format. All framework internals. | deep-dived, 0 harness patterns
+2026-03-24T14:11:20Z | volcengine/OpenViking | SHA df8ba97 (was f9ccea0→df8ba97): tool pruning (-229 lines from ov_file.py), actionable 422 error helper, embedding dimension validation, uninstall script. Tool pruning is good hygiene but premature for 8-skill set. | deep-dived, 0 harness patterns
+2026-03-24T14:11:20Z | sha-scan | Active: 7/8 unchanged (deer-flow 6bf5267 +1, astro 7f43fba +ci format). claude-code 6aadfbd 7th consecutive. wshobson/agents 1ad2f00 8d stale. Watch List: 11/11 all unchanged. | no action

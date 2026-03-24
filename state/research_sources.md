@@ -1,7 +1,7 @@
 # Research Sources
 # Managed by evolve.yml. Claude adds, prunes, and annotates freely.
 # Seeded from evolve_config.md on first run.
-# Last updated: 2026-03-24T12:30:20Z
+# Last updated: 2026-03-24T14:11:20Z
 
 ## Active Sources
 
@@ -32,8 +32,8 @@
 ### bytedance/deer-flow
 - **Why:** Multi-agent orchestration patterns from a major tech company
 - **Look for:** Agent coordination, state management, tool orchestration, LLM provider patterns
-- **Added:** 2026-03-21 (seed) | **Last deep:** 2026-03-24 | **Pattern hits:** 1
-- **Notes:** Very active (5+ commits/day). GuardrailMiddleware covered by #67. Deep-dived 2026-03-24: 4 new commits since 8b0f3fe — token usage per-turn indicator (#1229), CI lint-check.yml separated from tests (#1276), SubtaskCard tool-call filtering (#1242), i18n build fix (#1274). All frontend-specific, 0 harness patterns. Latest SHA: d0049ad.
+- **Added:** 2026-03-21 (seed) | **Last deep:** 2026-03-24T14:11 | **Pattern hits:** 1
+- **Notes:** Very active (5+ commits/day). GuardrailMiddleware covered by #67. Deep-dived 2026-03-24T14:11: symlink-aware skill scanning (#1292, followlinks=True in os.walk for custom skills dir — relevant to future #66 but not adoptable now) + subprocess security fix (#1289, os.system→subprocess, Python-specific). Latest SHA: 6bf5267.
 
 ### wshobson/agents
 - **Why:** Agent framework patterns — autonomous agent architectures
@@ -50,8 +50,8 @@
 ### withastro/astro
 - **Why:** Web framework we use — security fixes, breaking changes, new features
 - **Look for:** Security advisories, breaking changes in minor/major releases, new content collection features
-- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-03-24 | **Pattern hits:** 0
-- **Notes:** Only actionable for security fixes or features that affect our site build. View transition fix (skip when browser provides one) — Astro internals, not adoptable. Deep-dived cb05c9b: PR #16002 FD leak fix, PR #15941 recursion fs guard — both Node.js-specific, 0 harness patterns.
+- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-03-24T14:11 | **Pattern hits:** 0
+- **Notes:** Only actionable for security fixes or features that affect our site build. Deep-dived 2026-03-24T14:11: head propagation refactor (#15999), StaticHtml React optimization (#14917), server island crash fix (#16048). All framework internals, 0 harness patterns. Latest SHA: 7f43fba.
 
 ### verkyyi/tokenman
 - **Why:** Self-reference — track forks, adopters, and how the scaffold is used
@@ -89,8 +89,8 @@
 ### volcengine/OpenViking
 - **Why:** Self-evolving context database (18.4K stars) — unified context management (memory, resources, skills) via file system paradigm, hierarchical context delivery
 - **Look for:** "ov doctor" diagnostic patterns, loop memory optimization, context/memory/loop separation, self-evolving architecture
-- **Added:** 2026-03-23 (horizon scan) | **Observations:** 9 | **First seen:** 2026-03-23
-- **Notes:** Very active (5+ commits/day). SHA f9ccea0 (was 2771765). Memory extract refactor (#916) — templating and update mechanism optimization. API key requirement in trusted auth mode (#924). Circuit breaker for API retry storms (#772) — validates our #76 pattern. Config validation with friendly suggestions (#904). Python. Bot agent has context.py/loop.py/memory.py separation. "ov doctor" diagnostic command merged (#851).
+- **Added:** 2026-03-23 (horizon scan) | **Observations:** 11 | **First seen:** 2026-03-23
+- **Notes:** Very active (5+ commits/day). SHA df8ba97. Deep-dived 2026-03-24T14:11: tool pruning (-229 lines from ov_file.py, #929), actionable 422 error helper (#928), embedding dimension validation (#930), uninstall script (#933). Tool pruning good hygiene but premature for our 8-skill set. 0 harness patterns. Previous: circuit breaker (#772) validates #76, config validation (#904), "ov doctor" (#851).
 
 ### OthmanAdi/planning-with-files
 - **Why:** Persistent markdown planning skill (16.9K stars) — Manus-style file-based planning for Claude Code
