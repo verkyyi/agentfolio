@@ -1,45 +1,45 @@
 # Last Evolve Summary
-Timestamp: 2026-03-24T06:39:30Z
-Main HEAD: 7314d289e8e50958d14c98aaddb0f768a20bf3aa
-Posture: PATTERN_HUNT (gstack queued deep-dive from last HORIZON_SCAN, under-represented in 8-run window 2 vs target 3)
-Posture history: [PATTERN_HUNT, HORIZON_SCAN, PIPELINE_WATCH, PATTERN_HUNT, SYNTHESIS, HORIZON_SCAN, PATTERN_HUNT, HORIZON_SCAN]
+Timestamp: 2026-03-24T07:08:25Z
+Main HEAD: f988b424a0a96aec1697efd76f03ed2e1d827578
+Posture: SYNTHESIS (5 runs since last SYNTHESIS, most overdue; accumulated findings from 3 PATTERN_HUNT + 2 HORIZON_SCAN worth synthesizing)
+Posture history: [PIPELINE_WATCH, PATTERN_HUNT, SYNTHESIS, HORIZON_SCAN, PATTERN_HUNT, HORIZON_SCAN, PATTERN_HUNT, SYNTHESIS]
 Runs since each:
-  PATTERN_HUNT: 0
-  PIPELINE_WATCH: 2
-  HORIZON_SCAN: 1
-  SYNTHESIS: 4
-Open issues: #22, #48, #83
+  PATTERN_HUNT: 2
+  PIPELINE_WATCH: 4
+  HORIZON_SCAN: 3
+  SYNTHESIS: 0
+Open issues: #22, #48, #82, #83, #84
 
 ## Source Digests
-anthropics/claude-code: 6aadfbd | last-deep: 2026-03-24 | unchanged (11th)
-garrytan/gstack: dc5e053 | last-deep: 2026-03-24 | CHANGED — v0.11.12.0 tiered preamble + WorktreeManager (issue #83)
-affaan-m/everything-claude-code: df4f2df | last-deep: 2026-03-23 | unchanged (11th)
-hesreallyhim/awesome-claude-code: 09f3028 | last-deep: 2026-03-24 | changed (ticker-only, 0 hits)
-bytedance/deer-flow: c5ddc6a | last-deep: 2026-03-24 | changed (dep-bump/frontend, 0 hits)
-wshobson/agents: 1ad2f00 | last-deep: 2026-03-24 | unchanged (4th, stale since Mar 17)
-VoltAgent/awesome-claude-code-subagents: fba002a | last-deep: 2026-03-23 | unchanged (11th, 0 hits)
-actions/runner: e17e7aa | last-deep: 2026-03-24 | unchanged (11th)
-withastro/astro: 47694d0 | last-deep: 2026-03-24 | unchanged (11th)
-verkyyi/tokenman: 7314d28 | last-deep: never | self-update
+anthropics/claude-code: 6aadfbd | last-deep: 2026-03-24 | unchanged
+garrytan/gstack: dc5e053 | last-deep: 2026-03-24 | unchanged
+affaan-m/everything-claude-code: df4f2df | last-deep: 2026-03-23 | unchanged
+hesreallyhim/awesome-claude-code: 09f3028 | last-deep: 2026-03-24 | unchanged (ticker-only)
+bytedance/deer-flow: c5ddc6a | last-deep: 2026-03-24 | unchanged
+wshobson/agents: 1ad2f00 | last-deep: 2026-03-24 | stale (Mar 17, 0 hits, approaching prune threshold)
+VoltAgent/awesome-claude-code-subagents: fba002a | last-deep: 2026-03-23 | unchanged (0 hits, 11+ runs)
+actions/runner: e17e7aa | last-deep: 2026-03-24 | unchanged
+withastro/astro: 846f27f | last-deep: 2026-03-24 | CHANGED (was 47694d0, queue for next PATTERN_HUNT)
+verkyyi/tokenman: f988b42 | last-deep: never | self-update
 
 ## Watch List Status
 thedotmack/claude-mem: e2a2302 | obs: 4 | unchanged
 BloopAI/vibe-kanban: 83192b3 | obs: 5 | unchanged
 trailofbits/skills: 5c15f4f | obs: 5 | unchanged
-sickn33/antigravity-awesome-skills: 8f5b56a | obs: 6 | changed (star-chart only)
-volcengine/OpenViking: 79cc248 | obs: 5 | changed (task-defaults)
+sickn33/antigravity-awesome-skills: 8f5b56a | obs: 6 | unchanged
+volcengine/OpenViking: b85a9ed | obs: 5 | CHANGED (was 79cc248)
 OthmanAdi/planning-with-files: 3b6c3ce | obs: 3 | unchanged
 ruvnet/ruflo: 0590bf2 | obs: 3 | unchanged
 SethGammon/Citadel: 9da7c72 | obs: 3 | unchanged
-anthropics/claude-plugins-official: 7074ac0 | obs: 4 | changed (iMessage-channel)
+anthropics/claude-plugins-official: 79caa0d | obs: 4 | CHANGED (was 7074ac0)
 vibeeval/vibecosystem: b3e8890 | obs: 2 | unchanged
 agent-sh/agnix: 55adfcb | obs: 1 | unchanged
-intertwine/hive-orchestrator: 51494de | obs: 2 | unchanged (deep-dived: canonical skills dir, corpus fingerprint guard)
+intertwine/hive-orchestrator: 51494de | obs: 2 | unchanged
 
 ## Findings This Run
-- gstack v0.11.12.0: tiered preamble system (T1-T4) — skills pay for only needed context, ~40% token reduction. Directly addresses evolve saturation. Issue #83 created.
-- gstack v0.11.12.0: WorktreeManager for E2E test isolation with SHA-256 dedup and patch harvesting. Not immediately adoptable.
-- hive-orchestrator: canonical skills/ dir with symlinks to .agents/.claude/.opencode — validates #66 direction.
-- hive-orchestrator: corpus fingerprint guard (SHA-256 skip when docs unchanged) — validates our SHA-scan approach.
-- SHA scan: 3 Active changed (gstack substantive, 2 automated/frontend), 3 Watch List changed (all operational).
-1 issue created (#83).
+- Convergent signal: Token saturation at 100%, multi-source solutions converging (#83 tiered preamble, #78 state compression merged). Strongest cross-run signal.
+- Convergent signal: GitHub auto-close gap — 6 manual closes in 7 days, persistent. Issue #84 created.
+- Convergent signal: Source portfolio imbalance stable — gstack 78% of hits, 6 Active at 0. No sources meet drop threshold yet.
+- Convergent signal: Growth flat, no human activity since Mar 22. FIX_PROCESS resolved, GROW_REACH blocked on needs-human.
+- SHA scan: 1 Active changed (astro), 2 Watch List changed (OpenViking, claude-plugins-official).
+1 issue created (#84).

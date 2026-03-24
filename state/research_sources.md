@@ -1,7 +1,7 @@
 # Research Sources
 # Managed by evolve.yml. Claude adds, prunes, and annotates freely.
 # Seeded from evolve_config.md on first run.
-# Last updated: 2026-03-24T06:39:30Z
+# Last updated: 2026-03-24T07:08:25Z
 
 ## Active Sources
 
@@ -95,8 +95,8 @@
 ### volcengine/OpenViking
 - **Why:** Self-evolving context database (18.4K stars) — unified context management (memory, resources, skills) via file system paradigm, hierarchical context delivery
 - **Look for:** "ov doctor" diagnostic patterns, loop memory optimization, context/memory/loop separation, self-evolving architecture
-- **Added:** 2026-03-23 (horizon scan) | **Observations:** 4 | **First seen:** 2026-03-23
-- **Notes:** Very active (5+ commits/day). SHA 7d9075a (was a34744a). Circuit breaker for API retry storms (#772) — validates our #76 pattern. Config validation with friendly suggestions (#904). Concurrent batch operations. Python. Bot agent has context.py/loop.py/memory.py separation. "ov doctor" diagnostic command merged (#851).
+- **Added:** 2026-03-23 (horizon scan) | **Observations:** 5 | **First seen:** 2026-03-23
+- **Notes:** Very active (5+ commits/day). SHA b85a9ed (was 79cc248). Circuit breaker for API retry storms (#772) — validates our #76 pattern. Config validation with friendly suggestions (#904). Concurrent batch operations. Python. Bot agent has context.py/loop.py/memory.py separation. "ov doctor" diagnostic command merged (#851).
 
 ### OthmanAdi/planning-with-files
 - **Why:** Persistent markdown planning skill (16.9K stars) — Manus-style file-based planning for Claude Code
@@ -119,8 +119,8 @@
 ### anthropics/claude-plugins-official
 - **Why:** Official Anthropic plugin directory (14.3K stars) — distribution channel for Claude Code plugins with standard format
 - **Look for:** Plugin format updates, new submission requirements, plugin.json schema changes, new official plugins relevant to harness patterns
-- **Added:** 2026-03-24 (horizon scan) | **Observations:** 3 | **First seen:** 2026-03-24
-- **Notes:** SHA b3a0714 (was 15268f0). Inline buttons for Telegram/Discord permission approval (#945) — UI, not harness. Standard format: .claude-plugin/plugin.json + commands/ + agents/ + skills/. Installation via `/plugin install`. External submission form. 15+ external plugins, 30+ internal (code-review, security-guidance, skill-creator, hookify). Distribution channel for #66.
+- **Added:** 2026-03-24 (horizon scan) | **Observations:** 4 | **First seen:** 2026-03-24
+- **Notes:** SHA 79caa0d (was 7074ac0). Inline buttons for Telegram/Discord permission approval (#945) — UI, not harness. Standard format: .claude-plugin/plugin.json + commands/ + agents/ + skills/. Installation via `/plugin install`. External submission form. 15+ external plugins, 30+ internal (code-review, security-guidance, skill-creator, hookify). Distribution channel for #66.
 
 ### vibeeval/vibecosystem
 - **Why:** Comprehensive agent team (275 stars) — 119 agents, 208 skills, 49 hooks, 21 rules. Self-learning pattern where errors auto-become rules

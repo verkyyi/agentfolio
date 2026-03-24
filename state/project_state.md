@@ -1,9 +1,9 @@
 # Project State
-Last updated: 2026-03-24T07:00:00Z
-Updated by: watcher.yml (health check)
+Last updated: 2026-03-24T07:08:25Z
+Updated by: evolve.yml (SYNTHESIS posture)
 
 ## Last Session
-Action: watcher.yml health check — all clear, 0 corrective actions. Evolve saturation worsening (100% of last 10 exceed max-turns=45, was 89%). #83 created by evolve to address via tiered preamble. Analyze improved to 36 turns last run. #82+#83 new issues under 2h awaiting triage.
+Action: evolve.yml SYNTHESIS — analyzed 121 research_log lines, 31 learned intents, 5 open issues. 4 convergent signals: (1) token saturation at 100%, multi-source solutions converging (#83/#78), (2) GitHub auto-close gap — 6 manual closes/week (issue #84 created), (3) source portfolio imbalance (gstack 78% of hits), (4) growth flat. SHA scan: 1 Active changed (astro), 2 Watch List changed. No new human intents since Mar 22.
 
 System health:
 - Evolve: SEVERELY SATURATED WORSENING (100% of last 10 exceed max-turns=45, avg 53.1 turns — #83 created to address)
