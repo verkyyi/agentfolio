@@ -1,9 +1,9 @@
 # Project State
-Last updated: 2026-03-24T01:00:00Z
-Updated by: watcher.yml
+Last updated: 2026-03-24T01:15:00Z
+Updated by: coder.yml
 
 ## Last Session
-Action: watcher.yml health check. 4 corrective actions: re-triggered triage for #66, #67, #68 (all >2h with 0 triage comments); added likely-agent-fixable to #72 (Feedback Learner script injection in workflow YAML). PR #71 approaching 1h with 0 formal reviews — watch next run.
+Action: coder.yml — implemented hooks-based guardrail enforcement for issue #67. Created guard.sh PreToolUse hook, guardrail_policy.json deny rules, and registered hook in settings.json. Opened PR for issue #67.
 
 System health:
 - Evolve: SEVERELY SATURATED (structural, 90% exceed max-turns=45, stable)
