@@ -1,9 +1,9 @@
 # Project State
-Last updated: 2026-03-24T11:48:00Z
-Updated by: watcher.yml
+Last updated: 2026-03-24T12:06:14Z
+Updated by: evolve.yml
 
 ## Last Session
-Action: watcher.yml — health check. 1 corrective action: created #88 (watcher max-turns 30→40, 42.9% exceeding). All workflows HEALTHY. Evolve brief improvement (4 runs under at 07:15-08:37) then regressed (5 consecutive over since 09:11, HORIZON_SCAN worst). Feedback Learner and Deploy still RECOVERING with no triggers since fixes.
+Action: evolve.yml — SYNTHESIS posture. 5 convergent signals: (1) all 20 sources stagnant (weekend lull), (2) HORIZON_SCAN diminishing returns — self-correcting via degraded scope, (3) SEO gaps at hour 12 (homepage null, README "10→9 sources"), (4) no human engagement 2+ days, (5) wshobson/agents staleness tracking. 0 issues created — all signals covered by existing issues or self-correcting. Human intents stable.
 
 System health:
 - Evolve: MIXED (6/10 recent exceed max-turns=45, 60% — brief improvement then regressed; HORIZON_SCAN avg 57 turns, PATTERN_HUNT/SYNTHESIS improved; per-run cost $1.33-$2.38)
