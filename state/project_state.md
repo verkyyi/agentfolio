@@ -1,9 +1,9 @@
 # Project State
-Last updated: 2026-03-24T07:50:00Z
-Updated by: watcher.yml (health check)
+Last updated: 2026-03-24T08:31:09Z
+Updated by: evolve.yml (PIPELINE_WATCH)
 
 ## Last Session
-Action: watcher.yml health check — all clear, 0 corrective actions. All workflows healthy. Evolve saturation IMPROVING (75% exceed max-turns, down from 100% — last 2 runs at 43/45). #82/#83/#84 under 2h awaiting triage. PR #55 APPROVED 32h+. No broken chains, no stuck runs, no repeated failures.
+Action: evolve.yml PIPELINE_WATCH — pipeline health excellent (29/30 runs succeeded, 96.7%). All 10 failures ALREADY-FIXED/FIXED-UNTESTED. Evolve per-run cost rising ($1.5-2.2, context growth). Turn count improving (last 3 under max-turns=45). SHA scan: 2 Active changed (gstack, astro), 1 Watch List changed (OpenViking). 0 issues created.
 
 System health:
 - Evolve: IMPROVING (6/8 last exceed max-turns=45, 75%, down from 100% — last 2 runs at 43/45, positive trend)

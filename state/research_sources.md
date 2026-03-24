@@ -1,7 +1,7 @@
 # Research Sources
 # Managed by evolve.yml. Claude adds, prunes, and annotates freely.
 # Seeded from evolve_config.md on first run.
-# Last updated: 2026-03-24T07:08:25Z
+# Last updated: 2026-03-24T08:31:09Z
 
 ## Active Sources
 
@@ -15,7 +15,7 @@
 - **Why:** Harness engineering patterns — skills, slash commands, review protocols, agent orchestration
 - **Look for:** New skill files, workflow patterns, agent guardrails, PR review techniques, structured output formats
 - **Added:** 2026-03-20 (seed) | **Last deep:** 2026-03-24 | **Pattern hits:** 8
-- **Notes:** Most productive source so far. v0.9.7-v0.11.3 yielded adversarial review, structured tables, anti-sycophancy, pre-merge gate, security patterns. v0.9.9.1: cross-model outside voice (issue #64). v0.11.6.0: /cso v2 infrastructure-first security audit (covered by #17). v0.11.10.0: CI evals with parallel runners (no evals framework yet). v0.11.9.0: auto-heal stale installs + Codex 1024-char description guard (build-time validation, not issueworthy). v0.11.7.0: zsh glob compat + /review satisfies ship readiness gate. v0.11.12.0 (SHA dc5e053, PR #425): tiered preamble system (T1-T4) — skills pay for only needed context, ~40% token reduction for lightweight skills. WorktreeManager for E2E test isolation with SHA-256 dedup. Modular resolver arch. Token budget dashboard. Issue #83 (tiered preamble).
+- **Notes:** Most productive source so far. v0.9.7-v0.11.3 yielded adversarial review, structured tables, anti-sycophancy, pre-merge gate, security patterns. v0.9.9.1: cross-model outside voice (issue #64). v0.11.6.0: /cso v2 infrastructure-first security audit (covered by #17). v0.11.10.0: CI evals with parallel runners (no evals framework yet). v0.11.9.0: auto-heal stale installs + Codex 1024-char description guard (build-time validation, not issueworthy). v0.11.7.0: zsh glob compat + /review satisfies ship readiness gate. v0.11.12.0 (SHA dc5e053, PR #425): tiered preamble system (T1-T4) — skills pay for only needed context, ~40% token reduction for lightweight skills. WorktreeManager for E2E test isolation with SHA-256 dedup. Modular resolver arch. Token budget dashboard. Issue #83 (tiered preamble). SHA dc5e053→3501f5d (new commits since last scan, queue for next PATTERN_HUNT).
 
 ### affaan-m/everything-claude-code
 - **Why:** Community harness patterns, skill collections, optimization techniques
@@ -57,7 +57,7 @@
 - **Why:** Web framework we use — security fixes, breaking changes, new features
 - **Look for:** Security advisories, breaking changes in minor/major releases, new content collection features
 - **Added:** 2026-03-20 (seed) | **Last deep:** 2026-03-24 | **Pattern hits:** 0
-- **Notes:** Only actionable for security fixes or features that affect our site build. View transition fix (skip when browser provides one) — Astro internals, not adoptable.
+- **Notes:** Only actionable for security fixes or features that affect our site build. View transition fix (skip when browser provides one) — Astro internals, not adoptable. SHA 846f27f→cb05c9b (new commits, queue for next PATTERN_HUNT).
 
 ### verkyyi/tokenman
 - **Why:** Self-reference — track forks, adopters, and how the scaffold is used
@@ -96,7 +96,7 @@
 - **Why:** Self-evolving context database (18.4K stars) — unified context management (memory, resources, skills) via file system paradigm, hierarchical context delivery
 - **Look for:** "ov doctor" diagnostic patterns, loop memory optimization, context/memory/loop separation, self-evolving architecture
 - **Added:** 2026-03-23 (horizon scan) | **Observations:** 5 | **First seen:** 2026-03-23
-- **Notes:** Very active (5+ commits/day). SHA b85a9ed (was 79cc248). Circuit breaker for API retry storms (#772) — validates our #76 pattern. Config validation with friendly suggestions (#904). Concurrent batch operations. Python. Bot agent has context.py/loop.py/memory.py separation. "ov doctor" diagnostic command merged (#851).
+- **Notes:** Very active (5+ commits/day). SHA 2771765 (was b85a9ed). Circuit breaker for API retry storms (#772) — validates our #76 pattern. Config validation with friendly suggestions (#904). Concurrent batch operations. Python. Bot agent has context.py/loop.py/memory.py separation. "ov doctor" diagnostic command merged (#851).
 
 ### OthmanAdi/planning-with-files
 - **Why:** Persistent markdown planning skill (16.9K stars) — Manus-style file-based planning for Claude Code
