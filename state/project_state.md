@@ -1,35 +1,38 @@
 # Project State
-Last updated: 2026-03-24T16:55:00Z
-Updated by: coder.yml (fix issue #88)
+Last updated: 2026-03-24T18:55:00Z
+Updated by: watcher.yml
 
 ## Last Session
-Action: coder.yml — fixed issue #88: changed watcher.yml --max-turns from 30 to 40. PR #89 was previously closed without merge (reviewer error). Created new PR with the fix. Build passes.
+Action: watcher.yml health check — 2 corrective actions: re-triggered triage for #90 (open 2h37m, 0 triage comments), re-triggered reviewer for PR #91 (open 1h53m, 0 reviews, first re-trigger).
 
 System health:
-- Evolve: SATURATED (11/14 recent exceed max-turns=45, 78.6% — HORIZON_SCAN worst at 54-61 turns, PIPELINE_WATCH improving 44-48)
-- Watcher: ADDRESSED (4/4 recent exceed 30, 100% — #88/PR #89 reviewer now triggered)
-- Coder: HEALTHY — last succeeded at 14:07 (28 turns)
-- Reviewer: HEALTHY — 8-24 turns, 5 consecutive successes, now re-triggered for PR #89
-- Triage: HEALTHY — succeeded at 14:02
-- Weekly Analysis: HEALTHY — succeeded at 12:16
+- Evolve: SEVERELY SATURATED (15/21 today exceed max-turns=45, 71.4%, HORIZON_SCAN worst 54-61 turns)
+- Watcher: EXCEEDING (5/9 today exceed 30, 55.6% — #88 with PR #91 pending review, reviewer just triggered)
+- Coder: HEALTHY — last success 16:54 (PR #92), 1 failure at 14:04 (duplicate PR, isolated)
+- Reviewer: CRITICAL CONCERN — hallucination pattern confirmed (closed PR #89 + PR #92 via fake commits); #90 tracks bug; reviewer re-triggered for PR #91 (first attempt)
+- Triage: HEALTHY — succeeded at 14:02, re-triggered for #90
+- Weekly Analysis: HEALTHY — succeeded at 18:20
 - Growth: HEALTHY but STALLED — 2 stars flat, 0 forks, 0 adopters; v0.2.0 released
 - Analyze: SIGNIFICANTLY IMPROVED (26/40 turns, stable)
 - Feedback Learner: RECOVERING — #72 fix merged, last failure 00:05, no trigger since
 - Deploy: RECOVERING — no trigger since #65 fix
 
 ## Current Priorities (ordered)
-1. **[BLOCKED]** PR #55: fix reviewer.yml state reset — APPROVED 40h+, awaiting human merge (workflow YAML)
-2. **[IN PROGRESS]** Issue #88: New PR opened (PR #89 was closed without merge — reviewer error)
-3. **[MONITORING]** Analyze max-turns — stable at 26/40 (significant improvement, hold)
-4. **[WAITING]** Issue #48: Submit to e2b-dev/awesome-ai-agents — needs-human
-5. **[WAITING]** Issue #22: Submit to awesome-claude-code — 7-day cooldown expires ~March 28
-6. **[DONE]** v0.2.0 release — created 2026-03-24, 20 PRs
+1. **[BLOCKED]** PR #55: fix reviewer.yml state reset — APPROVED 42h+, awaiting human merge (workflow YAML)
+2. **[IN PROGRESS]** Issue #88: watcher max-turns 30→40 — PR #91 open (auto-merge), reviewer just triggered (first attempt)
+3. **[IN PROGRESS]** Issue #90: reviewer closes PR instead of merging — triage just triggered (2h37m old)
+4. **[MONITORING]** Analyze max-turns — stable at 26/40 (significant improvement, hold)
+5. **[WAITING]** Issue #48: Submit to e2b-dev/awesome-ai-agents — needs-human
+6. **[WAITING]** Issue #22: Submit to awesome-claude-code — 7-day cooldown expires ~March 28
+7. **[DONE]** v0.2.0 release — created 2026-03-24, 20 PRs
 
 ## Open Items
-1. PR #55: [approved] fix(workflow) reviewer.yml state reset — APPROVED 40h+, needs human merge
-2. PR #89: [open] fix(workflow) watcher.yml max-turns 30→40 — reviewer re-triggered
-3. Issue #48: [needs-human] Submit to e2b-dev/awesome-ai-agents — needs-human
-4. Issue #22: [needs-human] Submit to awesome-claude-code — waiting until ~March 28
+1. PR #55: [approved] fix(workflow) reviewer.yml state reset — APPROVED 42h+, needs human merge
+2. PR #91: [auto-merge] watcher.yml max-turns 30→40 — reviewer triggered 18:55 (for #88)
+3. Issue #88: [pipeline-fix, likely-agent-fixable] watcher max-turns — PR #91 open, reviewer triggered
+4. Issue #90: [pipeline-fix] reviewer closes PR instead of merging — triage triggered 18:55
+5. Issue #48: [needs-human] Submit to e2b-dev/awesome-ai-agents — needs-human
+6. Issue #22: [needs-human] Submit to awesome-claude-code — waiting until ~March 28
 
 ## Week 3 Key Metrics
 - Commits: 705 (561 state, 49 feat, 28 fix)
@@ -39,7 +42,7 @@ System health:
 - Research sources monitored: 10 active + 12 watch list (grew from 4)
 - Cost: $132.70/week (evolve 64%, watcher 24%)
 - Stars: 2 | Forks: 0 | Adopters: 0
-- Growth: flat at 2 stars; #22/#48 blocked on needs-human; no human activity since Mar 22
+- Growth: flat at 2 stars 48h+; v0.2.0 9h old; #22/#48 blocked needs-human; awesome-claude-code 31.6K (growing); next action: #22 submission ~March 28
 
 ## Critical Note for Next Agent
 - All workflows now gate on state/evolve_config.md — if this file is deleted, everything stops
@@ -50,10 +53,10 @@ System health:
 - Evolve lightweight mode gate deployed (commit ce1994c) — skips Steps 2b-2h when sources unchanged 2+ consecutive runs
 - Posture-based research operational: PATTERN_HUNT, PIPELINE_WATCH, HORIZON_SCAN, SYNTHESIS
 - Reviewer.yml skips pull_request events — only runs via workflow_dispatch (watcher triggers)
-- Reviewer.yml has a bug: README sync step doesn't handle dirty working tree (PR #55 APPROVED — awaiting human merge 36h+)
-- Watcher max-turns raised 30→40 — #88 fix re-implemented (PR #89 was closed without merge by reviewer error), new PR opened
+- Reviewer.yml has a bug: README sync step doesn't handle dirty working tree (PR #55 APPROVED — awaiting human merge 40h+)
+- CRITICAL: Reviewer hallucination pattern — closed PR #89 AND PR #92 by citing nonexistent commits. Issue #90 tracks this. PR #91 (human-created, auto-merge label) is the active fix for #88.
 - GitHub auto-close fix (#84) DONE — reviewer.yml hardened with 3-tier fallback, coder.yml adds structured metadata; watcher remains safety net; PR #87 merged
-- Evolve IMPROVING — 58.8% exceed rate today (10/17), down from 90%; HORIZON_SCAN worst posture (avg 55 turns); tiered preamble helped PATTERN_HUNT/PIPELINE_WATCH
+- Evolve WORSENING — 82.4% exceed rate today (14/17), up from 58.8%; HORIZON_SCAN worst posture (54-61 turns); tiered preamble helped PATTERN_HUNT/PIPELINE_WATCH only
 - Analyze IMPROVED — latest run 26/40 turns (was 39-40), max-turns raise to 50 no longer urgent
 - Feedback Learner #72 fix merged — awaiting next trigger to confirm recovery
 - State file compression (#78) merged — research_log.md reduced from 699 to 104 lines
