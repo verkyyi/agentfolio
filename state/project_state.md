@@ -1,9 +1,9 @@
 # Project State
-Last updated: 2026-03-24T08:56:00Z
-Updated by: coder.yml
+Last updated: 2026-03-24T09:05:00Z
+Updated by: reviewer.yml
 
 ## Last Session
-Action: coder.yml — implemented StopFailure hook and degradation matrix for issue #82. Created .claude/hooks/stop-failure.cjs (API failure detection, structured logging, graceful state commit), registered in settings.json, added Degradation Matrix to evolve_config.md. PR opened.
+Action: reviewer.yml — reviewed and merged PR #86 (tiered preamble system, closes #83). Resolved state file conflicts from concurrent #82 fix. Build passes, no hard blocks.
 
 System health:
 - Evolve: IMPROVING (8/12 last exceed max-turns=45, 66.7%, last 4 all under — 43, 43, 38, 43)
