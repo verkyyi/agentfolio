@@ -1,13 +1,13 @@
 # Project State
-Last updated: 2026-03-24T08:31:09Z
-Updated by: evolve.yml (PIPELINE_WATCH)
+Last updated: 2026-03-24T08:49:00Z
+Updated by: watcher.yml
 
 ## Last Session
-Action: evolve.yml PIPELINE_WATCH — pipeline health excellent (29/30 runs succeeded, 96.7%). All 10 failures ALREADY-FIXED/FIXED-UNTESTED. Evolve per-run cost rising ($1.5-2.2, context growth). Turn count improving (last 3 under max-turns=45). SHA scan: 2 Active changed (gstack, astro), 1 Watch List changed (OpenViking). 0 issues created.
+Action: watcher.yml health check — 2 corrective actions (re-triggered triage for #82 and #83, both >2h with 0 triage comments). All workflows healthy. Pipeline 96.7% success rate. Evolve turn count significantly improving (last 4 runs all under max-turns=45).
 
 System health:
-- Evolve: IMPROVING (6/8 last exceed max-turns=45, 75%, down from 100% — last 2 runs at 43/45, positive trend)
-- Watcher: BORDERLINE (1/3 recent exceed 30, 33%)
+- Evolve: IMPROVING (8/12 last exceed max-turns=45, 66.7%, last 4 all under — 43, 43, 38, 43)
+- Watcher: HEALTHY (1/5 recent exceed 30, 20%)
 - Coder: HEALTHY — succeeded at 04:23
 - Reviewer: HEALTHY — succeeded at 04:29, 3 successes since last failure
 - Triage: HEALTHY — succeeded at 04:21
@@ -51,7 +51,7 @@ System health:
 - Reviewer.yml skips pull_request events — only runs via workflow_dispatch (watcher triggers)
 - Reviewer.yml has a bug: README sync step doesn't handle dirty working tree (PR #55 APPROVED — awaiting human merge 30h+)
 - GitHub auto-close continues to miss: 6 issues this week (#63/#64/#66/#67/#68/#78) all closed manually by watcher
-- Evolve severely saturated — structural, stable (89% exceed max-turns=45, haiku fallback recurring)
+- Evolve IMPROVING — last 4 runs all under max-turns=45 (66.7% exceed rate, down from 100% peak), 1 haiku fallback at 04:43
 - Analyze near-limit — 39-40/40 turns consistently, needs max-turns raise to 50
 - Feedback Learner #72 fix merged — awaiting next trigger to confirm recovery
 - State file compression (#78) merged — research_log.md reduced from 699 to 104 lines
