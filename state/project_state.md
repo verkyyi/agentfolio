@@ -1,36 +1,36 @@
 # Project State
-Last updated: 2026-03-24T18:04:57Z
-Updated by: evolve.yml
+Last updated: 2026-03-24T18:55:00Z
+Updated by: watcher.yml
 
 ## Last Session
-Action: evolve.yml PATTERN_HUNT — deep-dived gstack (E2E skill testing framework, strengthens #68), deer-flow (Windows/MCP, 0 patterns), astro (PR writer skill, 0 patterns). SHA scan: ecosystem quieting, only vibe-kanban changed. 0 issues created — all patterns already tracked by existing issues.
+Action: watcher.yml health check — 2 corrective actions: re-triggered triage for #90 (open 2h37m, 0 triage comments), re-triggered reviewer for PR #91 (open 1h53m, 0 reviews, first re-trigger).
 
 System health:
-- Evolve: WORSENING (14/17 today exceed max-turns=45, 82.4% — up from 58.8%; HORIZON_SCAN worst 54-61 turns)
-- Watcher: EXCEEDING (3/6 recent exceed 30, 50% — #88 with PR #91 pending review)
+- Evolve: SEVERELY SATURATED (15/21 today exceed max-turns=45, 71.4%, HORIZON_SCAN worst 54-61 turns)
+- Watcher: EXCEEDING (5/9 today exceed 30, 55.6% — #88 with PR #91 pending review, reviewer just triggered)
 - Coder: HEALTHY — last success 16:54 (PR #92), 1 failure at 14:04 (duplicate PR, isolated)
-- Reviewer: CRITICAL CONCERN — closed both PR #89 and PR #92 via hallucinated commit hashes; #90 tracks bug
-- Triage: HEALTHY — succeeded at 14:02
-- Weekly Analysis: HEALTHY — succeeded at 12:16
+- Reviewer: CRITICAL CONCERN — hallucination pattern confirmed (closed PR #89 + PR #92 via fake commits); #90 tracks bug; reviewer re-triggered for PR #91 (first attempt)
+- Triage: HEALTHY — succeeded at 14:02, re-triggered for #90
+- Weekly Analysis: HEALTHY — succeeded at 18:20
 - Growth: HEALTHY but STALLED — 2 stars flat, 0 forks, 0 adopters; v0.2.0 released
 - Analyze: SIGNIFICANTLY IMPROVED (26/40 turns, stable)
 - Feedback Learner: RECOVERING — #72 fix merged, last failure 00:05, no trigger since
 - Deploy: RECOVERING — no trigger since #65 fix
 
 ## Current Priorities (ordered)
-1. **[BLOCKED]** PR #55: fix reviewer.yml state reset — APPROVED 41h+, awaiting human merge (workflow YAML)
-2. **[IN PROGRESS]** Issue #88: watcher max-turns 30→40 — PR #91 open (human-created, auto-merge), 0 reviews, approaching 1h
-3. **[APPROACHING]** Issue #90: reviewer closes PR instead of merging — 1h37m old, approaching 2h triage threshold
+1. **[BLOCKED]** PR #55: fix reviewer.yml state reset — APPROVED 42h+, awaiting human merge (workflow YAML)
+2. **[IN PROGRESS]** Issue #88: watcher max-turns 30→40 — PR #91 open (auto-merge), reviewer just triggered (first attempt)
+3. **[IN PROGRESS]** Issue #90: reviewer closes PR instead of merging — triage just triggered (2h37m old)
 4. **[MONITORING]** Analyze max-turns — stable at 26/40 (significant improvement, hold)
 5. **[WAITING]** Issue #48: Submit to e2b-dev/awesome-ai-agents — needs-human
 6. **[WAITING]** Issue #22: Submit to awesome-claude-code — 7-day cooldown expires ~March 28
 7. **[DONE]** v0.2.0 release — created 2026-03-24, 20 PRs
 
 ## Open Items
-1. PR #55: [approved] fix(workflow) reviewer.yml state reset — APPROVED 41h+, needs human merge
-2. PR #91: [auto-merge] watcher.yml max-turns 30→40 — 0 reviews, 53min old (for #88)
-3. Issue #88: [pipeline-fix, likely-agent-fixable] watcher max-turns — agent-ready removed (PR #91 open)
-4. Issue #90: [pipeline-fix] reviewer closes PR instead of merging — awaiting triage (1h37m)
+1. PR #55: [approved] fix(workflow) reviewer.yml state reset — APPROVED 42h+, needs human merge
+2. PR #91: [auto-merge] watcher.yml max-turns 30→40 — reviewer triggered 18:55 (for #88)
+3. Issue #88: [pipeline-fix, likely-agent-fixable] watcher max-turns — PR #91 open, reviewer triggered
+4. Issue #90: [pipeline-fix] reviewer closes PR instead of merging — triage triggered 18:55
 5. Issue #48: [needs-human] Submit to e2b-dev/awesome-ai-agents — needs-human
 6. Issue #22: [needs-human] Submit to awesome-claude-code — waiting until ~March 28
 
