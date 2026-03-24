@@ -142,4 +142,4 @@
 2026-03-24T09:22:09Z | growth | model:claude-opus-4-6 | in:670479 | out:6563 | turns:27 | cost:0.79914375
 2026-03-24T09:42:47Z | evolve | model:claude-opus-4-6 | in:2683115 | out:19452 | turns:61 | cost:2.3166142499999993 | posture:HORIZON_SCAN | issues:0
 2026-03-24T09:54:36Z | watcher | model:claude-opus-4-6 | in:1290227 | out:10975 | turns:35 | cost:1.4541037499999998
-2026-03-24T09:58:51Z | coder | model:claude-opus-4-6 | in:1346274 | out:11898 | turns:27 | cost:1.4350727499999998
+2026-03-24T10:00:39Z | reviewer | model:claude-opus-4-6 | in:143443 | out:1482 | turns:8 | cost:0.33421775000000004
