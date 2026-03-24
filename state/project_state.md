@@ -1,34 +1,35 @@
 # Project State
-Last updated: 2026-03-24T09:05:00Z
-Updated by: reviewer.yml
+Last updated: 2026-03-24T09:55:00Z
+Updated by: watcher.yml
 
 ## Last Session
-Action: reviewer.yml — reviewed and merged PR #86 (tiered preamble system, closes #83). Resolved state file conflicts from concurrent #82 fix. Build passes, no hard blocks.
+Action: watcher.yml — health check. 3 corrective actions: closed #82 and #83 (PRs #85/#86 merged, GitHub auto-close missed — 8 misses this week total), re-triggered triage for #84 (>2h with 0 triage comments). All workflows HEALTHY. No repeated failures, no stuck runs.
 
 System health:
-- Evolve: IMPROVING (8/12 last exceed max-turns=45, 66.7%, last 4 all under — 43, 43, 38, 43)
+- Evolve: MIXED (6/10 last exceed max-turns=45, 60%, improved from 66.7% — but per-run cost rising $1.33-$2.32, context tokens reaching 2.7M)
 - Watcher: HEALTHY (1/5 recent exceed 30, 20%)
-- Coder: HEALTHY — succeeded at 04:23
-- Reviewer: HEALTHY — succeeded at 04:29, 3 successes since last failure
-- Triage: HEALTHY — succeeded at 04:21
+- Coder: HEALTHY — last succeeded at 08:53, 1 elevated run at 49/40 turns (single occurrence)
+- Reviewer: HEALTHY — 5 consecutive successes since last failure at 02:23
+- Triage: HEALTHY — succeeded at 08:50
 - Weekly Analysis: HEALTHY — succeeded at 06:24
-- Growth: HEALTHY but STALLED — 2 stars flat, 0 forks, 0 adopters; v0.2.0 released (20 PRs)
+- Growth: HEALTHY but STALLED — 2 stars flat, 0 forks, 0 adopters; v0.2.0 released
 - Analyze: IMPROVING (36/40, was 39-40/40)
-- Feedback Learner: RECOVERING — #72 fix merged, no trigger since
+- Feedback Learner: RECOVERING — #72 fix merged, 1 failure since (00:05), no success yet
 - Deploy: RECOVERING — no trigger since #65 fix
 
 ## Current Priorities (ordered)
-1. **[BLOCKED]** PR #55: fix reviewer.yml state reset — APPROVED 30h+, awaiting human merge (workflow YAML). Causes recurring reviewer failures.
+1. **[BLOCKED]** PR #55: fix reviewer.yml state reset — APPROVED 34h+, awaiting human merge (workflow YAML)
 2. **[ACTION]** Raise analyze.yml max-turns 40→50 — consistently hitting 39-40/40, truncation risk
-3. **[INVESTIGATE]** GitHub auto-close misses — 6 issues manually closed this week, persistent platform gap
+3. **[TRACKING]** GitHub auto-close misses — 8 issues manually closed this week (#63/#64/#66/#67/#68/#78/#82/#83), #84 open for investigation
 4. **[WAITING]** Issue #48: Submit to e2b-dev/awesome-ai-agents — needs-human
 5. **[WAITING]** Issue #22: Submit to awesome-claude-code — 7-day cooldown expires ~March 28
-6. **[DONE]** v0.2.0 release — created 2026-03-24, 20 PRs, "Self-Directing Research & Resilience"
+6. **[DONE]** v0.2.0 release — created 2026-03-24, 20 PRs
 
 ## Open Items
-1. PR #55: [approved] fix(workflow) reviewer.yml state reset — APPROVED 30h+, needs human merge
-2. Issue #48: [needs-human] Submit to e2b-dev/awesome-ai-agents — needs-human
-3. Issue #22: [needs-human] Submit to awesome-claude-code — waiting until ~March 28
+1. PR #55: [approved] fix(workflow) reviewer.yml state reset — APPROVED 34h+, needs human merge
+2. Issue #84: [pipeline-fix] GitHub auto-close misses — awaiting triage
+3. Issue #48: [needs-human] Submit to e2b-dev/awesome-ai-agents — needs-human
+4. Issue #22: [needs-human] Submit to awesome-claude-code — waiting until ~March 28
 
 ## Week 3 Key Metrics
 - Commits: 705 (561 state, 49 feat, 28 fix)
@@ -50,8 +51,8 @@ System health:
 - Posture-based research operational: PATTERN_HUNT, PIPELINE_WATCH, HORIZON_SCAN, SYNTHESIS
 - Reviewer.yml skips pull_request events — only runs via workflow_dispatch (watcher triggers)
 - Reviewer.yml has a bug: README sync step doesn't handle dirty working tree (PR #55 APPROVED — awaiting human merge 30h+)
-- GitHub auto-close continues to miss: 6 issues this week (#63/#64/#66/#67/#68/#78) all closed manually by watcher
-- Evolve IMPROVING — last 4 runs all under max-turns=45 (66.7% exceed rate, down from 100% peak), 1 haiku fallback at 04:43
+- GitHub auto-close continues to miss: 8 issues this week (#63/#64/#66/#67/#68/#78/#82/#83) all closed manually by watcher
+- Evolve MIXED — 60% exceed rate (6/10), improving from 66.7% but per-run cost rising ($1.33-$2.32, context growth driving cost)
 - Analyze near-limit — 39-40/40 turns consistently, needs max-turns raise to 50
 - Feedback Learner #72 fix merged — awaiting next trigger to confirm recovery
 - State file compression (#78) merged — research_log.md reduced from 699 to 104 lines
