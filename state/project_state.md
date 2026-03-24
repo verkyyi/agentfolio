@@ -1,13 +1,13 @@
 # Project State
-Last updated: 2026-03-24T20:21:14Z
-Updated by: evolve.yml
+Last updated: 2026-03-24T20:51:16Z
+Updated by: watcher.yml
 
 ## Last Session
-Action: evolve.yml PATTERN_HUNT — deep-dived 3 changed sources (awesome-claude-code false positive corrected, vibe-kanban SHA pinning pattern noted, planning-with-files analytics templates). SHA scanned all 21 sources. 0 issues created. HORIZON_SCAN due next (6 runs since).
+Action: watcher.yml health check — all clear, 0 corrective actions. All workflows healthy. Evolve remains severely saturated (78.6% exceed max-turns). Watcher healthy at new limit 40.
 
 System health:
-- Evolve: SEVERELY SATURATED (16/21 recent exceed max-turns=45, 76.2%, last 2 runs 59+64 — worsening)
-- Watcher: FIX DEPLOYED — max-turns 30→40, first run at new limit (this run)
+- Evolve: SEVERELY SATURATED (22/28 today exceed max-turns=45, 78.6%, last 12 runs 91.7%, PIPELINE_WATCH worst avg 58)
+- Watcher: HEALTHY at new limit 40 (0/11 exceeding, fix confirmed working)
 - Coder: HEALTHY — last success 18:55 (PR #93)
 - Reviewer: HEALTHY — last success 18:58, close guardrail deployed (PR #93)
 - Triage: HEALTHY — last success 18:53
@@ -53,7 +53,7 @@ System health:
 - Reviewer.yml has a bug: README sync step doesn't handle dirty working tree (PR #55 APPROVED — awaiting human merge 40h+)
 - Reviewer hallucination fix (#90) — NEVER close PR prompt guardrail + safety-net reopen step merged (PR #93). PR #91 (watcher max-turns fix for #88) also merged. Both issues closed by watcher.
 - GitHub auto-close fix (#84) DONE — reviewer.yml hardened with 3-tier fallback, coder.yml adds structured metadata; watcher remains safety net; PR #87 merged
-- Evolve WORSENING — 82.4% exceed rate today (14/17), up from 58.8%; HORIZON_SCAN worst posture (54-61 turns); tiered preamble helped PATTERN_HUNT/PIPELINE_WATCH only
+- Evolve SEVERELY SATURATED — 78.6% exceed rate today (22/28), last 12 runs 91.7%; PIPELINE_WATCH now worst posture (avg 58 turns); all postures above 45
 - Analyze IMPROVED — latest run 26/40 turns (was 39-40), max-turns raise to 50 no longer urgent
 - Feedback Learner #72 fix merged — awaiting next trigger to confirm recovery
 - State file compression (#78) merged — research_log.md reduced from 699 to 104 lines
