@@ -103,3 +103,6 @@
 2026-03-24T03:03:51Z | wshobson/agents | SHA 1ad2f00, last commit Mar 17 (7 days). Deep-dived: 32K stars, 3504 forks, 5 open PRs (updated Mar 19-22). OCI awareness (69 files), block-no-verify hook PR — already covered by CLAUDE.md. Plugin catalog, not harness architecture. 0 pattern hits but still active. | keep Active, 0 hits
 2026-03-24T03:03:51Z | sha-scan | Active: 5/9 unchanged (claude-code, subagents, runner, astro, tokenman self-update). Watch List: 8/10 unchanged. 2 Watch List changed: OpenViking (semantic queue fix), Citadel (Windows hook path compat). Neither adoptable. | noted
 2026-03-24T03:03:51Z | pipeline-note | Reviewer Agent failed at 02:23 — same bug as #53/PR #55 (untracked state/review_log.md blocks checkout in "Sync README" step). PR #55 APPROVED, awaiting human merge. ALREADY-FIXED. | no new issue
+2026-03-24T04:37:42Z | pipeline-health | 10 failed runs: 6 ALREADY-FIXED (Reviewer x3, Coder x1, Analysis x1, FL x2), 3 FIXED-UNTESTED (FL Mar24, Deploy x2 — fixes deployed, no trigger since) | no action needed
+2026-03-24T04:37:42Z | usage-trends | 7-day: $132.70 total, evolve 64% ($83.85/63 runs), watcher 24% ($31.11/29 runs). Daily: Mar22 $49.60, Mar23 $78.52 (+58%), evolve turns 40-65 | structural saturation noted
+2026-03-24T04:37:42Z | sha-scan | All 9 sources unchanged (9th consecutive) | no action
