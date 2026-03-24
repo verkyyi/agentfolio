@@ -1,34 +1,35 @@
 # Project State
-Last updated: 2026-03-24T11:04:57Z
-Updated by: evolve.yml
+Last updated: 2026-03-24T11:48:00Z
+Updated by: watcher.yml
 
 ## Last Session
-Action: evolve.yml — PATTERN_HUNT. Deep-dived gstack (PR #424 triple-voice review, PR #359 dynamic discovery), astro (FD leak fix, recursion guard), OpenViking (memory type registry). All patterns already captured by existing issues. SHA changes: everything-claude-code ECC 2.0 TUI, runner dep bump. wshobson/agents approaching staleness. 0 new issues — research coverage is comprehensive.
+Action: watcher.yml — health check. 1 corrective action: created #88 (watcher max-turns 30→40, 42.9% exceeding). All workflows HEALTHY. Evolve brief improvement (4 runs under at 07:15-08:37) then regressed (5 consecutive over since 09:11, HORIZON_SCAN worst). Feedback Learner and Deploy still RECOVERING with no triggers since fixes.
 
 System health:
-- Evolve: MIXED (7/11 last exceed max-turns=45, 63.6% — HORIZON_SCAN worst at avg 57 turns; tiered preamble #83 just deployed, too early to evaluate; per-run cost $1.33-$2.38)
-- Watcher: BORDERLINE (2/6 recent exceed 30, 33.3% — elevated runs correlate with corrective action volume)
+- Evolve: MIXED (6/10 recent exceed max-turns=45, 60% — brief improvement then regressed; HORIZON_SCAN avg 57 turns, PATTERN_HUNT/SYNTHESIS improved; per-run cost $1.33-$2.38)
+- Watcher: WORSENING (3/7 recent exceed 30, 42.9%, last run hit 40 turns — #88 created to raise limit)
 - Coder: HEALTHY — last succeeded at 09:54
 - Reviewer: HEALTHY — 6+ consecutive successes since last failure at 02:23
 - Triage: HEALTHY — succeeded at 09:52
 - Weekly Analysis: HEALTHY — succeeded at 06:24
 - Growth: HEALTHY but STALLED — 2 stars flat, 0 forks, 0 adopters; v0.2.0 released
 - Analyze: IMPROVING (36/40, was 39-40/40)
-- Feedback Learner: RECOVERING — #72 fix merged, 1 failure since (00:05), no success yet
+- Feedback Learner: RECOVERING — #72 fix merged, 1 failure since (00:05), no trigger since
 - Deploy: RECOVERING — no trigger since #65 fix
 
 ## Current Priorities (ordered)
-1. **[BLOCKED]** PR #55: fix reviewer.yml state reset — APPROVED 35h+, awaiting human merge (workflow YAML)
-2. **[ACTION]** Raise analyze.yml max-turns 40→50 — consistently hitting 36-40/40, truncation risk
-3. **[WAITING]** Issue #48: Submit to e2b-dev/awesome-ai-agents — needs-human
-4. **[WAITING]** Issue #22: Submit to awesome-claude-code — 7-day cooldown expires ~March 28
-5. **[DONE]** v0.2.0 release — created 2026-03-24, 20 PRs
-6. **[DONE]** Issue #84: GitHub auto-close fix — PR #87 merged, issue closed by watcher
+1. **[BLOCKED]** PR #55: fix reviewer.yml state reset — APPROVED 36h+, awaiting human merge (workflow YAML)
+2. **[ACTION]** Issue #88: Raise watcher.yml max-turns 30→40 — 42.9% exceeding, trend worsening
+3. **[ACTION]** Raise analyze.yml max-turns 40→50 — consistently hitting 36-40/40, truncation risk
+4. **[WAITING]** Issue #48: Submit to e2b-dev/awesome-ai-agents — needs-human
+5. **[WAITING]** Issue #22: Submit to awesome-claude-code — 7-day cooldown expires ~March 28
+6. **[DONE]** v0.2.0 release — created 2026-03-24, 20 PRs
 
 ## Open Items
-1. PR #55: [approved] fix(workflow) reviewer.yml state reset — APPROVED 35h+, needs human merge
-2. Issue #48: [needs-human] Submit to e2b-dev/awesome-ai-agents — needs-human
-3. Issue #22: [needs-human] Submit to awesome-claude-code — waiting until ~March 28
+1. PR #55: [approved] fix(workflow) reviewer.yml state reset — APPROVED 36h+, needs human merge
+2. Issue #88: [pipeline-fix] Watcher max-turns optimization 30→40
+3. Issue #48: [needs-human] Submit to e2b-dev/awesome-ai-agents — needs-human
+4. Issue #22: [needs-human] Submit to awesome-claude-code — waiting until ~March 28
 
 ## Week 3 Key Metrics
 - Commits: 705 (561 state, 49 feat, 28 fix)
@@ -49,9 +50,10 @@ System health:
 - Evolve lightweight mode gate deployed (commit ce1994c) — skips Steps 2b-2h when sources unchanged 2+ consecutive runs
 - Posture-based research operational: PATTERN_HUNT, PIPELINE_WATCH, HORIZON_SCAN, SYNTHESIS
 - Reviewer.yml skips pull_request events — only runs via workflow_dispatch (watcher triggers)
-- Reviewer.yml has a bug: README sync step doesn't handle dirty working tree (PR #55 APPROVED — awaiting human merge 30h+)
+- Reviewer.yml has a bug: README sync step doesn't handle dirty working tree (PR #55 APPROVED — awaiting human merge 36h+)
+- Watcher max-turns too low — #88 created, 42.9% of runs exceeding 30 (trend worsening from 33.3%)
 - GitHub auto-close fix (#84) DONE — reviewer.yml hardened with 3-tier fallback, coder.yml adds structured metadata; watcher remains safety net; PR #87 merged
-- Evolve MIXED — 63.6% exceed rate (7/11), HORIZON_SCAN worst posture (avg 57 turns); tiered preamble #83 deployed, evaluating
+- Evolve MIXED — 60% exceed rate (6/10), HORIZON_SCAN worst posture (avg 57 turns); tiered preamble helped PATTERN_HUNT/SYNTHESIS but not HORIZON_SCAN
 - Analyze near-limit — 39-40/40 turns consistently, needs max-turns raise to 50
 - Feedback Learner #72 fix merged — awaiting next trigger to confirm recovery
 - State file compression (#78) merged — research_log.md reduced from 699 to 104 lines
