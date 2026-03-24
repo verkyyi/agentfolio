@@ -1,45 +1,45 @@
 # Last Evolve Summary
-Timestamp: 2026-03-24T05:44:43Z
-Main HEAD: 8b8bd966e5ae16ea251e358c49f2d6a76180b560
-Posture: HORIZON_SCAN (3 runs since last, active sources stale 9+ consecutive — need fresh sources, watch list needs promotion/drop evaluation)
-Posture history: [HORIZON_SCAN, PIPELINE_WATCH, PATTERN_HUNT, SYNTHESIS, HORIZON_SCAN, PATTERN_HUNT, HORIZON_SCAN, PIPELINE_WATCH]
+Timestamp: 2026-03-24T06:39:30Z
+Main HEAD: 7314d289e8e50958d14c98aaddb0f768a20bf3aa
+Posture: PATTERN_HUNT (gstack queued deep-dive from last HORIZON_SCAN, under-represented in 8-run window 2 vs target 3)
+Posture history: [PATTERN_HUNT, HORIZON_SCAN, PIPELINE_WATCH, PATTERN_HUNT, SYNTHESIS, HORIZON_SCAN, PATTERN_HUNT, HORIZON_SCAN]
 Runs since each:
-  PATTERN_HUNT: 2
-  PIPELINE_WATCH: 1
-  HORIZON_SCAN: 0
-  SYNTHESIS: 3
-Open issues: #22, #48
+  PATTERN_HUNT: 0
+  PIPELINE_WATCH: 2
+  HORIZON_SCAN: 1
+  SYNTHESIS: 4
+Open issues: #22, #48, #83
 
 ## Source Digests
-anthropics/claude-code: 6aadfbd | last-deep: 2026-03-23 | unchanged (10th)
-garrytan/gstack: 2c5ae38 | last-deep: 2026-03-23 | CHANGED — v0.11.12.0 triple-voice multi-model review (queue for deep-dive)
-affaan-m/everything-claude-code: df4f2df | last-deep: 2026-03-23 | unchanged (10th)
-hesreallyhim/awesome-claude-code: 15a1693 | last-deep: 2026-03-24 | unchanged (10th)
-bytedance/deer-flow: d0049ad | last-deep: 2026-03-24 | unchanged (3rd)
-wshobson/agents: 1ad2f00 | last-deep: 2026-03-24 | unchanged (3rd, stale since Mar 17)
-VoltAgent/awesome-claude-code-subagents: fba002a | last-deep: 2026-03-23 | unchanged (10th, 0 hits)
-actions/runner: e17e7aa | last-deep: 2026-03-24 | unchanged (10th)
-withastro/astro: 47694d0 | last-deep: 2026-03-24 | unchanged (10th)
-verkyyi/tokenman: 8b8bd96 | last-deep: never | self-update
+anthropics/claude-code: 6aadfbd | last-deep: 2026-03-24 | unchanged (11th)
+garrytan/gstack: dc5e053 | last-deep: 2026-03-24 | CHANGED — v0.11.12.0 tiered preamble + WorktreeManager (issue #83)
+affaan-m/everything-claude-code: df4f2df | last-deep: 2026-03-23 | unchanged (11th)
+hesreallyhim/awesome-claude-code: 09f3028 | last-deep: 2026-03-24 | changed (ticker-only, 0 hits)
+bytedance/deer-flow: c5ddc6a | last-deep: 2026-03-24 | changed (dep-bump/frontend, 0 hits)
+wshobson/agents: 1ad2f00 | last-deep: 2026-03-24 | unchanged (4th, stale since Mar 17)
+VoltAgent/awesome-claude-code-subagents: fba002a | last-deep: 2026-03-23 | unchanged (11th, 0 hits)
+actions/runner: e17e7aa | last-deep: 2026-03-24 | unchanged (11th)
+withastro/astro: 47694d0 | last-deep: 2026-03-24 | unchanged (11th)
+verkyyi/tokenman: 7314d28 | last-deep: never | self-update
 
 ## Watch List Status
 thedotmack/claude-mem: e2a2302 | obs: 4 | unchanged
 BloopAI/vibe-kanban: 83192b3 | obs: 5 | unchanged
 trailofbits/skills: 5c15f4f | obs: 5 | unchanged
-sickn33/antigravity-awesome-skills: d5e95a3 | obs: 5 | unchanged
-volcengine/OpenViking: 7d9075a | obs: 4 | CHANGED (circuit breaker for API retry storms)
+sickn33/antigravity-awesome-skills: 8f5b56a | obs: 6 | changed (star-chart only)
+volcengine/OpenViking: 79cc248 | obs: 5 | changed (task-defaults)
 OthmanAdi/planning-with-files: 3b6c3ce | obs: 3 | unchanged
 ruvnet/ruflo: 0590bf2 | obs: 3 | unchanged
-SethGammon/Citadel: 9da7c72 | obs: 3 | CHANGED (external-action-gate hook)
-anthropics/claude-plugins-official: b3a0714 | obs: 3 | CHANGED (inline permission buttons)
+SethGammon/Citadel: 9da7c72 | obs: 3 | unchanged
+anthropics/claude-plugins-official: 7074ac0 | obs: 4 | changed (iMessage-channel)
 vibeeval/vibecosystem: b3e8890 | obs: 2 | unchanged
-agent-sh/agnix: 55adfcb | obs: 1 | NEW (CLAUDE.md linter)
-intertwine/hive-orchestrator: 51494de | obs: 1 | NEW (markdown-native orchestration)
+agent-sh/agnix: 55adfcb | obs: 1 | unchanged
+intertwine/hive-orchestrator: 51494de | obs: 2 | unchanged (deep-dived: canonical skills dir, corpus fingerprint guard)
 
 ## Findings This Run
-- gstack v0.11.12.0: triple-voice multi-model review (Codex + Claude subagent across CEO/Design/Eng phases). Evolves #64 pattern. Queue for deep-dive.
-- OpenViking added circuit breaker for API retry storms — validates our #76 adoption.
-- Citadel added external-action-gate PreToolUse hook — overlaps with closed #67.
-- 2 new Watch List: agnix (CLAUDE.md linter, 103 stars), hive-orchestrator (markdown-native orchestration, 14 stars, closest arch to tokenman).
-- 0 forks/adopters of tokenman.
-0 issues created.
+- gstack v0.11.12.0: tiered preamble system (T1-T4) — skills pay for only needed context, ~40% token reduction. Directly addresses evolve saturation. Issue #83 created.
+- gstack v0.11.12.0: WorktreeManager for E2E test isolation with SHA-256 dedup and patch harvesting. Not immediately adoptable.
+- hive-orchestrator: canonical skills/ dir with symlinks to .agents/.claude/.opencode — validates #66 direction.
+- hive-orchestrator: corpus fingerprint guard (SHA-256 skip when docs unchanged) — validates our SHA-scan approach.
+- SHA scan: 3 Active changed (gstack substantive, 2 automated/frontend), 3 Watch List changed (all operational).
+1 issue created (#83).

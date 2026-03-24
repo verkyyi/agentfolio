@@ -1,7 +1,7 @@
 # Research Sources
 # Managed by evolve.yml. Claude adds, prunes, and annotates freely.
 # Seeded from evolve_config.md on first run.
-# Last updated: 2026-03-24T05:44:43Z
+# Last updated: 2026-03-24T06:39:30Z
 
 ## Active Sources
 
@@ -14,8 +14,8 @@
 ### garrytan/gstack
 - **Why:** Harness engineering patterns — skills, slash commands, review protocols, agent orchestration
 - **Look for:** New skill files, workflow patterns, agent guardrails, PR review techniques, structured output formats
-- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-03-23 | **Pattern hits:** 7
-- **Notes:** Most productive source so far. v0.9.7-v0.11.3 yielded adversarial review, structured tables, anti-sycophancy, pre-merge gate, security patterns. v0.9.9.1: cross-model outside voice (issue #64). v0.11.6.0: /cso v2 infrastructure-first security audit (covered by #17). v0.11.10.0: CI evals with parallel runners (no evals framework yet). v0.11.9.0: auto-heal stale installs + Codex 1024-char description guard (build-time validation, not issueworthy). v0.11.7.0: zsh glob compat + /review satisfies ship readiness gate. v0.11.12.0 (SHA 2c5ae38): triple-voice multi-model review in /autoplan — dual voices across 3 phases (CEO/Design/Eng), cross-phase synthesis, degradation matrix. Queue for deep-dive.
+- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-03-24 | **Pattern hits:** 8
+- **Notes:** Most productive source so far. v0.9.7-v0.11.3 yielded adversarial review, structured tables, anti-sycophancy, pre-merge gate, security patterns. v0.9.9.1: cross-model outside voice (issue #64). v0.11.6.0: /cso v2 infrastructure-first security audit (covered by #17). v0.11.10.0: CI evals with parallel runners (no evals framework yet). v0.11.9.0: auto-heal stale installs + Codex 1024-char description guard (build-time validation, not issueworthy). v0.11.7.0: zsh glob compat + /review satisfies ship readiness gate. v0.11.12.0 (SHA dc5e053, PR #425): tiered preamble system (T1-T4) — skills pay for only needed context, ~40% token reduction for lightweight skills. WorktreeManager for E2E test isolation with SHA-256 dedup. Modular resolver arch. Token budget dashboard. Issue #83 (tiered preamble).
 
 ### affaan-m/everything-claude-code
 - **Why:** Community harness patterns, skill collections, optimization techniques
@@ -137,8 +137,8 @@
 ### intertwine/hive-orchestrator
 - **Why:** Markdown-native agent orchestration (14 stars) — closest architecture to tokenman. Git-native, GitHub Actions, markdown shared memory
 - **Look for:** Markdown-as-memory patterns, vendor-agnostic coordination, hybrid retrieval, skills directory structure
-- **Added:** 2026-03-24 (horizon scan) | **Observations:** 1 | **First seen:** 2026-03-24
-- **Notes:** SHA 51494de. Python. v2.3.1. Very active (5 commits this week). Hybrid dense retrieval (LanceDB + FastEmbed alongside SQLite FTS5 #162). Skills redesign to canonical dir (#159). Sandbox propagation (#161). Low stars but architecturally most similar to tokenman.
+- **Added:** 2026-03-24 (horizon scan) | **Observations:** 2 | **First seen:** 2026-03-24
+- **Notes:** SHA 51494de. Python. v2.3.1. Very active (5 commits this week). Deep-dived: hybrid dense retrieval with LanceDB + FastEmbed + reciprocal rank fusion (#162) — not adoptable (no retrieval layer). Canonical skills/ dir with symlinks to .agents/.claude/.opencode (#159) — validates our #66 packaging. Corpus fingerprint guard (SHA-256 skip when docs unchanged). Sandbox propagation (#161). Low stars but architecturally most similar to tokenman.
 
 ## Dropped Sources
 <!-- Removed sources with reason. Kept for history so we don't re-discover them. -->
