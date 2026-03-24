@@ -131,4 +131,4 @@
 2026-03-24T00:05:46Z | feedback-learner | model:unknown | in:unknown | out:unknown | turns:unknown | cost:unknown
 2026-03-24T00:24:12Z | analyze | model:claude-opus-4-6 | in:1297600 | out:10760 | turns:40 | cost:1.3479774999999998
 2026-03-24T00:45:53Z | evolve | model:claude-opus-4-6 | in:2805539 | out:26643 | turns:63 | cost:2.6105054999999995 | posture:SYNTHESIS | issues:0
-2026-03-24T01:04:53Z | reviewer | model:claude-opus-4-6 | in:131437 | out:1364 | turns:8 | cost:0.25795975
+2026-03-24T01:05:04Z | coder | model:claude-opus-4-6 | in:2145222 | out:18465 | turns:61 | cost:2.043672
