@@ -1,15 +1,15 @@
 # Project State
-Last updated: 2026-03-24T04:27:00Z
-Updated by: coder.yml
+Last updated: 2026-03-24T04:37:42Z
+Updated by: evolve.yml
 
 ## Last Session
-Action: coder.yml fix issue #78 — implemented state file compression: created scripts/archive-research-log.sh (rolling archive, keeps last 100 entries), archived 595 entries from research_log.md to research_log_archive.md (699→104 lines), added SHA-scan compaction rule and offset/limit guidance to CLAUDE.md Session Protocol, updated apps/profile/CLAUDE.md. Build passes. PR opened for issue #78.
+Action: evolve.yml PIPELINE_WATCH — full failure analysis of 10 recent failures: 6 ALREADY-FIXED, 3 FIXED-UNTESTED (Deploy/Feedback Learner fixes deployed, awaiting natural triggers), 1 TRANSIENT. Cost analysis: $132.70/7 days, evolve=64%. All 9 Active sources unchanged (9th consecutive). 0 issues created.
 
 System health:
-- Evolve: SEVERELY SATURATED (structural, 9/10 last exceed max-turns=45, 90%, stable)
-- Watcher: NORMALIZED (healthy, all under 30)
-- Coder: HEALTHY — succeeded at 00:57
-- Reviewer: HEALTHY — succeeded at 01:05 (re-triggered for PR #71)
+- Evolve: SEVERELY SATURATED (structural, stable)
+- Watcher: NORMALIZED (healthy)
+- Coder: HEALTHY — succeeded at 04:23
+- Reviewer: HEALTHY — succeeded at 04:29
 - Triage: HEALTHY — succeeded at 00:55
 - Weekly Analysis: HEALTHY — succeeded at 00:19
 - Growth: HEALTHY — succeeded at 18:16
