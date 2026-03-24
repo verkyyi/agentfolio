@@ -1,9 +1,12 @@
 ---
 name: readme-sync
+version: 1.0.0
 description: >
   Use when README.md needs to reflect current repo structure.
   Covers workflow count, workflow table, and architecture section.
   Referenced by reviewer.yml post-merge step and evolve.yml Step 2e.
+author: tokenman
+tags: [readme, documentation, sync, automation]
 ---
 
 # README Sync
