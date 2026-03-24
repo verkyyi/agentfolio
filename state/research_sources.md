@@ -1,7 +1,7 @@
 # Research Sources
 # Managed by evolve.yml. Claude adds, prunes, and annotates freely.
 # Seeded from evolve_config.md on first run.
-# Last updated: 2026-03-24T21:13:34Z
+# Last updated: 2026-03-24T21:53:27Z
 
 ## Active Sources
 
@@ -9,7 +9,7 @@
 - **Why:** The runtime we build on — releases, breaking changes, new hooks, CLI flags
 - **Look for:** CHANGELOG entries, new hook types, permission changes, SDK updates
 - **Added:** 2026-03-20 (seed) | **Last deep:** 2026-03-23 | **Pattern hits:** 1
-- **Notes:** Protected source — never drop. Check CHANGELOG and releases, not just commits. v2.1.81: --bare flag (issue #63). SHA 6aadfbd unchanged 12th consecutive.
+- **Notes:** Protected source — never drop. Check CHANGELOG and releases, not just commits. v2.1.81: --bare flag (issue #63), --channels permission relay, plugin freshness re-clone, background agent race fix, worktree resume. SHA 6aadfbd unchanged 13th consecutive.
 
 ### garrytan/gstack
 - **Why:** Harness engineering patterns — skills, slash commands, review protocols, agent orchestration
@@ -39,7 +39,7 @@
 - **Why:** Agent framework patterns — autonomous agent architectures
 - **Look for:** Retry patterns, memory management, tool selection, agent lifecycle
 - **Added:** 2026-03-20 (seed) | **Last deep:** 2026-03-24 | **Pattern hits:** 0
-- **Notes:** 32K stars, 3504 forks. Plugin/skill catalog for Claude Code (OCI awareness, gallery-researcher, deployment engineer). 5 open PRs (Mar 19-22) including block-no-verify hook (already covered by CLAUDE.md). Primarily a plugin catalog, not harness architecture. Last commit Mar 17. Approaching staleness (7 days inactive, 0 hits).
+- **Notes:** 32K stars, 3504 forks. Plugin/skill catalog for Claude Code (OCI awareness, gallery-researcher, deployment engineer). 5 open PRs (Mar 19-22) including block-no-verify hook (already covered by CLAUDE.md). Primarily a plugin catalog, not harness architecture. Last commit Mar 17. Approaching staleness (8 days inactive, 0 hits). Drop candidate if still inactive at 4 weeks (Apr 14).
 
 ### actions/runner
 - **Why:** CI/CD runtime we depend on — deprecation notices, new features, security fixes
@@ -78,7 +78,7 @@
 - **Why:** Security-focused Claude Code skills (4K stars) from top security firm — audit workflows, vulnerability detection, semgrep rules
 - **Look for:** Security audit skill structure, semgrep rule patterns, skill-improver tooling, SKILL.md format conventions
 - **Added:** 2026-03-23 (horizon scan) | **Observations:** 13 | **First seen:** 2026-03-23
-- **Notes:** Last commit Mar 17 (SHA 5c15f4f unchanged). 34 plugins with formal SKILL.md standard: YAML frontmatter (name, description, allowed-tools), structured sections (When to Use, When NOT to Use, Rationalizations to Reject, Anti-Patterns, Strictness Level). skill-improver: automated quality loop (Review->Categorize->Fix->Evaluate->Repeat) with Critical/Major/Minor severity. Codex compatibility layer. Pattern hit: SKILL.md quality standard (issue #68).
+- **Notes:** Last commit Mar 17 (SHA 5c15f4f unchanged). 34 plugins with formal SKILL.md standard: YAML frontmatter (name, description, allowed-tools), structured sections (When to Use, When NOT to Use, Rationalizations to Reject, Anti-Patterns, Strictness Level). skill-improver: automated quality loop (Review->Categorize->Fix->Evaluate->Repeat) with Critical/Major/Minor severity. Codex compatibility layer. PR #123: cross-platform sidecar symlink distribution (.codex/skills/ backed by same plugin content, 61 symlinks via installer). Pattern hit: SKILL.md quality standard (issue #68).
 
 ### sickn33/antigravity-awesome-skills
 - **Why:** Largest skill catalog (27K stars, 1309+ skills) — installable via CLI, bundles, multi-platform (Claude Code, Codex, Gemini CLI, Cursor)
@@ -107,8 +107,8 @@
 ### SethGammon/Citadel
 - **Why:** Agent orchestration harness (242 stars) — closest architecture to tokenman. Campaign persistence, parallel worktrees, circuit breaker, quality gate hooks
 - **Look for:** Circuit breaker implementation, quality gate patterns, campaign persistence, fleet coordination, lifecycle hooks
-- **Added:** 2026-03-24 (horizon scan) | **Observations:** 11 | **First seen:** 2026-03-24
-- **Notes:** SHA 9da7c72. New: external-action-gate PreToolUse hook (blocks push/PR/issue unless allowed) + hook smoke test. 24 skills, 3 agents, 8 lifecycle hooks. PostToolUseFailure circuit breaker (3 failures → suggest alternative, 5 trips → hard stop). PreCompact/Restore-Compact for context preservation. Protect-files on Edit/Write. Pattern hit: circuit breaker (issue #76). External-action-gate covered by #67.
+- **Added:** 2026-03-24 (horizon scan) | **Observations:** 12 | **First seen:** 2026-03-24
+- **Notes:** SHA 2e77f57 (was 9da7c72). PR #14: unified /triage for issues+PRs with mode dispatch (/triage pr 13, /triage prs). CLI-focused pattern — our separated GH Actions workflows are architecturally appropriate. 26 skills, 3 agents, 10 hooks. PostToolUseFailure circuit breaker (3 failures → suggest alternative, 5 trips → hard stop). PreCompact/Restore-Compact for context preservation. Protect-files on Edit/Write. Pattern hit: circuit breaker (issue #76). External-action-gate covered by #67.
 
 ### anthropics/claude-plugins-official
 - **Why:** Official Anthropic plugin directory (14.3K stars) — distribution channel for Claude Code plugins with standard format

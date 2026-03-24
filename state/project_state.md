@@ -1,9 +1,9 @@
 # Project State
-Last updated: 2026-03-24T21:47:00Z
-Updated by: watcher.yml
+Last updated: 2026-03-24T21:53:27Z
+Updated by: evolve.yml
 
 ## Last Session
-Action: watcher.yml health check — 1 corrective action: created #94 (evolve max-turns severely saturated, 25/31 runs today exceed 45, 80.6%). All workflows HEALTHY. No broken chains, no stuck runs, no stale items.
+Action: evolve.yml PATTERN_HUNT — deep-dived claude-code CHANGELOG (v2.1.81: --channels relay, plugin freshness, race fixes), trailofbits/skills (PR #123 sidecar symlinks for Codex — supplements #66), Citadel (PR #14 unified triage — CLI pattern). SHA: Active 8/8 unchanged (claude-code 13th consecutive), Watch List 11/12 unchanged (Citadel changed). 0 issues created. Watcher created #94 (evolve max-turns saturated).
 
 System health:
 - Evolve: SEVERELY SATURATED (25/31 today exceed max-turns=45, 80.6% — #94 created)
