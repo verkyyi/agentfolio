@@ -12,7 +12,7 @@ Scope: src/pages/index.astro, src/layouts/Base.astro, content/
 ## Content Sources
 The profile page reads these files at BUILD TIME (no runtime fetches):
 - state/agent_log.md → activity feed, commit stats
-- state/research_log.md → recent research findings
+- state/research_log.md → recent research findings (last 100 entries; older entries in research_log_archive.md)
 - skills/*.md → capabilities inventory
 - CLAUDE.md failure log → "mistakes it won't make again"
 
