@@ -1,7 +1,7 @@
 # Research Sources
 # Managed by evolve.yml. Claude adds, prunes, and annotates freely.
 # Seeded from evolve_config.md on first run.
-# Last updated: 2026-03-24T23:55:00Z
+# Last updated: 2026-03-25T00:24:03Z
 
 ## Active Sources
 
@@ -33,7 +33,7 @@
 - **Why:** Multi-agent orchestration patterns from a major tech company
 - **Look for:** Agent coordination, state management, tool orchestration, LLM provider patterns
 - **Added:** 2026-03-21 (seed) | **Last deep:** 2026-03-24T18:04 | **Pattern hits:** 1
-- **Notes:** Very active (5+ commits/day). GuardrailMiddleware covered by #67. Deep-dived 2026-03-24T14:11: symlink-aware skill scanning (#1292, followlinks=True in os.walk for custom skills dir — relevant to future #66 but not adoptable now) + subprocess security fix (#1289, os.system→subprocess, Python-specific). Deep-dived 2026-03-24T18:04: Windows Makefile compat (#1297), MCP sync wrapper (#1287, async-to-sync with ThreadPoolExecutor). Both platform-specific, 0 harness patterns.
+- **Notes:** Very active (5+ commits/day). GuardrailMiddleware covered by #67. Deep-dived 2026-03-24T14:11: symlink-aware skill scanning (#1292, followlinks=True in os.walk for custom skills dir — relevant to future #66 but not adoptable now) + subprocess security fix (#1289, os.system→subprocess, Python-specific). Deep-dived 2026-03-24T18:04: Windows Makefile compat (#1297), MCP sync wrapper (#1287, async-to-sync with ThreadPoolExecutor). Both platform-specific, 0 harness patterns. SHA 067b19a→16ed797: configurable log level + token usage tracking middleware (#1301), loop detection middleware Anthropic compat (#1300). Python/LangGraph specific, 0 harness patterns.
 
 ### wshobson/agents
 - **Why:** Agent framework patterns — autonomous agent architectures
@@ -51,7 +51,7 @@
 - **Why:** Web framework we use — security fixes, breaking changes, new features
 - **Look for:** Security advisories, breaking changes in minor/major releases, new content collection features
 - **Added:** 2026-03-20 (seed) | **Last deep:** 2026-03-24T20:21 | **Pattern hits:** 0
-- **Notes:** Only actionable for security fixes or features that affect our site build. SHA 31d733b: ARIA role fix (#16068, dev toolbar). Previous: host header validation (#16043), svgo update, turbo-run-affected, PR writer skill. 0 harness patterns across 5 deep-dives.
+- **Notes:** Only actionable for security fixes or features that affect our site build. SHA f771f75→a8a926e: React hydration fixes (#15378, #15146), typo fixes. Previous: ARIA role fix (#16068), host header validation (#16043). 0 harness patterns across 6+ deep-dives.
 
 ### verkyyi/tokenman
 - **Why:** Self-reference — track forks, adopters, and how the scaffold is used
@@ -108,19 +108,19 @@
 - **Why:** Agent orchestration harness (242 stars) — closest architecture to tokenman. Campaign persistence, parallel worktrees, circuit breaker, quality gate hooks
 - **Look for:** Circuit breaker implementation, quality gate patterns, campaign persistence, fleet coordination, lifecycle hooks
 - **Added:** 2026-03-24 (horizon scan) | **Observations:** 13 | **First seen:** 2026-03-24
-- **Notes:** SHA 9567210 (was 2e77f57). PR #15: install instruction improvements (settings.json backup warnings). PR #14: unified /triage for issues+PRs with mode dispatch (/triage pr 13, /triage prs). CLI-focused pattern — our separated GH Actions workflows are architecturally appropriate. 26 skills, 3 agents, 10 hooks. PostToolUseFailure circuit breaker (3 failures → suggest alternative, 5 trips → hard stop). PreCompact/Restore-Compact for context preservation. Protect-files on Edit/Write. Pattern hit: circuit breaker (issue #76). External-action-gate covered by #67.
+- **Notes:** SHA 729f417 (was 9567210). PR #18: stale skill path fix. PR #17: plugin arch cleanup. Previous: PR #15 install docs, PR #14 unified triage. 26 skills, 3 agents, 10 hooks. PostToolUseFailure circuit breaker (3 failures → suggest alternative, 5 trips → hard stop). PreCompact/Restore-Compact for context preservation. Pattern hit: circuit breaker (issue #76). External-action-gate covered by #67.
 
 ### anthropics/claude-plugins-official
 - **Why:** Official Anthropic plugin directory (14.3K stars) — distribution channel for Claude Code plugins with standard format
 - **Look for:** Plugin format updates, new submission requirements, plugin.json schema changes, new official plugins relevant to harness patterns
 - **Added:** 2026-03-24 (horizon scan) | **Observations:** 14 | **First seen:** 2026-03-24
-- **Notes:** SHA b10b583 (was 79caa0d). Inline buttons for Telegram/Discord permission approval (#945) — UI, not harness. Standard format: .claude-plugin/plugin.json + commands/ + agents/ + skills/. Installation via `/plugin install`. External submission form. 15+ external plugins, 30+ internal (code-review, security-guidance, skill-creator, hookify). Distribution channel for #66.
+- **Notes:** SHA b10b583. Deep-dived 2026-03-25: iMessage channel plugin — first multi-channel with MCP integration, 808-line server, skills/access and skills/configure sub-skills. Bash-only permission preview UX (input_preview shown only for Bash, others get name+desc — constrained channel optimization). Flint plugin added (#974). Standard format: .claude-plugin/plugin.json + commands/ + agents/ + skills/. Installation via `/plugin install`. 15+ external plugins, 30+ internal. Distribution channel for #66. Pattern hit: 1 (official plugin format).
 
 ### vibeeval/vibecosystem
 - **Why:** Comprehensive agent team (275 stars) — 119 agents, 208 skills, 49 hooks, 21 rules. Self-learning pattern where errors auto-become rules
 - **Look for:** Self-learning implementation, session evaluation patterns, skill gateway for external catalogs, workflow routing
 - **Added:** 2026-03-24 (horizon scan) | **Observations:** 12 | **First seen:** 2026-03-24
-- **Notes:** SHA 717b2c1 (was b3e8890). v1.3 released with SaaS Skill Pack (6 new skills, 2 enriched). v1.2 had Skill Gateway + Pyxel integration. evaluate-session.sh quantifies session outcomes. "One-question rule" for workflow routing. CI validation workflow. Self-learning pattern similar to our feedback-learner.
+- **Notes:** SHA 717b2c1. Deep-dived 2026-03-25: v1.3 SaaS Skill Pack (6 new, 2 enriched — payment, auth, email, compliance, analytics, launch). "Security hardened after 3-agent parallel review (18 fixes applied)" — multi-agent quality gate for skill content. UPGRADING.md for version migration. v1.2 had Skill Gateway + Pyxel integration. evaluate-session.sh quantifies session outcomes. Self-learning pattern similar to our feedback-learner. Pattern hit: 1 (multi-agent review quality gate).
 
 ### agent-sh/agnix
 - **Why:** CLAUDE.md/SKILL.md linter and LSP (103 stars) — validates AI coding assistant config files, autofixes, IDE plugins
