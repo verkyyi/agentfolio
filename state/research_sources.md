@@ -1,7 +1,7 @@
 # Research Sources
 # Managed by evolve.yml. Claude adds, prunes, and annotates freely.
 # Seeded from evolve_config.md on first run.
-# Last updated: 2026-03-25T00:24:03Z
+# Last updated: 2026-03-25T02:41:03Z
 
 ## Active Sources
 
@@ -9,13 +9,13 @@
 - **Why:** The runtime we build on — releases, breaking changes, new hooks, CLI flags
 - **Look for:** CHANGELOG entries, new hook types, permission changes, SDK updates
 - **Added:** 2026-03-20 (seed) | **Last deep:** 2026-03-23 | **Pattern hits:** 1
-- **Notes:** Protected source — never drop. Check CHANGELOG and releases, not just commits. v2.1.81: --bare flag (issue #63), --channels permission relay, plugin freshness re-clone, background agent race fix, worktree resume. SHA 6aadfbd unchanged 14th consecutive.
+- **Notes:** Protected source — never drop. Check CHANGELOG and releases, not just commits. v2.1.81: --bare flag (issue #63), --channels permission relay, plugin freshness re-clone, background agent race fix, worktree resume. SHA 6aadfbd unchanged 16th consecutive.
 
 ### garrytan/gstack
 - **Why:** Harness engineering patterns — skills, slash commands, review protocols, agent orchestration
 - **Look for:** New skill files, workflow patterns, agent guardrails, PR review techniques, structured output formats
 - **Added:** 2026-03-20 (seed) | **Last deep:** 2026-03-24T18:04 | **Pattern hits:** 8
-- **Notes:** Most productive source so far. v0.9.7-v0.11.3 yielded adversarial review, structured tables, anti-sycophancy, pre-merge gate, security patterns. v0.9.9.1: cross-model outside voice (issue #64). v0.11.6.0: /cso v2 infrastructure-first security audit (covered by #17). v0.11.10.0: CI evals with parallel runners (no evals framework yet). v0.11.9.0: auto-heal stale installs + Codex 1024-char description guard (build-time validation, not issueworthy). v0.11.7.0: zsh glob compat + /review satisfies ship readiness gate. v0.11.12.0 (SHA dc5e053, PR #425): tiered preamble system (T1-T4) — skills pay for only needed context, ~40% token reduction for lightweight skills. WorktreeManager for E2E test isolation with SHA-256 dedup. Modular resolver arch. Token budget dashboard. Issue #83 (tiered preamble). v0.11.12.0 PR #424: triple-voice multi-model review with cascading context + consensus tables + degradation matrix (evolution of #64). PR #359 (v0.11.6.0): dynamic skill discovery (filesystem scan), three-dot scope drift (our reviewer already uses this), --local install flag. v0.11.15.0 (SHA 6156122, PR #449): E2E skill testing framework (runSkillTest with temp dirs, output verification, cost tracking, concurrent execution) + gen:skill-docs template regeneration. Strengthens #68 quality direction. Premature for our 8-skill set. v0.11.16.0 (SHA 315c172, PR #450): 2-tier E2E test system — gate/periodic split with granular touchfiles (9→3 global deps, scoped per-test). Supabase RLS lockdown + edge function routing (#460). Flaky test fixes (#462). Testing maturity wave continues.
+- **Notes:** Most productive source so far. v0.9.7-v0.11.3 yielded adversarial review, structured tables, anti-sycophancy, pre-merge gate, security patterns. v0.9.9.1: cross-model outside voice (issue #64). v0.11.6.0: /cso v2 infrastructure-first security audit (covered by #17). v0.11.10.0: CI evals with parallel runners (no evals framework yet). v0.11.9.0: auto-heal stale installs + Codex 1024-char description guard (build-time validation, not issueworthy). v0.11.7.0: zsh glob compat + /review satisfies ship readiness gate. v0.11.12.0 (SHA dc5e053, PR #425): tiered preamble system (T1-T4) — skills pay for only needed context, ~40% token reduction for lightweight skills. WorktreeManager for E2E test isolation with SHA-256 dedup. Modular resolver arch. Token budget dashboard. Issue #83 (tiered preamble). v0.11.12.0 PR #424: triple-voice multi-model review with cascading context + consensus tables + degradation matrix (evolution of #64). PR #359 (v0.11.6.0): dynamic skill discovery (filesystem scan), three-dot scope drift (our reviewer already uses this), --local install flag. v0.11.15.0 (SHA 6156122, PR #449): E2E skill testing framework (runSkillTest with temp dirs, output verification, cost tracking, concurrent execution) + gen:skill-docs template regeneration. Strengthens #68 quality direction. Premature for our 8-skill set. v0.11.16.0 (SHA 315c172, PR #450): 2-tier E2E test system — gate/periodic split with granular touchfiles (9→3 global deps, scoped per-test). Supabase RLS lockdown + edge function routing (#460). Flaky test fixes (#462). Testing maturity wave continues. SHA 315c172→8500136: new commits, queue for next PATTERN_HUNT deep-dive.
 
 ### affaan-m/everything-claude-code
 - **Why:** Community harness patterns, skill collections, optimization techniques
@@ -27,13 +27,13 @@
 - **Why:** Curated ecosystem catalog — discover new tools, libraries, and patterns
 - **Look for:** New entries in Orchestrators/Tools/Skills sections, trending repos referenced
 - **Added:** 2026-03-20 (seed) | **Last deep:** 2026-03-24T20:21 | **Pattern hits:** 0
-- **Notes:** Categories: Skills, Workflows, Tooling, Hooks, Slash-Commands, CLAUDE.md Files, Status Lines, Alternative Clients. Cross-reference value for HORIZON SCAN, not direct patterns. All commits are automated ticker/SVG updates. SHA e438b93 unchanged. 0 pattern hits across 5+ observations.
+- **Notes:** Categories: Skills, Workflows, Tooling, Hooks, Slash-Commands, CLAUDE.md Files, Status Lines, Alternative Clients. Cross-reference value for HORIZON SCAN, not direct patterns. SHA e438b93→d9780f4: new commits, check if non-ticker content. 0 pattern hits across 5+ observations.
 
 ### bytedance/deer-flow
 - **Why:** Multi-agent orchestration patterns from a major tech company
 - **Look for:** Agent coordination, state management, tool orchestration, LLM provider patterns
 - **Added:** 2026-03-21 (seed) | **Last deep:** 2026-03-24T18:04 | **Pattern hits:** 1
-- **Notes:** Very active (5+ commits/day). GuardrailMiddleware covered by #67. Deep-dived 2026-03-24T14:11: symlink-aware skill scanning (#1292, followlinks=True in os.walk for custom skills dir — relevant to future #66 but not adoptable now) + subprocess security fix (#1289, os.system→subprocess, Python-specific). Deep-dived 2026-03-24T18:04: Windows Makefile compat (#1297), MCP sync wrapper (#1287, async-to-sync with ThreadPoolExecutor). Both platform-specific, 0 harness patterns. SHA 067b19a→16ed797: configurable log level + token usage tracking middleware (#1301), loop detection middleware Anthropic compat (#1300). Python/LangGraph specific, 0 harness patterns.
+- **Notes:** Very active (5+ commits/day). GuardrailMiddleware covered by #67. Deep-dived 2026-03-24T14:11: symlink-aware skill scanning (#1292, followlinks=True in os.walk for custom skills dir — relevant to future #66 but not adoptable now) + subprocess security fix (#1289, os.system→subprocess, Python-specific). Deep-dived 2026-03-24T18:04: Windows Makefile compat (#1297), MCP sync wrapper (#1287, async-to-sync with ThreadPoolExecutor). Both platform-specific, 0 harness patterns. SHA 16ed797→ec46ae0: new commits, queue for next PATTERN_HUNT. Python/LangGraph specific, historically 0 harness patterns.
 
 ### wshobson/agents
 - **Why:** Agent framework patterns — autonomous agent architectures
@@ -51,7 +51,7 @@
 - **Why:** Web framework we use — security fixes, breaking changes, new features
 - **Look for:** Security advisories, breaking changes in minor/major releases, new content collection features
 - **Added:** 2026-03-20 (seed) | **Last deep:** 2026-03-24T20:21 | **Pattern hits:** 0
-- **Notes:** Only actionable for security fixes or features that affect our site build. SHA f771f75→a8a926e: React hydration fixes (#15378, #15146), typo fixes. Previous: ARIA role fix (#16068), host header validation (#16043). 0 harness patterns across 6+ deep-dives.
+- **Notes:** Only actionable for security fixes or features that affect our site build. SHA a8a926e→b089b90: new commits, check for security fixes. Previous: React hydration fixes, ARIA role fix, host header validation. 0 harness patterns across 6+ deep-dives.
 
 ### verkyyi/tokenman
 - **Why:** Self-reference — track forks, adopters, and how the scaffold is used
@@ -65,7 +65,7 @@
 ### thedotmack/claude-mem
 - **Why:** Session memory plugin (40K stars) — auto-captures sessions, AI-compresses context, injects relevance-filtered memory into future sessions
 - **Look for:** Compression strategies, relevance filtering, context injection patterns, memory lifecycle management
-- **Added:** 2026-03-23 (horizon scan) | **Observations:** 14 | **First seen:** 2026-03-23
+- **Added:** 2026-03-23 (horizon scan) | **Observations:** 16 | **First seen:** 2026-03-23
 - **Notes:** v10.6.2 active (Mar 21). SHA e2a2302 unchanged. Their compress-filter-inject pipeline is more sophisticated than our simple state/ read/write. Could improve how we manage project_state.md context.
 
 ### BloopAI/vibe-kanban
@@ -120,7 +120,7 @@
 - **Why:** Comprehensive agent team (275 stars) — 119 agents, 208 skills, 49 hooks, 21 rules. Self-learning pattern where errors auto-become rules
 - **Look for:** Self-learning implementation, session evaluation patterns, skill gateway for external catalogs, workflow routing
 - **Added:** 2026-03-24 (horizon scan) | **Observations:** 12 | **First seen:** 2026-03-24
-- **Notes:** SHA 717b2c1. Deep-dived 2026-03-25: v1.3 SaaS Skill Pack (6 new, 2 enriched — payment, auth, email, compliance, analytics, launch). "Security hardened after 3-agent parallel review (18 fixes applied)" — multi-agent quality gate for skill content. UPGRADING.md for version migration. v1.2 had Skill Gateway + Pyxel integration. evaluate-session.sh quantifies session outcomes. Self-learning pattern similar to our feedback-learner. Pattern hit: 1 (multi-agent review quality gate).
+- **Notes:** SHA 717b2c1→d7e1fc5: new commits. Deep-dived 2026-03-25: v1.3 SaaS Skill Pack (6 new, 2 enriched — payment, auth, email, compliance, analytics, launch). "Security hardened after 3-agent parallel review (18 fixes applied)" — multi-agent quality gate for skill content. UPGRADING.md for version migration. v1.2 had Skill Gateway + Pyxel integration. evaluate-session.sh quantifies session outcomes. Self-learning pattern similar to our feedback-learner. Pattern hit: 1 (multi-agent review quality gate).
 
 ### agent-sh/agnix
 - **Why:** CLAUDE.md/SKILL.md linter and LSP (103 stars) — validates AI coding assistant config files, autofixes, IDE plugins

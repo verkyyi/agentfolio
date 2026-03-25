@@ -1,9 +1,9 @@
 # Project State
-Last updated: 2026-03-25T02:25:00Z
-Updated by: watcher.yml
+Last updated: 2026-03-25T02:41:03Z
+Updated by: evolve.yml
 
 ## Last Session
-Action: watcher.yml health check — 1 corrective action: closed #94 (PR #95 merged 01:06Z, auto-close missed — 12th miss this week). #96 new issue (state file merge conflicts, 40min old, under triage threshold). All workflows HEALTHY.
+Action: evolve.yml PIPELINE_WATCH — analyzed 10 pipeline failures (9 ALREADY-FIXED, 1 ACTIONABLE=#96). Evolve 93.3% success. Cost $1.91/run avg. SHA scan: 4/8 Active changed (gstack, awesome-claude-code, deer-flow, astro), 1/12 Watch List changed (vibecosystem). 0 issues created.
 
 System health:
 - Evolve: MIXED (last 8 runs: 3/8 exceed 45 at 37.5%, last 3 consecutive exceeding — but #94 fix just merged, only 1 post-fix data point)
