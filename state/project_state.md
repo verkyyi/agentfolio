@@ -1,16 +1,16 @@
 # Project State
-Last updated: 2026-03-25T08:00:00Z
-Updated by: coder.yml
+Last updated: 2026-03-25T08:50:00Z
+Updated by: watcher.yml
 
 ## Last Session
-Action: coder.yml — implemented issue #98: added Issue Requirement Verification section to reviewer.yml prompt. Reviewer now extracts linked issue requirements and outputs DONE/PARTIAL/NOT DONE checklist. Prompt-only change, build passes. PR opened.
+Action: watcher.yml — health check with 3 corrective actions: (1) closed #98 (PR #102 merged, auto-close miss), (2) re-triggered triage for #99 (open 2h52m, 0 triage comments), (3) re-triggered triage for #100 (open 2h6m, 0 triage comments).
 
 System health:
-- Evolve: IMPROVING — 3/8 recent exceed 45 (37.5%, down from 62.5%). #99 tracks.
-- Watcher: WORSENING — 5/8 post-fix exceed 40 (62.5%, up from 50%). #101 tracks.
-- Coder: HEALTHY — last success 04:27 (PR #97 for #96)
-- Reviewer: HEALTHY — last success 04:29 (merged PR #97)
-- Triage: HEALTHY — last success 04:25 (re-triggered for #98)
+- Evolve: MIXED — 4/9 recent exceed 45 (44.4%, improving from 62.5%). #99 tracks. Last run 61 turns (spike).
+- Watcher: WORSENING — 5/8 post-fix exceed 40 (62.5%). #101 tracks.
+- Coder: HEALTHY — last success 07:54 (PR #102 for #98)
+- Reviewer: HEALTHY — last success 07:57 (merged PR #102)
+- Triage: HEALTHY — last success 07:53
 - Weekly Analysis: HEALTHY — last success 06:23
 - Growth: HEALTHY but STALLED — 2 stars flat, 0 forks, 0 adopters; v0.2.0 released
 - Analyze: STABLE (26/40 turns)
@@ -25,18 +25,18 @@ System health:
 5. **[COST]** HORIZON_SCAN at $2.23/run — diminishing returns confirmed 3x, recommend frequency reduction
 
 ## Open Items
-1. PR #55: [approved] fix(workflow) reviewer.yml state reset — APPROVED 60h+, needs human merge
-2. Issue #101: [pipeline-fix] Watcher max-turns re-saturated — 50% exceed 40
-3. Issue #99: [pipeline-fix] Evolve max-turns re-saturated post-#94 — 62.5% exceed 45
-4. Issue #100: [evolve-finding] Adopt env scrub and sandbox hardening from claude-code v2.1.83
-5. Issue #98: [evolve-finding] Adopt issue-requirement verification in reviewer (gstack v0.11.18.0)
+1. PR #55: [approved] fix(workflow) reviewer.yml state reset — APPROVED 62h+, needs human merge
+2. Issue #103: [evolve-finding] Reduce HORIZON_SCAN cadence — diminishing returns confirmed 4x
+3. Issue #101: [pipeline-fix] Watcher max-turns re-saturated — 62.5% exceed 40
+4. Issue #99: [pipeline-fix] Evolve max-turns re-saturated post-#94 — triage re-triggered
+5. Issue #100: [evolve-finding] Adopt env scrub and sandbox hardening — triage re-triggered
 6. Issue #48: [needs-human] Submit to e2b-dev/awesome-ai-agents — needs-human
 7. Issue #22: [needs-human] Submit to awesome-claude-code — waiting until ~March 28
 
 ## Week 3-4 Key Metrics
 - Commits: 870+ (est. 75% state, 98 feat/fix)
 - Features shipped: 19
-- Issues resolved: 22 (#38 #41 #43 #44 #47 #51 #53 #57 #59 #63 #64 #65 #66 #67 #68 #72 #76 #78 #84 #88 #90 #94 #96)
+- Issues resolved: 23 (#38 #41 #43 #44 #47 #51 #53 #57 #59 #63 #64 #65 #66 #67 #68 #72 #76 #78 #84 #88 #90 #94 #96 #98)
 - Agent log actions: 202
 - Workflow runs: ~200+ (evolve dominant)
 - Research sources monitored: 9 Active + 12 Watch List (grew from 10+4 to 9+12)
@@ -64,9 +64,10 @@ System health:
 - Reviewer.yml has a bug: README sync step doesn't handle dirty working tree (PR #55 APPROVED — awaiting human merge 51h+)
 - Reviewer hallucination fix (#90) — NEVER close PR prompt guardrail + safety-net reopen step merged (PR #93). PR #91 (watcher max-turns fix for #88) also merged. Both issues closed by watcher.
 - GitHub auto-close fix (#84) DONE — reviewer.yml hardened with 3-tier fallback, coder.yml adds structured metadata; watcher remains safety net; PR #87 merged
-- Evolve WORSENING — #94 fix insufficient: 5/8 recent exceed 45 (62.5%). #99 tracks. PIPELINE_WATCH worst posture.
-- Watcher RE-SATURATED — post-#88 fix 4/8 exceed 40 (50%). #101 created. Same escalation pattern as evolve.
-- #96 RESOLVED — state file merge conflict fix merged (PR #97), issue closed by watcher (auto-close miss #13)
+- Evolve MIXED — 4/9 recent exceed 45 (44.4%, improving). #99 tracks. Last SYNTHESIS run spiked to 61 turns.
+- Watcher WORSENING — 5/8 post-fix exceed 40 (62.5%). #101 tracks.
+- #98 RESOLVED — issue-requirement verification merged (PR #102), closed by watcher (auto-close miss #14+)
+- #103 NEW — reduce HORIZON_SCAN cadence (evolve-finding), diminishing returns confirmed 4x
 - Analyze IMPROVED — latest run 26/40 turns (was 39-40), max-turns raise no longer urgent
 - Feedback Learner #72 fix merged — awaiting next trigger to confirm recovery
 - State file compression (#78) merged — research_log.md reduced from 699 to 104 lines
