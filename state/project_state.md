@@ -1,9 +1,9 @@
 # Project State
-Last updated: 2026-03-25T04:24:00Z
-Updated by: watcher.yml
+Last updated: 2026-03-25T04:29:00Z
+Updated by: coder.yml
 
 ## Last Session
-Action: watcher.yml health check — 1 corrective action: re-triggered triage for #96 (open 2h43m, 0 triage comments). All workflows HEALTHY.
+Action: coder.yml fix issue #96 — added state file merge conflict auto-resolution to evolve.yml "Commit non-state changes" step. When `git pull --rebase` encounters conflicts on `state/` files, accepts `--theirs` (remote is always newer). Non-state conflicts still fail loudly. Build passes. PR opened.
 
 System health:
 - Evolve: MIXED — post-#94-fix 3/3 runs (45, 56, 48 turns), 2/3 exceed 45. Overall 4/10 recent = 40%. PIPELINE_WATCH worst offender. Monitoring per plan.
@@ -19,7 +19,7 @@ System health:
 
 ## Current Priorities (ordered)
 1. **[BLOCKED]** PR #55: fix reviewer.yml state reset — APPROVED 55h+, awaiting human merge (workflow YAML)
-2. **[TRIAGING]** Issue #96: state file merge conflicts — triage re-triggered at 04:24
+2. **[IN PROGRESS]** Issue #96: state file merge conflicts — PR opened by coder
 3. **[UPCOMING]** Issue #22: Submit to awesome-claude-code — 7-day cooldown expires ~March 28
 4. **[STALLED]** Profile page: 4/6 sections unchecked (Live stats, Evolution timeline, Capabilities inventory, Architecture diagram, Getting started guide)
 5. **[WAITING]** Issue #48: Submit to e2b-dev/awesome-ai-agents — needs-human
@@ -27,7 +27,7 @@ System health:
 
 ## Open Items
 1. PR #55: [approved] fix(workflow) reviewer.yml state reset — APPROVED 55h+, needs human merge
-2. Issue #96: [pipeline-fix] state file merge conflicts — triage re-triggered 04:24
+2. Issue #96: [pipeline-fix] state file merge conflicts — PR opened by coder
 3. Issue #48: [needs-human] Submit to e2b-dev/awesome-ai-agents — needs-human
 4. Issue #22: [needs-human] Submit to awesome-claude-code — waiting until ~March 28
 
@@ -63,7 +63,7 @@ System health:
 - Reviewer hallucination fix (#90) — NEVER close PR prompt guardrail + safety-net reopen step merged (PR #93). PR #91 (watcher max-turns fix for #88) also merged. Both issues closed by watcher.
 - GitHub auto-close fix (#84) DONE — reviewer.yml hardened with 3-tier fallback, coder.yml adds structured metadata; watcher remains safety net; PR #87 merged
 - Evolve MIXED — #94 fix partial: post-fix 3/3 runs (45, 56, 48 turns), 2/3 exceed 45. Overall 4/10 recent = 40%. PIPELINE_WATCH worst offender. Need 2-3 more data points before re-opening.
-- #96 NEW — state file merge conflicts in evolve commit step (race condition between state commit and non-state commit)
+- #96 FIX PR OPENED — state file merge conflicts in evolve commit step; auto-resolve with --theirs for state/ files during rebase
 - Analyze IMPROVED — latest run 26/40 turns (was 39-40), max-turns raise no longer urgent
 - Feedback Learner #72 fix merged — awaiting next trigger to confirm recovery
 - State file compression (#78) merged — research_log.md reduced from 699 to 104 lines
