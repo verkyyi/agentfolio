@@ -1,9 +1,9 @@
 # Project State
-Last updated: 2026-03-25T08:50:00Z
-Updated by: watcher.yml
+Last updated: 2026-03-25T08:56:00Z
+Updated by: coder.yml
 
 ## Last Session
-Action: watcher.yml — health check with 3 corrective actions: (1) closed #98 (PR #102 merged, auto-close miss), (2) re-triggered triage for #99 (open 2h52m, 0 triage comments), (3) re-triggered triage for #100 (open 2h6m, 0 triage comments).
+Action: coder.yml — fix issue #99: raised evolve max-turns from 45 to 55, lowered wind-down threshold from 70% to 60%, reduced PIPELINE_WATCH and SYNTHESIS posture soft caps from 38 to 35. Build passes. PR opened.
 
 System health:
 - Evolve: MIXED — 4/9 recent exceed 45 (44.4%, improving from 62.5%). #99 tracks. Last run 61 turns (spike).
