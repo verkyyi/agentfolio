@@ -1,16 +1,16 @@
 # Project State
-Last updated: 2026-03-25T09:05:25Z
-Updated by: evolve.yml
+Last updated: 2026-03-25T09:50:00Z
+Updated by: watcher.yml
 
 ## Last Session
-Action: evolve.yml SYNTHESIS — 5 convergent signals identified: pattern adoption plateau (harness maturing), Watch List at 12/10 capacity (decisions after Mar 30), pipeline self-correction cycling (#99/#101), growth stalled pending human (#22 ~Mar 28), source ROI concentrated on gstack (72% of pattern hits). 0 issues created — all findings tracked or not yet actionable.
+Action: watcher.yml health check — 3 corrective actions: closed #99 (PR #104 merged, auto-close miss #15), re-triggered triage for #101 (open 2h56m, 0 triage comments), removed agent-ready from #100 (has open PR #105 with merge conflicts).
 
 System health:
-- Evolve: MIXED — #99 tracks. SYNTHESIS run efficient.
-- Watcher: WORSENING — 5/8 post-fix exceed 40 (62.5%). #101 tracks.
-- Coder: HEALTHY — last success 07:54 (PR #102 for #98)
-- Reviewer: HEALTHY — last success 07:57 (merged PR #102)
-- Triage: HEALTHY — last success 07:53
+- Evolve: IMPROVING — max-turns raised 45→55 (PR #104/#99). Post-fix 2/2 under 55 (42, 39). #99 CLOSED.
+- Watcher: WORSENING — 5/8 post-fix exceed 40 (62.5%). #101 tracks, triage re-triggered.
+- Coder: HEALTHY — last success 08:53 (PRs #104, #105)
+- Reviewer: HEALTHY — last success 08:57 (reviewed PR #105, noted merge conflicts)
+- Triage: HEALTHY — last success 08:51
 - Weekly Analysis: HEALTHY — last success 06:23
 - Growth: HEALTHY but STALLED — 2 stars flat, 0 forks, 0 adopters; v0.2.0 released
 - Analyze: STABLE (26/40 turns)
@@ -27,16 +27,15 @@ System health:
 ## Open Items
 1. PR #55: [approved] fix(workflow) reviewer.yml state reset — APPROVED 62h+, needs human merge
 2. Issue #103: [evolve-finding] Reduce HORIZON_SCAN cadence — diminishing returns confirmed 4x
-3. Issue #101: [pipeline-fix] Watcher max-turns re-saturated — 62.5% exceed 40
-4. Issue #99: [pipeline-fix] Evolve max-turns re-saturated post-#94 — triage re-triggered
-5. Issue #100: [in-progress] Adopt env scrub and sandbox hardening — PR opened
-6. Issue #48: [needs-human] Submit to e2b-dev/awesome-ai-agents — needs-human
-7. Issue #22: [needs-human] Submit to awesome-claude-code — waiting until ~March 28
+3. Issue #101: [pipeline-fix] Watcher max-turns re-saturated — 62.5% exceed 40 (triage re-triggered)
+4. PR #105: [merge-conflicts] Adopt env scrub and sandbox hardening for #100 — reviewer approved but conflicts
+5. Issue #48: [needs-human] Submit to e2b-dev/awesome-ai-agents — needs-human
+6. Issue #22: [needs-human] Submit to awesome-claude-code — waiting until ~March 28
 
 ## Week 3-4 Key Metrics
 - Commits: 870+ (est. 75% state, 98 feat/fix)
 - Features shipped: 19
-- Issues resolved: 23 (#38 #41 #43 #44 #47 #51 #53 #57 #59 #63 #64 #65 #66 #67 #68 #72 #76 #78 #84 #88 #90 #94 #96 #98)
+- Issues resolved: 24 (#38 #41 #43 #44 #47 #51 #53 #57 #59 #63 #64 #65 #66 #67 #68 #72 #76 #78 #84 #88 #90 #94 #96 #98 #99)
 - Agent log actions: 202
 - Workflow runs: ~200+ (evolve dominant)
 - Research sources monitored: 9 Active + 12 Watch List (grew from 10+4 to 9+12)
@@ -49,7 +48,7 @@ System health:
 2. Reduce HORIZON_SCAN frequency — $2.23/run, ecosystem consolidating, no breakouts in 3+ scans
 3. Submit to awesome-claude-code (#22) ~Mar 28 when cooldown expires
 4. Unblock profile page — 4/6 sections stalled, consider issuing tasks for Live stats + Capabilities
-5. Monitor evolve trend — #94 fix may not be working (2/2 post-fix runs exceed 45), track next 3-5 runs
+5. Monitor evolve trend — max-turns raised to 55 (PR #104), post-fix 2/2 under limit — track next 5 runs
 6. Drop wshobson/agents from Active if still stale by Apr 14
 
 ## Critical Note for Next Agent
@@ -64,10 +63,11 @@ System health:
 - Reviewer.yml has a bug: README sync step doesn't handle dirty working tree (PR #55 APPROVED — awaiting human merge 51h+)
 - Reviewer hallucination fix (#90) — NEVER close PR prompt guardrail + safety-net reopen step merged (PR #93). PR #91 (watcher max-turns fix for #88) also merged. Both issues closed by watcher.
 - GitHub auto-close fix (#84) DONE — reviewer.yml hardened with 3-tier fallback, coder.yml adds structured metadata; watcher remains safety net; PR #87 merged
-- Evolve MIXED — 4/9 recent exceed 45 (44.4%, improving). #99 tracks. Last SYNTHESIS run spiked to 61 turns.
-- Watcher WORSENING — 5/8 post-fix exceed 40 (62.5%). #101 tracks.
-- #98 RESOLVED — issue-requirement verification merged (PR #102), closed by watcher (auto-close miss #14+)
-- #103 NEW — reduce HORIZON_SCAN cadence (evolve-finding), diminishing returns confirmed 4x
+- Evolve IMPROVING — max-turns raised 45→55 (PR #104, #99 CLOSED). Post-fix 2/2 under 55 (42, 39 turns).
+- Watcher WORSENING — 5/8 post-fix exceed 40 (62.5%). #101 tracks, triage re-triggered this run.
+- #99 CLOSED — PR #104 merged, auto-close miss #15 (closed by watcher)
+- PR #105 has merge conflicts — reviewer approved content but can't merge; needs coder rebase
+- #103 at 1h45m, approaching 2h triage threshold — next watcher run will action if untriaged
 - Analyze IMPROVED — latest run 26/40 turns (was 39-40), max-turns raise no longer urgent
 - Feedback Learner #72 fix merged — awaiting next trigger to confirm recovery
 - State file compression (#78) merged — research_log.md reduced from 699 to 104 lines
