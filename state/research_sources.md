@@ -1,33 +1,33 @@
 # Research Sources
 # Managed by evolve.yml. Claude adds, prunes, and annotates freely.
 # Seeded from evolve_config.md on first run.
-# Last updated: 2026-03-25T06:12:12Z
+# Last updated: 2026-03-25T07:41:19Z
 
 ## Active Sources
 
 ### anthropics/claude-code
 - **Why:** The runtime we build on — releases, breaking changes, new hooks, CLI flags
 - **Look for:** CHANGELOG entries, new hook types, permission changes, SDK updates
-- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-03-23 | **Pattern hits:** 1 | **SHA:** cada21c
-- **Notes:** Protected source — never drop. Check CHANGELOG and releases, not just commits. v2.1.83 (SHA cada21c, 2026-03-25): CwdChanged/FileChanged hook events, CLAUDE_CODE_SUBPROCESS_ENV_SCRUB=1, managed-settings.d/ drop-in policy, sandbox.failIfUnavailable, agent initialPrompt frontmatter, MCP policy bypass fix. Previous: v2.1.81 --bare flag (issue #63), --channels permission relay, plugin freshness re-clone, background agent race fix, worktree resume. Priority deep-dive for next PATTERN_HUNT.
+- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-03-25T07:41 | **Pattern hits:** 1 | **SHA:** a542f1b
+- **Notes:** Protected source — never drop. Check CHANGELOG and releases, not just commits. v2.1.83 fully deep-dived: managed-settings.d/ (modular policy fragments, not needed for single-project), CwdChanged/FileChanged hooks (reactive env mgmt), initialPrompt frontmatter (requires --agent mode, not -p), CLAUDE_CODE_SUBPROCESS_ENV_SCRUB=1, sandbox.failIfUnavailable — all security patterns covered by #100. SHA a542f1b is pre-release CHANGELOG for upcoming v2.1.84. Previous: v2.1.81 --bare flag (issue #63), --channels permission relay.
 
 ### garrytan/gstack
 - **Why:** Harness engineering patterns — skills, slash commands, review protocols, agent orchestration
 - **Look for:** New skill files, workflow patterns, agent guardrails, PR review techniques, structured output formats
-- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-03-25T05:13 | **Pattern hits:** 9
-- **Notes:** Most productive source so far. v0.9.7-v0.11.3 yielded adversarial review, structured tables, anti-sycophancy, pre-merge gate, security patterns. v0.9.9.1: cross-model outside voice (issue #64). v0.11.6.0: /cso v2 infrastructure-first security audit (covered by #17). v0.11.10.0: CI evals with parallel runners (no evals framework yet). v0.11.9.0: auto-heal stale installs + Codex 1024-char description guard (build-time validation, not issueworthy). v0.11.7.0: zsh glob compat + /review satisfies ship readiness gate. v0.11.12.0 (SHA dc5e053, PR #425): tiered preamble system (T1-T4) — skills pay for only needed context, ~40% token reduction for lightweight skills. WorktreeManager for E2E test isolation with SHA-256 dedup. Modular resolver arch. Token budget dashboard. Issue #83 (tiered preamble). v0.11.12.0 PR #424: triple-voice multi-model review with cascading context + consensus tables + degradation matrix (evolution of #64). PR #359 (v0.11.6.0): dynamic skill discovery (filesystem scan), three-dot scope drift (our reviewer already uses this), --local install flag. v0.11.15.0 (SHA 6156122, PR #449): E2E skill testing framework (runSkillTest with temp dirs, output verification, cost tracking, concurrent execution) + gen:skill-docs template regeneration. Strengthens #68 quality direction. Premature for our 8-skill set. v0.11.16.0 (SHA 315c172, PR #450): 2-tier E2E test system — gate/periodic split with granular touchfiles (9→3 global deps, scoped per-test). Supabase RLS lockdown + edge function routing (#460). Flaky test fixes (#462). Testing maturity wave continues. v0.11.18.0 (SHA 7e0b879, PR #428): "Ship With Teeth" — plan completion audit (requirement extraction + diff cross-ref + DONE/PARTIAL/NOT DONE/CHANGED), test coverage gate (graduated thresholds 60/80%), plan-aware scope drift, auto-verification via /qa-only. Issue #98 (requirement verification for reviewer). v0.11.18.1 (SHA 70c51d5, PR #427): universal "one decision per question" AskUserQuestion rule + Completeness Principle (recommend thorough option, compression ratios). v0.11.18.2 (SHA 9870a4e): Windows browse fix (not relevant).
+- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-03-25T07:41 | **Pattern hits:** 9
+- **Notes:** Most productive source so far. 9 pattern hits across v0.9.7-v0.11.18.2 (adversarial review, structured tables, anti-sycophancy, pre-merge gate, security, cross-model voice, tiered preamble, plan completion audit, requirement verification). Open PRs scanned: #480 deslop skills (anti-slop quality review from Theta-Tech-AI — premature for 8-skill set), #469/#472/#473 security cluster (JSONL injection, health endpoint info leak, JSON validation — covered by #17/#100), #471 v0.11.19.0 (Codex description limit guard + -C repo targeting). SHA 9870a4e unchanged (last commit: Windows browse fix). Issue #98 tracks requirement verification adoption.
 
 ### affaan-m/everything-claude-code
 - **Why:** Community harness patterns, skill collections, optimization techniques
 - **Look for:** New skills, CLAUDE.md patterns, workflow architectures, instinct files
-- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-03-24 | **Pattern hits:** 1
-- **Notes:** Large community repo. skill-comply (behavioral compliance), santa-method (multi-agent adversarial verification), Kiro IDE integration — interesting but not immediately adoptable. v2026-03-23: 6 gap-closing skills (safety-guard, canary-watch, benchmark, browser-qa, design-system, product-lens). safety-guard uses PreToolUse hooks for multi-mode guardrails (supports #67). canary-watch has structured alert thresholds (critical/warning/info). Kiro hooks include extract-patterns (agentStop → auto-extract lessons) — similar to feedback-learner. 18 Kiro SKILL.md files added. SHA df4f2df→2166d80: ECC 2.0 Rust TUI agentic IDE scaffold (session manager, worktree orchestration, SQLite mailbox for inter-agent communication, risk scoring for tool calls). SHA 2166d80→7f7e319: ECC2 token/cost meter widget (#884), session lifecycle (#881). Rust TUI work, 0 harness patterns.
+- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-03-25T07:41 | **Pattern hits:** 1
+- **Notes:** Large community repo. 1 pattern hit (safety-guard PreToolUse hooks). ECC 2.0 Rust TUI continues: SHA 7f7e319→c1b47ac: agent status panel (#883), token/cost meter (#884), session lifecycle (#881). All ECC2/Rust TUI work, 0 harness patterns across 4+ consecutive observations. Retaining for community skill discoveries but reducing deep-dive priority.
 
 ### hesreallyhim/awesome-claude-code
 - **Why:** Curated ecosystem catalog — discover new tools, libraries, and patterns
 - **Look for:** New entries in Orchestrators/Tools/Skills sections, trending repos referenced
-- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-03-25T05:13 | **Pattern hits:** 0
-- **Notes:** Categories: Skills, Workflows, Tooling, Hooks, Slash-Commands, CLAUDE.md Files, Status Lines, Alternative Clients. Cross-reference value for HORIZON SCAN, not direct patterns. SHA d9780f4: confirmed all-ticker (automated SVGs), no content changes. 0 pattern hits across 7+ observations. Low-value for PATTERN_HUNT; retain for HORIZON_SCAN cross-reference only.
+- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-03-25T07:41 | **Pattern hits:** 0 | **SHA:** 4fa8827
+- **Notes:** SHA d9780f4→4fa8827: ticker only (9th consecutive, 0 content changes). 0 pattern hits across 8+ observations. Low-value for PATTERN_HUNT; retain for HORIZON_SCAN cross-reference only.
 
 ### bytedance/deer-flow
 - **Why:** Multi-agent orchestration patterns from a major tech company
@@ -83,8 +83,8 @@
 ### sickn33/antigravity-awesome-skills
 - **Why:** Largest skill catalog (27K stars, 1309+ skills) — installable via CLI, bundles, multi-platform (Claude Code, Codex, Gemini CLI, Cursor)
 - **Look for:** Skill packaging/distribution model, CLI installer patterns, bundle organization, cross-platform skill format
-- **Added:** 2026-03-23 (horizon scan) | **Observations:** 16 | **First seen:** 2026-03-23
-- **Notes:** v8.7.1 (Mar 23), SHA 2e12db8 unchanged. NPX installer (`npx antigravity-awesome-skills`) installs to target directory. Bundles by role (Web Wizard, Security Engineer, Essentials). Registry sync metadata in README. Confirms direction of #66. Distribution model: npm package + GitHub catalog + curated bundles.
+- **Added:** 2026-03-23 (horizon scan) | **Observations:** 22 | **First seen:** 2026-03-23
+- **Notes:** SHA 2e12db8→b2f9600: star history chart update only, no content. NPX installer, bundles by role. Confirms direction of #66.
 
 ### volcengine/OpenViking
 - **Why:** Self-evolving context database (18.4K stars) — unified context management (memory, resources, skills) via file system paradigm, hierarchical context delivery
