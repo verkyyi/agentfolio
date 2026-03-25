@@ -106,7 +106,37 @@ jobs:
           1. Read the actual changed files (use Read tool on each file)
           2. Run the test command from the Evolve Config Build section — if it passes, that's a strong signal
           3. Check the diff: git diff origin/main...HEAD
-          4. Apply the decision framework below
+          4. Run Issue Requirement Verification (see below)
+          5. Apply the decision framework below
+
+          ## Issue Requirement Verification:
+
+          Before making your verdict, verify that the PR addresses the requirements
+          from the linked issue:
+
+          1. Extract the linked issue number:
+             - First try: gh pr view ${NUM} --json closingIssuesReferences --jq '.closingIssuesReferences[].number' --repo ${{ github.repository }}
+             - Fallback: parse the PR title and body for "closes #N", "fixes #N", or "resolves #N"
+             - If no linked issue is found, skip this section
+
+          2. Read the issue body: gh issue view <ISSUE_NUMBER> --repo ${{ github.repository }}
+
+          3. Extract actionable requirements from the issue body:
+             - Checkbox items (- [ ] ...)
+             - Numbered steps or acceptance criteria
+             - Imperative statements ("must", "should", "add", "remove", "fix")
+
+          4. Cross-reference each requirement against the PR diff and changed files
+
+          5. Output a structured checklist in your review comment:
+             - [DONE] Requirement fully addressed by the PR
+             - [PARTIAL] Requirement partially addressed — note what is missing
+             - [NOT DONE] Requirement not addressed by the PR
+
+          **Important:** This checklist is INFORMATIONAL ONLY. It does not override
+          the HARD BLOCK / APPROVE decision framework. A PR with [NOT DONE] items
+          can still be approved if there are no hard blocks. Include the checklist
+          in your gh pr review --body comment for visibility.
 
           ## Decision framework (BLACKLIST — block only these, approve everything else):
 
