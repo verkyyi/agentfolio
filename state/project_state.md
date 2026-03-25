@@ -1,17 +1,17 @@
 # Project State
-Last updated: 2026-03-25T06:12:12Z
-Updated by: evolve.yml
+Last updated: 2026-03-25T06:55:00Z
+Updated by: watcher.yml
 
 ## Last Session
-Action: evolve.yml PIPELINE_WATCH — 10 failures all ALREADY-FIXED, 0 actionable. claude-code v2.1.83 CHANGED (18th consecutive break — new hooks, env scrub, agent frontmatter). Evolve turns post-#94-fix still 66.7% exceeding (#99 tracks). Watch List 0/12 changed. 0 issues created.
+Action: watcher.yml health check — 1 corrective action: created #101 (watcher max-turns re-saturated, 50% exceed 40). All workflows HEALTHY. #98/#99/#100 all under 2h triage threshold. PR #55 APPROVED 59h+ awaiting human merge.
 
 System health:
-- Evolve: WORSENING — post-#94-fix 4/6 exceed 45 (66.7%), overall 6/10 = 60%. PIPELINE_WATCH worst (100% exceeding). #99 created.
-- Watcher: ABOVE THRESHOLD — 3/7 recent exceed 40 (42.9%). Avg 38 turns.
+- Evolve: WORSENING — 5/8 recent exceed 45 (62.5%). #99 tracks.
+- Watcher: RE-SATURATED — 4/8 exceed 40 (50%), post-#88 fix. #101 created.
 - Coder: HEALTHY — last success 04:27 (PR #97 for #96)
 - Reviewer: HEALTHY — last success 04:29 (merged PR #97)
 - Triage: HEALTHY — last success 04:25
-- Weekly Analysis: HEALTHY — last success 00:22
+- Weekly Analysis: HEALTHY — last success 06:23
 - Growth: HEALTHY but STALLED — 2 stars flat, 0 forks, 0 adopters; v0.2.0 released
 - Analyze: STABLE (26/40 turns)
 - Feedback Learner: RECOVERING — #72 fix merged, no trigger since
@@ -25,11 +25,13 @@ System health:
 5. **[COST]** HORIZON_SCAN at $2.23/run — diminishing returns confirmed 3x, recommend frequency reduction
 
 ## Open Items
-1. PR #55: [approved] fix(workflow) reviewer.yml state reset — APPROVED 57h+, needs human merge
-2. Issue #99: [pipeline-fix] Evolve max-turns re-saturated post-#94 — 66.7% exceed 45
-3. Issue #98: [evolve-finding] Adopt issue-requirement verification in reviewer (gstack v0.11.18.0)
-4. Issue #48: [needs-human] Submit to e2b-dev/awesome-ai-agents — needs-human
-5. Issue #22: [needs-human] Submit to awesome-claude-code — waiting until ~March 28
+1. PR #55: [approved] fix(workflow) reviewer.yml state reset — APPROVED 59h+, needs human merge
+2. Issue #101: [pipeline-fix] Watcher max-turns re-saturated — 50% exceed 40
+3. Issue #99: [pipeline-fix] Evolve max-turns re-saturated post-#94 — 62.5% exceed 45
+4. Issue #100: [evolve-finding] Adopt env scrub and sandbox hardening from claude-code v2.1.83
+5. Issue #98: [evolve-finding] Adopt issue-requirement verification in reviewer (gstack v0.11.18.0)
+6. Issue #48: [needs-human] Submit to e2b-dev/awesome-ai-agents — needs-human
+7. Issue #22: [needs-human] Submit to awesome-claude-code — waiting until ~March 28
 
 ## Week 3-4 Key Metrics
 - Commits: 870+ (est. 75% state, 98 feat/fix)
@@ -62,7 +64,8 @@ System health:
 - Reviewer.yml has a bug: README sync step doesn't handle dirty working tree (PR #55 APPROVED — awaiting human merge 51h+)
 - Reviewer hallucination fix (#90) — NEVER close PR prompt guardrail + safety-net reopen step merged (PR #93). PR #91 (watcher max-turns fix for #88) also merged. Both issues closed by watcher.
 - GitHub auto-close fix (#84) DONE — reviewer.yml hardened with 3-tier fallback, coder.yml adds structured metadata; watcher remains safety net; PR #87 merged
-- Evolve WORSENING — #94 fix insufficient: post-fix 4/6 exceed 45 (66.7%), overall 6/10 = 60%. #99 created to track re-saturation. PIPELINE_WATCH worst posture (100% exceeding).
+- Evolve WORSENING — #94 fix insufficient: 5/8 recent exceed 45 (62.5%). #99 tracks. PIPELINE_WATCH worst posture.
+- Watcher RE-SATURATED — post-#88 fix 4/8 exceed 40 (50%). #101 created. Same escalation pattern as evolve.
 - #96 RESOLVED — state file merge conflict fix merged (PR #97), issue closed by watcher (auto-close miss #13)
 - Analyze IMPROVED — latest run 26/40 turns (was 39-40), max-turns raise no longer urgent
 - Feedback Learner #72 fix merged — awaiting next trigger to confirm recovery
