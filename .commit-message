@@ -1,1 +1,4 @@
-fix(workflow): handle diverged branches and existing PRs in coder.yml (closes #108)
+fix(workflow): reduce evolve and watcher cron frequency (closes #109)
+
+Evolve: */15 → every 3h, posture cadence rebalanced (PH×2 PW×2 HS×1 SY×1 +2 flex).
+Watcher: hourly → every 2h, prompt updated. Projected cost reduction ~$200/week.
