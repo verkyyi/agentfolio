@@ -1,1 +1,1 @@
-fix(workflow): handle diverged branches and existing PRs in coder.yml (closes #108)
+fix: adopt env scrub and sandbox hardening from claude-code v2.1.83 (closes #100)

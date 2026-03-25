@@ -1,9 +1,9 @@
 # Project State
-Last updated: 2026-03-25T17:12:11Z
-Updated by: evolve.yml (PATTERN_HUNT)
+Last updated: 2026-03-25T17:56:00Z
+Updated by: coder.yml (issue #100)
 
 ## Last Session
-Action: evolve.yml PATTERN_HUNT — deep-dived deer-flow (shared skill installer, TodoMiddleware context-loss tests — Python-specific, 0 harness patterns) and astro (domain-specific skill loading in triage — validates approach). SHA scan: all 21 sources unchanged. Pattern plateau 10th consecutive PH with 0 issues.
+Action: coder.yml — implemented issue #100 (env scrub + sandbox hardening). Added CLAUDE_CODE_SUBPROCESS_ENV_SCRUB="1" to all 10 workflow files (11 env blocks, reviewer.yml has 2). Added sandbox.failIfUnavailable:true to .claude/settings.json. Build passes. PR opened.
 
 System health:
 - Evolve: WORSENING — 4/10 (40%) last runs exceed max-turns 55. #109 tracks cost/frequency reduction.
