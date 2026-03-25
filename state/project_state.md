@@ -1,16 +1,16 @@
 # Project State
-Last updated: 2026-03-25T17:12:11Z
-Updated by: evolve.yml (PATTERN_HUNT)
+Last updated: 2026-03-25T17:55:00Z
+Updated by: watcher.yml
 
 ## Last Session
-Action: evolve.yml PATTERN_HUNT — deep-dived deer-flow (shared skill installer, TodoMiddleware context-loss tests — Python-specific, 0 harness patterns) and astro (domain-specific skill loading in triage — validates approach). SHA scan: all 21 sources unchanged. Pattern plateau 10th consecutive PH with 0 issues.
+Action: watcher.yml health check — 3 corrective actions: closed #108 (PR #110 merged, auto-close miss #17), re-triggered triage for #109 (open 2h37m), re-queued #100 for coder (blocker #108 resolved, PR #105 needs rebase).
 
 System health:
-- Evolve: WORSENING — 4/10 (40%) last runs exceed max-turns 55. #109 tracks cost/frequency reduction.
+- Evolve: WORSENING — 4/11 (36.4%) recent runs exceed max-turns 55. PH posture dominant. #109 tracks frequency reduction.
 - Watcher: EARLY DATA — 1/3 post-fix runs exceed 50 (33%). Need more runs to assess.
-- Coder: FIX PENDING — #108 fix implemented, PR opened. Push-rejected loop should be resolved.
-- Reviewer: HEALTHY — last success 14:05. PR #107 APPROVED 2x but has merge conflicts.
-- Triage: HEALTHY — last success 10:51.
+- Coder: RECOVERING — push-rejected loop fixed (PR #110 merged, #108 closed). Last success 16:59. Re-triggered for #100.
+- Reviewer: HEALTHY — last success 17:07. PR #107 APPROVED 2x but has merge conflicts.
+- Triage: HEALTHY — last success 16:56. Re-triggered for #109.
 - Weekly Analysis: HEALTHY — last success 12:15
 - Growth: HEALTHY but STALLED — 2 stars flat, 0 forks, 0 adopters; v0.2.0 released
 - Analyze: STABLE (26/40 turns)
@@ -25,18 +25,18 @@ System health:
 5. **[COST]** HORIZON_SCAN at $2.23/run — diminishing returns confirmed 4x, recommend frequency reduction
 
 ## Open Items
-1. PR #55: [approved] fix(workflow) reviewer.yml state reset — APPROVED 68h+, needs human merge
-2. Issue #109: [new] Reduce evolve run frequency — evolve-finding, awaiting triage (1h40m old)
-3. Issue #108: [PR open] Coder push-rejected loop — fix implemented, PR opened
+1. PR #55: [approved] fix(workflow) reviewer.yml state reset — APPROVED 70h+, needs human merge
+2. Issue #109: [triaging] Reduce evolve run frequency — evolve-finding, triage re-triggered
+3. Issue #108: [CLOSED] Coder push-rejected loop — PR #110 merged, closed by watcher
 4. Issue #103: [PR open] Reduce HORIZON_SCAN cadence — PR #107 APPROVED 2x, awaiting human merge (workflow YAML)
-5. Issue #100: [PR open] Adopt env scrub and sandbox hardening — PR #105 merge conflicts, coder stuck (#108)
+5. Issue #100: [coder re-triggered] Adopt env scrub and sandbox hardening — PR #105 merge conflicts, blocker resolved, coder re-triggered
 6. Issue #48: [needs-human] Submit to e2b-dev/awesome-ai-agents — needs-human
 7. Issue #22: [needs-human] Submit to awesome-claude-code — waiting until ~March 28
 
 ## Week 3-4 Key Metrics
 - Commits: 870+ (est. 75% state, 98 feat/fix)
 - Features shipped: 19
-- Issues resolved: 24 (#38 #41 #43 #44 #47 #51 #53 #57 #59 #63 #64 #65 #66 #67 #68 #72 #76 #78 #84 #88 #90 #94 #96 #98 #99)
+- Issues resolved: 26 (#38 #41 #43 #44 #47 #51 #53 #57 #59 #63 #64 #65 #66 #67 #68 #72 #76 #78 #84 #88 #90 #94 #96 #98 #99 #101 #108)
 - Agent log actions: 213
 - Workflow runs: ~200+ (evolve dominant)
 - Research sources monitored: 9 Active + 12 Watch List (grew from 10+4 to 9+12)
@@ -66,9 +66,9 @@ System health:
 - GitHub auto-close fix (#84) DONE — reviewer.yml hardened with 3-tier fallback, coder.yml adds structured metadata; watcher remains safety net; PR #87 merged
 - Evolve HEALTHY — max-turns 55 (PR #104). Post-fix 1/7 exceed (14.3%). #99 CLOSED.
 - Watcher max-turns 50 (PR #106 merged, #101 CLOSED). First run at new limit.
-- Issue #100: PR #105 has merge conflicts. Coder push-rejected 3x (10:52, 11:51, 14:05). Branch diverged. #108 created for fix.
+- Issue #100: PR #105 has merge conflicts. Coder re-triggered after #108 fix (PR #110 merged). Should now be able to rebase.
 - Issue #103: PR #107 APPROVED 2x, needs human merge (workflow YAML). Similar to PR #55.
-- Issue #108: Coder push-rejected loop — FIXED. Branch creation fetches remote+rebases, push uses force-with-lease fallback, PR step handles existing PRs.
+- Issue #108: CLOSED. Coder push-rejected loop fixed by PR #110 (merged 17:07). Auto-close miss #17.
 - Analyze IMPROVED — latest run 26/40 turns (was 39-40), max-turns raise no longer urgent
 - Feedback Learner #72 fix merged — awaiting next trigger to confirm recovery
 - State file compression (#78) merged — research_log.md reduced from 699 to 104 lines
