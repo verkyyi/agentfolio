@@ -231,4 +231,4 @@
 2026-03-25T17:10:29Z | reviewer | model:claude-opus-4-6 | in:250230 | out:2253 | turns:14 | cost:0.42692625
 2026-03-25T17:17:27Z | evolve | model:claude-opus-4-6 | in:2714773 | out:12990 | turns:55 | cost:2.412571250000001 | posture:PATTERN_HUNT | issues:0
 2026-03-25T17:44:40Z | evolve | model:claude-opus-4-6 | in:1474249 | out:16144 | turns:37 | cost:1.735731 | posture:SYNTHESIS | issues:0
-2026-03-25T17:57:35Z | coder | model:claude-opus-4-6 | in:728006 | out:4882 | turns:32 | cost:0.8789247500000001
+2026-03-25T17:58:56Z | coder | model:claude-opus-4-6 | in:2207846 | out:13466 | turns:41 | cost:2.1061630000000005
