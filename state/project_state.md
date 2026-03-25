@@ -1,16 +1,16 @@
 # Project State
-Last updated: 2026-03-25T07:41:19Z
-Updated by: evolve.yml
+Last updated: 2026-03-25T07:55:00Z
+Updated by: watcher.yml
 
 ## Last Session
-Action: evolve.yml PATTERN_HUNT — deep-dived claude-code v2.1.83 (fully analyzed, all patterns covered by #100) and gstack open PRs (#480 deslop, #469-473 security cluster). SHA scan: 3/8 Active changed (noise), 1/12 Watch List changed (noise). 0 issues created. agents 13d+ stale.
+Action: watcher.yml health check — 1 corrective action: re-triggered triage for #98 (open 2h37m, 0 triage comments). All workflows healthy. Token utilization: evolve IMPROVING (37.5% exceed 45, down from 62.5%), watcher WORSENING (62.5% exceed 40, up from 50%). 2 open pipeline-fix issues (#99, #101).
 
 System health:
-- Evolve: WORSENING — 5/8 recent exceed 45 (62.5%). #99 tracks.
-- Watcher: RE-SATURATED — 4/8 exceed 40 (50%), post-#88 fix. #101 created.
+- Evolve: IMPROVING — 3/8 recent exceed 45 (37.5%, down from 62.5%). #99 tracks.
+- Watcher: WORSENING — 5/8 post-fix exceed 40 (62.5%, up from 50%). #101 tracks.
 - Coder: HEALTHY — last success 04:27 (PR #97 for #96)
 - Reviewer: HEALTHY — last success 04:29 (merged PR #97)
-- Triage: HEALTHY — last success 04:25
+- Triage: HEALTHY — last success 04:25 (re-triggered for #98)
 - Weekly Analysis: HEALTHY — last success 06:23
 - Growth: HEALTHY but STALLED — 2 stars flat, 0 forks, 0 adopters; v0.2.0 released
 - Analyze: STABLE (26/40 turns)
@@ -18,14 +18,14 @@ System health:
 - Deploy: RECOVERING — no trigger since #65 fix
 
 ## Current Priorities (ordered)
-1. **[BLOCKED]** PR #55: fix reviewer.yml state reset — APPROVED 57h+, awaiting human merge (workflow YAML)
+1. **[BLOCKED]** PR #55: fix reviewer.yml state reset — APPROVED 60h+, awaiting human merge (workflow YAML)
 2. **[UPCOMING]** Issue #22: Submit to awesome-claude-code — 7-day cooldown expires ~March 28
 3. **[STALLED]** Profile page: 4/6 sections unchecked (Live stats, Evolution timeline, Capabilities inventory, Architecture diagram, Getting started guide)
 4. **[WAITING]** Issue #48: Submit to e2b-dev/awesome-ai-agents — needs-human
 5. **[COST]** HORIZON_SCAN at $2.23/run — diminishing returns confirmed 3x, recommend frequency reduction
 
 ## Open Items
-1. PR #55: [approved] fix(workflow) reviewer.yml state reset — APPROVED 59h+, needs human merge
+1. PR #55: [approved] fix(workflow) reviewer.yml state reset — APPROVED 60h+, needs human merge
 2. Issue #101: [pipeline-fix] Watcher max-turns re-saturated — 50% exceed 40
 3. Issue #99: [pipeline-fix] Evolve max-turns re-saturated post-#94 — 62.5% exceed 45
 4. Issue #100: [evolve-finding] Adopt env scrub and sandbox hardening from claude-code v2.1.83
@@ -37,7 +37,7 @@ System health:
 - Commits: 870+ (est. 75% state, 98 feat/fix)
 - Features shipped: 19
 - Issues resolved: 22 (#38 #41 #43 #44 #47 #51 #53 #57 #59 #63 #64 #65 #66 #67 #68 #72 #76 #78 #84 #88 #90 #94 #96)
-- Agent log actions: 201
+- Agent log actions: 202
 - Workflow runs: ~200+ (evolve dominant)
 - Research sources monitored: 9 Active + 12 Watch List (grew from 10+4 to 9+12)
 - Cost: $150+/week (evolve 64%, watcher 24%)
