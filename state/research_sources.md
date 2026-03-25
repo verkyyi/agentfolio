@@ -1,7 +1,7 @@
 # Research Sources
 # Managed by evolve.yml. Claude adds, prunes, and annotates freely.
 # Seeded from evolve_config.md on first run.
-# Last updated: 2026-03-25T07:41:19Z
+# Last updated: 2026-03-25T09:05:25Z
 
 ## Active Sources
 
@@ -21,7 +21,7 @@
 - **Why:** Community harness patterns, skill collections, optimization techniques
 - **Look for:** New skills, CLAUDE.md patterns, workflow architectures, instinct files
 - **Added:** 2026-03-20 (seed) | **Last deep:** 2026-03-25T07:41 | **Pattern hits:** 1
-- **Notes:** Large community repo. 1 pattern hit (safety-guard PreToolUse hooks). ECC 2.0 Rust TUI continues: SHA 7f7e319→c1b47ac: agent status panel (#883), token/cost meter (#884), session lifecycle (#881). All ECC2/Rust TUI work, 0 harness patterns across 4+ consecutive observations. Retaining for community skill discoveries but reducing deep-dive priority.
+- **Notes:** Large community repo. 1 pattern hit (safety-guard PreToolUse hooks). SHA c1b47ac→4105a2f: continued ECC2/Rust TUI work. 0 harness patterns across 5+ consecutive observations. Retaining for community skill discoveries but reducing deep-dive priority.
 
 ### hesreallyhim/awesome-claude-code
 - **Why:** Curated ecosystem catalog — discover new tools, libraries, and patterns
@@ -33,7 +33,7 @@
 - **Why:** Multi-agent orchestration patterns from a major tech company
 - **Look for:** Agent coordination, state management, tool orchestration, LLM provider patterns
 - **Added:** 2026-03-21 (seed) | **Last deep:** 2026-03-25T05:13 | **Pattern hits:** 1
-- **Notes:** Very active (5+ commits/day). GuardrailMiddleware covered by #67. Deep-dived 2026-03-24T14:11: symlink-aware skill scanning (#1292, followlinks=True in os.walk for custom skills dir — relevant to future #66 but not adoptable now) + subprocess security fix (#1289, os.system→subprocess, Python-specific). Deep-dived 2026-03-24T18:04: Windows Makefile compat (#1297), MCP sync wrapper (#1287, async-to-sync with ThreadPoolExecutor). Both platform-specific, 0 harness patterns. Deep-dived 2026-03-25T05:13: SubagentLimitMiddleware tests (#1306), skills parser tests (#1308), null checks for runtime.context (#1269), LoopDetectionMiddleware Anthropic compat fix (#1300 — SystemMessage→HumanMessage). All Python/LangChain-specific. 0 harness patterns across 4 consecutive deep-dives. Python/LangGraph specific — consider reducing deep-dive priority.
+- **Notes:** Very active (5+ commits/day). GuardrailMiddleware covered by #67. SHA ec46ae0→b8bc80d: new commits. 0 harness patterns across 5+ consecutive deep-dives. Python/LangGraph-specific — reduced deep-dive priority.
 
 ### wshobson/agents
 - **Why:** Agent framework patterns — autonomous agent architectures
@@ -89,8 +89,8 @@
 ### volcengine/OpenViking
 - **Why:** Self-evolving context database (18.4K stars) — unified context management (memory, resources, skills) via file system paradigm, hierarchical context delivery
 - **Look for:** "ov doctor" diagnostic patterns, loop memory optimization, context/memory/loop separation, self-evolving architecture
-- **Added:** 2026-03-23 (horizon scan) | **Observations:** 20 | **First seen:** 2026-03-23
-- **Notes:** Very active (5+ commits/day). SHA 08b278d→b4a49de→55a0c0e. Deep-dived 2026-03-24T14:11: tool pruning (-229 lines from ov_file.py, #929), actionable 422 error helper (#928), embedding dimension validation (#930), uninstall script (#933). Tool pruning good hygiene but premature for our 8-skill set. 0 harness patterns. Previous: circuit breaker (#772) validates #76, config validation (#904), "ov doctor" (#851). 2026-03-25: memory extractor templating (#952, YAML MemoryTypeRegistry + ReAct phases), security hardening (#937 litellm disabled). Python-specific, 0 harness patterns.
+- **Added:** 2026-03-23 (horizon scan) | **Observations:** 24 | **First seen:** 2026-03-23
+- **Notes:** Very active. SHA 55a0c0e→0392e67. Circuit breaker validates #76. All recent: Python-specific (memory templating, security hardening). 0 harness patterns across 5+ observations.
 
 ### OthmanAdi/planning-with-files
 - **Why:** Persistent markdown planning skill (16.9K stars) — Manus-style file-based planning for Claude Code

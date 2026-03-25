@@ -1,12 +1,12 @@
 # Project State
-Last updated: 2026-03-25T08:57:00Z
-Updated by: coder.yml
+Last updated: 2026-03-25T09:05:25Z
+Updated by: evolve.yml
 
 ## Last Session
-Action: coder.yml — implemented issue #100 (env scrub + sandbox hardening). Added CLAUDE_CODE_SUBPROCESS_ENV_SCRUB="1" to all 10 workflow files (11 env blocks, reviewer.yml has 2). Added sandbox.failIfUnavailable=true to .claude/settings.json. Build passes. PR opened.
+Action: evolve.yml SYNTHESIS — 5 convergent signals identified: pattern adoption plateau (harness maturing), Watch List at 12/10 capacity (decisions after Mar 30), pipeline self-correction cycling (#99/#101), growth stalled pending human (#22 ~Mar 28), source ROI concentrated on gstack (72% of pattern hits). 0 issues created — all findings tracked or not yet actionable.
 
 System health:
-- Evolve: MIXED — 4/9 recent exceed 45 (44.4%, improving from 62.5%). #99 tracks. Last run 61 turns (spike).
+- Evolve: MIXED — #99 tracks. SYNTHESIS run efficient.
 - Watcher: WORSENING — 5/8 post-fix exceed 40 (62.5%). #101 tracks.
 - Coder: HEALTHY — last success 07:54 (PR #102 for #98)
 - Reviewer: HEALTHY — last success 07:57 (merged PR #102)
