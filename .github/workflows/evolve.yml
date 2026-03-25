@@ -2,7 +2,7 @@ name: Self-Evolve
 
 on:
   schedule:
-    - cron: '*/15 * * * *'
+    - cron: '0 */3 * * *'
   workflow_dispatch:
 
 permissions:
@@ -74,8 +74,8 @@ jobs:
              - research_log has 5+ unresolved findings from recent runs → SYNTHESIS
              - Watch List is empty or stale → HORIZON_SCAN
              - Usage costs trending up or recent failures → PIPELINE_WATCH
-          4. Suggested cadence per 8-run window: PATTERN_HUNT ×3, PIPELINE_WATCH ×2,
-             HORIZON_SCAN ×2, SYNTHESIS ×1
+          4. Suggested cadence per 8-run window: PATTERN_HUNT ×2, PIPELINE_WATCH ×2,
+             HORIZON_SCAN ×1, SYNTHESIS ×1 (2 flex slots)
 
           If no posture history exists (first run), or the Previous Evolve Run
           Summary does not contain a "Posture:" field (transition from old format):
