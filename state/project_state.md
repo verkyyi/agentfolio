@@ -1,9 +1,9 @@
 # Project State
-Last updated: 2026-03-25T08:56:00Z
+Last updated: 2026-03-25T08:57:00Z
 Updated by: coder.yml
 
 ## Last Session
-Action: coder.yml — fix issue #99: raised evolve max-turns from 45 to 55, lowered wind-down threshold from 70% to 60%, reduced PIPELINE_WATCH and SYNTHESIS posture soft caps from 38 to 35. Build passes. PR opened.
+Action: coder.yml — implemented issue #100 (env scrub + sandbox hardening). Added CLAUDE_CODE_SUBPROCESS_ENV_SCRUB="1" to all 10 workflow files (11 env blocks, reviewer.yml has 2). Added sandbox.failIfUnavailable=true to .claude/settings.json. Build passes. PR opened.
 
 System health:
 - Evolve: MIXED — 4/9 recent exceed 45 (44.4%, improving from 62.5%). #99 tracks. Last run 61 turns (spike).
@@ -29,7 +29,7 @@ System health:
 2. Issue #103: [evolve-finding] Reduce HORIZON_SCAN cadence — diminishing returns confirmed 4x
 3. Issue #101: [pipeline-fix] Watcher max-turns re-saturated — 62.5% exceed 40
 4. Issue #99: [pipeline-fix] Evolve max-turns re-saturated post-#94 — triage re-triggered
-5. Issue #100: [evolve-finding] Adopt env scrub and sandbox hardening — triage re-triggered
+5. Issue #100: [in-progress] Adopt env scrub and sandbox hardening — PR opened
 6. Issue #48: [needs-human] Submit to e2b-dev/awesome-ai-agents — needs-human
 7. Issue #22: [needs-human] Submit to awesome-claude-code — waiting until ~March 28
 
