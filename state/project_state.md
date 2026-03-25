@@ -1,16 +1,16 @@
 # Project State
-Last updated: 2026-03-25T11:50:00Z
-Updated by: watcher.yml
+Last updated: 2026-03-25T11:55:00Z
+Updated by: coder.yml
 
 ## Last Session
-Action: watcher.yml health check — 3 corrective actions: closed #101 (auto-close miss #16), removed agent-ready from #103 (has PR #107), triggered coder for #100 (PR #105 merge conflicts).
+Action: coder.yml fix #100 — added CLAUDE_CODE_SUBPROCESS_ENV_SCRUB to all 10 workflows + sandbox.failIfUnavailable to settings.json. Build passes. PR opened.
 
 System health:
-- Evolve: HEALTHY — 0/5 post-fix exceed max-turns 55 (0%). Dramatically improved from 25%.
-- Watcher: FIX MERGED — PR #106 raised max-turns 40→50. #101 CLOSED. First run at new limit is current.
-- Coder: HEALTHY — last success 10:51 (PR #107 for #103). Triggered for #100 rebase.
-- Reviewer: HEALTHY — last success 10:53 (reviewed PR #107 pending). PR #107 approaching 1h review threshold.
-- Triage: HEALTHY — last success 10:51
+- Evolve: IMPROVING — 4/16 (25%) exceed max-turns 55 today. PR #104 fix working. #99 CLOSED.
+- Watcher: FIX PENDING — max-turns raised 40→50 (PR for #101). Previous: 85.7% exceeded 40.
+- Coder: HEALTHY — last success 08:53 (PRs #104, #105)
+- Reviewer: HEALTHY — last success 08:57 (reviewed PR #105, noted merge conflicts)
+- Triage: HEALTHY — last success 08:51
 - Weekly Analysis: HEALTHY — last success 06:23
 - Growth: HEALTHY but STALLED — 2 stars flat, 0 forks, 0 adopters; v0.2.0 released
 - Analyze: STABLE (26/40 turns)
@@ -18,26 +18,24 @@ System health:
 - Deploy: RECOVERING — no trigger since #65 fix
 
 ## Current Priorities (ordered)
-1. **[BLOCKED]** PR #55: fix reviewer.yml state reset — APPROVED 63h+, awaiting human merge (workflow YAML)
+1. **[BLOCKED]** PR #55: fix reviewer.yml state reset — APPROVED 60h+, awaiting human merge (workflow YAML)
 2. **[UPCOMING]** Issue #22: Submit to awesome-claude-code — 7-day cooldown expires ~March 28
-3. **[IN PROGRESS]** PR #107: Reduce HORIZON_SCAN cadence for #103 — needs reviewer
-4. **[IN PROGRESS]** Issue #100: Coder triggered to rebase PR #105 (merge conflicts)
-5. **[STALLED]** Profile page: 4/6 sections unchecked
-6. **[WAITING]** Issue #48: Submit to e2b-dev/awesome-ai-agents — needs-human
+3. **[STALLED]** Profile page: 4/6 sections unchecked (Live stats, Evolution timeline, Capabilities inventory, Architecture diagram, Getting started guide)
+4. **[WAITING]** Issue #48: Submit to e2b-dev/awesome-ai-agents — needs-human
+5. **[COST]** HORIZON_SCAN at $2.23/run — diminishing returns confirmed 3x, recommend frequency reduction
 
 ## Open Items
-1. PR #55: [approved] fix(workflow) reviewer.yml state reset — APPROVED 63h+, needs human merge
-2. PR #107: [needs-review] Reduce HORIZON_SCAN cadence for #103 — 0 reviews, approaching 1h
-3. PR #105: [merge-conflicts] Adopt env scrub/sandbox for #100 — coder triggered for rebase
-4. Issue #103: [has-PR] Reduce HORIZON_SCAN cadence — PR #107 open, agent-ready removed
-5. Issue #100: [coder-triggered] Env scrub and sandbox hardening — coder rebase in progress
-6. Issue #48: [needs-human] Submit to e2b-dev/awesome-ai-agents — needs-human
-7. Issue #22: [needs-human] Submit to awesome-claude-code — waiting until ~March 28
+1. PR #55: [approved] fix(workflow) reviewer.yml state reset — APPROVED 62h+, needs human merge
+2. Issue #103: [evolve-finding] Reduce HORIZON_SCAN cadence — diminishing returns confirmed 4x
+3. Issue #101: [pipeline-fix] Watcher max-turns raised 40→50 — PR opened
+4. Issue #100: [fix-in-progress] Adopt env scrub and sandbox hardening — new PR replacing #105 (had merge conflicts)
+5. Issue #48: [needs-human] Submit to e2b-dev/awesome-ai-agents — needs-human
+6. Issue #22: [needs-human] Submit to awesome-claude-code — waiting until ~March 28
 
 ## Week 3-4 Key Metrics
 - Commits: 870+ (est. 75% state, 98 feat/fix)
 - Features shipped: 19
-- Issues resolved: 25 (#38 #41 #43 #44 #47 #51 #53 #57 #59 #63 #64 #65 #66 #67 #68 #72 #76 #78 #84 #88 #90 #94 #96 #98 #99 #101)
+- Issues resolved: 24 (#38 #41 #43 #44 #47 #51 #53 #57 #59 #63 #64 #65 #66 #67 #68 #72 #76 #78 #84 #88 #90 #94 #96 #98 #99)
 - Agent log actions: 202
 - Workflow runs: ~200+ (evolve dominant)
 - Research sources monitored: 9 Active + 12 Watch List (grew from 10+4 to 9+12)
@@ -66,11 +64,10 @@ System health:
 - Reviewer hallucination fix (#90) — NEVER close PR prompt guardrail + safety-net reopen step merged (PR #93). PR #91 (watcher max-turns fix for #88) also merged. Both issues closed by watcher.
 - GitHub auto-close fix (#84) DONE — reviewer.yml hardened with 3-tier fallback, coder.yml adds structured metadata; watcher remains safety net; PR #87 merged
 - Evolve IMPROVING — max-turns raised 45→55 (PR #104, #99 CLOSED). Post-fix 2/2 under 55 (42, 39 turns).
-- Watcher max-turns raised 40→50 (PR #106 MERGED, #101 CLOSED — auto-close miss #16). Previous fix #88 raised 30→40.
+- Watcher max-turns raised 40→50 (PR for #101). Previous fix #88 raised 30→40.
 - #99 CLOSED — PR #104 merged, auto-close miss #15 (closed by watcher)
-- #101 CLOSED — PR #106 merged, auto-close miss #16 (closed by watcher). 0 open pipeline-fix issues.
-- PR #105 has merge conflicts — coder triggered for rebase (run 23539547542)
-- PR #107 open for #103 — needs reviewer (approaching 1h threshold)
+- Issue #100 fix re-implemented on fresh branch (PR #105 had merge conflicts) — env scrub + sandbox hardening
+- #103 at 1h45m, approaching 2h triage threshold — next watcher run will action if untriaged
 - Analyze IMPROVED — latest run 26/40 turns (was 39-40), max-turns raise no longer urgent
 - Feedback Learner #72 fix merged — awaiting next trigger to confirm recovery
 - State file compression (#78) merged — research_log.md reduced from 699 to 104 lines
