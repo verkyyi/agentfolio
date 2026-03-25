@@ -1,15 +1,15 @@
 # Project State
-Last updated: 2026-03-25T14:11:16Z
-Updated by: evolve.yml (HORIZON_SCAN)
+Last updated: 2026-03-25T15:00:00Z
+Updated by: watcher.yml (health check)
 
 ## Last Session
-Action: evolve.yml HORIZON_SCAN — ecosystem consolidation confirmed 5th consecutive. Searched 3 query sets (claude+code+agent, self-evolving+harness, claude+skills). All top results already tracked. kilocode (17K, IDE extension) not harness-relevant. Citadel CLAUDE_PLUGIN_ROOT workaround noted (informational for #66). SHA: Active 2/9 changed (astro, self), Watch 2/12 changed (vibe-kanban, OpenViking). 0 issues created. Watch List promotions/drops deferred to Mar 30.
+Action: watcher.yml health check — 1 corrective action. Created #108 (coder push-rejected loop, 3 consecutive failures since 10:51 success). PR #107 APPROVED 2x awaiting human merge (workflow YAML). PR #105 has merge conflicts, coder stuck in push-rejected cycle. Token utilization: evolve IMPROVING (2/10 exceed 55 = 20%), watcher 49/50 first post-fix run (too early), reviewer HEALTHY.
 
 System health:
-- Evolve: HEALTHY — 1/7 (14.3%) post-fix exceed max-turns 55. PR #104 fix confirmed working.
-- Watcher: FIX MERGED — max-turns raised 40->50 (PR #106 merged, #101 CLOSED). First run at new limit.
-- Coder: DEGRADED — 2 consecutive failures (#100 push rejected, #103 PR exists), different issues. Last success 10:51.
-- Reviewer: HEALTHY — last success 10:53. Triggered for PR #107.
+- Evolve: IMPROVING — 2/10 (20%) post-fix exceed max-turns 55, down from 28.6%. Last 2 runs well under.
+- Watcher: MONITORING — 49/50 on first post-fix run at new limit 50. Too early to assess.
+- Coder: BROKEN — 3 consecutive failures since last success 10:51. Push-rejected loop on #100 (branch diverged 2x) + PR-exists on #103. Issue #108 created.
+- Reviewer: HEALTHY — last success 14:05. PR #107 APPROVED 2x.
 - Triage: HEALTHY — last success 10:51
 - Weekly Analysis: HEALTHY — last success 12:15
 - Growth: HEALTHY but STALLED — 2 stars flat, 0 forks, 0 adopters; v0.2.0 released
@@ -25,11 +25,12 @@ System health:
 5. **[COST]** HORIZON_SCAN at $2.23/run — diminishing returns confirmed 4x, recommend frequency reduction
 
 ## Open Items
-1. PR #55: [approved] fix(workflow) reviewer.yml state reset — APPROVED 65h+, needs human merge
-2. Issue #103: [PR open] Reduce HORIZON_SCAN cadence — PR #107 open, reviewer triggered
-3. Issue #100: [PR open] Adopt env scrub and sandbox hardening — new PR from fix/issue-100 branch
-4. Issue #48: [needs-human] Submit to e2b-dev/awesome-ai-agents — needs-human
-5. Issue #22: [needs-human] Submit to awesome-claude-code — waiting until ~March 28
+1. PR #55: [approved] fix(workflow) reviewer.yml state reset — APPROVED 67h+, needs human merge
+2. Issue #108: [new] Coder push-rejected loop — 3 consecutive failures, likely-agent-fixable
+3. Issue #103: [PR open] Reduce HORIZON_SCAN cadence — PR #107 APPROVED 2x, awaiting human merge (workflow YAML)
+4. Issue #100: [PR open] Adopt env scrub and sandbox hardening — PR #105 merge conflicts, coder stuck
+5. Issue #48: [needs-human] Submit to e2b-dev/awesome-ai-agents — needs-human
+6. Issue #22: [needs-human] Submit to awesome-claude-code — waiting until ~March 28
 
 ## Week 3-4 Key Metrics
 - Commits: 870+ (est. 75% state, 98 feat/fix)
@@ -64,8 +65,9 @@ System health:
 - GitHub auto-close fix (#84) DONE — reviewer.yml hardened with 3-tier fallback, coder.yml adds structured metadata; watcher remains safety net; PR #87 merged
 - Evolve HEALTHY — max-turns 55 (PR #104). Post-fix 1/7 exceed (14.3%). #99 CLOSED.
 - Watcher max-turns 50 (PR #106 merged, #101 CLOSED). First run at new limit.
-- Issue #100: PR #105 has merge conflicts. Coder push-rejected at 11:51 (branch diverged). Agent-ready still set.
-- Issue #103: PR #107 open, reviewer triggered by watcher at 12:55.
+- Issue #100: PR #105 has merge conflicts. Coder push-rejected 3x (10:52, 11:51, 14:05). Branch diverged. #108 created for fix.
+- Issue #103: PR #107 APPROVED 2x, needs human merge (workflow YAML). Similar to PR #55.
+- Issue #108: Coder push-rejected loop — coder workflow doesn't handle pre-existing diverged branches. Likely-agent-fixable.
 - Analyze IMPROVED — latest run 26/40 turns (was 39-40), max-turns raise no longer urgent
 - Feedback Learner #72 fix merged — awaiting next trigger to confirm recovery
 - State file compression (#78) merged — research_log.md reduced from 699 to 104 lines
