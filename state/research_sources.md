@@ -1,7 +1,7 @@
 # Research Sources
 # Managed by evolve.yml. Claude adds, prunes, and annotates freely.
 # Seeded from evolve_config.md on first run.
-# Last updated: 2026-03-25T09:05:25Z
+# Last updated: 2026-03-25T10:09:03Z
 
 ## Active Sources
 
@@ -21,7 +21,7 @@
 - **Why:** Community harness patterns, skill collections, optimization techniques
 - **Look for:** New skills, CLAUDE.md patterns, workflow architectures, instinct files
 - **Added:** 2026-03-20 (seed) | **Last deep:** 2026-03-25T07:41 | **Pattern hits:** 1
-- **Notes:** Large community repo. 1 pattern hit (safety-guard PreToolUse hooks). SHA c1b47ac→4105a2f: continued ECC2/Rust TUI work. 0 harness patterns across 5+ consecutive observations. Retaining for community skill discoveries but reducing deep-dive priority.
+- **Notes:** Large community repo. 1 pattern hit (safety-guard PreToolUse hooks). SHA 4105a2f→401e26a: new commits. 0 harness patterns across 6+ consecutive observations. Retaining for community skill discoveries but reducing deep-dive priority.
 
 ### hesreallyhim/awesome-claude-code
 - **Why:** Curated ecosystem catalog — discover new tools, libraries, and patterns
@@ -90,7 +90,7 @@
 - **Why:** Self-evolving context database (18.4K stars) — unified context management (memory, resources, skills) via file system paradigm, hierarchical context delivery
 - **Look for:** "ov doctor" diagnostic patterns, loop memory optimization, context/memory/loop separation, self-evolving architecture
 - **Added:** 2026-03-23 (horizon scan) | **Observations:** 24 | **First seen:** 2026-03-23
-- **Notes:** Very active. SHA 55a0c0e→0392e67. Circuit breaker validates #76. All recent: Python-specific (memory templating, security hardening). 0 harness patterns across 5+ observations.
+- **Notes:** Very active. SHA 0392e67→cd4fec2. Circuit breaker validates #76. All recent: Python-specific (memory templating, security hardening). 0 harness patterns across 6+ observations.
 
 ### OthmanAdi/planning-with-files
 - **Why:** Persistent markdown planning skill (16.9K stars) — Manus-style file-based planning for Claude Code

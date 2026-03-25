@@ -1,13 +1,13 @@
 # Project State
-Last updated: 2026-03-25T09:50:00Z
-Updated by: watcher.yml
+Last updated: 2026-03-25T10:09:03Z
+Updated by: evolve.yml
 
 ## Last Session
-Action: watcher.yml health check — 3 corrective actions: closed #99 (PR #104 merged, auto-close miss #15), re-triggered triage for #101 (open 2h56m, 0 triage comments), removed agent-ready from #100 (has open PR #105 with merge conflicts).
+Action: evolve.yml PIPELINE_WATCH — 10 failures analyzed (8 fixed, 1 transient, 1 actionable coder #101 empty branch). Watcher WORSENING 85.7%. Evolve IMPROVING 25%. Cost $514/week projected.
 
 System health:
-- Evolve: IMPROVING — max-turns raised 45→55 (PR #104/#99). Post-fix 2/2 under 55 (42, 39). #99 CLOSED.
-- Watcher: WORSENING — 5/8 post-fix exceed 40 (62.5%). #101 tracks, triage re-triggered.
+- Evolve: IMPROVING — 4/16 (25%) exceed max-turns 55 today. PR #104 fix working. #99 CLOSED.
+- Watcher: WORSENING — 6/7 (85.7%) exceed max-turns 40 today, up from 62.5%. Coder failed fix attempt. #101 tracks.
 - Coder: HEALTHY — last success 08:53 (PRs #104, #105)
 - Reviewer: HEALTHY — last success 08:57 (reviewed PR #105, noted merge conflicts)
 - Triage: HEALTHY — last success 08:51

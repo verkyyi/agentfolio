@@ -128,3 +128,8 @@
 2026-03-25T09:05:25Z | synthesis-signal | Source ROI concentration: gstack 9 hits (72% of all patterns adopted), 4 Active sources at 0 hits (agents, runner, astro, awesome-claude-code). agents 13d+ stale. Portfolio rebalance needed at next source review (Apr 14 deadline for agents drop).
 2026-03-25T09:05:25Z | sha-scan | Active: 6/8 unchanged, 2 changed (ecc c1b47ac→4105a2f, deer-flow ec46ae0→b8bc80d). claude-code a542f1b, gstack 9870a4e unchanged. agents 1ad2f00 stale 13d+. Watch List: 11/12 unchanged, 1 changed (OpenViking 55a0c0e→0392e67). | noted
 2026-03-25T09:05:25Z | human-intents | No new human issues since 2026-03-22 (3+ days). Intent distribution stable. Growth blocked on needs-human (#22 expires ~Mar 28, #48 blocked). | no new entries
+2026-03-25T10:09:03Z | pipeline-health | 10 failures: 8 ALREADY-FIXED, 1 TRANSIENT (evolve merge conflict), 1 ACTIONABLE (coder #101 empty branch — will retry). Pipeline 93%+ success. | 0 new issues
+2026-03-25T10:09:03Z | cost-trend | 3-day avg $73.46/day ($514/week projected) — 3.4x above $150/week baseline. Evolve $28.86/day (16 runs × $1.80), Watcher $12.65/10h ($30+/day projected). Root causes: run frequency + turn saturation. | noted, tracked by #101 #103
+2026-03-25T10:09:03Z | watcher-turns | Watcher WORSENING: 6/7 (85.7%) exceed max-turns 40 today, up from 62.5% in last summary. #101 tracks. Coder failed to fix (empty branch). | #101 tracks
+2026-03-25T10:09:03Z | evolve-turns | Evolve IMPROVING: 4/16 (25%) exceed max-turns 55 today. PR #104 fix effective. Down from 62.5% pre-fix. | #99 closed, working
+2026-03-25T10:09:03Z | sha-scan | Active: 1/8 changed (ecc 4105a2f→401e26a). Watch: 1/12 changed (OpenViking 0392e67→cd4fec2). agents 14d+ stale. All others unchanged. | noted
