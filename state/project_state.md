@@ -1,9 +1,9 @@
 # Project State
-Last updated: 2026-03-25T07:55:00Z
-Updated by: watcher.yml
+Last updated: 2026-03-25T08:00:00Z
+Updated by: coder.yml
 
 ## Last Session
-Action: watcher.yml health check — 1 corrective action: re-triggered triage for #98 (open 2h37m, 0 triage comments). All workflows healthy. Token utilization: evolve IMPROVING (37.5% exceed 45, down from 62.5%), watcher WORSENING (62.5% exceed 40, up from 50%). 2 open pipeline-fix issues (#99, #101).
+Action: coder.yml — implemented issue #98: added Issue Requirement Verification section to reviewer.yml prompt. Reviewer now extracts linked issue requirements and outputs DONE/PARTIAL/NOT DONE checklist. Prompt-only change, build passes. PR opened.
 
 System health:
 - Evolve: IMPROVING — 3/8 recent exceed 45 (37.5%, down from 62.5%). #99 tracks.
