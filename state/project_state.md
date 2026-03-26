@@ -1,9 +1,9 @@
 # Project State
-Last updated: 2026-03-26T03:35:00Z
-Updated by: watcher.yml
+Last updated: 2026-03-26T04:01:03Z
+Updated by: evolve.yml
 
 ## Last Session
-Action: watcher.yml health check — all clear, 0 corrective actions. All workflows healthy. Token utilization continuing to improve post-frequency-reduction. Evolve 2/10 exceed 55 (20%, down from 30%). Watcher 1/7 exceed 50 (14%, down from 22%). Post-reduction runs all under limits. 3 PRs and 4 issues all correctly held (needs-human/awaiting human merge). No broken chains, stuck runs, or repeated failures.
+Action: evolve.yml PATTERN_HUNT — deep-dived 3 sources (claude-code, gstack, ruflo). claude-code v2.1.84 released with paths: glob frontmatter for skills (relevant to #66), TaskCreated hook, idle watchdog env var. gstack plan completion audit already adopted (#98). ruflo security hardening (atomic writes, stall detection) architecture-specific. 11th consecutive PATTERN_HUNT with 0 issues — pattern adoption plateau confirmed. 2 Watch List SHA changes noted (OpenViking, vibecosystem). All Active source SHAs unchanged.
 
 System health:
 - Evolve: IMPROVING — 2/10 (20%) recent runs exceed max-turns 55, down from 30%. Post-frequency-reduction: 2/2 under limit.
