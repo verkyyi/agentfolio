@@ -1,13 +1,13 @@
 # Project State
-Last updated: 2026-03-26T15:34:00Z
-Updated by: evolve.yml (PIPELINE_WATCH)
+Last updated: 2026-03-26T16:55:00Z
+Updated by: watcher.yml (health check)
 
 ## Last Session
-Action: evolve.yml — PIPELINE_WATCH posture. Pipeline 100% healthy: 0 failures in 25h+ (46 runs). Cost $39/day projected ($273/week), down from $42/day. 3 Active SHA changes (gstack, deer-flow, astro). 0 issues created.
+Action: watcher.yml — health check. All clear, 0 corrective actions. Pipeline 100% healthy: 0 failures in 27h+. All 4 open issues correctly held (needs-human). 3 PRs awaiting human merge (#55 96h+, #107, #112).
 
 System health:
-- Evolve: IMPROVING — post-frequency-reduction 8/8 under 55 limit. Turns: 37-54.
-- Watcher: IMPROVING — post-frequency-reduction 10/10 under 50 limit. Turns: 25-47.
+- Evolve: IMPROVING — post-frequency-reduction 1/9 exceed 55 (11%, latest 59 turns PW). Turns: 37-59.
+- Watcher: IMPROVING — post-frequency-reduction 0/10 exceed 50. Turns: 25-47.
 - Coder: RECOVERED — 5+ consecutive successes after 4 failures. #108 fix working.
 - Reviewer: HEALTHY — 8-22 turns.
 - Triage: HEALTHY.
@@ -18,7 +18,7 @@ System health:
 - Deploy: RECOVERING — no trigger since #65 fix.
 
 ## Current Priorities (ordered)
-1. **[BLOCKED]** PR #55: fix reviewer.yml state reset — APPROVED 94h+, awaiting human merge (workflow YAML)
+1. **[BLOCKED]** PR #55: fix reviewer.yml state reset — APPROVED 96h+, awaiting human merge (workflow YAML)
 2. **[NEEDS-HUMAN]** PR #107: reduce HORIZON_SCAN cadence — APPROVED 2x, merge conflicts, escalated to needs-human
 3. **[NEEDS-HUMAN]** PR #112: env scrub hardening — APPROVED but merge conflicts (4th cycle), all workflow YAML, needs manual rebase + merge
 4. **[UPCOMING]** Issue #22: Submit to awesome-claude-code — 7-day cooldown expires ~March 28
@@ -27,7 +27,7 @@ System health:
 7. **[MAINTENANCE]** Source portfolio rebalance — agents 18d+ stale (drop Apr 14), Watch List decisions due Mar 30
 
 ## Open Items
-1. PR #55: [approved] fix(workflow) reviewer.yml state reset — APPROVED 94h+, needs human merge
+1. PR #55: [approved] fix(workflow) reviewer.yml state reset — APPROVED 96h+, needs human merge
 2. Issue #100: [needs-human] PR #112 APPROVED, merge conflicts (4th cycle), all workflow YAML — escalated
 3. Issue #103: [needs-human] PR #107 APPROVED 2x, merge conflicts, escalated to needs-human (workflow YAML)
 4. Issue #48: [needs-human] Submit to e2b-dev/awesome-ai-agents
@@ -70,7 +70,7 @@ System health:
 - Reviewer.yml has a bug: README sync step doesn't handle dirty working tree (PR #55 APPROVED — awaiting human merge 82h+)
 - Reviewer hallucination fix (#90) — NEVER close PR prompt guardrail + safety-net reopen step merged (PR #93)
 - GitHub auto-close fix (#84) DONE — reviewer.yml hardened with 3-tier fallback; watcher remains safety net
-- Evolve IMPROVING — max-turns 55, 0/8 post-reduction exceed (0%). PR #111 frequency reduction confirmed working.
+- Evolve IMPROVING — max-turns 55, 1/9 post-reduction exceed (11%, latest 59 turns PW). PR #111 frequency reduction confirmed working.
 - Watcher IMPROVING — max-turns 50 (PR #106), 0/10 post-reduction exceed (0%). Frequency reduced to 2h (PR #111). Turns: 25-47.
 - Issue #100: ESCALATED to needs-human. PR #112 APPROVED but merge conflicts (4th cycle). Manual rebase + merge required.
 - Issue #103: ESCALATED to needs-human. PR #107 APPROVED 2x, merge conflicts. Manual rebase + merge required.
