@@ -1,14 +1,14 @@
 # Project State
-Last updated: 2026-03-26T21:16:25Z
-Updated by: evolve.yml
+Last updated: 2026-03-26T22:50:00Z
+Updated by: watcher.yml
 
 ## Last Session
-Action: evolve.yml PATTERN_HUNT — deep-dived gstack v0.11.21-v0.12.2 (trust ladder, review attribution, Chrome sidebar) and antigravity v8.10.0 (catalog growth). All Codex/interactive-specific. 14th consecutive PH with 0 adoptable patterns. 3 SHA changes noted (astro, plugins-official, agnix). 0 issues created.
+Action: watcher.yml health check — 1 corrective action: closed #116 (auto-close miss, PR #117 merged at 20:56 with 'closes #116'). Coder RECOVERED (2 successes after #116 fix). All workflows HEALTHY. 4 needs-human issues correctly held. 3 PRs awaiting human merge. Token utilization all healthy.
 
 System health:
-- Evolve: IMPROVING — post-frequency-reduction 1/9 exceed 55 (11%). Turns: 37-59.
-- Watcher: IMPROVING — 0/10 post-reduction exceed 50. Turns: 25-47.
-- Coder: RECOVERING — #116 fix applied, PR opened. 2 prior consecutive failures resolved.
+- Evolve: IMPROVING — 1/8 post-reduction exceed 55 (12.5%). Turns: 39-59.
+- Watcher: IMPROVING — 0/12 post-reduction exceed 50. Turns: 25-45.
+- Coder: RECOVERED — #116 fix merged (PR #117), 2 successes after 2 failures.
 - Reviewer: HEALTHY — 8-12 turns.
 - Triage: HEALTHY.
 - Weekly Analysis: HEALTHY.
@@ -27,12 +27,11 @@ System health:
 7. **[MAINTENANCE]** Source portfolio rebalance — agents 18d+ stale (drop Apr 14), Watch List decisions due Mar 30
 
 ## Open Items
-1. Issue #116: [pipeline-fix] Coder GITHUB_OUTPUT multiline bug — FIX APPLIED, PR opened
-2. PR #55: [approved] fix(workflow) reviewer.yml state reset — APPROVED 96h+, needs human merge
-3. Issue #100: [needs-human] PR #112 APPROVED, merge conflicts (4th cycle), all workflow YAML — escalated
-4. Issue #103: [needs-human] PR #107 APPROVED 2x, merge conflicts, escalated to needs-human (workflow YAML)
-5. Issue #48: [needs-human] Submit to e2b-dev/awesome-ai-agents
-6. Issue #22: [needs-human] Submit to awesome-claude-code — waiting until ~March 28
+1. PR #55: [approved] fix(workflow) reviewer.yml state reset — APPROVED 96h+, needs human merge
+2. Issue #100: [needs-human] PR #112 APPROVED, merge conflicts (4th cycle), all workflow YAML — escalated
+3. Issue #103: [needs-human] PR #107 APPROVED 2x, merge conflicts, escalated to needs-human (workflow YAML)
+4. Issue #48: [needs-human] Submit to e2b-dev/awesome-ai-agents
+5. Issue #22: [needs-human] Submit to awesome-claude-code — waiting until ~March 28
 
 ## Week of Mar 19-26 Key Metrics
 - Commits: 1072 (907 state, 165 feat/fix)
@@ -87,5 +86,5 @@ System health:
 - Issue #113: RESOLVED — full pipeline chain in 7 min (triage→coder→PR→review→merge). Auto-close miss fixed by watcher.
 - PR #105 CLOSED (not merged) — superseded by PR #112
 - claude-code v2.1.84: paths: glob frontmatter for skills — relevant to #66
-- Issue #116: Coder GITHUB_OUTPUT multiline bug — coder crashes when .fix-failed has multiline content. Succeeds on success, crashes on failure. Added likely-agent-fixable. Triage re-triggered 20:50 (0 triage comments after 2h15m).
-- Coder DEGRADED — 2 consecutive failures (18:25, 18:35) both from #116 bug. Last success 15:41. Awaiting #116 fix to recover.
+- Issue #116: RESOLVED — PR #117 merged (20:56), auto-close miss fixed by watcher (22:50). Full pipeline chain worked: triage→coder→PR→reviewer→merge.
+- Coder RECOVERED — 2 successes (20:53, 21:19) after #116 fix. 2 prior failures (18:25, 18:35) from multiline GITHUB_OUTPUT bug.
