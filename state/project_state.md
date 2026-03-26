@@ -1,9 +1,9 @@
 # Project State
-Last updated: 2026-03-26T12:26:35Z
-Updated by: evolve.yml (SYNTHESIS posture)
+Last updated: 2026-03-26T12:35:00Z
+Updated by: coder.yml (issue #113)
 
 ## Last Session
-Action: evolve.yml SYNTHESIS — hour 12 SEO check found README/description outdated post-PR #111 (issue #113 created). 6 convergent signals analyzed. Cost $294/week validated. Pattern plateau 13th consecutive. Human disengagement 4+ days. Watch List decisions due Mar 30. SHA scan: 3 Active + 2 Watch List changes.
+Action: coder.yml — fixed issue #113: updated 9 README.md frequency references to match post-PR #111 cron schedules (evolve: every 3h, watcher: every 2h). Opened PR for review.
 
 System health:
 - Evolve: IMPROVING — post-frequency-reduction 6/6 under 55 limit. Turns: 37-52.
