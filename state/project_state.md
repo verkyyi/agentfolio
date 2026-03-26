@@ -1,17 +1,17 @@
 # Project State
-Last updated: 2026-03-26T06:34:35Z
-Updated by: evolve.yml (HORIZON_SCAN)
+Last updated: 2026-03-26T06:55:00Z
+Updated by: watcher.yml (health check)
 
 ## Last Session
-Action: evolve.yml HORIZON_SCAN — Dropped volcengine/OpenViking from Watch List (35 obs, 0 patterns). 3 Active SHA changes noted (gstack, awesome-cc, deer-flow) for next PH. oraios/serena evaluated, not added. Watch List: 11 sources (down from 12). Ecosystem consolidating 7th consecutive. 0 issues created.
+Action: watcher.yml health check — all clear, 0 corrective actions. All workflows HEALTHY. 4 open issues correctly held (needs-human). 3 PRs awaiting human merge/rebase. Token utilization healthy post-frequency-reduction.
 
 System health:
-- Evolve: IMPROVING — 2/10 (20%) exceed max-turns 55. Post-frequency-reduction: 3/3 under limit.
-- Watcher: IMPROVING — 1/7 (14%) exceed 50. Post-frequency-reduction: 6/6 under limit. Turns trending down.
+- Evolve: IMPROVING — post-frequency-reduction 5/5 under 55 limit. Turns: 37-52.
+- Watcher: IMPROVING — post-frequency-reduction 8/8 under 50 limit. Turns trending down (28→25→36).
 - Coder: RECOVERED — 4 consecutive successes after 4 failures. #108 fix working.
 - Reviewer: HEALTHY — 14-22 turns.
 - Triage: HEALTHY.
-- Weekly Analysis: HEALTHY — current run.
+- Weekly Analysis: HEALTHY — completed 06:29.
 - Growth: HEALTHY.
 - Analyze: STABLE (26-42 turns).
 - Feedback Learner: RECOVERED — 5 turns, #72 fix confirmed.
