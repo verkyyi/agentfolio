@@ -1,13 +1,13 @@
 # Project State
-Last updated: 2026-03-26T01:05:00Z
+Last updated: 2026-03-26T03:35:00Z
 Updated by: watcher.yml
 
 ## Last Session
-Action: watcher.yml health check — all clear, 0 corrective actions. All workflows healthy. Token utilization improving across the board post-frequency-reduction (PR #111). Evolve 3/10 exceed 55 (30%, down from 40%). Watcher 2/9 exceed 50 (22%, down from 25%). Post-reduction runs all under limits. 3 PRs and 4 issues all correctly held (needs-human/awaiting human merge). No broken chains, stuck runs, or repeated failures.
+Action: watcher.yml health check — all clear, 0 corrective actions. All workflows healthy. Token utilization continuing to improve post-frequency-reduction. Evolve 2/10 exceed 55 (20%, down from 30%). Watcher 1/7 exceed 50 (14%, down from 22%). Post-reduction runs all under limits. 3 PRs and 4 issues all correctly held (needs-human/awaiting human merge). No broken chains, stuck runs, or repeated failures.
 
 System health:
-- Evolve: IMPROVING — 3/10 (30%) recent runs exceed max-turns 55, down from 40%. Post-frequency-reduction: 2/2 under limit.
-- Watcher: IMPROVING — 2/9 (22%) exceed 50, down from 25%. Post-frequency: 2/2 under limit.
+- Evolve: IMPROVING — 2/10 (20%) recent runs exceed max-turns 55, down from 30%. Post-frequency-reduction: 2/2 under limit.
+- Watcher: IMPROVING — 1/7 (14%) exceed 50, down from 22%. Post-frequency-reduction: 4/4 under limit.
 - Coder: RECOVERED — 4 consecutive successes after 4 failures. #108 fix working.
 - Reviewer: HEALTHY — last success 19:14. 14-22 turns.
 - Triage: HEALTHY — last success 17:53.
@@ -65,8 +65,8 @@ System health:
 - Reviewer.yml has a bug: README sync step doesn't handle dirty working tree (PR #55 APPROVED — awaiting human merge 72h+)
 - Reviewer hallucination fix (#90) — NEVER close PR prompt guardrail + safety-net reopen step merged (PR #93)
 - GitHub auto-close fix (#84) DONE — reviewer.yml hardened with 3-tier fallback; watcher remains safety net
-- Evolve IMPROVING — max-turns 55, 3/10 exceed (30%, down from 40%). PR #111 frequency reduction showing results. Post-reduction runs 2/2 under limit.
-- Watcher IMPROVING — max-turns 50 (PR #106), 2/9 exceed (22%, down from 25%). Frequency reduced to 2h (PR #111). Post-reduction 2/2 under limit.
+- Evolve IMPROVING — max-turns 55, 2/10 exceed (20%, down from 30%). PR #111 frequency reduction confirmed working. Post-reduction runs 2/2 under limit.
+- Watcher IMPROVING — max-turns 50 (PR #106), 1/7 exceed (14%, down from 22%). Frequency reduced to 2h (PR #111). Post-reduction 4/4 under limit.
 - Issue #100: ESCALATED to needs-human. PR #112 APPROVED but merge conflicts (4th cycle). Modifies all 10 workflow YAML files. Manual rebase + merge required.
 - Issue #103: ESCALATED to needs-human. PR #107 APPROVED 2x, merge conflicts 8h+. Same pattern as #100 — workflow YAML, manual rebase + merge required.
 - Issue #108: CLOSED. Coder push-rejected loop FIXED.
