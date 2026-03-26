@@ -1,1 +1,1 @@
-fix(workflow): use heredoc for multiline GITHUB_OUTPUT in coder.yml (closes #116)
+fix: no-op — issue #113 already resolved by PR #114 (closes #113)
