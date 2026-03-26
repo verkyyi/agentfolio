@@ -11,7 +11,7 @@ System health:
 - Coder: RECOVERED — 4 consecutive successes after 4 failures. #108 fix working.
 - Reviewer: HEALTHY — 14-22 turns.
 - Triage: HEALTHY.
-- Weekly Analysis: HEALTHY — completed 06:29.
+- Weekly Analysis: HEALTHY — current run.
 - Growth: HEALTHY.
 - Analyze: STABLE (26-42 turns).
 - Feedback Learner: RECOVERED — 5 turns, #72 fix confirmed.
