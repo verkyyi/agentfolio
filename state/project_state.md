@@ -1,9 +1,9 @@
 # Project State
-Last updated: 2026-03-26T06:27:27Z
-Updated by: analyze.yml (weekly analysis)
+Last updated: 2026-03-26T06:34:35Z
+Updated by: evolve.yml (HORIZON_SCAN)
 
 ## Last Session
-Action: analyze.yml weekly summary — Week of Mar 19-26. 1072 commits (907 state, 165 feat/fix). 9 issues resolved, 9 created. Cost reduced 69% via PR #111 (evolve 15min→3h, watcher 1h→2h). Token saturation cycling resolved. Coder push-rejected loop fixed (#108). 3 PRs blocked on human merge (#55, #107, #112). Pattern adoption plateau at 11 consecutive PH runs with 0 issues.
+Action: evolve.yml HORIZON_SCAN — Dropped volcengine/OpenViking from Watch List (35 obs, 0 patterns). 3 Active SHA changes noted (gstack, awesome-cc, deer-flow) for next PH. oraios/serena evaluated, not added. Watch List: 11 sources (down from 12). Ecosystem consolidating 7th consecutive. 0 issues created.
 
 System health:
 - Evolve: IMPROVING — 2/10 (20%) exceed max-turns 55. Post-frequency-reduction: 3/3 under limit.
