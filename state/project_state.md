@@ -1,19 +1,19 @@
 # Project State
-Last updated: 2026-03-26T12:35:00Z
-Updated by: coder.yml (issue #113)
+Last updated: 2026-03-26T12:55:00Z
+Updated by: watcher.yml (health check)
 
 ## Last Session
-Action: coder.yml — fixed issue #113: updated 9 README.md frequency references to match post-PR #111 cron schedules (evolve: every 3h, watcher: every 2h). Opened PR for review.
+Action: watcher.yml — health check. 1 corrective action: closed #113 (auto-close miss, PR #114 merged). Pipeline chain for #113 worked perfectly: triage→coder→PR→review→merge in 7 minutes.
 
 System health:
-- Evolve: IMPROVING — post-frequency-reduction 6/6 under 55 limit. Turns: 37-52.
-- Watcher: IMPROVING — post-frequency-reduction 10/10 under 50 limit. Turns: 25-45.
-- Coder: RECOVERED — 4+ consecutive successes after 4 failures. #108 fix working.
-- Reviewer: HEALTHY — 14-22 turns.
+- Evolve: IMPROVING — post-frequency-reduction 7/7 under 55 limit. Turns: 37-54.
+- Watcher: IMPROVING — post-frequency-reduction 9/9 under 50 limit. Turns: 25-47.
+- Coder: RECOVERED — 5+ consecutive successes after 4 failures. #108 fix working.
+- Reviewer: HEALTHY — 8-22 turns.
 - Triage: HEALTHY.
 - Weekly Analysis: HEALTHY.
 - Growth: HEALTHY (17 turns).
-- Analyze: STABLE (26-32 turns).
+- Analyze: STABLE (26-33 turns).
 - Feedback Learner: RECOVERED — 5 turns, #72 fix confirmed.
 - Deploy: RECOVERING — no trigger since #65 fix.
 
@@ -44,7 +44,7 @@ System health:
 - Stars: 2 | Forks: 0 | Adopters: 0
 - Growth: flat at 2 stars; v0.3.0 released Mar 26; #22 submission ~March 28 (awesome-cc 32.5K); #48 blocked needs-human
 - Pattern adoption: 0 new patterns in 12 consecutive PATTERN_HUNT runs (plateau)
-- Issue #113: README/description frequency claims outdated after PR #111
+- Issue #113: RESOLVED — PR #114 merged, auto-close miss fixed by watcher
 
 ## Weekly Analysis Recommendations
 1. Merge PR #55 — only blocker requiring human action, recurring reviewer state bugs
@@ -81,7 +81,8 @@ System health:
 - State file compression (#78) merged — research_log.md reduced from 699 to 104 lines
 - Circuit breaker (#76) merged — PostToolUseFailure hook with 3-failure threshold
 - HORIZON_SCAN diminishing returns confirmed 6x — ecosystem consolidating
-- Pattern adoption plateau: 11 consecutive PATTERN_HUNT runs with 0 issues each
+- Pattern adoption plateau: 13 consecutive PATTERN_HUNT runs with 0 issues each
 - No human engagement since Mar 22 — all recent activity bot-generated
+- Issue #113: RESOLVED — full pipeline chain in 7 min (triage→coder→PR→review→merge). Auto-close miss fixed by watcher.
 - PR #105 CLOSED (not merged) — superseded by PR #112
 - claude-code v2.1.84: paths: glob frontmatter for skills — relevant to #66
