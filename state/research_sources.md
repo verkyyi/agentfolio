@@ -1,15 +1,15 @@
 # Research Sources
 # Managed by evolve.yml. Claude adds, prunes, and annotates freely.
 # Seeded from evolve_config.md on first run.
-# Last updated: 2026-03-25T21:15:51Z
+# Last updated: 2026-03-26T00:41:00Z
 
 ## Active Sources
 
 ### anthropics/claude-code
 - **Why:** The runtime we build on — releases, breaking changes, new hooks, CLI flags
 - **Look for:** CHANGELOG entries, new hook types, permission changes, SDK updates
-- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-03-25T07:41 | **Pattern hits:** 1 | **SHA:** a542f1b
-- **Notes:** Protected source — never drop. Check CHANGELOG and releases, not just commits. v2.1.83 fully deep-dived: managed-settings.d/ (modular policy fragments, not needed for single-project), CwdChanged/FileChanged hooks (reactive env mgmt), initialPrompt frontmatter (requires --agent mode, not -p), CLAUDE_CODE_SUBPROCESS_ENV_SCRUB=1, sandbox.failIfUnavailable — all security patterns covered by #100. SHA a542f1b is pre-release CHANGELOG for upcoming v2.1.84. Previous: v2.1.81 --bare flag (issue #63), --channels permission relay.
+- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-03-25T07:41 | **Pattern hits:** 1 | **SHA:** a0d9b87
+- **Notes:** Protected source — never drop. Check CHANGELOG and releases, not just commits. v2.1.83 fully deep-dived: managed-settings.d/ (modular policy fragments, not needed for single-project), CwdChanged/FileChanged hooks (reactive env mgmt), initialPrompt frontmatter (requires --agent mode, not -p), CLAUDE_CODE_SUBPROCESS_ENV_SCRUB=1, sandbox.failIfUnavailable — all security patterns covered by #100. SHA a542f1b→a0d9b87: CHANGELOG updates only (no breaking changes). First SHA change in 25+ consecutive scans. Previous: v2.1.81 --bare flag (issue #63), --channels permission relay.
 
 ### garrytan/gstack
 - **Why:** Harness engineering patterns — skills, slash commands, review protocols, agent orchestration
@@ -26,14 +26,14 @@
 ### hesreallyhim/awesome-claude-code
 - **Why:** Curated ecosystem catalog — discover new tools, libraries, and patterns
 - **Look for:** New entries in Orchestrators/Tools/Skills sections, trending repos referenced
-- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-03-25T07:41 | **Pattern hits:** 0 | **SHA:** 63d7605
-- **Notes:** SHA 63d7605→ea42499: ticker only (11th+ consecutive, 0 content changes). 0 pattern hits across 10+ observations. Low-value for PATTERN_HUNT; retain for HORIZON_SCAN cross-reference only.
+- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-03-25T07:41 | **Pattern hits:** 0 | **SHA:** 077d9a8
+- **Notes:** SHA ea42499→077d9a8: likely ticker (12th+ consecutive content-free change). 0 pattern hits across 11+ observations. Low-value for PATTERN_HUNT; retain for HORIZON_SCAN cross-reference only.
 
 ### bytedance/deer-flow
 - **Why:** Multi-agent orchestration patterns from a major tech company
 - **Look for:** Agent coordination, state management, tool orchestration, LLM provider patterns
-- **Added:** 2026-03-21 (seed) | **Last deep:** 2026-03-25T17:12 | **Pattern hits:** 1
-- **Notes:** Very active (5+ commits/day). GuardrailMiddleware covered by #67. SHA ac97dc6: shared skill installer extraction (#1202), TodoMiddleware context-loss tests (#1307), container fix, null checks. All Python/LangGraph-specific. 0 harness patterns across 7+ consecutive deep-dives — reduced deep-dive priority.
+- **Added:** 2026-03-21 (seed) | **Last deep:** 2026-03-25T17:12 | **Pattern hits:** 1 | **SHA:** 792c49e
+- **Notes:** Very active (5+ commits/day). GuardrailMiddleware covered by #67. SHA ac97dc6→792c49e: new commits since last deep-dive. All Python/LangGraph-specific historically. 0 harness patterns across 7+ consecutive deep-dives — reduced deep-dive priority. Note for next PH.
 
 ### wshobson/agents
 - **Why:** Agent framework patterns — autonomous agent architectures
@@ -101,8 +101,8 @@
 ### ruvnet/ruflo
 - **Why:** Agent orchestration platform (24.2K stars, v3.5.42) — multi-agent swarms, hive-mind coordination, RAG, native Claude Code integration
 - **Look for:** Hive-mind real status reporting, agent coordination patterns, security audit responses, MCP resilience
-- **Added:** 2026-03-23 (horizon scan) | **Observations:** 21 | **First seen:** 2026-03-23
-- **Notes:** SHA 0590bf2→a1c4c08: docs update (install URLs from claude-flow to ruflo). Rebranding in progress. "hive-mind_status reads real agent state instead of hardcoded values" — agents report actual status. Security audit: SQL injection fixes in 9 queries. MCP server self-kill prevention on startup.
+- **Added:** 2026-03-23 (horizon scan) | **Observations:** 22 | **First seen:** 2026-03-23
+- **Notes:** SHA a1c4c08→c07ff8f: new changes since last scan. Rebranding in progress. "hive-mind_status reads real agent state instead of hardcoded values" — agents report actual status. Security audit: SQL injection fixes in 9 queries. MCP server self-kill prevention on startup. Note for next PH.
 
 ### SethGammon/Citadel
 - **Why:** Agent orchestration harness (242 stars) — closest architecture to tokenman. Campaign persistence, parallel worktrees, circuit breaker, quality gate hooks
