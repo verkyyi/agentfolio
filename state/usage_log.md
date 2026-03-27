@@ -284,4 +284,4 @@
 2026-03-27T12:19:03Z | analyze | model:claude-opus-4-6 | in:797888 | out:8111 | turns:27 | cost:0.9010895000000001
 2026-03-27T12:27:47Z | evolve | model:claude-opus-4-6 | in:1897517 | out:18551 | turns:49 | cost:1.7823379999999993 | posture:HORIZON_SCAN | issues:0
 2026-03-27T12:54:39Z | watcher | model:claude-opus-4-6 | in:860910 | out:9971 | turns:32 | cost:1.10085925
-2026-03-27T12:57:45Z | coder | model:claude-opus-4-6 | in:593233 | out:5431 | turns:19 | cost:0.779147
+2026-03-27T13:00:06Z | reviewer | model:claude-opus-4-6 | in:186188 | out:2678 | turns:11 | cost:0.3594312500000001
