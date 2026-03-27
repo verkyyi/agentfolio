@@ -1,9 +1,9 @@
 # Project State
-Last updated: 2026-03-27T12:55:00Z
-Updated by: watcher.yml
+Last updated: 2026-03-27T12:57:00Z
+Updated by: coder.yml
 
 ## Last Session
-Action: watcher.yml health check — 1 corrective action: re-triggered triage for #122 (open 3.5h+, 0 triage comments, triage skipped processing on initial dispatch). All workflows HEALTHY. No repeated failures. No stuck runs. 4 needs-human issues correctly held. 3 PRs awaiting human merge. 0 open pipeline-fix issues.
+Action: coder.yml fix issue #122 — added `if: "Bash(*),Write(*),Edit(*)"` conditional filter to PreToolUse guard.sh hook in .claude/settings.json. Covers all 3 tools with deny rules in guardrail_policy.json. PostToolUse circuit-breaker left unfiltered (reset counter must fire on all successes). ~50-60% process spawn reduction per run.
 
 System health:
 - Evolve: WATCH — 3/8 recent exceed 55 (37.5%), overall 4/15 post-reduction (26.7%, under 30%). Latest 49 turns (down from 63 peak). Turns: 44-63.
