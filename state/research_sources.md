@@ -1,7 +1,7 @@
 # Research Sources
 # Managed by evolve.yml. Claude adds, prunes, and annotates freely.
 # Seeded from evolve_config.md on first run.
-# Last updated: 2026-03-27T12:21:00Z
+# Last updated: 2026-03-27T15:22:00Z
 
 ## Active Sources
 
@@ -14,7 +14,7 @@
 ### garrytan/gstack
 - **Why:** Harness engineering patterns — skills, slash commands, review protocols, agent orchestration
 - **Look for:** New skill files, workflow patterns, agent guardrails, PR review techniques, structured output formats
-- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-03-26T21:16 | **Pattern hits:** 9 | **SHA:** 5319b8a
+- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-03-26T21:16 | **Pattern hits:** 9 | **SHA:** 43c078f
 - **Notes:** Most productive source so far. 9 pattern hits across v0.9.7-v0.11.18.2. SHA 3d52382→60061d0: changed. All recent patterns Codex/interactive-session specific. 14th consecutive PH with 0 adoptable patterns from this source. Pattern yield exhausted for our CI-based harness.
 
 ### affaan-m/everything-claude-code
@@ -32,7 +32,7 @@
 ### bytedance/deer-flow
 - **Why:** Multi-agent orchestration patterns from a major tech company
 - **Look for:** Agent coordination, state management, tool orchestration, LLM provider patterns
-- **Added:** 2026-03-21 (seed) | **Last deep:** 2026-03-26T09:28 | **Pattern hits:** 1 | **SHA:** 50f50d7
+- **Added:** 2026-03-21 (seed) | **Last deep:** 2026-03-26T09:28 | **Pattern hits:** 1 | **SHA:** 03b144f
 - **Notes:** Very active (5+ commits/day). SHA 43a19f9→50f50d7: skill frontmatter validation tests (PR #1309). Converges with Citadel V2 skill-lint pattern. 0 harness patterns across 9+ consecutive deep-dives. Lowest deep-dive priority.
 
 ### wshobson/agents
@@ -50,7 +50,7 @@
 ### withastro/astro
 - **Why:** Web framework we use — security fixes, breaking changes, new features
 - **Look for:** Security advisories, breaking changes in minor/major releases, new content collection features
-- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-03-25T17:12 | **Pattern hits:** 0 | **SHA:** efb2e4b
+- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-03-25T17:12 | **Pattern hits:** 0 | **SHA:** 4198232
 - **Notes:** Only actionable for security fixes or features that affect our site build. SHA 9117cac→efb2e4b: ts tests (#16102). 0 harness patterns across 10+ deep-dives. Monitor Vite 8 compatibility.
 
 ### verkyyi/tokenman
@@ -78,7 +78,7 @@
 - **Why:** Largest skill catalog (27K stars, 1309+ skills) — installable via CLI, bundles, multi-platform (Claude Code, Codex, Gemini CLI, Cursor)
 - **Look for:** Skill packaging/distribution model, CLI installer patterns, bundle organization, cross-platform skill format
 - **Added:** 2026-03-23 (horizon scan) | **Observations:** 41 | **First seen:** 2026-03-23
-- **Notes:** SHA 4c0cc5f→bafe144 (changed). v9.0.0 released (Mar 27): plugin distributions for Claude Code + Codex. 1,328+ skills. Confirms direction of #66. 0 harness patterns after 41 obs.
+- **Notes:** SHA bafe144→8ad1ef9 (changed). v9.0.0 released (Mar 27): plugin distributions for Claude Code + Codex. 1,328+ skills. Confirms direction of #66. 0 harness patterns after 42 obs.
 
 ### OthmanAdi/planning-with-files
 - **Why:** Persistent markdown planning skill (16.9K stars) — Manus-style file-based planning for Claude Code
@@ -113,7 +113,7 @@
 ### code-yeongyu/oh-my-openagent
 - **Why:** Largest agent harness repo (44K stars, 3273 forks) — TypeScript TUI, multi-model orchestration, subagent management, plugin discovery, hook isolation
 - **Look for:** Hook isolation patterns, subagent lifecycle management, plugin discovery architecture, runtime fallback patterns
-- **Added:** 2026-03-27 (horizon scan) | **Observations:** 1 | **First seen:** 2026-03-27
+- **Added:** 2026-03-27 (horizon scan) | **Observations:** 2 | **First seen:** 2026-03-27
 - **Notes:** Very active (2800+ PRs, multiple commits/day). Architecture fundamentally different (interactive TUI vs CI workflows). Low direct adoption potential but large ecosystem influence. Monitor for transferable patterns.
 
 ## Dropped Sources
