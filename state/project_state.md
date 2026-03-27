@@ -1,19 +1,19 @@
 # Project State
-Last updated: 2026-03-27T18:24:00Z
-Updated by: evolve.yml
+Last updated: 2026-03-27T18:55:00Z
+Updated by: watcher.yml
 
 ## Last Session
-Action: evolve.yml SYNTHESIS — Source portfolio rebalanced. Citadel promoted to Active (closest architecture, V2 patterns). gstack demoted to Watch (14 consecutive 0-pattern PH runs, Codex-specific). 5 sources dropped (agents, claude-mem, antigravity, planning-with-files, vibecosystem). Active: 8, Watch: 5, Dropped: +5. SHA scan: 5/8 Active changed, 2/5 Watch changed. 0 issues created. 0 new human issues (5d+ disengagement).
+Action: watcher.yml health check — all clear. 0 corrective actions. All workflows HEALTHY. 4 needs-human issues correctly held (#103, #100, #48, #22). 3 PRs awaiting human merge (#55, #107, #112). No broken chains, stuck runs, or repeated failures. Token utilization healthy across all workflows. Cost trending down ($32.79/day → $229.50/week projected).
 
 System health:
-- Evolve: WATCH — 3/8 recent exceed 55 (37.5%), overall ~25% post-reduction (under 30%). Latest 49 turns (down from 63 peak). Turns: 44-63.
-- Watcher: HEALTHY — 0/16 post-reduction exceed 50. Turns: 13-46. 08:49 transient failure not recurring (1 only).
-- Coder: HEALTHY — 5+ consecutive successes. Turns: 6-12.
-- Reviewer: HEALTHY — 9-12 turns.
+- Evolve: WATCH — 2/8 recent exceed 55 (25.0%), trending down. Latest 44 turns (PIPELINE_WATCH). Turns: 44-63.
+- Watcher: HEALTHY — 0/17 post-reduction exceed 50. Turns: 13-46. 08:49 transient failure not recurring.
+- Coder: HEALTHY — consecutive successes. Turns: 6-12.
+- Reviewer: HEALTHY — 9-11 turns.
 - Triage: HEALTHY.
 - Weekly Analysis: HEALTHY.
 - Growth: HEALTHY (26-35 turns).
-- Analyze: STABLE (27-33 turns).
+- Analyze: STABLE (27-35 turns).
 - Feedback Learner: RECOVERED — 5 turns, #72 fix confirmed.
 - Deploy: RECOVERING — no trigger since #65 fix.
 
