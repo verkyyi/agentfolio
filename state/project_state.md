@@ -1,14 +1,14 @@
 # Project State
-Last updated: 2026-03-27T00:41:00Z
-Updated by: evolve.yml
+Last updated: 2026-03-27T01:10:00Z
+Updated by: watcher.yml
 
 ## Last Session
-Action: evolve.yml SYNTHESIS — 5 convergent signals identified. Key: pattern plateau root cause is architecture gap (CI vs CLI/interactive), not source quality. agents resurrected from 19d stale with plugin-eval framework (relevant to #66). 6/9 Active SHAs changed (high activity). Cost $273/week stable. Human disengagement 5+ days. 0 issues created.
+Action: watcher.yml health check — 1 corrective action. Discovered evolve triggering duplicate triage→coder→reviewer chains for closed issue #113 (PRs #118, #119 both merged as duplicates of PR #114). Created issue #120 (pipeline-fix, likely-agent-fixable). All workflows HEALTHY. 4 needs-human issues correctly held. 3 PRs awaiting human merge.
 
 System health:
 - Evolve: IMPROVING — 1/8 post-reduction exceed 55 (12.5%). Turns: 39-59.
-- Watcher: IMPROVING — 0/12 post-reduction exceed 50. Turns: 25-45.
-- Coder: RECOVERED — #116 fix merged (PR #117), 2 successes after 2 failures.
+- Watcher: IMPROVING — 0/11 post-reduction exceed 50. Turns: 25-44.
+- Coder: HEALTHY — 3 consecutive successes (20:53, 21:19, 00:48). Turns: 6-12.
 - Reviewer: HEALTHY — 8-12 turns.
 - Triage: HEALTHY.
 - Weekly Analysis: HEALTHY.
@@ -27,11 +27,12 @@ System health:
 7. **[MAINTENANCE]** Source portfolio rebalance — agents 18d+ stale (drop Apr 14), Watch List decisions due Mar 30
 
 ## Open Items
-1. PR #55: [approved] fix(workflow) reviewer.yml state reset — APPROVED 96h+, needs human merge
+1. PR #55: [approved] fix(workflow) reviewer.yml state reset — APPROVED 100h+, needs human merge
 2. Issue #100: [needs-human] PR #112 APPROVED, merge conflicts (4th cycle), all workflow YAML — escalated
 3. Issue #103: [needs-human] PR #107 APPROVED 2x, merge conflicts, escalated to needs-human (workflow YAML)
-4. Issue #48: [needs-human] Submit to e2b-dev/awesome-ai-agents
-5. Issue #22: [needs-human] Submit to awesome-claude-code — waiting until ~March 28
+4. Issue #120: [agent-ready] Evolve triggers duplicate triage/coder/reviewer for closed #113 — pipeline-fix, likely-agent-fixable
+5. Issue #48: [needs-human] Submit to e2b-dev/awesome-ai-agents
+6. Issue #22: [needs-human] Submit to awesome-claude-code — waiting until ~March 28
 
 ## Week of Mar 19-26 Key Metrics
 - Commits: 1072 (907 state, 165 feat/fix)
@@ -88,3 +89,4 @@ System health:
 - claude-code v2.1.84: paths: glob frontmatter for skills — relevant to #66
 - Issue #116: RESOLVED — PR #117 merged (20:56), auto-close miss fixed by watcher (22:50). Full pipeline chain worked: triage→coder→PR→reviewer→merge.
 - Coder RECOVERED — 2 successes (20:53, 21:19) after #116 fix. 2 prior failures (18:25, 18:35) from multiline GITHUB_OUTPUT bug.
+- Issue #120: NEW — evolve writes closed issue #113 to .new_issues.txt, triggering duplicate triage→coder→reviewer chains. PRs #118 and #119 both merged as duplicates of PR #114. Fix: add issue state check in evolve.yml "Trigger triage" step.
