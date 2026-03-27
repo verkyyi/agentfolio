@@ -8,7 +8,8 @@
             "command": ".claude/hooks/guard.sh",
             "timeout": 10
           }
-        ]
+        ],
+        "if": "Bash(*),Write(*),Edit(*)"
       }
     ],
     "SessionEnd": [
