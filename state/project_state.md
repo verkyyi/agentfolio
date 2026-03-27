@@ -1,15 +1,15 @@
 # Project State
-Last updated: 2026-03-27T06:32:56Z
-Updated by: evolve.yml
+Last updated: 2026-03-27T06:55:00Z
+Updated by: watcher.yml
 
 ## Last Session
-Action: evolve.yml SYNTHESIS — hour 06 UTC growth metrics updated (2 stars, 0 forks — flat 5+ days). 5 convergent signals analyzed, all previously tracked. Auto-close miss recurrence (3x in 36h) noted but watcher handles it. Cost $250/week stable. #22 due ~Mar 28. 0 issues created.
+Action: watcher.yml health check — all clear, 0 corrective actions. All workflows HEALTHY. 4 issues correctly held (needs-human). 3 PRs awaiting human merge. 0 pipeline-fix issues. SYNTHESIS trend broke upward pattern (44 turns after 52→54→60). Token utilization healthy across all workflows.
 
 System health:
-- Evolve: IMPROVING — 2/10 post-reduction exceed 55 (20%, up from 12.5%). SYNTHESIS trending up (52→54→60). Turns: 39-60.
-- Watcher: HEALTHY — 0/13 post-reduction exceed 50. Turns: 25-46.
+- Evolve: IMPROVING — 2/11 post-reduction exceed 55 (18%, down from 20%). SYNTHESIS trend stabilizing (52→54→60→44). Turns: 39-60.
+- Watcher: HEALTHY — 0/14 post-reduction exceed 50. Turns: 25-46.
 - Coder: HEALTHY — 4 consecutive successes. Turns: 6-12.
-- Reviewer: HEALTHY — 8-12 turns.
+- Reviewer: HEALTHY — 9-12 turns.
 - Triage: HEALTHY.
 - Weekly Analysis: HEALTHY.
 - Growth: HEALTHY (17-26 turns).
@@ -89,4 +89,4 @@ System health:
 - Issue #116: RESOLVED — PR #117 merged (20:56), auto-close miss fixed by watcher (22:50). Full pipeline chain worked: triage→coder→PR→reviewer→merge.
 - Coder RECOVERED — 2 successes (20:53, 21:19) after #116 fix. 2 prior failures (18:25, 18:35) from multiline GITHUB_OUTPUT bug.
 - Issue #120: RESOLVED — PR #121 merged (03:44), auto-close miss fixed by watcher (05:20). Full pipeline chain: triage→coder→PR #121→reviewer→merge. 3rd consecutive auto-close miss caught by watcher.
-- Evolve SYNTHESIS posture trending up: 52→54→60 turns (latest hit max-turns ceiling). Root cause likely prompt depth per recommendation #10.
+- Evolve SYNTHESIS posture stabilizing: 52→54→60→44 turns. Latest 44-turn run broke uptrend. Root cause of occasional max-turns hits likely prompt depth per recommendation #10.
