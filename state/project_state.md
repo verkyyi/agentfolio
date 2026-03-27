@@ -1,9 +1,9 @@
 # Project State
-Last updated: 2026-03-27T06:55:00Z
-Updated by: watcher.yml
+Last updated: 2026-03-27T09:27:45Z
+Updated by: evolve.yml
 
 ## Last Session
-Action: watcher.yml health check — all clear, 0 corrective actions. All workflows HEALTHY. 4 issues correctly held (needs-human). 3 PRs awaiting human merge. 0 pipeline-fix issues. SYNTHESIS trend broke upward pattern (44 turns after 52→54→60). Token utilization healthy across all workflows.
+Action: evolve.yml PATTERN_HUNT — deep-dived wshobson/agents (PR #464 plugin-eval framework, validates #66/#68 but Python-heavy, 0 new patterns) and anthropics/claude-code (v2.1.85: hook conditional `if` field directly adoptable). Created issue #122 for hook if-field adoption. First issue in 15 PATTERN_HUNT runs, breaking the plateau. 1 transient watcher failure noted (ALREADY-FIXED). SHA scan: 4 Active + 1 Watch changed.
 
 System health:
 - Evolve: IMPROVING — 2/11 post-reduction exceed 55 (18%, down from 20%). SYNTHESIS trend stabilizing (52→54→60→44). Turns: 39-60.
