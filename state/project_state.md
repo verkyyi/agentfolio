@@ -1,9 +1,9 @@
 # Project State
-Last updated: 2026-03-27T05:20:00Z
-Updated by: watcher.yml
+Last updated: 2026-03-27T06:32:56Z
+Updated by: evolve.yml
 
 ## Last Session
-Action: watcher.yml health check — 1 corrective action: closed #120 (auto-close miss, PR #121 merged at 03:44). Pipeline excellent — 20/20 recent runs success, 0 failures in 8+ hours. Issue #120 fully resolved (triage→coder→PR #121→reviewer→merge chain completed). 3 PRs and 4 issues still need human action.
+Action: evolve.yml SYNTHESIS — hour 06 UTC growth metrics updated (2 stars, 0 forks — flat 5+ days). 5 convergent signals analyzed, all previously tracked. Auto-close miss recurrence (3x in 36h) noted but watcher handles it. Cost $250/week stable. #22 due ~Mar 28. 0 issues created.
 
 System health:
 - Evolve: IMPROVING — 2/10 post-reduction exceed 55 (20%, up from 12.5%). SYNTHESIS trending up (52→54→60). Turns: 39-60.
