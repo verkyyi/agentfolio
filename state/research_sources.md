@@ -1,7 +1,7 @@
 # Research Sources
 # Managed by evolve.yml. Claude adds, prunes, and annotates freely.
 # Seeded from evolve_config.md on first run.
-# Last updated: 2026-03-27T18:24:00Z
+# Last updated: 2026-03-27T21:18:00Z
 
 ## Active Sources
 
@@ -32,8 +32,8 @@
 ### SethGammon/Citadel
 - **Why:** Agent orchestration harness (354 stars) — closest architecture to tokenman. Campaign persistence, parallel worktrees, circuit breaker, quality gate hooks, skill benchmarking
 - **Look for:** Skill benchmarking patterns, skill linting, governance hooks, testing infrastructure, fleet coordination
-- **Added:** 2026-03-24 (watch) | **Promoted:** 2026-03-27 (synthesis — 35 obs, closest architecture, V2 patterns) | **Last deep:** never | **Pattern hits:** 1 | **SHA:** 25c4755
-- **Notes:** Promoted from Watch List. V2 released (PR #26): skill-bench.js (scenario-based benchmarks with static + execute modes), skill-lint.js (structural SKILL.md validator FAIL/WARN/INFO), governance.js (audit logging hook), __benchmarks__/ per-skill fixtures. 1 pattern hit (circuit breaker #76). Skill-lint pattern converges with deer-flow frontmatter validation tests — ecosystem-wide signal. Prioritize for next PATTERN_HUNT deep-dive.
+- **Added:** 2026-03-24 (watch) | **Promoted:** 2026-03-27 (synthesis — 35 obs, closest architecture, V2 patterns) | **Last deep:** 2026-03-27T21:18 | **Pattern hits:** 1 | **SHA:** 830b63b
+- **Notes:** Promoted from Watch List. First deep-dive: 21-hook ecosystem (governance audit log, quality-gate Stop hook, external-action-gate PreToolUse, intake-scanner SessionStart, stop-failure meta-hook, circuit-breaker, worktree-setup/remove, protect-files, doc-sync, etc.). V2 quality: ReDoS heuristic for custom regex, repo-slug validation, execFileSync over execSync. Validates our guard.sh approach. Patterns are interactive-session focused (CLI, not CI) — low direct adoption potential. 1 pattern hit (circuit breaker #76, pre-promotion). Rich reference for hook architecture evolution.
 
 ### actions/runner
 - **Why:** CI/CD runtime we depend on — deprecation notices, new features, security fixes
@@ -44,7 +44,7 @@
 ### withastro/astro
 - **Why:** Web framework we use — security fixes, breaking changes, new features
 - **Look for:** Security advisories, breaking changes in minor/major releases, new content collection features
-- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-03-25T17:12 | **Pattern hits:** 0 | **SHA:** 6464425
+- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-03-25T17:12 | **Pattern hits:** 0 | **SHA:** 0d24e3b
 - **Notes:** Only actionable for security fixes or features that affect our site build. SHA 4198232→6464425 (changed). 0 harness patterns across 10+ deep-dives. Monitor Vite 8 compatibility.
 
 ### verkyyi/tokenman
