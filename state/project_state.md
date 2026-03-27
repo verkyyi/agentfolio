@@ -1,13 +1,13 @@
 # Project State
-Last updated: 2026-03-27T21:18:25Z
-Updated by: evolve.yml
+Last updated: 2026-03-27T22:50:00Z
+Updated by: watcher.yml
 
 ## Last Session
-Action: evolve.yml PATTERN_HUNT — deep-dived Citadel (first deep-dive, 830b63b). 21-hook ecosystem validates our guard.sh architecture. Patterns interactive-session focused, 0 new adoptable CI patterns. Claude-code unchanged. SHA scan: 2 Active changed (Citadel deep-dived, Astro minor), 0 Watch changed. Pipeline healthy (0 new failures). 0 issues created.
+Action: watcher.yml health check — all clear, 0 corrective actions. All workflows HEALTHY. 4 issues correctly held (needs-human: #103, #100, #48, #22). 3 PRs awaiting human merge (#55 APPROVED 126h+, #107 APPROVED 2x merge conflicts, #112 APPROVED-via-comments merge conflicts). No broken chains, stuck runs, or repeated failures. Token utilization all within bounds.
 
 System health:
-- Evolve: WATCH — 2/8 recent exceed 55 (25%), trending down. Latest 44 turns (PIPELINE_WATCH). Turns: 44-63.
-- Watcher: HEALTHY — 0/18 post-reduction exceed 50. Turns: 13-46. 08:49 transient failure not recurring.
+- Evolve: WATCH — 2/9 recent exceed 55 (22%), trending down. Latest 44 turns (PATTERN_HUNT). Turns: 44-63.
+- Watcher: HEALTHY — 0/19 post-reduction exceed 50. Turns: 13-46. 08:49 transient failure not recurring.
 - Coder: HEALTHY — 5 consecutive successes. Turns: 6-12.
 - Reviewer: HEALTHY — 9-11 turns.
 - Triage: HEALTHY.
@@ -18,7 +18,7 @@ System health:
 - Deploy: RECOVERING — no trigger since #65 fix.
 
 ## Current Priorities (ordered)
-1. **[BLOCKED]** PR #55: fix reviewer.yml state reset — APPROVED 124h+, awaiting human merge (workflow YAML)
+1. **[BLOCKED]** PR #55: fix reviewer.yml state reset — APPROVED 126h+, awaiting human merge (workflow YAML)
 2. **[NEEDS-HUMAN]** PR #107: reduce HORIZON_SCAN cadence — APPROVED 2x, merge conflicts, escalated to needs-human
 3. **[NEEDS-HUMAN]** PR #112: env scrub hardening — APPROVED but merge conflicts (4th cycle), all workflow YAML, needs manual rebase + merge
 4. **[UPCOMING]** Issue #22: Submit to awesome-claude-code — 7-day cooldown expires ~March 28
@@ -27,7 +27,7 @@ System health:
 7. **[DONE]** Source portfolio rebalance — completed Mar 27 SYNTHESIS. Citadel promoted, gstack demoted, 5 dropped.
 
 ## Open Items
-1. PR #55: [approved] fix(workflow) reviewer.yml state reset — APPROVED 124h+, needs human merge
+1. PR #55: [approved] fix(workflow) reviewer.yml state reset — APPROVED 126h+, needs human merge
 2. Issue #100: [needs-human] PR #112 APPROVED, merge conflicts (4th cycle), all workflow YAML — escalated
 3. Issue #103: [needs-human] PR #107 APPROVED 2x, merge conflicts, escalated to needs-human (workflow YAML)
 4. Issue #48: [needs-human] Submit to e2b-dev/awesome-ai-agents
