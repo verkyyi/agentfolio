@@ -1,18 +1,18 @@
 # Project State
-Last updated: 2026-03-27T12:57:00Z
-Updated by: coder.yml
+Last updated: 2026-03-27T14:55:00Z
+Updated by: watcher.yml
 
 ## Last Session
-Action: coder.yml fix issue #122 — added `if: "Bash(*),Write(*),Edit(*)"` conditional filter to PreToolUse guard.sh hook in .claude/settings.json. Covers all 3 tools with deny rules in guardrail_policy.json. PostToolUse circuit-breaker left unfiltered (reset counter must fire on all successes). ~50-60% process spawn reduction per run.
+Action: watcher.yml health check — 1 corrective action: closed #122 (4th auto-close miss, PR #123 merged 12:59 with `closes #122`). Pipeline chain for #122 completed perfectly in 7 min (triage 12:52 → coder 12:55 → PR #123 → reviewer 12:57 → merged 12:59). All workflows HEALTHY. 4 needs-human issues correctly held. 3 PRs awaiting human merge.
 
 System health:
-- Evolve: WATCH — 3/8 recent exceed 55 (37.5%), overall 4/15 post-reduction (26.7%, under 30%). Latest 49 turns (down from 63 peak). Turns: 44-63.
-- Watcher: HEALTHY — 0/15 post-reduction exceed 50. Turns: 13-46. 1 transient failure (08:49 SHA conflict).
-- Coder: HEALTHY — 4 consecutive successes. Turns: 6-12.
+- Evolve: WATCH — 3/9 recent exceed 55 (33.3%), overall 4/16 post-reduction (25.0%, under 30%). Latest 49 turns (down from 63 peak). Turns: 44-63.
+- Watcher: HEALTHY — 0/16 post-reduction exceed 50. Turns: 13-46. 1 transient failure (08:49 SHA conflict, not recurring).
+- Coder: HEALTHY — 5 consecutive successes. Turns: 6-12.
 - Reviewer: HEALTHY — 8-12 turns.
 - Triage: HEALTHY.
 - Weekly Analysis: HEALTHY.
-- Growth: HEALTHY (26-35 turns).
+- Growth: HEALTHY (17-35 turns).
 - Analyze: STABLE (27-33 turns).
 - Feedback Learner: RECOVERED — 5 turns, #72 fix confirmed.
 - Deploy: RECOVERING — no trigger since #65 fix.
@@ -27,12 +27,11 @@ System health:
 7. **[MAINTENANCE]** Source portfolio rebalance — agents 18d+ stale (drop Apr 14), Watch List decisions due Mar 30
 
 ## Open Items
-1. PR #55: [approved] fix(workflow) reviewer.yml state reset — APPROVED 112h+, needs human merge
-2. Issue #122: [re-triaging] Adopt hook conditional if filtering — triage re-triggered by watcher (3.5h stale)
-3. Issue #100: [needs-human] PR #112 APPROVED, merge conflicts (4th cycle), all workflow YAML — escalated
-4. Issue #103: [needs-human] PR #107 APPROVED 2x, merge conflicts, escalated to needs-human (workflow YAML)
-5. Issue #48: [needs-human] Submit to e2b-dev/awesome-ai-agents
-6. Issue #22: [needs-human] Submit to awesome-claude-code — waiting until ~March 28
+1. PR #55: [approved] fix(workflow) reviewer.yml state reset — APPROVED 116h+, needs human merge
+2. Issue #100: [needs-human] PR #112 APPROVED, merge conflicts (4th cycle), all workflow YAML — escalated
+3. Issue #103: [needs-human] PR #107 APPROVED 2x, merge conflicts, escalated to needs-human (workflow YAML)
+4. Issue #48: [needs-human] Submit to e2b-dev/awesome-ai-agents
+5. Issue #22: [needs-human] Submit to awesome-claude-code — waiting until ~March 28
 
 ## Week of Mar 19-26 Key Metrics
 - Commits: 1072 (907 state, 165 feat/fix)
@@ -91,7 +90,8 @@ System health:
 - Coder RECOVERED — 2 successes (20:53, 21:19) after #116 fix. 2 prior failures (18:25, 18:35) from multiline GITHUB_OUTPUT bug.
 - Issue #120: RESOLVED — PR #121 merged (03:44), auto-close miss fixed by watcher (05:20). Full pipeline chain: triage→coder→PR #121→reviewer→merge. 3rd consecutive auto-close miss caught by watcher.
 - Evolve SYNTHESIS posture stabilizing: 52→54→60→44 turns. Latest 44-turn run broke uptrend. Root cause of occasional max-turns hits likely prompt depth per recommendation #10.
-- Issue #122: Created by evolve PATTERN_HUNT (09:27). Triage skipped initial dispatch (09:38). Watcher re-triggered triage (12:55). Monitoring for completion.
-- Evolve turn usage: latest HS run 49 turns (down from 63 peak). Overall 4/15 post-reduction (26.7%) — under 30%, trending down. Continue monitoring.
+- Issue #122: RESOLVED — full pipeline chain in 7 min (triage→coder→PR #123→reviewer→merge). Auto-close miss #4 fixed by watcher (14:55).
+- Evolve turn usage: latest HS run 49 turns (down from 63 peak). Overall 4/16 post-reduction (25.0%) — under 30%, trending down. Continue monitoring.
 - Usage log posture mismatch: agent log says PH for 09:22 run but usage log records SYNTHESIS. Minor logging inconsistency.
 - PR #112: 0 formal GH reviews but reviewer approved via comments (merge conflicts are the real blocker). Tracked via needs-human on #100.
+- Auto-close miss pattern: 4 occurrences in 48h (#113, #116, #120, #122). All caught by watcher. Root cause: reviewer merges via API, not GH UI — auto-close doesn't fire. Watcher safety net is the correct approach.
