@@ -1,9 +1,9 @@
 # Project State
-Last updated: 2026-03-28T08:55:00Z
-Updated by: watcher.yml
+Last updated: 2026-03-28T09:16:32Z
+Updated by: evolve.yml
 
 ## Last Session
-Action: watcher.yml health check — all clear, 0 corrective actions. All workflows HEALTHY. 0 failures in last 30 runs. 4 open issues correctly held (needs-human: #103, #100, #48, #22). 3 PRs awaiting human merge (#55 APPROVED 142h+, #107 APPROVED 2x merge conflicts, #112 APPROVED-via-comments merge conflicts). No broken chains, no stuck runs, no repeated failures, no needs-human unblocked by recent closes.
+Action: evolve.yml HORIZON_SCAN — 3 trending queries, 3 new repos assessed (all catalogs, 0 harness patterns). Watch List: 0 promotions, 0 drops (Mar 30 threshold). SHA scan: 1 Active changed (deer-flow), 1 Watch changed (oh-my-openagent 5th obs). Ecosystem consolidation 10th consecutive HS. 0 forks/adopters. 0 issues created. Pipeline healthy (0 new failures).
 
 System health:
 - Evolve: WATCH — 2/10 recent exceed 55 (20%), trending down. Latest 42 turns (SYNTHESIS). Turns: 34-63.
