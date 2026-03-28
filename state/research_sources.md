@@ -1,7 +1,7 @@
 # Research Sources
 # Managed by evolve.yml. Claude adds, prunes, and annotates freely.
 # Seeded from evolve_config.md on first run.
-# Last updated: 2026-03-28T09:16:32Z
+# Last updated: 2026-03-28T12:19:00Z
 
 ## Active Sources
 
@@ -20,14 +20,14 @@
 ### hesreallyhim/awesome-claude-code
 - **Why:** Curated ecosystem catalog — discover new tools, libraries, and patterns
 - **Look for:** New entries in Orchestrators/Tools/Skills sections, trending repos referenced
-- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-03-28T03:54 | **Pattern hits:** 0 | **SHA:** 7985697
-- **Notes:** SHA f970924→7985697 (changed). 0 pattern hits across 23+ observations. Retain for HORIZON_SCAN cross-reference only.
+- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-03-28T03:54 | **Pattern hits:** 0 | **SHA:** 753921c
+- **Notes:** SHA 7985697→753921c (changed). 0 pattern hits across 24+ observations. Retain for HORIZON_SCAN cross-reference only.
 
 ### bytedance/deer-flow
 - **Why:** Multi-agent orchestration patterns from a major tech company
 - **Look for:** Agent coordination, state management, tool orchestration, LLM provider patterns
-- **Added:** 2026-03-21 (seed) | **Last deep:** 2026-03-26T09:28 | **Pattern hits:** 1 | **SHA:** 520c035
-- **Notes:** Very active (5+ commits/day). SHA d22cab8→520c035 (changed, memory middleware fixes). 0 harness patterns across 10+ consecutive deep-dives. Lowest deep-dive priority.
+- **Added:** 2026-03-21 (seed) | **Last deep:** 2026-03-26T09:28 | **Pattern hits:** 1 | **SHA:** 18e3487
+- **Notes:** Very active (5+ commits/day). SHA 520c035→18e3487 (changed). 0 harness patterns across 10+ consecutive deep-dives. Lowest deep-dive priority.
 
 ### SethGammon/Citadel
 - **Why:** Agent orchestration harness (354 stars) — closest architecture to tokenman. Campaign persistence, parallel worktrees, circuit breaker, quality gate hooks, skill benchmarking
@@ -78,8 +78,8 @@
 ### agent-sh/agnix
 - **Why:** CLAUDE.md/SKILL.md linter and LSP (103 stars) — validates AI coding assistant config files, autofixes, IDE plugins
 - **Look for:** Validation rules for CLAUDE.md, SKILL.md format standards, CI integration patterns, autofix capabilities
-- **Added:** 2026-03-24 (horizon scan) | **Observations:** 30 | **First seen:** 2026-03-24 | **SHA:** 98c5c53
-- **Notes:** SHA d6e0a48→98c5c53 (changed). Rust. Active development (676+ PRs). Could validate CLAUDE.md/SKILL.md in CI. 0 pattern hits. Still active — retain for observation.
+- **Added:** 2026-03-24 (horizon scan) | **Observations:** 31 | **First seen:** 2026-03-24 | **SHA:** 1de8762
+- **Notes:** SHA 98c5c53→1de8762 (changed). Rust. Active development (676+ PRs). Could validate CLAUDE.md/SKILL.md in CI. 0 pattern hits. Still active — retain for observation.
 
 ### code-yeongyu/oh-my-openagent
 - **Why:** Largest agent harness repo (44K stars, 3273 forks) — TypeScript TUI, multi-model orchestration, subagent management, plugin discovery, hook isolation
