@@ -1,7 +1,7 @@
 # Research Sources
 # Managed by evolve.yml. Claude adds, prunes, and annotates freely.
 # Seeded from evolve_config.md on first run.
-# Last updated: 2026-03-28T12:19:00Z
+# Last updated: 2026-03-28T15:14:33Z
 
 ## Active Sources
 
@@ -9,13 +9,13 @@
 - **Why:** The runtime we build on — releases, breaking changes, new hooks, CLI flags
 - **Look for:** CHANGELOG entries, new hook types, permission changes, SDK updates
 - **Added:** 2026-03-20 (seed) | **Last deep:** 2026-03-27T09:27 | **Pattern hits:** 2 | **SHA:** 2923bc8
-- **Notes:** Protected source — never drop. Check CHANGELOG and releases, not just commits. v2.1.86 (Mar 27): bug-fix/polish release — Read tool compact line-numbers + dedup (automatic token savings), --bare mode fix (reinforces #63 non-adoption), plugin permission fix since v2.1.83 (relevant to #66), skill descriptions capped 250 chars, @-mention token reduction. No harness-actionable changes. Previous: v2.1.85 hook `if` field (#122), v2.1.84 paths: frontmatter (#66), v2.1.83 security patterns (#100), v2.1.81 --bare flag (#63).
+- **Notes:** Protected source — never drop. Check CHANGELOG and releases, not just commits. v2.1.86 (Mar 27): bug-fix/polish — plugin permission fix confirmed working (unblocks #66 on macOS/Linux), memory growth fix for long sessions, --resume fix, Session-Id header for proxies. Previous: v2.1.85 hook `if` field (#122), v2.1.84 paths: frontmatter (#66), v2.1.83 security patterns (#100), v2.1.81 --bare flag (#63).
 
 ### affaan-m/everything-claude-code
 - **Why:** Community harness patterns, skill collections, optimization techniques
 - **Look for:** New skills, CLAUDE.md patterns, workflow architectures, instinct files
-- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-03-25T13:32 | **Pattern hits:** 1 | **SHA:** 8b6140d
-- **Notes:** Large community repo. 1 pattern hit (safety-guard PreToolUse hooks). SHA cc60bf6→8b6140d: ajv runtime dependency fix (PR #956). All platform-specific or ecc2 TUI. 0 harness patterns across 7+ consecutive observations. Retaining for community skill discoveries but lowest deep-dive priority.
+- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-03-25T13:32 | **Pattern hits:** 1 | **SHA:** f077975
+- **Notes:** Large community repo. 1 pattern hit (safety-guard PreToolUse hooks). SHA 8b6140d→f077975: installer fixes (PR #931, #963). All platform-specific. 0 harness patterns across 8+ consecutive observations. Lowest deep-dive priority.
 
 ### hesreallyhim/awesome-claude-code
 - **Why:** Curated ecosystem catalog — discover new tools, libraries, and patterns
@@ -26,8 +26,8 @@
 ### bytedance/deer-flow
 - **Why:** Multi-agent orchestration patterns from a major tech company
 - **Look for:** Agent coordination, state management, tool orchestration, LLM provider patterns
-- **Added:** 2026-03-21 (seed) | **Last deep:** 2026-03-26T09:28 | **Pattern hits:** 1 | **SHA:** 18e3487
-- **Notes:** Very active (5+ commits/day). SHA 520c035→18e3487 (changed). 0 harness patterns across 10+ consecutive deep-dives. Lowest deep-dive priority.
+- **Added:** 2026-03-21 (seed) | **Last deep:** 2026-03-28T15:14 | **Pattern hits:** 1 | **SHA:** 18e3487
+- **Notes:** Very active (5+ commits/day). Latest: memory middleware thread_id fallback, channel assistant IDs, Docker fixes. All application-specific. 0 harness patterns across 11+ consecutive deep-dives. Lowest deep-dive priority.
 
 ### SethGammon/Citadel
 - **Why:** Agent orchestration harness (354 stars) — closest architecture to tokenman. Campaign persistence, parallel worktrees, circuit breaker, quality gate hooks, skill benchmarking
@@ -60,7 +60,7 @@
 - **Why:** Harness engineering patterns — skills, slash commands, review protocols, agent orchestration
 - **Look for:** Non-Codex workflow patterns, CI-transferable techniques
 - **Demoted:** 2026-03-27 (synthesis — 14 consecutive PH with 0 adoptable patterns, all Codex/interactive-session specific)
-- **Observations:** 36+ | **First seen:** 2026-03-20 | **SHA:** 78bc1d1
+- **Observations:** 37+ | **First seen:** 2026-03-20 | **SHA:** 7450b51
 - **Notes:** Historically most productive source (9 pattern hits across v0.9.7-v0.11.18.2). Demoted because pattern yield exhausted for CI-based harness — all recent changes Codex/interactive-session specific. Monitor for CI-relevant patterns. Re-promote if non-Codex patterns emerge.
 
 ### trailofbits/skills
@@ -78,14 +78,15 @@
 ### agent-sh/agnix
 - **Why:** CLAUDE.md/SKILL.md linter and LSP (103 stars) — validates AI coding assistant config files, autofixes, IDE plugins
 - **Look for:** Validation rules for CLAUDE.md, SKILL.md format standards, CI integration patterns, autofix capabilities
-- **Added:** 2026-03-24 (horizon scan) | **Observations:** 31 | **First seen:** 2026-03-24 | **SHA:** 1de8762
-- **Notes:** SHA 98c5c53→1de8762 (changed). Rust. Active development (676+ PRs). Could validate CLAUDE.md/SKILL.md in CI. 0 pattern hits. Still active — retain for observation.
+- **Added:** 2026-03-24 (horizon scan) | **Observations:** 32 | **First seen:** 2026-03-24 | **SHA:** 7ffdf76
+- **Notes:** SHA 1de8762→7ffdf76: SKILL.md schema enforcement (XP-SK-001 code scanning alert), serialize-javascript DoS fix, org rename avifenesh→agent-sh. Rust. Active (693+ PRs). Formal SKILL.md validation relevant to #66/#68. 0 pattern hits (pre-adoption). Retain.
 
 ### code-yeongyu/oh-my-openagent
 - **Why:** Largest agent harness repo (44K stars, 3273 forks) — TypeScript TUI, multi-model orchestration, subagent management, plugin discovery, hook isolation
 - **Look for:** Hook isolation patterns, subagent lifecycle management, plugin discovery architecture, runtime fallback patterns
 - **Added:** 2026-03-27 (horizon scan) | **Observations:** 5 | **First seen:** 2026-03-27 | **SHA:** 9cbcf17
-- **Notes:** Very active (2900+ PRs, multiple commits/day). SHA d2c576c→9cbcf17 (changed, recovery fixes). Architecture fundamentally different (interactive TUI vs CI workflows). Low direct adoption potential but large ecosystem influence. Monitor for transferable patterns.
+- **Observations:** 6 | **First seen:** 2026-03-27 | **SHA:** 448a8dc
+- **Notes:** Very active (2900+ PRs, multiple commits/day). SHA 9cbcf17→448a8dc (changed). Architecture fundamentally different (interactive TUI vs CI workflows). Low direct adoption potential but large ecosystem influence. Monitor for transferable patterns.
 
 ## Dropped Sources
 <!-- Removed sources with reason. Kept for history so we don't re-discover them. -->
