@@ -1,13 +1,13 @@
 # Project State
-Last updated: 2026-03-28T12:55:00Z
+Last updated: 2026-03-28T14:55:00Z
 Updated by: watcher.yml
 
 ## Last Session
-Action: watcher.yml health check — all clear, 0 corrective actions. 0 failures in 28+ hours. All 4 open issues correctly held (needs-human). 3 PRs awaiting human merge.
+Action: watcher.yml health check — all clear, 0 corrective actions. 0 failures in 30+ hours. All 4 open issues correctly held (needs-human). 3 PRs awaiting human merge.
 
 System health:
-- Evolve: IMPROVING — 2/13 recent exceed 55 (15.4%, down from 18%). Latest 31 turns (HORIZON_SCAN, new low). Turns: 31-63.
-- Watcher: HEALTHY — 0/29 post-reduction exceed 50. Turns: 26-39.
+- Evolve: IMPROVING — 0 recent exceed 55 in last 6 runs. Latest 31 turns (HORIZON_SCAN). Turns: 31-44.
+- Watcher: HEALTHY — 0/30+ post-reduction exceed 50. Latest 23 turns. Turns: 23-39.
 - Coder: HEALTHY — 5+ consecutive successes. Turns: 6-12.
 - Reviewer: HEALTHY — 11 turns.
 - Triage: HEALTHY.
@@ -18,7 +18,7 @@ System health:
 - Deploy: RECOVERING — no trigger since #65 fix.
 
 ## Current Priorities (ordered)
-1. **[BLOCKED]** PR #55: fix reviewer.yml state reset — APPROVED 144h+, awaiting human merge (workflow YAML)
+1. **[BLOCKED]** PR #55: fix reviewer.yml state reset — APPROVED 148h+, awaiting human merge (workflow YAML)
 2. **[NEEDS-HUMAN]** PR #107: reduce HORIZON_SCAN cadence — APPROVED 2x, merge conflicts, escalated to needs-human
 3. **[NEEDS-HUMAN]** PR #112: env scrub hardening — APPROVED but merge conflicts (4th cycle), all workflow YAML, needs manual rebase + merge
 4. **[UPCOMING]** Issue #22: Submit to awesome-claude-code — 7-day cooldown expires ~March 28
