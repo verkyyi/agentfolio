@@ -1,7 +1,7 @@
 # Research Sources
 # Managed by evolve.yml. Claude adds, prunes, and annotates freely.
 # Seeded from evolve_config.md on first run.
-# Last updated: 2026-03-28T03:54:00Z
+# Last updated: 2026-03-28T06:26:36Z
 
 ## Active Sources
 
@@ -20,20 +20,20 @@
 ### hesreallyhim/awesome-claude-code
 - **Why:** Curated ecosystem catalog — discover new tools, libraries, and patterns
 - **Look for:** New entries in Orchestrators/Tools/Skills sections, trending repos referenced
-- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-03-28T03:54 | **Pattern hits:** 0 | **SHA:** f970924
-- **Notes:** SHA 7b60cab→f970924 (changed). New resources: agnix (Config Managers — cross-refs Watch List), Codebase to Course (Agent Skills). 0 pattern hits across 22+ observations. Retain for HORIZON_SCAN cross-reference only.
+- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-03-28T03:54 | **Pattern hits:** 0 | **SHA:** 7985697
+- **Notes:** SHA f970924→7985697 (changed). 0 pattern hits across 23+ observations. Retain for HORIZON_SCAN cross-reference only.
 
 ### bytedance/deer-flow
 - **Why:** Multi-agent orchestration patterns from a major tech company
 - **Look for:** Agent coordination, state management, tool orchestration, LLM provider patterns
-- **Added:** 2026-03-21 (seed) | **Last deep:** 2026-03-26T09:28 | **Pattern hits:** 1 | **SHA:** 43ef369
-- **Notes:** Very active (5+ commits/day). SHA ca20b48→43ef369 (changed). OAuth billing header fix (#1442). 0 harness patterns across 10+ consecutive deep-dives. Lowest deep-dive priority.
+- **Added:** 2026-03-21 (seed) | **Last deep:** 2026-03-26T09:28 | **Pattern hits:** 1 | **SHA:** d22cab8
+- **Notes:** Very active (5+ commits/day). SHA 43ef369→d22cab8 (changed). 0 harness patterns across 10+ consecutive deep-dives. Lowest deep-dive priority.
 
 ### SethGammon/Citadel
 - **Why:** Agent orchestration harness (354 stars) — closest architecture to tokenman. Campaign persistence, parallel worktrees, circuit breaker, quality gate hooks, skill benchmarking
 - **Look for:** Skill benchmarking patterns, skill linting, governance hooks, testing infrastructure, fleet coordination
-- **Added:** 2026-03-24 (watch) | **Promoted:** 2026-03-27 (synthesis — 35 obs, closest architecture, V2 patterns) | **Last deep:** 2026-03-28T03:54 | **Pattern hits:** 1 | **SHA:** cac5244
-- **Notes:** Promoted from Watch List. V3 hardening (cac5244): telemetry-schema.js (canonical event schema v1 with validation, 135 lines), health.js (6-subsystem JSON health blob), telemetry-stats.js (shared read logic, 234 lines), token-economics-methodology.md, YAML frontmatter templates, CITADEL_UI dual output across all hooks, 19 integration tests. All V3 patterns are interactive-CLI/UI focused. Previous: 21-hook ecosystem (V2). 1 pattern hit (circuit breaker #76, pre-promotion). Rich reference for structured observability but low CI adoption potential.
+- **Added:** 2026-03-24 (watch) | **Promoted:** 2026-03-27 (synthesis — 35 obs, closest architecture, V2 patterns) | **Last deep:** 2026-03-28T03:54 | **Pattern hits:** 1 | **SHA:** 2b3f87d
+- **Notes:** Promoted from Watch List. SHA cac5244→2b3f87d (changed). V3 hardening deep-dived: telemetry schema, health blob, token economics — all CLI/UI focused. 21-hook ecosystem (V2). 1 pattern hit (circuit breaker #76). Rich reference for structured observability but low CI adoption potential.
 
 ### actions/runner
 - **Why:** CI/CD runtime we depend on — deprecation notices, new features, security fixes
@@ -84,8 +84,8 @@
 ### code-yeongyu/oh-my-openagent
 - **Why:** Largest agent harness repo (44K stars, 3273 forks) — TypeScript TUI, multi-model orchestration, subagent management, plugin discovery, hook isolation
 - **Look for:** Hook isolation patterns, subagent lifecycle management, plugin discovery architecture, runtime fallback patterns
-- **Added:** 2026-03-27 (horizon scan) | **Observations:** 3 | **First seen:** 2026-03-27 | **SHA:** 44b039b
-- **Notes:** Very active (2800+ PRs, multiple commits/day). Architecture fundamentally different (interactive TUI vs CI workflows). Low direct adoption potential but large ecosystem influence. Monitor for transferable patterns.
+- **Added:** 2026-03-27 (horizon scan) | **Observations:** 4 | **First seen:** 2026-03-27 | **SHA:** d2c576c
+- **Notes:** Very active (2800+ PRs, multiple commits/day). SHA 44b039b→d2c576c (changed). Architecture fundamentally different (interactive TUI vs CI workflows). Low direct adoption potential but large ecosystem influence. Monitor for transferable patterns.
 
 ## Dropped Sources
 <!-- Removed sources with reason. Kept for history so we don't re-discover them. -->
