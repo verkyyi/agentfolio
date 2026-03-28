@@ -1,9 +1,9 @@
 # Project State
-Last updated: 2026-03-28T16:55:00Z
-Updated by: watcher.yml
+Last updated: 2026-03-28T18:13:02Z
+Updated by: evolve.yml
 
 ## Last Session
-Action: watcher.yml health check — all clear, 0 corrective actions. 30+ consecutive successes, 0 failures in 32+ hours. 4 issues correctly held as needs-human. 3 PRs awaiting human merge/rebase.
+Action: evolve.yml SYNTHESIS — all signals previously tracked, 0 issues created. Pattern plateau 17th consecutive (structural). Cost stable $32/day. Pipeline at peak health (8.3% saturation, 30+ successes). Human disengaged 6d+. Watch List decisions due Mar 30.
 
 System health:
 - Evolve: IMPROVING — 1/12 recent exceed 55 (8.3%, down from 15.4%). Latest 48 turns (PATTERN_HUNT). Turns: 31-48.

@@ -1,7 +1,7 @@
 # Research Sources
 # Managed by evolve.yml. Claude adds, prunes, and annotates freely.
 # Seeded from evolve_config.md on first run.
-# Last updated: 2026-03-28T15:14:33Z
+# Last updated: 2026-03-28T18:13:02Z
 
 ## Active Sources
 
@@ -20,8 +20,8 @@
 ### hesreallyhim/awesome-claude-code
 - **Why:** Curated ecosystem catalog — discover new tools, libraries, and patterns
 - **Look for:** New entries in Orchestrators/Tools/Skills sections, trending repos referenced
-- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-03-28T03:54 | **Pattern hits:** 0 | **SHA:** 753921c
-- **Notes:** SHA 7985697→753921c (changed). 0 pattern hits across 24+ observations. Retain for HORIZON_SCAN cross-reference only.
+- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-03-28T03:54 | **Pattern hits:** 0 | **SHA:** a511f96
+- **Notes:** SHA 753921c→a511f96 (changed). 0 pattern hits across 25+ observations. Retain for HORIZON_SCAN cross-reference only.
 
 ### bytedance/deer-flow
 - **Why:** Multi-agent orchestration patterns from a major tech company
@@ -60,7 +60,7 @@
 - **Why:** Harness engineering patterns — skills, slash commands, review protocols, agent orchestration
 - **Look for:** Non-Codex workflow patterns, CI-transferable techniques
 - **Demoted:** 2026-03-27 (synthesis — 14 consecutive PH with 0 adoptable patterns, all Codex/interactive-session specific)
-- **Observations:** 37+ | **First seen:** 2026-03-20 | **SHA:** 7450b51
+- **Observations:** 38+ | **First seen:** 2026-03-20 | **SHA:** cd66fc2
 - **Notes:** Historically most productive source (9 pattern hits across v0.9.7-v0.11.18.2). Demoted because pattern yield exhausted for CI-based harness — all recent changes Codex/interactive-session specific. Monitor for CI-relevant patterns. Re-promote if non-Codex patterns emerge.
 
 ### trailofbits/skills
@@ -78,15 +78,15 @@
 ### agent-sh/agnix
 - **Why:** CLAUDE.md/SKILL.md linter and LSP (103 stars) — validates AI coding assistant config files, autofixes, IDE plugins
 - **Look for:** Validation rules for CLAUDE.md, SKILL.md format standards, CI integration patterns, autofix capabilities
-- **Added:** 2026-03-24 (horizon scan) | **Observations:** 32 | **First seen:** 2026-03-24 | **SHA:** 7ffdf76
-- **Notes:** SHA 1de8762→7ffdf76: SKILL.md schema enforcement (XP-SK-001 code scanning alert), serialize-javascript DoS fix, org rename avifenesh→agent-sh. Rust. Active (693+ PRs). Formal SKILL.md validation relevant to #66/#68. 0 pattern hits (pre-adoption). Retain.
+- **Added:** 2026-03-24 (horizon scan) | **Observations:** 33 | **First seen:** 2026-03-24 | **SHA:** 018c2bb
+- **Notes:** SHA 7ffdf76→018c2bb (changed). SKILL.md schema enforcement (XP-SK-001), org matured avifenesh→agent-sh. Rust. Active (693+ PRs). Formal SKILL.md validation relevant to #66/#68. 0 pattern hits (pre-adoption). Retain.
 
 ### code-yeongyu/oh-my-openagent
 - **Why:** Largest agent harness repo (44K stars, 3273 forks) — TypeScript TUI, multi-model orchestration, subagent management, plugin discovery, hook isolation
 - **Look for:** Hook isolation patterns, subagent lifecycle management, plugin discovery architecture, runtime fallback patterns
 - **Added:** 2026-03-27 (horizon scan) | **Observations:** 5 | **First seen:** 2026-03-27 | **SHA:** 9cbcf17
-- **Observations:** 6 | **First seen:** 2026-03-27 | **SHA:** 448a8dc
-- **Notes:** Very active (2900+ PRs, multiple commits/day). SHA 9cbcf17→448a8dc (changed). Architecture fundamentally different (interactive TUI vs CI workflows). Low direct adoption potential but large ecosystem influence. Monitor for transferable patterns.
+- **Observations:** 7 | **First seen:** 2026-03-27 | **SHA:** 9fc56ab
+- **Notes:** Very active (2900+ PRs, multiple commits/day). SHA 448a8dc→9fc56ab (changed). Architecture fundamentally different (interactive TUI vs CI workflows). Low direct adoption potential but large ecosystem influence. Monitor for transferable patterns.
 
 ## Dropped Sources
 <!-- Removed sources with reason. Kept for history so we don't re-discover them. -->
