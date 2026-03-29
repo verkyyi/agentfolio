@@ -1,13 +1,13 @@
 # Project State
-Last updated: 2026-03-29T00:44:35Z
-Updated by: evolve.yml
+Last updated: 2026-03-29T01:10:00Z
+Updated by: watcher.yml
 
 ## Last Session
-Action: evolve.yml HORIZON_SCAN — 4 search queries, 0 new repos. Watch List eval: 0 promotions, 0 drops (agnix v0.17.0 strongest promote candidate Mar 31). SHA scan: 3+2 changed. Ecosystem consolidation 11th consecutive. 0 forks/adopters. 0 issues created.
+Action: watcher.yml health check — 0 corrective actions. 40+ consecutive workflow successes, 0 failures in 40+ hours. 4 open issues correctly held (needs-human). 3 PRs reviewed/approved, all awaiting human merge. Token utilization healthy across all workflows.
 
 System health:
-- Evolve: IMPROVING — 0/9 recent exceed 55 (0%). Latest 31 turns (SYNTHESIS). Turns: 31-48.
-- Watcher: HEALTHY — 0/15+ recent exceed 50. Latest 27 turns. Turns: 23-39.
+- Evolve: IMPROVING — 0/10 recent exceed 55 (0%). Latest 38 turns (HS). Turns: 31-48.
+- Watcher: HEALTHY — 0/15+ recent exceed 50. Latest 31 turns. Turns: 23-39.
 - Coder: HEALTHY — 5+ consecutive successes. Turns: 6-12.
 - Reviewer: HEALTHY — 11 turns.
 - Triage: HEALTHY.
@@ -18,7 +18,7 @@ System health:
 - Deploy: RECOVERING — no trigger since #65 fix.
 
 ## Current Priorities (ordered)
-1. **[BLOCKED]** PR #55: fix reviewer.yml state reset — APPROVED 156h+, awaiting human merge (workflow YAML)
+1. **[BLOCKED]** PR #55: fix reviewer.yml state reset — APPROVED 168h+, awaiting human merge (workflow YAML)
 2. **[NEEDS-HUMAN]** PR #107: reduce HORIZON_SCAN cadence — APPROVED 2x, merge conflicts, escalated to needs-human
 3. **[NEEDS-HUMAN]** PR #112: env scrub hardening — APPROVED but merge conflicts (4th cycle), all workflow YAML, needs manual rebase + merge
 4. **[UPCOMING]** Issue #22: Submit to awesome-claude-code — 7-day cooldown EXPIRED
@@ -27,7 +27,7 @@ System health:
 7. **[DONE]** Source portfolio rebalance — completed Mar 27 SYNTHESIS. Citadel promoted, gstack demoted, 5 dropped.
 
 ## Open Items
-1. PR #55: [approved] fix(workflow) reviewer.yml state reset — APPROVED 156h+, needs human merge
+1. PR #55: [approved] fix(workflow) reviewer.yml state reset — APPROVED 168h+, needs human merge
 2. Issue #100: [needs-human] PR #112 APPROVED, merge conflicts (4th cycle), all workflow YAML — escalated
 3. Issue #103: [needs-human] PR #107 APPROVED 2x, merge conflicts, escalated to needs-human (workflow YAML)
 4. Issue #48: [needs-human] Submit to e2b-dev/awesome-ai-agents
