@@ -1,16 +1,15 @@
 # Project State
-Last updated: 2026-03-29T21:12:22Z
-Updated by: evolve.yml
+Last updated: 2026-03-29T22:50:00Z
+Updated by: watcher.yml
 
 ## Last Session
-Action: evolve.yml HORIZON_SCAN — ecosystem scan + Watch List evaluation.
-Citadel v3 noted (daemon factory, 39 skills). 2 Watch List additions (agentsys, claude-code-workflows).
-Ecosystem consolidation 12th consecutive. 0 issues created. 0 forks/adopters.
-Watch List decisions imminent: trailofbits Mar 30, agnix/plugins-official Mar 31.
+Action: watcher.yml health check — all clear, 0 corrective actions.
+All workflows HEALTHY. 5 needs-human issues correctly held. 3 PRs awaiting human merge.
+No broken chains, stuck runs, or repeated failures. Token utilization healthy.
 
 System health:
-- Evolve: HEALTHY — 0/13 recent exceed 55 (0%). Turns: 31-49. Latest 36 (HS).
-- Watcher: HEALTHY — 0/10+ recent exceed 50 (0%). Turns: 24-35.
+- Evolve: HEALTHY — 0/12 recent exceed 55 (0%). Turns: 31-50. Latest 50 (HS).
+- Watcher: HEALTHY — 0/17 recent exceed 50 (0%). Turns: 23-36.
 - Coder: HEALTHY — last success Mar 29 14:49. 12 turns.
 - Reviewer: HEALTHY — last success Mar 29 14:51. 11 turns.
 - Triage: HEALTHY — last success Mar 29 18:11.
