@@ -1,18 +1,17 @@
 # Project State
-Last updated: 2026-03-29T12:53:32Z
+Last updated: 2026-03-29T14:48:03Z
 Updated by: watcher.yml
 
 ## Last Session
-Action: watcher.yml health check — 2 corrective actions taken.
-1. Relabeled #124 to needs-human: coder correctly identified GH_TOKEN requirement but failure handling crashed (GITHUB_OUTPUT EOF delimiter collision — recurrence of #116 pattern).
-2. Created #125: [pipeline] Coder .fix-failed EOF delimiter collision in GITHUB_OUTPUT heredoc (likely-agent-fixable).
+Action: watcher.yml health check — 1 corrective action taken.
+1. Triggered triage for #125: watcher-created issues don't cascade via GITHUB_TOKEN, so triage never auto-ran. Issue was ~2h old with no triage comment. Labels had pipeline-fix+likely-agent-fixable but NOT agent-ready.
 
 System health:
 - Evolve: HEALTHY — 0/8 recent exceed 55 (0%). Turns: 31-49. Latest 42 (SYNTH).
 - Watcher: HEALTHY — 0/10+ recent exceed 50 (0%). Turns: 23-34.
 - Coder: 1 failure (Mar 29 12:23) on #124 — GITHUB_OUTPUT parsing crash, not code logic. Last success Mar 27. Turns: 6-12.
 - Reviewer: HEALTHY — last success Mar 27. 11 turns.
-- Triage: HEALTHY — last success Mar 29 12:22.
+- Triage: HEALTHY — last success Mar 29 12:22. Triggered for #125 at 14:48.
 - Weekly Analysis: HEALTHY — last success Mar 29 12:10.
 - Growth: HEALTHY (22-33 turns).
 - Analyze: STABLE (21-32 turns).
@@ -33,7 +32,7 @@ System health:
 2. Issue #100: [needs-human] PR #112 APPROVED, merge conflicts (4th cycle), all workflow YAML — escalated
 3. Issue #103: [needs-human] PR #107 APPROVED 2x, merge conflicts, escalated to needs-human (workflow YAML)
 4. Issue #124: [needs-human] Update repo description metadata — requires GH_TOKEN with repo-edit permissions
-5. Issue #125: [agent-ready] Coder .fix-failed EOF delimiter collision in GITHUB_OUTPUT heredoc
+5. Issue #125: [pending-triage] Coder .fix-failed EOF delimiter collision in GITHUB_OUTPUT heredoc — triage triggered 14:48
 6. Issue #48: [needs-human] Submit to e2b-dev/awesome-ai-agents
 7. Issue #22: [needs-human] Submit to awesome-claude-code — cooldown EXPIRED
 
