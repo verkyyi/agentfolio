@@ -1,23 +1,23 @@
 # Project State
-Last updated: 2026-03-29T15:15:26Z
-Updated by: evolve.yml
+Last updated: 2026-03-29T16:50:00Z
+Updated by: watcher.yml
 
 ## Last Session
-Action: evolve.yml PIPELINE_WATCH — pipeline health check.
-Pipeline excellent: 19/20 recent runs success, 53h+ failure-free (excluding #124 GH_TOKEN).
-#125 fix chain verified: triage→coder→reviewer→merge in 4 min. PR #126 merged.
-Auto-close miss #5: #125 still OPEN post-merge (watcher will catch).
-Cost declining: $32→$29→~$27/day. 2/12 source SHAs changed (deer-flow, oh-my-openagent).
-0 issues created.
+Action: watcher.yml health check — 1 corrective action.
+Closed #125 (auto-close miss #6, PR #126 merged 14:52 but issue remained open).
+5 needs-human issues correctly held (#124, #103, #100, #48, #22).
+3 PRs awaiting human merge (#55, #107, #112).
+No repeated failures. No stuck runs. No broken chains.
+Token utilization all HEALTHY.
 
 System health:
-- Evolve: HEALTHY — 0/8 recent exceed 55 (0%). Turns: 31-49. Latest 42 (SYNTH).
-- Watcher: HEALTHY — 0/10+ recent exceed 50 (0%). Turns: 23-34.
-- Coder: 1 failure (Mar 29 12:23) on #124 — GITHUB_OUTPUT parsing crash, not code logic. Last success Mar 27. Turns: 6-12.
-- Reviewer: HEALTHY — last success Mar 27. 11 turns.
-- Triage: HEALTHY — last success Mar 29 12:22. Triggered for #125 at 14:48.
+- Evolve: HEALTHY — 0/10 recent exceed 55 (0%). Turns: 31-49. Latest 38 (SYNTH).
+- Watcher: HEALTHY — 0/12+ recent exceed 50 (0%). Turns: 23-34.
+- Coder: HEALTHY — last success Mar 29 14:49. 12 turns. 1 failure (Mar 29 12:23) resolved.
+- Reviewer: HEALTHY — last success Mar 29 14:51. 11 turns.
+- Triage: HEALTHY — last success Mar 29 14:48.
 - Weekly Analysis: HEALTHY — last success Mar 29 12:10.
-- Growth: HEALTHY (22-33 turns).
+- Growth: HEALTHY (22 turns).
 - Analyze: STABLE (21-32 turns).
 - Feedback Learner: RECOVERED — 5 turns, #72 fix confirmed.
 - Deploy: RECOVERING — no trigger since #65 fix.
@@ -36,7 +36,7 @@ System health:
 2. Issue #100: [needs-human] PR #112 APPROVED, merge conflicts (4th cycle), all workflow YAML — escalated
 3. Issue #103: [needs-human] PR #107 APPROVED 2x, merge conflicts, escalated to needs-human (workflow YAML)
 4. Issue #124: [needs-human] Update repo description metadata — requires GH_TOKEN with repo-edit permissions
-5. Issue #125: [in-progress] Coder .fix-failed EOF delimiter collision — PR opened
+5. Issue #125: [CLOSED] Coder .fix-failed EOF delimiter collision — PR #126 merged, auto-close miss #6 fixed by watcher
 6. Issue #48: [needs-human] Submit to e2b-dev/awesome-ai-agents
 7. Issue #22: [needs-human] Submit to awesome-claude-code — cooldown EXPIRED
 
@@ -104,3 +104,4 @@ System health:
 - Auto-close miss pattern: 4 occurrences in 48h (#113, #116, #120, #122). All caught by watcher. Root cause: reviewer merges via API, not GH UI — auto-close doesn't fire. Watcher safety net is the correct approach.
 - Issue #124: NEEDS-HUMAN — coder correctly identified GH_TOKEN requirement. Failure handling crashed (EOF delimiter collision in GITHUB_OUTPUT). Watcher relabeled and commented.
 - Issue #125: CREATED by watcher — GITHUB_OUTPUT EOF delimiter regression. PR #117 fixed single-line→heredoc but heredoc `EOF` delimiter vulnerable to content containing literal "EOF". Likely-agent-fixable.
+- Issue #125: RESOLVED — full pipeline chain: triage→coder→PR #126→reviewer→merge (14:48-14:52, 4 min). Auto-close miss #6 fixed by watcher (16:50). 6th consecutive auto-close miss — all caught by watcher safety net.
