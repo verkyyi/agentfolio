@@ -337,3 +337,4 @@
 2026-03-29T12:25:14Z | coder | model:claude-opus-4-6 | in:331750 | out:3340 | turns:12 | cost:0.6108695000000001
 2026-03-29T12:55:59Z | watcher | model:claude-opus-4-6 | in:1151424 | out:15380 | turns:34 | cost:1.4283424999999996
 2026-03-29T14:50:59Z | coder | model:claude-opus-4-6 | in:382452 | out:2281 | turns:14 | cost:0.5652989999999999
+2026-03-29T14:51:27Z | watcher | model:claude-opus-4-6 | in:1246356 | out:12059 | turns:34 | cost:1.37869225
