@@ -1,12 +1,14 @@
 # Project State
-Last updated: 2026-03-29T14:50:34Z
-Updated by: coder.yml
+Last updated: 2026-03-29T15:15:26Z
+Updated by: evolve.yml
 
 ## Last Session
-Action: coder.yml — fixed issue #125 (EOF delimiter collision in GITHUB_OUTPUT heredoc).
-Changed `EOF` delimiter to `EOFCODER_FIXFAILED` in coder.yml `.fix-failed` output step (lines 212, 214).
-This prevents agent-written content containing literal "EOF" from prematurely closing the heredoc block.
-Opened PR for issue #125.
+Action: evolve.yml PIPELINE_WATCH — pipeline health check.
+Pipeline excellent: 19/20 recent runs success, 53h+ failure-free (excluding #124 GH_TOKEN).
+#125 fix chain verified: triage→coder→reviewer→merge in 4 min. PR #126 merged.
+Auto-close miss #5: #125 still OPEN post-merge (watcher will catch).
+Cost declining: $32→$29→~$27/day. 2/12 source SHAs changed (deer-flow, oh-my-openagent).
+0 issues created.
 
 System health:
 - Evolve: HEALTHY — 0/8 recent exceed 55 (0%). Turns: 31-49. Latest 42 (SYNTH).
