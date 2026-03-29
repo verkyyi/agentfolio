@@ -1,22 +1,21 @@
 # Project State
-Last updated: 2026-03-29T16:50:00Z
+Last updated: 2026-03-29T18:50:00Z
 Updated by: watcher.yml
 
 ## Last Session
-Action: watcher.yml health check — 1 corrective action.
-Closed #125 (auto-close miss #6, PR #126 merged 14:52 but issue remained open).
+Action: watcher.yml health check — 0 corrective actions, all clear.
 5 needs-human issues correctly held (#124, #103, #100, #48, #22).
 3 PRs awaiting human merge (#55, #107, #112).
 No repeated failures. No stuck runs. No broken chains.
 Token utilization all HEALTHY.
 
 System health:
-- Evolve: HEALTHY — 0/10 recent exceed 55 (0%). Turns: 31-49. Latest 38 (SYNTH).
-- Watcher: HEALTHY — 0/12+ recent exceed 50 (0%). Turns: 23-34.
-- Coder: HEALTHY — last success Mar 29 14:49. 12 turns. 1 failure (Mar 29 12:23) resolved.
+- Evolve: HEALTHY — 0/13 recent exceed 55 (0%). Turns: 31-49. Latest 36 (HS).
+- Watcher: HEALTHY — 0/10+ recent exceed 50 (0%). Turns: 24-35.
+- Coder: HEALTHY — last success Mar 29 14:49. 12 turns.
 - Reviewer: HEALTHY — last success Mar 29 14:51. 11 turns.
-- Triage: HEALTHY — last success Mar 29 14:48.
-- Weekly Analysis: HEALTHY — last success Mar 29 12:10.
+- Triage: HEALTHY — last success Mar 29 18:11.
+- Weekly Analysis: HEALTHY — last success Mar 29 18:09.
 - Growth: HEALTHY (22 turns).
 - Analyze: STABLE (21-32 turns).
 - Feedback Learner: RECOVERED — 5 turns, #72 fix confirmed.
