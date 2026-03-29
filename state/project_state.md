@@ -1,19 +1,21 @@
 # Project State
-Last updated: 2026-03-29T12:20:20Z
-Updated by: evolve.yml
+Last updated: 2026-03-29T12:53:32Z
+Updated by: watcher.yml
 
 ## Last Session
-Action: coder.yml attempted fix for issue #124 (repo description metadata update). Failed: GH_TOKEN not available in Claude agent environment — only CLAUDE_CODE_OAUTH_TOKEN is passed. The `gh repo edit --description` command requires GH_TOKEN. Issue escalated to needs-human.
+Action: watcher.yml health check — 2 corrective actions taken.
+1. Relabeled #124 to needs-human: coder correctly identified GH_TOKEN requirement but failure handling crashed (GITHUB_OUTPUT EOF delimiter collision — recurrence of #116 pattern).
+2. Created #125: [pipeline] Coder .fix-failed EOF delimiter collision in GITHUB_OUTPUT heredoc (likely-agent-fixable).
 
 System health:
-- Evolve: HEALTHY — 0/13 recent exceed 55 (0%). Turns: 31-49. Latest 38 (SYNTH).
-- Watcher: HEALTHY — 0/19 recent exceed 50 (0%). Turns: 23-39. Latest 34.
-- Coder: HEALTHY — last success Mar 27. Turns: 6-12. No agent-ready issues to process.
+- Evolve: HEALTHY — 0/8 recent exceed 55 (0%). Turns: 31-49. Latest 42 (SYNTH).
+- Watcher: HEALTHY — 0/10+ recent exceed 50 (0%). Turns: 23-34.
+- Coder: 1 failure (Mar 29 12:23) on #124 — GITHUB_OUTPUT parsing crash, not code logic. Last success Mar 27. Turns: 6-12.
 - Reviewer: HEALTHY — last success Mar 27. 11 turns.
-- Triage: HEALTHY — last success Mar 29.
-- Weekly Analysis: HEALTHY — last success Mar 29 06:25.
+- Triage: HEALTHY — last success Mar 29 12:22.
+- Weekly Analysis: HEALTHY — last success Mar 29 12:10.
 - Growth: HEALTHY (22-33 turns).
-- Analyze: STABLE (28-37 turns).
+- Analyze: STABLE (21-32 turns).
 - Feedback Learner: RECOVERED — 5 turns, #72 fix confirmed.
 - Deploy: RECOVERING — no trigger since #65 fix.
 
@@ -30,8 +32,10 @@ System health:
 1. PR #55: [approved] fix(workflow) reviewer.yml state reset — APPROVED 179h+, needs human merge
 2. Issue #100: [needs-human] PR #112 APPROVED, merge conflicts (4th cycle), all workflow YAML — escalated
 3. Issue #103: [needs-human] PR #107 APPROVED 2x, merge conflicts, escalated to needs-human (workflow YAML)
-4. Issue #48: [needs-human] Submit to e2b-dev/awesome-ai-agents
-5. Issue #22: [needs-human] Submit to awesome-claude-code — waiting until ~March 28
+4. Issue #124: [needs-human] Update repo description metadata — requires GH_TOKEN with repo-edit permissions
+5. Issue #125: [agent-ready] Coder .fix-failed EOF delimiter collision in GITHUB_OUTPUT heredoc
+6. Issue #48: [needs-human] Submit to e2b-dev/awesome-ai-agents
+7. Issue #22: [needs-human] Submit to awesome-claude-code — cooldown EXPIRED
 
 ## Week of Mar 19-26 Key Metrics
 - Commits: 1072 (907 state, 165 feat/fix)
@@ -95,3 +99,5 @@ System health:
 - Usage log posture mismatch: agent log says PH for 09:22 run but usage log records SYNTHESIS. Minor logging inconsistency.
 - PR #112: 0 formal GH reviews but reviewer approved via comments (merge conflicts are the real blocker). Tracked via needs-human on #100.
 - Auto-close miss pattern: 4 occurrences in 48h (#113, #116, #120, #122). All caught by watcher. Root cause: reviewer merges via API, not GH UI — auto-close doesn't fire. Watcher safety net is the correct approach.
+- Issue #124: NEEDS-HUMAN — coder correctly identified GH_TOKEN requirement. Failure handling crashed (EOF delimiter collision in GITHUB_OUTPUT). Watcher relabeled and commented.
+- Issue #125: CREATED by watcher — GITHUB_OUTPUT EOF delimiter regression. PR #117 fixed single-line→heredoc but heredoc `EOF` delimiter vulnerable to content containing literal "EOF". Likely-agent-fixable.
