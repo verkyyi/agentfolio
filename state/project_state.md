@@ -1,9 +1,9 @@
 # Project State
-Last updated: 2026-03-29T03:45:00Z
-Updated by: watcher.yml
+Last updated: 2026-03-29T04:05:05Z
+Updated by: evolve.yml
 
 ## Last Session
-Action: watcher.yml health check — 0 corrective actions. 43+ hours without a failure. 4 open issues correctly held (needs-human). 3 PRs reviewed/approved, all awaiting human merge. Token utilization healthy across all workflows.
+Action: evolve.yml PIPELINE_WATCH — 30+ consecutive successes, 43h+ failure-free. Cost $29/day (stable/improving). claude-code v2.1.87 released (Cowork Dispatch fix, N/A to CI). SHA scan: 3+1 changed. 0 issues created.
 
 System health:
 - Evolve: IMPROVING — 0/11 recent exceed 55 (0%). Latest 38 turns (HS). Turns: 31-48.

@@ -1,20 +1,20 @@
 # Research Sources
 # Managed by evolve.yml. Claude adds, prunes, and annotates freely.
 # Seeded from evolve_config.md on first run.
-# Last updated: 2026-03-29T00:44:35Z
+# Last updated: 2026-03-29T04:05:05Z
 
 ## Active Sources
 
 ### anthropics/claude-code
 - **Why:** The runtime we build on — releases, breaking changes, new hooks, CLI flags
 - **Look for:** CHANGELOG entries, new hook types, permission changes, SDK updates
-- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-03-27T09:27 | **Pattern hits:** 2 | **SHA:** 2923bc8
-- **Notes:** Protected source — never drop. Check CHANGELOG and releases, not just commits. v2.1.86 (Mar 27): bug-fix/polish — plugin permission fix confirmed working (unblocks #66 on macOS/Linux), memory growth fix for long sessions, --resume fix, Session-Id header for proxies. Previous: v2.1.85 hook `if` field (#122), v2.1.84 paths: frontmatter (#66), v2.1.83 security patterns (#100), v2.1.81 --bare flag (#63).
+- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-03-27T09:27 | **Pattern hits:** 2 | **SHA:** 78a44f1
+- **Notes:** Protected source — never drop. Check CHANGELOG and releases, not just commits. v2.1.87 (Mar 29): Cowork Dispatch message delivery fix (N/A to CI harness). v2.1.86 (Mar 27): plugin permission fix, memory growth fix, --resume fix, Session-Id header. Previous: v2.1.85 hook `if` field (#122), v2.1.84 paths: frontmatter (#66), v2.1.83 security patterns (#100), v2.1.81 --bare flag (#63).
 
 ### affaan-m/everything-claude-code
 - **Why:** Community harness patterns, skill collections, optimization techniques
 - **Look for:** New skills, CLAUDE.md patterns, workflow architectures, instinct files
-- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-03-25T13:32 | **Pattern hits:** 1 | **SHA:** a8e088a
+- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-03-25T13:32 | **Pattern hits:** 1 | **SHA:** c5e3658
 - **Notes:** Large community repo. 1 pattern hit (safety-guard PreToolUse hooks). SHA f077975→a8e088a: Laravel plugin skill (PR #923). All platform-specific. 0 harness patterns across 9+ consecutive observations. Lowest deep-dive priority.
 
 ### hesreallyhim/awesome-claude-code
@@ -26,7 +26,7 @@
 ### bytedance/deer-flow
 - **Why:** Multi-agent orchestration patterns from a major tech company
 - **Look for:** Agent coordination, state management, tool orchestration, LLM provider patterns
-- **Added:** 2026-03-21 (seed) | **Last deep:** 2026-03-28T15:14 | **Pattern hits:** 1 | **SHA:** 18e3487
+- **Added:** 2026-03-21 (seed) | **Last deep:** 2026-03-28T15:14 | **Pattern hits:** 1 | **SHA:** 481494b
 - **Notes:** Very active (5+ commits/day). Latest: memory middleware thread_id fallback, channel assistant IDs, Docker fixes. All application-specific. 0 harness patterns across 11+ consecutive deep-dives. Lowest deep-dive priority.
 
 ### SethGammon/Citadel
@@ -84,8 +84,8 @@
 ### code-yeongyu/oh-my-openagent
 - **Why:** Largest agent harness repo (44K stars, 3273 forks) — TypeScript TUI, multi-model orchestration, subagent management, plugin discovery, hook isolation
 - **Look for:** Hook isolation patterns, subagent lifecycle management, plugin discovery architecture, runtime fallback patterns
-- **Added:** 2026-03-27 (horizon scan) | **Observations:** 8 | **First seen:** 2026-03-27 | **SHA:** 5d4e57c
-- **Notes:** Very active (2900+ PRs, multiple commits/day). SHA 9fc56ab→5d4e57c (CLA + 3 community bug fixes #2915/#2917/#2918). Architecture fundamentally different (interactive TUI vs CI workflows). Low direct adoption potential but large ecosystem influence. Monitor for transferable patterns.
+- **Added:** 2026-03-27 (horizon scan) | **Observations:** 9 | **First seen:** 2026-03-27 | **SHA:** 5a28ee1
+- **Notes:** Very active (2900+ PRs, multiple commits/day). SHA 5d4e57c→5a28ee1. Architecture fundamentally different (interactive TUI vs CI workflows). Low direct adoption potential but large ecosystem influence. Monitor for transferable patterns.
 
 ## Dropped Sources
 <!-- Removed sources with reason. Kept for history so we don't re-discover them. -->
