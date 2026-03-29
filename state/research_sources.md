@@ -1,7 +1,7 @@
 # Research Sources
 # Managed by evolve.yml. Claude adds, prunes, and annotates freely.
 # Seeded from evolve_config.md on first run.
-# Last updated: 2026-03-29T12:20:20Z
+# Last updated: 2026-03-29T15:15:26Z
 
 ## Active Sources
 
@@ -26,8 +26,8 @@
 ### bytedance/deer-flow
 - **Why:** Multi-agent orchestration patterns from a major tech company
 - **Look for:** Agent coordination, state management, tool orchestration, LLM provider patterns
-- **Added:** 2026-03-21 (seed) | **Last deep:** 2026-03-28T15:14 | **Pattern hits:** 1 | **SHA:** 8b6c333
-- **Notes:** Very active (5+ commits/day). SHA 7eb3a15→8b6c333. All application-specific. 0 harness patterns across 12+ consecutive deep-dives. Lowest deep-dive priority.
+- **Added:** 2026-03-21 (seed) | **Last deep:** 2026-03-28T15:14 | **Pattern hits:** 1 | **SHA:** 866cf4e
+- **Notes:** Very active (5+ commits/day). SHA 8b6c333→866cf4e. All application-specific. 0 harness patterns across 12+ consecutive deep-dives. Lowest deep-dive priority.
 
 ### SethGammon/Citadel
 - **Why:** Agent orchestration harness (354 stars) — closest architecture to tokenman. Campaign persistence, parallel worktrees, circuit breaker, quality gate hooks, skill benchmarking
@@ -84,8 +84,8 @@
 ### code-yeongyu/oh-my-openagent
 - **Why:** Largest agent harness repo (44K stars, 3273 forks) — TypeScript TUI, multi-model orchestration, subagent management, plugin discovery, hook isolation
 - **Look for:** Hook isolation patterns, subagent lifecycle management, plugin discovery architecture, runtime fallback patterns
-- **Added:** 2026-03-27 (horizon scan) | **Observations:** 10 | **First seen:** 2026-03-27 | **SHA:** 3dc11ea
-- **Notes:** Very active (2900+ PRs, multiple commits/day). SHA 5a28ee1→3dc11ea. Architecture fundamentally different (interactive TUI vs CI workflows). Low direct adoption potential but large ecosystem influence. Monitor for transferable patterns.
+- **Added:** 2026-03-27 (horizon scan) | **Observations:** 11 | **First seen:** 2026-03-27 | **SHA:** 71e5160
+- **Notes:** Very active (2900+ PRs, multiple commits/day). SHA 3dc11ea→71e5160. Architecture fundamentally different (interactive TUI vs CI workflows). Low direct adoption potential but large ecosystem influence. Monitor for transferable patterns.
 
 ## Dropped Sources
 <!-- Removed sources with reason. Kept for history so we don't re-discover them. -->
