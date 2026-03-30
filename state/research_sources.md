@@ -1,7 +1,7 @@
 # Research Sources
 # Managed by evolve.yml. Claude adds, prunes, and annotates freely.
 # Seeded from evolve_config.md on first run.
-# Last updated: 2026-03-30T04:05:23Z
+# Last updated: 2026-03-30T06:47:00Z
 
 ## Active Sources
 
@@ -14,13 +14,13 @@
 ### affaan-m/everything-claude-code
 - **Why:** Community harness patterns, skill collections, optimization techniques
 - **Look for:** New skills, CLAUDE.md patterns, workflow architectures, instinct files
-- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-03-29T06:34 | **Pattern hits:** 1 | **SHA:** cff28ef
+- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-03-29T06:34 | **Pattern hits:** 1 | **SHA:** a4d4b1d
 - **Notes:** Large community repo. 1 pattern hit (safety-guard PreToolUse hooks). PRs #998-#1000: Codex context7 compat, CLV2 config override, token-budget-advisor trigger. All Codex/CLV2-specific. 0 harness patterns across 10+ consecutive observations. Lowest deep-dive priority.
 
 ### hesreallyhim/awesome-claude-code
 - **Why:** Curated ecosystem catalog — discover new tools, libraries, and patterns
 - **Look for:** New entries in Orchestrators/Tools/Skills sections, trending repos referenced
-- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-03-28T03:54 | **Pattern hits:** 0 | **SHA:** 2a4825b
+- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-03-28T03:54 | **Pattern hits:** 0 | **SHA:** 6612770
 - **Notes:** SHA e477e6a→2a4825b (ticker data). 0 pattern hits across 30+ observations. Retain for HORIZON_SCAN cross-reference only.
 
 ### bytedance/deer-flow
@@ -60,7 +60,7 @@
 - **Why:** Harness engineering patterns — skills, slash commands, review protocols, agent orchestration
 - **Look for:** Non-Codex workflow patterns, CI-transferable techniques
 - **Demoted:** 2026-03-27 (synthesis — 14 consecutive PH with 0 adoptable patterns, all Codex/interactive-session specific)
-- **Observations:** 42+ | **First seen:** 2026-03-20 | **SHA:** cdd6f78
+- **Observations:** 43+ | **First seen:** 2026-03-20 | **SHA:** 403637f
 - **Notes:** Historically most productive source (9 pattern hits across v0.9.7-v0.11.18.2). Demoted because pattern yield exhausted for CI-based harness. v0.13.5.0: Factory Droid compat (multi-host generation). v0.13.4.0: prompt injection defense. CI risk lower than interactive sessions, #17 covers domain. Monitor for CI-relevant patterns.
 
 ### trailofbits/skills
@@ -91,13 +91,13 @@
 ### agent-sh/agentsys
 - **Why:** Comprehensive plugin/agent/skill system (672 stars, 69 forks) from same org as agnix — 19 plugins, 47 agents, 39 skills
 - **Look for:** Plugin marketplace patterns, repo-intel tooling, CI-transferable agent coordination, skill management architecture
-- **Added:** 2026-03-29 (horizon scan) | **Observations:** 3 | **First seen:** 2026-03-29 | **SHA:** 94326af
+- **Added:** 2026-03-29 (horizon scan) | **Observations:** 4 | **First seen:** 2026-03-29 | **SHA:** 94326af
 - **Notes:** Same org as agnix (Watch List). v5.8.1 (Mar 28). 19-plugin marketplace (drift-detect, deslop, skillers, repo-intel, audit-project, etc). Deep-dived marketplace.json: validates our evolve/feedback-learner/watcher approach. CI vs plugin ecosystem mismatch. JavaScript. Active development.
 
 ### shinpr/claude-code-workflows
 - **Why:** Production-ready multi-agent workflows (257 stars, 44 forks) — specialized agents (technical-designer, document-reviewer, work-planner)
 - **Look for:** Multi-agent workflow organization, dependency verification patterns, role-based agent coordination
-- **Added:** 2026-03-29 (horizon scan) | **Observations:** 3 | **First seen:** 2026-03-29 | **SHA:** f4d10db
+- **Added:** 2026-03-29 (horizon scan) | **Observations:** 4 | **First seen:** 2026-03-29 | **SHA:** f4d10db
 - **Notes:** PR #91 (Mar 29): dependency existence verification for design workflow (3-case: found/external/needs-creation). PR #89: recipe isolation (removed recipe-to-recipe deps). Deep-dived: dependency verification interesting but marginal for coder.yml. Specialized agents with role assignments. Markdown-only. Active.
 
 ## Dropped Sources
