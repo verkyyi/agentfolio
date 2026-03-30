@@ -1,7 +1,7 @@
 # Research Sources
 # Managed by evolve.yml. Claude adds, prunes, and annotates freely.
 # Seeded from evolve_config.md on first run.
-# Last updated: 2026-03-30T09:41:00Z
+# Last updated: 2026-03-30T12:26:00Z
 
 ## Active Sources
 
@@ -20,14 +20,14 @@
 ### hesreallyhim/awesome-claude-code
 - **Why:** Curated ecosystem catalog — discover new tools, libraries, and patterns
 - **Look for:** New entries in Orchestrators/Tools/Skills sections, trending repos referenced
-- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-03-28T03:54 | **Pattern hits:** 0 | **SHA:** 6612770
-- **Notes:** SHA e477e6a→2a4825b (ticker data). 0 pattern hits across 30+ observations. Retain for HORIZON_SCAN cross-reference only.
+- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-03-28T03:54 | **Pattern hits:** 0 | **SHA:** 43610cb
+- **Notes:** SHA 6612770→43610cb (ticker data only). 0 pattern hits across 30+ observations. Retain for HORIZON_SCAN cross-reference only.
 
 ### bytedance/deer-flow
 - **Why:** Multi-agent orchestration patterns from a major tech company
 - **Look for:** Agent coordination, state management, tool orchestration, LLM provider patterns
-- **Added:** 2026-03-21 (seed) | **Last deep:** 2026-03-28T15:14 | **Pattern hits:** 1 | **SHA:** 9a55775
-- **Notes:** Very active (5+ commits/day). Memory import/export (#1521), LangGraph Platform API gateway. All application-specific. 0 harness patterns across 15+ consecutive deep-dives. Lowest deep-dive priority.
+- **Added:** 2026-03-21 (seed) | **Last deep:** 2026-03-28T15:14 | **Pattern hits:** 1 | **SHA:** 4bb3c10
+- **Notes:** Very active (5+ commits/day). SHA 9a55775→4bb3c10 (Docker build speedups, dev tooling). All application-specific. 0 harness patterns across 15+ consecutive deep-dives. Lowest deep-dive priority.
 
 ### SethGammon/Citadel
 - **Why:** Agent orchestration harness (400 stars) — closest architecture to tokenman. Campaign persistence, parallel worktrees, circuit breaker, quality gate hooks, skill benchmarking, daemon factory
@@ -60,7 +60,7 @@
 - **Why:** Harness engineering patterns — skills, slash commands, review protocols, agent orchestration
 - **Look for:** Non-Codex workflow patterns, CI-transferable techniques
 - **Demoted:** 2026-03-27 (synthesis — 14 consecutive PH with 0 adoptable patterns, all Codex/interactive-session specific)
-- **Observations:** 44+ | **First seen:** 2026-03-20 | **SHA:** b2b380b
+- **Observations:** 44+ | **First seen:** 2026-03-20 | **SHA:** 7911b7b
 - **Notes:** Historically most productive source (9 pattern hits across v0.9.7-v0.11.18.2). Demoted because pattern yield exhausted for CI-based harness. v0.13.5.0: Factory Droid compat (multi-host generation). v0.13.4.0: prompt injection defense. CI risk lower than interactive sessions, #17 covers domain. Monitor for CI-relevant patterns.
 
 ### trailofbits/skills
@@ -85,7 +85,7 @@
 ### code-yeongyu/oh-my-openagent
 - **Why:** Largest agent harness repo (44K stars, 3273 forks) — TypeScript TUI, multi-model orchestration, subagent management, plugin discovery, hook isolation
 - **Look for:** Hook isolation patterns, subagent lifecycle management, plugin discovery architecture, runtime fallback patterns
-- **Added:** 2026-03-27 (horizon scan) | **Observations:** 14 | **First seen:** 2026-03-27 | **SHA:** 51194e9
+- **Added:** 2026-03-27 (horizon scan) | **Observations:** 14 | **First seen:** 2026-03-27 | **SHA:** 7f36011
 - **Notes:** Very active (2900+ PRs, multiple commits/day). SHA 71e5160→7bf7b20 (CLA signatures only). Architecture fundamentally different (interactive TUI vs CI workflows). Low direct adoption potential but large ecosystem influence. Monitor for transferable patterns.
 
 ### agent-sh/agentsys
