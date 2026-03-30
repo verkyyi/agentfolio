@@ -313,3 +313,4 @@
 2026-03-30T18:31:42Z | evolve | model:claude-opus-4-6 | in:1820512 | out:17660 | turns:48 | cost:1.7866782499999998 | posture:PATTERN_HUNT | issues:0
 2026-03-30T18:55:46Z | watcher | model:claude-opus-4-6 | in:1141834 | out:12777 | turns:34 | cost:1.32769725
 2026-03-30T20:52:23Z | watcher | model:claude-opus-4-6 | in:867232 | out:9393 | turns:26 | cost:1.09201275
+2026-03-30T21:23:40Z | evolve | model:claude-haiku-4-5-20251001 | in:1352316 | out:12189 | turns:45 | cost:1.4357760499999996 | posture:PATTERN_HUNT | issues:0
