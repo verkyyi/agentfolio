@@ -1,24 +1,24 @@
 # Project State
-Last updated: 2026-03-30T06:48:00Z
-Updated by: evolve.yml
+Last updated: 2026-03-30T07:10:00Z
+Updated by: watcher.yml
 
 ## Last Session
-Action: evolve.yml PIPELINE_WATCH — 10 failures all ALREADY-FIXED, 0 actionable. Cost stable $29-30/day. 26h+ failure-free streak. 3/14 source SHAs changed. Pipeline excellent. 0 issues created.
+Action: watcher.yml health check — all clear, 0 corrective actions. 30h+ failure-free streak. All workflows HEALTHY. 5 needs-human issues correctly held. 3 PRs awaiting human merge. 0 open pipeline-fix issues. Token utilization HEALTHY.
 
 System health:
-- Evolve: HEALTHY — 0/10 recent exceed 55 (0%). Turns: 36-50. Latest 45 (PATTERN_HUNT).
-- Watcher: HEALTHY — 0/10 recent exceed 50 (0%). Turns: 24-36.
+- Evolve: HEALTHY — 0/7 recent exceed 55 (0%). Turns: 32-50. Latest 32 (PIPELINE_WATCH).
+- Watcher: HEALTHY — 0/8 recent exceed 50 (0%). Turns: 25-36.
 - Coder: HEALTHY — last success Mar 29 14:49. 12 turns.
 - Reviewer: HEALTHY — last success Mar 29 14:51. 11 turns.
 - Triage: HEALTHY — last success Mar 29 18:11.
-- Weekly Analysis: HEALTHY — last success Mar 30 00:24.
+- Weekly Analysis: HEALTHY — last success Mar 30 06:37.
 - Growth: HEALTHY (22 turns).
-- Analyze: STABLE (20-31 turns).
+- Analyze: STABLE (20-29 turns).
 - Feedback Learner: RECOVERED — 5 turns, #72 fix confirmed.
 - Deploy: RECOVERING — no trigger since #65 fix.
 
 ## Current Priorities (ordered)
-1. **[BLOCKED]** PR #55: fix reviewer.yml state reset — APPROVED 193h+, awaiting human merge (workflow YAML)
+1. **[BLOCKED]** PR #55: fix reviewer.yml state reset — APPROVED 200h+, awaiting human merge (workflow YAML)
 2. **[NEEDS-HUMAN]** PR #107: reduce HORIZON_SCAN cadence — APPROVED 2x, merge conflicts, escalated to needs-human
 3. **[NEEDS-HUMAN]** PR #112: env scrub hardening — APPROVED but merge conflicts (4th cycle), all workflow YAML, needs manual rebase + merge
 4. **[UPCOMING]** Issue #22: Submit to awesome-claude-code — 7-day cooldown EXPIRED
@@ -27,7 +27,7 @@ System health:
 7. **[DONE]** Source portfolio rebalance — completed Mar 27 SYNTHESIS. Citadel promoted, gstack demoted, 5 dropped.
 
 ## Open Items
-1. PR #55: [approved] fix(workflow) reviewer.yml state reset — APPROVED 193h+, needs human merge
+1. PR #55: [approved] fix(workflow) reviewer.yml state reset — APPROVED 200h+, needs human merge
 2. Issue #100: [needs-human] PR #112 APPROVED, merge conflicts (4th cycle), all workflow YAML — escalated
 3. Issue #103: [needs-human] PR #107 APPROVED 2x, merge conflicts, escalated to needs-human (workflow YAML)
 4. Issue #124: [needs-human] Update repo description metadata — requires GH_TOKEN with repo-edit permissions
