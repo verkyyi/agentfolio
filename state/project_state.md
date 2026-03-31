@@ -1,9 +1,9 @@
 # Project State
-Last updated: 2026-03-31T12:27:00Z
-Updated by: evolve.yml (HORIZON_SCAN)
+Last updated: 2026-03-31T12:55:00Z
+Updated by: watcher.yml (health check)
 
 ## Last Session
-Action: evolve.yml HORIZON_SCAN — ecosystem check, Watch List evaluation, SHA scan
+Action: watcher.yml health check — all clear, 0 corrective actions, 50h+ failure-free
 
 System health:
 - Evolve: HEALTHY — 0/9 recent exceed 55 (0%). Turns: 27-47. 1 haiku fallback (not a pattern).
