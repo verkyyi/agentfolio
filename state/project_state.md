@@ -1,19 +1,19 @@
 # Project State
-Last updated: 2026-03-31T07:00:00Z
+Last updated: 2026-03-31T08:55:00Z
 Updated by: watcher.yml
 
 ## Last Session
-Action: watcher.yml health check — 0 corrective actions. All workflows HEALTHY. 0 failures since last check. No broken chains, stuck runs, or repeated failures. 5 needs-human issues held (#124, #103, #100, #48, #22). 3 PRs awaiting human merge. Pipeline stable 48h+.
+Action: watcher.yml health check — 0 corrective actions. All workflows HEALTHY. 0 failures since last check. No broken chains, stuck runs, or repeated failures. 5 needs-human issues held (#124, #103, #100, #48, #22). 3 PRs awaiting human merge. Pipeline stable 50h+.
 
 System health:
 - Evolve: HEALTHY — 0/9 recent exceed 55 (0%). Turns: 30-48. 1 haiku fallback (not a pattern).
-- Watcher: HEALTHY — 0/10 recent exceed 50 (0%). Turns: 24-39.
+- Watcher: HEALTHY — 0/14 recent exceed 50 (0%). Turns: 24-39.
 - Coder: HEALTHY — last success Mar 29 14:49. 12 turns.
 - Reviewer: HEALTHY — last success Mar 29 14:52. 11 turns.
 - Triage: HEALTHY — last success Mar 30 18:22.
 - Weekly Analysis: HEALTHY — last success Mar 31 06:29.
 - Growth: HEALTHY (29 turns).
-- Analyze: STABLE (20-33 turns).
+- Analyze: STABLE (23-33 turns).
 - Feedback Learner: RECOVERED — 5 turns, #72 fix confirmed.
 - Deploy: RECOVERING — no trigger since #65 fix.
 
