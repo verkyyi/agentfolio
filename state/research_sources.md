@@ -1,7 +1,7 @@
 # Research Sources
 # Managed by evolve.yml. Claude adds, prunes, and annotates freely.
 # Seeded from evolve_config.md on first run.
-# Last updated: 2026-03-31T18:30:38Z
+# Last updated: 2026-03-31T21:19:05Z
 
 ## Active Sources
 
@@ -14,13 +14,13 @@
 ### affaan-m/everything-claude-code
 - **Why:** Community harness patterns, skill collections, optimization techniques
 - **Look for:** New skills, CLAUDE.md patterns, workflow architectures, instinct files
-- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-03-31T06:38 | **Pattern hits:** 1 | **SHA:** f7f91d9
+- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-03-31T06:38 | **Pattern hits:** 1 | **SHA:** 9908610
 - **Notes:** Large community repo. 1 pattern hit (safety-guard PreToolUse hooks). PR #1028: hermetic CI test env (XDG_CONFIG_HOME/GIT_CONFIG_GLOBAL/locale isolation). PR #833: gitagent format. All Codex/CLV2-specific — 0 CI-harness patterns across 11+ consecutive observations. Lowest deep-dive priority.
 
 ### hesreallyhim/awesome-claude-code
 - **Why:** Curated ecosystem catalog — discover new tools, libraries, and patterns
 - **Look for:** New entries in Orchestrators/Tools/Skills sections, trending repos referenced
-- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-03-31T06:38 | **Pattern hits:** 0 | **SHA:** 946bffd
+- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-03-31T06:38 | **Pattern hits:** 0 | **SHA:** cba62f7
 - **Notes:** SHA c9e6c0b→946bffd (ticker/auto-update). 0 pattern hits across 33+ observations. Retain for HORIZON_SCAN cross-reference only.
 
 ### bytedance/deer-flow
@@ -44,7 +44,7 @@
 ### withastro/astro
 - **Why:** Web framework we use — security fixes, breaking changes, new features
 - **Look for:** Security advisories, breaking changes in minor/major releases, new content collection features
-- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-03-31T18:30 | **Pattern hits:** 0 | **SHA:** 6b6751d
+- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-03-31T18:30 | **Pattern hits:** 0 | **SHA:** d0fe1ec
 - **Notes:** Only actionable for security fixes or features that affect our site build. Bug fixes: content collection stale imports (#16124), CSS page boundary (#16116), inter-chunk JS (#16110). 0 harness patterns across 12+ deep-dives.
 
 ### verkyyi/tokenman
@@ -87,7 +87,7 @@
 ### code-yeongyu/oh-my-openagent
 - **Why:** Largest agent harness repo (44K stars, 3273 forks) — TypeScript TUI, multi-model orchestration, subagent management, plugin discovery, hook isolation
 - **Look for:** Hook isolation patterns, subagent lifecycle management, plugin discovery architecture, runtime fallback patterns
-- **Added:** 2026-03-27 (horizon scan) | **Observations:** 18 | **First seen:** 2026-03-27 | **SHA:** 5b990c8
+- **Added:** 2026-03-27 (horizon scan) | **Observations:** 19 | **First seen:** 2026-03-27 | **SHA:** 33c8b7f
 - **Notes:** Deep-dived PR #2931 (tmux session isolation — N/A CI), PR #2929 (rules-injector config gating — validates our separate-workflow isolation), PR #2912 (fallback matrix testing), PR #2919 (configurable TDD). Architecture fundamentally different (interactive TUI vs CI). Low direct adoption. 0 pattern hits.
 
 ### agent-sh/agentsys
