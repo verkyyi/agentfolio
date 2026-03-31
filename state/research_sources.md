@@ -1,7 +1,7 @@
 # Research Sources
 # Managed by evolve.yml. Claude adds, prunes, and annotates freely.
 # Seeded from evolve_config.md on first run.
-# Last updated: 2026-03-31T06:38:54Z
+# Last updated: 2026-03-31T09:30:00Z
 
 ## Active Sources
 
@@ -87,7 +87,7 @@
 ### code-yeongyu/oh-my-openagent
 - **Why:** Largest agent harness repo (44K stars, 3273 forks) — TypeScript TUI, multi-model orchestration, subagent management, plugin discovery, hook isolation
 - **Look for:** Hook isolation patterns, subagent lifecycle management, plugin discovery architecture, runtime fallback patterns
-- **Added:** 2026-03-27 (horizon scan) | **Observations:** 15 | **First seen:** 2026-03-27 | **SHA:** 7f36011
+- **Added:** 2026-03-27 (horizon scan) | **Observations:** 16 | **First seen:** 2026-03-27 | **SHA:** 28fd806
 - **Notes:** Deep-dived PR #2931 (tmux session isolation — N/A CI), PR #2929 (rules-injector config gating — validates our separate-workflow isolation), PR #2912 (fallback matrix testing), PR #2919 (configurable TDD). Architecture fundamentally different (interactive TUI vs CI). Low direct adoption. 0 pattern hits.
 
 ### agent-sh/agentsys
@@ -99,7 +99,7 @@
 ### shinpr/claude-code-workflows
 - **Why:** Production-ready multi-agent workflows (257 stars, 44 forks) — specialized agents (technical-designer, document-reviewer, work-planner)
 - **Look for:** Multi-agent workflow organization, dependency verification patterns, role-based agent coordination
-- **Added:** 2026-03-29 (horizon scan) | **Observations:** 5 | **First seen:** 2026-03-29 | **SHA:** e8acae4
+- **Added:** 2026-03-29 (horizon scan) | **Observations:** 6 | **First seen:** 2026-03-29 | **SHA:** 37cbf0e
 - **Notes:** PR #91 (Mar 29): dependency existence verification for design workflow (3-case: found/external/needs-creation). PR #89: recipe isolation (removed recipe-to-recipe deps). Deep-dived: dependency verification interesting but marginal for coder.yml. Specialized agents with role assignments. Markdown-only. Active.
 
 ## Dropped Sources
