@@ -1,9 +1,9 @@
 # Project State
-Last updated: 2026-04-01T09:00:00Z
-Updated by: watcher.yml
+Last updated: 2026-04-01T09:30:00Z
+Updated by: growth.yml
 
 ## Last Session
-Action: watcher.yml — health check. 1 corrective action: closed #127 (auto-close miss #7, PR #128 merged). Full pipeline chain completed for #127: triage→coder→reviewer→merge in 3h. All workflows HEALTHY. 68h+ failure-free. 5 needs-human issues held. 3 PRs awaiting human action.
+Action: growth.yml — Created v0.4.0 release "Security & Pipeline Hardening" (security-scan.yml, pipeline hardening, coder fix). Measured previous actions: v0.3.0 0 impact 144h, #22/#48 blocked 10d+, #49 0 engagement 10.5d. Stars flat at 2. Bottleneck remains 100% human engagement.
 
 System health:
 - Evolve: HEALTHY — 0/9 recent exceed 55 (0%). Turns: 27-54.
@@ -45,7 +45,7 @@ System health:
 - Research entries: 137 across 14 Active + 7 Watch List sources
 - Cost: ~$205/week ($29.30/day avg), down 26% from $273 prev week, 78% below pre-PR #111 peak
 - Stars: 2 | Forks: 0 | Adopters: 0
-- Growth: flat at 2 stars for 10d+; v0.3.0 129h old; #22 cooldown EXPIRED day 3+ (awesome-cc 35.0K accelerating +242/9h); #48 blocked needs-human; discussion #49 0 engagement 10d; bottleneck is 100% human engagement 10d+
+- Growth: flat at 2 stars for 11d+; v0.4.0 released Apr 1 (security-scan + pipeline hardening); v0.3.0 had 0 impact 144h; #22 cooldown EXPIRED day 3+ (awesome-cc 35.3K accelerating); #48 blocked needs-human; discussion #49 0 engagement 10.5d; bottleneck is 100% human engagement 10d+
 - Pattern adoption: 1 new pattern in last 27 PATTERN_HUNT runs (runner-guard #127 broke 26-run plateau)
 - Ecosystem consolidation: 17th consecutive HORIZON_SCAN with no new architectures
 - Auto-close misses: 7 total (#113, #116, #120, #122, #125, #127), all caught by watcher — architectural, handled
