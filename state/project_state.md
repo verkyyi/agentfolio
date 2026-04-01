@@ -1,9 +1,9 @@
 # Project State
-Last updated: 2026-04-01T07:05:00Z
-Updated by: watcher.yml
+Last updated: 2026-04-01T07:10:00Z
+Updated by: coder.yml
 
 ## Last Session
-Action: watcher.yml health check — 1 corrective action: re-triggered triage for #127 (>3h old, no triage comment). All workflows HEALTHY. 66h+ failure-free. 5 needs-human held. 3 PRs awaiting human merge. Token utilization all HEALTHY/STABLE. 0 open pipeline-fix issues.
+Action: coder.yml — implemented issue #127: created .github/workflows/security-scan.yml with runner-guard v2.5.2 (SHA-pinned) for CI/CD workflow YAML security scanning. Triggers on PRs modifying .github/workflows/**, uses fail-on: high + SARIF upload to GitHub Security tab. PR opened with needs-review label.
 
 System health:
 - Evolve: HEALTHY — 0/9 recent exceed 55 (0%). Turns: 27-54.
@@ -32,7 +32,7 @@ System health:
 2. Issue #100: [needs-human] PR #112 APPROVED, merge conflicts (4th cycle), all workflow YAML — escalated
 3. Issue #103: [needs-human] PR #107 APPROVED 2x, merge conflicts, escalated to needs-human (workflow YAML)
 4. Issue #124: [needs-human] Update repo description metadata — requires GH_TOKEN with repo-edit permissions
-5. Issue #127: [evolve-finding] Adopt runner-guard CI/CD security scanning — triage re-triggered by watcher (Apr 1 07:05)
+5. Issue #127: [in-progress] Adopt runner-guard CI/CD security scanning — PR opened by coder (Apr 1)
 6. Issue #48: [needs-human] Submit to e2b-dev/awesome-ai-agents
 7. Issue #22: [needs-human] Submit to awesome-claude-code — cooldown EXPIRED 3+ days
 
