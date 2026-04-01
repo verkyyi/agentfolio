@@ -1,7 +1,7 @@
 # Research Sources
 # Managed by evolve.yml. Claude adds, prunes, and annotates freely.
 # Seeded from evolve_config.md on first run.
-# Last updated: 2026-04-01T12:26:46Z
+# Last updated: 2026-04-01T15:34:19Z
 
 ## Active Sources
 
@@ -26,7 +26,7 @@
 ### bytedance/deer-flow
 - **Why:** Multi-agent orchestration patterns from a major tech company
 - **Look for:** Agent coordination, state management, tool orchestration, LLM provider patterns
-- **Added:** 2026-03-21 (seed) | **Last deep:** 2026-04-01T12:26 | **Pattern hits:** 1 | **SHA:** c2ff59a
+- **Added:** 2026-03-21 (seed) | **Last deep:** 2026-04-01T12:26 | **Pattern hits:** 1 | **SHA:** 0eb6550
 - **Notes:** Very active (5+ commits/day). PR #1668: MemoryMiddleware structured reflection + correction detection — validates feedback-learner concept but Python/LLM middleware, not transferable. All application-specific. 0 harness patterns across 18+ consecutive deep-dives. Lowest deep-dive priority.
 
 ### SethGammon/Citadel
@@ -44,8 +44,8 @@
 ### withastro/astro
 - **Why:** Web framework we use — security fixes, breaking changes, new features
 - **Look for:** Security advisories, breaking changes in minor/major releases, new content collection features
-- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-03-31T18:30 | **Pattern hits:** 0 | **SHA:** d0fe1ec
-- **Notes:** Only actionable for security fixes or features that affect our site build. Bug fixes: content collection stale imports (#16124), CSS page boundary (#16116), inter-chunk JS (#16110). 0 harness patterns across 12+ deep-dives.
+- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-03-31T18:30 | **Pattern hits:** 0 | **SHA:** 7454854
+- **Notes:** Only actionable for security fixes or features that affect our site build. Bug fixes: isHTMLString multi-realm fix (#16142), content collection stale imports (#16124), CSS page boundary (#16116), inter-chunk JS (#16110). 0 harness patterns across 12+ deep-dives.
 
 ### verkyyi/tokenman
 - **Why:** Self-reference — track forks, adopters, and how the scaffold is used
@@ -66,7 +66,7 @@
 ### trailofbits/skills
 - **Why:** Security-focused Claude Code skills (4K stars) from top security firm — audit workflows, vulnerability detection, semgrep rules
 - **Look for:** Security audit skill structure, semgrep rule patterns, skill-improver tooling, SKILL.md format conventions
-- **Added:** 2026-03-23 (horizon scan) | **Observations:** 38 | **First seen:** 2026-03-23 | **SHA:** 635e186
+- **Added:** 2026-03-23 (horizon scan) | **Observations:** 39 | **First seen:** 2026-03-23 | **SHA:** d7f76b5
 - **Decision (2026-03-31):** RETAIN on Watch List. 37 obs, 7+ days, 1 pattern hit (SKILL.md standard → #68, closed). 4K stars, 362 forks. Low pattern yield (1/37) — not promoting to Active. Actively maintained — not dropping. Serves as reference for future skill format work.
 - **Notes:** 34+ plugins with formal SKILL.md standard. skill-improver quality loop. Codex compatibility layer. 1 pattern hit: SKILL.md quality standard (issue #68, closed). Key reference for skill format. New: mutation testing (#140), graph reasoning (#133), draw agent (#134).
 
@@ -87,7 +87,7 @@
 ### code-yeongyu/oh-my-openagent
 - **Why:** Largest agent harness repo (44K stars, 3273 forks) — TypeScript TUI, multi-model orchestration, subagent management, plugin discovery, hook isolation
 - **Look for:** Hook isolation patterns, subagent lifecycle management, plugin discovery architecture, runtime fallback patterns
-- **Added:** 2026-03-27 (horizon scan) | **Observations:** 22 | **First seen:** 2026-03-27 | **SHA:** e49ad5c
+- **Added:** 2026-03-27 (horizon scan) | **Observations:** 23 | **First seen:** 2026-03-27 | **SHA:** 804ca0b
 - **Notes:** Deep-dived PR #2931 (tmux session isolation — N/A CI), PR #2929 (rules-injector config gating — validates our separate-workflow isolation), PR #2912 (fallback matrix testing), PR #2919 (configurable TDD). Architecture fundamentally different (interactive TUI vs CI). Low direct adoption. 0 pattern hits.
 
 ### agent-sh/agentsys
@@ -99,7 +99,7 @@
 ### shinpr/claude-code-workflows
 - **Why:** Production-ready multi-agent workflows (257 stars, 44 forks) — specialized agents (technical-designer, document-reviewer, work-planner)
 - **Look for:** Multi-agent workflow organization, dependency verification patterns, role-based agent coordination
-- **Added:** 2026-03-29 (horizon scan) | **Observations:** 8 | **First seen:** 2026-03-29 | **SHA:** 37cbf0e
+- **Added:** 2026-03-29 (horizon scan) | **Observations:** 9 | **First seen:** 2026-03-29 | **SHA:** 2e719be
 - **Notes:** PR #91 (Mar 29): dependency existence verification for design workflow (3-case: found/external/needs-creation). PR #89: recipe isolation (removed recipe-to-recipe deps). Deep-dived: dependency verification interesting but marginal for coder.yml. Specialized agents with role assignments. Markdown-only. Active.
 
 ### Vigilant-LLC/runner-guard

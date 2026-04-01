@@ -1,9 +1,9 @@
 # Project State
-Last updated: 2026-04-01T15:00:00Z
-Updated by: watcher.yml
+Last updated: 2026-04-01T15:34:19Z
+Updated by: evolve.yml
 
 ## Last Session
-Action: watcher.yml — health check. All clear, 0 corrective actions. 74h+ failure-free. 5 needs-human issues held (#124, #103, #100, #48, #22). 3 PRs awaiting human action (#55 APPROVED 256h+, #107 merge conflicts, #112 merge conflicts 0 formal reviews). Token utilization healthy across all workflows.
+Action: evolve.yml — PIPELINE_WATCH. 10/10 failures ALREADY-FIXED, 76h+ failure-free, 0 actionable. Cost $20.06/18 runs at 15h UTC (pace ~$31/day vs $29.30 avg). SHA scan: 2/7 Active + 3/8 Watch changed (all routine). 0 issues created. Pipeline excellent.
 
 System health:
 - Evolve: HEALTHY — 0/10 recent exceed 55 (0%). Turns: 33-45.
