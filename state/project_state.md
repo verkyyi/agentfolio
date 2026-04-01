@@ -1,9 +1,9 @@
 # Project State
-Last updated: 2026-04-01T05:25:00Z
-Updated by: watcher.yml
+Last updated: 2026-04-01T06:45:17Z
+Updated by: evolve.yml (SYNTHESIS)
 
 ## Last Session
-Action: watcher.yml health check — all clear, 0 corrective actions. 68h+ failure-free. Issue #127 new (<2h, pending triage check next run). 6 needs-human held (#127 pending, #124, #103, #100, #48, #22). 3 PRs awaiting human merge. Token utilization all HEALTHY.
+Action: evolve.yml SYNTHESIS — cross-run signal analysis. Security patterns identified as productive research vein (runner-guard broke 26-run PH plateau). Human disengagement 10d+ confirmed as critical bottleneck. Growth metrics updated (2 stars flat). Research log archived (154→100 entries). 0 issues created. Pipeline 70h+ failure-free.
 
 System health:
 - Evolve: HEALTHY — 0/9 recent exceed 55 (0%). Turns: 27-54.
@@ -18,7 +18,7 @@ System health:
 - Deploy: RECOVERING — no trigger since #65 fix.
 
 ## Current Priorities (ordered)
-1. **[BLOCKED]** PR #55: fix reviewer.yml state reset — APPROVED 242h+, awaiting human merge (workflow YAML)
+1. **[BLOCKED]** PR #55: fix reviewer.yml state reset — APPROVED 244h+, awaiting human merge (workflow YAML)
 2. **[NEEDS-HUMAN]** PR #107: reduce HORIZON_SCAN cadence — APPROVED 2x, merge conflicts, escalated to needs-human
 3. **[NEEDS-HUMAN]** PR #112: env scrub hardening — APPROVED but merge conflicts (4th cycle), all workflow YAML, needs manual rebase + merge
 4. **[NEEDS-HUMAN]** Issue #22: Submit to awesome-claude-code — 7-day cooldown EXPIRED 3+ days, highest-leverage growth action
@@ -28,12 +28,13 @@ System health:
 8. **[DONE]** Source portfolio rebalance — completed Mar 27 SYNTHESIS. Citadel promoted, gstack demoted, 5 dropped.
 
 ## Open Items
-1. PR #55: [approved] fix(workflow) reviewer.yml state reset — APPROVED 242h+, needs human merge
+1. PR #55: [approved] fix(workflow) reviewer.yml state reset — APPROVED 244h+, needs human merge
 2. Issue #100: [needs-human] PR #112 APPROVED, merge conflicts (4th cycle), all workflow YAML — escalated
 3. Issue #103: [needs-human] PR #107 APPROVED 2x, merge conflicts, escalated to needs-human (workflow YAML)
 4. Issue #124: [needs-human] Update repo description metadata — requires GH_TOKEN with repo-edit permissions
-5. Issue #48: [needs-human] Submit to e2b-dev/awesome-ai-agents
-6. Issue #22: [needs-human] Submit to awesome-claude-code — cooldown EXPIRED 3+ days
+5. Issue #127: [evolve-finding] Adopt runner-guard CI/CD security scanning — new, pending triage
+6. Issue #48: [needs-human] Submit to e2b-dev/awesome-ai-agents
+7. Issue #22: [needs-human] Submit to awesome-claude-code — cooldown EXPIRED 3+ days
 
 ## Week of Mar 24-31 Key Metrics
 - Commits: 707 (690 state, 17 feat/fix)
@@ -45,20 +46,14 @@ System health:
 - Cost: ~$205/week ($29.30/day avg), down 26% from $273 prev week, 78% below pre-PR #111 peak
 - Stars: 2 | Forks: 0 | Adopters: 0
 - Growth: flat at 2 stars for 10d+; v0.3.0 129h old; #22 cooldown EXPIRED day 3+ (awesome-cc 35.0K accelerating +242/9h); #48 blocked needs-human; discussion #49 0 engagement 10d; bottleneck is 100% human engagement 10d+
-- Pattern adoption: 0 new patterns in 24 consecutive PATTERN_HUNT runs (structural plateau — CI/CLI gap)
-- Ecosystem consolidation: 16th consecutive HORIZON_SCAN with no new architectures
+- Pattern adoption: 1 new pattern in last 27 PATTERN_HUNT runs (runner-guard #127 broke 26-run plateau)
+- Ecosystem consolidation: 17th consecutive HORIZON_SCAN with no new architectures
 - Auto-close misses: 6 total (#113, #116, #120, #122, #125), all caught by watcher — architectural, handled
 
-## Weekly Analysis Recommendations
-1. Merge PR #55 — only blocker requiring human action, recurring reviewer state bugs, approved 226h+
-2. Rebase + merge PR #107 — APPROVED 2x, reduces HORIZON_SCAN cost (needs rebase)
-3. Rebase + merge PR #112 — APPROVED, env scrub hardening for all workflows (needs rebase)
-4. Submit to awesome-claude-code (#22) — highest-leverage growth action, cooldown expired 3+ days
-5. Reduce PATTERN_HUNT cadence — 23 consecutive plateaus, structural CI/CLI gap, diminishing ROI
-6. Unblock profile page — 4/6 sections stalled, no progress this week
-7. Monitor cost trend — $205/week, approaching $150 baseline target at current trajectory
-8. Consider dropping discover workflow — SKIP in config, single-project repo
-9. Address human disengagement — 10d+ no human activity, all 6 open items blocked on human action, growth 100% bottlenecked
+## SYNTHESIS Cross-Run Observations (Apr 1)
+1. **Security = productive research vein**: runner-guard broke 26-run PH plateau. claude-code v2.1.83-89 security releases are the most CI-relevant changes. 2 security issues open (#100 env scrub, #127 runner-guard). Future PH should weight security-focused sources.
+2. **Human bottleneck critical**: 10d+ since Mar 22. 6 needs-human items, 3 PRs merge-conflicted. Growth 100% bottlenecked. All automated optimization paths exhausted.
+3. **Research ROI declining**: 17 HS consolidation, 26 PH plateau (broken once). Valuable finds from niche/specialized sources, not volume. Consider further cadence reduction.
 
 ## Critical Note for Next Agent
 - All workflows now gate on state/evolve_config.md — if this file is deleted, everything stops
@@ -69,7 +64,7 @@ System health:
 - Evolve lightweight mode gate deployed (commit ce1994c) — skips Steps 2b-2h when sources unchanged 2+ consecutive runs
 - Posture-based research operational: PATTERN_HUNT, PIPELINE_WATCH, HORIZON_SCAN, SYNTHESIS
 - Reviewer.yml skips pull_request events — only runs via workflow_dispatch (watcher triggers)
-- Reviewer.yml has a bug: README sync step doesn't handle dirty working tree (PR #55 APPROVED — awaiting human merge 242h+)
+- Reviewer.yml has a bug: README sync step doesn't handle dirty working tree (PR #55 APPROVED — awaiting human merge 244h+)
 - Reviewer hallucination fix (#90) — NEVER close PR prompt guardrail + safety-net reopen step merged (PR #93)
 - GitHub auto-close fix (#84) DONE — reviewer.yml hardened with 3-tier fallback; watcher remains safety net
 - Evolve HEALTHY — max-turns 55, 0/9 exceed (0%). Turns: 27-54.
@@ -80,9 +75,9 @@ System health:
 - Feedback Learner RECOVERED — 5 turns, #72 fix confirmed
 - State file compression (#78) merged — research_log.md reduced from 699 to 104 lines
 - Circuit breaker (#76) merged — PostToolUseFailure hook with 3-failure threshold
-- Pattern plateau confirmed structural: CI-cron harness vs CLI/interactive sources. 26 consecutive 0-issue PH runs.
-- Ecosystem consolidating: 16 consecutive HS with 0 new architectures. Source portfolio stable at 7 Active + 7 Watch.
+- Pattern plateau: 1 issue in 27 PH runs (runner-guard #127). CI/CLI structural gap still real.
+- Ecosystem consolidating: 17 consecutive HS with 0 new architectures. Source portfolio stable at 7 Active + 8 Watch.
 - No human engagement since Mar 22 — all recent activity bot-generated. 10d+ gap.
 - Auto-close miss pattern: 6 occurrences, all caught by watcher safety net. Root cause: bot-to-bot merge race condition. Accepted as architectural.
-- claude-code v2.1.88 latest: PermissionDenied hook, StructuredOutput fix, prompt cache fix, nested CLAUDE.md re-injection. Low CI impact.
+- claude-code v2.1.89 latest: defer permission, autocompact thrash fix, TaskCreated hook, file_path absolute fix, memory leak fix. Major stability release.
 - Cost trajectory: $205/week, down 78% from $134/day peak. Approaching $150/week target.

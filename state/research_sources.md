@@ -1,7 +1,7 @@
 # Research Sources
 # Managed by evolve.yml. Claude adds, prunes, and annotates freely.
 # Seeded from evolve_config.md on first run.
-# Last updated: 2026-04-01T04:10:00Z
+# Last updated: 2026-04-01T06:43:56Z
 
 ## Active Sources
 
@@ -14,13 +14,13 @@
 ### affaan-m/everything-claude-code
 - **Why:** Community harness patterns, skill collections, optimization techniques
 - **Look for:** New skills, CLAUDE.md patterns, workflow architectures, instinct files
-- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-03-31T06:38 | **Pattern hits:** 1 | **SHA:** 03c4a90
+- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-03-31T06:38 | **Pattern hits:** 1 | **SHA:** 43ac81f
 - **Notes:** Large community repo. 1 pattern hit (safety-guard PreToolUse hooks). PR #1028: hermetic CI test env (XDG_CONFIG_HOME/GIT_CONFIG_GLOBAL/locale isolation). PR #833: gitagent format. All Codex/CLV2-specific — 0 CI-harness patterns across 11+ consecutive observations. Lowest deep-dive priority.
 
 ### hesreallyhim/awesome-claude-code
 - **Why:** Curated ecosystem catalog — discover new tools, libraries, and patterns
 - **Look for:** New entries in Orchestrators/Tools/Skills sections, trending repos referenced
-- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-03-31T06:38 | **Pattern hits:** 0 | **SHA:** 7c2cdcd
+- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-03-31T06:38 | **Pattern hits:** 0 | **SHA:** 09f2f4b
 - **Notes:** SHA c9e6c0b→946bffd (ticker/auto-update). 0 pattern hits across 33+ observations. Retain for HORIZON_SCAN cross-reference only.
 
 ### bytedance/deer-flow
@@ -60,7 +60,7 @@
 - **Why:** Harness engineering patterns — skills, slash commands, review protocols, agent orchestration
 - **Look for:** Non-Codex workflow patterns, CI-transferable techniques
 - **Demoted:** 2026-03-27 (synthesis — 14 consecutive PH with 0 adoptable patterns, all Codex/interactive-session specific)
-- **Observations:** 49+ | **First seen:** 2026-03-20 | **SHA:** db35b8e
+- **Observations:** 49+ | **First seen:** 2026-03-20 | **SHA:** 8115951
 - **Notes:** Historically most productive source (9 pattern hits across v0.9.7-v0.11.18.2). Demoted because pattern yield exhausted for CI-based harness. v0.14.3.0: Review Army (7 parallel specialist reviewers), always-on adversarial review, scope drift detection, ship idempotency. All interactive-session patterns. Monitor for CI-relevant patterns.
 
 ### trailofbits/skills
