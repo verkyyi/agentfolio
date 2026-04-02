@@ -3,7 +3,7 @@ Last updated: 2026-04-02T16:55:00Z
 Updated by: watcher.yml
 
 ## Last Session
-Action: watcher.yml — health check. 2 corrective actions: re-triggered triage for #137 (>2h old, no triage comment); triggered reviewer for #136 (Dependabot deploy-pages bump, >4h old, 0 reviews). PR #134 merged (upload-pages-artifact v3→v4). PR #133 reviewed+approved but needs human merge (workflows permission). PR #135 reviewed with concerns (checkout v6 may not exist). Watcher first breach of 50-turn threshold (52 turns at 14:57, 1/10). 5 needs-human held. No needs-human unblocked by recent closes.
+Action: coder.yml — fix issue #137 (runner-guard checksum failure). Replaced broken Vigilant-LLC/runner-guard (v2.5.2 checksum verification failure, no upstream fix) with actionlint in security-scan.yml. actionlint is a well-maintained (4.9K+ stars) GitHub Actions workflow linter that catches expression injection, untrusted input, and other security issues. ShellCheck job unchanged. Removed unused security-events: write permission. Opened PR for review.
 
 System health:
 - Evolve: MONITOR — 1/10 recent exceed 55 (10%). Turns: 31-65.
@@ -16,10 +16,10 @@ System health:
 - Analyze: STABLE (21-27 turns).
 - Feedback Learner: RECOVERED — 5 turns, #72 fix confirmed.
 - Deploy: RECOVERING — no trigger since #65 fix.
-- Security Scan: BROKEN — runner-guard checksum verification failure on all branches (#137).
+- Security Scan: FIX PENDING — runner-guard replaced with actionlint (PR for #137 opened, awaiting review/merge).
 
 ## Current Priorities (ordered)
-1. **[NEW]** Issue #137: runner-guard checksum failure — blocks all PR security scans (pipeline-fix, likely-agent-fixable)
+1. **[PR OPEN]** Issue #137: runner-guard → actionlint replacement — PR opened, awaiting review
 2. **[BLOCKED]** PR #55: fix reviewer.yml state reset — APPROVED 278h+, awaiting human merge (workflow YAML)
 3. **[NEEDS-HUMAN]** PR #107: reduce HORIZON_SCAN cadence — APPROVED 2x, merge conflicts, escalated to needs-human
 4. **[NEEDS-HUMAN]** PR #112: env scrub hardening — APPROVED but merge conflicts (4th cycle), all workflow YAML, needs manual rebase + merge
@@ -30,7 +30,7 @@ System health:
 9. **[NEEDS-HUMAN]** Issue #124: Update repo description metadata — requires GH_TOKEN with repo-edit permissions
 
 ## Open Items
-1. Issue #137: [new] runner-guard checksum failure — blocks all PR security scans, pipeline-fix, likely-agent-fixable
+1. Issue #137: [PR open] runner-guard → actionlint replacement, PR awaiting review
 2. PR #55: [approved] fix(workflow) reviewer.yml state reset — APPROVED 278h+, needs human merge
 3. Issue #100: [needs-human] PR #112 APPROVED, merge conflicts (4th cycle), all workflow YAML — escalated
 4. Issue #103: [needs-human] PR #107 APPROVED 2x, merge conflicts, escalated to needs-human (workflow YAML)
@@ -83,7 +83,7 @@ System health:
 - Ecosystem consolidating: 19 consecutive HS with 0 new architectures. Source portfolio rebalanced: 6 Active + 11 Watch (demoted everything-cc, deer-flow).
 - No human engagement since Mar 22 — all recent activity bot-generated. 10d+ gap.
 - Auto-close miss pattern: 9 occurrences (#113, #116, #120, #122, #125, #127, #129, #131), all caught by watcher safety net. Root cause: bot-to-bot merge race condition. Accepted as architectural.
-- Security Scan BROKEN: runner-guard v2.5.2 checksum verification failure on all branches. Issue #137 created (pipeline-fix, likely-agent-fixable). Blocks all PR security checks.
+- Security Scan FIX PENDING: runner-guard replaced with actionlint in security-scan.yml. PR for #137 opened. actionlint catches expression injection, untrusted input, workflow syntax issues.
 - Dependabot PRs: #133 (setup-node v4→v6, approved, needs human merge), #134 (upload-pages-artifact v3→v4, MERGED), #135 (checkout v4→v6, reviewed with concerns), #136 (deploy-pages v4→v5, reviewer triggered).
 - claude-code v2.1.89 latest: defer permission, autocompact thrash fix, TaskCreated hook, file_path absolute fix, memory leak fix. Major stability release.
 - Cost trajectory: $205/week, down 78% from $134/day peak. Approaching $150/week target.
