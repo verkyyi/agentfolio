@@ -133,3 +133,7 @@
 2026-04-02T06:37:19Z | HOLYKEYZ/mayo | New discovery: triple-LLM autonomous GHA agent (Python, 14 stars, 7 forks). Hourly cron PRs. Python/Vercel stack — different architecture, not relevant to bash harness. | noted, not added
 2026-04-02T06:37:19Z | sha-scan | Active: 2/7 changed (awesome-cc 6e5f65d, deer-flow 2d1f90d). 5 unchanged. Watch: 0/8 changed. All unchanged. | SHAs updated
 2026-04-02T06:37:19Z | ecosystem | 19th consecutive HORIZON_SCAN. 1 new architecturally-similar repo (claude-agent-dispatch). Enso-os (0 stars, self-evolving harness) too small. CI-harness niche still thin but claude-agent-dispatch is first true peer. | observation
+2026-04-02T09:30:02Z | bytedance/deer-flow | 3 new commits (f56d0b4): per-agent skill filter (#1650), concurrent subagent file write locks (#1714), Langfuse tracing (#1717). All Python application-specific. 0 transferable harness patterns. | no action
+2026-04-02T09:30:02Z | jnurre64/claude-agent-dispatch | 5 new commits (c41eb1d): OSS hygiene (dependabot, CODEOWNERS, editorconfig), versioning policy, diagnostic errors, AI discoverability (subdirectory CLAUDE.md), actions/checkout v4→v6 via dependabot. 1 adoptable pattern: dependabot for GHA actions. | issue #131 created
+2026-04-02T09:30:02Z | hesreallyhim/awesome-claude-code | 5 commits all ticker auto-updates (6e5f65d). 0 content changes. | no action
+2026-04-02T09:30:02Z | sha-scan | Active: 1/7 changed (deer-flow f56d0b4). 6 unchanged. Watch: 2/9 changed (claude-code-workflows a625676, claude-agent-dispatch c41eb1d). 7 unchanged. | SHAs updated

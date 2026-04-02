@@ -1,7 +1,7 @@
 # Research Sources
 # Managed by evolve.yml. Claude adds, prunes, and annotates freely.
 # Seeded from evolve_config.md on first run.
-# Last updated: 2026-04-02T06:34:00Z
+# Last updated: 2026-04-02T09:30:02Z
 
 ## Active Sources
 
@@ -20,14 +20,14 @@
 ### hesreallyhim/awesome-claude-code
 - **Why:** Curated ecosystem catalog — discover new tools, libraries, and patterns
 - **Look for:** New entries in Orchestrators/Tools/Skills sections, trending repos referenced
-- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-03-31T06:38 | **Pattern hits:** 0 | **SHA:** 6e5f65d
-- **Notes:** SHA c9e6c0b→946bffd (ticker/auto-update). 0 pattern hits across 34+ observations. Retain for HORIZON_SCAN cross-reference only.
+- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-04-02T09:30 | **Pattern hits:** 0 | **SHA:** 6e5f65d
+- **Notes:** SHA c9e6c0b→946bffd (ticker/auto-update). 0 pattern hits across 35+ observations. All recent commits are ticker auto-updates only. Retain for HORIZON_SCAN cross-reference only.
 
 ### bytedance/deer-flow
 - **Why:** Multi-agent orchestration patterns from a major tech company
 - **Look for:** Agent coordination, state management, tool orchestration, LLM provider patterns
-- **Added:** 2026-03-21 (seed) | **Last deep:** 2026-04-01T12:26 | **Pattern hits:** 1 | **SHA:** 2d1f90d
-- **Notes:** Very active (5+ commits/day). PR #1668: MemoryMiddleware structured reflection + correction detection — validates feedback-learner concept but Python/LLM middleware, not transferable. All application-specific. 0 harness patterns across 18+ consecutive deep-dives. Lowest deep-dive priority.
+- **Added:** 2026-03-21 (seed) | **Last deep:** 2026-04-02T09:30 | **Pattern hits:** 1 | **SHA:** f56d0b4
+- **Notes:** Very active (5+ commits/day). Latest: per-agent skill filter (#1650), concurrent subagent file write locks (#1714), Langfuse tracing (#1717). All Python application-specific. 0 harness patterns across 19+ consecutive deep-dives. Lowest deep-dive priority.
 
 ### SethGammon/Citadel
 - **Why:** Agent orchestration harness (400 stars) — closest architecture to tokenman. Campaign persistence, parallel worktrees, circuit breaker, quality gate hooks, skill benchmarking, daemon factory
@@ -93,7 +93,7 @@
 ### shinpr/claude-code-workflows
 - **Why:** Production-ready multi-agent workflows (257 stars, 44 forks) — specialized agents (technical-designer, document-reviewer, work-planner)
 - **Look for:** Multi-agent workflow organization, dependency verification patterns, role-based agent coordination
-- **Added:** 2026-03-29 (horizon scan) | **Observations:** 12 | **First seen:** 2026-03-29 | **SHA:** a7a250a
+- **Added:** 2026-03-29 (horizon scan) | **Observations:** 13 | **First seen:** 2026-03-29 | **SHA:** a625676
 - **Notes:** PR #91 (Mar 29): dependency existence verification for design workflow (3-case: found/external/needs-creation). PR #89: recipe isolation (removed recipe-to-recipe deps). Deep-dived: dependency verification interesting but marginal for coder.yml. Specialized agents with role assignments. Markdown-only. Active.
 
 ### Vigilant-LLC/runner-guard
@@ -111,8 +111,8 @@
 ### jnurre64/claude-agent-dispatch
 - **Why:** Label-driven Claude Code GHA dispatch (Shell, 2 stars) — closest architecture to tokenman. Modular agent-dispatch.sh + lib/, label state machine (10 agent:* labels), two-phase plan→implement with human checkpoint, ShellCheck + BATS-Core CI testing.
 - **Look for:** Shell script quality patterns, label state machine design, worktree isolation, error trap handling, BATS test patterns
-- **Added:** 2026-04-02 (horizon scan) | **Observations:** 1 | **First seen:** 2026-04-02 | **SHA:** 0c1fbd7
-- **Notes:** Created 2026-03-21, actively maintained. Shell-only, no Node/Python deps. Reusable workflows (dispatch-*.yml) consumed via workflow_call. CI validates all scripts with ShellCheck + BATS. Architecturally closest to tokenman: issue-driven, label-based state, GHA runners, claude -p headless. Issue #129 created for ShellCheck adoption. Low stars (2) but unique peer.
+- **Added:** 2026-04-02 (horizon scan) | **Observations:** 2 | **First seen:** 2026-04-02 | **SHA:** c41eb1d
+- **Notes:** Created 2026-03-21, actively maintained. Shell-only, no Node/Python deps. Reusable workflows (dispatch-*.yml) consumed via workflow_call. CI validates all scripts with ShellCheck + BATS. Architecturally closest to tokenman: issue-driven, label-based state, GHA runners, claude -p headless. Latest: OSS hygiene (dependabot for GHA, CODEOWNERS, editorconfig), versioning policy, diagnostic errors, AI discoverability (subdirectory CLAUDE.md). Issue #129 (ShellCheck). Issue #131 (dependabot). 1 pattern hit.
 
 ## Dropped Sources
 <!-- Removed sources with reason. Kept for history so we don't re-discover them. -->
