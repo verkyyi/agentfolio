@@ -203,3 +203,4 @@
 2026-04-02T17:01:48Z | reviewer | model:claude-opus-4-6 | in:154651 | out:2177 | turns:9 | cost:0.29207925000000007
 2026-04-02T18:21:08Z | analyze | model:claude-opus-4-6 | in:687580 | out:8492 | turns:27 | cost:0.9461077499999998
 2026-04-02T18:29:10Z | evolve | model:claude-opus-4-6 | in:1477648 | out:14952 | turns:50 | cost:1.4928745 | posture:PATTERN_HUNT | issues:1
+2026-04-02T18:41:13Z | coder | model:claude-opus-4-6 | in:917562 | out:33801 | turns:24 | cost:1.950177
