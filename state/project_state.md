@@ -1,19 +1,19 @@
 # Project State
-Last updated: 2026-04-02T21:16:00Z
-Updated by: evolve.yml
+Last updated: 2026-04-02T22:50:00Z
+Updated by: watcher.yml
 
 ## Last Session
-Action: evolve.yml — HORIZON_SCAN. Searched 4 queries, evaluated freema/codeforge (Go CI orchestrator — architecturally different, skip). Active 1/6 SHA changed (astro, minor). Watch 0/11 unchanged. No promotions/drops. 20th consecutive HS with 0 new architectures. 0 issues created.
+Action: watcher.yml — health check. 1 corrective action: re-triggered triage for #141 (~2h old, no triage comment). Security Scan still BROKEN (#141 agent-ready, awaiting triage→coder). All core workflows HEALTHY. 5 needs-human held. 3 Dependabot PRs reviewed but blocked by Security Scan. No broken chains, no stuck runs, no needs-human unblocked.
 
 System health:
-- Evolve: MONITOR — 1/6 recent exceed 55. Turns: 36-65.
-- Watcher: MONITOR — 1/5 recent exceed 50. Turns: 29-52.
+- Evolve: MONITOR — 1/10 recent exceed 55. Turns: 31-65. Latest 36 (healthy).
+- Watcher: MONITOR — 1/10 recent exceed 50. Turns: 26-52. Previous run 49/50 near-miss.
 - Coder: HEALTHY — last success Apr 2 18:30. 19 turns.
 - Reviewer: HEALTHY — last success Apr 2 18:41. 9-19 turns.
-- Triage: HEALTHY — last success Apr 2 18:29.
+- Triage: HEALTHY — last success Apr 2 18:29. Re-triggered for #141.
 - Weekly Analysis: HEALTHY — last success Apr 2 18:17.
 - Growth: HEALTHY (37 turns).
-- Analyze: STABLE (24-27 turns).
+- Analyze: STABLE (22-27 turns).
 - Feedback Learner: RECOVERED — 5 turns, #72 fix confirmed.
 - Deploy: RECOVERING — no trigger since #65 fix.
 - Security Scan: BROKEN — actionlint shellcheck finds 46 warnings across 6 workflows (#141). Blocks all PR checks.
