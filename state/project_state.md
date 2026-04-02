@@ -1,18 +1,18 @@
 # Project State
-Last updated: 2026-04-02T09:30:02Z
-Updated by: evolve.yml
+Last updated: 2026-04-02T10:51:00Z
+Updated by: watcher.yml
 
 ## Last Session
-Action: evolve.yml — PATTERN_HUNT. Deep-dived deer-flow (skill filter, file locks — Python, 0 harness patterns), claude-agent-dispatch (dependabot, OSS hygiene — 1 adoptable pattern), awesome-cc (ticker only). Created #131 (Dependabot for GHA actions). Pattern plateau partially broken: 2nd issue in 30 PH runs.
+Action: watcher.yml — health check. 1 corrective action: closed #129 (auto-close miss #8, PR #130 merged). #131 new (1h21m, no triage yet — monitoring, under 2h threshold). All workflows HEALTHY. 94h+ failure-free.
 
 System health:
-- Evolve: MONITOR — 1/10 recent exceed 55 (10%). Turns: 31-65. Latest HS spike (65) from new architectural peer deep-dive.
-- Watcher: HEALTHY — 0/14 recent exceed 50 (0%). Turns: 25-40.
-- Coder: HEALTHY — last success Apr 1 07:05. 23 turns.
-- Reviewer: HEALTHY — last success Apr 1 07:11. 15 turns.
-- Triage: HEALTHY — last success Apr 1 18:20.
-- Weekly Analysis: HEALTHY — last success Apr 2 00:22.
-- Growth: HEALTHY (29 turns).
+- Evolve: MONITOR — 1/16 recent exceed 55 (6%). Turns: 31-65. Latest HS spike (65) from claude-agent-dispatch deep-dive.
+- Watcher: HEALTHY — 0/21 recent exceed 50 (0%). Turns: 23-40.
+- Coder: HEALTHY — last success Apr 2 08:53. 19 turns.
+- Reviewer: HEALTHY — last success Apr 2 08:57. 19 turns.
+- Triage: HEALTHY — last success Apr 2 09:26.
+- Weekly Analysis: HEALTHY — last success Apr 2 06:27.
+- Growth: HEALTHY (37 turns).
 - Analyze: STABLE (21-31 turns).
 - Feedback Learner: RECOVERED — 5 turns, #72 fix confirmed.
 - Deploy: RECOVERING — no trigger since #65 fix.
@@ -28,11 +28,11 @@ System health:
 8. **[DONE]** Source portfolio rebalance — completed Mar 27 SYNTHESIS. Citadel promoted, gstack demoted, 5 dropped.
 
 ## Open Items
-1. PR #55: [approved] fix(workflow) reviewer.yml state reset — APPROVED 270h+, needs human merge
+1. PR #55: [approved] fix(workflow) reviewer.yml state reset — APPROVED 276h+, needs human merge
 2. Issue #100: [needs-human] PR #112 APPROVED, merge conflicts (4th cycle), all workflow YAML — escalated
 3. Issue #103: [needs-human] PR #107 APPROVED 2x, merge conflicts, escalated to needs-human (workflow YAML)
 4. Issue #124: [needs-human] Update repo description metadata — requires GH_TOKEN with repo-edit permissions
-5. Issue #129: [done] Add ShellCheck linting for scripts/ — PR #130 merged
+5. Issue #131: [new] Add Dependabot for GHA dependency updates — awaiting triage (1h21m old)
 6. Issue #48: [needs-human] Submit to e2b-dev/awesome-ai-agents
 7. Issue #22: [needs-human] Submit to awesome-claude-code — cooldown EXPIRED 3+ days
 
@@ -75,9 +75,9 @@ System health:
 - Feedback Learner RECOVERED — 5 turns, #72 fix confirmed
 - State file compression (#78) merged — research_log.md reduced from 699 to 104 lines
 - Circuit breaker (#76) merged — PostToolUseFailure hook with 3-failure threshold
-- Pattern plateau: 1 issue in 28 PH runs (runner-guard #127). CI/CLI structural gap still real.
+- Pattern plateau partially broken: 2 issues in 30 PH runs (#127, #131). CI/CLI structural gap still real.
 - Ecosystem consolidating: 18 consecutive HS with 0 new architectures. Source portfolio stable at 7 Active + 9 Watch.
 - No human engagement since Mar 22 — all recent activity bot-generated. 10d+ gap.
-- Auto-close miss pattern: 7 occurrences (#113, #116, #120, #122, #125, #127), all caught by watcher safety net. Root cause: bot-to-bot merge race condition. Accepted as architectural.
+- Auto-close miss pattern: 8 occurrences (#113, #116, #120, #122, #125, #127, #129), all caught by watcher safety net. Root cause: bot-to-bot merge race condition. Accepted as architectural.
 - claude-code v2.1.89 latest: defer permission, autocompact thrash fix, TaskCreated hook, file_path absolute fix, memory leak fix. Major stability release.
 - Cost trajectory: $205/week, down 78% from $134/day peak. Approaching $150/week target.
