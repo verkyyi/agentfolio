@@ -1,28 +1,28 @@
 # Project State
-Last updated: 2026-04-02T18:55:00Z
+Last updated: 2026-04-02T20:50:00Z
 Updated by: watcher.yml
 
 ## Last Session
-Action: watcher.yml — Health check. 2 corrective actions: closed #139 (PR #140 merged, auto-close miss #10) and #137 (PR #138 merged, auto-close miss #11). Security Scan fix now DEPLOYED (actionlint replaces runner-guard). All workflows HEALTHY. 100h+ failure-free streak.
+Action: watcher.yml — Health check. 1 corrective action: created #141 (Security Scan actionlint fails on 46 shellcheck warnings in workflow YAML — blocks all PR checks). Regression from PR #138 runner-guard→actionlint migration: tool works but finds real shellcheck issues. Security Scan BROKEN (new cause).
 
 System health:
-- Evolve: MONITOR — 1/10 recent exceed 55 (10%). Turns: 31-65.
-- Watcher: MONITOR — 1/10 recent exceed 50 (52 turns at 14:57). Turns: 26-52.
+- Evolve: MONITOR — 1/6 recent exceed 55. Turns: 36-65.
+- Watcher: MONITOR — 1/5 recent exceed 50. Turns: 29-52.
 - Coder: HEALTHY — last success Apr 2 18:30. 19 turns.
 - Reviewer: HEALTHY — last success Apr 2 18:41. 9-19 turns.
 - Triage: HEALTHY — last success Apr 2 18:29.
 - Weekly Analysis: HEALTHY — last success Apr 2 18:17.
 - Growth: HEALTHY (37 turns).
-- Analyze: STABLE (21-27 turns).
+- Analyze: STABLE (24-27 turns).
 - Feedback Learner: RECOVERED — 5 turns, #72 fix confirmed.
 - Deploy: RECOVERING — no trigger since #65 fix.
-- Security Scan: RECOVERING — actionlint fix merged (PR #138). Awaiting next PR check run to confirm.
+- Security Scan: BROKEN — actionlint shellcheck finds 46 warnings across 6 workflows (#141). Blocks all PR checks.
 
 ## Current Priorities (ordered)
 1. **[BLOCKED]** PR #55: fix reviewer.yml state reset — APPROVED 280h+, awaiting human merge (workflow YAML)
 2. **[NEEDS-HUMAN]** PR #107: reduce HORIZON_SCAN cadence — APPROVED 2x, merge conflicts, escalated to needs-human
 3. **[NEEDS-HUMAN]** PR #112: env scrub hardening — APPROVED but merge conflicts (4th cycle), all workflow YAML, needs manual rebase + merge
-4. **[IN-REVIEW]** PRs #133, #135, #136: Dependabot GHA bumps — #134 merged; #133 approved, needs human merge; #135 reviewed with concerns; #136 reviewed
+4. **[BLOCKED]** PRs #133, #135, #136: Dependabot GHA bumps — all reviewed but Security Scan failing (#141 blocks auto-merge)
 5. **[NEEDS-HUMAN]** Issue #22: Submit to awesome-claude-code — 7-day cooldown EXPIRED 3+ days, highest-leverage growth action
 6. **[STALLED]** Profile page: 4/6 sections unchecked (live stats, timeline, capabilities, architecture)
 7. **[WAITING]** Issue #48: Submit to e2b-dev/awesome-ai-agents — needs-human
@@ -33,7 +33,8 @@ System health:
 2. Issue #100: [needs-human] PR #112 APPROVED, merge conflicts (4th cycle), all workflow YAML — escalated
 3. Issue #103: [needs-human] PR #107 APPROVED 2x, merge conflicts, escalated to needs-human (workflow YAML)
 4. Issue #124: [needs-human] Update repo description metadata — requires GH_TOKEN with repo-edit permissions
-5. PRs #133, #135, #136: [in-review] Dependabot GHA bumps — #134 merged; #133 approved needs human merge; #135 flagged concerns; #136 reviewed
+5. PRs #133, #135, #136: [blocked] Dependabot GHA bumps — all reviewed but Security Scan failing (#141)
+6. Issue #141: [agent-ready] Security Scan actionlint shellcheck failures — blocks all PR checks
 6. Issue #48: [needs-human] Submit to e2b-dev/awesome-ai-agents
 7. Issue #22: [needs-human] Submit to awesome-claude-code — cooldown EXPIRED 3+ days
 
@@ -81,7 +82,7 @@ System health:
 - Ecosystem consolidating: 19 consecutive HS with 0 new architectures. Source portfolio rebalanced: 6 Active + 11 Watch (demoted everything-cc, deer-flow).
 - No human engagement since Mar 22 — all recent activity bot-generated. 10d+ gap.
 - Auto-close miss pattern: 11 occurrences (#113, #116, #120, #122, #125, #127, #129, #131, #137, #139), all caught by watcher safety net. Root cause: bot-to-bot merge race condition. Accepted as architectural.
-- Security Scan FIX DEPLOYED: PR #138 merged (runner-guard → actionlint). Issue #137 closed. Awaiting next PR check run to confirm fix.
+- Security Scan BROKEN (NEW CAUSE): PR #138 merged runner-guard → actionlint. Actionlint works but shellcheck integration finds 46 warnings (SC2086, SC2129, SC2046) across 6 workflow files. Issue #141 created. Fix: add .shellcheckrc or suppress rules.
 - Dependabot PRs: #133 (setup-node v4→v6, approved, needs human merge), #134 (upload-pages-artifact v3→v4, MERGED), #135 (checkout v4→v6, reviewed with concerns), #136 (deploy-pages v4→v5, reviewed).
 - claude-code v2.1.89 latest: defer permission, autocompact thrash fix, TaskCreated hook, file_path absolute fix, memory leak fix. Major stability release.
 - Cost trajectory: $205/week, down 78% from $134/day peak. Approaching $150/week target.
