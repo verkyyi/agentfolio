@@ -1,17 +1,17 @@
 # Project State
-Last updated: 2026-04-02T12:26:26Z
-Updated by: evolve.yml
+Last updated: 2026-04-02T12:55:00Z
+Updated by: watcher.yml
 
 ## Last Session
-Action: evolve.yml — SYNTHESIS posture. Cross-run analysis: security=only productive vein (5th confirmation). Demoted everything-cc and deer-flow from Active to Watch (13+/19+ consecutive 0-pattern observations). SEO check (Hour 12 UTC): description outdated, #124 covers. 0 human intents 11d+. Active portfolio: 8→6 sources. Watch: 9→11. 0 issues created.
+Action: watcher.yml — health check. 1 corrective action: re-triggered triage for #131 (>3h old, no triage comment). All workflows HEALTHY. 96h+ failure-free. 5 needs-human held. 3 PRs awaiting human action. No broken chains, stuck runs, or repeated failures. No needs-human unblocked by recent closes. Token utilization healthy across all workflows.
 
 System health:
 - Evolve: MONITOR — 1/16 recent exceed 55 (6%). Turns: 31-65. Latest HS spike (65) from claude-agent-dispatch deep-dive.
 - Watcher: HEALTHY — 0/21 recent exceed 50 (0%). Turns: 23-40.
 - Coder: HEALTHY — last success Apr 2 08:53. 19 turns.
 - Reviewer: HEALTHY — last success Apr 2 08:57. 19 turns.
-- Triage: HEALTHY — last success Apr 2 09:26.
-- Weekly Analysis: HEALTHY — last success Apr 2 06:27.
+- Triage: HEALTHY — last success Apr 2 09:26. Re-triggered for #131.
+- Weekly Analysis: HEALTHY — last success Apr 2 12:18.
 - Growth: HEALTHY (37 turns).
 - Analyze: STABLE (21-31 turns).
 - Feedback Learner: RECOVERED — 5 turns, #72 fix confirmed.
@@ -32,7 +32,7 @@ System health:
 2. Issue #100: [needs-human] PR #112 APPROVED, merge conflicts (4th cycle), all workflow YAML — escalated
 3. Issue #103: [needs-human] PR #107 APPROVED 2x, merge conflicts, escalated to needs-human (workflow YAML)
 4. Issue #124: [needs-human] Update repo description metadata — requires GH_TOKEN with repo-edit permissions
-5. Issue #131: [new] Add Dependabot for GHA dependency updates — awaiting triage (1h21m old)
+5. Issue #131: [awaiting-triage] Add Dependabot for GHA dependency updates — triage re-triggered (3h20m old)
 6. Issue #48: [needs-human] Submit to e2b-dev/awesome-ai-agents
 7. Issue #22: [needs-human] Submit to awesome-claude-code — cooldown EXPIRED 3+ days
 
@@ -80,5 +80,6 @@ System health:
 - Ecosystem consolidating: 19 consecutive HS with 0 new architectures. Source portfolio rebalanced: 6 Active + 11 Watch (demoted everything-cc, deer-flow).
 - No human engagement since Mar 22 — all recent activity bot-generated. 10d+ gap.
 - Auto-close miss pattern: 8 occurrences (#113, #116, #120, #122, #125, #127, #129), all caught by watcher safety net. Root cause: bot-to-bot merge race condition. Accepted as architectural.
+- Issue #131: triage missed on creation (created after last triage run). Watcher re-triggered triage at 12:55 Apr 2.
 - claude-code v2.1.89 latest: defer permission, autocompact thrash fix, TaskCreated hook, file_path absolute fix, memory leak fix. Major stability release.
 - Cost trajectory: $205/week, down 78% from $134/day peak. Approaching $150/week target.
