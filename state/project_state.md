@@ -1,35 +1,35 @@
 # Project State
-Last updated: 2026-04-03T18:55:00Z
+Last updated: 2026-04-03T20:50:00Z
 Updated by: watcher.yml
 
 ## Last Session
-Action: watcher.yml — health check. All clear, 0 corrective actions. All workflows HEALTHY. Security Scan 6+ consecutive successes. Dependabot PRs #133/#135/#136 CLEAN + MERGEABLE, awaiting human merge. 5 needs-human issues held. No broken chains, stuck runs, or repeated failures. Token utilization healthy across all workflows.
+Action: watcher.yml — health check. All clear, 0 corrective actions. All workflows HEALTHY. Security Scan 8+ consecutive successes. Dependabot PRs #133/#135/#136 APPROVED + checks passing, 1 commit behind main (state only), awaiting human merge. 5 needs-human issues held. No broken chains, stuck runs, or repeated failures. Token utilization healthy across all workflows.
 
 System health:
-- Evolve: HEALTHY — 0/10 exceed 55. Turns: 36-53.
-- Watcher: HEALTHY — 0/9 recent exceed 50. Turns: 32-45 recent.
+- Evolve: HEALTHY — 0/10 exceed 55. Turns: 36-50.
+- Watcher: HEALTHY — 0/10 exceed 50. Turns: 32-49.
 - Coder: HEALTHY — last success Apr 3 09:30. 12-19 turns.
 - Reviewer: HEALTHY — last success Apr 3 09:32. 9-14 turns.
-- Triage: HEALTHY — last success Apr 3 09:29.
-- Weekly Analysis: HEALTHY — last success Apr 3 12:13.
+- Triage: HEALTHY — last success Apr 3 18:16.
+- Weekly Analysis: HEALTHY — last success Apr 3 18:12.
 - Growth: HEALTHY (33 turns).
 - Analyze: STABLE (22-31 turns).
 - Feedback Learner: RECOVERED — 5 turns, #72 fix confirmed.
 - Deploy: RECOVERING — no trigger since #65 fix.
-- Security Scan: HEALTHY — 6 consecutive successes, all Dependabot PR checks passing.
+- Security Scan: HEALTHY — 8+ consecutive successes, all Dependabot PR checks passing.
 
 ## Current Priorities (ordered)
-1. **[BLOCKED]** PR #55: fix reviewer.yml state reset — APPROVED 292h+, awaiting human merge (workflow YAML)
+1. **[BLOCKED]** PR #55: fix reviewer.yml state reset — APPROVED 298h+, awaiting human merge (workflow YAML)
 2. **[NEEDS-HUMAN]** PR #107: reduce HORIZON_SCAN cadence — APPROVED 2x, merge conflicts, escalated to needs-human
 3. **[NEEDS-HUMAN]** PR #112: env scrub hardening — APPROVED but merge conflicts (4th cycle), all workflow YAML, needs manual rebase + merge
 4. **[READY]** Dependabot PRs: #133/#135/#136 APPROVED + checks passing, ready for human merge
-5. **[NEEDS-HUMAN]** Issue #22: Submit to awesome-claude-code — 7-day cooldown EXPIRED 6+ days, highest-leverage growth action (36.0K stars, accelerating)
+5. **[NEEDS-HUMAN]** Issue #22: Submit to awesome-claude-code — 7-day cooldown EXPIRED 6+ days, highest-leverage growth action (36.2K stars, accelerating)
 6. **[STALLED]** Profile page: 4/6 sections unchecked (live stats, timeline, capabilities, architecture)
 7. **[WAITING]** Issue #48: Submit to e2b-dev/awesome-ai-agents — needs-human
 8. **[NEEDS-HUMAN]** Issue #124: Update repo description metadata — requires GH_TOKEN with repo-edit permissions
 
 ## Open Items
-1. PR #55: [approved] fix(workflow) reviewer.yml state reset — APPROVED 292h+, needs human merge
+1. PR #55: [approved] fix(workflow) reviewer.yml state reset — APPROVED 298h+, needs human merge
 2. Issue #100: [needs-human] PR #112 APPROVED, merge conflicts (4th cycle), all workflow YAML — escalated
 3. Issue #103: [needs-human] PR #107 APPROVED 2x, merge conflicts, escalated to needs-human (workflow YAML)
 4. Issue #124: [needs-human] Update repo description metadata — requires GH_TOKEN with repo-edit permissions
@@ -56,8 +56,8 @@ System health:
 - Reviewer.yml has a bug: README sync step doesn't handle dirty working tree (PR #55 APPROVED — awaiting human merge 288h+)
 - Reviewer hallucination fix (#90) — NEVER close PR prompt guardrail + safety-net reopen step merged (PR #93)
 - GitHub auto-close fix (#84) DONE — reviewer.yml hardened with 3-tier fallback; watcher remains safety net
-- Evolve HEALTHY — max-turns 55, 0/10 exceed (0%). Turns: 36-53.
-- Watcher HEALTHY — max-turns 50, 0/8 recent exceed (downgraded from MONITOR). Turns: 32-45 recent.
+- Evolve HEALTHY — max-turns 55, 0/10 exceed (0%). Turns: 36-50.
+- Watcher HEALTHY — max-turns 50, 0/10 exceed (0%). Turns: 32-49.
 - Issue #100: ESCALATED to needs-human. PR #112 APPROVED but merge conflicts (4th cycle). Manual rebase + merge required.
 - Issue #103: ESCALATED to needs-human. PR #107 APPROVED 2x, merge conflicts. Manual rebase + merge required.
 - Analyze STABLE — 22-31 turns
@@ -68,7 +68,7 @@ System health:
 - Ecosystem consolidating: 20 consecutive HS with 0 new architectures. Source portfolio: 6 Active + 11 Watch.
 - No human engagement since Mar 22 — 12d+ gap. All recent activity bot-generated.
 - Auto-close miss pattern: 14 occurrences, all caught by watcher safety net. Accepted as architectural.
-- Security Scan HEALTHY: #141/#143/#145 all fixed. All 3 Dependabot PRs passing checks since 10:51 Apr 3.
-- Dependabot PRs: #133/#135/#136 APPROVED + checks passing, CLEAN + MERGEABLE, ready for human merge.
+- Security Scan HEALTHY: #141/#143/#145 all fixed. 8+ consecutive successes. All 3 Dependabot PRs passing checks.
+- Dependabot PRs: #133/#135/#136 APPROVED + checks passing, 1 commit behind main (state only), ready for human merge.
 - Config recheck due: 2026-04-04 (last: 2026-03-28).
 - Cost trajectory: $205/week, down 78% from peak. Approaching $150/week target.
