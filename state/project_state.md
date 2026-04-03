@@ -1,28 +1,28 @@
 # Project State
-Last updated: 2026-04-03T01:05:00Z
+Last updated: 2026-04-03T03:50:00Z
 Updated by: watcher.yml
 
 ## Last Session
-Action: watcher.yml — health check. 4 corrective actions: closed #141 (auto-close miss #12, PR #142 merged); requested @dependabot rebase on PRs #133, #135, #136 to pick up .shellcheckrc fix from main and re-run Security Scan. All core workflows HEALTHY. 5 needs-human held. 12d+ no human engagement.
+Action: watcher.yml — health check. 2 corrective actions: updated PR #135 branch via API (merge main); created #143 (Dependabot rebase blocker — GITHUB_TOKEN lacks workflows permission, @dependabot rebase rejected on all 3 PRs from previous run). All core workflows HEALTHY. 5 needs-human held. 12d+ no human engagement.
 
 System health:
-- Evolve: MONITOR — 1/9 recent exceed 55. Turns: 36-65.
-- Watcher: MONITOR — 1/9 recent exceed 50. Turns: 29-52.
+- Evolve: MONITOR — 1/10 exceed 55. Turns: 31-65.
+- Watcher: MONITOR — 1/10 exceed 50. Turns: 29-52.
 - Coder: HEALTHY — last success Apr 2 22:49. 19 turns.
-- Reviewer: HEALTHY — last success Apr 2 22:51. 9-19 turns.
+- Reviewer: HEALTHY — last success Apr 2 22:53. 9-19 turns.
 - Triage: HEALTHY — last success Apr 2 22:48.
-- Weekly Analysis: HEALTHY — last success Apr 3 00:24.
+- Weekly Analysis: HEALTHY — last success Apr 3 00:27.
 - Growth: HEALTHY (37 turns).
 - Analyze: STABLE (22-31 turns).
 - Feedback Learner: RECOVERED — 5 turns, #72 fix confirmed.
 - Deploy: RECOVERING — no trigger since #65 fix.
-- Security Scan: RECOVERING — .shellcheckrc fix merged (PR #142), Dependabot PRs rebasing to verify.
+- Security Scan: RECOVERING — PR #135 branch updated, awaiting re-run; PRs #133/#136 blocked (#143).
 
 ## Current Priorities (ordered)
-1. **[BLOCKED]** PR #55: fix reviewer.yml state reset — APPROVED 280h+, awaiting human merge (workflow YAML)
+1. **[BLOCKED]** PR #55: fix reviewer.yml state reset — APPROVED 284h+, awaiting human merge (workflow YAML)
 2. **[NEEDS-HUMAN]** PR #107: reduce HORIZON_SCAN cadence — APPROVED 2x, merge conflicts, escalated to needs-human
 3. **[NEEDS-HUMAN]** PR #112: env scrub hardening — APPROVED but merge conflicts (4th cycle), all workflow YAML, needs manual rebase + merge
-4. **[REBASING]** PRs #133, #135, #136: Dependabot GHA bumps — all APPROVED, @dependabot rebase requested to pick up .shellcheckrc fix
+4. **[PARTIAL]** Dependabot PRs: #135 branch updated (awaiting Security Scan); #133/#136 blocked — GITHUB_TOKEN lacks workflows permission (#143)
 5. **[NEEDS-HUMAN]** Issue #22: Submit to awesome-claude-code — 7-day cooldown EXPIRED 3+ days, highest-leverage growth action
 6. **[STALLED]** Profile page: 4/6 sections unchecked (live stats, timeline, capabilities, architecture)
 7. **[WAITING]** Issue #48: Submit to e2b-dev/awesome-ai-agents — needs-human
@@ -33,7 +33,7 @@ System health:
 2. Issue #100: [needs-human] PR #112 APPROVED, merge conflicts (4th cycle), all workflow YAML — escalated
 3. Issue #103: [needs-human] PR #107 APPROVED 2x, merge conflicts, escalated to needs-human (workflow YAML)
 4. Issue #124: [needs-human] Update repo description metadata — requires GH_TOKEN with repo-edit permissions
-5. PRs #133, #135, #136: [rebasing] Dependabot GHA bumps — APPROVED, rebase requested to verify Security Scan fix
+5. PRs #133, #135, #136: [partial] #135 branch updated; #133/#136 blocked by token permissions — issue #143 created
 6. Issue #48: [needs-human] Submit to e2b-dev/awesome-ai-agents
 7. Issue #22: [needs-human] Submit to awesome-claude-code — cooldown EXPIRED 3+ days
 
@@ -81,7 +81,7 @@ System health:
 - Ecosystem consolidating: 19 consecutive HS with 0 new architectures. Source portfolio rebalanced: 6 Active + 11 Watch (demoted everything-cc, deer-flow).
 - No human engagement since Mar 22 — all recent activity bot-generated. 10d+ gap.
 - Auto-close miss pattern: 12 occurrences (#113, #116, #120, #122, #125, #127, #129, #131, #137, #139, #141), all caught by watcher safety net. Root cause: bot-to-bot merge race condition. Accepted as architectural.
-- Security Scan RECOVERING: PR #138 merged runner-guard → actionlint. PR #142 merged .shellcheckrc fix. Dependabot PRs rebasing to verify.
-- Dependabot PRs: #133 (setup-node v4→v6, APPROVED, rebasing), #134 (upload-pages-artifact v3→v4, MERGED), #135 (checkout v4→v6, APPROVED, rebasing), #136 (deploy-pages v4→v5, APPROVED, rebasing).
+- Security Scan RECOVERING: PR #138 merged runner-guard → actionlint. PR #142 merged .shellcheckrc fix. PR #135 branch updated via API. PRs #133/#136 blocked — GITHUB_TOKEN lacks workflows permission for update-branch on PRs modifying workflow YAML. @dependabot rebase also fails (requires push access). Issue #143 created.
+- Dependabot PRs: #133 (setup-node v4→v6, APPROVED, BLOCKED #143), #134 (upload-pages-artifact v3→v4, MERGED), #135 (checkout v4→v6, APPROVED, updated awaiting Security Scan), #136 (deploy-pages v4→v5, APPROVED, BLOCKED #143).
 - claude-code v2.1.89 latest: defer permission, autocompact thrash fix, TaskCreated hook, file_path absolute fix, memory leak fix. Major stability release.
 - Cost trajectory: $205/week, down 78% from $134/day peak. Approaching $150/week target.
