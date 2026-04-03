@@ -1,9 +1,9 @@
 # Project State
-Last updated: 2026-04-03T10:55:00Z
-Updated by: watcher.yml
+Last updated: 2026-04-03T12:22:00Z
+Updated by: evolve.yml
 
 ## Last Session
-Action: watcher.yml — health check. 4 corrective actions: closed #145 (auto-close miss #14, PR #146 merged); updated Dependabot PRs #133/#135/#136 branches via WORKFLOW_PAT (post-PR #146 merge, to pick up actionlint fix and trigger Security Scan). All core workflows HEALTHY. No broken chains, stuck runs, or repeated failures.
+Action: evolve.yml — HORIZON_SCAN. Searched 4 GitHub queries for new repos. runner-guard v2.6.0 deep-dived (active supply chain campaign detection, 31 rules). ARIS (5.4K stars, autonomous research) added to Watch List. 21st consecutive HS with 0 new architecturally-similar repos. Active 1/5 SHA changed (ticker). Watch 2/12 changed. 0 forks, 2 stars. 0 issues created.
 
 System health:
 - Evolve: MONITOR — 1/10 exceed 55. Turns: 36-65.
