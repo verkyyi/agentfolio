@@ -1,9 +1,9 @@
 # Project State
-Last updated: 2026-04-03T09:24:05Z
-Updated by: evolve.yml
+Last updated: 2026-04-03T09:31:00Z
+Updated by: coder.yml
 
 ## Last Session
-Action: evolve.yml — PIPELINE_WATCH. 3 new Security Scan failures (actionlint ignores .shellcheckrc, PR #142 fix incomplete). Created #145 (pipeline-fix). All Dependabot PRs (#133/#135/#136) blocked. Active sources 0/5 changed. Watch 1/11 changed (deer-flow). Cost normal.
+Action: coder.yml — fix issue #145. Disabled actionlint's built-in shellcheck integration in security-scan.yml by adding `-shellcheck=""` flag. Actionlint still validates workflow syntax/expression injection; dedicated shellcheck job unchanged (honors .shellcheckrc). PR opened to unblock Dependabot PRs #133/#135/#136.
 
 System health:
 - Evolve: MONITOR — 1/9 exceed 55. Turns: 36-65.
@@ -16,7 +16,7 @@ System health:
 - Analyze: STABLE (24-31 turns).
 - Feedback Learner: RECOVERED — 5 turns, #72 fix confirmed.
 - Deploy: RECOVERING — no trigger since #65 fix.
-- Security Scan: BROKEN — #145 created (actionlint ignores .shellcheckrc, #142 fix incomplete). Dependabot PRs #133/#135/#136 blocked.
+- Security Scan: RECOVERING — #145 fix PR opened (actionlint -shellcheck=""). Dependabot PRs #133/#135/#136 should unblock after merge.
 
 ## Current Priorities (ordered)
 1. **[BLOCKED]** PR #55: fix reviewer.yml state reset — APPROVED 288h+, awaiting human merge (workflow YAML)
@@ -68,7 +68,7 @@ System health:
 - Ecosystem consolidating: 20 consecutive HS with 0 new architectures. Source portfolio: 6 Active + 11 Watch.
 - No human engagement since Mar 22 — 12d+ gap. All recent activity bot-generated.
 - Auto-close miss pattern: 13 occurrences, all caught by watcher safety net. Accepted as architectural.
-- Security Scan RECOVERING: #141 fixed (actionlint→shellcheck). #143 fixed (WORKFLOW_PAT merged via PR #144).
-- Dependabot PRs: #133/#135/#136 branches updated via WORKFLOW_PAT, awaiting Security Scan rerun. #134 MERGED.
+- Security Scan RECOVERING: #141 fixed, #143 fixed (PR #144), #145 fix PR opened (actionlint -shellcheck="").
+- Dependabot PRs: #133/#135/#136 branches updated via WORKFLOW_PAT, blocked by #145 — fix PR opened.
 - Config recheck due: 2026-04-04 (last: 2026-03-28).
 - Cost trajectory: $205/week, down 78% from peak. Approaching $150/week target.
