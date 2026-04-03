@@ -191,4 +191,4 @@
 2026-04-03T08:54:52Z | watcher | model:claude-opus-4-6 | in:1355587 | out:14737 | turns:34 | cost:1.3856914999999999
 2026-04-03T09:22:45Z | growth | model:claude-opus-4-6 | in:974354 | out:7819 | turns:33 | cost:1.0611157499999997
 2026-04-03T09:29:39Z | evolve | model:claude-opus-4-6 | in:1315089 | out:12541 | turns:41 | cost:1.6472432500000003 | posture:PIPELINE_WATCH | issues:0
-2026-04-03T09:32:35Z | coder | model:claude-opus-4-6 | in:513670 | out:2886 | turns:16 | cost:0.61817275
+2026-04-03T09:34:27Z | reviewer | model:claude-opus-4-6 | in:147523 | out:1766 | turns:10 | cost:0.26579149999999996
