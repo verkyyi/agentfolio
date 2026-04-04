@@ -1,43 +1,43 @@
 # Project State
-Last updated: 2026-04-04T18:50:00Z
+Last updated: 2026-04-04T20:47:00Z
 Updated by: watcher.yml
 
 ## Last Session
-Action: watcher.yml — health check. 3 corrective actions: updated Dependabot PRs #133/#135/#136 branches via WORKFLOW_PAT (21 commits behind main). All workflows HEALTHY. No broken chains, stuck runs, or repeated failures. 5 needs-human held. Issue #149 not yet triaged (triage skipped, pre-labeled by growth.yml, under 2h threshold). 0 open pipeline-fix issues.
+Action: watcher.yml — health check. 4 corrective actions: (1) re-triggered triage for #149 (>2h, no triage comment — pre-labeled by growth.yml but never triaged); (2-4) updated Dependabot PRs #133/#135/#136 branches via WORKFLOW_PAT (8-9 commits behind main). All workflows HEALTHY. No broken chains, stuck runs, or repeated failures. 5 needs-human held. 0 open pipeline-fix issues.
 
 System health:
-- Evolve: HEALTHY — 2/10 exceed 55 (PH+HS both 56 one-offs). Turns: 30-56. Monitoring trend.
-- Watcher: HEALTHY — 0/15 exceed 50. Turns: 27-37.
+- Evolve: HEALTHY — turns 39-46 recent, none exceed 55.
+- Watcher: HEALTHY — 0/recent exceed 50. Turns: 31-39.
 - Coder: HEALTHY — last success Apr 4 12:22. 12-19 turns.
 - Reviewer: HEALTHY — last success Apr 4 12:24. 9 turns.
-- Triage: HEALTHY — last success Apr 4 18:12.
+- Triage: HEALTHY — last success Apr 4 18:12. Re-triggered for #149.
 - Weekly Analysis: HEALTHY — last success Apr 4 18:09.
 - Growth: HEALTHY (33-34 turns).
-- Analyze: STABLE (20-28 turns).
+- Analyze: STABLE (25-27 turns).
 - Feedback Learner: RECOVERED — 5 turns, #72 fix confirmed.
 - Deploy: RECOVERING — no trigger since #65 fix.
 - Security Scan: HEALTHY — 10+ consecutive successes, all Dependabot PR checks passing.
 
 ## Current Priorities (ordered)
-1. **[BLOCKED]** PR #55: fix reviewer.yml state reset — APPROVED 316h+, awaiting human merge (workflow YAML)
-2. **[READY]** Dependabot PRs: #133/#135/#136 APPROVED + checks passing, CLEAN+MERGEABLE, branches updated, ready for human merge
-3. **[NEEDS-HUMAN]** Issue #22: Submit to awesome-claude-code — 7-day cooldown EXPIRED 7+ days, highest-leverage growth action (36.2K stars, accelerating)
+1. **[BLOCKED]** PR #55: fix reviewer.yml state reset — APPROVED 318h+, awaiting human merge (workflow YAML)
+2. **[READY]** Dependabot PRs: #133/#135/#136 APPROVED + checks passing, branches updated, ready for human merge
+3. **[NEEDS-HUMAN]** Issue #22: Submit to awesome-claude-code — 7-day cooldown EXPIRED 7+ days, highest-leverage growth action (36.4K stars, accelerating)
 4. **[NEEDS-HUMAN]** PR #107: reduce HORIZON_SCAN cadence — APPROVED 2x, merge conflicts, escalated to needs-human
 5. **[NEEDS-HUMAN]** PR #112: env scrub hardening — 0 reviews, merge conflicts (4th cycle), all workflow YAML, needs manual rebase + merge
 6. **[NEEDS-HUMAN]** Issue #124: Update repo description metadata — requires GH_TOKEN with repo-edit permissions
 7. **[STALLED]** Profile page: 4/6 sections unchecked (live stats, timeline, capabilities, architecture)
 8. **[WAITING]** Issue #48: Submit to e2b-dev/awesome-ai-agents — needs-human
-9. **[NEW]** Issue #149: Submit to EvoMap/awesome-agent-evolution — niche (21★), perfect category fit, they already monitor us
+9. **[TRIAGING]** Issue #149: Submit to EvoMap/awesome-agent-evolution — triage re-triggered (was >2h without triage comment)
 
 ## Open Items
-1. PR #55: [approved] fix(workflow) reviewer.yml state reset — APPROVED 316h+, needs human merge
-2. PRs #133, #135, #136: [ready] APPROVED + checks passing, CLEAN+MERGEABLE, ready for human merge
+1. PR #55: [approved] fix(workflow) reviewer.yml state reset — APPROVED 318h+, needs human merge
+2. PRs #133, #135, #136: [ready] APPROVED + checks passing, branches updated, ready for human merge
 3. Issue #22: [needs-human] Submit to awesome-claude-code — cooldown EXPIRED 7+ days, highest-leverage
 4. Issue #103: [needs-human] PR #107 APPROVED 2x, merge conflicts, escalated to needs-human (workflow YAML)
 5. Issue #100: [needs-human] PR #112 APPROVED, merge conflicts (4th cycle), all workflow YAML — escalated
 6. Issue #124: [needs-human] Update repo description metadata — requires GH_TOKEN with repo-edit permissions
 7. Issue #48: [needs-human] Submit to e2b-dev/awesome-ai-agents
-8. Issue #149: [needs-review] Submit to EvoMap/awesome-agent-evolution — niche but perfect category fit, they already monitor us
+8. Issue #149: [triaging] Submit to EvoMap/awesome-agent-evolution — triage re-triggered
 
 ## Weekly Analysis (Apr 4 — Week of Mar 28–Apr 4)
 
@@ -89,7 +89,7 @@ System health:
 - Evolve lightweight mode gate deployed (commit ce1994c) — skips Steps 2b-2h when sources unchanged 2+ consecutive runs
 - Posture-based research operational: PATTERN_HUNT, PIPELINE_WATCH, HORIZON_SCAN, SYNTHESIS
 - Reviewer.yml skips pull_request events — only runs via workflow_dispatch (watcher triggers)
-- Reviewer.yml has a bug: README sync step doesn't handle dirty working tree (PR #55 APPROVED — awaiting human merge 314h+)
+- Reviewer.yml has a bug: README sync step doesn't handle dirty working tree (PR #55 APPROVED — awaiting human merge 318h+)
 - Reviewer hallucination fix (#90) — NEVER close PR prompt guardrail + safety-net reopen step merged (PR #93)
 - GitHub auto-close fix (#84) DONE — reviewer.yml hardened with 3-tier fallback; watcher remains safety net
 - Evolve HEALTHY — max-turns 55, 2/10 exceed (20%, both 56 one-offs). Turns: 30-56.
