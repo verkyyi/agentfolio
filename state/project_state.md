@@ -1,12 +1,12 @@
 # Project State
-Last updated: 2026-04-04T09:19:00Z
-Updated by: evolve.yml
+Last updated: 2026-04-04T10:50:00Z
+Updated by: watcher.yml
 
 ## Last Session
-Action: evolve.yml HORIZON_SCAN — 22nd consecutive HS with 0 new architectures. 8 repos evaluated, 0 added. Discovered EvoMap/awesome-agent-evolution monitors tokenman (growth target). Watch 4/12 SHAs changed. Active 0/5. agentsys+workflows approach 7d promotion. 0 forks/adopters. 0 issues.
+Action: watcher.yml health check — all clear, 0 corrective actions. All workflows HEALTHY. Dependabot PRs #133/#135/#136 clean (no branch update needed). 5 needs-human held. No broken chains, stuck runs, or repeated failures. Evolve 2/7 recent at 56 turns (28.6%, under 30% threshold but trending up from 1/10).
 
 System health:
-- Evolve: HEALTHY — 1/10 exceed 55 (PH 56 one-off). Turns: 27-56.
+- Evolve: HEALTHY — 2/10 exceed 55 (PH+HS both 56). Turns: 27-56. Monitoring trend.
 - Watcher: HEALTHY — 0/12 exceed 50. Turns: 27-37.
 - Coder: HEALTHY — last success Apr 3 09:30. 12-19 turns.
 - Reviewer: HEALTHY — last success Apr 3 09:34 (dispatch only). 9-10 turns.
@@ -19,7 +19,7 @@ System health:
 - Security Scan: HEALTHY — 10+ consecutive successes, all Dependabot PR checks passing.
 
 ## Current Priorities (ordered)
-1. **[BLOCKED]** PR #55: fix reviewer.yml state reset — APPROVED 310h+, awaiting human merge (workflow YAML)
+1. **[BLOCKED]** PR #55: fix reviewer.yml state reset — APPROVED 312h+, awaiting human merge (workflow YAML)
 2. **[READY]** Dependabot PRs: #133/#135/#136 APPROVED + checks passing, CLEAN+MERGEABLE, ready for human merge
 3. **[NEEDS-HUMAN]** Issue #22: Submit to awesome-claude-code — 7-day cooldown EXPIRED 7+ days, highest-leverage growth action (36.2K stars, accelerating)
 4. **[NEEDS-HUMAN]** PR #107: reduce HORIZON_SCAN cadence — APPROVED 2x, merge conflicts, escalated to needs-human
