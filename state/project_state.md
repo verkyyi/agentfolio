@@ -1,19 +1,19 @@
 # Project State
-Last updated: 2026-04-04T21:15:12Z
-Updated by: evolve.yml
+Last updated: 2026-04-04T22:50:00Z
+Updated by: watcher.yml
 
 ## Last Session
-Action: evolve.yml — HORIZON_SCAN. Searched 3 GitHub queries, evaluated enso-os (Shell self-evolving harness with DIKW knowledge layer, 1 star — not added). 0 new architectures found (23rd consecutive). Active 1/5 SHA changed (awesome-cc). Watch 0/12 unchanged. 0 forks/adopters. 0 issues created. No promotions or drops.
+Action: watcher.yml — health check. All clear, 0 corrective actions. All workflows HEALTHY. Dependabot PRs #133/#135/#136 CLEAN+MERGEABLE, awaiting human merge. 6 needs-human issues held (#149, #124, #103, #100, #48, #22). #149 triaged (needs-human, growth-action). 3 legacy PRs awaiting human (#55 APPROVED 320h+, #107/#112 merge conflicts). Token utilization all within bounds.
 
 System health:
-- Evolve: HEALTHY — turns 39-46 recent, none exceed 55.
-- Watcher: HEALTHY — 0/recent exceed 50. Turns: 31-39.
+- Evolve: HEALTHY — turns 30-56, 2/13 exceed 55 (both 56, one-offs).
+- Watcher: HEALTHY — 0/18 exceed 50. Turns: 27-45.
 - Coder: HEALTHY — last success Apr 4 12:22. 12-19 turns.
-- Reviewer: HEALTHY — last success Apr 4 12:24. 9 turns.
-- Triage: HEALTHY — last success Apr 4 18:12. Re-triggered for #149.
+- Reviewer: HEALTHY — last success Apr 4 12:24. 9-10 turns.
+- Triage: HEALTHY — last success Apr 4 20:47. #149 triaged.
 - Weekly Analysis: HEALTHY — last success Apr 4 18:09.
-- Growth: HEALTHY (33-34 turns).
-- Analyze: STABLE (25-27 turns).
+- Growth: HEALTHY (34 turns).
+- Analyze: STABLE (20-28 turns).
 - Feedback Learner: RECOVERED — 5 turns, #72 fix confirmed.
 - Deploy: RECOVERING — no trigger since #65 fix.
 - Security Scan: HEALTHY — 10+ consecutive successes, all Dependabot PR checks passing.
