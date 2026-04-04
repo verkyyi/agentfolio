@@ -1,13 +1,13 @@
 # Project State
-Last updated: 2026-04-04T06:55:00Z
+Last updated: 2026-04-04T08:50:00Z
 Updated by: watcher.yml
 
 ## Last Session
-Action: watcher.yml health check — all clear, 0 corrective actions. All workflows HEALTHY. Dependabot PRs CLEAN+MERGEABLE. Evolve 1/10 exceed 55 (latest PH at 56 — first exceed).
+Action: watcher.yml health check — all clear, 0 corrective actions. All workflows HEALTHY. Dependabot PRs CLEAN+MERGEABLE. Token utilization all healthy.
 
 System health:
-- Evolve: HEALTHY — 1/10 exceed 55 (latest PH at 56, one-off). Turns: 30-56.
-- Watcher: HEALTHY — 0/12 exceed 50. Turns: 27-45.
+- Evolve: HEALTHY — 1/10 exceed 55 (PH 56 one-off). Turns: 27-56.
+- Watcher: HEALTHY — 0/12 exceed 50. Turns: 27-37.
 - Coder: HEALTHY — last success Apr 3 09:30. 12-19 turns.
 - Reviewer: HEALTHY — last success Apr 3 09:34 (dispatch only). 9-10 turns.
 - Triage: HEALTHY — last success Apr 3 18:16.
@@ -19,9 +19,9 @@ System health:
 - Security Scan: HEALTHY — 10+ consecutive successes, all Dependabot PR checks passing.
 
 ## Current Priorities (ordered)
-1. **[BLOCKED]** PR #55: fix reviewer.yml state reset — APPROVED 308h+, awaiting human merge (workflow YAML)
+1. **[BLOCKED]** PR #55: fix reviewer.yml state reset — APPROVED 310h+, awaiting human merge (workflow YAML)
 2. **[READY]** Dependabot PRs: #133/#135/#136 APPROVED + checks passing, CLEAN+MERGEABLE, ready for human merge
-3. **[NEEDS-HUMAN]** Issue #22: Submit to awesome-claude-code — 7-day cooldown EXPIRED 6+ days, highest-leverage growth action (36.2K stars, accelerating)
+3. **[NEEDS-HUMAN]** Issue #22: Submit to awesome-claude-code — 7-day cooldown EXPIRED 7+ days, highest-leverage growth action (36.2K stars, accelerating)
 4. **[NEEDS-HUMAN]** PR #107: reduce HORIZON_SCAN cadence — APPROVED 2x, merge conflicts, escalated to needs-human
 5. **[NEEDS-HUMAN]** PR #112: env scrub hardening — 0 reviews, merge conflicts (4th cycle), all workflow YAML, needs manual rebase + merge
 6. **[NEEDS-HUMAN]** Issue #124: Update repo description metadata — requires GH_TOKEN with repo-edit permissions
@@ -29,9 +29,9 @@ System health:
 8. **[WAITING]** Issue #48: Submit to e2b-dev/awesome-ai-agents — needs-human
 
 ## Open Items
-1. PR #55: [approved] fix(workflow) reviewer.yml state reset — APPROVED 308h+, needs human merge
+1. PR #55: [approved] fix(workflow) reviewer.yml state reset — APPROVED 310h+, needs human merge
 2. PRs #133, #135, #136: [ready] APPROVED + checks passing, CLEAN+MERGEABLE, ready for human merge
-3. Issue #22: [needs-human] Submit to awesome-claude-code — cooldown EXPIRED 6+ days, highest-leverage
+3. Issue #22: [needs-human] Submit to awesome-claude-code — cooldown EXPIRED 7+ days, highest-leverage
 4. Issue #103: [needs-human] PR #107 APPROVED 2x, merge conflicts, escalated to needs-human (workflow YAML)
 5. Issue #100: [needs-human] PR #112 APPROVED, merge conflicts (4th cycle), all workflow YAML — escalated
 6. Issue #124: [needs-human] Update repo description metadata — requires GH_TOKEN with repo-edit permissions
@@ -87,7 +87,7 @@ System health:
 - Evolve lightweight mode gate deployed (commit ce1994c) — skips Steps 2b-2h when sources unchanged 2+ consecutive runs
 - Posture-based research operational: PATTERN_HUNT, PIPELINE_WATCH, HORIZON_SCAN, SYNTHESIS
 - Reviewer.yml skips pull_request events — only runs via workflow_dispatch (watcher triggers)
-- Reviewer.yml has a bug: README sync step doesn't handle dirty working tree (PR #55 APPROVED — awaiting human merge 304h+)
+- Reviewer.yml has a bug: README sync step doesn't handle dirty working tree (PR #55 APPROVED — awaiting human merge 310h+)
 - Reviewer hallucination fix (#90) — NEVER close PR prompt guardrail + safety-net reopen step merged (PR #93)
 - GitHub auto-close fix (#84) DONE — reviewer.yml hardened with 3-tier fallback; watcher remains safety net
 - Evolve HEALTHY — max-turns 55, 1/10 exceed (10%, latest PH 56 one-off). Turns: 30-56.
