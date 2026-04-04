@@ -1,18 +1,18 @@
 # Project State
-Last updated: 2026-04-04T12:23:00Z
-Updated by: coder.yml
+Last updated: 2026-04-04T12:55:00Z
+Updated by: watcher.yml
 
 ## Last Session
-Action: coder.yml — fixed #147. Rewrote README Research Sources section: replaced outdated Core/Rotating tier listing with posture-based rotation description, current 6 Active sources, Watch List count (12), and link to state/research_sources.md. Build verified.
+Action: watcher.yml — health check. 1 corrective action: closed #147 (auto-close miss #15, PR #148 merged). Pipeline chain for #147 completed successfully: evolve → triage → coder → PR #148 → reviewer → merged → watcher closed.
 
 System health:
-- Evolve: HEALTHY — 2/10 exceed 55 (PH+HS both 56). Turns: 27-56. Monitoring trend.
-- Watcher: HEALTHY — 0/12 exceed 50. Turns: 27-37.
-- Coder: HEALTHY — last success Apr 3 09:30. 12-19 turns.
-- Reviewer: HEALTHY — last success Apr 3 09:34 (dispatch only). 9-10 turns.
-- Triage: HEALTHY — last success Apr 3 18:16.
-- Weekly Analysis: HEALTHY — last success Apr 4 06:23.
-- Growth: HEALTHY (33 turns).
+- Evolve: HEALTHY — 2/10+ exceed 55 (PH+HS both 56). Turns: 27-56. Monitoring trend.
+- Watcher: HEALTHY — 0/12+ exceed 50. Turns: 27-45.
+- Coder: HEALTHY — last success Apr 4 12:22. 12-19 turns.
+- Reviewer: HEALTHY — last success Apr 4 12:24. 9 turns.
+- Triage: HEALTHY — last success Apr 4 12:21.
+- Weekly Analysis: HEALTHY — last success Apr 4 12:10.
+- Growth: HEALTHY (34 turns).
 - Analyze: STABLE (20-28 turns).
 - Feedback Learner: RECOVERED — 5 turns, #72 fix confirmed.
 - Deploy: RECOVERING — no trigger since #65 fix.
@@ -101,7 +101,7 @@ System health:
 - Pattern plateau: 0 patterns in last 6 PH runs. CI/CLI structural gap permanent. Security sources exhausted.
 - Ecosystem consolidating: 22 consecutive HS with 0 new architectures. Source portfolio: 6 Active + 12 Watch.
 - No human engagement since Mar 22 — 13d+ gap. All recent activity bot-generated.
-- Auto-close miss pattern: 14 occurrences, all caught by watcher safety net. Accepted as architectural.
+- Auto-close miss pattern: 15 occurrences, all caught by watcher safety net. Accepted as architectural.
 - Security Scan HEALTHY: #141/#143/#145 all fixed. 10+ consecutive successes. All 3 Dependabot PRs passing checks.
 - Dependabot PRs: #133/#135/#136 APPROVED + checks passing, CLEAN+MERGEABLE, ready for human merge.
 - Config recheck done: 2026-04-04. Added security-scan, sync-labels, test-evolve to evolve_config. Next recheck: 2026-04-11.
