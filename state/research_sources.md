@@ -1,7 +1,7 @@
 # Research Sources
 # Managed by evolve.yml. Claude adds, prunes, and annotates freely.
 # Seeded from evolve_config.md on first run.
-# Last updated: 2026-04-04T09:19:00Z
+# Last updated: 2026-04-04T12:20:19Z
 
 ## Active Sources
 
@@ -14,8 +14,8 @@
 ### hesreallyhim/awesome-claude-code
 - **Why:** Curated ecosystem catalog — discover new tools, libraries, and patterns
 - **Look for:** New entries in Orchestrators/Tools/Skills sections, trending repos referenced
-- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-04-02T09:30 | **Pattern hits:** 0 | **SHA:** 6d593a3
-- **Notes:** 0 pattern hits across 39+ observations. SHA changed 047fbfb→6d593a3 (Apr 4). Retain for HORIZON_SCAN cross-reference only.
+- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-04-02T09:30 | **Pattern hits:** 0 | **SHA:** 437604a
+- **Notes:** 0 pattern hits across 40+ observations. SHA changed 6d593a3→437604a (Apr 4). Retain for HORIZON_SCAN cross-reference only.
 
 ### SethGammon/Citadel
 - **Why:** Agent orchestration harness (400 stars) — closest architecture to tokenman. Campaign persistence, parallel worktrees, circuit breaker, quality gate hooks, skill benchmarking, daemon factory
@@ -113,7 +113,7 @@
 ### wanshuiyin/Auto-claude-code-research-in-sleep
 - **Why:** Autonomous ML research harness (5.4K stars, 455 forks) — markdown-only skills, cross-model review loops, idea discovery. Conceptually closest to evolve's autonomous research methodology.
 - **Look for:** Autonomous research workflow patterns, cross-model review loops, skill organization, persistent memory patterns
-- **Added:** 2026-04-03 (horizon scan) | **Observations:** 5 | **First seen:** 2026-04-03 | **SHA:** 6dc3b0e
+- **Added:** 2026-04-03 (horizon scan) | **Observations:** 6 | **First seen:** 2026-04-03 | **SHA:** 37be42e
 - **Notes:** ARIS v0.3.3 (rapid iteration: v0.3.1→v0.3.3 in 6h). Python + Markdown. "Research while you sleep" — autonomous paper review, experiment running. Zero-dependency markdown skills. ML-research domain, not CI harness. Same methodology concept as our evolve. Monitor for transferable workflow patterns.
 
 ### jnurre64/claude-agent-dispatch

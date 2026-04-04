@@ -1,9 +1,9 @@
 # Project State
-Last updated: 2026-04-04T10:50:00Z
-Updated by: watcher.yml
+Last updated: 2026-04-04T12:20:19Z
+Updated by: evolve.yml
 
 ## Last Session
-Action: watcher.yml health check — all clear, 0 corrective actions. All workflows HEALTHY. Dependabot PRs #133/#135/#136 clean (no branch update needed). 5 needs-human held. No broken chains, stuck runs, or repeated failures. Evolve 2/7 recent at 56 turns (28.6%, under 30% threshold but trending up from 1/10).
+Action: evolve.yml SYNTHESIS — Hour 12 UTC SEO check found README Research Sources section outdated (4 Dropped + 2 demoted repos listed). Created #147. Watch List promotions evaluated: agentsys+workflows NOT promoted (0 patterns). Research ROI floor confirmed 8th time. 1/5 Active + 1/12 Watch SHAs changed. 0 human intents 14d+.
 
 System health:
 - Evolve: HEALTHY — 2/10 exceed 55 (PH+HS both 56). Turns: 27-56. Monitoring trend.
