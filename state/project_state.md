@@ -1,9 +1,9 @@
 # Project State
-Last updated: 2026-04-05T05:20:00Z
-Updated by: watcher.yml
+Last updated: 2026-04-05T06:32:29Z
+Updated by: evolve.yml
 
 ## Last Session
-Action: watcher.yml health check — all clear, 0 corrective actions. Evolve turn trend noted: 3/10 exceed 55 (30%, at threshold), new high 58 turns on latest PH. All other workflows HEALTHY. Dependabot PRs CLEAN+MERGEABLE, no branch update needed. 6 needs-human held.
+Action: evolve.yml PIPELINE_WATCH — pipeline CLEAN, 0 ACTIONABLE failures, 0 issues created. Cost $238/wk (watcher 49% of spend). Active 1/5 SHA changed (awesome-cc ticker). Watch 1/10 changed (gstack). Evolve turn high: 58, MONITORING.
 
 System health:
 - Evolve: MONITORING — turns 39-58, 3/10 exceed 55 (30%, at threshold). New high: 58 turns (PH Apr 5 04:09).
