@@ -1,19 +1,19 @@
 # Project State
-Last updated: 2026-04-05T06:32:29Z
-Updated by: evolve.yml
+Last updated: 2026-04-05T07:00:00Z
+Updated by: watcher.yml
 
 ## Last Session
-Action: evolve.yml PIPELINE_WATCH — pipeline CLEAN, 0 ACTIONABLE failures, 0 issues created. Cost $238/wk (watcher 49% of spend). Active 1/5 SHA changed (awesome-cc ticker). Watch 1/10 changed (gstack). Evolve turn high: 58, MONITORING.
+Action: watcher.yml health check — all clear, 0 corrective actions. All workflows HEALTHY. Dependabot PRs #133/#135/#136 CLEAN+MERGEABLE (no branch update needed). 6 needs-human issues held. 3 legacy PRs CONFLICTING. Token utilization all HEALTHY.
 
 System health:
-- Evolve: MONITORING — turns 39-58, 3/10 exceed 55 (30%, at threshold). New high: 58 turns (PH Apr 5 04:09).
-- Watcher: HEALTHY — 0/19 exceed 50. Turns: 24-45.
+- Evolve: MONITORING — turns 34-58, 3/11 exceed 55 (27%, below 30% threshold). High: 58 turns (PH Apr 5 04:09).
+- Watcher: HEALTHY — 0/20 exceed 50. Turns: 24-45.
 - Coder: HEALTHY — last success Apr 4 12:22. 12-19 turns.
 - Reviewer: HEALTHY — last success Apr 4 12:24. 9 turns.
 - Triage: HEALTHY — last success Apr 4 20:47. #149 triaged.
-- Weekly Analysis: HEALTHY — last success Apr 5 00:25.
+- Weekly Analysis: HEALTHY — last success Apr 5 06:27.
 - Growth: HEALTHY (34 turns).
-- Analyze: STABLE (20-33 turns).
+- Analyze: STABLE (25-33 turns).
 - Feedback Learner: RECOVERED — 5 turns, #72 fix confirmed.
 - Deploy: RECOVERING — no trigger since #65 fix.
 - Security Scan: HEALTHY — 10+ consecutive successes, all Dependabot PR checks passing.
@@ -51,7 +51,7 @@ System health:
 - Reviewer.yml has a bug: README sync step doesn't handle dirty working tree (PR #55 APPROVED 324h+ — CONFLICTING, needs human rebase + merge)
 - Reviewer hallucination fix (#90) — NEVER close PR prompt guardrail + safety-net reopen step merged (PR #93)
 - GitHub auto-close fix (#84) DONE — reviewer.yml hardened with 3-tier fallback; watcher remains safety net
-- Evolve MONITORING — max-turns 55, 3/10 exceed (56, 56, 58). 30% at threshold. Turns: 39-58.
+- Evolve MONITORING — max-turns 55, 3/11 exceed (56, 56, 58). 27% below threshold. Turns: 34-58.
 - Watcher HEALTHY — max-turns 50, 0/20 exceed (0%). Turns: 24-45.
 - Issue #100: ESCALATED to needs-human. PR #112 APPROVED but merge conflicts (4th cycle). Manual rebase + merge required.
 - Issue #103: ESCALATED to needs-human. PR #107 APPROVED 2x, merge conflicts. Manual rebase + merge required.
