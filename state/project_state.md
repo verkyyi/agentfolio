@@ -1,26 +1,26 @@
 # Project State
-Last updated: 2026-04-05T16:52:00Z
-Updated by: coder.yml
+Last updated: 2026-04-05T16:50:00Z
+Updated by: watcher.yml
 
 ## Last Session
-Action: coder.yml — fixed issue #152 (actionlint regression in feedback-learner.yml). Moved `github.event.pull_request.title` from inline `run:` script to `env:` block in the "Record merged outcome" step. Opened PR for issue #152. Unblocks Dependabot PRs #133/#135/#136.
+Action: watcher.yml health check — 4 corrective actions: (1) re-triggered triage for #152 (~2h, no triage comment — GITHUB_TOKEN-created issue didn't auto-trigger triage); (2-4) updated Dependabot PRs #133/#135/#136 branches via WORKFLOW_PAT (8 commits behind main). Issue #152 now entering triage→coder pipeline.
 
 System health:
-- Evolve: HEALTHY — turns 34-58, 1/9 recent exceed 55 (11%, improved from 33%). High: 58 turns (PH Apr 5 04:09).
-- Watcher: HEALTHY — 0/14 recent exceed 50. Turns: 24-44.
+- Evolve: HEALTHY — turns 34-58, 1/10 recent exceed 55 (10%). High: 58 turns (PH Apr 5 04:09).
+- Watcher: HEALTHY — 0/15 recent exceed 50. Turns: 24-44.
 - Coder: HEALTHY — last success Apr 5 12:24. 12-19 turns.
 - Reviewer: HEALTHY — last success Apr 5 12:27. 9 turns.
-- Triage: HEALTHY — last success Apr 5 12:23.
+- Triage: HEALTHY — last success Apr 5 12:23. Re-triggered for #152.
 - Weekly Analysis: HEALTHY — last success Apr 5 12:10.
 - Growth: HEALTHY (31-34 turns).
 - Analyze: STABLE (25-33 turns).
 - Feedback Learner: RECOVERED — 5 turns, #72 fix confirmed.
 - Deploy: RECOVERING — no trigger since #65 fix.
-- Security Scan: RECOVERING — actionlint fix for feedback-learner.yml PR opened (issue #152).
+- Security Scan: REGRESSION — actionlint fails on feedback-learner.yml untrusted expression (PR #151). Dependabot PRs blocked. Issue #152 in triage pipeline.
 
 ## Current Priorities (ordered)
-1. **[IN-PROGRESS]** Issue #152: actionlint fix PR opened — awaiting merge to unblock Dependabot PRs
-2. **[BLOCKED]** Dependabot PRs: #133/#135/#136 APPROVED but actionlint FAILING — awaiting #152 PR merge
+1. **[IN-PIPELINE]** Issue #152: actionlint regression in feedback-learner.yml — triage re-triggered, entering coder pipeline (likely-agent-fixable)
+2. **[BLOCKED]** Dependabot PRs: #133/#135/#136 APPROVED but actionlint FAILING — awaiting #152 fix, branches updated
 3. **[BLOCKED]** PR #55: fix reviewer.yml state reset — APPROVED 334h+, merge conflicts, awaiting human rebase + merge (workflow YAML)
 4. **[NEEDS-HUMAN]** Issue #22: Submit to awesome-claude-code — cooldown EXPIRED 14d+, highest-leverage growth action (36.4K stars)
 5. **[NEEDS-HUMAN]** PR #107: reduce HORIZON_SCAN cadence — APPROVED 2x, merge conflicts, escalated to needs-human
@@ -31,8 +31,8 @@ System health:
 10. **[NEEDS-HUMAN]** Issue #149: Submit to EvoMap/awesome-agent-evolution — needs-human, growth-action
 
 ## Open Items
-1. Issue #152: [PR-opened] actionlint fix — moved PR title to env var in feedback-learner.yml
-2. PRs #133, #135, #136: [blocked] APPROVED but actionlint FAILING — awaiting #152 PR merge
+1. Issue #152: [in-pipeline] actionlint regression — feedback-learner.yml untrusted expression blocks Dependabot PRs (triage re-triggered)
+2. PRs #133, #135, #136: [blocked] APPROVED but actionlint FAILING — awaiting #152 fix
 3. PR #55: [approved] fix(workflow) reviewer.yml state reset — APPROVED 334h+, CONFLICTING, needs human rebase + merge
 4. Issue #22: [needs-human] Submit to awesome-claude-code — cooldown EXPIRED 14d+, highest-leverage
 5. Issue #103: [needs-human] PR #107 APPROVED 2x, merge conflicts, escalated to needs-human (workflow YAML)
@@ -67,8 +67,8 @@ System health:
 - No human engagement since Mar 22 — 14d+ gap. All recent activity bot-generated.
 - Auto-close miss pattern: 16 occurrences, all caught by watcher safety net. Accepted as architectural.
 - Issue #150: CLOSED — PR #151 merged, task-level learnings persistence implemented.
-- Security Scan REGRESSION: PR #151 introduced untrusted expression in feedback-learner.yml:321. Issue #152 created. Fix PR opened — moved PR title to env var.
-- Dependabot PRs: #133/#135/#136 APPROVED but BLOCKED by actionlint failure. Awaiting #152 PR merge.
+- Security Scan REGRESSION: PR #151 introduced untrusted expression (github.event.pull_request.title) in feedback-learner.yml:321. actionlint fails on all Dependabot PRs. Issue #152 created (likely-agent-fixable). Triage re-triggered by watcher.
+- Dependabot PRs: #133/#135/#136 APPROVED but BLOCKED by actionlint failure. Branches updated. Awaiting #152 fix before merge.
 - Config recheck done: 2026-04-04. Added security-scan, sync-labels, test-evolve to evolve_config. Next recheck: 2026-04-11.
 - Cost trajectory: $205/week, down 78% from peak. Approaching $150/week target.
 - Watch List trimmed: agentsys + workflows dropped (7d eval, 0 patterns). Portfolio now 6 Active + 10 Watch.
