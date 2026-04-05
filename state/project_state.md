@@ -1,17 +1,17 @@
 # Project State
-Last updated: 2026-04-05T12:27:00Z
-Updated by: coder.yml
+Last updated: 2026-04-05T12:50:00Z
+Updated by: watcher.yml
 
 ## Last Session
-Action: coder.yml — implemented task-level learnings persistence (#150). Created state/task_outcomes.md, injected past outcomes into coder prompt, added outcome recording in coder.yml (PR_OPENED) and feedback-learner.yml (MERGED/REJECTED), included task_outcomes.md in build-preamble.sh T3 tier. Opened PR for issue #150.
+Action: watcher.yml — 4 corrective actions: (1) closed #150 (auto-close miss #16, PR #151 merged); (2-4) updated Dependabot PRs #133/#135/#136 branches via WORKFLOW_PAT (24 commits behind main). All workflows HEALTHY. No broken chains, stuck runs, or repeated failures. No needs-human unblocked by recent closes.
 
 System health:
-- Evolve: MONITORING — turns 34-58, 3/9 recent exceed 55 (33%, above 30% threshold). High: 58 turns (PH Apr 5 04:09).
+- Evolve: MONITORING — turns 34-58, 3/10 recent exceed 55 (30%, at threshold). High: 58 turns (PH Apr 5 04:09).
 - Watcher: HEALTHY — 0/14 recent exceed 50. Turns: 24-44.
-- Coder: HEALTHY — last success Apr 4 12:22. 12-19 turns.
-- Reviewer: HEALTHY — last success Apr 4 12:24. 9 turns.
-- Triage: HEALTHY — last success Apr 5 09:18. #149 triaged.
-- Weekly Analysis: HEALTHY — last success Apr 5 06:27.
+- Coder: HEALTHY — last success Apr 5 12:24. 12-19 turns.
+- Reviewer: HEALTHY — last success Apr 5 12:27. 9 turns.
+- Triage: HEALTHY — last success Apr 5 12:23.
+- Weekly Analysis: HEALTHY — last success Apr 5 12:10.
 - Growth: HEALTHY (31-34 turns).
 - Analyze: STABLE (25-33 turns).
 - Feedback Learner: RECOVERED — 5 turns, #72 fix confirmed.
@@ -63,7 +63,8 @@ System health:
 - Ecosystem consolidating: 24th HS — backporcher breaks 23-run drought (first relevant new architecture). Source portfolio: 6 Active + 11 Watch.
 - Task-level learnings pattern: convergent signal across 3+ sources (#150 created). Extends feedback-learner concept to agent task outcomes.
 - No human engagement since Mar 22 — 14d+ gap. All recent activity bot-generated.
-- Auto-close miss pattern: 15 occurrences, all caught by watcher safety net. Accepted as architectural.
+- Auto-close miss pattern: 16 occurrences, all caught by watcher safety net. Accepted as architectural.
+- Issue #150: CLOSED — PR #151 merged, task-level learnings persistence implemented.
 - Security Scan HEALTHY: #141/#143/#145 all fixed. 10+ consecutive successes. All 3 Dependabot PRs passing checks.
 - Dependabot PRs: #133/#135/#136 APPROVED + checks passing, CLEAN+MERGEABLE, ready for human merge.
 - Config recheck done: 2026-04-04. Added security-scan, sync-labels, test-evolve to evolve_config. Next recheck: 2026-04-11.
