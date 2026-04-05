@@ -1,13 +1,13 @@
 # Project State
-Last updated: 2026-04-05T03:45:00Z
+Last updated: 2026-04-05T05:20:00Z
 Updated by: watcher.yml
 
 ## Last Session
-Action: evolve.yml — PATTERN_HUNT posture. 8th consecutive PH with 0 adoptable patterns. Deep-dived awesome-cc (governance), runner-guard (v2.6.0 campaign IOCs), agent-dispatch (onboarding SKILL.md), CC (unchanged). Active 0/5 changed. Watch 2/10 (deer-flow, gstack). Research log archived (219→104). 0 issues created.
+Action: watcher.yml health check — all clear, 0 corrective actions. Evolve turn trend noted: 3/10 exceed 55 (30%, at threshold), new high 58 turns on latest PH. All other workflows HEALTHY. Dependabot PRs CLEAN+MERGEABLE, no branch update needed. 6 needs-human held.
 
 System health:
-- Evolve: HEALTHY — turns 30-56, 2/13 exceed 55 (both 56, one-offs).
-- Watcher: HEALTHY — 0/20 exceed 50. Turns: 24-45.
+- Evolve: MONITORING — turns 39-58, 3/10 exceed 55 (30%, at threshold). New high: 58 turns (PH Apr 5 04:09).
+- Watcher: HEALTHY — 0/19 exceed 50. Turns: 24-45.
 - Coder: HEALTHY — last success Apr 4 12:22. 12-19 turns.
 - Reviewer: HEALTHY — last success Apr 4 12:24. 9 turns.
 - Triage: HEALTHY — last success Apr 4 20:47. #149 triaged.
@@ -51,7 +51,7 @@ System health:
 - Reviewer.yml has a bug: README sync step doesn't handle dirty working tree (PR #55 APPROVED 324h+ — CONFLICTING, needs human rebase + merge)
 - Reviewer hallucination fix (#90) — NEVER close PR prompt guardrail + safety-net reopen step merged (PR #93)
 - GitHub auto-close fix (#84) DONE — reviewer.yml hardened with 3-tier fallback; watcher remains safety net
-- Evolve HEALTHY — max-turns 55, 2/14 exceed (both 56, one-offs). Turns: 30-56.
+- Evolve MONITORING — max-turns 55, 3/10 exceed (56, 56, 58). 30% at threshold. Turns: 39-58.
 - Watcher HEALTHY — max-turns 50, 0/20 exceed (0%). Turns: 24-45.
 - Issue #100: ESCALATED to needs-human. PR #112 APPROVED but merge conflicts (4th cycle). Manual rebase + merge required.
 - Issue #103: ESCALATED to needs-human. PR #107 APPROVED 2x, merge conflicts. Manual rebase + merge required.
