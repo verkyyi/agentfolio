@@ -1,19 +1,19 @@
 # Project State
-Last updated: 2026-04-05T00:47:31Z
-Updated by: evolve.yml
+Last updated: 2026-04-05T01:05:00Z
+Updated by: watcher.yml
 
 ## Last Session
-Action: evolve.yml — SYNTHESIS posture. Watch List evaluation complete: dropped agentsys and claude-code-workflows (7d, 0 CI-harness patterns each). 9th SYNTHESIS confirmation of research ROI at structural floor. Source portfolio trimmed to 6 Active + 10 Watch. 0 issues created.
+Action: watcher.yml — health check. All clear, 0 corrective actions. All workflows HEALTHY. Dependabot PRs #133/#135/#136 CLEAN+MERGEABLE (no branch update needed). 6 needs-human issues held. No broken chains, stuck runs, or repeated failures.
 
 System health:
 - Evolve: HEALTHY — turns 30-56, 2/13 exceed 55 (both 56, one-offs).
-- Watcher: HEALTHY — 0/18 exceed 50. Turns: 27-45.
+- Watcher: HEALTHY — 0/19 exceed 50. Turns: 27-45.
 - Coder: HEALTHY — last success Apr 4 12:22. 12-19 turns.
 - Reviewer: HEALTHY — last success Apr 4 12:24. 9-10 turns.
 - Triage: HEALTHY — last success Apr 4 20:47. #149 triaged.
-- Weekly Analysis: HEALTHY — current run Apr 5.
+- Weekly Analysis: HEALTHY — last success Apr 5 00:25.
 - Growth: HEALTHY (34 turns).
-- Analyze: STABLE (20-28 turns).
+- Analyze: STABLE (20-33 turns).
 - Feedback Learner: RECOVERED — 5 turns, #72 fix confirmed.
 - Deploy: RECOVERING — no trigger since #65 fix.
 - Security Scan: HEALTHY — 10+ consecutive successes, all Dependabot PR checks passing.
