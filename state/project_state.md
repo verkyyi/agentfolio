@@ -1,13 +1,13 @@
 # Project State
-Last updated: 2026-04-05T21:13:00Z
-Updated by: evolve.yml
+Last updated: 2026-04-05T22:50:00Z
+Updated by: watcher.yml
 
 ## Last Session
-Action: evolve.yml PATTERN_HUNT — deep-dived CC (v2.1.92 unchanged), actions/runner (unchanged), Citadel (FUNDING.yml only). SHA scanned 16 sources: 4 changed (gstack review army/ClaHub, everything-cc opencode, agentshield docs, awesome-cc ticker). 10th consecutive PH with 0 adoptable patterns. Pattern plateau confirmed structural.
+Action: watcher.yml health check — 3 corrective actions: updated Dependabot PRs #133/#135/#136 branches via WORKFLOW_PAT (5 commits behind main from evolve 21:11Z commit). All workflows HEALTHY. Security Scan VALIDATED (consecutive successes). 6 needs-human issues held. 0 pipeline-fix issues. Token utilization all HEALTHY.
 
 System health:
 - Evolve: HEALTHY — turns 34-58, 1/9 recent exceed 55 (11%). High: 58 turns (PH Apr 5 04:09).
-- Watcher: HEALTHY — 0/16 recent exceed 50. Turns: 24-44.
+- Watcher: HEALTHY — 0/17 recent exceed 50. Turns: 24-44.
 - Coder: HEALTHY — last success Apr 5 16:55. 43 turns (complex #152 fix).
 - Reviewer: HEALTHY — last success Apr 5 16:59. 35 turns.
 - Triage: HEALTHY — last success Apr 5 18:13.
@@ -20,7 +20,7 @@ System health:
 
 ## Current Priorities (ordered)
 1. **[READY]** Dependabot PRs: #133/#135/#136 — ALL PASSING, APPROVED, branches up-to-date, awaiting human merge
-2. **[BLOCKED]** PR #55: fix reviewer.yml state reset — APPROVED 342h+, merge conflicts, awaiting human rebase + merge (workflow YAML)
+2. **[BLOCKED]** PR #55: fix reviewer.yml state reset — APPROVED 344h+, merge conflicts, awaiting human rebase + merge (workflow YAML)
 3. **[NEEDS-HUMAN]** Issue #22: Submit to awesome-claude-code — cooldown EXPIRED 14d+, highest-leverage growth action (36.7K stars)
 4. **[NEEDS-HUMAN]** PR #107: reduce HORIZON_SCAN cadence — APPROVED 2x, merge conflicts, escalated to needs-human
 5. **[NEEDS-HUMAN]** PR #112: env scrub hardening — 0 reviews, merge conflicts (4th cycle), all workflow YAML, needs manual rebase + merge
@@ -30,8 +30,8 @@ System health:
 9. **[NEEDS-HUMAN]** Issue #149: Submit to EvoMap/awesome-agent-evolution — needs-human, growth-action
 
 ## Open Items
-1. PRs #133, #135, #136: [ready] ALL PASSING + APPROVED + branches updated — awaiting human merge
-2. PR #55: [approved] fix(workflow) reviewer.yml state reset — APPROVED 342h+, CONFLICTING, needs human rebase + merge
+1. PRs #133, #135, #136: [ready] ALL PASSING + APPROVED + branches updated (22:50Z) — awaiting human merge
+2. PR #55: [approved] fix(workflow) reviewer.yml state reset — APPROVED 344h+, CONFLICTING, needs human rebase + merge
 3. Issue #22: [needs-human] Submit to awesome-claude-code — cooldown EXPIRED 14d+, highest-leverage
 4. Issue #103: [needs-human] PR #107 APPROVED 2x, merge conflicts, escalated to needs-human (workflow YAML)
 5. Issue #100: [needs-human] PR #112 APPROVED, merge conflicts (4th cycle), all workflow YAML — escalated
@@ -52,7 +52,7 @@ System health:
 - Reviewer hallucination fix (#90) — NEVER close PR prompt guardrail + safety-net reopen step merged (PR #93)
 - GitHub auto-close fix (#84) DONE — reviewer.yml hardened with 3-tier fallback; watcher remains safety net
 - Evolve HEALTHY — max-turns 55, 1/9 recent exceed (58). 11%, improved from 33% MONITORING. Turns: 34-58.
-- Watcher HEALTHY — max-turns 50, 0/14 recent exceed (0%). Turns: 24-44.
+- Watcher HEALTHY — max-turns 50, 0/17 recent exceed (0%). Turns: 24-44.
 - Issue #100: ESCALATED to needs-human. PR #112 APPROVED but merge conflicts (4th cycle). Manual rebase + merge required.
 - Issue #103: ESCALATED to needs-human. PR #107 APPROVED 2x, merge conflicts. Manual rebase + merge required.
 - Analyze STABLE — 22-31 turns
