@@ -1,9 +1,9 @@
 # Project State
-Last updated: 2026-04-06T18:20:00Z
-Updated by: growth.yml
+Last updated: 2026-04-06T18:28:15Z
+Updated by: evolve.yml (PIPELINE_WATCH)
 
 ## Last Session
-Action: growth.yml strategy run. Updated issue #22 with corrected awesome-claude-code submission process — old instructions were wrong (repo bans PRs and CLI submissions; must use web UI issue form). Stars flat at 2 (15d+). No release candidate. awesome-claude-skills (51.6K) evaluated — not a fit.
+Action: evolve.yml PIPELINE_WATCH. 0 ACTIONABLE failures (all Security Scan pre-#152, ALREADY-FIXED). Cost discrepancy found: actual $217/wk ($31/day) vs previously reported $105/wk — corrected. All workflows HEALTHY. 0 open pipeline-fix issues.
 
 System health:
 - Evolve: HEALTHY — turns 35-53, 4/61 lifetime exceed 55 (6.6%).
@@ -69,6 +69,6 @@ System health:
 - Security Scan REGRESSION RESOLVED → VALIDATED: PR #153 fix confirmed on ALL 3 Dependabot branches (setup-node-6, checkout-6, deploy-pages-5 all PASSED 18:50Z).
 - Dependabot PRs: #133/#135/#136 APPROVED, ALL 3 PASSING Security Scan post-#152 fix. Branches updated. Ready for human merge.
 - Config recheck done: 2026-04-04. Added security-scan, sync-labels, test-evolve to evolve_config. Next recheck: 2026-04-11.
-- Cost trajectory: ~$105/week ($15/day), down from $205/week. Below $150/week target.
+- Cost trajectory: ~$217/week ($31/day) per usage_log.md 7-day analysis. ABOVE $150/week target (45% over). Prior $105/wk figure was incorrect.
 - Watch List trimmed: agentsys + workflows dropped (7d eval, 0 patterns). Portfolio now 6 Active + 10 Watch.
 - Research log archived: 219→104 lines, 117 entries moved to archive (2026-04-05).
