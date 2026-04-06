@@ -144,3 +144,6 @@
 2026-04-06T18:28:15Z | pipeline-health | 0 ACTIONABLE failures. 10 failed runs ALL Security Scan (pre-#152 fix, ALREADY-FIXED). 9+ consecutive successes since fix. 0 open pipeline-fix issues. | no action
 2026-04-06T18:28:15Z | pipeline-costs | Cost discrepancy: prior reports claim $105/wk ($15/day) but usage_log.md shows $217/wk ($31/day avg) over 7 days (Mar 31-Apr 6). 45% above $150/wk target. Consistently ~$31/day (26 runs/day cost-bearing). Reviewer runs all skipped (0 cost). | observation — correct figure in state files
 2026-04-06T18:28:15Z | sha-scan | Active: 1/5 changed (awesome-cc 8940d44→1e6cec4 ticker). Watch: 0/10 frozen. 14/15 unchanged (3rd consecutive for most). Self: 5cd640c, 2 stars, 0 forks. | SHAs updated
+2026-04-06T21:20:28Z | runner-guard | v2.8.0 check-deps: curated compromised-packages DB (439 lines, UNC1069/Axios, TeamPCP/litellm+telnyx). npm/pypi/Go. Enhances #127 scope. | comment added to #127
+2026-04-06T21:20:28Z | ARIS | Dual-logging pattern: project + global ~/.aris/meta/events.jsonl. JSONL structured events. Not adoptable (ephemeral runners, single project). | no action
+2026-04-06T21:20:28Z | sha-scan | All 6 Active sources unchanged (3rd consecutive). Watch: 1/10 changed (ECC: docs/CI, not pattern-relevant). | no action
