@@ -1,9 +1,9 @@
 # Project State
-Last updated: 2026-04-06T16:50:00Z
-Updated by: watcher.yml
+Last updated: 2026-04-06T18:20:00Z
+Updated by: growth.yml
 
 ## Last Session
-Action: watcher.yml health check. All clear — 0 corrective actions. All workflows HEALTHY. Dependabot PRs #133/#135/#136 CLEAN+MERGEABLE (no branch update needed). 6 needs-human issues held. 0 pipeline-fix issues. 0 failures in last 6 hours.
+Action: growth.yml strategy run. Updated issue #22 with corrected awesome-claude-code submission process — old instructions were wrong (repo bans PRs and CLI submissions; must use web UI issue form). Stars flat at 2 (15d+). No release candidate. awesome-claude-skills (51.6K) evaluated — not a fit.
 
 System health:
 - Evolve: HEALTHY — turns 35-53, 4/61 lifetime exceed 55 (6.6%).
@@ -21,7 +21,7 @@ System health:
 ## Current Priorities (ordered)
 1. **[READY]** Dependabot PRs: #133/#135/#136 — ALL PASSING, APPROVED, branches up-to-date, awaiting human merge
 2. **[BLOCKED]** PR #55: fix reviewer.yml state reset — APPROVED 362h+, merge conflicts, awaiting human rebase + merge (workflow YAML)
-3. **[NEEDS-HUMAN]** Issue #22: Submit to awesome-claude-code — cooldown EXPIRED 15d+, highest-leverage growth action (36.7K stars)
+3. **[NEEDS-HUMAN]** Issue #22: Submit to awesome-claude-code — UPDATED with correct web UI form instructions (36.9K stars, highest-leverage)
 4. **[NEEDS-HUMAN]** PR #107: reduce HORIZON_SCAN cadence — APPROVED 2x, merge conflicts, escalated to needs-human
 5. **[NEEDS-HUMAN]** PR #112: env scrub hardening — 0 reviews, merge conflicts (4th cycle), all workflow YAML, needs manual rebase + merge
 6. **[NEEDS-HUMAN]** Issue #124: Update repo description metadata — requires GH_TOKEN with repo-edit permissions
@@ -32,7 +32,7 @@ System health:
 ## Open Items
 1. PRs #133, #135, #136: [ready] ALL PASSING + APPROVED + CLEAN (16:50Z) — awaiting human merge
 2. PR #55: [approved] fix(workflow) reviewer.yml state reset — APPROVED 362h+, CONFLICTING, needs human rebase + merge
-3. Issue #22: [needs-human] Submit to awesome-claude-code — cooldown EXPIRED 15d+, highest-leverage
+3. Issue #22: [needs-human] Submit to awesome-claude-code — UPDATED with correct web UI form process, 36.9K stars, highest-leverage
 4. Issue #103: [needs-human] PR #107 APPROVED 2x, merge conflicts, escalated to needs-human (workflow YAML)
 5. Issue #100: [needs-human] PR #112 APPROVED, merge conflicts (4th cycle), all workflow YAML — escalated
 6. Issue #124: [needs-human] Update repo description metadata — requires GH_TOKEN with repo-edit permissions
