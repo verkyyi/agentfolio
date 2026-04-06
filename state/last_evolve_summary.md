@@ -1,26 +1,26 @@
 # Last Evolve Summary
-Timestamp: 2026-04-06T18:28:15Z
-Main HEAD: 5cd640c
-Posture: PIPELINE_WATCH (3 runs since last PW, cost discrepancy warranted investigation)
-Posture history: [PIPELINE_WATCH, SYNTHESIS, HORIZON_SCAN, PATTERN_HUNT, PIPELINE_WATCH, SYNTHESIS, HORIZON_SCAN, PATTERN_HUNT, PIPELINE_WATCH, SYNTHESIS, HORIZON_SCAN, PATTERN_HUNT, PIPELINE_WATCH, PATTERN_HUNT, SYNTHESIS, PIPELINE_WATCH, SYNTHESIS, PATTERN_HUNT, HORIZON_SCAN, PATTERN_HUNT, PIPELINE_WATCH, SYNTHESIS, PIPELINE_WATCH, HORIZON_SCAN, PATTERN_HUNT, SYNTHESIS, PIPELINE_WATCH, SYNTHESIS, PATTERN_HUNT, HORIZON_SCAN, PATTERN_HUNT, PIPELINE_WATCH, SYNTHESIS, PIPELINE_WATCH, HORIZON_SCAN, SYNTHESIS, PATTERN_HUNT, PIPELINE_WATCH, HORIZON_SCAN, SYNTHESIS, PATTERN_HUNT, SYNTHESIS, PIPELINE_WATCH, PATTERN_HUNT, PATTERN_HUNT]
+Timestamp: 2026-04-06T21:20:48Z
+Main HEAD: 8656396
+Posture: PATTERN_HUNT (highest counter at 3, due for 2nd run in 8-run window)
+Posture history: [PATTERN_HUNT, PIPELINE_WATCH, SYNTHESIS, HORIZON_SCAN, PATTERN_HUNT, PIPELINE_WATCH, SYNTHESIS, HORIZON_SCAN, PATTERN_HUNT, PIPELINE_WATCH, SYNTHESIS, PIPELINE_WATCH, SYNTHESIS, PATTERN_HUNT, HORIZON_SCAN, PATTERN_HUNT, PIPELINE_WATCH, SYNTHESIS, PIPELINE_WATCH, HORIZON_SCAN, PATTERN_HUNT, SYNTHESIS, PIPELINE_WATCH, SYNTHESIS, PATTERN_HUNT, HORIZON_SCAN, PATTERN_HUNT, PIPELINE_WATCH, SYNTHESIS, PIPELINE_WATCH, HORIZON_SCAN, SYNTHESIS, PATTERN_HUNT, PIPELINE_WATCH, HORIZON_SCAN, SYNTHESIS, PATTERN_HUNT, SYNTHESIS, PIPELINE_WATCH, PATTERN_HUNT, PIPELINE_WATCH, SYNTHESIS, PIPELINE_WATCH, HORIZON_SCAN, PATTERN_HUNT, PATTERN_HUNT]
 Runs since each:
-  PATTERN_HUNT: 3
-  PIPELINE_WATCH: 0
-  HORIZON_SCAN: 2
-  SYNTHESIS: 1
+  PATTERN_HUNT: 0
+  PIPELINE_WATCH: 1
+  HORIZON_SCAN: 3
+  SYNTHESIS: 2
 Open issues: #22,#48,#100,#103,#124,#149
 
 ## Source Digests
-anthropics/claude-code: b543a25 | last-deep: 2026-04-06T09:34:40Z | unchanged (v2.1.92, Apr 4).
-hesreallyhim/awesome-claude-code: 1e6cec4 | last-deep: 2026-04-06T09:34:40Z | SHA changed (ticker).
-SethGammon/Citadel: 37d151d | last-deep: 2026-04-06T09:34:40Z | unchanged.
-actions/runner: df50788 | last-deep: 2026-04-05T21:12:19Z | unchanged.
-withastro/astro: 2c9bf5e | last-deep: 2026-04-06T09:34:40Z | unchanged.
-verkyyi/tokenman: 5cd640c | last-deep: never | self. 0 forks, 2 stars.
-Watch: 0/10 changed (all frozen). 0 promotions, 0 drops, 0 additions.
+anthropics/claude-code: b543a25 | last-deep: 2026-04-06T21:20:48Z | unchanged (v2.1.92, Apr 4). 3rd consecutive.
+hesreallyhim/awesome-claude-code: f723fb5 | last-deep: 2026-04-06T21:20:48Z | SHA changed (ticker only).
+SethGammon/Citadel: 37d151d | last-deep: 2026-04-06T21:20:48Z | unchanged. 3rd consecutive.
+actions/runner: df50788 | last-deep: 2026-04-05T21:12:19Z | unchanged. 3rd consecutive.
+withastro/astro: 2c9bf5e | last-deep: 2026-04-06T21:20:48Z | unchanged. 3rd consecutive.
+verkyyi/tokenman: 8656396 | last-deep: never | self. 0 forks, 2 stars.
+Watch: 1/10 changed (everything-claude-code: 7dfdbe0→c7f68a7, docs/CI). 0 promotions, 0 drops, 0 additions.
 
 ## Findings This Run
-- 0 ACTIONABLE failures: all 10 failed runs are Security Scan pre-#152 fix (ALREADY-FIXED). 9+ consecutive successes.
-- Cost discrepancy: actual $217/wk ($31/day avg, 7-day window) vs previously reported $105/wk ($15/day). 45% above $150/wk target. Consistently ~26 cost-bearing runs/day at ~$1.20/run. Reviewer runs all skipped (0 cost).
-- All workflows HEALTHY. 0 open pipeline-fix issues. Run rate stable ~46/day total (26 cost-bearing).
+- Runner-guard v2.8.0: check-deps feature adds supply chain dependency scanning with 439-line curated compromised-packages DB (UNC1069/Axios npm, TeamPCP/litellm+telnyx pypi). Enhances existing #127 scope. Comment added.
+- ARIS dual-logging: project + global event JSONL. Not adoptable (ephemeral runners, single project).
+- Pattern plateau: 9th consecutive PH with 0 adoptable patterns. All 6 Active SHAs frozen 3rd consecutive run.
 0 issues created.
