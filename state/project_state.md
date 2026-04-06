@@ -1,26 +1,26 @@
 # Project State
-Last updated: 2026-04-06T18:28:15Z
-Updated by: evolve.yml (PIPELINE_WATCH)
+Last updated: 2026-04-06T18:55:00Z
+Updated by: watcher.yml
 
 ## Last Session
-Action: evolve.yml PIPELINE_WATCH. 0 ACTIONABLE failures (all Security Scan pre-#152, ALREADY-FIXED). Cost discrepancy found: actual $217/wk ($31/day) vs previously reported $105/wk — corrected. All workflows HEALTHY. 0 open pipeline-fix issues.
+Action: watcher.yml health check. 3 corrective actions: updated Dependabot PRs #133/#135/#136 branches via WORKFLOW_PAT (18 commits behind main). All workflows HEALTHY. 0 open pipeline-fix issues.
 
 System health:
-- Evolve: HEALTHY — turns 35-53, 4/61 lifetime exceed 55 (6.6%).
-- Watcher: HEALTHY — 1/83 lifetime exceed 50 (1.2%). Turns: 22-44.
+- Evolve: HEALTHY — turns 35-53, 0/9 recent exceed 55.
+- Watcher: HEALTHY — 0/12 recent exceed 50. Turns: 22-44.
 - Coder: HEALTHY — last success Apr 5 16:55. 43 turns.
 - Reviewer: HEALTHY — last success Apr 5 16:59. 9-35 turns.
-- Triage: HEALTHY — last success Apr 6 09:32.
-- Weekly Analysis: HEALTHY — last success Apr 6 12:17.
-- Growth: HEALTHY (31 turns).
-- Analyze: STABLE (21-33 turns).
+- Triage: HEALTHY — last success Apr 6 18:23.
+- Weekly Analysis: HEALTHY — last success Apr 6 18:18.
+- Growth: HEALTHY (31-43 turns).
+- Analyze: STABLE (21-32 turns).
 - Feedback Learner: RECOVERED — 5 turns, #72 fix confirmed.
 - Deploy: RECOVERING — no trigger since #65 fix.
 - Security Scan: VALIDATED — 9+ consecutive successes post-#152 fix.
 
 ## Current Priorities (ordered)
-1. **[READY]** Dependabot PRs: #133/#135/#136 — ALL PASSING, APPROVED, branches up-to-date, awaiting human merge
-2. **[BLOCKED]** PR #55: fix reviewer.yml state reset — APPROVED 362h+, merge conflicts, awaiting human rebase + merge (workflow YAML)
+1. **[READY]** Dependabot PRs: #133/#135/#136 — ALL PASSING, APPROVED, branches updated, awaiting human merge
+2. **[BLOCKED]** PR #55: fix reviewer.yml state reset — APPROVED 366h+, merge conflicts, awaiting human rebase + merge (workflow YAML)
 3. **[NEEDS-HUMAN]** Issue #22: Submit to awesome-claude-code — UPDATED with correct web UI form instructions (36.9K stars, highest-leverage)
 4. **[NEEDS-HUMAN]** PR #107: reduce HORIZON_SCAN cadence — APPROVED 2x, merge conflicts, escalated to needs-human
 5. **[NEEDS-HUMAN]** PR #112: env scrub hardening — 0 reviews, merge conflicts (4th cycle), all workflow YAML, needs manual rebase + merge
@@ -30,8 +30,8 @@ System health:
 9. **[NEEDS-HUMAN]** Issue #149: Submit to EvoMap/awesome-agent-evolution — needs-human, growth-action
 
 ## Open Items
-1. PRs #133, #135, #136: [ready] ALL PASSING + APPROVED + CLEAN (16:50Z) — awaiting human merge
-2. PR #55: [approved] fix(workflow) reviewer.yml state reset — APPROVED 362h+, CONFLICTING, needs human rebase + merge
+1. PRs #133, #135, #136: [ready] ALL PASSING + APPROVED + branches updated (18:55Z) — awaiting human merge
+2. PR #55: [approved] fix(workflow) reviewer.yml state reset — APPROVED 366h+, CONFLICTING, needs human rebase + merge
 3. Issue #22: [needs-human] Submit to awesome-claude-code — UPDATED with correct web UI form process, 36.9K stars, highest-leverage
 4. Issue #103: [needs-human] PR #107 APPROVED 2x, merge conflicts, escalated to needs-human (workflow YAML)
 5. Issue #100: [needs-human] PR #112 APPROVED, merge conflicts (4th cycle), all workflow YAML — escalated
