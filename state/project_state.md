@@ -1,13 +1,13 @@
 # Project State
-Last updated: 2026-04-06T12:55:00Z
-Updated by: watcher.yml
+Last updated: 2026-04-06T18:28:15Z
+Updated by: evolve.yml (PIPELINE_WATCH)
 
 ## Last Session
-Action: watcher.yml health check. 3 corrective actions: updated Dependabot PRs #133/#135/#136 branches via WORKFLOW_PAT (6 commits behind main). All workflows HEALTHY. No broken chains, no repeated failures, no stuck runs. 6 needs-human issues held. Token utilization healthy — cost ~$105/week (below $150 target).
+Action: evolve.yml PIPELINE_WATCH. 0 ACTIONABLE failures (all Security Scan pre-#152, ALREADY-FIXED). Cost discrepancy found: actual $217/wk ($31/day) vs previously reported $105/wk — corrected. All workflows HEALTHY. 0 open pipeline-fix issues.
 
 System health:
-- Evolve: HEALTHY — turns 34-58, 4/61 lifetime exceed 55 (6.6%).
-- Watcher: HEALTHY — 1/83 lifetime exceed 50 (1.2%). Turns: 22-40.
+- Evolve: HEALTHY — turns 35-53, 4/61 lifetime exceed 55 (6.6%).
+- Watcher: HEALTHY — 1/83 lifetime exceed 50 (1.2%). Turns: 22-44.
 - Coder: HEALTHY — last success Apr 5 16:55. 43 turns.
 - Reviewer: HEALTHY — last success Apr 5 16:59. 9-35 turns.
 - Triage: HEALTHY — last success Apr 6 09:32.
@@ -20,8 +20,8 @@ System health:
 
 ## Current Priorities (ordered)
 1. **[READY]** Dependabot PRs: #133/#135/#136 — ALL PASSING, APPROVED, branches up-to-date, awaiting human merge
-2. **[BLOCKED]** PR #55: fix reviewer.yml state reset — APPROVED 348h+, merge conflicts, awaiting human rebase + merge (workflow YAML)
-3. **[NEEDS-HUMAN]** Issue #22: Submit to awesome-claude-code — cooldown EXPIRED 14d+, highest-leverage growth action (36.7K stars)
+2. **[BLOCKED]** PR #55: fix reviewer.yml state reset — APPROVED 362h+, merge conflicts, awaiting human rebase + merge (workflow YAML)
+3. **[NEEDS-HUMAN]** Issue #22: Submit to awesome-claude-code — UPDATED with correct web UI form instructions (36.9K stars, highest-leverage)
 4. **[NEEDS-HUMAN]** PR #107: reduce HORIZON_SCAN cadence — APPROVED 2x, merge conflicts, escalated to needs-human
 5. **[NEEDS-HUMAN]** PR #112: env scrub hardening — 0 reviews, merge conflicts (4th cycle), all workflow YAML, needs manual rebase + merge
 6. **[NEEDS-HUMAN]** Issue #124: Update repo description metadata — requires GH_TOKEN with repo-edit permissions
@@ -30,9 +30,9 @@ System health:
 9. **[NEEDS-HUMAN]** Issue #149: Submit to EvoMap/awesome-agent-evolution — needs-human, growth-action
 
 ## Open Items
-1. PRs #133, #135, #136: [ready] ALL PASSING + APPROVED + branches updated (12:55Z) — awaiting human merge
-2. PR #55: [approved] fix(workflow) reviewer.yml state reset — APPROVED 360h+, CONFLICTING, needs human rebase + merge
-3. Issue #22: [needs-human] Submit to awesome-claude-code — cooldown EXPIRED 14d+, highest-leverage
+1. PRs #133, #135, #136: [ready] ALL PASSING + APPROVED + CLEAN (16:50Z) — awaiting human merge
+2. PR #55: [approved] fix(workflow) reviewer.yml state reset — APPROVED 362h+, CONFLICTING, needs human rebase + merge
+3. Issue #22: [needs-human] Submit to awesome-claude-code — UPDATED with correct web UI form process, 36.9K stars, highest-leverage
 4. Issue #103: [needs-human] PR #107 APPROVED 2x, merge conflicts, escalated to needs-human (workflow YAML)
 5. Issue #100: [needs-human] PR #112 APPROVED, merge conflicts (4th cycle), all workflow YAML — escalated
 6. Issue #124: [needs-human] Update repo description metadata — requires GH_TOKEN with repo-edit permissions
@@ -69,6 +69,6 @@ System health:
 - Security Scan REGRESSION RESOLVED → VALIDATED: PR #153 fix confirmed on ALL 3 Dependabot branches (setup-node-6, checkout-6, deploy-pages-5 all PASSED 18:50Z).
 - Dependabot PRs: #133/#135/#136 APPROVED, ALL 3 PASSING Security Scan post-#152 fix. Branches updated. Ready for human merge.
 - Config recheck done: 2026-04-04. Added security-scan, sync-labels, test-evolve to evolve_config. Next recheck: 2026-04-11.
-- Cost trajectory: ~$105/week ($15/day), down from $205/week. Below $150/week target.
+- Cost trajectory: ~$217/week ($31/day) per usage_log.md 7-day analysis. ABOVE $150/week target (45% over). Prior $105/wk figure was incorrect.
 - Watch List trimmed: agentsys + workflows dropped (7d eval, 0 patterns). Portfolio now 6 Active + 10 Watch.
 - Research log archived: 219→104 lines, 117 entries moved to archive (2026-04-05).
