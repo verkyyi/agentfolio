@@ -1,7 +1,7 @@
 # Research Sources
 # Managed by evolve.yml. Claude adds, prunes, and annotates freely.
 # Seeded from evolve_config.md on first run.
-# Last updated: 2026-04-06T18:28:15Z
+# Last updated: 2026-04-06T21:20:56Z
 
 ## Active Sources
 
@@ -14,8 +14,8 @@
 ### hesreallyhim/awesome-claude-code
 - **Why:** Curated ecosystem catalog — discover new tools, libraries, and patterns
 - **Look for:** New entries in Orchestrators/Tools/Skills sections, trending repos referenced
-- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-04-06T09:34:40Z | **Pattern hits:** 0 | **SHA:** 1e6cec4
-- **Notes:** 0 pattern hits across 46+ observations. Submission enforcement governance (owner bypass), Teams subcategory — curation-specific patterns. Retain for HORIZON_SCAN cross-reference only.
+- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-04-06T09:34:40Z | **Pattern hits:** 0 | **SHA:** f723fb5
+- **Notes:** 0 pattern hits across 47+ observations. SHA change: ticker data only. Submission enforcement governance (owner bypass), Teams subcategory — curation-specific patterns. Retain for HORIZON_SCAN cross-reference only.
 
 ### SethGammon/Citadel
 - **Why:** Agent orchestration harness (400 stars) — closest architecture to tokenman. Campaign persistence, parallel worktrees, circuit breaker, quality gate hooks, skill benchmarking, daemon factory
@@ -48,8 +48,8 @@
 - **Why:** Community harness patterns, skill collections, optimization techniques
 - **Look for:** New skills, CLAUDE.md patterns, workflow architectures, instinct files
 - **Demoted:** 2026-04-02 (synthesis — 13+ consecutive 0-pattern observations, all interactive-session specific, 0 CI-harness patterns)
-- **Observations:** 60+ | **First seen:** 2026-03-20 | **SHA:** 7dfdbe0
-- **Notes:** 1 pattern hit total (safety-guard PreToolUse hooks, early). CI cleanup, codex sync, install hardening — all interactive-session. From same author as agentshield. Monitor for CI-relevant patterns.
+- **Observations:** 61+ | **First seen:** 2026-03-20 | **SHA:** c7f68a7
+- **Notes:** 1 pattern hit total (safety-guard PreToolUse hooks, early). CI cleanup, codex sync, install hardening — all interactive-session. From same author as agentshield. Apr 6: release payload verification gate, hook bug workaround guide, README badges — all ECC-specific. Monitor for CI-relevant patterns.
 
 ### bytedance/deer-flow
 - **Why:** Multi-agent orchestration patterns from a major tech company
@@ -80,10 +80,10 @@
 - **Notes:** v0.18.0: Codex CLI plugin manifest validation (CDX-PL-001 to CDX-PL-014, 14 rules). CC now has 18 hook events. 385+ rules, 124+ auto-fixes. Relevant to #66/#68.
 
 ### Vigilant-LLC/runner-guard
-- **Why:** CI/CD security scanner (6 stars, Go) — 18 detection rules for GHA vulnerabilities: fork checkout exploits, expression injection, AI config injection (CLAUDE.md hijacking), supply chain steganography, unpinned actions, auto-fix, SARIF output
-- **Look for:** GHA vulnerability patterns applicable to our workflows, action pinning auto-fix, AI config injection defenses, SARIF integration for Code Scanning
-- **Added:** 2026-04-01 (horizon scan) | **Observations:** 8 | **First seen:** 2026-04-01 | **SHA:** 98dcb55
-- **Notes:** Only scanner specifically targeting AI agent attack vectors in CI/CD. Deep-dived: 18→31 rules. v2.7.0 (Apr 5): batch multi-repo scanning, file path + manual entry, permissions-aware severity, vigilantdefense.com domain. Issue #127 created for adoption. Go single binary. Last deep: 2026-04-05T04:06Z.
+- **Why:** CI/CD security scanner (6 stars, Go) — 31 detection rules for GHA vulnerabilities + supply chain dependency scanning: fork checkout exploits, expression injection, AI config injection (CLAUDE.md hijacking), supply chain steganography, unpinned actions, compromised package detection, auto-fix, SARIF output
+- **Look for:** GHA vulnerability patterns applicable to our workflows, action pinning auto-fix, AI config injection defenses, SARIF integration for Code Scanning, compromised package detection
+- **Added:** 2026-04-01 (horizon scan) | **Observations:** 9 | **First seen:** 2026-04-01 | **SHA:** 98dcb55
+- **Notes:** Only scanner specifically targeting AI agent attack vectors in CI/CD. v2.8.0 (Apr 6): Phase 3 check-deps — curated compromised-packages DB (439 lines, npm/pypi/Go: UNC1069/Axios, TeamPCP/litellm+telnyx). Interactive menu, batch scan, demo GIFs. Issue #127 created for adoption (comment added re: check-deps). Go single binary. Last deep: 2026-04-06T21:16Z.
 
 ### affaan-m/agentshield
 - **Why:** AI agent security scanner (289 stars, 55 forks) — scans .claude/ for secrets, permission misconfigs, hook injection, MCP risks, prompt injection vectors. CLI + GitHub Action + GitHub App.
