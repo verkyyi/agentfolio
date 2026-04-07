@@ -1,44 +1,44 @@
 # Research Sources
 # Managed by evolve.yml. Claude adds, prunes, and annotates freely.
 # Seeded from evolve_config.md on first run.
-# Last updated: 2026-04-07T06:42:00Z
+# Last updated: 2026-04-07T12:20:10Z
 
 ## Active Sources
 
 ### anthropics/claude-code
 - **Why:** The runtime we build on — releases, breaking changes, new hooks, CLI flags
 - **Look for:** CHANGELOG entries, new hook types, permission changes, SDK updates
-- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-04-06T09:34:40Z | **Pattern hits:** 2 | **SHA:** b543a25
+- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-04-07T12:20:10Z | **Pattern hits:** 2 | **SHA:** b543a25
 - **Notes:** Protected source — never drop. Check CHANGELOG and releases, not just commits. v2.1.92 (Apr 4): forceRemoteSettingsRefresh fail-closed policy, Stop hook preventContinuation fix, Write tool 60% faster (tabs/&/$), Linux sandbox seccomp, /tag+/vim removed, Bedrock setup wizard, per-model /cost breakdown, tmux pane fix. Previous: v2.1.91 MCP 500K result override, disableSkillShellExecution, bin/ in plugins. v2.1.90 /powerup, plugin offline cache. CC now has 18+ hook events.
 
 ### hesreallyhim/awesome-claude-code
 - **Why:** Curated ecosystem catalog — discover new tools, libraries, and patterns
 - **Look for:** New entries in Orchestrators/Tools/Skills sections, trending repos referenced
-- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-04-06T09:34:40Z | **Pattern hits:** 0 | **SHA:** 35cb60b
+- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-04-07T12:20:10Z | **Pattern hits:** 0 | **SHA:** 188485e
 - **Notes:** 0 pattern hits across 49+ observations. SHA change: ticker data only. Submission enforcement governance (owner bypass), Teams subcategory — curation-specific patterns. Retain for HORIZON_SCAN cross-reference only.
 
 ### SethGammon/Citadel
 - **Why:** Agent orchestration harness (400 stars) — closest architecture to tokenman. Campaign persistence, parallel worktrees, circuit breaker, quality gate hooks, skill benchmarking, daemon factory
 - **Look for:** Skill benchmarking patterns, skill linting, governance hooks, testing infrastructure, fleet coordination, daemon factory patterns
-- **Added:** 2026-03-24 (watch) | **Promoted:** 2026-03-27 (synthesis — 35 obs, closest architecture, V2 patterns) | **Last deep:** 2026-04-06T09:34:40Z | **Pattern hits:** 1 | **SHA:** 8d4a822
+- **Added:** 2026-03-24 (watch) | **Promoted:** 2026-03-27 (synthesis — 35 obs, closest architecture, V2 patterns) | **Last deep:** 2026-04-07T12:20:10Z | **Pattern hits:** 1 | **SHA:** 8d4a822
 - **Notes:** Promoted from Watch List. Broke 3-run freeze: multi-runtime direction materializing — OpenAI runtime scaffold, Codex runtime support, wiki skill, hook hardening (Apr 6-7, 3 commits). Roadmap: governance layer (per-agent policies, immutable audit), campaign recovery, web dashboard, team collab. JS framework refactor — not adoptable for bash/markdown harness. 1 pattern hit (circuit breaker #76).
 
 ### actions/runner
 - **Why:** CI/CD runtime we depend on — deprecation notices, new features, security fixes
 - **Look for:** Node.js version deprecation timelines, runner image changes, new action features
-- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-04-05T21:12:19Z | **Pattern hits:** 0 | **SHA:** df50788
+- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-04-07T12:20:10Z | **Pattern hits:** 0 | **SHA:** df50788
 - **Notes:** Check releases, not just commits. df50788: brace-expansion dep bump. Bearer token auth for action archive downloads. PR #4296 (Mar 31): batch/dedup action resolution (merged). v2.333.1 (Mar 27): removed AllowCaseFunction. Node 20.20.2/24.14.1. 0 pattern hits across 11+ observations.
 
 ### withastro/astro
 - **Why:** Web framework we use — security fixes, breaking changes, new features
 - **Look for:** Security advisories, breaking changes in minor/major releases, new content collection features
-- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-04-06T09:34:40Z | **Pattern hits:** 0 | **SHA:** 2c9bf5e
+- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-04-07T12:20:10Z | **Pattern hits:** 0 | **SHA:** 2c9bf5e
 - **Notes:** Only actionable for security fixes or features that affect our site build. 0 harness patterns across 18+ observations.
 
 ### verkyyi/tokenman
 - **Why:** Self-reference — track forks, adopters, and how the scaffold is used
 - **Look for:** New forks, adopter modifications, issues filed by users
-- **Added:** 2026-03-20 (seed) | **Last deep:** never | **Pattern hits:** 0 | **SHA:** 201f204
+- **Added:** 2026-03-20 (seed) | **Last deep:** never | **Pattern hits:** 0 | **SHA:** 557bdd4
 - **Notes:** Used during HORIZON SCAN for adoption tracking. 0 forks, 0 adopters as of 2026-04-06. EvoMap/awesome-agent-evolution (21 stars) monitors tokenman in data/monitor-results.json but not curated — potential growth submission target (#149).
 
 ## Watch List
@@ -55,7 +55,7 @@
 - **Why:** Multi-agent orchestration patterns from a major tech company
 - **Look for:** Agent coordination, state management, tool orchestration, LLM provider patterns
 - **Demoted:** 2026-04-02 (synthesis — 19+ consecutive 0-pattern deep-dives, all Python application-specific, fundamentally different stack)
-- **Observations:** 74+ | **First seen:** 2026-03-21 | **SHA:** f0dd8cb
+- **Observations:** 74+ | **First seen:** 2026-03-21 | **SHA:** 0948c7a
 - **Notes:** 1 pattern hit total (early). Very active (5+ commits/day). Per-agent skill filter, concurrent file locks, Langfuse tracing — all Python. No transferable harness patterns despite extensive monitoring. Apr 5: sandbox guard fix, API soul field fix, deps update.
 
 ### trailofbits/skills
@@ -94,7 +94,7 @@
 ### wanshuiyin/Auto-claude-code-research-in-sleep
 - **Why:** Autonomous ML research harness (5.4K stars, 455 forks) — markdown-only skills, cross-model review loops, idea discovery. Conceptually closest to evolve's autonomous research methodology.
 - **Look for:** Autonomous research workflow patterns, cross-model review loops, skill organization, persistent memory patterns
-- **Added:** 2026-04-03 (horizon scan) | **Observations:** 10 | **First seen:** 2026-04-03 | **SHA:** e93b471
+- **Added:** 2026-04-03 (horizon scan) | **Observations:** 10 | **First seen:** 2026-04-03 | **SHA:** c9b4533
 - **Notes:** ARIS v0.3.3. Recent: Zenodo DOI badge, What's New updates — doc-only. Python + Markdown. ML-research domain, not CI harness. Same methodology concept as our evolve. Monitor for transferable workflow patterns.
 
 ### jnurre64/claude-agent-dispatch
@@ -106,7 +106,7 @@
 ### ComposioHQ/agent-orchestrator
 - **Why:** Parallel agent orchestrator (5.8K stars, 801 forks, TS) — spawns AI coding agents in git worktrees, autonomously fixes CI failures, addresses review comments, opens PRs. Agent-agnostic (Claude Code, Codex, Aider), runtime-agnostic (tmux, Docker), tracker-agnostic (GitHub, Linear).
 - **Look for:** CI auto-fix patterns, worktree isolation strategies, fleet coordination, rate-limit fallback, dashboard supervision patterns
-- **Added:** 2026-04-07 (horizon scan) | **Observations:** 3 | **First seen:** 2026-04-07 | **SHA:** 1bb80ef
+- **Added:** 2026-04-07 (horizon scan) | **Observations:** 3 | **First seen:** 2026-04-07 | **SHA:** 48d655d
 - **Notes:** Very active (934+ PRs, 496 open issues). TypeScript/npm. Interactive orchestration platform — different paradigm from GHA-driven harness. Monitor for CI-relevant patterns. Recent: GH API rate-limit fix (#906), model rate-limit revert (#908), session restore (#934).
 
 ### montenegronyc/backporcher
