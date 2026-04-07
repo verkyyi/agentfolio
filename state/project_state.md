@@ -1,18 +1,18 @@
 # Project State
-Last updated: 2026-04-07T20:50:00Z
+Last updated: 2026-04-07T22:48:00Z
 Updated by: watcher.yml
 
 ## Last Session
-Action: watcher.yml health check. 3 corrective actions: updated Dependabot PRs #133/#135/#136 branches via WORKFLOW_PAT (3 commits behind main). All workflows HEALTHY. No broken chains, no stuck runs, no repeated failures. 6 needs-human issues held. 3 legacy PRs awaiting human. Token utilization healthy (203 data lines). Evolve 6h cadence confirmed. Cost ~$196/wk projected.
+Action: watcher.yml health check. 3 corrective actions: updated Dependabot PRs #133/#135/#136 branches via WORKFLOW_PAT (1 commit behind main). All workflows HEALTHY. No broken chains, no stuck runs, no repeated failures. 6 needs-human issues held. 3 legacy PRs awaiting human. Token utilization healthy (204 data lines). Evolve 6h cadence confirmed. Cost ~$196/wk projected.
 
 System health:
 - Evolve: HEALTHY — turns 34-56, Haiku fallback single occurrence (00:46Z, no recurrence). Cron 6h confirmed.
-- Watcher: HEALTHY — 0/15 recent exceed 50. Turns: 26-47.
+- Watcher: HEALTHY — 0/15 recent exceed 50. Turns: 27-47.
 - Coder: HEALTHY — last success Apr 7 06:44.
 - Reviewer: HEALTHY — last success Apr 7 06:49. 8 turns.
 - Triage: HEALTHY — last success Apr 7 18:21.
 - Weekly Analysis: HEALTHY — last success Apr 7 18:19.
-- Growth: HEALTHY (31-43 turns). Stars flat 16d+. v0.5.0 released 12h ago, no impact yet. awesome-cc 37.2K. #22/#48/#149 blocked needs-human.
+- Growth: HEALTHY (31-43 turns). Stars flat 16d+. v0.5.0 released 14h ago, no impact yet. awesome-cc 37.2K. #22/#48/#149 blocked needs-human.
 - Analyze: STABLE (24-32 turns).
 - Feedback Learner: RECOVERED — 5 turns, #72 fix confirmed.
 - Deploy: RECOVERING — no trigger since #65 fix.
@@ -21,7 +21,7 @@ System health:
 ## Current Priorities (ordered)
 1. **[READY]** Dependabot PRs: #133/#135/#136 — ALL PASSING, APPROVED, branches updated, awaiting human merge
 2. **[DONE]** Reduce evolve frequency — PR #155 MERGED, cron 3h→6h. Issue #154 closed.
-3. **[BLOCKED]** PR #55: fix reviewer.yml state reset — APPROVED 388h+, merge conflicts, awaiting human rebase + merge (workflow YAML)
+3. **[BLOCKED]** PR #55: fix reviewer.yml state reset — APPROVED 390h+, merge conflicts, awaiting human rebase + merge (workflow YAML)
 4. **[NEEDS-HUMAN]** Issue #22: Submit to awesome-claude-code — UPDATED with correct web UI form instructions (36.9K stars, highest-leverage growth action)
 5. **[NEEDS-HUMAN]** PR #107: reduce HORIZON_SCAN cadence — APPROVED 2x, merge conflicts, escalated to needs-human
 6. **[NEEDS-HUMAN]** PR #112: env scrub hardening — 0 reviews, merge conflicts (4th cycle), all workflow YAML, needs manual rebase + merge
@@ -32,7 +32,7 @@ System health:
 
 ## Open Items
 1. PRs #133, #135, #136: [ready] ALL PASSING + APPROVED + branches updated — awaiting human merge
-2. PR #55: [approved] fix(workflow) reviewer.yml state reset — APPROVED 388h+, CONFLICTING, needs human rebase + merge
+2. PR #55: [approved] fix(workflow) reviewer.yml state reset — APPROVED 390h+, CONFLICTING, needs human rebase + merge
 3. Issue #22: [needs-human] Submit to awesome-claude-code — UPDATED with correct web UI form process, 36.9K stars
 4. Issue #103: [needs-human] PR #107 APPROVED 2x, merge conflicts, escalated to needs-human (workflow YAML)
 5. Issue #100: [needs-human] PR #112 APPROVED, merge conflicts (4th cycle), all workflow YAML — escalated
@@ -49,7 +49,7 @@ System health:
 - Evolve lightweight mode gate deployed (commit ce1994c) — skips Steps 2b-2h when sources unchanged 2+ consecutive runs
 - Posture-based research operational: PATTERN_HUNT, PIPELINE_WATCH, HORIZON_SCAN, SYNTHESIS
 - Reviewer.yml skips pull_request events — only runs via workflow_dispatch (watcher triggers)
-- Reviewer.yml has a bug: README sync step doesn't handle dirty working tree (PR #55 APPROVED 388h+ — CONFLICTING, needs human rebase + merge)
+- Reviewer.yml has a bug: README sync step doesn't handle dirty working tree (PR #55 APPROVED 390h+ — CONFLICTING, needs human rebase + merge)
 - Reviewer hallucination fix (#90) — NEVER close PR prompt guardrail + safety-net reopen step merged (PR #93)
 - GitHub auto-close fix (#84) DONE — reviewer.yml hardened with 3-tier fallback; watcher remains safety net
 - Evolve HEALTHY — max-turns 55, turns 34-56. Haiku fallback at 2026-04-07T00:46Z (single occurrence, no recurrence). Cron 6h confirmed.
