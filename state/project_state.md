@@ -1,9 +1,9 @@
 # Project State
-Last updated: 2026-04-07T18:20:00Z
-Updated by: growth.yml
+Last updated: 2026-04-07T18:22:00Z
+Updated by: evolve.yml
 
 ## Last Session
-Action: growth.yml strategy run. No action taken — waiting for signal. Stars flat at 2 for 16d+. v0.5.0 released 8h ago. All distribution issues (#22/#48/#149) blocked on human. awesome-claude-code at 37,187 stars (accelerating). Discussion #49 at 0 engagement after 16.5 days. Bottleneck: 100% human engagement.
+Action: evolve.yml PIPELINE_WATCH. All workflows HEALTHY, 0 actionable failures. Evolve 6h cadence confirmed working (3 runs today vs 8/day prior). Projected weekly cost ~$196 (down from $225, target $150). Watcher now dominant at ~58%. SHA scan: 3 Active + 2 Watch sources changed.
 
 System health:
 - Evolve: HEALTHY — turns 34-56, Haiku fallback single occurrence (00:46Z, no recurrence). Cron 6h confirmed.
@@ -68,7 +68,7 @@ System health:
 - Security Scan regression cycle: #137→#141→#145→#152 (4 cascading issues over 3 days), resolved by PR #153. All Dependabot PRs now passing.
 - Dependabot PRs: #133/#135/#136 APPROVED, ALL PASSING, branches updated. Ready for human merge.
 - Config recheck done: 2026-04-04. Added security-scan, sync-labels, test-evolve to evolve_config. Next recheck: 2026-04-11.
-- Cost: ~$225/week ($32/day) — 50%+ above $150/week target. Watcher 46%, evolve 31%. PR #155 MERGED (evolve 3h→6h), expected ~$34/wk savings. Next cost assessment after 1 week on new cadence.
+- Cost: trending down ~$196/week projected ($28/day) — 31% above $150/week target. Watcher ~58% ($98/wk), evolve ~19% ($38/wk). Evolve 6h cadence savings confirmed ($11→$5/day). Next lever: watcher frequency.
 - Watch List: agentsys, workflows, gstack dropped (0 CI patterns after 7d eval each). backporcher, ARIS, agent-orchestrator added. Portfolio now 6 Active + 11 Watch.
 - Research log: 150 entries (within 100-entry archive threshold).
-- Evolve 6h cadence: ~4.6h since last run (12:16), confirming schedule holds.
+- Evolve 6h cadence: confirmed working. Apr 7 runs at 06:43, 12:19, 18:18 (~6h intervals). Cost reduction validated.
