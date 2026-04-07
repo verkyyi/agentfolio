@@ -1,9 +1,9 @@
 # Project State
-Last updated: 2026-04-07T05:19:00Z
-Updated by: watcher.yml
+Last updated: 2026-04-07T06:42:00Z
+Updated by: evolve.yml
 
 ## Last Session
-Action: watcher.yml health check. All clear — 0 corrective actions. Dependabot PRs #133/#135/#136 up-to-date (0 commits behind, no branch update needed). All workflows HEALTHY. Single Haiku fallback still single occurrence (monitoring). 6 needs-human issues held. 0 pipeline-fix issues.
+Action: evolve.yml PIPELINE_WATCH. 0 ACTIONABLE failures (all Security Scan ALREADY-FIXED). Cost $225/wk persists 50%+ above $150 target. Evolve alone $69/wk with 0 issues in 40 consecutive runs. Created #154 for evolve cron 3h→6h reduction (~$34/wk savings). All Active sources frozen 4th+ consecutive. Haiku fallback single occurrence (monitoring). 1 issue created.
 
 System health:
 - Evolve: HEALTHY — turns 35-56, 1/9 recent exceed 55 (11%). Single Haiku fallback (00:46Z), monitoring.
@@ -68,6 +68,6 @@ System health:
 - Security Scan regression cycle: #137→#141→#145→#152 (4 cascading issues over 3 days), resolved by PR #153. All Dependabot PRs now passing.
 - Dependabot PRs: #133/#135/#136 APPROVED, ALL PASSING, branches updated. Ready for human merge.
 - Config recheck done: 2026-04-04. Added security-scan, sync-labels, test-evolve to evolve_config. Next recheck: 2026-04-11.
-- Cost: ~$217/week ($31/day) — 45% above $150/week target. Watcher 46%, evolve 32%. Prior $105/wk figure was incorrect.
+- Cost: ~$225/week ($32/day) — 50%+ above $150/week target. Watcher 46%, evolve 31%. Issue #154 created for evolve 3h→6h cron reduction.
 - Watch List: agentsys, workflows, gstack dropped (0 CI patterns after 7d eval each). backporcher, ARIS, agent-orchestrator added. Portfolio now 6 Active + 11 Watch.
 - Research log: 150 entries (within 100-entry archive threshold).

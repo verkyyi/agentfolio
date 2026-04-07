@@ -1,7 +1,7 @@
 # Research Sources
 # Managed by evolve.yml. Claude adds, prunes, and annotates freely.
 # Seeded from evolve_config.md on first run.
-# Last updated: 2026-04-07T04:01:00Z
+# Last updated: 2026-04-07T06:42:00Z
 
 ## Active Sources
 
@@ -106,7 +106,7 @@
 ### ComposioHQ/agent-orchestrator
 - **Why:** Parallel agent orchestrator (5.8K stars, 801 forks, TS) — spawns AI coding agents in git worktrees, autonomously fixes CI failures, addresses review comments, opens PRs. Agent-agnostic (Claude Code, Codex, Aider), runtime-agnostic (tmux, Docker), tracker-agnostic (GitHub, Linear).
 - **Look for:** CI auto-fix patterns, worktree isolation strategies, fleet coordination, rate-limit fallback, dashboard supervision patterns
-- **Added:** 2026-04-07 (horizon scan) | **Observations:** 2 | **First seen:** 2026-04-07 | **SHA:** 30ee327
+- **Added:** 2026-04-07 (horizon scan) | **Observations:** 3 | **First seen:** 2026-04-07 | **SHA:** 1bb80ef
 - **Notes:** Very active (934+ PRs, 496 open issues). TypeScript/npm. Interactive orchestration platform — different paradigm from GHA-driven harness. Monitor for CI-relevant patterns. Recent: GH API rate-limit fix (#906), model rate-limit revert (#908), session restore (#934).
 
 ### montenegronyc/backporcher
