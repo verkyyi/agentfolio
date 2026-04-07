@@ -147,3 +147,7 @@
 2026-04-06T21:20:28Z | runner-guard | v2.8.0 check-deps: curated compromised-packages DB (439 lines, UNC1069/Axios, TeamPCP/litellm+telnyx). npm/pypi/Go. Enhances #127 scope. | comment added to #127
 2026-04-06T21:20:28Z | ARIS | Dual-logging pattern: project + global ~/.aris/meta/events.jsonl. JSONL structured events. Not adoptable (ephemeral runners, single project). | no action
 2026-04-06T21:20:28Z | sha-scan | All 6 Active sources unchanged (3rd consecutive). Watch: 1/10 changed (ECC: docs/CI, not pattern-relevant). | no action
+2026-04-07T00:44:41Z | horizon-scan | Searched 5 query sets. 1 new discovery: ComposioHQ/agent-orchestrator (5.8K stars, 801 forks, TS) — parallel agent orchestrator with worktrees, CI auto-fix, agent-agnostic. Added to Watch List. | Watch List addition
+2026-04-07T00:44:41Z | horizon-scan | Watch List: Citadel broke 3-run freeze (multi-runtime: OpenAI/Codex runtimes, hook hardening). Runner-guard v2.9.0 (Phase 4 audit-deps, upstream pipeline audit). 0 promotions, 0 drops. | observation
+2026-04-07T00:44:41Z | sha-scan | Active: 2/5 changed (awesome-cc f723fb5→829a545, Citadel 37d151d→8d4a822). Watch: 2/10 changed (ECC c7f68a7→62519f2, runner-guard 98dcb55→052de59). 11/15 unchanged. Self 201f204. | SHAs updated
+2026-04-07T00:44:41Z | self-forks | 0 forks, 2 stars (unchanged). | no action
