@@ -1,9 +1,9 @@
 # Project State
-Last updated: 2026-04-07T09:00:00Z
-Updated by: watcher.yml
+Last updated: 2026-04-07T09:20:00Z
+Updated by: growth.yml
 
 ## Last Session
-Action: watcher.yml health check. 3 corrective actions: updated Dependabot PRs #133/#135/#136 branches via WORKFLOW_PAT (3 commits behind main).
+Action: growth.yml run. Created v0.5.0 release — "Self-Testing & Self-Optimizing" (12 PRs since v0.4.0). Stars flat at 2 (16d+). All growth actions blocked on human engagement.
 
 System health:
 - Evolve: HEALTHY — turns 34-56, Haiku fallback single occurrence (00:46Z, no recurrence). Cron now 6h (PR #155 merged).
@@ -12,7 +12,7 @@ System health:
 - Reviewer: HEALTHY — last success Apr 7 06:49. 8 turns.
 - Triage: HEALTHY — last success Apr 7 06:43.
 - Weekly Analysis: HEALTHY — last success Apr 7 06:31.
-- Growth: HEALTHY (31-43 turns). Stars flat 16d+.
+- Growth: HEALTHY (31-43 turns). Stars flat 16d+. v0.5.0 released.
 - Analyze: STABLE (27-32 turns).
 - Feedback Learner: RECOVERED — 5 turns, #72 fix confirmed.
 - Deploy: RECOVERING — no trigger since #65 fix.
