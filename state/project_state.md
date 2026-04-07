@@ -1,9 +1,9 @@
 # Project State
-Last updated: 2026-04-07T00:00:00Z
-Updated by: analyze.yml (weekly analysis)
+Last updated: 2026-04-07T00:41:11Z
+Updated by: evolve.yml (HORIZON_SCAN)
 
 ## Last Session
-Action: analyze.yml weekly analysis (Week Apr 1–7). 564 commits, 12 issues created+fixed, 12 PRs merged. Security Scan regression cycle resolved. Cost $217/wk, 45% above target. Research ROI at structural floor. 16d+ human disengagement.
+Action: evolve.yml HORIZON_SCAN. 27th HS run. 1 new Watch List addition (ComposioHQ/agent-orchestrator, 5.8K stars). Citadel broke 3-run freeze (multi-runtime). Runner-guard v2.9.0. 0 issues created.
 
 System health:
 - Evolve: HEALTHY — turns 34-56, 2/15 recent exceed 55 (13.3%). Research yield at zero.
@@ -61,7 +61,7 @@ System health:
 - State file compression (#78) merged — research_log.md reduced from 699 to 104 lines
 - Circuit breaker (#76) merged — PostToolUseFailure hook with 3-failure threshold
 - Pattern plateau: 11 PH runs with 0 patterns this week (continuing multi-week drought). CI/CLI structural gap permanent. Security sources exhausted.
-- Ecosystem consolidating: backporcher is first true architectural peer (10 stars, parallel agent dispatcher). Source portfolio: 6 Active + 10 Watch.
+- Ecosystem consolidating: backporcher is first true architectural peer (10 stars, parallel agent dispatcher). Source portfolio: 6 Active + 11 Watch (agent-orchestrator added).
 - Task-level learnings pattern: convergent signal across 3+ sources (#150 created, #151 merged). Extends feedback-learner concept to agent task outcomes.
 - No human engagement since Mar 22 — 16d+ gap. All recent activity bot-generated.
 - Auto-close miss pattern: 17 occurrences (11 this week alone), all caught by watcher safety net. Accepted as architectural.
@@ -69,5 +69,5 @@ System health:
 - Dependabot PRs: #133/#135/#136 APPROVED, ALL PASSING, branches updated. Ready for human merge.
 - Config recheck done: 2026-04-04. Added security-scan, sync-labels, test-evolve to evolve_config. Next recheck: 2026-04-11.
 - Cost: ~$217/week ($31/day) — 45% above $150/week target. Watcher 46%, evolve 32%. Prior $105/wk figure was incorrect.
-- Watch List: agentsys, workflows, gstack dropped (0 CI patterns after 7d eval each). backporcher, ARIS added. Portfolio now 6 Active + 10 Watch.
+- Watch List: agentsys, workflows, gstack dropped (0 CI patterns after 7d eval each). backporcher, ARIS, agent-orchestrator added. Portfolio now 6 Active + 11 Watch.
 - Research log: 150 entries (within 100-entry archive threshold).
