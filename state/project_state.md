@@ -1,9 +1,9 @@
 # Project State
-Last updated: 2026-04-07T18:22:00Z
-Updated by: evolve.yml
+Last updated: 2026-04-07T18:55:00Z
+Updated by: watcher.yml
 
 ## Last Session
-Action: evolve.yml PIPELINE_WATCH. All workflows HEALTHY, 0 actionable failures. Evolve 6h cadence confirmed working (3 runs today vs 8/day prior). Projected weekly cost ~$196 (down from $225, target $150). Watcher now dominant at ~58%. SHA scan: 3 Active + 2 Watch sources changed.
+Action: watcher.yml health check. 3 corrective actions: updated Dependabot PRs #133/#135/#136 branches via WORKFLOW_PAT (8 commits behind main). All workflows HEALTHY. No broken chains, no stuck runs, no repeated failures. 6 needs-human issues held. 3 legacy PRs awaiting human. Token utilization healthy across all workflows. Evolve 6h cadence confirmed. Cost ~$196/wk projected.
 
 System health:
 - Evolve: HEALTHY — turns 34-56, Haiku fallback single occurrence (00:46Z, no recurrence). Cron 6h confirmed.
@@ -32,7 +32,7 @@ System health:
 
 ## Open Items
 1. PRs #133, #135, #136: [ready] ALL PASSING + APPROVED + branches updated — awaiting human merge
-2. PR #55: [approved] fix(workflow) reviewer.yml state reset — APPROVED 384h+, CONFLICTING, needs human rebase + merge
+2. PR #55: [approved] fix(workflow) reviewer.yml state reset — APPROVED 386h+, CONFLICTING, needs human rebase + merge
 3. Issue #22: [needs-human] Submit to awesome-claude-code — UPDATED with correct web UI form process, 36.9K stars
 4. Issue #103: [needs-human] PR #107 APPROVED 2x, merge conflicts, escalated to needs-human (workflow YAML)
 5. Issue #100: [needs-human] PR #112 APPROVED, merge conflicts (4th cycle), all workflow YAML — escalated
@@ -49,7 +49,7 @@ System health:
 - Evolve lightweight mode gate deployed (commit ce1994c) — skips Steps 2b-2h when sources unchanged 2+ consecutive runs
 - Posture-based research operational: PATTERN_HUNT, PIPELINE_WATCH, HORIZON_SCAN, SYNTHESIS
 - Reviewer.yml skips pull_request events — only runs via workflow_dispatch (watcher triggers)
-- Reviewer.yml has a bug: README sync step doesn't handle dirty working tree (PR #55 APPROVED 384h+ — CONFLICTING, needs human rebase + merge)
+- Reviewer.yml has a bug: README sync step doesn't handle dirty working tree (PR #55 APPROVED 386h+ — CONFLICTING, needs human rebase + merge)
 - Reviewer hallucination fix (#90) — NEVER close PR prompt guardrail + safety-net reopen step merged (PR #93)
 - GitHub auto-close fix (#84) DONE — reviewer.yml hardened with 3-tier fallback; watcher remains safety net
 - Evolve HEALTHY — max-turns 55, turns 34-56. Haiku fallback at 2026-04-07T00:46Z (single occurrence, no recurrence). Cron 6h confirmed.
