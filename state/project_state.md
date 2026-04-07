@@ -1,18 +1,18 @@
 # Project State
-Last updated: 2026-04-07T14:57:00Z
-Updated by: watcher.yml
+Last updated: 2026-04-07T18:22:00Z
+Updated by: evolve.yml
 
 ## Last Session
-Action: watcher.yml health check. 3 corrective actions: updated Dependabot PRs #133/#135/#136 branches (3 commits behind). All workflows HEALTHY. Evolve 6h cadence confirmed (~2.7h since last run).
+Action: evolve.yml PIPELINE_WATCH. All workflows HEALTHY, 0 actionable failures. Evolve 6h cadence confirmed working (3 runs today vs 8/day prior). Projected weekly cost ~$196 (down from $225, target $150). Watcher now dominant at ~58%. SHA scan: 3 Active + 2 Watch sources changed.
 
 System health:
 - Evolve: HEALTHY — turns 34-56, Haiku fallback single occurrence (00:46Z, no recurrence). Cron 6h confirmed.
-- Watcher: HEALTHY — 0/13 recent exceed 50. Turns: 26-47.
+- Watcher: HEALTHY — 0/15 recent exceed 50. Turns: 26-47.
 - Coder: HEALTHY — last success Apr 7 06:44.
 - Reviewer: HEALTHY — last success Apr 7 06:49. 8 turns.
 - Triage: HEALTHY — last success Apr 7 09:29.
 - Weekly Analysis: HEALTHY — last success Apr 7 12:19.
-- Growth: HEALTHY (36-43 turns). Stars flat 16d+. v0.5.0 released.
+- Growth: HEALTHY (31-43 turns). Stars flat 16d+. v0.5.0 released 8h ago, no impact yet. awesome-cc 37.2K. #22/#48/#149 blocked needs-human.
 - Analyze: STABLE (24-32 turns).
 - Feedback Learner: RECOVERED — 5 turns, #72 fix confirmed.
 - Deploy: RECOVERING — no trigger since #65 fix.
@@ -32,7 +32,7 @@ System health:
 
 ## Open Items
 1. PRs #133, #135, #136: [ready] ALL PASSING + APPROVED + branches updated — awaiting human merge
-2. PR #55: [approved] fix(workflow) reviewer.yml state reset — APPROVED 382h+, CONFLICTING, needs human rebase + merge
+2. PR #55: [approved] fix(workflow) reviewer.yml state reset — APPROVED 384h+, CONFLICTING, needs human rebase + merge
 3. Issue #22: [needs-human] Submit to awesome-claude-code — UPDATED with correct web UI form process, 36.9K stars
 4. Issue #103: [needs-human] PR #107 APPROVED 2x, merge conflicts, escalated to needs-human (workflow YAML)
 5. Issue #100: [needs-human] PR #112 APPROVED, merge conflicts (4th cycle), all workflow YAML — escalated
@@ -49,11 +49,11 @@ System health:
 - Evolve lightweight mode gate deployed (commit ce1994c) — skips Steps 2b-2h when sources unchanged 2+ consecutive runs
 - Posture-based research operational: PATTERN_HUNT, PIPELINE_WATCH, HORIZON_SCAN, SYNTHESIS
 - Reviewer.yml skips pull_request events — only runs via workflow_dispatch (watcher triggers)
-- Reviewer.yml has a bug: README sync step doesn't handle dirty working tree (PR #55 APPROVED 374h+ — CONFLICTING, needs human rebase + merge)
+- Reviewer.yml has a bug: README sync step doesn't handle dirty working tree (PR #55 APPROVED 384h+ — CONFLICTING, needs human rebase + merge)
 - Reviewer hallucination fix (#90) — NEVER close PR prompt guardrail + safety-net reopen step merged (PR #93)
 - GitHub auto-close fix (#84) DONE — reviewer.yml hardened with 3-tier fallback; watcher remains safety net
 - Evolve HEALTHY — max-turns 55, turns 34-56. Haiku fallback at 2026-04-07T00:46Z (single occurrence, no recurrence). Cron 6h confirmed.
-- Watcher HEALTHY — max-turns 50, 0/13 recent exceed (0%). Turns: 26-47.
+- Watcher HEALTHY — max-turns 50, 0/15 recent exceed (0%). Turns: 26-47.
 - Issue #100: ESCALATED to needs-human. PR #112 APPROVED but merge conflicts (4th cycle). Manual rebase + merge required.
 - Issue #103: ESCALATED to needs-human. PR #107 APPROVED 2x, merge conflicts. Manual rebase + merge required.
 - Analyze STABLE — 22-31 turns
@@ -68,6 +68,7 @@ System health:
 - Security Scan regression cycle: #137→#141→#145→#152 (4 cascading issues over 3 days), resolved by PR #153. All Dependabot PRs now passing.
 - Dependabot PRs: #133/#135/#136 APPROVED, ALL PASSING, branches updated. Ready for human merge.
 - Config recheck done: 2026-04-04. Added security-scan, sync-labels, test-evolve to evolve_config. Next recheck: 2026-04-11.
-- Cost: ~$225/week ($32/day) — 50%+ above $150/week target. Watcher 46%, evolve 31%. PR #155 MERGED (evolve 3h→6h), expected ~$34/wk savings. Next cost assessment after 1 week on new cadence.
+- Cost: trending down ~$196/week projected ($28/day) — 31% above $150/week target. Watcher ~58% ($98/wk), evolve ~19% ($38/wk). Evolve 6h cadence savings confirmed ($11→$5/day). Next lever: watcher frequency.
 - Watch List: agentsys, workflows, gstack dropped (0 CI patterns after 7d eval each). backporcher, ARIS, agent-orchestrator added. Portfolio now 6 Active + 11 Watch.
 - Research log: 150 entries (within 100-entry archive threshold).
+- Evolve 6h cadence: confirmed working. Apr 7 runs at 06:43, 12:19, 18:18 (~6h intervals). Cost reduction validated.
