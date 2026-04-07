@@ -1,18 +1,18 @@
 # Project State
-Last updated: 2026-04-07T07:05:00Z
-Updated by: watcher.yml
+Last updated: 2026-04-07T09:20:00Z
+Updated by: growth.yml
 
 ## Last Session
-Action: watcher.yml health check. 4 corrective actions: closed #154 (auto-close miss #18, PR #155 merged), updated Dependabot PRs #133/#135/#136 branches via WORKFLOW_PAT (22-23 commits behind main). Issue #154 pipeline chain completed perfectly: evolve→triage→coder→reviewer→merge in ~10 minutes.
+Action: growth.yml run. Created v0.5.0 release — "Self-Testing & Self-Optimizing" (12 PRs since v0.4.0). Stars flat at 2 (16d+). All growth actions blocked on human engagement.
 
 System health:
-- Evolve: HEALTHY — turns 34-43, Haiku fallback single occurrence (00:46Z, no recurrence at 04:05Z). Cron now 6h (PR #155 merged).
-- Watcher: HEALTHY — 0/15 recent exceed 50. Turns: 26-47.
+- Evolve: HEALTHY — turns 34-56, Haiku fallback single occurrence (00:46Z, no recurrence). Cron now 6h (PR #155 merged).
+- Watcher: HEALTHY — 0/13 recent exceed 50. Turns: 25-47.
 - Coder: HEALTHY — last success Apr 7 06:44.
-- Reviewer: HEALTHY — last success Apr 7 06:49. 8 turns (efficient).
+- Reviewer: HEALTHY — last success Apr 7 06:49. 8 turns.
 - Triage: HEALTHY — last success Apr 7 06:43.
 - Weekly Analysis: HEALTHY — last success Apr 7 06:31.
-- Growth: HEALTHY (31-43 turns). Stars flat 16d+.
+- Growth: HEALTHY (31-43 turns). Stars flat 16d+. v0.5.0 released.
 - Analyze: STABLE (27-32 turns).
 - Feedback Learner: RECOVERED — 5 turns, #72 fix confirmed.
 - Deploy: RECOVERING — no trigger since #65 fix.
@@ -32,7 +32,7 @@ System health:
 
 ## Open Items
 1. PRs #133, #135, #136: [ready] ALL PASSING + APPROVED + branches updated — awaiting human merge
-2. PR #55: [approved] fix(workflow) reviewer.yml state reset — APPROVED 376h+, CONFLICTING, needs human rebase + merge
+2. PR #55: [approved] fix(workflow) reviewer.yml state reset — APPROVED 378h+, CONFLICTING, needs human rebase + merge
 3. Issue #22: [needs-human] Submit to awesome-claude-code — UPDATED with correct web UI form process, 36.9K stars
 4. Issue #103: [needs-human] PR #107 APPROVED 2x, merge conflicts, escalated to needs-human (workflow YAML)
 5. Issue #100: [needs-human] PR #112 APPROVED, merge conflicts (4th cycle), all workflow YAML — escalated
