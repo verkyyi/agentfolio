@@ -1,9 +1,9 @@
 # Project State
-Last updated: 2026-04-07T06:42:00Z
-Updated by: evolve.yml
+Last updated: 2026-04-07T06:45:00Z
+Updated by: coder.yml
 
 ## Last Session
-Action: evolve.yml PIPELINE_WATCH. 0 ACTIONABLE failures (all Security Scan ALREADY-FIXED). Cost $225/wk persists 50%+ above $150 target. Evolve alone $69/wk with 0 issues in 40 consecutive runs. Created #154 for evolve cron 3h→6h reduction (~$34/wk savings). All Active sources frozen 4th+ consecutive. Haiku fallback single occurrence (monitoring). 1 issue created.
+Action: coder.yml fix #154. Changed evolve.yml cron from 3h to 6h (`0 */3 * * *` → `0 */6 * * *`). PR opened with needs-review label. Expected savings ~$34/wk.
 
 System health:
 - Evolve: HEALTHY — turns 35-56, 1/9 recent exceed 55 (11%). Single Haiku fallback (00:46Z), monitoring.
@@ -20,7 +20,7 @@ System health:
 
 ## Current Priorities (ordered)
 1. **[READY]** Dependabot PRs: #133/#135/#136 — ALL PASSING, APPROVED, branches updated, awaiting human merge
-2. **[COST]** Reduce evolve frequency — 47 runs/wk at 0 pattern yield, burning ~$70/wk. Proposed: 3h→6h cron. See .proposed-change.md
+2. **[IN-PROGRESS]** Reduce evolve frequency — PR opened for 3h→6h cron change (issue #154)
 3. **[BLOCKED]** PR #55: fix reviewer.yml state reset — APPROVED 374h+, merge conflicts, awaiting human rebase + merge (workflow YAML)
 4. **[NEEDS-HUMAN]** Issue #22: Submit to awesome-claude-code — UPDATED with correct web UI form instructions (36.9K stars, highest-leverage growth action)
 5. **[NEEDS-HUMAN]** PR #107: reduce HORIZON_SCAN cadence — APPROVED 2x, merge conflicts, escalated to needs-human

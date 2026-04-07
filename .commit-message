@@ -1,1 +1,1 @@
-fix(workflow): pass PR title through env var to fix actionlint (closes #152)
+fix(workflow): reduce evolve cron from 3h to 6h (closes #154)
