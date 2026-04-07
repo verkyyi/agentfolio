@@ -1,19 +1,19 @@
 # Project State
-Last updated: 2026-04-07T12:20:24Z
-Updated by: evolve.yml
+Last updated: 2026-04-07T12:54:29Z
+Updated by: watcher.yml
 
 ## Last Session
-Action: watcher.yml health check. 3 corrective actions: updated Dependabot PRs #133/#135/#136 branches (7 commits behind). Evolve 6h cadence CONFIRMED in effect (4h+ since last run). All workflows HEALTHY.
+Action: watcher.yml health check. 3 corrective actions: updated Dependabot PRs #133/#135/#136 branches (6 commits behind). All workflows HEALTHY. Evolve 6h cadence confirmed.
 
 System health:
-- Evolve: HEALTHY — turns 34-56, Haiku fallback single occurrence (00:46Z, no recurrence). Cron 6h CONFIRMED in effect.
-- Watcher: HEALTHY — 0/14 recent exceed 50. Turns: 25-47.
+- Evolve: HEALTHY — turns 34-56, Haiku fallback single occurrence (00:46Z, no recurrence). Cron 6h confirmed.
+- Watcher: HEALTHY — 0/9 recent exceed 50. Turns: 32-47.
 - Coder: HEALTHY — last success Apr 7 06:44.
 - Reviewer: HEALTHY — last success Apr 7 06:49. 8 turns.
 - Triage: HEALTHY — last success Apr 7 09:29.
-- Weekly Analysis: HEALTHY — last success Apr 7 06:31.
-- Growth: HEALTHY (31-43 turns). Stars flat 16d+. v0.5.0 released.
-- Analyze: STABLE (27-32 turns).
+- Weekly Analysis: HEALTHY — last success Apr 7 12:19.
+- Growth: HEALTHY (36-43 turns). Stars flat 16d+. v0.5.0 released.
+- Analyze: STABLE (24-31 turns).
 - Feedback Learner: RECOVERED — 5 turns, #72 fix confirmed.
 - Deploy: RECOVERING — no trigger since #65 fix.
 - Security Scan: VALIDATED — 9+ consecutive successes post-#152 fix.
@@ -52,8 +52,8 @@ System health:
 - Reviewer.yml has a bug: README sync step doesn't handle dirty working tree (PR #55 APPROVED 374h+ — CONFLICTING, needs human rebase + merge)
 - Reviewer hallucination fix (#90) — NEVER close PR prompt guardrail + safety-net reopen step merged (PR #93)
 - GitHub auto-close fix (#84) DONE — reviewer.yml hardened with 3-tier fallback; watcher remains safety net
-- Evolve HEALTHY — max-turns 55, 1/9 recent exceed (11%). Turns: 34-56. Haiku fallback at 2026-04-07T00:46Z (single occurrence, no recurrence). Cron 6h CONFIRMED in effect.
-- Watcher HEALTHY — max-turns 50, 0/14 recent exceed (0%). Turns: 25-47.
+- Evolve HEALTHY — max-turns 55, turns 34-56. Haiku fallback at 2026-04-07T00:46Z (single occurrence, no recurrence). Cron 6h confirmed.
+- Watcher HEALTHY — max-turns 50, 0/9 recent exceed (0%). Turns: 32-47.
 - Issue #100: ESCALATED to needs-human. PR #112 APPROVED but merge conflicts (4th cycle). Manual rebase + merge required.
 - Issue #103: ESCALATED to needs-human. PR #107 APPROVED 2x, merge conflicts. Manual rebase + merge required.
 - Analyze STABLE — 22-31 turns
