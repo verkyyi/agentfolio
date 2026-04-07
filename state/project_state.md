@@ -1,27 +1,27 @@
 # Project State
-Last updated: 2026-04-07T06:45:00Z
-Updated by: coder.yml
+Last updated: 2026-04-07T07:05:00Z
+Updated by: watcher.yml
 
 ## Last Session
-Action: coder.yml fix #154. Changed evolve.yml cron from 3h to 6h (`0 */3 * * *` → `0 */6 * * *`). PR opened with needs-review label. Expected savings ~$34/wk.
+Action: watcher.yml health check. 4 corrective actions: closed #154 (auto-close miss #18, PR #155 merged), updated Dependabot PRs #133/#135/#136 branches via WORKFLOW_PAT (22-23 commits behind main). Issue #154 pipeline chain completed perfectly: evolve→triage→coder→reviewer→merge in ~10 minutes.
 
 System health:
-- Evolve: HEALTHY — turns 35-56, 1/9 recent exceed 55 (11%). Single Haiku fallback (00:46Z), monitoring.
-- Watcher: HEALTHY — 0/15 recent exceed 50. Turns: 22-47.
-- Coder: HEALTHY — last success Apr 5 16:55. 43 turns.
-- Reviewer: HEALTHY — last success Apr 5 16:59. 9-35 turns.
-- Triage: HEALTHY — last success Apr 6 18:23.
-- Weekly Analysis: HEALTHY — last success Apr 7 00:25.
+- Evolve: HEALTHY — turns 34-43, Haiku fallback single occurrence (00:46Z, no recurrence at 04:05Z). Cron now 6h (PR #155 merged).
+- Watcher: HEALTHY — 0/15 recent exceed 50. Turns: 26-47.
+- Coder: HEALTHY — last success Apr 7 06:44.
+- Reviewer: HEALTHY — last success Apr 7 06:49. 8 turns (efficient).
+- Triage: HEALTHY — last success Apr 7 06:43.
+- Weekly Analysis: HEALTHY — last success Apr 7 06:31.
 - Growth: HEALTHY (31-43 turns). Stars flat 16d+.
-- Analyze: STABLE (21-32 turns).
+- Analyze: STABLE (27-32 turns).
 - Feedback Learner: RECOVERED — 5 turns, #72 fix confirmed.
 - Deploy: RECOVERING — no trigger since #65 fix.
 - Security Scan: VALIDATED — 9+ consecutive successes post-#152 fix.
 
 ## Current Priorities (ordered)
 1. **[READY]** Dependabot PRs: #133/#135/#136 — ALL PASSING, APPROVED, branches updated, awaiting human merge
-2. **[IN-PROGRESS]** Reduce evolve frequency — PR opened for 3h→6h cron change (issue #154)
-3. **[BLOCKED]** PR #55: fix reviewer.yml state reset — APPROVED 374h+, merge conflicts, awaiting human rebase + merge (workflow YAML)
+2. **[DONE]** Reduce evolve frequency — PR #155 MERGED, cron 3h→6h. Issue #154 closed.
+3. **[BLOCKED]** PR #55: fix reviewer.yml state reset — APPROVED 376h+, merge conflicts, awaiting human rebase + merge (workflow YAML)
 4. **[NEEDS-HUMAN]** Issue #22: Submit to awesome-claude-code — UPDATED with correct web UI form instructions (36.9K stars, highest-leverage growth action)
 5. **[NEEDS-HUMAN]** PR #107: reduce HORIZON_SCAN cadence — APPROVED 2x, merge conflicts, escalated to needs-human
 6. **[NEEDS-HUMAN]** PR #112: env scrub hardening — 0 reviews, merge conflicts (4th cycle), all workflow YAML, needs manual rebase + merge
@@ -32,7 +32,7 @@ System health:
 
 ## Open Items
 1. PRs #133, #135, #136: [ready] ALL PASSING + APPROVED + branches updated — awaiting human merge
-2. PR #55: [approved] fix(workflow) reviewer.yml state reset — APPROVED 374h+, CONFLICTING, needs human rebase + merge
+2. PR #55: [approved] fix(workflow) reviewer.yml state reset — APPROVED 376h+, CONFLICTING, needs human rebase + merge
 3. Issue #22: [needs-human] Submit to awesome-claude-code — UPDATED with correct web UI form process, 36.9K stars
 4. Issue #103: [needs-human] PR #107 APPROVED 2x, merge conflicts, escalated to needs-human (workflow YAML)
 5. Issue #100: [needs-human] PR #112 APPROVED, merge conflicts (4th cycle), all workflow YAML — escalated
@@ -64,10 +64,10 @@ System health:
 - Ecosystem consolidating: backporcher is first true architectural peer (10 stars, parallel agent dispatcher). Source portfolio: 6 Active + 11 Watch (agent-orchestrator added).
 - Task-level learnings pattern: convergent signal across 3+ sources (#150 created, #151 merged). Extends feedback-learner concept to agent task outcomes.
 - No human engagement since Mar 22 — 16d+ gap. All recent activity bot-generated.
-- Auto-close miss pattern: 17 occurrences (11 this week alone), all caught by watcher safety net. Accepted as architectural.
+- Auto-close miss pattern: 18 occurrences (12 this week), all caught by watcher safety net. Accepted as architectural.
 - Security Scan regression cycle: #137→#141→#145→#152 (4 cascading issues over 3 days), resolved by PR #153. All Dependabot PRs now passing.
 - Dependabot PRs: #133/#135/#136 APPROVED, ALL PASSING, branches updated. Ready for human merge.
 - Config recheck done: 2026-04-04. Added security-scan, sync-labels, test-evolve to evolve_config. Next recheck: 2026-04-11.
-- Cost: ~$225/week ($32/day) — 50%+ above $150/week target. Watcher 46%, evolve 31%. Issue #154 created for evolve 3h→6h cron reduction.
+- Cost: ~$225/week ($32/day) — 50%+ above $150/week target. Watcher 46%, evolve 31%. PR #155 MERGED (evolve 3h→6h), expected ~$34/wk savings. Next cost assessment after 1 week on new cadence.
 - Watch List: agentsys, workflows, gstack dropped (0 CI patterns after 7d eval each). backporcher, ARIS, agent-orchestrator added. Portfolio now 6 Active + 11 Watch.
 - Research log: 150 entries (within 100-entry archive threshold).
