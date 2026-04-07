@@ -1,12 +1,12 @@
 # Project State
-Last updated: 2026-04-07T01:10:00Z
+Last updated: 2026-04-07T03:40:00Z
 Updated by: watcher.yml
 
 ## Last Session
-Action: watcher.yml health check. 3 corrective actions: updated Dependabot PRs #133/#135/#136 branches (7 commits behind). NEW SIGNAL: first model fallback detected — evolve HORIZON_SCAN at 00:46Z used claude-haiku-4-5-20251001 instead of Opus (single occurrence, monitoring).
+Action: watcher.yml health check. All clear — 0 corrective actions. Dependabot PRs #133/#135/#136 CLEAN+MERGEABLE (no branch update needed). Haiku fallback still single occurrence (monitoring).
 
 System health:
-- Evolve: HEALTHY — turns 34-56, 1/15 recent exceed 55 (6.7%). First Haiku fallback detected (00:46Z).
+- Evolve: HEALTHY — turns 35-56, 1/9 recent exceed 55 (11%). Single Haiku fallback (00:46Z), monitoring.
 - Watcher: HEALTHY — 0/15 recent exceed 50. Turns: 22-47.
 - Coder: HEALTHY — last success Apr 5 16:55. 43 turns.
 - Reviewer: HEALTHY — last success Apr 5 16:59. 9-35 turns.
@@ -21,7 +21,7 @@ System health:
 ## Current Priorities (ordered)
 1. **[READY]** Dependabot PRs: #133/#135/#136 — ALL PASSING, APPROVED, branches updated, awaiting human merge
 2. **[COST]** Reduce evolve frequency — 47 runs/wk at 0 pattern yield, burning ~$70/wk. Proposed: 3h→6h cron. See .proposed-change.md
-3. **[BLOCKED]** PR #55: fix reviewer.yml state reset — APPROVED 372h+, merge conflicts, awaiting human rebase + merge (workflow YAML)
+3. **[BLOCKED]** PR #55: fix reviewer.yml state reset — APPROVED 374h+, merge conflicts, awaiting human rebase + merge (workflow YAML)
 4. **[NEEDS-HUMAN]** Issue #22: Submit to awesome-claude-code — UPDATED with correct web UI form instructions (36.9K stars, highest-leverage growth action)
 5. **[NEEDS-HUMAN]** PR #107: reduce HORIZON_SCAN cadence — APPROVED 2x, merge conflicts, escalated to needs-human
 6. **[NEEDS-HUMAN]** PR #112: env scrub hardening — 0 reviews, merge conflicts (4th cycle), all workflow YAML, needs manual rebase + merge
@@ -32,7 +32,7 @@ System health:
 
 ## Open Items
 1. PRs #133, #135, #136: [ready] ALL PASSING + APPROVED + branches updated — awaiting human merge
-2. PR #55: [approved] fix(workflow) reviewer.yml state reset — APPROVED 372h+, CONFLICTING, needs human rebase + merge
+2. PR #55: [approved] fix(workflow) reviewer.yml state reset — APPROVED 374h+, CONFLICTING, needs human rebase + merge
 3. Issue #22: [needs-human] Submit to awesome-claude-code — UPDATED with correct web UI form process, 36.9K stars
 4. Issue #103: [needs-human] PR #107 APPROVED 2x, merge conflicts, escalated to needs-human (workflow YAML)
 5. Issue #100: [needs-human] PR #112 APPROVED, merge conflicts (4th cycle), all workflow YAML — escalated
@@ -49,10 +49,10 @@ System health:
 - Evolve lightweight mode gate deployed (commit ce1994c) — skips Steps 2b-2h when sources unchanged 2+ consecutive runs
 - Posture-based research operational: PATTERN_HUNT, PIPELINE_WATCH, HORIZON_SCAN, SYNTHESIS
 - Reviewer.yml skips pull_request events — only runs via workflow_dispatch (watcher triggers)
-- Reviewer.yml has a bug: README sync step doesn't handle dirty working tree (PR #55 APPROVED 372h+ — CONFLICTING, needs human rebase + merge)
+- Reviewer.yml has a bug: README sync step doesn't handle dirty working tree (PR #55 APPROVED 374h+ — CONFLICTING, needs human rebase + merge)
 - Reviewer hallucination fix (#90) — NEVER close PR prompt guardrail + safety-net reopen step merged (PR #93)
 - GitHub auto-close fix (#84) DONE — reviewer.yml hardened with 3-tier fallback; watcher remains safety net
-- Evolve HEALTHY — max-turns 55, 1/15 recent exceed (6.7%). Turns: 34-56. First Haiku fallback at 2026-04-07T00:46Z (single occurrence).
+- Evolve HEALTHY — max-turns 55, 1/9 recent exceed (11%). Turns: 35-56. Haiku fallback at 2026-04-07T00:46Z (single occurrence, monitoring).
 - Watcher HEALTHY — max-turns 50, 0/15 recent exceed (0%). Turns: 22-47.
 - Issue #100: ESCALATED to needs-human. PR #112 APPROVED but merge conflicts (4th cycle). Manual rebase + merge required.
 - Issue #103: ESCALATED to needs-human. PR #107 APPROVED 2x, merge conflicts. Manual rebase + merge required.
