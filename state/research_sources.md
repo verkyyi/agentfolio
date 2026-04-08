@@ -1,7 +1,7 @@
 # Research Sources
 # Managed by evolve.yml. Claude adds, prunes, and annotates freely.
 # Seeded from evolve_config.md on first run.
-# Last updated: 2026-04-08T06:33:52Z
+# Last updated: 2026-04-08T12:17:32Z
 
 ## Active Sources
 
@@ -14,7 +14,7 @@
 ### hesreallyhim/awesome-claude-code
 - **Why:** Curated ecosystem catalog — discover new tools, libraries, and patterns
 - **Look for:** New entries in Orchestrators/Tools/Skills sections, trending repos referenced
-- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-04-08T00:20:10Z | **Pattern hits:** 0 | **SHA:** eb812d0
+- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-04-08T00:20:10Z | **Pattern hits:** 0 | **SHA:** d0b2126
 - **Notes:** 0 pattern hits across 50+ observations. SHA change: ticker data only. Submission enforcement governance (owner bypass), Teams subcategory — curation-specific patterns. Retain for HORIZON_SCAN cross-reference only.
 
 ### SethGammon/Citadel
@@ -26,14 +26,14 @@
 ### actions/runner
 - **Why:** CI/CD runtime we depend on — deprecation notices, new features, security fixes
 - **Look for:** Node.js version deprecation timelines, runner image changes, new action features
-- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-04-08T00:20:10Z | **Pattern hits:** 0 | **SHA:** 7711dc5
-- **Notes:** Check releases, not just commits. 7711dc5: devtunnel debugger connectivity (#4317, remote DAP relay). df50788: brace-expansion dep bump. Bearer token auth for action archive downloads. PR #4296: batch/dedup action resolution. v2.333.1: removed AllowCaseFunction. Node 20.20.2/24.14.1. 0 pattern hits across 12+ observations.
+- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-04-08T00:20:10Z | **Pattern hits:** 0 | **SHA:** 580116c
+- **Notes:** Check releases, not just commits. 580116c: new SHA since Apr 8. 7711dc5: devtunnel debugger connectivity (#4317, remote DAP relay). Bearer token auth for action archive downloads. PR #4296: batch/dedup action resolution. v2.333.1: removed AllowCaseFunction. Node 20.20.2/24.14.1. 0 pattern hits across 12+ observations.
 
 ### withastro/astro
 - **Why:** Web framework we use — security fixes, breaking changes, new features
 - **Look for:** Security advisories, breaking changes in minor/major releases, new content collection features
-- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-04-08T00:20:10Z | **Pattern hits:** 0 | **SHA:** 39a4c43
-- **Notes:** Only actionable for security fixes or features that affect our site build. v6.1.4 (Apr 6): unused re-exports cleanup, React 19 preload fix. No security advisories. 0 harness patterns across 19+ observations.
+- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-04-08T00:20:10Z | **Pattern hits:** 0 | **SHA:** 337d3aa
+- **Notes:** Only actionable for security fixes or features that affect our site build. 337d3aa: new SHA since Apr 8. v6.1.4 (Apr 6): unused re-exports cleanup, React 19 preload fix. No security advisories. 0 harness patterns across 19+ observations.
 
 ### verkyyi/tokenman
 - **Why:** Self-reference — track forks, adopters, and how the scaffold is used
@@ -48,14 +48,14 @@
 - **Why:** Community harness patterns, skill collections, optimization techniques
 - **Look for:** New skills, CLAUDE.md patterns, workflow architectures, instinct files
 - **Demoted:** 2026-04-02 (synthesis — 13+ consecutive 0-pattern observations, all interactive-session specific, 0 CI-harness patterns)
-- **Observations:** 63+ | **First seen:** 2026-03-20 | **SHA:** 098b773
+- **Observations:** 64+ | **First seen:** 2026-03-20 | **SHA:** 9d766af
 - **Notes:** 1 pattern hit total (safety-guard PreToolUse hooks, early). CI cleanup, codex sync, install hardening — all interactive-session. From same author as agentshield. Apr 6: release payload verification gate, hook bug workaround guide, README badges — all ECC-specific. Monitor for CI-relevant patterns.
 
 ### bytedance/deer-flow
 - **Why:** Multi-agent orchestration patterns from a major tech company
 - **Look for:** Agent coordination, state management, tool orchestration, LLM provider patterns
 - **Demoted:** 2026-04-02 (synthesis — 19+ consecutive 0-pattern deep-dives, all Python application-specific, fundamentally different stack)
-- **Observations:** 75+ | **First seen:** 2026-03-21 | **SHA:** e5b1490
+- **Observations:** 76+ | **First seen:** 2026-03-21 | **SHA:** 5350b2f
 - **Notes:** 1 pattern hit total (early). Very active (5+ commits/day). Per-agent skill filter, concurrent file locks, Langfuse tracing — all Python. No transferable harness patterns despite extensive monitoring. Apr 8: subagent event loop fix, frontend routing fixes.
 
 ### trailofbits/skills
@@ -82,7 +82,7 @@
 ### Vigilant-LLC/runner-guard
 - **Why:** CI/CD security scanner (6 stars, Go) — 31 detection rules for GHA vulnerabilities + supply chain dependency scanning: fork checkout exploits, expression injection, AI config injection (CLAUDE.md hijacking), supply chain steganography, unpinned actions, compromised package detection, auto-fix, SARIF output
 - **Look for:** GHA vulnerability patterns applicable to our workflows, action pinning auto-fix, AI config injection defenses, SARIF integration for Code Scanning, compromised package detection
-- **Added:** 2026-04-01 (horizon scan) | **Observations:** 11 | **First seen:** 2026-04-01 | **SHA:** e064822
+- **Added:** 2026-04-01 (horizon scan) | **Observations:** 12 | **First seen:** 2026-04-01 | **SHA:** 19c7d25
 - **Notes:** Only scanner specifically targeting AI agent attack vectors in CI/CD. v3.0.1 (Apr 8): Docker image (10.4MB distroless), PagerDuty+Slack+Webhook alerting, org scanning, demo GIFs. Issue #127 created for adoption. Go single binary. Last deep: 2026-04-06T21:16Z.
 
 ### affaan-m/agentshield
@@ -94,13 +94,13 @@
 ### wanshuiyin/Auto-claude-code-research-in-sleep
 - **Why:** Autonomous ML research harness (5.4K stars, 455 forks) — markdown-only skills, cross-model review loops, idea discovery. Conceptually closest to evolve's autonomous research methodology.
 - **Look for:** Autonomous research workflow patterns, cross-model review loops, skill organization, persistent memory patterns
-- **Added:** 2026-04-03 (horizon scan) | **Observations:** 11 | **First seen:** 2026-04-03 | **SHA:** b2c10a3
+- **Added:** 2026-04-03 (horizon scan) | **Observations:** 12 | **First seen:** 2026-04-03 | **SHA:** eba98e3
 - **Notes:** ARIS v0.3.3. Recent: Zenodo DOI badge, What's New updates — doc-only. Python + Markdown. ML-research domain, not CI harness. Same methodology concept as our evolve. Monitor for transferable workflow patterns.
 
 ### jnurre64/claude-agent-dispatch
 - **Why:** Label-driven Claude Code GHA dispatch (Shell, 2 stars) — closest architecture to tokenman. Modular agent-dispatch.sh + lib/, label state machine (10 agent:* labels), two-phase plan→implement with human checkpoint, ShellCheck + BATS-Core CI testing.
 - **Look for:** Shell script quality patterns, label state machine design, worktree isolation, error trap handling, BATS test patterns
-- **Added:** 2026-04-02 (horizon scan) | **Observations:** 11 | **First seen:** 2026-04-02 | **SHA:** 012bd2f
+- **Added:** 2026-04-02 (horizon scan) | **Observations:** 12 | **First seen:** 2026-04-02 | **SHA:** b1f8029
 - **Notes:** Created 2026-03-21, actively maintained. Shell-only, no Node/Python deps. Reusable workflows (dispatch-*.yml) consumed via workflow_call. CI validates all scripts with ShellCheck + BATS. Architecturally closest to tokenman: issue-driven, label-based state, GHA runners, claude -p headless. 2 pattern hits. Last deep: 2026-04-05T15:16Z. Apr 8: PR #24 recommend standalone mode over reference mode. Approaching promotion (11 obs, 7 days on Apr 9).
 
 ### ComposioHQ/agent-orchestrator
