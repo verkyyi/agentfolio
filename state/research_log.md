@@ -126,3 +126,7 @@
 2026-04-08T12:21:43Z | synthesis | Human intents: 0 new in 7d (17d+ since Mar 22). FIX_PROCESS 41% dominant. 6 needs-human + 3 Dependabot PRs blocked. Growth flat. | no new entries
 2026-04-08T12:21:43Z | sha-scan | Active: 2/5 changed (awesome-cc eb812d0→d0b2126, runner 7711dc5→580116c, astro 39a4c43→337d3aa). Watch: 5/12 changed (ECC, deer-flow, runner-guard, ARIS, agent-dispatch). Self 2 stars, 0 forks. | SHAs updated
 2026-04-08T12:21:43Z | synthesis | Watch List: agent-dispatch 11 obs, 2 hits, 6 days (promote at 7d on Apr 9). runner-guard 19c7d25 (5th+ SHA change this week). enso-os 1 obs (too early). 0 promotions, 0 drops this run. | observation
+2026-04-08T18:28:37Z | claude-agent-dispatch | Deep-dive: PR #25 workflow template detection (3-way checksum sync), PR #23 workspace-relative memory, PR #13 default-proceed prompt pattern, global error trap w/diagnostics, label state machine, tiered notifications. All interesting but 0 adoptable for GHA harness. | observation
+2026-04-08T18:28:37Z | actions/runner | Docker v29.3.1 + Buildx v0.33.0 update, typescript-eslint bump. Infrastructure-only, 0 patterns. | no action
+2026-04-08T18:28:37Z | withastro/astro | v6.1.5: biome upgrade, dlv inlining, Cloudflare queue consumer fix. No security advisories. | no action
+2026-04-08T18:28:37Z | sha-scan | Active: 2/6 changed (awesome-cc e7124fc ticker, astro 673a871 v6.1.5). Watch: 4/12 changed (deer-flow ad6d934, plugins-official 62f2063, runner-guard 3d9f329, enso-os 9a53e07). Self f4bc357. | SHAs updated
