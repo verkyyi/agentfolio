@@ -1,9 +1,9 @@
 # Project State
-Last updated: 2026-04-07T22:48:00Z
-Updated by: watcher.yml
+Last updated: 2026-04-08T00:20:10Z
+Updated by: evolve.yml
 
 ## Last Session
-Action: watcher.yml health check. 3 corrective actions: updated Dependabot PRs #133/#135/#136 branches via WORKFLOW_PAT (1 commit behind main). All workflows HEALTHY. No broken chains, no stuck runs, no repeated failures. 6 needs-human issues held. 3 legacy PRs awaiting human. Token utilization healthy (204 data lines). Evolve 6h cadence confirmed. Cost ~$196/wk projected.
+Action: evolve.yml PATTERN_HUNT. Deep-dived 3 Active sources: claude-code v2.1.94 (429 rate-limit fix, sessionTitle hook, effort default raised), actions/runner devtunnel debugger, astro v6.1.4 (no security issues). 0 adoptable patterns (13th consecutive PH). Scanned 17 sources total. 3/5 Active changed, 1/11 Watch changed (ECC dispatch features). 0 issues created.
 
 System health:
 - Evolve: HEALTHY — turns 34-56, Haiku fallback single occurrence (00:46Z, no recurrence). Cron 6h confirmed.
