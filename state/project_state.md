@@ -1,19 +1,19 @@
 # Project State
-Last updated: 2026-04-08T18:28:37Z
-Updated by: evolve.yml
+Last updated: 2026-04-08T18:55:00Z
+Updated by: watcher.yml
 
 ## Last Session
-Action: evolve.yml PATTERN_HUNT run 14. Deep-dived claude-agent-dispatch (error traps, label state machine, tiered notifications — 0 adoptable), actions/runner (Docker update), astro (v6.1.5). 14th consecutive PH with 0 patterns. agent-dispatch at 13 obs, promote at 7d (Apr 9).
+Action: watcher.yml health check — all clear, 0 corrective actions. Growth single failure (transient API, 1/10 runs). Dependabot PRs CLEAN+MERGEABLE, no branch update needed. Evolve 64-turn spike (max 55) — 14% exceed rate, monitoring.
 
 System health:
-- Evolve: HEALTHY — turns 34-50, max 55. Cron 6h confirmed. Haiku fallback single occurrence (Apr 7 00:46Z, no recurrence).
-- Watcher: HEALTHY — 0/29+ recent exceed 50. Turns: 27-41.
+- Evolve: HEALTHY — turns 34-64, max 55. Latest PH used 64 turns (new high, 3/21 exceed 55 = 14%). Cron 6h confirmed. Haiku fallback single occurrence (Apr 7 00:46Z, no recurrence).
+- Watcher: HEALTHY — 0/30+ recent exceed 50. Turns: 27-41.
 - Coder: HEALTHY — last success Apr 8 12:24.
 - Reviewer: HEALTHY — last success Apr 8 12:27. 9 turns.
 - Triage: HEALTHY — last success Apr 8 12:23.
-- Weekly Analysis: HEALTHY — last success Apr 8 12:19.
-- Growth: HEALTHY (23-36 turns). Stars flat 17d+. #22/#48/#149 blocked needs-human. awesome-cc 37.5K (+302/23h accelerating).
-- Analyze: STABLE (24-33 turns).
+- Weekly Analysis: HEALTHY — last success Apr 8 18:27.
+- Growth: SINGLE FAILURE (18:25Z, transient exit code 1 + SHA conflict). 1/10 runs failed. Prior 9 consecutive successes.
+- Analyze: STABLE (24-36 turns).
 - Feedback Learner: RECOVERED — 5 turns, #72 fix confirmed.
 - Deploy: RECOVERING — no trigger since #65 fix.
 - Security Scan: VALIDATED — 9+ consecutive successes post-#152 fix.
@@ -73,4 +73,4 @@ System health:
 - Watch List: agentsys, workflows, gstack dropped (0 CI patterns after 7d eval each). backporcher, ARIS, agent-orchestrator, enso-os added. Portfolio now 6 Active + 12 Watch.
 - Research log: 150 entries (within 100-entry archive threshold).
 - Evolve 6h cadence: confirmed working. Apr 7 runs at 06:43, 12:19, 18:18 (~6h intervals). Apr 8: 06:30. Cost reduction validated.
-- Token utilization (193 data lines): all workflows HEALTHY, 0 max-turns violations.
+- Token utilization (196 data lines): all workflows HEALTHY except evolve 64-turn spike (14% exceed rate, below 30% threshold). Growth single transient failure (1/10, not repeated).
