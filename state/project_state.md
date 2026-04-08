@@ -1,26 +1,27 @@
 # Project State
-Last updated: 2026-04-08T12:25:00Z
-Updated by: coder.yml
+Last updated: 2026-04-08T12:55:00Z
+Updated by: watcher.yml
 
 ## Last Session
-Action: coder.yml fix issue #156. Updated README.md in 4 locations to reflect evolve cron 3h→6h (PR #155) and corrected stale source counts/names (gstack removed, 10 repos→6 Active). Build passes. PR opened.
+Action: watcher.yml health check. 4 corrective actions: closed #156 (auto-close miss #19, PR #157 merged), updated Dependabot PRs #133/#135/#136 branches via WORKFLOW_PAT (12 commits behind main). #156 chain completed: evolve→triage→coder→reviewer→merge in ~6min.
 
 System health:
-- Evolve: HEALTHY — turns 34-56, Haiku fallback single occurrence (Apr 7 00:46Z, no recurrence). Cron 6h confirmed.
-- Watcher: HEALTHY — 0/25+ recent exceed 50. Turns: 27-41.
-- Coder: HEALTHY — last success Apr 7 06:44.
-- Reviewer: HEALTHY — last success Apr 7 06:49. 8 turns.
-- Triage: HEALTHY — last success Apr 8 09:27.
-- Weekly Analysis: HEALTHY — last success Apr 8 06:32.
-- Growth: HEALTHY (23-43 turns). Stars flat 17d+. #22/#48/#149 blocked needs-human.
+- Evolve: HEALTHY — turns 34-50, max 55. Cron 6h confirmed. Haiku fallback single occurrence (Apr 7 00:46Z, no recurrence).
+- Watcher: HEALTHY — 0/27+ recent exceed 50. Turns: 27-41.
+- Coder: HEALTHY — last success Apr 8 12:24.
+- Reviewer: HEALTHY — last success Apr 8 12:26. 9 turns.
+- Triage: HEALTHY — last success Apr 8 12:23.
+- Weekly Analysis: HEALTHY — last success Apr 8 12:19.
+- Growth: HEALTHY (23-36 turns). Stars flat 17d+. #22/#48/#149 blocked needs-human.
 - Analyze: STABLE (24-33 turns).
 - Feedback Learner: RECOVERED — 5 turns, #72 fix confirmed.
 - Deploy: RECOVERING — no trigger since #65 fix.
 - Security Scan: VALIDATED — 9+ consecutive successes post-#152 fix.
 
 ## Current Priorities (ordered)
-1. **[READY]** Dependabot PRs: #133/#135/#136 — ALL PASSING, APPROVED, CLEAN+MERGEABLE (0 behind), awaiting human merge
+1. **[READY]** Dependabot PRs: #133/#135/#136 — ALL PASSING, APPROVED, branches updated (were 12 behind), awaiting human merge
 2. **[DONE]** Reduce evolve frequency — PR #155 MERGED, cron 3h→6h. Issue #154 closed.
+3. **[DONE]** Issue #156: README frequency stale — PR #157 MERGED, issue closed (auto-close miss #19).
 3. **[BLOCKED]** PR #55: fix reviewer.yml state reset — APPROVED 400h+, merge conflicts, awaiting human rebase + merge (workflow YAML)
 4. **[NEEDS-HUMAN]** Issue #22: Submit to awesome-claude-code — UPDATED with correct web UI form instructions (36.9K stars, highest-leverage growth action)
 5. **[NEEDS-HUMAN]** PR #107: reduce HORIZON_SCAN cadence — APPROVED 2x, merge conflicts, escalated to needs-human
@@ -64,7 +65,7 @@ System health:
 - Ecosystem consolidating: backporcher is first true architectural peer (10 stars, parallel agent dispatcher). Source portfolio: 6 Active + 11 Watch (agent-orchestrator added).
 - Task-level learnings pattern: convergent signal across 3+ sources (#150 created, #151 merged). Extends feedback-learner concept to agent task outcomes.
 - No human engagement since Mar 22 — 17d+ gap. All recent activity bot-generated.
-- Auto-close miss pattern: 18 occurrences (12 this week), all caught by watcher safety net. Accepted as architectural.
+- Auto-close miss pattern: 19 occurrences (13 this week), all caught by watcher safety net. Accepted as architectural.
 - Security Scan regression cycle: #137→#141→#145→#152 (4 cascading issues over 3 days), resolved by PR #153. All Dependabot PRs now passing.
 - Dependabot PRs: #133/#135/#136 APPROVED, ALL PASSING, branches updated. Ready for human merge.
 - Config recheck done: 2026-04-04. Added security-scan, sync-labels, test-evolve to evolve_config. Next recheck: 2026-04-11.
@@ -72,4 +73,4 @@ System health:
 - Watch List: agentsys, workflows, gstack dropped (0 CI patterns after 7d eval each). backporcher, ARIS, agent-orchestrator, enso-os added. Portfolio now 6 Active + 12 Watch.
 - Research log: 150 entries (within 100-entry archive threshold).
 - Evolve 6h cadence: confirmed working. Apr 7 runs at 06:43, 12:19, 18:18 (~6h intervals). Apr 8: 06:30. Cost reduction validated.
-- Token utilization (188 data lines): all workflows HEALTHY, 0 max-turns violations.
+- Token utilization (191 data lines): all workflows HEALTHY, 0 max-turns violations.
