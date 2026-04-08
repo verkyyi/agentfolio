@@ -1,15 +1,15 @@
 # Project State
-Last updated: 2026-04-08T12:55:00Z
+Last updated: 2026-04-08T15:00:00Z
 Updated by: watcher.yml
 
 ## Last Session
-Action: watcher.yml health check. 4 corrective actions: closed #156 (auto-close miss #19, PR #157 merged), updated Dependabot PRs #133/#135/#136 branches via WORKFLOW_PAT (12 commits behind main). #156 chain completed: evolve→triage→coder→reviewer→merge in ~6min.
+Action: watcher.yml health check. 3 corrective actions: updated Dependabot PRs #133/#135/#136 branches via WORKFLOW_PAT (3 commits behind main).
 
 System health:
 - Evolve: HEALTHY — turns 34-50, max 55. Cron 6h confirmed. Haiku fallback single occurrence (Apr 7 00:46Z, no recurrence).
-- Watcher: HEALTHY — 0/27+ recent exceed 50. Turns: 27-41.
+- Watcher: HEALTHY — 0/28+ recent exceed 50. Turns: 27-41.
 - Coder: HEALTHY — last success Apr 8 12:24.
-- Reviewer: HEALTHY — last success Apr 8 12:26. 9 turns.
+- Reviewer: HEALTHY — last success Apr 8 12:27. 9 turns.
 - Triage: HEALTHY — last success Apr 8 12:23.
 - Weekly Analysis: HEALTHY — last success Apr 8 12:19.
 - Growth: HEALTHY (23-36 turns). Stars flat 17d+. #22/#48/#149 blocked needs-human.
@@ -19,7 +19,7 @@ System health:
 - Security Scan: VALIDATED — 9+ consecutive successes post-#152 fix.
 
 ## Current Priorities (ordered)
-1. **[READY]** Dependabot PRs: #133/#135/#136 — ALL PASSING, APPROVED, branches updated (were 12 behind), awaiting human merge
+1. **[READY]** Dependabot PRs: #133/#135/#136 — ALL PASSING, APPROVED, branches updated (were 3 behind), awaiting human merge
 2. **[DONE]** Reduce evolve frequency — PR #155 MERGED, cron 3h→6h. Issue #154 closed.
 3. **[DONE]** Issue #156: README frequency stale — PR #157 MERGED, issue closed (auto-close miss #19).
 3. **[BLOCKED]** PR #55: fix reviewer.yml state reset — APPROVED 400h+, merge conflicts, awaiting human rebase + merge (workflow YAML)
@@ -54,7 +54,7 @@ System health:
 - Reviewer hallucination fix (#90) — NEVER close PR prompt guardrail + safety-net reopen step merged (PR #93)
 - GitHub auto-close fix (#84) DONE — reviewer.yml hardened with 3-tier fallback; watcher remains safety net
 - Evolve HEALTHY — max-turns 55, turns 34-56. Haiku fallback at 2026-04-07T00:46Z (single occurrence, no recurrence). Cron 6h confirmed.
-- Watcher HEALTHY — max-turns 50, 0/25 recent exceed (0%). Turns: 27-41.
+- Watcher HEALTHY — max-turns 50, 0/28 recent exceed (0%). Turns: 27-41.
 - Issue #100: ESCALATED to needs-human. PR #112 APPROVED but merge conflicts (4th cycle). Manual rebase + merge required.
 - Issue #103: ESCALATED to needs-human. PR #107 APPROVED 2x, merge conflicts. Manual rebase + merge required.
 - Analyze STABLE — 22-31 turns
@@ -73,4 +73,4 @@ System health:
 - Watch List: agentsys, workflows, gstack dropped (0 CI patterns after 7d eval each). backporcher, ARIS, agent-orchestrator, enso-os added. Portfolio now 6 Active + 12 Watch.
 - Research log: 150 entries (within 100-entry archive threshold).
 - Evolve 6h cadence: confirmed working. Apr 7 runs at 06:43, 12:19, 18:18 (~6h intervals). Apr 8: 06:30. Cost reduction validated.
-- Token utilization (191 data lines): all workflows HEALTHY, 0 max-turns violations.
+- Token utilization (192 data lines): all workflows HEALTHY, 0 max-turns violations.
