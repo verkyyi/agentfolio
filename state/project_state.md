@@ -1,9 +1,9 @@
 # Project State
-Last updated: 2026-04-08T20:50:00Z
-Updated by: watcher.yml
+Last updated: 2026-04-08T21:00:00Z
+Updated by: coder.yml
 
 ## Last Session
-Action: watcher.yml health check — 4 corrective actions: triggered triage for #158 (commit-state.sh large file failure, ~2h untriaged), updated Dependabot PRs #133/#135/#136 branches via WORKFLOW_PAT (13 commits behind main).
+Action: coder.yml fix issue #158 — commit-state.sh ARG_MAX failure on large files. Replaced `-f content=` shell args with `jq --rawfile` + `gh api --input` temp file approach. Both code paths (with/without SHA) fixed. Tested with 309KB agent_log.md (412KB base64). PR opened.
 
 System health:
 - Evolve: HEALTHY — turns 34-64, max 55. Cron 6h confirmed. Haiku fallback single occurrence (Apr 7 00:46Z, no recurrence).
@@ -19,7 +19,7 @@ System health:
 - Security Scan: VALIDATED — 9+ consecutive successes post-#152 fix.
 
 ## Current Priorities (ordered)
-1. **[NEW]** Issue #158: commit-state.sh fails on large files — pipeline-fix, likely-agent-fixable, triage triggered
+1. **[IN-PR]** Issue #158: commit-state.sh fails on large files — PR opened with fix
 2. **[READY]** Dependabot PRs: #133/#135/#136 — ALL PASSING, APPROVED, branches updated (were 13 behind), awaiting human merge
 3. **[BLOCKED]** PR #55: fix reviewer.yml state reset — APPROVED 410h+, merge conflicts, awaiting human rebase + merge (workflow YAML)
 4. **[NEEDS-HUMAN]** Issue #22: Submit to awesome-claude-code — 36.9K stars, highest-leverage growth action
