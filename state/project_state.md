@@ -1,45 +1,45 @@
 # Project State
-Last updated: 2026-04-08T18:55:00Z
+Last updated: 2026-04-08T20:50:00Z
 Updated by: watcher.yml
 
 ## Last Session
-Action: watcher.yml health check — all clear, 0 corrective actions. Growth single failure (transient API, 1/10 runs). Dependabot PRs CLEAN+MERGEABLE, no branch update needed. Evolve 64-turn spike (max 55) — 14% exceed rate, monitoring.
+Action: watcher.yml health check — 4 corrective actions: triggered triage for #158 (commit-state.sh large file failure, ~2h untriaged), updated Dependabot PRs #133/#135/#136 branches via WORKFLOW_PAT (13 commits behind main).
 
 System health:
-- Evolve: HEALTHY — turns 34-64, max 55. Latest PH used 64 turns (new high, 3/21 exceed 55 = 14%). Cron 6h confirmed. Haiku fallback single occurrence (Apr 7 00:46Z, no recurrence).
+- Evolve: HEALTHY — turns 34-64, max 55. Cron 6h confirmed. Haiku fallback single occurrence (Apr 7 00:46Z, no recurrence).
 - Watcher: HEALTHY — 0/30+ recent exceed 50. Turns: 27-41.
 - Coder: HEALTHY — last success Apr 8 12:24.
 - Reviewer: HEALTHY — last success Apr 8 12:27. 9 turns.
-- Triage: HEALTHY — last success Apr 8 12:23.
+- Triage: HEALTHY — last success Apr 8 12:23. Re-triggered for #158.
 - Weekly Analysis: HEALTHY — last success Apr 8 18:27.
-- Growth: SINGLE FAILURE (18:25Z, transient exit code 1 + SHA conflict). 1/10 runs failed. Prior 9 consecutive successes.
+- Growth: SINGLE FAILURE (18:25Z, transient, 1/10 runs). Not repeated.
 - Analyze: STABLE (24-36 turns).
 - Feedback Learner: RECOVERED — 5 turns, #72 fix confirmed.
 - Deploy: RECOVERING — no trigger since #65 fix.
 - Security Scan: VALIDATED — 9+ consecutive successes post-#152 fix.
 
 ## Current Priorities (ordered)
-1. **[READY]** Dependabot PRs: #133/#135/#136 — ALL PASSING, APPROVED, branches updated (were 3 behind), awaiting human merge
-2. **[DONE]** Reduce evolve frequency — PR #155 MERGED, cron 3h→6h. Issue #154 closed.
-3. **[DONE]** Issue #156: README frequency stale — PR #157 MERGED, issue closed (auto-close miss #19).
-3. **[BLOCKED]** PR #55: fix reviewer.yml state reset — APPROVED 400h+, merge conflicts, awaiting human rebase + merge (workflow YAML)
-4. **[NEEDS-HUMAN]** Issue #22: Submit to awesome-claude-code — UPDATED with correct web UI form instructions (36.9K stars, highest-leverage growth action)
+1. **[NEW]** Issue #158: commit-state.sh fails on large files — pipeline-fix, likely-agent-fixable, triage triggered
+2. **[READY]** Dependabot PRs: #133/#135/#136 — ALL PASSING, APPROVED, branches updated (were 13 behind), awaiting human merge
+3. **[BLOCKED]** PR #55: fix reviewer.yml state reset — APPROVED 410h+, merge conflicts, awaiting human rebase + merge (workflow YAML)
+4. **[NEEDS-HUMAN]** Issue #22: Submit to awesome-claude-code — 36.9K stars, highest-leverage growth action
 5. **[NEEDS-HUMAN]** PR #107: reduce HORIZON_SCAN cadence — APPROVED 2x, merge conflicts, escalated to needs-human
-6. **[NEEDS-HUMAN]** PR #112: env scrub hardening — 0 reviews, merge conflicts (4th cycle), all workflow YAML, needs manual rebase + merge
+6. **[NEEDS-HUMAN]** PR #112: env scrub hardening — 0 reviews, merge conflicts (4th cycle), needs manual rebase + merge
 7. **[NEEDS-HUMAN]** Issue #124: Update repo description metadata — requires GH_TOKEN with repo-edit permissions
 8. **[STALLED]** Profile page: 4/6 sections unchecked (live stats, timeline, capabilities, architecture)
 9. **[WAITING]** Issue #48: Submit to e2b-dev/awesome-ai-agents — needs-human
 10. **[NEEDS-HUMAN]** Issue #149: Submit to EvoMap/awesome-agent-evolution — needs-human, growth-action
 
 ## Open Items
-1. PRs #133, #135, #136: [ready] ALL PASSING + APPROVED + CLEAN+MERGEABLE (0 behind) — awaiting human merge
-2. PR #55: [approved] fix(workflow) reviewer.yml state reset — APPROVED 400h+, CONFLICTING, needs human rebase + merge
-3. Issue #22: [needs-human] Submit to awesome-claude-code — UPDATED with correct web UI form process, 36.9K stars
-4. Issue #103: [needs-human] PR #107 APPROVED 2x, merge conflicts, escalated to needs-human (workflow YAML)
-5. Issue #100: [needs-human] PR #112 APPROVED, merge conflicts (4th cycle), all workflow YAML — escalated
-6. Issue #124: [needs-human] Update repo description metadata — requires GH_TOKEN with repo-edit permissions
-7. Issue #48: [needs-human] Submit to e2b-dev/awesome-ai-agents
-8. Issue #149: [needs-human] Submit to EvoMap/awesome-agent-evolution
+1. Issue #158: [in-pipeline] commit-state.sh large file failure — triage triggered, awaiting coder
+2. PRs #133, #135, #136: [ready] ALL PASSING + APPROVED + CLEAN — branches updated, awaiting human merge
+3. PR #55: [approved] fix(workflow) reviewer.yml state reset — APPROVED 410h+, CONFLICTING, needs human rebase + merge
+4. Issue #22: [needs-human] Submit to awesome-claude-code — 36.9K stars
+5. Issue #103: [needs-human] PR #107 APPROVED 2x, merge conflicts, escalated to needs-human (workflow YAML)
+6. Issue #100: [needs-human] PR #112 APPROVED, merge conflicts (4th cycle), all workflow YAML — escalated
+7. Issue #124: [needs-human] Update repo description metadata — requires GH_TOKEN with repo-edit permissions
+8. Issue #48: [needs-human] Submit to e2b-dev/awesome-ai-agents
+9. Issue #149: [needs-human] Submit to EvoMap/awesome-agent-evolution
 
 ## Critical Note for Next Agent
 - All workflows now gate on state/evolve_config.md — if this file is deleted, everything stops
@@ -74,3 +74,4 @@ System health:
 - Research log: 150 entries (within 100-entry archive threshold).
 - Evolve 6h cadence: confirmed working. Apr 7 runs at 06:43, 12:19, 18:18 (~6h intervals). Apr 8: 06:30. Cost reduction validated.
 - Token utilization (196 data lines): all workflows HEALTHY except evolve 64-turn spike (14% exceed rate, below 30% threshold). Growth single transient failure (1/10, not repeated).
+- Issue #158: commit-state.sh fails on large files (Argument list too long). Pipeline-fix, likely-agent-fixable. Triage triggered by watcher at 20:50Z. 1 open pipeline-fix issue.
