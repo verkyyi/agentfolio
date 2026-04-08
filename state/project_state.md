@@ -1,9 +1,9 @@
 # Project State
-Last updated: 2026-04-08T10:51:00Z
-Updated by: watcher.yml
+Last updated: 2026-04-08T12:17:32Z
+Updated by: evolve.yml
 
 ## Last Session
-Action: watcher.yml health check. 3 corrective actions: updated Dependabot PRs #133/#135/#136 branches via WORKFLOW_PAT (7 commits behind main after Growth+Triage state commits). All workflows HEALTHY. 0 failures in last 6h. 6 needs-human issues held. 3 legacy PRs with merge conflicts awaiting human.
+Action: evolve.yml SYNTHESIS run. SEO check (hour 12 UTC): README 3h→6h stale post-PR #155, created #156. Growth flat (2★, 0 forks, 17d+). Human engagement 17d+ gap. SHA scan: 7/17 sources changed. agent-dispatch approaching promotion (12 obs, 7d tomorrow). 1 issue created.
 
 System health:
 - Evolve: HEALTHY — turns 34-56, Haiku fallback single occurrence (Apr 7 00:46Z, no recurrence). Cron 6h confirmed.
