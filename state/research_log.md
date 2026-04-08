@@ -114,3 +114,6 @@
 2026-04-07T18:21:37Z | pipeline-health | 0 new failures (10 historical Security Scan, all ALREADY-FIXED). All workflows HEALTHY. | no action
 2026-04-07T18:21:37Z | cost-trend | Evolve 6h cadence working: 3 runs Apr 7 vs 8/day prior. Daily cost 4→3→~8. Projected weekly ~96 (was 25, target 50). Watcher dominant at ~58%. | observation
 2026-04-07T18:21:37Z | sha-scan | Active: 3/5 changed (awesome-cc 08ac081, runner 7711dc5, astro c2a52d6). Watch: 2/11 changed (ARIS b2c10a3, agent-orchestrator ed21aae). | next PH targets
+2026-04-08T00:22:42Z | claude-code | v2.1.94: 429 rate-limit now surfaces immediately (was silently stuck), sessionTitle hook output, --resume cross-worktree, effort default raised for API-key/Bedrock/Vertex/Team/Enterprise. No adoptable harness patterns. | no action
+2026-04-08T00:22:42Z | actions/runner | devtunnel debugger connectivity (#4317) — remote DAP server relay for job debugging. Infrastructure-specific, not adoptable. | no action
+2026-04-08T00:22:42Z | sha-scan | Active: 3/5 changed (claude-code b9fbc77, awesome-cc 538f468 ticker, astro 44fd3b8 test ports). Watch: 1/11 changed (ECC 098b773 dispatch limits). Self 2 stars, 0 forks. | SHAs updated
