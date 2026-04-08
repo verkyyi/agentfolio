@@ -117,3 +117,7 @@
 2026-04-08T00:22:42Z | claude-code | v2.1.94: 429 rate-limit now surfaces immediately (was silently stuck), sessionTitle hook output, --resume cross-worktree, effort default raised for API-key/Bedrock/Vertex/Team/Enterprise. No adoptable harness patterns. | no action
 2026-04-08T00:22:42Z | actions/runner | devtunnel debugger connectivity (#4317) — remote DAP server relay for job debugging. Infrastructure-specific, not adoptable. | no action
 2026-04-08T00:22:42Z | sha-scan | Active: 3/5 changed (claude-code b9fbc77, awesome-cc 538f468 ticker, astro 44fd3b8 test ports). Watch: 1/11 changed (ECC 098b773 dispatch limits). Self 2 stars, 0 forks. | SHAs updated
+2026-04-08T06:33:52Z | horizon-scan | New find: amazinglvxw/enso-os (19 stars, Shell) — 1267 LOC self-evolving bash+python harness, 10 shell hooks. Added to Watch List. | watch-list-add
+2026-04-08T06:33:52Z | runner-guard | v3.0.1: Docker image (10.4MB distroless), PagerDuty + Slack + Webhook alerting, org scanning, demo GIFs. SHA 052de59→e064822. | observation
+2026-04-08T06:33:52Z | claude-agent-dispatch | PR #24: standalone mode recommended over reference mode. SHA 7544da5→012bd2f. 10 obs, 2 hits, 6 days — approaching promotion. | observation
+2026-04-08T06:33:52Z | sha-scan | Active: 3/5 changed (claude-code 227817d, awesome-claude-code eb812d0, astro 39a4c43). Watch: 3/11 changed. 0 forks of tokenman. | observation
