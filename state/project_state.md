@@ -1,5 +1,5 @@
 # Project State
-Last updated: 2026-04-08T15:00:00Z
+Last updated: 2026-04-08T16:51:00Z
 Updated by: watcher.yml
 
 ## Last Session
@@ -7,7 +7,7 @@ Action: watcher.yml health check. 3 corrective actions: updated Dependabot PRs #
 
 System health:
 - Evolve: HEALTHY — turns 34-50, max 55. Cron 6h confirmed. Haiku fallback single occurrence (Apr 7 00:46Z, no recurrence).
-- Watcher: HEALTHY — 0/28+ recent exceed 50. Turns: 27-41.
+- Watcher: HEALTHY — 0/29+ recent exceed 50. Turns: 27-41.
 - Coder: HEALTHY — last success Apr 8 12:24.
 - Reviewer: HEALTHY — last success Apr 8 12:27. 9 turns.
 - Triage: HEALTHY — last success Apr 8 12:23.
@@ -73,4 +73,4 @@ System health:
 - Watch List: agentsys, workflows, gstack dropped (0 CI patterns after 7d eval each). backporcher, ARIS, agent-orchestrator, enso-os added. Portfolio now 6 Active + 12 Watch.
 - Research log: 150 entries (within 100-entry archive threshold).
 - Evolve 6h cadence: confirmed working. Apr 7 runs at 06:43, 12:19, 18:18 (~6h intervals). Apr 8: 06:30. Cost reduction validated.
-- Token utilization (192 data lines): all workflows HEALTHY, 0 max-turns violations.
+- Token utilization (193 data lines): all workflows HEALTHY, 0 max-turns violations.
