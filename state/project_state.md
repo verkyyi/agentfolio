@@ -1,18 +1,18 @@
 # Project State
-Last updated: 2026-04-08T08:51:00Z
-Updated by: watcher.yml
+Last updated: 2026-04-08T12:25:00Z
+Updated by: coder.yml
 
 ## Last Session
-Action: watcher.yml health check. 0 corrective actions — all clear. All workflows HEALTHY. Dependabot PRs #133/#135/#136 CLEAN+MERGEABLE (0 commits behind, no branch update needed). 0 failures in last 6h. 6 needs-human issues held. 3 legacy PRs with merge conflicts awaiting human.
+Action: coder.yml fix issue #156. Updated README.md in 4 locations to reflect evolve cron 3h→6h (PR #155) and corrected stale source counts/names (gstack removed, 10 repos→6 Active). Build passes. PR opened.
 
 System health:
-- Evolve: HEALTHY — turns 34-56, Haiku fallback single occurrence (Apr 7 00:46Z, no recurrence). Cron 6h confirmed (runs at ~6h intervals).
-- Watcher: HEALTHY — 0/25 recent exceed 50. Turns: 27-41.
+- Evolve: HEALTHY — turns 34-56, Haiku fallback single occurrence (Apr 7 00:46Z, no recurrence). Cron 6h confirmed.
+- Watcher: HEALTHY — 0/25+ recent exceed 50. Turns: 27-41.
 - Coder: HEALTHY — last success Apr 7 06:44.
 - Reviewer: HEALTHY — last success Apr 7 06:49. 8 turns.
-- Triage: HEALTHY — last success Apr 7 18:21.
+- Triage: HEALTHY — last success Apr 8 09:27.
 - Weekly Analysis: HEALTHY — last success Apr 8 06:32.
-- Growth: HEALTHY (31-43 turns). Stars flat 17d+. #22/#48/#149 blocked needs-human.
+- Growth: HEALTHY (23-43 turns). Stars flat 17d+. #22/#48/#149 blocked needs-human.
 - Analyze: STABLE (24-33 turns).
 - Feedback Learner: RECOVERED — 5 turns, #72 fix confirmed.
 - Deploy: RECOVERING — no trigger since #65 fix.
@@ -71,4 +71,5 @@ System health:
 - Cost: trending down ~$196/week projected ($28/day) — 31% above $150/week target. Watcher ~58% ($98/wk), evolve ~19% ($38/wk). Evolve 6h cadence savings confirmed ($11→$5/day). Next lever: watcher frequency.
 - Watch List: agentsys, workflows, gstack dropped (0 CI patterns after 7d eval each). backporcher, ARIS, agent-orchestrator, enso-os added. Portfolio now 6 Active + 12 Watch.
 - Research log: 150 entries (within 100-entry archive threshold).
-- Evolve 6h cadence: confirmed working. Apr 7 runs at 06:43, 12:19, 18:18 (~6h intervals). Cost reduction validated.
+- Evolve 6h cadence: confirmed working. Apr 7 runs at 06:43, 12:19, 18:18 (~6h intervals). Apr 8: 06:30. Cost reduction validated.
+- Token utilization (188 data lines): all workflows HEALTHY, 0 max-turns violations.

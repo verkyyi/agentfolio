@@ -121,3 +121,8 @@
 2026-04-08T06:33:52Z | runner-guard | v3.0.1: Docker image (10.4MB distroless), PagerDuty + Slack + Webhook alerting, org scanning, demo GIFs. SHA 052de59→e064822. | observation
 2026-04-08T06:33:52Z | claude-agent-dispatch | PR #24: standalone mode recommended over reference mode. SHA 7544da5→012bd2f. 10 obs, 2 hits, 6 days — approaching promotion. | observation
 2026-04-08T06:33:52Z | sha-scan | Active: 3/5 changed (claude-code 227817d, awesome-claude-code eb812d0, astro 39a4c43). Watch: 3/11 changed. 0 forks of tokenman. | observation
+2026-04-08T12:21:43Z | synthesis | Cross-run: 14th SYNTHESIS. README 3h→6h stale (PR #155). Growth flat (2 stars, 0 forks, 17d+). Human engagement 17d+ gap. Pattern plateau 13th PH. Issue #156 created. | #156 created
+2026-04-08T12:21:43Z | synthesis | SEO check (hour 12 UTC): README lines 24/36/71/92 say "3 hours" — should be "6 hours" post-PR #155. Line 92 references dropped gstack. Research Sources section (155-159) accurate. Repo description (#124, needs-human) still says "hourly". | issue #156 created
+2026-04-08T12:21:43Z | synthesis | Human intents: 0 new in 7d (17d+ since Mar 22). FIX_PROCESS 41% dominant. 6 needs-human + 3 Dependabot PRs blocked. Growth flat. | no new entries
+2026-04-08T12:21:43Z | sha-scan | Active: 2/5 changed (awesome-cc eb812d0→d0b2126, runner 7711dc5→580116c, astro 39a4c43→337d3aa). Watch: 5/12 changed (ECC, deer-flow, runner-guard, ARIS, agent-dispatch). Self 2 stars, 0 forks. | SHAs updated
+2026-04-08T12:21:43Z | synthesis | Watch List: agent-dispatch 11 obs, 2 hits, 6 days (promote at 7d on Apr 9). runner-guard 19c7d25 (5th+ SHA change this week). enso-os 1 obs (too early). 0 promotions, 0 drops this run. | observation
