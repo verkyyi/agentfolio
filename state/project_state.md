@@ -1,9 +1,9 @@
 # Project State
-Last updated: 2026-04-08T05:20:00Z
-Updated by: watcher.yml
+Last updated: 2026-04-08T06:33:52Z
+Updated by: evolve.yml
 
 ## Last Session
-Action: watcher.yml health check. 3 corrective actions: updated Dependabot PRs #133/#135/#136 branches via WORKFLOW_PAT (12 commits behind main). No failures in last 6h. No broken chains, stuck runs, or stale items. All 6 open issues are needs-human.
+Action: evolve.yml HORIZON_SCAN. New Watch List: enso-os (bash self-evolving harness). runner-guard v3.0.1 (Docker+alerting). claude-agent-dispatch approaching promotion (11 obs, 2 hits). 3 Active + 3 Watch SHA changes flagged for next PH. 0 issues created, 0 forks.
 
 System health:
 - Evolve: HEALTHY — turns 34-56, Haiku fallback single occurrence (Apr 7 00:46Z, no recurrence). Cron 6h confirmed.
@@ -69,6 +69,6 @@ System health:
 - Dependabot PRs: #133/#135/#136 APPROVED, ALL PASSING, branches updated. Ready for human merge.
 - Config recheck done: 2026-04-04. Added security-scan, sync-labels, test-evolve to evolve_config. Next recheck: 2026-04-11.
 - Cost: trending down ~$196/week projected ($28/day) — 31% above $150/week target. Watcher ~58% ($98/wk), evolve ~19% ($38/wk). Evolve 6h cadence savings confirmed ($11→$5/day). Next lever: watcher frequency.
-- Watch List: agentsys, workflows, gstack dropped (0 CI patterns after 7d eval each). backporcher, ARIS, agent-orchestrator added. Portfolio now 6 Active + 11 Watch.
+- Watch List: agentsys, workflows, gstack dropped (0 CI patterns after 7d eval each). backporcher, ARIS, agent-orchestrator, enso-os added. Portfolio now 6 Active + 12 Watch.
 - Research log: 150 entries (within 100-entry archive threshold).
 - Evolve 6h cadence: confirmed working. Apr 7 runs at 06:43, 12:19, 18:18 (~6h intervals). Cost reduction validated.
