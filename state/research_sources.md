@@ -1,21 +1,21 @@
 # Research Sources
 # Managed by evolve.yml. Claude adds, prunes, and annotates freely.
 # Seeded from evolve_config.md on first run.
-# Last updated: 2026-04-07T18:19:00Z
+# Last updated: 2026-04-08T00:20:10Z
 
 ## Active Sources
 
 ### anthropics/claude-code
 - **Why:** The runtime we build on — releases, breaking changes, new hooks, CLI flags
 - **Look for:** CHANGELOG entries, new hook types, permission changes, SDK updates
-- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-04-07T12:20:10Z | **Pattern hits:** 2 | **SHA:** b543a25
-- **Notes:** Protected source — never drop. Check CHANGELOG and releases, not just commits. v2.1.92 (Apr 4): forceRemoteSettingsRefresh fail-closed policy, Stop hook preventContinuation fix, Write tool 60% faster (tabs/&/$), Linux sandbox seccomp, /tag+/vim removed, Bedrock setup wizard, per-model /cost breakdown, tmux pane fix. Previous: v2.1.91 MCP 500K result override, disableSkillShellExecution, bin/ in plugins. v2.1.90 /powerup, plugin offline cache. CC now has 18+ hook events.
+- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-04-08T00:20:10Z | **Pattern hits:** 2 | **SHA:** b9fbc77
+- **Notes:** Protected source — never drop. Check CHANGELOG and releases, not just commits. v2.1.94 (Apr 7): 429 rate-limit errors now surface immediately (was silently stuck), sessionTitle hook output for UserPromptSubmit, --resume cross-worktree, effort default raised for API-key/Bedrock/Vertex/Team/Enterprise, plugin skill name from frontmatter, plugin hook fixes. Previous: v2.1.92 forceRemoteSettingsRefresh fail-closed, Write 60% faster, Linux sandbox seccomp. CC now has 18+ hook events.
 
 ### hesreallyhim/awesome-claude-code
 - **Why:** Curated ecosystem catalog — discover new tools, libraries, and patterns
 - **Look for:** New entries in Orchestrators/Tools/Skills sections, trending repos referenced
-- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-04-07T12:20:10Z | **Pattern hits:** 0 | **SHA:** 08ac081
-- **Notes:** 0 pattern hits across 49+ observations. SHA change: ticker data only. Submission enforcement governance (owner bypass), Teams subcategory — curation-specific patterns. Retain for HORIZON_SCAN cross-reference only.
+- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-04-08T00:20:10Z | **Pattern hits:** 0 | **SHA:** 538f468
+- **Notes:** 0 pattern hits across 50+ observations. SHA change: ticker data only. Submission enforcement governance (owner bypass), Teams subcategory — curation-specific patterns. Retain for HORIZON_SCAN cross-reference only.
 
 ### SethGammon/Citadel
 - **Why:** Agent orchestration harness (400 stars) — closest architecture to tokenman. Campaign persistence, parallel worktrees, circuit breaker, quality gate hooks, skill benchmarking, daemon factory
@@ -26,19 +26,19 @@
 ### actions/runner
 - **Why:** CI/CD runtime we depend on — deprecation notices, new features, security fixes
 - **Look for:** Node.js version deprecation timelines, runner image changes, new action features
-- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-04-07T12:20:10Z | **Pattern hits:** 0 | **SHA:** 7711dc5
-- **Notes:** Check releases, not just commits. df50788: brace-expansion dep bump. Bearer token auth for action archive downloads. PR #4296 (Mar 31): batch/dedup action resolution (merged). v2.333.1 (Mar 27): removed AllowCaseFunction. Node 20.20.2/24.14.1. 0 pattern hits across 11+ observations.
+- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-04-08T00:20:10Z | **Pattern hits:** 0 | **SHA:** 7711dc5
+- **Notes:** Check releases, not just commits. 7711dc5: devtunnel debugger connectivity (#4317, remote DAP relay). df50788: brace-expansion dep bump. Bearer token auth for action archive downloads. PR #4296: batch/dedup action resolution. v2.333.1: removed AllowCaseFunction. Node 20.20.2/24.14.1. 0 pattern hits across 12+ observations.
 
 ### withastro/astro
 - **Why:** Web framework we use — security fixes, breaking changes, new features
 - **Look for:** Security advisories, breaking changes in minor/major releases, new content collection features
-- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-04-07T12:20:10Z | **Pattern hits:** 0 | **SHA:** c2a52d6
-- **Notes:** Only actionable for security fixes or features that affect our site build. 0 harness patterns across 18+ observations.
+- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-04-08T00:20:10Z | **Pattern hits:** 0 | **SHA:** 44fd3b8
+- **Notes:** Only actionable for security fixes or features that affect our site build. v6.1.4 (Apr 6): unused re-exports cleanup, React 19 preload fix. No security advisories. 0 harness patterns across 19+ observations.
 
 ### verkyyi/tokenman
 - **Why:** Self-reference — track forks, adopters, and how the scaffold is used
 - **Look for:** New forks, adopter modifications, issues filed by users
-- **Added:** 2026-03-20 (seed) | **Last deep:** never | **Pattern hits:** 0 | **SHA:** 09f6406
+- **Added:** 2026-03-20 (seed) | **Last deep:** never | **Pattern hits:** 0 | **SHA:** fbe5e1e
 - **Notes:** Used during HORIZON SCAN for adoption tracking. 0 forks, 0 adopters as of 2026-04-06. EvoMap/awesome-agent-evolution (21 stars) monitors tokenman in data/monitor-results.json but not curated — potential growth submission target (#149).
 
 ## Watch List
@@ -48,7 +48,7 @@
 - **Why:** Community harness patterns, skill collections, optimization techniques
 - **Look for:** New skills, CLAUDE.md patterns, workflow architectures, instinct files
 - **Demoted:** 2026-04-02 (synthesis — 13+ consecutive 0-pattern observations, all interactive-session specific, 0 CI-harness patterns)
-- **Observations:** 62+ | **First seen:** 2026-03-20 | **SHA:** 62519f2
+- **Observations:** 63+ | **First seen:** 2026-03-20 | **SHA:** 098b773
 - **Notes:** 1 pattern hit total (safety-guard PreToolUse hooks, early). CI cleanup, codex sync, install hardening — all interactive-session. From same author as agentshield. Apr 6: release payload verification gate, hook bug workaround guide, README badges — all ECC-specific. Monitor for CI-relevant patterns.
 
 ### bytedance/deer-flow
