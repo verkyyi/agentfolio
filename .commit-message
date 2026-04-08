@@ -1,1 +1,1 @@
-fix(workflow): reduce evolve cron from 3h to 6h (closes #154)
+fix(content): update README evolve frequency 3h→6h and source counts (closes #156)

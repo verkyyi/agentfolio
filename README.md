@@ -21,7 +21,7 @@ No server. No daemon. No database. GitHub IS the infrastructure.
 
 ### Key features
 
-- **Self-evolution every 3 hours** — researches 10 external sources across rotating tiers, creates issues for actionable improvements
+- **Self-evolution every 6 hours** — researches 6 Active sources with posture-based rotation, creates issues for actionable improvements
 - **Full autonomous pipeline** — evolve → triage → coder → reviewer → deploy, with explicit workflow chaining
 - **Self-healing watcher** — monitors the pipeline every 2 hours, re-triggers broken chains, creates fix issues
 - **Feedback learning loop** — human corrections are extracted into persistent rules that shape all future agent behavior
@@ -33,7 +33,7 @@ No server. No daemon. No database. GitHub IS the infrastructure.
 ## How it works
 
 ```
-Every 3h            → evolve.yml   → research + ideas  → create issues
+Every 6h            → evolve.yml   → research + ideas  → create issues
 Issue created       → triage.yml   → classify + elaborate → label
 agent-ready label   → coder.yml    → implement          → open PR
 PR opened           → reviewer.yml → review + merge     → deploy
@@ -68,7 +68,7 @@ Human corrections compound. Say it once and the system remembers permanently.
 
 | Workflow | Trigger | What it does |
 |---|---|---|
-| `evolve.yml` | Every 3 hours | Researches 10 repos (rotating tiers), tracks adopters, creates improvement issues |
+| `evolve.yml` | Every 6 hours | Researches 6 Active repos with posture-based rotation, creates improvement issues |
 | `triage.yml` | Issue opened / dispatched | Classifies, elaborates with acceptance criteria, routes to coder |
 | `coder.yml` | agent-ready label / dispatched | Implements fix on feature branch, opens PR |
 | `reviewer.yml` | PR opened / dispatched | Reviews code, runs build, merges or blocks |
@@ -89,7 +89,7 @@ Human corrections compound. Say it once and the system remembers permanently.
 
 The scaffold improves itself continuously:
 
-1. **Research** — checks Claude Code, gstack, trending repos, and 7 other sources every 3 hours
+1. **Research** — checks 6 Active sources (Claude Code, Astro, Citadel, and others) every 6 hours
 2. **Detect** — pipeline watcher catches failures and broken chains every 2 hours
 3. **Act** — creates issues that flow through the full triage → code → review → deploy pipeline
 4. **Learn** — every human correction becomes a permanent rule that shapes future behavior
