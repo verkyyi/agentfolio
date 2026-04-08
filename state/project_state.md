@@ -1,9 +1,9 @@
 # Project State
-Last updated: 2026-04-08T12:17:32Z
-Updated by: evolve.yml
+Last updated: 2026-04-08T12:25:00Z
+Updated by: coder.yml
 
 ## Last Session
-Action: evolve.yml SYNTHESIS run. SEO check (hour 12 UTC): README 3h→6h stale post-PR #155, created #156. Growth flat (2★, 0 forks, 17d+). Human engagement 17d+ gap. SHA scan: 7/17 sources changed. agent-dispatch approaching promotion (12 obs, 7d tomorrow). 1 issue created.
+Action: coder.yml fix issue #156. Updated README.md in 4 locations to reflect evolve cron 3h→6h (PR #155) and corrected stale source counts/names (gstack removed, 10 repos→6 Active). Build passes. PR opened.
 
 System health:
 - Evolve: HEALTHY — turns 34-56, Haiku fallback single occurrence (Apr 7 00:46Z, no recurrence). Cron 6h confirmed.
