@@ -1,7 +1,7 @@
 # Research Sources
 # Managed by evolve.yml. Claude adds, prunes, and annotates freely.
 # Seeded from evolve_config.md on first run.
-# Last updated: 2026-04-09T06:32:00Z
+# Last updated: 2026-04-09T12:19:00Z
 
 ## Active Sources
 
@@ -14,7 +14,7 @@
 ### hesreallyhim/awesome-claude-code
 - **Why:** Curated ecosystem catalog — discover new tools, libraries, and patterns
 - **Look for:** New entries in Orchestrators/Tools/Skills sections, trending repos referenced
-- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-04-08T18:28:37Z | **Pattern hits:** 0 | **SHA:** d697f55
+- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-04-08T18:28:37Z | **Pattern hits:** 0 | **SHA:** bfd7c37
 - **Notes:** 0 pattern hits across 50+ observations. SHA change: ticker data only. Submission enforcement governance (owner bypass), Teams subcategory — curation-specific patterns. Retain for HORIZON_SCAN cross-reference only.
 
 ### SethGammon/Citadel
@@ -32,7 +32,7 @@
 ### withastro/astro
 - **Why:** Web framework we use — security fixes, breaking changes, new features
 - **Look for:** Security advisories, breaking changes in minor/major releases, new content collection features
-- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-04-08T18:28:37Z | **Pattern hits:** 0 | **SHA:** 673a871
+- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-04-08T18:28:37Z | **Pattern hits:** 0 | **SHA:** ba18015
 - **Notes:** Only actionable for security fixes or features that affect our site build. v6.1.5 (Apr 8): biome upgrade, dlv inlining. Cloudflare adapter 13.1.8: queue consumer fix. No security advisories. 0 harness patterns across 20+ observations.
 
 ### verkyyi/tokenman
@@ -101,7 +101,7 @@
 ### ComposioHQ/agent-orchestrator
 - **Why:** Parallel agent orchestrator (5.8K stars, 801 forks, TS) — spawns AI coding agents in git worktrees, autonomously fixes CI failures, addresses review comments, opens PRs. Agent-agnostic (Claude Code, Codex, Aider), runtime-agnostic (tmux, Docker), tracker-agnostic (GitHub, Linear).
 - **Look for:** CI auto-fix patterns, worktree isolation strategies, fleet coordination, rate-limit fallback, dashboard supervision patterns
-- **Added:** 2026-04-07 (horizon scan) | **Observations:** 6 | **First seen:** 2026-04-07 | **SHA:** 9840164
+- **Added:** 2026-04-07 (horizon scan) | **Observations:** 7 | **First seen:** 2026-04-07 | **SHA:** 5145dce
 - **Notes:** Very active (934+ PRs, 496 open issues). TypeScript/npm. Interactive orchestration platform — different paradigm from GHA-driven harness. Monitor for CI-relevant patterns. Recent: GH API rate-limit fix (#906), model rate-limit revert (#908), session restore (#934).
 
 ### amazinglvxw/enso-os
