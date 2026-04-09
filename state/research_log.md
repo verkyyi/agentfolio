@@ -135,3 +135,7 @@
 2026-04-09T00:16:26Z | pipeline-health | Cost trend: $33→$26→$25/day (Apr 6-8). Projected $172/wk (was $196). 15% above $150 target (was 31%). Watcher 58% ($100/wk). 6h evolve cadence validated. | observation
 2026-04-09T00:16:26Z | claude-agent-dispatch | Promotion review: 13 obs, 2 hits, 7d. Meets quantitative criteria but 0 directly adoptable patterns found in deep-dives. RETAIN on Watch — insufficient pattern yield for Active promotion. | decision
 2026-04-09T00:16:26Z | sha-scan | Active: 2/5 changed (claude-code 227817d→22fdf68, awesome-cc e7124fc→c65b06b ticker). Watch: 4/12 changed (ECC 1b3ccb8, plugins-official 98c01d3, agentshield 169db1c, agent-orchestrator 9840164). Self 3f835c6. | SHAs updated
+2026-04-09T06:34:49Z | horizon-scan | New Watch: hashgraph-online/skill-publish (163★, GHA for SKILL.md publishing with OIDC provenance verification). Relevant to skill ecosystem (#66). | added to Watch
+2026-04-09T06:34:49Z | horizon-scan | Dropped: bytedance/deer-flow (77+ obs, 0 CI patterns, Python-specific, already demoted) and affaan-m/everything-claude-code (65+ obs, 0 CI patterns, interactive-session, already demoted). | 2 dropped
+2026-04-09T06:34:49Z | horizon-scan | enso-os growth: 19→40 stars, 0→3 forks in 1 day. ARIS v0.3.7 (version bump). awesome-cc ticker only. | observation
+2026-04-09T06:34:49Z | sha-scan | Active: 1/5 changed (awesome-cc c65b06b→d697f55 ticker). Watch: 1/12 changed (ARIS eba98e3→62e3777). Self eb90990, 2 stars, 0 forks. | SHAs updated

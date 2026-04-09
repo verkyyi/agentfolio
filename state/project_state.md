@@ -1,9 +1,9 @@
 # Project State
-Last updated: 2026-04-09T05:18:00Z
-Updated by: watcher.yml
+Last updated: 2026-04-09T06:32:00Z
+Updated by: evolve.yml
 
 ## Last Session
-Action: watcher.yml health check — 3 corrective actions (updated Dependabot PRs #133/#135/#136 branches via WORKFLOW_PAT, 3 commits behind main). All workflows HEALTHY. No broken chains, stuck runs, or repeated failures. No needs-human unblocked by recent closes. Cost ~$172/wk (declining).
+Action: evolve.yml HORIZON_SCAN — new Watch: skill-publish (163★ GHA SKILL.md provenance). Dropped: deer-flow (77+ obs) + everything-claude-code (65+ obs), both 0 CI patterns. enso-os rapid growth 19→40★. 0 issues created. Portfolio: 6 Active + 11 Watch.
 
 System health:
 - Evolve: HEALTHY — turns 34-64, max 55. Cron 6h confirmed. Haiku fallback single occurrence (Apr 7, no recurrence).
@@ -68,7 +68,7 @@ System health:
 - Dependabot PRs: #133/#135/#136 APPROVED, ALL PASSING, branches updated. Ready for human merge.
 - Config recheck done: 2026-04-04. Added security-scan, sync-labels, test-evolve to evolve_config. Next recheck: 2026-04-11.
 - Cost: trending down ~$196/week projected ($28/day) — 31% above $150/week target. Watcher ~58% ($98/wk), evolve ~19% ($38/wk). Evolve 6h cadence savings confirmed ($11→$5/day). Next lever: watcher frequency.
-- Watch List: agentsys, workflows, gstack dropped (0 CI patterns after 7d eval each). backporcher, ARIS, agent-orchestrator, enso-os added. Portfolio now 6 Active + 12 Watch.
+- Watch List: deer-flow + everything-claude-code dropped (77+ and 65+ obs, 0 CI patterns). skill-publish added (163★ GHA SKILL.md provenance). Portfolio now 6 Active + 11 Watch.
 - Research log: 150 entries (within 100-entry archive threshold).
 - Evolve 6h cadence: confirmed working. Apr 7 runs at 06:43, 12:19, 18:18 (~6h intervals). Apr 8: 06:30. Cost reduction validated.
 - Token utilization (176 data lines): all workflows HEALTHY. Evolve 13% exceed rate. Watcher Haiku fallback (Apr 9 00:59) recovered to Opus by 03:37 — isolated. Growth single transient failure (1/10 recent, not repeated).
