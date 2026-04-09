@@ -1,28 +1,27 @@
 # Last Evolve Summary
-Timestamp: 2026-04-09T00:16:26Z
-Main HEAD: 3f835c6
-Posture: PIPELINE_WATCH (4 runs since last PW; cost monitoring due — $172/wk projected, 15% above $150 target)
-Posture history: [PIPELINE_WATCH, PATTERN_HUNT, SYNTHESIS, HORIZON_SCAN, PATTERN_HUNT, PIPELINE_WATCH, PATTERN_HUNT, PIPELINE_WATCH, SYNTHESIS, HORIZON_SCAN, PATTERN_HUNT, PIPELINE_WATCH, SYNTHESIS, PIPELINE_WATCH, HORIZON_SCAN, PATTERN_HUNT, PIPELINE_WATCH, SYNTHESIS, PIPELINE_WATCH, HORIZON_SCAN, PATTERN_HUNT, SYNTHESIS, PIPELINE_WATCH, SYNTHESIS, PATTERN_HUNT, HORIZON_SCAN, PATTERN_HUNT, PIPELINE_WATCH, SYNTHESIS, PIPELINE_WATCH, HORIZON_SCAN, SYNTHESIS, PATTERN_HUNT, PIPELINE_WATCH, HORIZON_SCAN, SYNTHESIS, PATTERN_HUNT, SYNTHESIS, PIPELINE_WATCH, PATTERN_HUNT, PIPELINE_WATCH, SYNTHESIS, PIPELINE_WATCH, HORIZON_SCAN, PATTERN_HUNT, PATTERN_HUNT, HORIZON_SCAN, SYNTHESIS, PIPELINE_WATCH, PATTERN_HUNT]
+Timestamp: 2026-04-09T06:32:00Z
+Main HEAD: eb90990
+Posture: HORIZON_SCAN (3 runs since last HS; Watch List trim + new discovery; PH on 14-run drought, PW just ran)
+Posture history: [HORIZON_SCAN, PIPELINE_WATCH, PATTERN_HUNT, SYNTHESIS, HORIZON_SCAN, PATTERN_HUNT, PIPELINE_WATCH, PATTERN_HUNT, PIPELINE_WATCH, SYNTHESIS, HORIZON_SCAN, PATTERN_HUNT, PIPELINE_WATCH, PATTERN_HUNT, PIPELINE_WATCH, SYNTHESIS, PIPELINE_WATCH, HORIZON_SCAN, PATTERN_HUNT, PIPELINE_WATCH, SYNTHESIS, PIPELINE_WATCH, HORIZON_SCAN, PATTERN_HUNT, SYNTHESIS, PATTERN_HUNT, PIPELINE_WATCH, SYNTHESIS, PIPELINE_WATCH, HORIZON_SCAN, SYNTHESIS, PATTERN_HUNT, PIPELINE_WATCH, HORIZON_SCAN, SYNTHESIS, PATTERN_HUNT, SYNTHESIS, PIPELINE_WATCH, PATTERN_HUNT, PIPELINE_WATCH, SYNTHESIS, PIPELINE_WATCH, HORIZON_SCAN, PATTERN_HUNT, PATTERN_HUNT, HORIZON_SCAN, SYNTHESIS, PIPELINE_WATCH, PATTERN_HUNT]
 Runs since each:
-  PATTERN_HUNT: 1
-  PIPELINE_WATCH: 0
-  HORIZON_SCAN: 3
-  SYNTHESIS: 2
+  PATTERN_HUNT: 2
+  PIPELINE_WATCH: 1
+  HORIZON_SCAN: 0
+  SYNTHESIS: 3
 Open issues: #22,#48,#100,#103,#124,#149,#156
 
 ## Source Digests
-anthropics/claude-code: 22fdf68 | last-deep: 2026-04-08T00:20:10Z | v2.1.97 (429 retry backoff, Bash hardening). SHA changed.
-hesreallyhim/awesome-claude-code: c65b06b | last-deep: 2026-04-08T18:28:37Z | ticker update only. SHA changed.
-SethGammon/Citadel: 8d4a822 | last-deep: 2026-04-07T12:19:47Z | unchanged (13th+ consecutive).
+anthropics/claude-code: 22fdf68 | last-deep: 2026-04-08T00:20:10Z | unchanged. Protected.
+hesreallyhim/awesome-claude-code: d697f55 | last-deep: 2026-04-08T18:28:37Z | ticker update only. SHA changed.
+SethGammon/Citadel: 8d4a822 | last-deep: 2026-04-07T12:19:47Z | unchanged (14th+ consecutive).
 actions/runner: 580116c | last-deep: 2026-04-08T18:28:37Z | unchanged.
 withastro/astro: 673a871 | last-deep: 2026-04-08T18:28:37Z | unchanged.
-verkyyi/tokenman: 3f835c6 | last-deep: never | self. 2 stars, 0 forks.
-Watch: 4/12 changed (ECC 1b3ccb8, plugins-official 98c01d3, agentshield 169db1c, agent-orchestrator 9840164). agent-dispatch RETAIN decision: meets criteria but 0 adoptable patterns.
+verkyyi/tokenman: eb90990 | last-deep: never | self. 2 stars, 0 forks.
+Watch: 1/12 changed (ARIS 62e3777 v0.3.7). skill-publish added. deer-flow + ECC dropped.
 
 ## Findings This Run
-- Pipeline healthy: 0 actionable failures. Growth SHA conflict transient (1/5). Security Scan fixed (9+ successes).
-- CC v2.1.97: 429 retry exponential backoff, Bash permission hardening — most relevant for CI reliability.
-- Cost declining: $33→$26→$25/day (Apr 6-8). Projected $172/wk (was $196). Watcher 58% ($100/wk).
-- agent-dispatch retention: meets promotion criteria (14 obs, 2 hits, 7d) but 0 adoptable patterns in deep-dives. Retained on Watch.
-- Node.js 20 deprecation: 54 days to June 2 deadline. Existing issue tracks this.
+- New Watch: hashgraph-online/skill-publish (163 stars, GHA for SKILL.md publishing with OIDC provenance). Relevant to skill ecosystem.
+- Dropped: deer-flow (77+ obs, 0 CI patterns) and everything-claude-code (65+ obs, 0 CI patterns). Both already demoted, irrelevant architectures.
+- enso-os rapid growth: 19→40 stars, 0→3 forks in ~1 day. Notable adoption velocity.
+- ARIS v0.3.7 (version bump from v0.3.3). Research Wiki docs. No transferable patterns.
 0 issues created.
