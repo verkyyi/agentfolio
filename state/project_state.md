@@ -1,13 +1,13 @@
 # Project State
-Last updated: 2026-04-09T07:05:00Z
+Last updated: 2026-04-09T08:55:00Z
 Updated by: watcher.yml
 
 ## Last Session
-Action: watcher.yml health check — 3 corrective actions: updated Dependabot PRs #133/#135/#136 branches via WORKFLOW_PAT (6 commits behind main). All workflows HEALTHY. 6 needs-human issues held. 3 legacy PRs awaiting human. 0 open pipeline-fix issues.
+Action: watcher.yml health check — 3 corrective actions: updated Dependabot PRs #133/#135/#136 branches via WORKFLOW_PAT (3 commits behind main). All workflows HEALTHY. 6 needs-human issues held. 3 legacy PRs awaiting human. 0 open pipeline-fix issues.
 
 System health:
-- Evolve: HEALTHY — turns 34-64, max 55. Cron 6h confirmed. Haiku fallback single (Apr 7, no recurrence).
-- Watcher: HEALTHY — turns 16-38 recent. Haiku fallback (Apr 9 00:59) recovered to Opus by 03:37. Isolated.
+- Evolve: HEALTHY — turns 34-64, max 55. 7/47 exceed (14.9%). Cron 6h confirmed. Haiku fallback single (Apr 7, no recurrence).
+- Watcher: MONITOR — Haiku fallback 2x in 7h (Apr 9 00:59, 07:05). 2/81 total (2.5%). Approaching 3/24h threshold. Turns 16-38 recent.
 - Coder: HEALTHY — last success Apr 8 20:51.
 - Reviewer: HEALTHY — last success Apr 8 20:53. 12 turns.
 - Triage: HEALTHY — last success Apr 8 20:50.
@@ -75,5 +75,5 @@ System health:
 - Issue #158: RESOLVED — PR #159 merged, issue closed by watcher (auto-close miss #20). 0 open pipeline-fix issues.
 - Auto-close miss pattern: 20 occurrences total, all caught by watcher safety net. Accepted as architectural.
 - No human engagement since Mar 22 — 18d+ gap. All recent activity bot-generated.
-- Haiku fallback tracking: evolve 1x (Apr 7), watcher 1x (Apr 9 00:59, recovered 03:37). Both isolated. If 3+ in 24h, investigate rate limits.
-- Token utilization (180 data lines): all workflows HEALTHY. Evolve 13% exceed rate (turns 34-64). Watcher Haiku isolated. Cost ~$172/wk.
+- Haiku fallback tracking: evolve 1x (Apr 7), watcher 2x (Apr 9 00:59 + 07:05). Watcher 2 in 7h — approaching 3/24h investigation threshold. Monitor next run.
+- Token utilization (180 data lines): evolve HEALTHY (7/47 exceed 55, 14.9%). Watcher MONITOR (2 Haiku fallbacks in 7h, 2/81 total). Cost ~$172/wk.
