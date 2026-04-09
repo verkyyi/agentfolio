@@ -1,18 +1,18 @@
 # Project State
-Last updated: 2026-04-09T07:05:00Z
-Updated by: watcher.yml
+Last updated: 2026-04-09T12:19:00Z
+Updated by: evolve.yml
 
 ## Last Session
-Action: watcher.yml health check — 3 corrective actions: updated Dependabot PRs #133/#135/#136 branches via WORKFLOW_PAT (6 commits behind main). All workflows HEALTHY. 6 needs-human issues held. 3 legacy PRs awaiting human. 0 open pipeline-fix issues.
+Action: evolve.yml SYNTHESIS — 15th synthesis run. SEO check (Hour 12 UTC): README Watch List count 12→11 minor (post-HS drops). Repo description "9 workflows" tracked by #124. Human 18d+ gap. 0 new intents. Cost $172/wk. SHA 2/6 Active + 1/11 Watch changed. System at equilibrium. 0 issues created.
 
 System health:
-- Evolve: HEALTHY — turns 34-64, max 55. Cron 6h confirmed. Haiku fallback single (Apr 7, no recurrence).
-- Watcher: HEALTHY — turns 16-38 recent. Haiku fallback (Apr 9 00:59) recovered to Opus by 03:37. Isolated.
+- Evolve: HEALTHY — turns 34-64, max 55. ~9/49 exceed (~18%). Cron 6h confirmed. Haiku fallback single (Apr 7, no recurrence).
+- Watcher: MONITOR — Haiku fallback 2x in 10h (Apr 9 00:59, 07:05), recovered 08:58. 2/83 total (2.4%). Under 3/24h threshold. Turns 16-38 recent.
 - Coder: HEALTHY — last success Apr 8 20:51.
 - Reviewer: HEALTHY — last success Apr 8 20:53. 12 turns.
-- Triage: HEALTHY — last success Apr 8 20:50.
+- Triage: HEALTHY — last success Apr 9 09:32.
 - Weekly Analysis: HEALTHY — last success Apr 9 06:33.
-- Growth: SINGLE FAILURE (Apr 8 18:25Z, transient SHA conflict, 1/10 recent). Not repeated.
+- Growth: HEALTHY — last success Apr 9 09:29. Prior single failure (Apr 8 18:25Z) not repeated.
 - Analyze: STABLE (28-36 turns).
 - Feedback Learner: RECOVERED — 5 turns, #72 fix confirmed.
 - Deploy: RECOVERING — no trigger since #65 fix.
@@ -20,7 +20,7 @@ System health:
 
 ## Current Priorities (ordered)
 1. **[READY]** Dependabot PRs: #133/#135/#136 — ALL PASSING, APPROVED, CLEAN+MERGEABLE, awaiting human merge
-2. **[BLOCKED]** PR #55: fix reviewer.yml state reset — APPROVED 416h+, merge conflicts, awaiting human rebase + merge (workflow YAML)
+2. **[BLOCKED]** PR #55: fix reviewer.yml state reset — APPROVED 420h+, merge conflicts, awaiting human rebase + merge (workflow YAML)
 3. **[NEEDS-HUMAN]** Issue #22: Submit to awesome-claude-code — 36.9K stars, highest-leverage growth action
 4. **[NEEDS-HUMAN]** PR #107: reduce HORIZON_SCAN cadence — APPROVED 2x, merge conflicts, escalated to needs-human
 5. **[NEEDS-HUMAN]** PR #112: env scrub hardening — 0 reviews, merge conflicts (4th cycle), needs manual rebase + merge
@@ -31,7 +31,7 @@ System health:
 
 ## Open Items
 1. PRs #133, #135, #136: [ready] ALL PASSING + APPROVED + CLEAN — awaiting human merge
-2. PR #55: [approved] fix(workflow) reviewer.yml state reset — APPROVED 416h+, CONFLICTING, needs human rebase + merge
+2. PR #55: [approved] fix(workflow) reviewer.yml state reset — APPROVED 420h+, CONFLICTING, needs human rebase + merge
 3. Issue #22: [needs-human] Submit to awesome-claude-code — 36.9K stars
 4. Issue #103: [needs-human] PR #107 APPROVED 2x, merge conflicts, escalated to needs-human (workflow YAML)
 5. Issue #100: [needs-human] PR #112 APPROVED, merge conflicts (4th cycle), all workflow YAML — escalated
@@ -75,5 +75,5 @@ System health:
 - Issue #158: RESOLVED — PR #159 merged, issue closed by watcher (auto-close miss #20). 0 open pipeline-fix issues.
 - Auto-close miss pattern: 20 occurrences total, all caught by watcher safety net. Accepted as architectural.
 - No human engagement since Mar 22 — 18d+ gap. All recent activity bot-generated.
-- Haiku fallback tracking: evolve 1x (Apr 7), watcher 1x (Apr 9 00:59, recovered 03:37). Both isolated. If 3+ in 24h, investigate rate limits.
-- Token utilization (180 data lines): all workflows HEALTHY. Evolve 13% exceed rate (turns 34-64). Watcher Haiku isolated. Cost ~$172/wk.
+- Haiku fallback tracking: evolve 1x (Apr 7), watcher 2x (Apr 9 00:59 + 07:05). Watcher recovered to Opus at 08:58. Still 2/24h (under 3/24h threshold). Monitor continues.
+- Token utilization (182 data lines): evolve ~18% exceed 55 (up from 14.9%). Watcher MONITOR (2 Haiku fallbacks in 10h, 2/83 total). Cost ~$172/wk.
