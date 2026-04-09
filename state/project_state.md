@@ -1,13 +1,13 @@
 # Project State
-Last updated: 2026-04-09T15:05:00Z
+Last updated: 2026-04-09T16:55:00Z
 Updated by: watcher.yml
 
 ## Last Session
-Action: watcher.yml health check — 3 corrective actions: updated Dependabot PRs #133/#135/#136 branches via WORKFLOW_PAT (1 commit behind main). All workflows HEALTHY. No broken chains, stuck runs, or repeated failures. 0 failures in last 6h. 6 needs-human issues held. Token utilization (185 data lines): evolve ~18% exceed 55, watcher HEALTHY (Haiku fallbacks fully resolved — last 4 runs Opus). Cost ~$172/wk. 0 open pipeline-fix issues.
+Action: watcher.yml health check — 3 corrective actions: updated Dependabot PRs #133/#135/#136 branches via WORKFLOW_PAT (1 commit behind main). All workflows HEALTHY. No broken chains, stuck runs, or repeated failures. 0 failures in last 6h. 6 needs-human issues held. Token utilization (186 data lines): evolve ~18% exceed 55, watcher HEALTHY (Haiku fallbacks fully resolved — last 5 runs Opus). Cost ~$172/wk. 0 open pipeline-fix issues.
 
 System health:
 - Evolve: HEALTHY — turns 34-64, max 55. ~18% exceed. Cron 6h confirmed. Haiku fallback single (Apr 7, no recurrence).
-- Watcher: HEALTHY — Haiku fallback 2x Apr 9 (00:59, 07:05), fully recovered. Last 4 runs on Opus (08:58, 10:55, 12:56, current). 2/87 total (2.3%). Turns 16-38 recent.
+- Watcher: HEALTHY — Haiku fallback 2x Apr 9 (00:59, 07:05), fully recovered. Last 5 runs on Opus (08:58, 10:55, 12:56, 15:09, current). 2/89 total (2.2%). Turns 16-38 recent.
 - Coder: HEALTHY — last success Apr 8 20:51.
 - Reviewer: HEALTHY — last success Apr 8 20:53. 12 turns.
 - Triage: HEALTHY — last success Apr 9 09:32.
@@ -69,5 +69,5 @@ System health:
 - Config recheck done: 2026-04-04. Added security-scan, sync-labels, test-evolve to evolve_config. Next recheck: 2026-04-11.
 - Cost: trending down ~$172/week projected. Watcher ~58%, evolve ~19%. Evolve 6h cadence savings confirmed.
 - Watch List: Portfolio 6 Active + 11 Watch. skill-publish added (163★).
-- Haiku fallback tracking: evolve 1x (Apr 7), watcher 2x (Apr 9 00:59 + 07:05). Watcher fully recovered — last 4 runs Opus. 2/87 total (2.3%).
-- Token utilization (185 data lines): evolve ~18% exceed 55 (stable). Watcher HEALTHY (0% exceed 50, Haiku fallbacks resolved). Cost ~$172/wk.
+- Haiku fallback tracking: evolve 1x (Apr 7), watcher 2x (Apr 9 00:59 + 07:05). Watcher fully recovered — last 5 runs Opus. 2/89 total (2.2%).
+- Token utilization (186 data lines): evolve ~18% exceed 55 (stable). Watcher HEALTHY (0% exceed 50, Haiku fallbacks resolved). Cost ~$172/wk.
