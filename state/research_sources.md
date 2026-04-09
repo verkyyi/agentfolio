@@ -1,7 +1,7 @@
 # Research Sources
 # Managed by evolve.yml. Claude adds, prunes, and annotates freely.
 # Seeded from evolve_config.md on first run.
-# Last updated: 2026-04-09T00:16:26Z
+# Last updated: 2026-04-09T06:32:00Z
 
 ## Active Sources
 
@@ -14,7 +14,7 @@
 ### hesreallyhim/awesome-claude-code
 - **Why:** Curated ecosystem catalog — discover new tools, libraries, and patterns
 - **Look for:** New entries in Orchestrators/Tools/Skills sections, trending repos referenced
-- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-04-08T18:28:37Z | **Pattern hits:** 0 | **SHA:** c65b06b
+- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-04-08T18:28:37Z | **Pattern hits:** 0 | **SHA:** d697f55
 - **Notes:** 0 pattern hits across 50+ observations. SHA change: ticker data only. Submission enforcement governance (owner bypass), Teams subcategory — curation-specific patterns. Retain for HORIZON_SCAN cross-reference only.
 
 ### SethGammon/Citadel
@@ -38,30 +38,22 @@
 ### verkyyi/tokenman
 - **Why:** Self-reference — track forks, adopters, and how the scaffold is used
 - **Look for:** New forks, adopter modifications, issues filed by users
-- **Added:** 2026-03-20 (seed) | **Last deep:** never | **Pattern hits:** 0 | **SHA:** f4bc357
-- **Notes:** Used during HORIZON SCAN for adoption tracking. 0 forks, 0 adopters as of 2026-04-06. EvoMap/awesome-agent-evolution (21 stars) monitors tokenman in data/monitor-results.json but not curated — potential growth submission target (#149).
+- **Added:** 2026-03-20 (seed) | **Last deep:** never | **Pattern hits:** 0 | **SHA:** eb90990
+- **Notes:** Used during HORIZON SCAN for adoption tracking. 2 stars, 0 forks, 0 adopters as of 2026-04-09. EvoMap/awesome-agent-evolution (21 stars) monitors tokenman in data/monitor-results.json but not curated — potential growth submission target (#149).
 
 ## Watch List
 <!-- Sources under evaluation. Promoted to Active or Dropped after 3+ observations over 7+ days. -->
 
-### affaan-m/everything-claude-code
-- **Why:** Community harness patterns, skill collections, optimization techniques
-- **Look for:** New skills, CLAUDE.md patterns, workflow architectures, instinct files
-- **Demoted:** 2026-04-02 (synthesis — 13+ consecutive 0-pattern observations, all interactive-session specific, 0 CI-harness patterns)
-- **Observations:** 65+ | **First seen:** 2026-03-20 | **SHA:** 1b3ccb8
-- **Notes:** 1 pattern hit total (safety-guard PreToolUse hooks, early). CI cleanup, codex sync, install hardening — all interactive-session. From same author as agentshield. Apr 6: release payload verification gate, hook bug workaround guide, README badges — all ECC-specific. Monitor for CI-relevant patterns.
-
-### bytedance/deer-flow
-- **Why:** Multi-agent orchestration patterns from a major tech company
-- **Look for:** Agent coordination, state management, tool orchestration, LLM provider patterns
-- **Demoted:** 2026-04-02 (synthesis — 19+ consecutive 0-pattern deep-dives, all Python application-specific, fundamentally different stack)
-- **Observations:** 77+ | **First seen:** 2026-03-21 | **SHA:** ad6d934
-- **Notes:** 1 pattern hit total (early). Very active (5+ commits/day). Per-agent skill filter, concurrent file locks, Langfuse tracing — all Python. No transferable harness patterns despite extensive monitoring. Apr 8: subagent event loop fix, frontend routing fixes.
+### hashgraph-online/skill-publish
+- **Why:** GitHub Action + CLI for validating, monitoring, and publishing verifiable SKILL.md files (163 stars). OIDC provenance, validate/monitor/quote/publish modes, IndexNow submission, scorecard validation.
+- **Look for:** SKILL.md validation rules, GHA publishing patterns, provenance verification, skill registry integration
+- **Added:** 2026-04-09 (horizon scan) | **Observations:** 1 | **First seen:** 2026-04-09 | **SHA:** cc1b3c4
+- **Notes:** Active (5 commits this week: OIDC flow tightening, scorecard alignment, repo-skill-dir env). JS/Node. Relevant to future skill ecosystem (#66). Publishes to hol.org registry. Uses CITATION.cff, codemeta.json, Zenodo for academic provenance. 2 forks.
 
 ### trailofbits/skills
 - **Why:** Security-focused Claude Code skills (4K stars) from top security firm — audit workflows, vulnerability detection, semgrep rules
 - **Look for:** Security audit skill structure, semgrep rule patterns, skill-improver tooling, SKILL.md format conventions
-- **Added:** 2026-03-23 (horizon scan) | **Observations:** 41 | **First seen:** 2026-03-23 | **SHA:** d7f76b5
+- **Added:** 2026-03-23 (horizon scan) | **Observations:** 42 | **First seen:** 2026-03-23 | **SHA:** d7f76b5
 - **Decision (2026-03-31):** RETAIN on Watch List. 37 obs, 7+ days, 1 pattern hit (SKILL.md standard → #68, closed). 4K stars, 362 forks. Low pattern yield (1/37) — not promoting to Active. Actively maintained — not dropping. Serves as reference for future skill format work.
 - **Notes:** 34+ plugins with formal SKILL.md standard. skill-improver quality loop. Codex compatibility layer. 1 pattern hit: SKILL.md quality standard (issue #68, closed). Key reference for skill format. New: mutation testing (#140), graph reasoning (#133), draw agent (#134).
 
@@ -70,61 +62,68 @@
 - **Look for:** Plugin format updates, new submission requirements, plugin.json schema changes, new official plugins relevant to harness patterns
 - **Added:** 2026-03-24 (horizon scan) | **Observations:** 44 | **First seen:** 2026-03-24 | **SHA:** 104d39b
 - **Decision (2026-03-31):** RETAIN on Watch List. 38 obs, 7+ days, 1 pattern hit (plugin format). 14.3K stars. Active (MongoDB, SAP UI5 plugins added). Distribution channel for #66. Low pattern yield (1/38) — not promoting. Still relevant as plugin ecosystem reference.
-- **Observations:** 46 | **First seen:** 2026-03-24 | **SHA:** 98c01d3
+- **Observations:** 47 | **First seen:** 2026-03-24 | **SHA:** 98c01d3
 - **Notes:** PR #1115: bash prefix for .sh hooks. Version field for cache invalidation. Standard plugin format: .claude-plugin/plugin.json + commands/ + agents/ + skills/. Distribution channel for #66. 1 pattern hit (official plugin format). Apr 3: SonarQube plugin added (#1085, secrets-scanning hooks).
 
 ### agent-sh/agnix
 - **Why:** CLAUDE.md/SKILL.md linter and LSP (103 stars) — validates AI coding assistant config files, autofixes, IDE plugins
 - **Look for:** Validation rules for CLAUDE.md, SKILL.md format standards, CI integration patterns, autofix capabilities
-- **Added:** 2026-03-24 (horizon scan) | **Observations:** 45 | **First seen:** 2026-03-24 | **SHA:** 0089efa
+- **Added:** 2026-03-24 (horizon scan) | **Observations:** 46 | **First seen:** 2026-03-24 | **SHA:** 0089efa
 - **Decision (2026-03-31):** RETAIN on Watch List. 39 obs, 7+ days, 0 pattern hits. Key CC spec tracker but 0 adoptable CI patterns — not promoting. Active and useful — not dropping.
 - **Notes:** v0.18.0: Codex CLI plugin manifest validation (CDX-PL-001 to CDX-PL-014, 14 rules). CC now has 18 hook events. 385+ rules, 124+ auto-fixes. Relevant to #66/#68.
 
 ### Vigilant-LLC/runner-guard
 - **Why:** CI/CD security scanner (6 stars, Go) — 31 detection rules for GHA vulnerabilities + supply chain dependency scanning: fork checkout exploits, expression injection, AI config injection (CLAUDE.md hijacking), supply chain steganography, unpinned actions, compromised package detection, auto-fix, SARIF output
 - **Look for:** GHA vulnerability patterns applicable to our workflows, action pinning auto-fix, AI config injection defenses, SARIF integration for Code Scanning, compromised package detection
-- **Added:** 2026-04-01 (horizon scan) | **Observations:** 13 | **First seen:** 2026-04-01 | **SHA:** 3d9f329
+- **Added:** 2026-04-01 (horizon scan) | **Observations:** 14 | **First seen:** 2026-04-01 | **SHA:** 3d9f329
 - **Notes:** Only scanner specifically targeting AI agent attack vectors in CI/CD. v3.0.1 (Apr 8): Docker image (10.4MB distroless), PagerDuty+Slack+Webhook alerting, org scanning, demo GIFs. Issue #127 created for adoption. Go single binary. Last deep: 2026-04-06T21:16Z.
 
 ### affaan-m/agentshield
 - **Why:** AI agent security scanner (289 stars, 55 forks) — scans .claude/ for secrets, permission misconfigs, hook injection, MCP risks, prompt injection vectors. CLI + GitHub Action + GitHub App.
 - **Look for:** Agent config audit rules applicable to our harness, CI integration patterns, auto-fix capabilities for security issues
-- **Added:** 2026-04-01 (horizon scan) | **Observations:** 5 | **First seen:** 2026-04-01 | **SHA:** 169db1c
+- **Added:** 2026-04-01 (horizon scan) | **Observations:** 6 | **First seen:** 2026-04-01 | **SHA:** 169db1c
 - **Notes:** From affaan-m (everything-claude-code author). TypeScript. Covers agent config security surface (complementary to runner-guard which covers CI/CD workflow security). Detects hardcoded secrets, overly permissive permissions, hook injection. Built at Claude Code Hackathon. GitHub Action available. Part of ECC ecosystem (42K+ stars). Our .claude/ config is minimal so immediate value is low — monitor for CI integration patterns. Apr 5: prompt defense posture audit rules added.
 
 ### wanshuiyin/Auto-claude-code-research-in-sleep
 - **Why:** Autonomous ML research harness (5.4K stars, 455 forks) — markdown-only skills, cross-model review loops, idea discovery. Conceptually closest to evolve's autonomous research methodology.
 - **Look for:** Autonomous research workflow patterns, cross-model review loops, skill organization, persistent memory patterns
-- **Added:** 2026-04-03 (horizon scan) | **Observations:** 12 | **First seen:** 2026-04-03 | **SHA:** eba98e3
-- **Notes:** ARIS v0.3.3. Recent: Zenodo DOI badge, What's New updates — doc-only. Python + Markdown. ML-research domain, not CI harness. Same methodology concept as our evolve. Monitor for transferable workflow patterns.
+- **Added:** 2026-04-03 (horizon scan) | **Observations:** 13 | **First seen:** 2026-04-03 | **SHA:** 62e3777
+- **Notes:** ARIS v0.3.7 (rapid version bumps v0.3.3→v0.3.7 in 2 days). Research Wiki addition (Apr 7). Python + Markdown. ML-research domain, not CI harness. Same methodology concept as our evolve. Monitor for transferable workflow patterns.
 
 ### jnurre64/claude-agent-dispatch
 - **Why:** Label-driven Claude Code GHA dispatch (Shell, 2 stars) — closest architecture to tokenman. Modular agent-dispatch.sh + lib/, label state machine (10 agent:* labels), two-phase plan→implement with human checkpoint, ShellCheck + BATS-Core CI testing.
 - **Look for:** Shell script quality patterns, label state machine design, worktree isolation, error trap handling, BATS test patterns
 - **Added:** 2026-04-02 (horizon scan) | **Observations:** 13 | **First seen:** 2026-04-02 | **SHA:** b1f8029
 - **Decision (2026-04-09):** RETAIN on Watch. Meets quantitative promotion criteria (14 obs, 2 hits, 7d) but deep-dives found 0 directly adoptable patterns for GHA bash/markdown harness. Shell-library architecture patterns (modular lib/, BATS testing) don't transfer. Architecturally closest peer but insufficient pattern yield for Active promotion. Re-evaluate if new PRs introduce transferable patterns.
+- **Observations:** 14 | **First seen:** 2026-04-02 | **SHA:** b1f8029
 - **Notes:** Created 2026-03-21, actively maintained. Shell-only, no Node/Python deps. Reusable workflows (dispatch-*.yml) consumed via workflow_call. CI validates all scripts with ShellCheck + BATS. Architecturally closest to tokenman: issue-driven, label-based state, GHA runners, claude -p headless. 2 pattern hits. Last deep: 2026-04-08T18:28:37Z. PR #25 workflow template detection, PR #23 workspace-relative memory, PR #13 default-proceed prompt pattern, global error trap, label state machine, tiered notifications.
 
 ### ComposioHQ/agent-orchestrator
 - **Why:** Parallel agent orchestrator (5.8K stars, 801 forks, TS) — spawns AI coding agents in git worktrees, autonomously fixes CI failures, addresses review comments, opens PRs. Agent-agnostic (Claude Code, Codex, Aider), runtime-agnostic (tmux, Docker), tracker-agnostic (GitHub, Linear).
 - **Look for:** CI auto-fix patterns, worktree isolation strategies, fleet coordination, rate-limit fallback, dashboard supervision patterns
-- **Added:** 2026-04-07 (horizon scan) | **Observations:** 5 | **First seen:** 2026-04-07 | **SHA:** 9840164
+- **Added:** 2026-04-07 (horizon scan) | **Observations:** 6 | **First seen:** 2026-04-07 | **SHA:** 9840164
 - **Notes:** Very active (934+ PRs, 496 open issues). TypeScript/npm. Interactive orchestration platform — different paradigm from GHA-driven harness. Monitor for CI-relevant patterns. Recent: GH API rate-limit fix (#906), model rate-limit revert (#908), session restore (#934).
 
 ### amazinglvxw/enso-os
 - **Why:** Self-evolving bash+python harness (19 stars) — 1267 LOC, 10 shell hooks, agent-memory, self-evolution. Conceptually similar to tokenman.
 - **Look for:** Shell hook patterns, self-evolution mechanisms, bash harness architecture, memory persistence patterns
-- **Added:** 2026-04-08 (horizon scan) | **Observations:** 2 | **First seen:** 2026-04-08 | **SHA:** 9a53e07
-- **Notes:** Created 2026-03-29, actively maintained. Shell language. Topics: agent-os, self-evolution, shell-hooks, claude-code. Recent commits mostly docs/README. Monitor for bash-specific harness patterns.
+- **Added:** 2026-04-08 (horizon scan) | **Observations:** 3 | **First seen:** 2026-04-08 | **SHA:** 9a53e07
+- **Notes:** Created 2026-03-29, actively maintained. Shell language. Topics: agent-os, self-evolution, shell-hooks, claude-code. Rapid growth: 19→40 stars, 0→3 forks in ~1 day. Recent commits mostly docs/README. Monitor for bash-specific harness patterns.
 
 ### montenegronyc/backporcher
 - **Why:** Parallel Claude Code agent dispatcher (10 stars, 1 fork, Python) — GitHub Issues as task queue, sandboxed worktrees, coordinator review, CI gating, auto-merge. 100% auto-merge rate on first production run (15 PRs, 0 manual interventions).
 - **Look for:** Batch orchestration with dependency chains, blast radius analysis (Tree-sitter + BFS), learnings persistence (success/failure feedback loop), 3-tier approval modes, code graph navigation maps, coordinator agent review patterns
-- **Added:** 2026-04-05 (horizon scan) | **Observations:** 3 | **First seen:** 2026-04-05 | **SHA:** 833b798
+- **Added:** 2026-04-05 (horizon scan) | **Observations:** 4 | **First seen:** 2026-04-05 | **SHA:** 833b798
 - **Notes:** Created 2026-03-06, pushed Apr 2. Python + asyncio. Uses `claude -p` headless (same as us). Pipeline: Issue → Haiku triage → batch orchestrator → Sonnet code graph → sandboxed worktree → build verify → PR → coordinator review → CI monitor (auto-retry 3x) → merge. Three approval modes: full-auto, review-merge (default), review-all. Learnings from past success/failure fed to future agents. Most architecturally relevant HS discovery in 20+ runs. Deep-dived: rate-limit fallback chain (model escalation sonnet→opus, multi-backend rotation), code graph navigation (Tree-sitter+BFS blast radius), no-changes label cleanup. All Python-specific, 0 CI-adoptable patterns. Last deep: 2026-04-05T15:16Z.
 
 ## Dropped Sources
 <!-- Removed sources with reason. Kept for history so we don't re-discover them. -->
+
+### affaan-m/everything-claude-code
+- **Dropped:** 2026-04-09 | **Reason:** 65+ observations, 0 CI-harness pattern hits. Demoted from Active 2026-04-02 (13+ consecutive 0-pattern observations). All patterns interactive-session specific (CI cleanup, codex sync, install hardening, release gates). 147K stars but fundamentally different paradigm from GHA-driven CI harness. 1 pattern hit total (early safety-guard hooks). Retained on Watch 7 days post-demotion with continued 0 CI patterns.
+
+### bytedance/deer-flow
+- **Dropped:** 2026-04-09 | **Reason:** 77+ observations, 0 CI-harness pattern hits. Demoted from Active 2026-04-02 (19+ consecutive 0-pattern deep-dives). All patterns Python application-specific (skill filters, concurrent locks, Langfuse tracing). Very active (5+ commits/day) but fundamentally different stack. 1 pattern hit total (early). No transferable patterns despite most extensively monitored source.
 
 ### code-yeongyu/oh-my-openagent
 - **Dropped:** 2026-04-01 | **Reason:** 24 observations, 0 pattern hits. Architecture fundamentally different (interactive TUI vs CI harness). Deep-dived 4 PRs — all interactive-session specific. 44K stars, 3273 forks. Active but irrelevant to CI-based harness architecture.
