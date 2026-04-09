@@ -1,20 +1,20 @@
 # Research Sources
 # Managed by evolve.yml. Claude adds, prunes, and annotates freely.
 # Seeded from evolve_config.md on first run.
-# Last updated: 2026-04-08T18:28:37Z
+# Last updated: 2026-04-09T00:16:26Z
 
 ## Active Sources
 
 ### anthropics/claude-code
 - **Why:** The runtime we build on — releases, breaking changes, new hooks, CLI flags
 - **Look for:** CHANGELOG entries, new hook types, permission changes, SDK updates
-- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-04-08T00:20:10Z | **Pattern hits:** 2 | **SHA:** 227817d
-- **Notes:** Protected source — never drop. Check CHANGELOG and releases, not just commits. v2.1.94 (Apr 7): 429 rate-limit errors now surface immediately (was silently stuck), sessionTitle hook output for UserPromptSubmit, --resume cross-worktree, effort default raised for API-key/Bedrock/Vertex/Team/Enterprise, plugin skill name from frontmatter, plugin hook fixes. Previous: v2.1.92 forceRemoteSettingsRefresh fail-closed, Write 60% faster, Linux sandbox seccomp. CC now has 18+ hook events.
+- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-04-08T00:20:10Z | **Pattern hits:** 2 | **SHA:** 22fdf68
+- **Notes:** Protected source — never drop. Check CHANGELOG and releases, not just commits. v2.1.97 (Apr 8): 429 retry exponential backoff minimum (no longer burns retries in 13s), Bash tool permission hardening (env-var prefixes, network redirects), MCP memory leak fix (~50MB/hr), status line refreshInterval, --dangerously-skip-permissions fix. v2.1.96: Bedrock auth fix. v2.1.94 (Apr 7): 429 rate-limit errors surface immediately, sessionTitle hook for UserPromptSubmit, --resume cross-worktree. CC now has 18+ hook events.
 
 ### hesreallyhim/awesome-claude-code
 - **Why:** Curated ecosystem catalog — discover new tools, libraries, and patterns
 - **Look for:** New entries in Orchestrators/Tools/Skills sections, trending repos referenced
-- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-04-08T18:28:37Z | **Pattern hits:** 0 | **SHA:** e7124fc
+- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-04-08T18:28:37Z | **Pattern hits:** 0 | **SHA:** c65b06b
 - **Notes:** 0 pattern hits across 50+ observations. SHA change: ticker data only. Submission enforcement governance (owner bypass), Teams subcategory — curation-specific patterns. Retain for HORIZON_SCAN cross-reference only.
 
 ### SethGammon/Citadel
@@ -48,7 +48,7 @@
 - **Why:** Community harness patterns, skill collections, optimization techniques
 - **Look for:** New skills, CLAUDE.md patterns, workflow architectures, instinct files
 - **Demoted:** 2026-04-02 (synthesis — 13+ consecutive 0-pattern observations, all interactive-session specific, 0 CI-harness patterns)
-- **Observations:** 64+ | **First seen:** 2026-03-20 | **SHA:** 9d766af
+- **Observations:** 65+ | **First seen:** 2026-03-20 | **SHA:** 1b3ccb8
 - **Notes:** 1 pattern hit total (safety-guard PreToolUse hooks, early). CI cleanup, codex sync, install hardening — all interactive-session. From same author as agentshield. Apr 6: release payload verification gate, hook bug workaround guide, README badges — all ECC-specific. Monitor for CI-relevant patterns.
 
 ### bytedance/deer-flow
@@ -70,7 +70,7 @@
 - **Look for:** Plugin format updates, new submission requirements, plugin.json schema changes, new official plugins relevant to harness patterns
 - **Added:** 2026-03-24 (horizon scan) | **Observations:** 44 | **First seen:** 2026-03-24 | **SHA:** 104d39b
 - **Decision (2026-03-31):** RETAIN on Watch List. 38 obs, 7+ days, 1 pattern hit (plugin format). 14.3K stars. Active (MongoDB, SAP UI5 plugins added). Distribution channel for #66. Low pattern yield (1/38) — not promoting. Still relevant as plugin ecosystem reference.
-- **Observations:** 45 | **First seen:** 2026-03-24 | **SHA:** 62f2063
+- **Observations:** 46 | **First seen:** 2026-03-24 | **SHA:** 98c01d3
 - **Notes:** PR #1115: bash prefix for .sh hooks. Version field for cache invalidation. Standard plugin format: .claude-plugin/plugin.json + commands/ + agents/ + skills/. Distribution channel for #66. 1 pattern hit (official plugin format). Apr 3: SonarQube plugin added (#1085, secrets-scanning hooks).
 
 ### agent-sh/agnix
@@ -89,7 +89,7 @@
 ### affaan-m/agentshield
 - **Why:** AI agent security scanner (289 stars, 55 forks) — scans .claude/ for secrets, permission misconfigs, hook injection, MCP risks, prompt injection vectors. CLI + GitHub Action + GitHub App.
 - **Look for:** Agent config audit rules applicable to our harness, CI integration patterns, auto-fix capabilities for security issues
-- **Added:** 2026-04-01 (horizon scan) | **Observations:** 4 | **First seen:** 2026-04-01 | **SHA:** 0440830
+- **Added:** 2026-04-01 (horizon scan) | **Observations:** 5 | **First seen:** 2026-04-01 | **SHA:** 169db1c
 - **Notes:** From affaan-m (everything-claude-code author). TypeScript. Covers agent config security surface (complementary to runner-guard which covers CI/CD workflow security). Detects hardcoded secrets, overly permissive permissions, hook injection. Built at Claude Code Hackathon. GitHub Action available. Part of ECC ecosystem (42K+ stars). Our .claude/ config is minimal so immediate value is low — monitor for CI integration patterns. Apr 5: prompt defense posture audit rules added.
 
 ### wanshuiyin/Auto-claude-code-research-in-sleep
@@ -102,12 +102,13 @@
 - **Why:** Label-driven Claude Code GHA dispatch (Shell, 2 stars) — closest architecture to tokenman. Modular agent-dispatch.sh + lib/, label state machine (10 agent:* labels), two-phase plan→implement with human checkpoint, ShellCheck + BATS-Core CI testing.
 - **Look for:** Shell script quality patterns, label state machine design, worktree isolation, error trap handling, BATS test patterns
 - **Added:** 2026-04-02 (horizon scan) | **Observations:** 13 | **First seen:** 2026-04-02 | **SHA:** b1f8029
-- **Notes:** Created 2026-03-21, actively maintained. Shell-only, no Node/Python deps. Reusable workflows (dispatch-*.yml) consumed via workflow_call. CI validates all scripts with ShellCheck + BATS. Architecturally closest to tokenman: issue-driven, label-based state, GHA runners, claude -p headless. 2 pattern hits. Last deep: 2026-04-08T18:28:37Z. PR #25 workflow template detection (3-way checksum sync), PR #23 workspace-relative memory, PR #13 default-proceed prompt pattern, global error trap with diagnostics, label state machine, tiered notifications. Interesting patterns but 0 directly adoptable. Approaching promotion (13 obs, 7 days on Apr 9).
+- **Decision (2026-04-09):** RETAIN on Watch. Meets quantitative promotion criteria (14 obs, 2 hits, 7d) but deep-dives found 0 directly adoptable patterns for GHA bash/markdown harness. Shell-library architecture patterns (modular lib/, BATS testing) don't transfer. Architecturally closest peer but insufficient pattern yield for Active promotion. Re-evaluate if new PRs introduce transferable patterns.
+- **Notes:** Created 2026-03-21, actively maintained. Shell-only, no Node/Python deps. Reusable workflows (dispatch-*.yml) consumed via workflow_call. CI validates all scripts with ShellCheck + BATS. Architecturally closest to tokenman: issue-driven, label-based state, GHA runners, claude -p headless. 2 pattern hits. Last deep: 2026-04-08T18:28:37Z. PR #25 workflow template detection, PR #23 workspace-relative memory, PR #13 default-proceed prompt pattern, global error trap, label state machine, tiered notifications.
 
 ### ComposioHQ/agent-orchestrator
 - **Why:** Parallel agent orchestrator (5.8K stars, 801 forks, TS) — spawns AI coding agents in git worktrees, autonomously fixes CI failures, addresses review comments, opens PRs. Agent-agnostic (Claude Code, Codex, Aider), runtime-agnostic (tmux, Docker), tracker-agnostic (GitHub, Linear).
 - **Look for:** CI auto-fix patterns, worktree isolation strategies, fleet coordination, rate-limit fallback, dashboard supervision patterns
-- **Added:** 2026-04-07 (horizon scan) | **Observations:** 4 | **First seen:** 2026-04-07 | **SHA:** ed21aae
+- **Added:** 2026-04-07 (horizon scan) | **Observations:** 5 | **First seen:** 2026-04-07 | **SHA:** 9840164
 - **Notes:** Very active (934+ PRs, 496 open issues). TypeScript/npm. Interactive orchestration platform — different paradigm from GHA-driven harness. Monitor for CI-relevant patterns. Recent: GH API rate-limit fix (#906), model rate-limit revert (#908), session restore (#934).
 
 ### amazinglvxw/enso-os

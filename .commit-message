@@ -1,1 +1,1 @@
-fix(content): update README evolve frequency 3h→6h and source counts (closes #156)
+fix: commit-state.sh use temp file for API payload to avoid ARG_MAX on large files (closes #158)

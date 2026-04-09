@@ -15,26 +15,29 @@ if [ ! -f "$FILE_PATH" ]; then
   exit 1
 fi
 
+# Use a temp file for the JSON payload to avoid ARG_MAX limits on large files
+PAYLOAD_FILE=$(mktemp)
+trap 'rm -f "$PAYLOAD_FILE" "$PAYLOAD_FILE.b64"' EXIT
+
 for i in $(seq 1 $MAX_RETRIES); do
   # Get current SHA (file may not exist on remote yet)
   SHA=$(gh api "repos/$GITHUB_REPOSITORY/contents/$FILE_PATH" --jq '.sha' 2>/dev/null || echo "")
 
-  # Encode local file content
-  CONTENT=$(base64 -w0 "$FILE_PATH")
-
-  # Build PUT request
+  # Build JSON payload via temp file (avoids "Argument list too long" for large files).
+  # base64 content is piped through jq via --rawfile to never hit ARG_MAX.
+  base64 -w0 "$FILE_PATH" > "$PAYLOAD_FILE.b64"
   if [ -n "$SHA" ]; then
-    RESULT=$(gh api "repos/$GITHUB_REPOSITORY/contents/$FILE_PATH" \
-      -X PUT \
-      -f message="$COMMIT_MSG" \
-      -f content="$CONTENT" \
-      -f sha="$SHA" 2>&1) || true
+    jq -n --arg msg "$COMMIT_MSG" --arg sha "$SHA" --rawfile content "$PAYLOAD_FILE.b64" \
+      '{message: $msg, content: $content, sha: $sha}' > "$PAYLOAD_FILE"
   else
-    RESULT=$(gh api "repos/$GITHUB_REPOSITORY/contents/$FILE_PATH" \
-      -X PUT \
-      -f message="$COMMIT_MSG" \
-      -f content="$CONTENT" 2>&1) || true
+    jq -n --arg msg "$COMMIT_MSG" --rawfile content "$PAYLOAD_FILE.b64" \
+      '{message: $msg, content: $content}' > "$PAYLOAD_FILE"
   fi
+  rm -f "$PAYLOAD_FILE.b64"
+
+  # PUT via --input to avoid passing content as a shell argument
+  RESULT=$(gh api "repos/$GITHUB_REPOSITORY/contents/$FILE_PATH" \
+    -X PUT --input "$PAYLOAD_FILE" 2>&1) || true
 
   # Check success
   if echo "$RESULT" | grep -q '"content"'; then
