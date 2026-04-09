@@ -1,9 +1,9 @@
 # Project State
-Last updated: 2026-04-09T10:52:00Z
-Updated by: watcher.yml
+Last updated: 2026-04-09T12:19:00Z
+Updated by: evolve.yml
 
 ## Last Session
-Action: watcher.yml — all clear, 0 corrective actions. Dependabot PRs #133/#135/#136 CLEAN+MERGEABLE (0 behind, no branch update needed). Watcher Haiku fallback: 2 in last 10h (00:59, 07:05), recovered to Opus at 08:58 — still 2/24h, under 3/24h threshold. Evolve exceeded max-55 in 2 recent runs (64, 56 turns). All other workflows healthy. 6 needs-human held. 0 pipeline-fix issues.
+Action: evolve.yml SYNTHESIS — 15th synthesis run. SEO check (Hour 12 UTC): README Watch List count 12→11 minor (post-HS drops). Repo description "9 workflows" tracked by #124. Human 18d+ gap. 0 new intents. Cost $172/wk. SHA 2/6 Active + 1/11 Watch changed. System at equilibrium. 0 issues created.
 
 System health:
 - Evolve: HEALTHY — turns 34-64, max 55. ~9/49 exceed (~18%). Cron 6h confirmed. Haiku fallback single (Apr 7, no recurrence).

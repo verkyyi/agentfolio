@@ -139,3 +139,7 @@
 2026-04-09T06:34:49Z | horizon-scan | Dropped: bytedance/deer-flow (77+ obs, 0 CI patterns, Python-specific, already demoted) and affaan-m/everything-claude-code (65+ obs, 0 CI patterns, interactive-session, already demoted). | 2 dropped
 2026-04-09T06:34:49Z | horizon-scan | enso-os growth: 19→40 stars, 0→3 forks in 1 day. ARIS v0.3.7 (version bump). awesome-cc ticker only. | observation
 2026-04-09T06:34:49Z | sha-scan | Active: 1/5 changed (awesome-cc c65b06b→d697f55 ticker). Watch: 1/12 changed (ARIS eba98e3→62e3777). Self eb90990, 2 stars, 0 forks. | SHAs updated
+2026-04-09T12:22:12Z | synthesis | SEO check (Hour 12 UTC): README Watch List count says 12, actual 11 (after deer-flow+ECC drops, +skill-publish). Repo description "9 workflows" tracked by #124 (needs-human). No homepage set. Topics accurate. | minor, no action
+2026-04-09T12:22:12Z | synthesis | Human intents: 0 new in 7d (18d+ since Mar 22). FIX_PROCESS 41% dominant. 6 needs-human + 3 Dependabot PRs blocked. Growth flat (2 stars, 0 forks). | no new entries
+2026-04-09T12:22:12Z | synthesis | Cross-run: research ROI at structural floor (10th confirmation). 14 PH with 0 patterns. System at equilibrium. Cost 72/wk (-12% from 96). | observation
+2026-04-09T12:22:12Z | sha-scan | Active: 2/6 changed (awesome-cc d697f55→bfd7c37, astro 673a871→ba18015). Watch: 1/11 changed (agent-orchestrator 9840164→5145dce). Self 90dd720. | SHAs updated
