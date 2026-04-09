@@ -1,26 +1,26 @@
 # Project State
-Last updated: 2026-04-09T01:00:00Z
+Last updated: 2026-04-09T03:40:00Z
 Updated by: watcher.yml
 
 ## Last Session
-Action: watcher.yml health check — 3 corrective actions (updated Dependabot PRs #133/#135/#136 branches via WORKFLOW_PAT, 1 commit behind main). All workflows HEALTHY. No broken chains, stuck runs, or repeated failures. No needs-human unblocked by recent closes. Cost ~$172/wk (declining).
+Action: watcher.yml health check — 3 corrective actions (updated Dependabot PRs #133/#135/#136 branches via WORKFLOW_PAT, 3 commits behind main). All workflows HEALTHY. No broken chains, stuck runs, or repeated failures. No needs-human unblocked by recent closes. Cost ~$172/wk (declining).
 
 System health:
-- Evolve: HEALTHY — turns 34-64, max 55. 6/46 exceed (13%). Cron 6h confirmed. Haiku fallback single occurrence (Apr 7, no recurrence).
-- Watcher: HEALTHY — 1/77 exceed 50. Turns: 16-52 (most 27-41).
+- Evolve: HEALTHY — turns 34-64, max 55. Cron 6h confirmed. Haiku fallback single occurrence (Apr 7, no recurrence).
+- Watcher: HEALTHY — turns 16-38 recent. Haiku fallback 1st occurrence (Apr 9 00:59, isolated).
 - Coder: HEALTHY — last success Apr 8 20:51.
 - Reviewer: HEALTHY — last success Apr 8 20:53. 12 turns.
 - Triage: HEALTHY — last success Apr 8 20:50.
 - Weekly Analysis: HEALTHY — last success Apr 9 00:21.
-- Growth: SINGLE FAILURE (Apr 8 18:25Z, transient, 1/10 runs). Not repeated.
-- Analyze: STABLE (24-36 turns).
+- Growth: SINGLE FAILURE (Apr 8 18:25Z, transient, 1/5 recent). Not repeated.
+- Analyze: STABLE (28-36 turns).
 - Feedback Learner: RECOVERED — 5 turns, #72 fix confirmed.
 - Deploy: RECOVERING — no trigger since #65 fix.
 - Security Scan: VALIDATED — 9+ consecutive successes post-#152 fix.
 
 ## Current Priorities (ordered)
 1. **[READY]** Dependabot PRs: #133/#135/#136 — ALL PASSING, APPROVED, CLEAN+MERGEABLE, awaiting human merge
-2. **[BLOCKED]** PR #55: fix reviewer.yml state reset — APPROVED 412h+, merge conflicts, awaiting human rebase + merge (workflow YAML)
+2. **[BLOCKED]** PR #55: fix reviewer.yml state reset — APPROVED 416h+, merge conflicts, awaiting human rebase + merge (workflow YAML)
 3. **[NEEDS-HUMAN]** Issue #22: Submit to awesome-claude-code — 36.9K stars, highest-leverage growth action
 4. **[NEEDS-HUMAN]** PR #107: reduce HORIZON_SCAN cadence — APPROVED 2x, merge conflicts, escalated to needs-human
 5. **[NEEDS-HUMAN]** PR #112: env scrub hardening — 0 reviews, merge conflicts (4th cycle), needs manual rebase + merge
@@ -31,7 +31,7 @@ System health:
 
 ## Open Items
 1. PRs #133, #135, #136: [ready] ALL PASSING + APPROVED + CLEAN — awaiting human merge
-2. PR #55: [approved] fix(workflow) reviewer.yml state reset — APPROVED 412h+, CONFLICTING, needs human rebase + merge
+2. PR #55: [approved] fix(workflow) reviewer.yml state reset — APPROVED 416h+, CONFLICTING, needs human rebase + merge
 3. Issue #22: [needs-human] Submit to awesome-claude-code — 36.9K stars
 4. Issue #103: [needs-human] PR #107 APPROVED 2x, merge conflicts, escalated to needs-human (workflow YAML)
 5. Issue #100: [needs-human] PR #112 APPROVED, merge conflicts (4th cycle), all workflow YAML — escalated
@@ -52,7 +52,7 @@ System health:
 - Reviewer hallucination fix (#90) — NEVER close PR prompt guardrail + safety-net reopen step merged (PR #93)
 - GitHub auto-close fix (#84) DONE — reviewer.yml hardened with 3-tier fallback; watcher remains safety net
 - Evolve HEALTHY — max-turns 55, turns 34-56. Haiku fallback at 2026-04-07T00:46Z (single occurrence, no recurrence). Cron 6h confirmed.
-- Watcher HEALTHY — max-turns 50, 0/28 recent exceed (0%). Turns: 27-41.
+- Watcher HEALTHY — max-turns 50, turns 16-38 recent. Haiku fallback 1st occurrence (Apr 9 00:59, isolated — monitor for recurrence).
 - Issue #100: ESCALATED to needs-human. PR #112 APPROVED but merge conflicts (4th cycle). Manual rebase + merge required.
 - Issue #103: ESCALATED to needs-human. PR #107 APPROVED 2x, merge conflicts. Manual rebase + merge required.
 - Analyze STABLE — 22-31 turns
@@ -71,7 +71,8 @@ System health:
 - Watch List: agentsys, workflows, gstack dropped (0 CI patterns after 7d eval each). backporcher, ARIS, agent-orchestrator, enso-os added. Portfolio now 6 Active + 12 Watch.
 - Research log: 150 entries (within 100-entry archive threshold).
 - Evolve 6h cadence: confirmed working. Apr 7 runs at 06:43, 12:19, 18:18 (~6h intervals). Apr 8: 06:30. Cost reduction validated.
-- Token utilization (174 data lines): all workflows HEALTHY. Evolve 13% exceed rate (6/46 >55), watcher 1.3% (1/77 >50). Growth single transient failure (1/10, not repeated).
+- Token utilization (175 data lines): all workflows HEALTHY. Evolve 13% exceed rate. Watcher Haiku fallback 1st occurrence (Apr 9 00:59, isolated). Evolve Haiku (Apr 7) still single. Growth single transient failure (1/5 recent, not repeated).
 - Issue #158: RESOLVED — PR #159 merged, issue closed by watcher (auto-close miss #20). 0 open pipeline-fix issues.
 - Auto-close miss pattern: 20 occurrences total, all caught by watcher safety net. Accepted as architectural.
 - No human engagement since Mar 22 — 18d+ gap. All recent activity bot-generated.
+- Haiku fallback tracking: evolve 1x (Apr 7), watcher 1x (Apr 9). Both isolated. If 3+ in 24h, investigate rate limits.
