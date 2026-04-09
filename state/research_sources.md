@@ -1,27 +1,27 @@
 # Research Sources
 # Managed by evolve.yml. Claude adds, prunes, and annotates freely.
 # Seeded from evolve_config.md on first run.
-# Last updated: 2026-04-09T12:19:00Z
+# Last updated: 2026-04-09T18:20:16Z
 
 ## Active Sources
 
 ### anthropics/claude-code
 - **Why:** The runtime we build on — releases, breaking changes, new hooks, CLI flags
 - **Look for:** CHANGELOG entries, new hook types, permission changes, SDK updates
-- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-04-08T00:20:10Z | **Pattern hits:** 2 | **SHA:** 22fdf68
-- **Notes:** Protected source — never drop. Check CHANGELOG and releases, not just commits. v2.1.97 (Apr 8): 429 retry exponential backoff minimum (no longer burns retries in 13s), Bash tool permission hardening (env-var prefixes, network redirects), MCP memory leak fix (~50MB/hr), status line refreshInterval, --dangerously-skip-permissions fix. v2.1.96: Bedrock auth fix. v2.1.94 (Apr 7): 429 rate-limit errors surface immediately, sessionTitle hook for UserPromptSubmit, --resume cross-worktree. CC now has 18+ hook events.
+- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-04-09T18:20:16Z | **Pattern hits:** 2 | **SHA:** 3c72545
+- **Notes:** Protected source — never drop. Check CHANGELOG and releases, not just commits. 3c72545 (Apr 9): triage prompt accuracy — tighten invalid-label rule, require category label (internal .claude/commands). v2.1.97 (Apr 8): 429 retry exponential backoff minimum (no longer burns retries in 13s), Bash tool permission hardening (env-var prefixes, network redirects), MCP memory leak fix (~50MB/hr), status line refreshInterval, --dangerously-skip-permissions fix. v2.1.96: Bedrock auth fix. CC now has 18+ hook events.
 
 ### hesreallyhim/awesome-claude-code
 - **Why:** Curated ecosystem catalog — discover new tools, libraries, and patterns
 - **Look for:** New entries in Orchestrators/Tools/Skills sections, trending repos referenced
-- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-04-08T18:28:37Z | **Pattern hits:** 0 | **SHA:** bfd7c37
+- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-04-08T18:28:37Z | **Pattern hits:** 0 | **SHA:** daad319
 - **Notes:** 0 pattern hits across 50+ observations. SHA change: ticker data only. Submission enforcement governance (owner bypass), Teams subcategory — curation-specific patterns. Retain for HORIZON_SCAN cross-reference only.
 
 ### SethGammon/Citadel
 - **Why:** Agent orchestration harness (400 stars) — closest architecture to tokenman. Campaign persistence, parallel worktrees, circuit breaker, quality gate hooks, skill benchmarking, daemon factory
 - **Look for:** Skill benchmarking patterns, skill linting, governance hooks, testing infrastructure, fleet coordination, daemon factory patterns
-- **Added:** 2026-03-24 (watch) | **Promoted:** 2026-03-27 (synthesis — 35 obs, closest architecture, V2 patterns) | **Last deep:** 2026-04-07T12:20:10Z | **Pattern hits:** 1 | **SHA:** 8d4a822
-- **Notes:** Promoted from Watch List. Broke 3-run freeze: multi-runtime direction materializing — OpenAI runtime scaffold, Codex runtime support, wiki skill, hook hardening (Apr 6-7, 3 commits). Roadmap: governance layer (per-agent policies, immutable audit), campaign recovery, web dashboard, team collab. JS framework refactor — not adoptable for bash/markdown harness. 1 pattern hit (circuit breaker #76).
+- **Added:** 2026-03-24 (watch) | **Promoted:** 2026-03-27 (synthesis — 35 obs, closest architecture, V2 patterns) | **Last deep:** 2026-04-09T18:20:16Z | **Pattern hits:** 1 | **SHA:** 8e2abc9
+- **Notes:** Promoted from Watch List. 4 new commits (Apr 9): momentum synthesizer (cross-session discovery synthesis — persistent institutional memory layer, validates our SYNTHESIS posture), unified telemetry hub (session cost, trust levels, on/off controls), campaign staleness detection, setup prompt UX. All JS-framework patterns. Roadmap: governance layer, campaign recovery, web dashboard, team collab. 1 pattern hit (circuit breaker #76).
 
 ### actions/runner
 - **Why:** CI/CD runtime we depend on — deprecation notices, new features, security fixes
@@ -32,13 +32,13 @@
 ### withastro/astro
 - **Why:** Web framework we use — security fixes, breaking changes, new features
 - **Look for:** Security advisories, breaking changes in minor/major releases, new content collection features
-- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-04-08T18:28:37Z | **Pattern hits:** 0 | **SHA:** ba18015
+- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-04-08T18:28:37Z | **Pattern hits:** 0 | **SHA:** 92fc030
 - **Notes:** Only actionable for security fixes or features that affect our site build. v6.1.5 (Apr 8): biome upgrade, dlv inlining. Cloudflare adapter 13.1.8: queue consumer fix. No security advisories. 0 harness patterns across 20+ observations.
 
 ### verkyyi/tokenman
 - **Why:** Self-reference — track forks, adopters, and how the scaffold is used
 - **Look for:** New forks, adopter modifications, issues filed by users
-- **Added:** 2026-03-20 (seed) | **Last deep:** never | **Pattern hits:** 0 | **SHA:** eb90990
+- **Added:** 2026-03-20 (seed) | **Last deep:** never | **Pattern hits:** 0 | **SHA:** b30e929
 - **Notes:** Used during HORIZON SCAN for adoption tracking. 2 stars, 0 forks, 0 adopters as of 2026-04-09. EvoMap/awesome-agent-evolution (21 stars) monitors tokenman in data/monitor-results.json but not curated — potential growth submission target (#149).
 
 ## Watch List
@@ -47,7 +47,7 @@
 ### hashgraph-online/skill-publish
 - **Why:** GitHub Action + CLI for validating, monitoring, and publishing verifiable SKILL.md files (163 stars). OIDC provenance, validate/monitor/quote/publish modes, IndexNow submission, scorecard validation.
 - **Look for:** SKILL.md validation rules, GHA publishing patterns, provenance verification, skill registry integration
-- **Added:** 2026-04-09 (horizon scan) | **Observations:** 1 | **First seen:** 2026-04-09 | **SHA:** cc1b3c4
+- **Added:** 2026-04-09 (horizon scan) | **Observations:** 2 | **First seen:** 2026-04-09 | **SHA:** cc1b3c4
 - **Notes:** Active (5 commits this week: OIDC flow tightening, scorecard alignment, repo-skill-dir env). JS/Node. Relevant to future skill ecosystem (#66). Publishes to hol.org registry. Uses CITATION.cff, codemeta.json, Zenodo for academic provenance. 2 forks.
 
 ### trailofbits/skills
@@ -101,7 +101,7 @@
 ### ComposioHQ/agent-orchestrator
 - **Why:** Parallel agent orchestrator (5.8K stars, 801 forks, TS) — spawns AI coding agents in git worktrees, autonomously fixes CI failures, addresses review comments, opens PRs. Agent-agnostic (Claude Code, Codex, Aider), runtime-agnostic (tmux, Docker), tracker-agnostic (GitHub, Linear).
 - **Look for:** CI auto-fix patterns, worktree isolation strategies, fleet coordination, rate-limit fallback, dashboard supervision patterns
-- **Added:** 2026-04-07 (horizon scan) | **Observations:** 7 | **First seen:** 2026-04-07 | **SHA:** 5145dce
+- **Added:** 2026-04-07 (horizon scan) | **Observations:** 8 | **First seen:** 2026-04-07 | **SHA:** c006180
 - **Notes:** Very active (934+ PRs, 496 open issues). TypeScript/npm. Interactive orchestration platform — different paradigm from GHA-driven harness. Monitor for CI-relevant patterns. Recent: GH API rate-limit fix (#906), model rate-limit revert (#908), session restore (#934).
 
 ### amazinglvxw/enso-os

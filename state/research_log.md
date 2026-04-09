@@ -143,3 +143,7 @@
 2026-04-09T12:22:12Z | synthesis | Human intents: 0 new in 7d (18d+ since Mar 22). FIX_PROCESS 41% dominant. 6 needs-human + 3 Dependabot PRs blocked. Growth flat (2 stars, 0 forks). | no new entries
 2026-04-09T12:22:12Z | synthesis | Cross-run: research ROI at structural floor (10th confirmation). 14 PH with 0 patterns. System at equilibrium. Cost 72/wk (-12% from 96). | observation
 2026-04-09T12:22:12Z | sha-scan | Active: 2/6 changed (awesome-cc d697f55→bfd7c37, astro 673a871→ba18015). Watch: 1/11 changed (agent-orchestrator 9840164→5145dce). Self 90dd720. | SHAs updated
+2026-04-09T18:20:16Z | anthropics/claude-code | 3c72545: triage prompt accuracy (tighten invalid-label rule, require category label). Internal .claude/commands change. | no action
+2026-04-09T18:20:16Z | SethGammon/Citadel | 4 new commits (8d4a822→8e2abc9): momentum synthesizer (cross-session discovery synthesis), unified telemetry hub (trust levels, cost controls), campaign staleness, setup prompt. All JS-framework patterns. Momentum validates our SYNTHESIS approach. | observation — 0 adoptable
+2026-04-09T18:20:16Z | hashgraph-online/skill-publish | Obs #2: OIDC flow tightening, scorecard alignment, repo-skill-dir env. JS/Node publishing patterns. Active maintenance confirmed. | Watch observation
+2026-04-09T18:20:16Z | sha-scan | Active: 3/6 changed (claude-code 22fdf68→3c72545, Citadel 8d4a822→8e2abc9, awesome-cc bfd7c37→daad319 ticker). Watch: 2/11 changed (agent-orchestrator 5145dce→c006180 single-socket, astro ba18015→92fc030 logger refactor). Self b30e929. | SHAs updated
