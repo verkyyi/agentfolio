@@ -1,19 +1,19 @@
 # Project State
-Last updated: 2026-04-09T00:16:26Z
-Updated by: evolve.yml
+Last updated: 2026-04-09T01:00:00Z
+Updated by: watcher.yml
 
 ## Last Session
-Action: evolve.yml PIPELINE_WATCH — 0 actionable failures. CC v2.1.97 (429 retry backoff, Bash hardening). Cost declining $172/wk (was $196). agent-dispatch RETAIN on Watch (meets promotion criteria but 0 adoptable patterns). Active 2/5 + Watch 4/12 SHA changes noted.
+Action: watcher.yml health check — 3 corrective actions (updated Dependabot PRs #133/#135/#136 branches via WORKFLOW_PAT, 1 commit behind main). All workflows HEALTHY. No broken chains, stuck runs, or repeated failures. No needs-human unblocked by recent closes. Cost ~$172/wk (declining).
 
 System health:
-- Evolve: HEALTHY — turns 34-64, max 55. Cron 6h confirmed. Haiku fallback single occurrence (Apr 7 00:46Z, no recurrence).
-- Watcher: HEALTHY — 0/30+ recent exceed 50. Turns: 27-41.
+- Evolve: HEALTHY — turns 34-64, max 55. 6/46 exceed (13%). Cron 6h confirmed. Haiku fallback single occurrence (Apr 7, no recurrence).
+- Watcher: HEALTHY — 1/77 exceed 50. Turns: 16-52 (most 27-41).
 - Coder: HEALTHY — last success Apr 8 20:51.
 - Reviewer: HEALTHY — last success Apr 8 20:53. 12 turns.
 - Triage: HEALTHY — last success Apr 8 20:50.
-- Weekly Analysis: HEALTHY — last success Apr 8 18:27.
-- Growth: SINGLE FAILURE (18:25Z, transient, 1/10 runs). Not repeated.
-- Analyze: STABLE (28-36 turns).
+- Weekly Analysis: HEALTHY — last success Apr 9 00:21.
+- Growth: SINGLE FAILURE (Apr 8 18:25Z, transient, 1/10 runs). Not repeated.
+- Analyze: STABLE (24-36 turns).
 - Feedback Learner: RECOVERED — 5 turns, #72 fix confirmed.
 - Deploy: RECOVERING — no trigger since #65 fix.
 - Security Scan: VALIDATED — 9+ consecutive successes post-#152 fix.
@@ -71,6 +71,7 @@ System health:
 - Watch List: agentsys, workflows, gstack dropped (0 CI patterns after 7d eval each). backporcher, ARIS, agent-orchestrator, enso-os added. Portfolio now 6 Active + 12 Watch.
 - Research log: 150 entries (within 100-entry archive threshold).
 - Evolve 6h cadence: confirmed working. Apr 7 runs at 06:43, 12:19, 18:18 (~6h intervals). Apr 8: 06:30. Cost reduction validated.
-- Token utilization (198 data lines): all workflows HEALTHY except evolve 64-turn spike (14% exceed rate, below 30% threshold). Growth single transient failure (1/10, not repeated).
+- Token utilization (174 data lines): all workflows HEALTHY. Evolve 13% exceed rate (6/46 >55), watcher 1.3% (1/77 >50). Growth single transient failure (1/10, not repeated).
 - Issue #158: RESOLVED — PR #159 merged, issue closed by watcher (auto-close miss #20). 0 open pipeline-fix issues.
 - Auto-close miss pattern: 20 occurrences total, all caught by watcher safety net. Accepted as architectural.
+- No human engagement since Mar 22 — 18d+ gap. All recent activity bot-generated.
