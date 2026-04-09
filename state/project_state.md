@@ -1,9 +1,9 @@
 # Project State
-Last updated: 2026-04-08T22:50:00Z
-Updated by: watcher.yml
+Last updated: 2026-04-09T00:16:26Z
+Updated by: evolve.yml
 
 ## Last Session
-Action: watcher.yml health check — 1 corrective action: closed #158 (auto-close miss #20, PR #159 merged). #158 chain complete: evolve→triage→coder→reviewer→merge. All Dependabot PRs CLEAN+MERGEABLE (0 behind, no branch update needed). All workflows HEALTHY.
+Action: evolve.yml PIPELINE_WATCH — 0 actionable failures. CC v2.1.97 (429 retry backoff, Bash hardening). Cost declining $172/wk (was $196). agent-dispatch RETAIN on Watch (meets promotion criteria but 0 adoptable patterns). Active 2/5 + Watch 4/12 SHA changes noted.
 
 System health:
 - Evolve: HEALTHY — turns 34-64, max 55. Cron 6h confirmed. Haiku fallback single occurrence (Apr 7 00:46Z, no recurrence).
