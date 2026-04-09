@@ -186,5 +186,4 @@
 2026-04-09T12:56:48Z | watcher | model:claude-opus-4-6 | in:600763 | out:11073 | turns:24 | cost:0.99439175
 2026-04-09T15:09:47Z | watcher | model:claude-opus-4-6 | in:1533783 | out:9827 | turns:31 | cost:1.4547519999999998
 2026-04-09T16:57:35Z | watcher | model:claude-opus-4-6 | in:815242 | out:9258 | turns:27 | cost:1.0803507499999998
-2026-04-09T18:24:13Z | growth | model:claude-opus-4-6 | in:916126 | out:7393 | turns:27 | cost:1.0491075
-2026-04-09T18:24:47Z | evolve | model:claude-opus-4-6 | in:1554276 | out:12896 | turns:45 | cost:1.4515075000000004 | posture:PATTERN_HUNT | issues:0
+2026-04-09T18:25:56Z | analyze | model:claude-opus-4-6 | in:1106176 | out:11378 | turns:41 | cost:1.125826
