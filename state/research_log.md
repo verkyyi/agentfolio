@@ -130,3 +130,8 @@
 2026-04-08T18:28:37Z | actions/runner | Docker v29.3.1 + Buildx v0.33.0 update, typescript-eslint bump. Infrastructure-only, 0 patterns. | no action
 2026-04-08T18:28:37Z | withastro/astro | v6.1.5: biome upgrade, dlv inlining, Cloudflare queue consumer fix. No security advisories. | no action
 2026-04-08T18:28:37Z | sha-scan | Active: 2/6 changed (awesome-cc e7124fc ticker, astro 673a871 v6.1.5). Watch: 4/12 changed (deer-flow ad6d934, plugins-official 62f2063, runner-guard 3d9f329, enso-os 9a53e07). Self f4bc357. | SHAs updated
+2026-04-09T00:16:26Z | pipeline-health | 0 failed actionable, 1 transient (Growth SHA conflict 1/5), 4 already-fixed (Security Scan Apr 3-5). 0 issues created. | no action
+2026-04-09T00:16:26Z | anthropics/claude-code | v2.1.96 (Bedrock auth fix), v2.1.97 (429 retry exponential backoff, Bash permission hardening, MCP memory leak fix, status line refreshInterval). 429 fix most relevant for CI reliability. | observation
+2026-04-09T00:16:26Z | pipeline-health | Cost trend: $33→$26→$25/day (Apr 6-8). Projected $172/wk (was $196). 15% above $150 target (was 31%). Watcher 58% ($100/wk). 6h evolve cadence validated. | observation
+2026-04-09T00:16:26Z | claude-agent-dispatch | Promotion review: 13 obs, 2 hits, 7d. Meets quantitative criteria but 0 directly adoptable patterns found in deep-dives. RETAIN on Watch — insufficient pattern yield for Active promotion. | decision
+2026-04-09T00:16:26Z | sha-scan | Active: 2/5 changed (claude-code 227817d→22fdf68, awesome-cc e7124fc→c65b06b ticker). Watch: 4/12 changed (ECC 1b3ccb8, plugins-official 98c01d3, agentshield 169db1c, agent-orchestrator 9840164). Self 3f835c6. | SHAs updated
