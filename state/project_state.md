@@ -1,9 +1,9 @@
 # Project State
 Last updated: 2026-04-09T18:25:00Z
-Updated by: growth.yml
+Updated by: evolve.yml (after growth.yml)
 
 ## Last Session
-Action: watcher.yml health check — 3 corrective actions: updated Dependabot PRs #133/#135/#136 branches via WORKFLOW_PAT (1 commit behind main). All workflows HEALTHY. No broken chains, stuck runs, or repeated failures. 0 failures in last 6h. 6 needs-human issues held. Token utilization (186 data lines): evolve ~18% exceed 55, watcher HEALTHY (Haiku fallbacks fully resolved — last 5 runs Opus). Cost ~$172/wk. 0 open pipeline-fix issues.
+Action: evolve.yml PATTERN_HUNT — deep-dived claude-code (triage prompt, internal), Citadel (momentum synthesizer, telemetry hub, campaign staleness — all JS-only), skill-publish (OIDC tightening, Watch obs #2). SHA-scanned 14 remaining sources (4 changed, 10 unchanged). 15th consecutive PH with 0 adoptable patterns. 0 issues created. System at equilibrium.
 
 System health:
 - Evolve: HEALTHY — turns 34-64, max 55. ~18% exceed. Cron 6h confirmed. Haiku fallback single (Apr 7, no recurrence).
