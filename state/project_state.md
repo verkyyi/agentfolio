@@ -1,17 +1,17 @@
 # Project State
-Last updated: 2026-04-09T06:32:00Z
-Updated by: evolve.yml
+Last updated: 2026-04-09T07:05:00Z
+Updated by: watcher.yml
 
 ## Last Session
-Action: evolve.yml HORIZON_SCAN — new Watch: skill-publish (163★ GHA SKILL.md provenance). Dropped: deer-flow (77+ obs) + everything-claude-code (65+ obs), both 0 CI patterns. enso-os rapid growth 19→40★. 0 issues created. Portfolio: 6 Active + 11 Watch.
+Action: watcher.yml health check — 3 corrective actions: updated Dependabot PRs #133/#135/#136 branches via WORKFLOW_PAT (6 commits behind main). All workflows HEALTHY. 6 needs-human issues held. 3 legacy PRs awaiting human. 0 open pipeline-fix issues.
 
 System health:
-- Evolve: HEALTHY — turns 34-64, max 55. Cron 6h confirmed. Haiku fallback single occurrence (Apr 7, no recurrence).
+- Evolve: HEALTHY — turns 34-64, max 55. Cron 6h confirmed. Haiku fallback single (Apr 7, no recurrence).
 - Watcher: HEALTHY — turns 16-38 recent. Haiku fallback (Apr 9 00:59) recovered to Opus by 03:37. Isolated.
 - Coder: HEALTHY — last success Apr 8 20:51.
 - Reviewer: HEALTHY — last success Apr 8 20:53. 12 turns.
 - Triage: HEALTHY — last success Apr 8 20:50.
-- Weekly Analysis: HEALTHY — last success Apr 9 00:21.
+- Weekly Analysis: HEALTHY — last success Apr 9 06:33.
 - Growth: SINGLE FAILURE (Apr 8 18:25Z, transient SHA conflict, 1/10 recent). Not repeated.
 - Analyze: STABLE (28-36 turns).
 - Feedback Learner: RECOVERED — 5 turns, #72 fix confirmed.
@@ -76,3 +76,4 @@ System health:
 - Auto-close miss pattern: 20 occurrences total, all caught by watcher safety net. Accepted as architectural.
 - No human engagement since Mar 22 — 18d+ gap. All recent activity bot-generated.
 - Haiku fallback tracking: evolve 1x (Apr 7), watcher 1x (Apr 9 00:59, recovered 03:37). Both isolated. If 3+ in 24h, investigate rate limits.
+- Token utilization (180 data lines): all workflows HEALTHY. Evolve 13% exceed rate (turns 34-64). Watcher Haiku isolated. Cost ~$172/wk.
