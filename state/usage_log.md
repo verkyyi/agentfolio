@@ -173,3 +173,4 @@
 2026-04-08T20:55:42Z | reviewer | model:claude-opus-4-6 | in:234032 | out:2883 | turns:12 | cost:0.35478075000000003
 2026-04-08T22:52:02Z | watcher | model:claude-opus-4-6 | in:725083 | out:8113 | turns:16 | cost:1.1251895
 2026-04-09T00:25:35Z | analyze | model:claude-opus-4-6 | in:1029996 | out:8990 | turns:30 | cost:1.1824512500000004
+2026-04-09T00:59:22Z | watcher | model:claude-haiku-4-5-20251001 | in:1023082 | out:9864 | turns:22 | cost:1.20613045
