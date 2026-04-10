@@ -1,19 +1,19 @@
 # Project State
-Last updated: 2026-04-10T00:22:37Z
-Updated by: evolve.yml
+Last updated: 2026-04-10T01:05:00Z
+Updated by: watcher.yml
 
 ## Last Session
-Action: evolve.yml PIPELINE_WATCH — 0 actionable failures (all 10 ALREADY-FIXED). claude-code v2.1.98 released (Monitor tool, PID namespace isolation, 6 Bash security fixes — updates #100). Cost milestone: projected $144/wk, below $150 target for first time. SHA scan: Active 2/5 changed (claude-code, awesome-cc), Watch 2/11 changed (plugins-official, agent-orchestrator). 0 issues created.
+Action: watcher.yml health check — 3 corrective actions: updated Dependabot PRs #133/#135/#136 branches via WORKFLOW_PAT (6 commits behind main). All workflows HEALTHY. 0 failures in last 6h. 6 needs-human held. 3 legacy PRs awaiting human. Token utilization (166 data lines): all HEALTHY. Cost ~$144/wk.
 
 System health:
 - Evolve: HEALTHY — turns 34-64, max 55. ~18% exceed. Cron 6h confirmed. Haiku fallback single (Apr 7, no recurrence).
-- Watcher: HEALTHY — Haiku fallbacks fully resolved. Last 10+ runs on Opus. 2/93 total (2.2%). Turns 16-38 recent.
+- Watcher: HEALTHY — Haiku fallbacks fully resolved. Last 12+ runs on Opus. 2/97 total (2.1%). Turns 16-35 recent.
 - Coder: HEALTHY — last success Apr 8 20:51.
 - Reviewer: HEALTHY — last success Apr 8 20:53. 12 turns.
 - Triage: HEALTHY — last success Apr 9 18:24.
-- Weekly Analysis: HEALTHY — last success Apr 9 18:21.
+- Weekly Analysis: HEALTHY — last success Apr 10 00:24.
 - Growth: HEALTHY — last success Apr 9 18:21. Prior single failure (Apr 8 18:25Z) not repeated.
-- Analyze: STABLE (30-41 turns).
+- Analyze: STABLE (19-41 turns).
 - Feedback Learner: RECOVERED — 5 turns, #72 fix confirmed.
 - Deploy: RECOVERING — no trigger since #65 fix.
 - Security Scan: VALIDATED — 9+ consecutive successes post-#152 fix.
@@ -67,7 +67,7 @@ System health:
 - Security Scan regression cycle: #137→#141→#145→#152 (4 cascading issues over 3 days), resolved by PR #153. All Dependabot PRs now passing.
 - Dependabot PRs: #133/#135/#136 APPROVED, ALL PASSING, branches updated. Ready for human merge.
 - Config recheck done: 2026-04-04. Added security-scan, sync-labels, test-evolve to evolve_config. Next recheck: 2026-04-11.
-- Cost: trending down ~$172/week projected. Watcher ~58%, evolve ~19%. Evolve 6h cadence savings confirmed.
+- Cost: $144/wk projected — below $150 target for first time. Watcher ~58%, evolve ~19%. Evolve 6h cadence savings confirmed.
 - Watch List: Portfolio 6 Active + 11 Watch. skill-publish added (163★).
-- Haiku fallback tracking: evolve 1x (Apr 7), watcher 2x (Apr 9 00:59 + 07:05). Watcher fully recovered — last 10+ runs Opus. 2/93 total (2.2%).
-- Token utilization (190 data lines): evolve ~18% exceed 55 (stable). Watcher HEALTHY (0% exceed 50, Haiku fallbacks resolved). Cost ~$172/wk.
+- Haiku fallback tracking: evolve 1x (Apr 7), watcher 2x (Apr 9 00:59 + 07:05). Watcher fully recovered — last 12+ runs Opus. 2/97 total (2.1%).
+- Token utilization (166 data lines): evolve ~18% exceed 55 (stable). Watcher HEALTHY (0% exceed 50, Haiku fallbacks resolved). Cost ~$144/wk.
