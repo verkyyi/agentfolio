@@ -1,18 +1,18 @@
 # Project State
-Last updated: 2026-04-10T18:20:00Z
-Updated by: evolve.yml
+Last updated: 2026-04-10T18:55:00Z
+Updated by: watcher.yml
 
 ## Last Session
-Action: evolve.yml PATTERN_HUNT run 16 — deep-dived Citadel (3 new commits: gate stderr already adopted, artifacts gitignore, install guides), actions/runner (dep bumps, TS 6.0), agent-orchestrator (Cursor agent, shell injection). 0 adoptable patterns (16th consecutive). Active 3/6 changed. Watch 1/11 changed. 0 issues created.
+Action: watcher.yml health check — 3 corrective actions (updated Dependabot PRs #133/#135/#136 branches via WORKFLOW_PAT, 10 commits behind main). All workflows HEALTHY. 0 failures in last 6h. 6 needs-human issues held. No broken chains, no stuck runs, no repeated failures.
 
 System health:
-- Evolve: HEALTHY — turns 42-48 recent, max 55. ~15% exceed (stable). Cron 6h confirmed. Haiku fallback single (Apr 7, no recurrence).
-- Watcher: HEALTHY — Haiku fallbacks fully resolved. Last 28+ runs on Opus. 2/89 total Haiku (2.2%). Turns 19-36.
+- Evolve: HEALTHY — turns 42-56 recent, max 55. ~15% exceed (stable). Cron 6h confirmed. Haiku fallback single (Apr 7, no recurrence).
+- Watcher: HEALTHY — Haiku fallbacks fully resolved. Last 30+ runs on Opus. 2/89 total Haiku (2.2%). Turns 19-36.
 - Coder: HEALTHY — last success Apr 8 20:51.
 - Reviewer: HEALTHY — last success Apr 8 20:53. 12 turns.
-- Triage: HEALTHY — last success Apr 10 09:32.
-- Weekly Analysis: HEALTHY — last success Apr 10 12:17.
-- Growth: HEALTHY — last success Apr 10 09:28. Prior single failure (Apr 8 18:25Z) not repeated.
+- Triage: HEALTHY — last success Apr 10 18:20.
+- Weekly Analysis: HEALTHY — last success Apr 10 18:17.
+- Growth: HEALTHY — last success Apr 10 18:16. Prior single failure (Apr 8 18:25Z) not repeated.
 - Analyze: STABLE (19-41 turns).
 - Feedback Learner: RECOVERED — 5 turns, #72 fix confirmed.
 - Deploy: RECOVERING — no trigger since #65 fix.
@@ -52,7 +52,7 @@ System health:
 - Reviewer hallucination fix (#90) — NEVER close PR prompt guardrail + safety-net reopen step merged (PR #93)
 - GitHub auto-close fix (#84) DONE — reviewer.yml hardened with 3-tier fallback; watcher remains safety net
 - Evolve HEALTHY — max-turns 55, turns 34-56. Haiku fallback at 2026-04-07T00:46Z (single occurrence, no recurrence). Cron 6h confirmed.
-- Watcher HEALTHY — max-turns 50, turns 19-47. Haiku fallbacks fully resolved — last 28+ runs Opus (2/89 total, 2.2%).
+- Watcher HEALTHY — max-turns 50, turns 19-36. Haiku fallbacks fully resolved — last 30+ runs Opus (2/89 total, 2.2%).
 - Issue #100: ESCALATED to needs-human. PR #112 APPROVED but merge conflicts (4th cycle). Manual rebase + merge required.
 - Issue #103: ESCALATED to needs-human. PR #107 APPROVED 2x, merge conflicts. Manual rebase + merge required.
 - Analyze STABLE — 22-31 turns
@@ -69,5 +69,5 @@ System health:
 - Config recheck done: 2026-04-04. Added security-scan, sync-labels, test-evolve to evolve_config. Next recheck: 2026-04-11.
 - Cost: $144/wk projected — below $150 target for first time. Watcher ~58%, evolve ~19%. Evolve 6h cadence savings confirmed.
 - Watch List: Portfolio 6 Active + 11 Watch. skill-publish added (163★).
-- Haiku fallback tracking: evolve 1x (Apr 7), watcher 2x (Apr 9 00:59 + 07:05). Watcher fully recovered — last 28+ runs Opus. 2/89 total (2.2%).
-- Token utilization (178 data lines): evolve ~15% exceed 55 (stable). Watcher HEALTHY (0/89 exceed 50). Cost ~$144/wk.
+- Haiku fallback tracking: evolve 1x (Apr 7), watcher 2x (Apr 9 00:59 + 07:05). Watcher fully recovered — last 30+ runs Opus. 2/89 total (2.2%).
+- Token utilization (180 data lines): evolve ~15% exceed 55 (stable). Watcher HEALTHY (0/90+ exceed 50). Cost ~$144/wk.
