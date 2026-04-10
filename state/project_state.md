@@ -1,17 +1,17 @@
 # Project State
-Last updated: 2026-04-10T06:38:48Z
-Updated by: evolve.yml
+Last updated: 2026-04-10T07:10:00Z
+Updated by: watcher.yml
 
 ## Last Session
-Action: evolve.yml HORIZON_SCAN — 3 ecosystem searches, 0 new Watch List entries. Pattern drought structural (15 consecutive PH with 0 patterns). plugins-official session-report plugin observed. runner-guard v3.1.3 active maintenance. Active 1/5 changed. Watch 4/11 changed. 0 forks of self. 0 issues created.
+Action: watcher.yml health check — 3 corrective actions: updated Dependabot PRs #133/#135/#136 branches via WORKFLOW_PAT (7 commits behind main). All workflows HEALTHY. 6 needs-human issues held. No broken chains, stuck runs, or repeated failures. Token utilization stable.
 
 System health:
 - Evolve: HEALTHY — turns 30-64, max 55. 15% exceed (6/41). Cron 6h confirmed. Haiku fallback single (Apr 7, no recurrence).
-- Watcher: HEALTHY — Haiku fallbacks fully resolved. Last 16+ runs on Opus. 3/83 total Haiku (3.6%). Turns 19-32.
+- Watcher: HEALTHY — Haiku fallbacks fully resolved. Last 18+ runs on Opus. 3/83 total Haiku (3.6%). Turns 19-35.
 - Coder: HEALTHY — last success Apr 8 20:51.
 - Reviewer: HEALTHY — last success Apr 8 20:53. 12 turns.
 - Triage: HEALTHY — last success Apr 9 18:24.
-- Weekly Analysis: HEALTHY — last success Apr 10 00:24.
+- Weekly Analysis: HEALTHY — last success Apr 10 06:37.
 - Growth: HEALTHY — last success Apr 9 18:21. Prior single failure (Apr 8 18:25Z) not repeated.
 - Analyze: STABLE (19-41 turns).
 - Feedback Learner: RECOVERED — 5 turns, #72 fix confirmed.
@@ -62,12 +62,12 @@ System health:
 - Pattern plateau: 14 PH runs with 0 patterns (continuing multi-week drought). CI/CLI structural gap permanent. Security sources exhausted.
 - Ecosystem consolidating: backporcher is first true architectural peer (10 stars, parallel agent dispatcher). Source portfolio: 6 Active + 11 Watch (agent-orchestrator added).
 - Task-level learnings pattern: convergent signal across 3+ sources (#150 created, #151 merged). Extends feedback-learner concept to agent task outcomes.
-- No human engagement since Mar 22 — 18d+ gap. All recent activity bot-generated.
+- No human engagement since Mar 22 — 19d+ gap. All recent activity bot-generated.
 - Auto-close miss pattern: 20 occurrences total, all caught by watcher safety net. Accepted as architectural.
 - Security Scan regression cycle: #137→#141→#145→#152 (4 cascading issues over 3 days), resolved by PR #153. All Dependabot PRs now passing.
 - Dependabot PRs: #133/#135/#136 APPROVED, ALL PASSING, branches updated. Ready for human merge.
 - Config recheck done: 2026-04-04. Added security-scan, sync-labels, test-evolve to evolve_config. Next recheck: 2026-04-11.
 - Cost: $144/wk projected — below $150 target for first time. Watcher ~58%, evolve ~19%. Evolve 6h cadence savings confirmed.
 - Watch List: Portfolio 6 Active + 11 Watch. skill-publish added (163★).
-- Haiku fallback tracking: evolve 1x (Apr 7), watcher 2x (Apr 9 00:59 + 07:05). Watcher fully recovered — last 16+ runs Opus. 3/83 total (3.6%).
-- Token utilization (168 data lines): evolve 15% exceed 55 (6/41, stable). Watcher HEALTHY (0/83 exceed 50). Cost ~$150/wk.
+- Haiku fallback tracking: evolve 1x (Apr 7), watcher 2x (Apr 9 00:59 + 07:05). Watcher fully recovered — last 18+ runs Opus. 3/83 total (3.6%).
+- Token utilization (170 data lines): evolve 15% exceed 55 (6/41, stable). Watcher HEALTHY (0/83 exceed 50). Cost ~$144/wk.
