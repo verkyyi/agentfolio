@@ -1,20 +1,20 @@
 # Research Sources
 # Managed by evolve.yml. Claude adds, prunes, and annotates freely.
 # Seeded from evolve_config.md on first run.
-# Last updated: 2026-04-09T18:20:16Z
+# Last updated: 2026-04-10T00:22:37Z
 
 ## Active Sources
 
 ### anthropics/claude-code
 - **Why:** The runtime we build on — releases, breaking changes, new hooks, CLI flags
 - **Look for:** CHANGELOG entries, new hook types, permission changes, SDK updates
-- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-04-09T18:20:16Z | **Pattern hits:** 2 | **SHA:** 3c72545
-- **Notes:** Protected source — never drop. Check CHANGELOG and releases, not just commits. 3c72545 (Apr 9): triage prompt accuracy — tighten invalid-label rule, require category label (internal .claude/commands). v2.1.97 (Apr 8): 429 retry exponential backoff minimum (no longer burns retries in 13s), Bash tool permission hardening (env-var prefixes, network redirects), MCP memory leak fix (~50MB/hr), status line refreshInterval, --dangerously-skip-permissions fix. v2.1.96: Bedrock auth fix. CC now has 18+ hook events.
+- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-04-09T18:20:16Z | **Pattern hits:** 2 | **SHA:** c5600e0
+- **Notes:** Protected source — never drop. Check CHANGELOG and releases, not just commits. v2.1.98 (Apr 9 19:18Z): Monitor tool (background script streaming), CLAUDE_CODE_SUBPROCESS_ENV_SCRUB with PID namespace isolation (Linux), CLAUDE_CODE_SCRIPT_CAPS (per-session script limits), --exclude-dynamic-system-prompt-sections (prompt caching), Vertex setup wizard, Perforce mode, workspace.git_worktree status line. 6 Bash security fixes (compound bypass, backslash escape, env-var prefix, /dev/tcp redirect, deny rule downgrade, wildcard matching). Updates #100 scope. v2.1.97: 429 retry backoff, MCP memory leak fix. CC now has 18+ hook events.
 
 ### hesreallyhim/awesome-claude-code
 - **Why:** Curated ecosystem catalog — discover new tools, libraries, and patterns
 - **Look for:** New entries in Orchestrators/Tools/Skills sections, trending repos referenced
-- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-04-08T18:28:37Z | **Pattern hits:** 0 | **SHA:** daad319
+- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-04-08T18:28:37Z | **Pattern hits:** 0 | **SHA:** 699c14e
 - **Notes:** 0 pattern hits across 50+ observations. SHA change: ticker data only. Submission enforcement governance (owner bypass), Teams subcategory — curation-specific patterns. Retain for HORIZON_SCAN cross-reference only.
 
 ### SethGammon/Citadel
@@ -62,8 +62,8 @@
 - **Look for:** Plugin format updates, new submission requirements, plugin.json schema changes, new official plugins relevant to harness patterns
 - **Added:** 2026-03-24 (horizon scan) | **Observations:** 44 | **First seen:** 2026-03-24 | **SHA:** 104d39b
 - **Decision (2026-03-31):** RETAIN on Watch List. 38 obs, 7+ days, 1 pattern hit (plugin format). 14.3K stars. Active (MongoDB, SAP UI5 plugins added). Distribution channel for #66. Low pattern yield (1/38) — not promoting. Still relevant as plugin ecosystem reference.
-- **Observations:** 47 | **First seen:** 2026-03-24 | **SHA:** 98c01d3
-- **Notes:** PR #1115: bash prefix for .sh hooks. Version field for cache invalidation. Standard plugin format: .claude-plugin/plugin.json + commands/ + agents/ + skills/. Distribution channel for #66. 1 pattern hit (official plugin format). Apr 3: SonarQube plugin added (#1085, secrets-scanning hooks).
+- **Observations:** 48 | **First seen:** 2026-03-24 | **SHA:** 6e43e87
+- **Notes:** PR #1115: bash prefix for .sh hooks. Version field for cache invalidation. Standard plugin format: .claude-plugin/plugin.json + commands/ + agents/ + skills/. Distribution channel for #66. 1 pattern hit (official plugin format). Apr 9: Box plugin (#1286) + SAP CAP MCP server (#1328) added. Catalog growth continues.
 
 ### agent-sh/agnix
 - **Why:** CLAUDE.md/SKILL.md linter and LSP (103 stars) — validates AI coding assistant config files, autofixes, IDE plugins
@@ -101,8 +101,8 @@
 ### ComposioHQ/agent-orchestrator
 - **Why:** Parallel agent orchestrator (5.8K stars, 801 forks, TS) — spawns AI coding agents in git worktrees, autonomously fixes CI failures, addresses review comments, opens PRs. Agent-agnostic (Claude Code, Codex, Aider), runtime-agnostic (tmux, Docker), tracker-agnostic (GitHub, Linear).
 - **Look for:** CI auto-fix patterns, worktree isolation strategies, fleet coordination, rate-limit fallback, dashboard supervision patterns
-- **Added:** 2026-04-07 (horizon scan) | **Observations:** 8 | **First seen:** 2026-04-07 | **SHA:** c006180
-- **Notes:** Very active (934+ PRs, 496 open issues). TypeScript/npm. Interactive orchestration platform — different paradigm from GHA-driven harness. Monitor for CI-relevant patterns. Recent: GH API rate-limit fix (#906), model rate-limit revert (#908), session restore (#934).
+- **Added:** 2026-04-07 (horizon scan) | **Observations:** 9 | **First seen:** 2026-04-07 | **SHA:** c9c41ad
+- **Notes:** Very active (934+ PRs, 496 open issues). TypeScript/npm. Interactive orchestration platform — different paradigm from GHA-driven harness. Monitor for CI-relevant patterns. Apr 9: notifier alias lifecycle routing (#967), Axios SSRF override fix (#1092).
 
 ### amazinglvxw/enso-os
 - **Why:** Self-evolving bash+python harness (19 stars) — 1267 LOC, 10 shell hooks, agent-memory, self-evolution. Conceptually similar to tokenman.
