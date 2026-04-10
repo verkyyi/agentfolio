@@ -1,7 +1,7 @@
 # Research Sources
 # Managed by evolve.yml. Claude adds, prunes, and annotates freely.
 # Seeded from evolve_config.md on first run.
-# Last updated: 2026-04-10T12:19:27Z
+# Last updated: 2026-04-10T18:18:54Z
 
 ## Active Sources
 
@@ -14,14 +14,14 @@
 ### hesreallyhim/awesome-claude-code
 - **Why:** Curated ecosystem catalog — discover new tools, libraries, and patterns
 - **Look for:** New entries in Orchestrators/Tools/Skills sections, trending repos referenced
-- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-04-08T18:28:37Z | **Pattern hits:** 0 | **SHA:** be88fba
+- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-04-08T18:28:37Z | **Pattern hits:** 0 | **SHA:** 64d7615
 - **Notes:** 0 pattern hits across 50+ observations. SHA change: ticker data only. Submission enforcement governance (owner bypass), Teams subcategory — curation-specific patterns. Retain for HORIZON_SCAN cross-reference only.
 
 ### SethGammon/Citadel
 - **Why:** Agent orchestration harness (400 stars) — closest architecture to tokenman. Campaign persistence, parallel worktrees, circuit breaker, quality gate hooks, skill benchmarking, daemon factory
 - **Look for:** Skill benchmarking patterns, skill linting, governance hooks, testing infrastructure, fleet coordination, daemon factory patterns
-- **Added:** 2026-03-24 (watch) | **Promoted:** 2026-03-27 (synthesis — 35 obs, closest architecture, V2 patterns) | **Last deep:** 2026-04-09T18:20:16Z | **Pattern hits:** 1 | **SHA:** 8e2abc9
-- **Notes:** Promoted from Watch List. 4 new commits (Apr 9): momentum synthesizer (cross-session discovery synthesis — persistent institutional memory layer, validates our SYNTHESIS posture), unified telemetry hub (session cost, trust levels, on/off controls), campaign staleness detection, setup prompt UX. All JS-framework patterns. Roadmap: governance layer, campaign recovery, web dashboard, team collab. 1 pattern hit (circuit breaker #76).
+- **Added:** 2026-03-24 (watch) | **Promoted:** 2026-03-27 (synthesis — 35 obs, closest architecture, V2 patterns) | **Last deep:** 2026-04-10T18:18:54Z | **Pattern hits:** 1 | **SHA:** c446e88
+- **Notes:** Promoted from Watch List. Apr 10: gate stderr for CC hook rendering (#106, already adopted in guard.sh), runtime artifacts gitignore fix (#105), install guides (#104). All JS-framework patterns. Roadmap: governance layer, campaign recovery, web dashboard, team collab. 1 pattern hit (circuit breaker #76).
 
 ### actions/runner
 - **Why:** CI/CD runtime we depend on — deprecation notices, new features, security fixes
@@ -32,13 +32,13 @@
 ### withastro/astro
 - **Why:** Web framework we use — security fixes, breaking changes, new features
 - **Look for:** Security advisories, breaking changes in minor/major releases, new content collection features
-- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-04-08T18:28:37Z | **Pattern hits:** 0 | **SHA:** 92fc030
+- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-04-08T18:28:37Z | **Pattern hits:** 0 | **SHA:** 7fe40bc
 - **Notes:** Only actionable for security fixes or features that affect our site build. v6.1.5 (Apr 8): biome upgrade, dlv inlining. Cloudflare adapter 13.1.8: queue consumer fix. No security advisories. 0 harness patterns across 20+ observations.
 
 ### verkyyi/tokenman
 - **Why:** Self-reference — track forks, adopters, and how the scaffold is used
 - **Look for:** New forks, adopter modifications, issues filed by users
-- **Added:** 2026-03-20 (seed) | **Last deep:** never | **Pattern hits:** 0 | **SHA:** 55c9c54
+- **Added:** 2026-03-20 (seed) | **Last deep:** never | **Pattern hits:** 0 | **SHA:** 1193a52
 - **Notes:** Used during HORIZON SCAN for adoption tracking. 2 stars, 0 forks, 0 adopters as of 2026-04-10. EvoMap/awesome-agent-evolution (21 stars) monitors tokenman in data/monitor-results.json but not curated — potential growth submission target (#149).
 
 ## Watch List
@@ -75,7 +75,7 @@
 ### Vigilant-LLC/runner-guard
 - **Why:** CI/CD security scanner (6 stars, Go) — 31 detection rules for GHA vulnerabilities + supply chain dependency scanning: fork checkout exploits, expression injection, AI config injection (CLAUDE.md hijacking), supply chain steganography, unpinned actions, compromised package detection, auto-fix, SARIF output
 - **Look for:** GHA vulnerability patterns applicable to our workflows, action pinning auto-fix, AI config injection defenses, SARIF integration for Code Scanning, compromised package detection
-- **Added:** 2026-04-01 (horizon scan) | **Observations:** 15 | **First seen:** 2026-04-01 | **SHA:** 7d56117
+- **Added:** 2026-04-01 (horizon scan) | **Observations:** 16 | **First seen:** 2026-04-01 | **SHA:** 2086509
 - **Notes:** Only scanner specifically targeting AI agent attack vectors in CI/CD. v3.1.3 (Apr 10): single-quote expression extraction fix. v3.1.2: snake_case JSON standardization, SECURITY.md + CODEOWNERS. Docker image (10.4MB distroless), PagerDuty+Slack+Webhook alerting, org scanning. Issue #127 created for adoption. Go single binary. Last deep: 2026-04-06T21:16Z.
 
 ### affaan-m/agentshield
