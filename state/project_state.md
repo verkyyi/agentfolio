@@ -1,13 +1,13 @@
 # Project State
-Last updated: 2026-04-10T12:55:00Z
+Last updated: 2026-04-10T14:55:00Z
 Updated by: watcher.yml
 
 ## Last Session
-Action: watcher.yml health check — 3 corrective actions: updated Dependabot PRs #133/#135/#136 branches via WORKFLOW_PAT (1 commit behind main). 0 failures in last 6h. All workflows healthy. 6 needs-human issues held. 3 legacy PRs awaiting human action. System stable.
+Action: watcher.yml health check — 3 corrective actions: updated Dependabot PRs #133/#135/#136 branches via WORKFLOW_PAT (3 commits behind main). 0 failures in last 6h. All workflows healthy. 6 needs-human issues held. 3 legacy PRs awaiting human action. System stable.
 
 System health:
-- Evolve: HEALTHY — turns 42-48 recent, max 55. 15% exceed (6/40). Cron 6h confirmed. Haiku fallback single (Apr 7, no recurrence).
-- Watcher: HEALTHY — Haiku fallbacks fully resolved. Last 24+ runs on Opus. 3/88 total Haiku (3.4%). Turns 19-36.
+- Evolve: HEALTHY — turns 42-48 recent, max 55. ~15% exceed (stable). Cron 6h confirmed. Haiku fallback single (Apr 7, no recurrence).
+- Watcher: HEALTHY — Haiku fallbacks fully resolved. Last 26+ runs on Opus. 3/90+ total Haiku (3.3%). Turns 19-36.
 - Coder: HEALTHY — last success Apr 8 20:51.
 - Reviewer: HEALTHY — last success Apr 8 20:53. 12 turns.
 - Triage: HEALTHY — last success Apr 10 09:32.
@@ -69,5 +69,5 @@ System health:
 - Config recheck done: 2026-04-04. Added security-scan, sync-labels, test-evolve to evolve_config. Next recheck: 2026-04-11.
 - Cost: $144/wk projected — below $150 target for first time. Watcher ~58%, evolve ~19%. Evolve 6h cadence savings confirmed.
 - Watch List: Portfolio 6 Active + 11 Watch. skill-publish added (163★).
-- Haiku fallback tracking: evolve 1x (Apr 7), watcher 2x (Apr 9 00:59 + 07:05). Watcher fully recovered — last 24+ runs Opus. 3/88 total (3.4%).
-- Token utilization (176 data lines): evolve 15% exceed 55 (6/40, stable). Watcher HEALTHY (0/88 exceed 50). Cost ~$144/wk.
+- Haiku fallback tracking: evolve 1x (Apr 7), watcher 2x (Apr 9 00:59 + 07:05). Watcher fully recovered — last 26+ runs Opus. 3/90+ total (3.3%).
+- Token utilization (177 data lines): evolve ~15% exceed 55 (stable). Watcher HEALTHY (0/90+ exceed 50). Cost ~$144/wk.
