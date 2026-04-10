@@ -1,7 +1,7 @@
 # Research Sources
 # Managed by evolve.yml. Claude adds, prunes, and annotates freely.
 # Seeded from evolve_config.md on first run.
-# Last updated: 2026-04-10T00:22:37Z
+# Last updated: 2026-04-10T06:38:48Z
 
 ## Active Sources
 
@@ -14,7 +14,7 @@
 ### hesreallyhim/awesome-claude-code
 - **Why:** Curated ecosystem catalog — discover new tools, libraries, and patterns
 - **Look for:** New entries in Orchestrators/Tools/Skills sections, trending repos referenced
-- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-04-08T18:28:37Z | **Pattern hits:** 0 | **SHA:** 699c14e
+- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-04-08T18:28:37Z | **Pattern hits:** 0 | **SHA:** 8de5318
 - **Notes:** 0 pattern hits across 50+ observations. SHA change: ticker data only. Submission enforcement governance (owner bypass), Teams subcategory — curation-specific patterns. Retain for HORIZON_SCAN cross-reference only.
 
 ### SethGammon/Citadel
@@ -38,8 +38,8 @@
 ### verkyyi/tokenman
 - **Why:** Self-reference — track forks, adopters, and how the scaffold is used
 - **Look for:** New forks, adopter modifications, issues filed by users
-- **Added:** 2026-03-20 (seed) | **Last deep:** never | **Pattern hits:** 0 | **SHA:** b30e929
-- **Notes:** Used during HORIZON SCAN for adoption tracking. 2 stars, 0 forks, 0 adopters as of 2026-04-09. EvoMap/awesome-agent-evolution (21 stars) monitors tokenman in data/monitor-results.json but not curated — potential growth submission target (#149).
+- **Added:** 2026-03-20 (seed) | **Last deep:** never | **Pattern hits:** 0 | **SHA:** 712771e
+- **Notes:** Used during HORIZON SCAN for adoption tracking. 2 stars, 0 forks, 0 adopters as of 2026-04-10. EvoMap/awesome-agent-evolution (21 stars) monitors tokenman in data/monitor-results.json but not curated — potential growth submission target (#149).
 
 ## Watch List
 <!-- Sources under evaluation. Promoted to Active or Dropped after 3+ observations over 7+ days. -->
@@ -62,8 +62,8 @@
 - **Look for:** Plugin format updates, new submission requirements, plugin.json schema changes, new official plugins relevant to harness patterns
 - **Added:** 2026-03-24 (horizon scan) | **Observations:** 44 | **First seen:** 2026-03-24 | **SHA:** 104d39b
 - **Decision (2026-03-31):** RETAIN on Watch List. 38 obs, 7+ days, 1 pattern hit (plugin format). 14.3K stars. Active (MongoDB, SAP UI5 plugins added). Distribution channel for #66. Low pattern yield (1/38) — not promoting. Still relevant as plugin ecosystem reference.
-- **Observations:** 48 | **First seen:** 2026-03-24 | **SHA:** 6e43e87
-- **Notes:** PR #1115: bash prefix for .sh hooks. Version field for cache invalidation. Standard plugin format: .claude-plugin/plugin.json + commands/ + agents/ + skills/. Distribution channel for #66. 1 pattern hit (official plugin format). Apr 9: Box plugin (#1286) + SAP CAP MCP server (#1328) added. Catalog growth continues.
+- **Observations:** 49 | **First seen:** 2026-03-24 | **SHA:** 1057d02
+- **Notes:** PR #1115: bash prefix for .sh hooks. Version field for cache invalidation. Standard plugin format: .claude-plugin/plugin.json + commands/ + agents/ + skills/. Distribution channel for #66. 1 pattern hit (official plugin format). Apr 10: session-report plugin adds per-day timeline + collapsible cache-breaks (analyze-sessions.mjs, template.html). Box plugin (#1286) + SAP CAP MCP server (#1328). Catalog growth continues.
 
 ### agent-sh/agnix
 - **Why:** CLAUDE.md/SKILL.md linter and LSP (103 stars) — validates AI coding assistant config files, autofixes, IDE plugins
@@ -75,20 +75,20 @@
 ### Vigilant-LLC/runner-guard
 - **Why:** CI/CD security scanner (6 stars, Go) — 31 detection rules for GHA vulnerabilities + supply chain dependency scanning: fork checkout exploits, expression injection, AI config injection (CLAUDE.md hijacking), supply chain steganography, unpinned actions, compromised package detection, auto-fix, SARIF output
 - **Look for:** GHA vulnerability patterns applicable to our workflows, action pinning auto-fix, AI config injection defenses, SARIF integration for Code Scanning, compromised package detection
-- **Added:** 2026-04-01 (horizon scan) | **Observations:** 14 | **First seen:** 2026-04-01 | **SHA:** 3d9f329
-- **Notes:** Only scanner specifically targeting AI agent attack vectors in CI/CD. v3.0.1 (Apr 8): Docker image (10.4MB distroless), PagerDuty+Slack+Webhook alerting, org scanning, demo GIFs. Issue #127 created for adoption. Go single binary. Last deep: 2026-04-06T21:16Z.
+- **Added:** 2026-04-01 (horizon scan) | **Observations:** 15 | **First seen:** 2026-04-01 | **SHA:** 7d56117
+- **Notes:** Only scanner specifically targeting AI agent attack vectors in CI/CD. v3.1.3 (Apr 10): single-quote expression extraction fix. v3.1.2: snake_case JSON standardization, SECURITY.md + CODEOWNERS. Docker image (10.4MB distroless), PagerDuty+Slack+Webhook alerting, org scanning. Issue #127 created for adoption. Go single binary. Last deep: 2026-04-06T21:16Z.
 
 ### affaan-m/agentshield
 - **Why:** AI agent security scanner (289 stars, 55 forks) — scans .claude/ for secrets, permission misconfigs, hook injection, MCP risks, prompt injection vectors. CLI + GitHub Action + GitHub App.
 - **Look for:** Agent config audit rules applicable to our harness, CI integration patterns, auto-fix capabilities for security issues
-- **Added:** 2026-04-01 (horizon scan) | **Observations:** 6 | **First seen:** 2026-04-01 | **SHA:** 169db1c
-- **Notes:** From affaan-m (everything-claude-code author). TypeScript. Covers agent config security surface (complementary to runner-guard which covers CI/CD workflow security). Detects hardcoded secrets, overly permissive permissions, hook injection. Built at Claude Code Hackathon. GitHub Action available. Part of ECC ecosystem (42K+ stars). Our .claude/ config is minimal so immediate value is low — monitor for CI integration patterns. Apr 5: prompt defense posture audit rules added.
+- **Added:** 2026-04-01 (horizon scan) | **Observations:** 7 | **First seen:** 2026-04-01 | **SHA:** 162e8e1
+- **Notes:** From affaan-m (everything-claude-code author). TypeScript. Covers agent config security surface (complementary to runner-guard which covers CI/CD workflow security). Detects hardcoded secrets, overly permissive permissions, hook injection. Built at Claude Code Hackathon. GitHub Action available. Part of ECC ecosystem. Our .claude/ config is minimal so immediate value is low — monitor for CI integration patterns. Apr 10: runtime install recovery hardening, runtime status command, miniclaw fallback. All runtime-specific, 0 CI patterns.
 
 ### wanshuiyin/Auto-claude-code-research-in-sleep
 - **Why:** Autonomous ML research harness (5.4K stars, 455 forks) — markdown-only skills, cross-model review loops, idea discovery. Conceptually closest to evolve's autonomous research methodology.
 - **Look for:** Autonomous research workflow patterns, cross-model review loops, skill organization, persistent memory patterns
-- **Added:** 2026-04-03 (horizon scan) | **Observations:** 13 | **First seen:** 2026-04-03 | **SHA:** 62e3777
-- **Notes:** ARIS v0.3.7 (rapid version bumps v0.3.3→v0.3.7 in 2 days). Research Wiki addition (Apr 7). Python + Markdown. ML-research domain, not CI harness. Same methodology concept as our evolve. Monitor for transferable workflow patterns.
+- **Added:** 2026-04-03 (horizon scan) | **Observations:** 14 | **First seen:** 2026-04-03 | **SHA:** 60450a8
+- **Notes:** ARIS v0.3.7. Community skill additions (writing-systems-papers, UAV-CC paper showcase). Python + Markdown. ML-research domain, not CI harness. Same methodology concept as our evolve. 0 CI patterns across 14 obs. Demotion candidate if trend continues.
 
 ### jnurre64/claude-agent-dispatch
 - **Why:** Label-driven Claude Code GHA dispatch (Shell, 2 stars) — closest architecture to tokenman. Modular agent-dispatch.sh + lib/, label state machine (10 agent:* labels), two-phase plan→implement with human checkpoint, ShellCheck + BATS-Core CI testing.
