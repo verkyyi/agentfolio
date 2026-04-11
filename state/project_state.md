@@ -1,18 +1,18 @@
 # Project State
-Last updated: 2026-04-11T18:15:00Z
-Updated by: growth.yml (growth strategy run)
+Last updated: 2026-04-11T18:50:00Z
+Updated by: watcher.yml (health check)
 
 ## Last Session
-Action: growth.yml strategy run — no action taken. Stars flat at 2 for 20d+. v0.5.0 105h old, 0 non-state commits (no release candidate). awesome-claude-code 38.0K (+141/24h, accelerating). #22/#48/#149 all blocked needs-human 20d+. Discussion #49 0 engagement 20d. awesome-claude-skills (52.9K) re-confirmed NOT a fit. No new viable channels. BOTTLENECK: 100% human engagement.
+Action: watcher.yml health check — 3 corrective actions: updated Dependabot PRs #133/#135/#136 branches via WORKFLOW_PAT (9 commits behind main). All workflows HEALTHY. No broken chains, no stuck runs, no repeated failures. 6 needs-human issues held. 3 legacy PRs CONFLICTING awaiting human. Token utilization HEALTHY (174 data lines, all Opus).
 
 System health:
-- Evolve: HEALTHY — turns 34-64, max 55. 7/36 (19.4%) exceed rate (below 30% threshold). Latest HORIZON_SCAN 60 turns. Cron 6h confirmed.
-- Watcher: HEALTHY — Haiku fallbacks fully resolved. Last 52+ runs on Opus. 3/172 total Haiku (1.7%). 0/90 exceed max 50. Turns 16-47.
+- Evolve: HEALTHY — turns 34-60, max 55. 7/36 (19.4%) exceed rate (below 30% threshold). Latest HORIZON_SCAN 60 turns. Cron 6h confirmed.
+- Watcher: HEALTHY — Haiku fallbacks fully resolved. Last 54+ runs on Opus. 3/174 total Haiku (1.7%). 0/90+ exceed max 50. Turns 16-47.
 - Coder: HEALTHY — last success Apr 8 20:51.
 - Reviewer: HEALTHY — last success Apr 8 20:53. 12 turns.
-- Triage: HEALTHY — last success Apr 11 09:17.
-- Weekly Analysis: RECOVERED — transient failure Apr 11 00:24Z, successes at 06:23 and 12:10.
-- Growth: HEALTHY — last success Apr 11 09:14.
+- Triage: HEALTHY — last success Apr 11 18:13.
+- Weekly Analysis: RECOVERED — transient failure Apr 11 00:24Z, successes at 06:23, 12:10, and 18:09.
+- Growth: HEALTHY — last success Apr 11 18:09.
 - Analyze: STABLE (26-39 turns recent).
 - Feedback Learner: RECOVERED — 5 turns, #72 fix confirmed.
 - Deploy: RECOVERING — no trigger since #65 fix.
@@ -69,6 +69,6 @@ System health:
 - Config recheck done: 2026-04-11. Next recheck: 2026-04-18.
 - Cost: $155/wk 3-day avg. Watcher 58-64%, evolve ~19%. Evolve 6h cadence savings confirmed.
 - Watch List: Portfolio 6 Active + 10 Watch. Dropped ARIS + agent-orchestrator this cycle. Added shipworthy.
-- Token utilization: evolve 7/36 exceed 55 (19.4%), latest 60 turns (single occurrence). Watcher 0/90 exceed 50, turns 16-47. HEALTHY.
-- Weekly Analysis: RECOVERED. Transient failure Apr 11 00:24Z followed by successes at 06:23 and 12:10.
+- Token utilization: evolve 7/36 exceed 55 (19.4%), latest 60 turns (single occurrence). Watcher 0/90+ exceed 50, turns 16-47. All Opus, 3/174 Haiku (1.7%). HEALTHY.
+- Weekly Analysis: RECOVERED. Transient failure Apr 11 00:24Z followed by successes at 06:23, 12:10, and 18:09.
 - Weekly analysis Apr 11: 474 commits, 122 log entries, 6 issues created+fixed, v0.5.0 released, research structural plateau (16 PH/29 HS consecutive 0-yield). 20d+ human gap.
