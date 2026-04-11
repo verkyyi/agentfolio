@@ -1,13 +1,13 @@
 # Project State
-Last updated: 2026-04-11T18:50:00Z
+Last updated: 2026-04-11T20:48:00Z
 Updated by: watcher.yml (health check)
 
 ## Last Session
-Action: watcher.yml health check — 3 corrective actions: updated Dependabot PRs #133/#135/#136 branches via WORKFLOW_PAT (9 commits behind main). All workflows HEALTHY. No broken chains, no stuck runs, no repeated failures. 6 needs-human issues held. 3 legacy PRs CONFLICTING awaiting human. Token utilization HEALTHY (174 data lines, all Opus).
+Action: watcher.yml health check — 3 corrective actions: updated Dependabot PRs #133/#135/#136 branches via WORKFLOW_PAT (1 commit behind main). All workflows HEALTHY. No broken chains, no stuck runs, no repeated failures. 6 needs-human issues held. 3 legacy PRs CONFLICTING awaiting human. Token utilization HEALTHY (175 data lines, all Opus).
 
 System health:
 - Evolve: HEALTHY — turns 34-60, max 55. 7/36 (19.4%) exceed rate (below 30% threshold). Latest HORIZON_SCAN 60 turns. Cron 6h confirmed.
-- Watcher: HEALTHY — Haiku fallbacks fully resolved. Last 54+ runs on Opus. 3/174 total Haiku (1.7%). 0/90+ exceed max 50. Turns 16-47.
+- Watcher: HEALTHY — Haiku fallbacks fully resolved. Last 56+ runs on Opus. 3/175 total Haiku (1.7%). 0/90+ exceed max 50. Turns 16-47.
 - Coder: HEALTHY — last success Apr 8 20:51.
 - Reviewer: HEALTHY — last success Apr 8 20:53. 12 turns.
 - Triage: HEALTHY — last success Apr 11 18:13.
@@ -30,8 +30,8 @@ System health:
 9. **[MONITOR]** Research cadence: 16 PH 0-pattern, 29 HS 0-architecture — structural plateau confirmed, consider reduction
 
 ## Open Items
-1. PRs #133, #135, #136: [ready] ALL PASSING + APPROVED + branches updated — awaiting human merge (9d+). Watcher spent 80+ corrective actions on branch updates.
-2. PR #55: [approved] fix(workflow) reviewer.yml state reset — APPROVED 456h+, CONFLICTING, needs human rebase + merge
+1. PRs #133, #135, #136: [ready] ALL PASSING + APPROVED + branches updated — awaiting human merge (9d+). Watcher spent 85+ corrective actions on branch updates.
+2. PR #55: [approved] fix(workflow) reviewer.yml state reset — APPROVED 458h+, CONFLICTING, needs human rebase + merge
 3. Issue #22: [needs-human] Submit to awesome-claude-code — 36.9K stars, cooldown expired 20d+
 4. Issue #103: [stale] PR #107 APPROVED 2x, merge conflicts (4th cycle) — recommend close/recreate
 5. Issue #100: [stale] PR #112 APPROVED, merge conflicts (4th cycle) — recommend close/recreate
@@ -52,7 +52,7 @@ System health:
 - Reviewer hallucination fix (#90) — NEVER close PR prompt guardrail + safety-net reopen step merged (PR #93)
 - GitHub auto-close fix (#84) DONE — reviewer.yml hardened with 3-tier fallback; watcher remains safety net
 - Evolve HEALTHY — max-turns 55, 7/36 (19.4%) exceed. Latest 60 turns (HORIZON_SCAN, single occurrence). Cron 6h confirmed.
-- Watcher HEALTHY — max-turns 50, 0/90 exceed. Turns 16-47. Haiku fallbacks fully resolved — last 52+ runs Opus (3/172 total, 1.7%).
+- Watcher HEALTHY — max-turns 50, 0/90+ exceed. Turns 16-47. Haiku fallbacks fully resolved — last 56+ runs Opus (3/175 total, 1.7%).
 - Issue #100: ESCALATED to needs-human. PR #112 APPROVED but merge conflicts (4th cycle). Manual rebase + merge required.
 - Issue #103: ESCALATED to needs-human. PR #107 APPROVED 2x, merge conflicts. Manual rebase + merge required.
 - Analyze STABLE — 26-39 turns recent
@@ -69,6 +69,6 @@ System health:
 - Config recheck done: 2026-04-11. Next recheck: 2026-04-18.
 - Cost: $155/wk 3-day avg. Watcher 58-64%, evolve ~19%. Evolve 6h cadence savings confirmed.
 - Watch List: Portfolio 6 Active + 10 Watch. Dropped ARIS + agent-orchestrator this cycle. Added shipworthy.
-- Token utilization: evolve 7/36 exceed 55 (19.4%), latest 60 turns (single occurrence). Watcher 0/90+ exceed 50, turns 16-47. All Opus, 3/174 Haiku (1.7%). HEALTHY.
+- Token utilization: evolve 7/36 exceed 55 (19.4%), latest 60 turns (single occurrence). Watcher 0/90+ exceed 50, turns 16-47. All Opus, 3/175 Haiku (1.7%). HEALTHY.
 - Weekly Analysis: RECOVERED. Transient failure Apr 11 00:24Z followed by successes at 06:23, 12:10, and 18:09.
 - Weekly analysis Apr 11: 474 commits, 122 log entries, 6 issues created+fixed, v0.5.0 released, research structural plateau (16 PH/29 HS consecutive 0-yield). 20d+ human gap.
