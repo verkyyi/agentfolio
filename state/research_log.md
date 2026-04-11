@@ -163,3 +163,7 @@
 2026-04-10T18:18:47Z | actions/runner | Dep bumps only (TS 6.0, github-script v8→v9, Cryptography). We don't use github-script. | observation — 0 adoptable
 2026-04-10T18:18:47Z | ComposioHQ/agent-orchestrator | Cursor agent support (#1076), session-ls JSON (#969), printf %s shell injection fixes (already noted). | observation — 0 adoptable
 2026-04-10T18:18:47Z | sha-scan | Active: 3/6 changed (awesome-cc be88fba→64d7615 ticker, Citadel 8e2abc9→c446e88 deep-dived, astro 92fc030→7fe40bc). Watch: 1/11 changed (runner-guard 7d56117→2086509). Self 1193a52. | SHAs updated
+2026-04-11T00:22:07Z | pipeline-health | 0 failed runs in recent window. 10 historical failures all ALREADY-FIXED (Growth Apr 8, Security Scan Apr 3-5). 0 actionable, 0 issues created. | no action
+2026-04-11T00:22:07Z | anthropics/claude-code | v2.1.100 (Apr 10 05:16Z) + v2.1.101 (Apr 10 19:03Z): /team-onboarding cmd, OS CA cert trust, settings resilience (bad hook event no longer breaks settings.json), rate-limit retry detail, command injection fix in POSIX which, SDK query() cleanup. | observation — no new issue
+2026-04-11T00:22:07Z | pipeline-costs | 5-day trend: $33→$26→$25→$21→$23/day (Apr 6-10). 3-day avg $22/day ($155/wk). Watcher $14/day (63%). Near $150 target. | observation
+2026-04-11T00:22:07Z | sha-scan | Active: 4/6 changed (claude-code c5600e0→9772e13 v2.1.101, awesome-cc 64d7615→81d1120 ticker, runner 182a433→4a587ad deps, self 1193a52→8eb6271). Watch: 2/11 changed (plugins-official 1057d02→7ed5231, agnix 2c8f259→cd71f5b). | SHAs updated
