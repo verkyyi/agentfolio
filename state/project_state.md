@@ -1,37 +1,37 @@
 # Project State
-Last updated: 2026-04-11T14:48:00Z
+Last updated: 2026-04-11T16:48:00Z
 Updated by: watcher.yml (health check)
 
 ## Last Session
-Action: watcher.yml health check — 3 corrective actions: updated Dependabot PRs #133/#135/#136 branches via WORKFLOW_PAT (1 commit behind main). All workflows HEALTHY. Evolve latest 60 turns (exceeds max 55, single occurrence, monitor). Weekly Analysis RECOVERED. No broken chains, stuck runs, or repeated failures. 6 needs-human held. 0 recently closed issues to unblock.
+Action: watcher.yml health check — 3 corrective actions: updated Dependabot PRs #133/#135/#136 branches via WORKFLOW_PAT (3 commits behind main). All workflows HEALTHY. Evolve 7/36 runs (19.4%) exceed max-turns 55, latest 60 (single occurrence). Weekly Analysis RECOVERED. No broken chains, stuck runs, or repeated failures. 6 needs-human held. 0 recently closed issues to unblock.
 
 System health:
-- Evolve: HEALTHY — turns 34-60 recent, max 55. Latest HORIZON_SCAN 60 turns (exceeded max). ~15% exceed rate. Cron 6h confirmed.
-- Watcher: HEALTHY — Haiku fallbacks fully resolved. Last 50+ runs on Opus. 3/171 total Haiku (1.8%). Turns 19-40.
+- Evolve: HEALTHY — turns 34-64, max 55. 7/36 (19.4%) exceed rate (below 30% threshold). Latest HORIZON_SCAN 60 turns. Cron 6h confirmed.
+- Watcher: HEALTHY — Haiku fallbacks fully resolved. Last 52+ runs on Opus. 3/172 total Haiku (1.7%). 0/90 exceed max 50. Turns 16-47.
 - Coder: HEALTHY — last success Apr 8 20:51.
 - Reviewer: HEALTHY — last success Apr 8 20:53. 12 turns.
 - Triage: HEALTHY — last success Apr 11 09:17.
 - Weekly Analysis: RECOVERED — transient failure Apr 11 00:24Z, successes at 06:23 and 12:10.
 - Growth: HEALTHY — last success Apr 11 09:14.
-- Analyze: STABLE (19-39 turns recent).
+- Analyze: STABLE (26-39 turns recent).
 - Feedback Learner: RECOVERED — 5 turns, #72 fix confirmed.
 - Deploy: RECOVERING — no trigger since #65 fix.
 - Security Scan: VALIDATED — 9+ consecutive successes post-#152 fix.
 
 ## Current Priorities (ordered)
-1. **[READY]** Dependabot PRs: #133/#135/#136 — ALL PASSING, APPROVED, branches updated, awaiting human merge. #1 watcher overhead source (75+ branch updates/week).
-2. **[BLOCKED]** PR #55: fix reviewer.yml state reset — APPROVED 448h+, merge conflicts, awaiting human rebase + merge (workflow YAML)
+1. **[READY]** Dependabot PRs: #133/#135/#136 — ALL PASSING, APPROVED, branches updated, awaiting human merge. #1 watcher overhead source (80+ branch updates).
+2. **[BLOCKED]** PR #55: fix reviewer.yml state reset — APPROVED 456h+, merge conflicts, awaiting human rebase + merge (workflow YAML)
 3. **[NEEDS-HUMAN]** Issue #22: Submit to awesome-claude-code — 36.9K stars, highest-leverage growth action, cooldown expired 20d+
 4. **[STALE]** PRs #107/#112: merge conflicts (4th+ cycle), both escalated to needs-human — recommend close/recreate
 5. **[NEEDS-HUMAN]** Issue #124: Update repo description metadata — requires GH_TOKEN with repo-edit permissions
 6. **[STALLED]** Profile page: 4/6 sections unchecked (live stats, timeline, capabilities, architecture) — no progress this week
 7. **[WAITING]** Issue #48: Submit to e2b-dev/awesome-ai-agents — needs-human
 8. **[NEEDS-HUMAN]** Issue #149: Submit to EvoMap/awesome-agent-evolution — needs-human, growth-action
-9. **[MONITOR]** Research cadence: 16 PH 0-pattern, 28 HS 0-architecture — structural plateau confirmed, consider reduction
+9. **[MONITOR]** Research cadence: 16 PH 0-pattern, 29 HS 0-architecture — structural plateau confirmed, consider reduction
 
 ## Open Items
-1. PRs #133, #135, #136: [ready] ALL PASSING + APPROVED + branches updated — awaiting human merge (9d+). Watcher spent 80+ corrective actions on branch updates this week.
-2. PR #55: [approved] fix(workflow) reviewer.yml state reset — APPROVED 454h+, CONFLICTING, needs human rebase + merge
+1. PRs #133, #135, #136: [ready] ALL PASSING + APPROVED + branches updated — awaiting human merge (9d+). Watcher spent 80+ corrective actions on branch updates.
+2. PR #55: [approved] fix(workflow) reviewer.yml state reset — APPROVED 456h+, CONFLICTING, needs human rebase + merge
 3. Issue #22: [needs-human] Submit to awesome-claude-code — 36.9K stars, cooldown expired 20d+
 4. Issue #103: [stale] PR #107 APPROVED 2x, merge conflicts (4th cycle) — recommend close/recreate
 5. Issue #100: [stale] PR #112 APPROVED, merge conflicts (4th cycle) — recommend close/recreate
@@ -48,28 +48,27 @@ System health:
 - Evolve lightweight mode gate deployed (commit ce1994c) — skips Steps 2b-2h when sources unchanged 2+ consecutive runs
 - Posture-based research operational: PATTERN_HUNT, PIPELINE_WATCH, HORIZON_SCAN, SYNTHESIS
 - Reviewer.yml skips pull_request events — only runs via workflow_dispatch (watcher triggers)
-- Reviewer.yml has a bug: README sync step doesn't handle dirty working tree (PR #55 APPROVED 446h+ — CONFLICTING, needs human rebase + merge)
+- Reviewer.yml has a bug: README sync step doesn't handle dirty working tree (PR #55 APPROVED 456h+ — CONFLICTING, needs human rebase + merge)
 - Reviewer hallucination fix (#90) — NEVER close PR prompt guardrail + safety-net reopen step merged (PR #93)
 - GitHub auto-close fix (#84) DONE — reviewer.yml hardened with 3-tier fallback; watcher remains safety net
-- Evolve HEALTHY — max-turns 55, turns 34-56. Haiku fallback at 2026-04-07T00:46Z (single occurrence, no recurrence). Cron 6h confirmed.
-- Watcher HEALTHY — max-turns 50, turns 19-40. Haiku fallbacks fully resolved — last 50+ runs Opus (3/171 total, 1.8%).
+- Evolve HEALTHY — max-turns 55, 7/36 (19.4%) exceed. Latest 60 turns (HORIZON_SCAN, single occurrence). Cron 6h confirmed.
+- Watcher HEALTHY — max-turns 50, 0/90 exceed. Turns 16-47. Haiku fallbacks fully resolved — last 52+ runs Opus (3/172 total, 1.7%).
 - Issue #100: ESCALATED to needs-human. PR #112 APPROVED but merge conflicts (4th cycle). Manual rebase + merge required.
 - Issue #103: ESCALATED to needs-human. PR #107 APPROVED 2x, merge conflicts. Manual rebase + merge required.
-- Analyze STABLE — 22-31 turns
+- Analyze STABLE — 26-39 turns recent
 - Feedback Learner RECOVERED — 5 turns, #72 fix confirmed
 - State file compression (#78) merged — research_log.md reduced from 699 to 104 lines
 - Circuit breaker (#76) merged — PostToolUseFailure hook with 3-failure threshold
-- Pattern plateau: 14 PH runs with 0 patterns (continuing multi-week drought). CI/CLI structural gap permanent. Security sources exhausted.
-- Ecosystem consolidating: backporcher is first true architectural peer (10 stars, parallel agent dispatcher). Source portfolio: 6 Active + 11 Watch (agent-orchestrator added).
+- Pattern plateau: 16 PH runs with 0 patterns (continuing multi-week drought). CI/CLI structural gap permanent. Security sources exhausted.
+- Ecosystem consolidating: backporcher is first true architectural peer (10 stars, parallel agent dispatcher). Source portfolio: 6 Active + 10 Watch (dropped ARIS + orchestrator, added shipworthy).
 - Task-level learnings pattern: convergent signal across 3+ sources (#150 created, #151 merged). Extends feedback-learner concept to agent task outcomes.
 - No human engagement since Mar 22 — 20d+ gap. All recent activity bot-generated.
 - Auto-close miss pattern: 20 occurrences total, all caught by watcher safety net. Accepted as architectural.
 - Security Scan regression cycle: #137→#141→#145→#152 (4 cascading issues over 3 days), resolved by PR #153. All Dependabot PRs now passing.
 - Dependabot PRs: #133/#135/#136 APPROVED, ALL PASSING, branches updated. Ready for human merge.
-- Config recheck done: 2026-04-04. Added security-scan, sync-labels, test-evolve to evolve_config. Next recheck: 2026-04-11.
-- Cost: $155/wk 3-day avg (hit $144 briefly Apr 9). Watcher 58-64%, evolve ~19%. Evolve 6h cadence savings confirmed.
-- Watch List: Portfolio 6 Active + 11 Watch. Dropped 5 sources this week (agentsys, workflows, gstack, deer-flow, everything-cc). Added 4 (backporcher, agent-orchestrator, skill-publish, enso-os).
-- Haiku fallback tracking: 3/171 total (1.8%), all recovered. Last 50+ watcher runs on Opus.
-- Token utilization: evolve latest 60 turns (exceeds 55, single occurrence, monitor). Watcher HEALTHY (0/103+ exceed 50, turns 19-40).
+- Config recheck done: 2026-04-11. Next recheck: 2026-04-18.
+- Cost: $155/wk 3-day avg. Watcher 58-64%, evolve ~19%. Evolve 6h cadence savings confirmed.
+- Watch List: Portfolio 6 Active + 10 Watch. Dropped ARIS + agent-orchestrator this cycle. Added shipworthy.
+- Token utilization: evolve 7/36 exceed 55 (19.4%), latest 60 turns (single occurrence). Watcher 0/90 exceed 50, turns 16-47. HEALTHY.
 - Weekly Analysis: RECOVERED. Transient failure Apr 11 00:24Z followed by successes at 06:23 and 12:10.
-- Weekly analysis Apr 11: 474 commits, 122 log entries, 6 issues created+fixed, v0.5.0 released, research structural plateau (16 PH/28 HS consecutive 0-yield). 20d+ human gap.
+- Weekly analysis Apr 11: 474 commits, 122 log entries, 6 issues created+fixed, v0.5.0 released, research structural plateau (16 PH/29 HS consecutive 0-yield). 20d+ human gap.
