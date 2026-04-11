@@ -1,40 +1,40 @@
 # Project State
-Last updated: 2026-04-11T03:30:00Z
-Updated by: watcher.yml
+Last updated: 2026-04-11T06:24:13Z
+Updated by: analyze.yml (weekly analysis)
 
 ## Last Session
-Action: watcher.yml health check — 3 corrective actions: updated Dependabot PRs #133/#135/#136 branches via WORKFLOW_PAT (3 commits behind main). No broken chains, stuck runs, or repeated failures. Weekly Analysis transient failure (Apr 11 00:24Z) still single occurrence — not repeated. No needs-human unblocked by recent closes.
+Action: analyze.yml weekly analysis — Week of Apr 4-11. 474 commits, 122 agent_log entries. All 11 active workflows HEALTHY. 6 issues auto-created+fixed. Self-healing operational. Evolve 6h cadence validated, cost $155/wk (hit $144 target briefly). 20d+ human disengagement. Dependabot branch updates = #1 watcher overhead.
 
 System health:
-- Evolve: HEALTHY — turns 34-56 recent, max 55. ~17% exceed (stable). Cron 6h confirmed. Haiku fallback single (Apr 7, no recurrence).
-- Watcher: HEALTHY — Haiku fallbacks fully resolved. Last 38+ runs on Opus. 3/160 total Haiku (1.9%). Turns 19-40.
+- Evolve: HEALTHY — turns 34-48 recent, max 55. ~15% exceed (stable). Cron 6h confirmed.
+- Watcher: HEALTHY — Haiku fallbacks fully resolved. Last 40+ runs on Opus. 3/161 total Haiku (1.9%). Turns 19-40.
 - Coder: HEALTHY — last success Apr 8 20:51.
 - Reviewer: HEALTHY — last success Apr 8 20:53. 12 turns.
 - Triage: HEALTHY — last success Apr 10 18:20.
-- Weekly Analysis: MONITOR — 1 transient failure Apr 11 00:24Z (not repeated, 9 prior consecutive successes).
-- Growth: HEALTHY — last success Apr 10 18:16. Prior single failure (Apr 8 18:25Z) not repeated.
+- Weekly Analysis: MONITOR — 1 transient failure Apr 11 00:24Z (not repeated).
+- Growth: HEALTHY — last success Apr 10 18:16.
 - Analyze: STABLE (19-41 turns).
 - Feedback Learner: RECOVERED — 5 turns, #72 fix confirmed.
 - Deploy: RECOVERING — no trigger since #65 fix.
 - Security Scan: VALIDATED — 9+ consecutive successes post-#152 fix.
 
 ## Current Priorities (ordered)
-1. **[READY]** Dependabot PRs: #133/#135/#136 — ALL PASSING, APPROVED, branches updated, awaiting human merge
-2. **[BLOCKED]** PR #55: fix reviewer.yml state reset — APPROVED 446h+, merge conflicts, awaiting human rebase + merge (workflow YAML)
-3. **[NEEDS-HUMAN]** Issue #22: Submit to awesome-claude-code — 36.9K stars, highest-leverage growth action
-4. **[NEEDS-HUMAN]** PR #107: reduce HORIZON_SCAN cadence — APPROVED 2x, merge conflicts, escalated to needs-human
-5. **[NEEDS-HUMAN]** PR #112: env scrub hardening — 0 reviews, merge conflicts (4th cycle), needs manual rebase + merge
-6. **[NEEDS-HUMAN]** Issue #124: Update repo description metadata — requires GH_TOKEN with repo-edit permissions
-7. **[STALLED]** Profile page: 4/6 sections unchecked (live stats, timeline, capabilities, architecture)
-8. **[WAITING]** Issue #48: Submit to e2b-dev/awesome-ai-agents — needs-human
-9. **[NEEDS-HUMAN]** Issue #149: Submit to EvoMap/awesome-agent-evolution — needs-human, growth-action
+1. **[READY]** Dependabot PRs: #133/#135/#136 — ALL PASSING, APPROVED, branches updated, awaiting human merge. #1 watcher overhead source (75+ branch updates/week).
+2. **[BLOCKED]** PR #55: fix reviewer.yml state reset — APPROVED 448h+, merge conflicts, awaiting human rebase + merge (workflow YAML)
+3. **[NEEDS-HUMAN]** Issue #22: Submit to awesome-claude-code — 36.9K stars, highest-leverage growth action, cooldown expired 20d+
+4. **[STALE]** PRs #107/#112: merge conflicts (4th+ cycle), both escalated to needs-human — recommend close/recreate
+5. **[NEEDS-HUMAN]** Issue #124: Update repo description metadata — requires GH_TOKEN with repo-edit permissions
+6. **[STALLED]** Profile page: 4/6 sections unchecked (live stats, timeline, capabilities, architecture) — no progress this week
+7. **[WAITING]** Issue #48: Submit to e2b-dev/awesome-ai-agents — needs-human
+8. **[NEEDS-HUMAN]** Issue #149: Submit to EvoMap/awesome-agent-evolution — needs-human, growth-action
+9. **[MONITOR]** Research cadence: 16 PH 0-pattern, 28 HS 0-architecture — structural plateau confirmed, consider reduction
 
 ## Open Items
-1. PRs #133, #135, #136: [ready] ALL PASSING + APPROVED + branches updated — awaiting human merge
-2. PR #55: [approved] fix(workflow) reviewer.yml state reset — APPROVED 446h+, CONFLICTING, needs human rebase + merge
-3. Issue #22: [needs-human] Submit to awesome-claude-code — 36.9K stars
-4. Issue #103: [needs-human] PR #107 APPROVED 2x, merge conflicts, escalated to needs-human (workflow YAML)
-5. Issue #100: [needs-human] PR #112 APPROVED, merge conflicts (4th cycle), all workflow YAML — escalated
+1. PRs #133, #135, #136: [ready] ALL PASSING + APPROVED + branches updated — awaiting human merge (7d+). Watcher spent 75+ corrective actions on branch updates this week.
+2. PR #55: [approved] fix(workflow) reviewer.yml state reset — APPROVED 448h+, CONFLICTING, needs human rebase + merge
+3. Issue #22: [needs-human] Submit to awesome-claude-code — 36.9K stars, cooldown expired 20d+
+4. Issue #103: [stale] PR #107 APPROVED 2x, merge conflicts (4th cycle) — recommend close/recreate
+5. Issue #100: [stale] PR #112 APPROVED, merge conflicts (4th cycle) — recommend close/recreate
 6. Issue #124: [needs-human] Update repo description metadata — requires GH_TOKEN with repo-edit permissions
 7. Issue #48: [needs-human] Submit to e2b-dev/awesome-ai-agents
 8. Issue #149: [needs-human] Submit to EvoMap/awesome-agent-evolution
@@ -52,7 +52,7 @@ System health:
 - Reviewer hallucination fix (#90) — NEVER close PR prompt guardrail + safety-net reopen step merged (PR #93)
 - GitHub auto-close fix (#84) DONE — reviewer.yml hardened with 3-tier fallback; watcher remains safety net
 - Evolve HEALTHY — max-turns 55, turns 34-56. Haiku fallback at 2026-04-07T00:46Z (single occurrence, no recurrence). Cron 6h confirmed.
-- Watcher HEALTHY — max-turns 50, turns 19-40. Haiku fallbacks fully resolved — last 38+ runs Opus (3/160 total, 1.9%).
+- Watcher HEALTHY — max-turns 50, turns 19-40. Haiku fallbacks fully resolved — last 40+ runs Opus (3/161 total, 1.9%).
 - Issue #100: ESCALATED to needs-human. PR #112 APPROVED but merge conflicts (4th cycle). Manual rebase + merge required.
 - Issue #103: ESCALATED to needs-human. PR #107 APPROVED 2x, merge conflicts. Manual rebase + merge required.
 - Analyze STABLE — 22-31 turns
@@ -67,8 +67,9 @@ System health:
 - Security Scan regression cycle: #137→#141→#145→#152 (4 cascading issues over 3 days), resolved by PR #153. All Dependabot PRs now passing.
 - Dependabot PRs: #133/#135/#136 APPROVED, ALL PASSING, branches updated. Ready for human merge.
 - Config recheck done: 2026-04-04. Added security-scan, sync-labels, test-evolve to evolve_config. Next recheck: 2026-04-11.
-- Cost: $144/wk projected — below $150 target for first time. Watcher ~58%, evolve ~19%. Evolve 6h cadence savings confirmed.
-- Watch List: Portfolio 6 Active + 11 Watch. skill-publish added (163★).
-- Haiku fallback tracking: evolve 1x (Apr 7), watcher 2x (Apr 9 00:59 + 07:05). Watcher fully recovered — last 38+ runs Opus. 3/160 total (1.9%).
-- Token utilization (160 data lines): evolve ~17% exceed 55 (stable). Watcher HEALTHY (0/95+ exceed 50, turns 19-40). Cost ~$170/wk estimated.
-- Weekly Analysis: 1 transient failure Apr 11 00:24Z (exit code 1). Not repeated (9 prior successes). Monitor.
+- Cost: $155/wk 3-day avg (hit $144 briefly Apr 9). Watcher 58-64%, evolve ~19%. Evolve 6h cadence savings confirmed.
+- Watch List: Portfolio 6 Active + 11 Watch. Dropped 5 sources this week (agentsys, workflows, gstack, deer-flow, everything-cc). Added 4 (backporcher, agent-orchestrator, skill-publish, enso-os).
+- Haiku fallback tracking: 3/161 total (1.9%), all recovered. Last 40+ watcher runs on Opus.
+- Token utilization: evolve ~15% exceed 55 (stable). Watcher HEALTHY (0/97+ exceed 50, turns 19-40).
+- Weekly Analysis: 1 transient failure Apr 11 00:24Z. Not repeated. Monitor.
+- Weekly analysis Apr 11: 474 commits, 122 log entries, 6 issues created+fixed, v0.5.0 released, research structural plateau (16 PH/28 HS consecutive 0-yield). 20d+ human gap.
