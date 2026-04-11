@@ -1,7 +1,7 @@
 # Research Sources
 # Managed by evolve.yml. Claude adds, prunes, and annotates freely.
 # Seeded from evolve_config.md on first run.
-# Last updated: 2026-04-11T00:22:07Z
+# Last updated: 2026-04-11T06:22:00Z
 
 ## Active Sources
 
@@ -14,7 +14,7 @@
 ### hesreallyhim/awesome-claude-code
 - **Why:** Curated ecosystem catalog — discover new tools, libraries, and patterns
 - **Look for:** New entries in Orchestrators/Tools/Skills sections, trending repos referenced
-- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-04-08T18:28:37Z | **Pattern hits:** 0 | **SHA:** 81d1120
+- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-04-08T18:28:37Z | **Pattern hits:** 0 | **SHA:** 9a3c0eb
 - **Notes:** 0 pattern hits across 50+ observations. SHA change: ticker data only. Submission enforcement governance (owner bypass), Teams subcategory — curation-specific patterns. Retain for HORIZON_SCAN cross-reference only.
 
 ### SethGammon/Citadel
@@ -38,8 +38,8 @@
 ### verkyyi/tokenman
 - **Why:** Self-reference — track forks, adopters, and how the scaffold is used
 - **Look for:** New forks, adopter modifications, issues filed by users
-- **Added:** 2026-03-20 (seed) | **Last deep:** never | **Pattern hits:** 0 | **SHA:** 8eb6271
-- **Notes:** Used during HORIZON SCAN for adoption tracking. 2 stars, 0 forks, 0 adopters as of 2026-04-10. EvoMap/awesome-agent-evolution (21 stars) monitors tokenman in data/monitor-results.json but not curated — potential growth submission target (#149).
+- **Added:** 2026-03-20 (seed) | **Last deep:** never | **Pattern hits:** 0 | **SHA:** 1fdbf86
+- **Notes:** Used during HORIZON SCAN for adoption tracking. 2 stars, 0 forks, 0 adopters as of 2026-04-11. EvoMap/awesome-agent-evolution (21 stars) monitors tokenman in data/monitor-results.json but not curated — potential growth submission target (#149).
 
 ## Watch List
 <!-- Sources under evaluation. Promoted to Active or Dropped after 3+ observations over 7+ days. -->
@@ -68,9 +68,9 @@
 ### agent-sh/agnix
 - **Why:** CLAUDE.md/SKILL.md linter and LSP (103 stars) — validates AI coding assistant config files, autofixes, IDE plugins
 - **Look for:** Validation rules for CLAUDE.md, SKILL.md format standards, CI integration patterns, autofix capabilities
-- **Added:** 2026-03-24 (horizon scan) | **Observations:** 48 | **First seen:** 2026-03-24 | **SHA:** cd71f5b
+- **Added:** 2026-03-24 (horizon scan) | **Observations:** 49 | **First seen:** 2026-03-24 | **SHA:** d97dae2
 - **Decision (2026-03-31):** RETAIN on Watch List. 39 obs, 7+ days, 0 pattern hits. Key CC spec tracker but 0 adoptable CI patterns — not promoting. Active and useful — not dropping.
-- **Notes:** v0.18.0: Codex CLI plugin manifest validation (CDX-PL-001 to CDX-PL-014, 14 rules). CC now has 18 hook events. 385+ rules, 124+ auto-fixes. Relevant to #66/#68. Apr 10: lodash dep bump.
+- **Notes:** v0.18.0: Codex CLI plugin manifest validation (CDX-PL-001 to CDX-PL-014, 14 rules). CC now has 18 hook events. 385+ rules, 124+ auto-fixes. Relevant to #66/#68. Apr 11: dep bumps (actionlint 1.7.12, toml 1.0.1, similar 3.0.0, claude-code-action 1.0.93).
 
 ### Vigilant-LLC/runner-guard
 - **Why:** CI/CD security scanner (6 stars, Go) — 31 detection rules for GHA vulnerabilities + supply chain dependency scanning: fork checkout exploits, expression injection, AI config injection (CLAUDE.md hijacking), supply chain steganography, unpinned actions, compromised package detection, auto-fix, SARIF output
@@ -87,22 +87,22 @@
 ### wanshuiyin/Auto-claude-code-research-in-sleep
 - **Why:** Autonomous ML research harness (5.4K stars, 455 forks) — markdown-only skills, cross-model review loops, idea discovery. Conceptually closest to evolve's autonomous research methodology.
 - **Look for:** Autonomous research workflow patterns, cross-model review loops, skill organization, persistent memory patterns
-- **Added:** 2026-04-03 (horizon scan) | **Observations:** 14 | **First seen:** 2026-04-03 | **SHA:** 60450a8
-- **Notes:** ARIS v0.3.7. Community skill additions (writing-systems-papers, UAV-CC paper showcase). Python + Markdown. ML-research domain, not CI harness. Same methodology concept as our evolve. 0 CI patterns across 14 obs. Demotion candidate if trend continues.
+- **Added:** 2026-04-03 (horizon scan) | **Observations:** 15 | **First seen:** 2026-04-03 | **SHA:** 7bf0c9d
+- **Notes:** ARIS v0.3.9. Experiment integrity system (cross-model audit for fraud prevention, /experiment-audit + smart_update). Python + Markdown. ML-research domain, not CI harness. 0 CI patterns across 15 obs. Demotion candidate if trend continues.
 
 ### jnurre64/claude-agent-dispatch
 - **Why:** Label-driven Claude Code GHA dispatch (Shell, 2 stars) — closest architecture to tokenman. Modular agent-dispatch.sh + lib/, label state machine (10 agent:* labels), two-phase plan→implement with human checkpoint, ShellCheck + BATS-Core CI testing.
 - **Look for:** Shell script quality patterns, label state machine design, worktree isolation, error trap handling, BATS test patterns
 - **Added:** 2026-04-02 (horizon scan) | **Observations:** 13 | **First seen:** 2026-04-02 | **SHA:** b1f8029
 - **Decision (2026-04-09):** RETAIN on Watch. Meets quantitative promotion criteria (14 obs, 2 hits, 7d) but deep-dives found 0 directly adoptable patterns for GHA bash/markdown harness. Shell-library architecture patterns (modular lib/, BATS testing) don't transfer. Architecturally closest peer but insufficient pattern yield for Active promotion. Re-evaluate if new PRs introduce transferable patterns.
-- **Observations:** 14 | **First seen:** 2026-04-02 | **SHA:** b1f8029
-- **Notes:** Created 2026-03-21, actively maintained. Shell-only, no Node/Python deps. Reusable workflows (dispatch-*.yml) consumed via workflow_call. CI validates all scripts with ShellCheck + BATS. Architecturally closest to tokenman: issue-driven, label-based state, GHA runners, claude -p headless. 2 pattern hits. Last deep: 2026-04-08T18:28:37Z. PR #25 workflow template detection, PR #23 workspace-relative memory, PR #13 default-proceed prompt pattern, global error trap, label state machine, tiered notifications.
+- **Observations:** 15 | **First seen:** 2026-04-02 | **SHA:** 6568d49
+- **Notes:** Created 2026-03-21, actively maintained. Shell-only, no Node/Python deps. Reusable workflows (dispatch-*.yml) consumed via workflow_call. CI validates all scripts with ShellCheck + BATS. Architecturally closest to tokenman: issue-driven, label-based state, GHA runners, claude -p headless. 2 pattern hits. Last deep: 2026-04-08T18:28:37Z. PR #28 skill-workflow-detection, PR #26 adversarial review gates (BATS test guards, file-based counters, config docs, ShellCheck SC2034 cross-file globals).
 
 ### ComposioHQ/agent-orchestrator
 - **Why:** Parallel agent orchestrator (5.8K stars, 801 forks, TS) — spawns AI coding agents in git worktrees, autonomously fixes CI failures, addresses review comments, opens PRs. Agent-agnostic (Claude Code, Codex, Aider), runtime-agnostic (tmux, Docker), tracker-agnostic (GitHub, Linear).
 - **Look for:** CI auto-fix patterns, worktree isolation strategies, fleet coordination, rate-limit fallback, dashboard supervision patterns
-- **Added:** 2026-04-07 (horizon scan) | **Observations:** 10 | **First seen:** 2026-04-07 | **SHA:** ff9bb76
-- **Notes:** Very active (934+ PRs, 496 open issues). TypeScript/npm. Interactive orchestration platform — different paradigm from GHA-driven harness. Monitor for CI-relevant patterns. Apr 10: Cursor agent support (#1076), session-ls JSON (#969), printf %s shell injection fix (#1092 agent-cursor). Shell injection defense pattern potentially relevant.
+- **Added:** 2026-04-07 (horizon scan) | **Observations:** 11 | **First seen:** 2026-04-07 | **SHA:** ba899f9
+- **Notes:** Very active (934+ PRs, 496 open issues). TypeScript/npm. Interactive orchestration platform — different paradigm from GHA-driven harness. Monitor for CI-relevant patterns. Apr 11: PR #1104, removed --decompose feature. Plugin-registry test cleanup. 0 CI-adoptable patterns.
 
 ### amazinglvxw/enso-os
 - **Why:** Self-evolving bash+python harness (19 stars) — 1267 LOC, 10 shell hooks, agent-memory, self-evolution. Conceptually similar to tokenman.
