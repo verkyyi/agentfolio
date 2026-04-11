@@ -1,20 +1,20 @@
 # Research Sources
 # Managed by evolve.yml. Claude adds, prunes, and annotates freely.
 # Seeded from evolve_config.md on first run.
-# Last updated: 2026-04-10T18:18:54Z
+# Last updated: 2026-04-11T00:22:07Z
 
 ## Active Sources
 
 ### anthropics/claude-code
 - **Why:** The runtime we build on — releases, breaking changes, new hooks, CLI flags
 - **Look for:** CHANGELOG entries, new hook types, permission changes, SDK updates
-- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-04-09T18:20:16Z | **Pattern hits:** 2 | **SHA:** c5600e0
-- **Notes:** Protected source — never drop. Check CHANGELOG and releases, not just commits. v2.1.98 (Apr 9 19:18Z): Monitor tool (background script streaming), CLAUDE_CODE_SUBPROCESS_ENV_SCRUB with PID namespace isolation (Linux), CLAUDE_CODE_SCRIPT_CAPS (per-session script limits), --exclude-dynamic-system-prompt-sections (prompt caching), Vertex setup wizard, Perforce mode, workspace.git_worktree status line. 6 Bash security fixes (compound bypass, backslash escape, env-var prefix, /dev/tcp redirect, deny rule downgrade, wildcard matching). Updates #100 scope. v2.1.97: 429 retry backoff, MCP memory leak fix. CC now has 18+ hook events.
+- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-04-09T18:20:16Z | **Pattern hits:** 2 | **SHA:** 9772e13
+- **Notes:** Protected source — never drop. Check CHANGELOG and releases, not just commits. v2.1.101 (Apr 10 19:03Z): /team-onboarding cmd, OS CA cert trust default, settings resilience (bad hook event no longer breaks settings.json), rate-limit retry detail, cmd injection fix in POSIX which, SDK query() cleanup. v2.1.100 (Apr 10 05:16Z): minor. v2.1.98 (Apr 9 19:18Z): Monitor tool, PID namespace isolation, SCRIPT_CAPS, --exclude-dynamic-system-prompt-sections, Vertex wizard, Perforce mode, git_worktree status. 6 Bash security fixes. CC now has 18+ hook events.
 
 ### hesreallyhim/awesome-claude-code
 - **Why:** Curated ecosystem catalog — discover new tools, libraries, and patterns
 - **Look for:** New entries in Orchestrators/Tools/Skills sections, trending repos referenced
-- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-04-08T18:28:37Z | **Pattern hits:** 0 | **SHA:** 64d7615
+- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-04-08T18:28:37Z | **Pattern hits:** 0 | **SHA:** 81d1120
 - **Notes:** 0 pattern hits across 50+ observations. SHA change: ticker data only. Submission enforcement governance (owner bypass), Teams subcategory — curation-specific patterns. Retain for HORIZON_SCAN cross-reference only.
 
 ### SethGammon/Citadel
@@ -26,7 +26,7 @@
 ### actions/runner
 - **Why:** CI/CD runtime we depend on — deprecation notices, new features, security fixes
 - **Look for:** Node.js version deprecation timelines, runner image changes, new action features
-- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-04-08T18:28:37Z | **Pattern hits:** 0 | **SHA:** 182a433
+- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-04-08T18:28:37Z | **Pattern hits:** 0 | **SHA:** 4a587ad
 - **Notes:** Check releases, not just commits. Docker v29.3.1 + Buildx v0.33.0 (#4324), typescript-eslint 8.58.1. 7711dc5: devtunnel debugger connectivity (#4317, remote DAP relay). Bearer token auth for action archive downloads. PR #4296: batch/dedup action resolution. v2.333.1: removed AllowCaseFunction. Node 20.20.2/24.14.1. Apr 10: dep bumps (Cryptography, @actions/glob, TS 5.9→6.0.2). 0 pattern hits across 14+ observations.
 
 ### withastro/astro
@@ -38,7 +38,7 @@
 ### verkyyi/tokenman
 - **Why:** Self-reference — track forks, adopters, and how the scaffold is used
 - **Look for:** New forks, adopter modifications, issues filed by users
-- **Added:** 2026-03-20 (seed) | **Last deep:** never | **Pattern hits:** 0 | **SHA:** 1193a52
+- **Added:** 2026-03-20 (seed) | **Last deep:** never | **Pattern hits:** 0 | **SHA:** 8eb6271
 - **Notes:** Used during HORIZON SCAN for adoption tracking. 2 stars, 0 forks, 0 adopters as of 2026-04-10. EvoMap/awesome-agent-evolution (21 stars) monitors tokenman in data/monitor-results.json but not curated — potential growth submission target (#149).
 
 ## Watch List
@@ -62,13 +62,13 @@
 - **Look for:** Plugin format updates, new submission requirements, plugin.json schema changes, new official plugins relevant to harness patterns
 - **Added:** 2026-03-24 (horizon scan) | **Observations:** 44 | **First seen:** 2026-03-24 | **SHA:** 104d39b
 - **Decision (2026-03-31):** RETAIN on Watch List. 38 obs, 7+ days, 1 pattern hit (plugin format). 14.3K stars. Active (MongoDB, SAP UI5 plugins added). Distribution channel for #66. Low pattern yield (1/38) — not promoting. Still relevant as plugin ecosystem reference.
-- **Observations:** 49 | **First seen:** 2026-03-24 | **SHA:** 1057d02
+- **Observations:** 50 | **First seen:** 2026-03-24 | **SHA:** 7ed5231
 - **Notes:** PR #1115: bash prefix for .sh hooks. Version field for cache invalidation. Standard plugin format: .claude-plugin/plugin.json + commands/ + agents/ + skills/. Distribution channel for #66. 1 pattern hit (official plugin format). Apr 10: session-report plugin adds per-day timeline + collapsible cache-breaks (analyze-sessions.mjs, template.html). Box plugin (#1286) + SAP CAP MCP server (#1328). Catalog growth continues.
 
 ### agent-sh/agnix
 - **Why:** CLAUDE.md/SKILL.md linter and LSP (103 stars) — validates AI coding assistant config files, autofixes, IDE plugins
 - **Look for:** Validation rules for CLAUDE.md, SKILL.md format standards, CI integration patterns, autofix capabilities
-- **Added:** 2026-03-24 (horizon scan) | **Observations:** 47 | **First seen:** 2026-03-24 | **SHA:** 2c8f259
+- **Added:** 2026-03-24 (horizon scan) | **Observations:** 48 | **First seen:** 2026-03-24 | **SHA:** cd71f5b
 - **Decision (2026-03-31):** RETAIN on Watch List. 39 obs, 7+ days, 0 pattern hits. Key CC spec tracker but 0 adoptable CI patterns — not promoting. Active and useful — not dropping.
 - **Notes:** v0.18.0: Codex CLI plugin manifest validation (CDX-PL-001 to CDX-PL-014, 14 rules). CC now has 18 hook events. 385+ rules, 124+ auto-fixes. Relevant to #66/#68. Apr 10: lodash dep bump.
 
