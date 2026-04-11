@@ -1,19 +1,19 @@
 # Project State
-Last updated: 2026-04-11T12:50:00Z
+Last updated: 2026-04-11T14:48:00Z
 Updated by: watcher.yml (health check)
 
 ## Last Session
-Action: watcher.yml health check — 3 corrective actions: updated Dependabot PRs #133/#135/#136 branches via WORKFLOW_PAT (6 commits behind main). All workflows HEALTHY. Evolve latest run 60 turns (exceeds max-turns 55 — monitor). Weekly Analysis RECOVERED (2 successes post-transient failure). No broken chains, stuck runs, or repeated failures. 6 needs-human held. 0 recently closed issues to unblock.
+Action: watcher.yml health check — 3 corrective actions: updated Dependabot PRs #133/#135/#136 branches via WORKFLOW_PAT (1 commit behind main). All workflows HEALTHY. Evolve latest 60 turns (exceeds max 55, single occurrence, monitor). Weekly Analysis RECOVERED. No broken chains, stuck runs, or repeated failures. 6 needs-human held. 0 recently closed issues to unblock.
 
 System health:
 - Evolve: HEALTHY — turns 34-60 recent, max 55. Latest HORIZON_SCAN 60 turns (exceeded max). ~15% exceed rate. Cron 6h confirmed.
-- Watcher: HEALTHY — Haiku fallbacks fully resolved. Last 48+ runs on Opus. 3/170 total Haiku (1.8%). Turns 19-40.
+- Watcher: HEALTHY — Haiku fallbacks fully resolved. Last 50+ runs on Opus. 3/171 total Haiku (1.8%). Turns 19-40.
 - Coder: HEALTHY — last success Apr 8 20:51.
 - Reviewer: HEALTHY — last success Apr 8 20:53. 12 turns.
 - Triage: HEALTHY — last success Apr 11 09:17.
 - Weekly Analysis: RECOVERED — transient failure Apr 11 00:24Z, successes at 06:23 and 12:10.
 - Growth: HEALTHY — last success Apr 11 09:14.
-- Analyze: STABLE (26-39 turns recent).
+- Analyze: STABLE (19-39 turns recent).
 - Feedback Learner: RECOVERED — 5 turns, #72 fix confirmed.
 - Deploy: RECOVERING — no trigger since #65 fix.
 - Security Scan: VALIDATED — 9+ consecutive successes post-#152 fix.
@@ -31,7 +31,7 @@ System health:
 
 ## Open Items
 1. PRs #133, #135, #136: [ready] ALL PASSING + APPROVED + branches updated — awaiting human merge (9d+). Watcher spent 80+ corrective actions on branch updates this week.
-2. PR #55: [approved] fix(workflow) reviewer.yml state reset — APPROVED 452h+, CONFLICTING, needs human rebase + merge
+2. PR #55: [approved] fix(workflow) reviewer.yml state reset — APPROVED 454h+, CONFLICTING, needs human rebase + merge
 3. Issue #22: [needs-human] Submit to awesome-claude-code — 36.9K stars, cooldown expired 20d+
 4. Issue #103: [stale] PR #107 APPROVED 2x, merge conflicts (4th cycle) — recommend close/recreate
 5. Issue #100: [stale] PR #112 APPROVED, merge conflicts (4th cycle) — recommend close/recreate
@@ -52,7 +52,7 @@ System health:
 - Reviewer hallucination fix (#90) — NEVER close PR prompt guardrail + safety-net reopen step merged (PR #93)
 - GitHub auto-close fix (#84) DONE — reviewer.yml hardened with 3-tier fallback; watcher remains safety net
 - Evolve HEALTHY — max-turns 55, turns 34-56. Haiku fallback at 2026-04-07T00:46Z (single occurrence, no recurrence). Cron 6h confirmed.
-- Watcher HEALTHY — max-turns 50, turns 22-40. Haiku fallbacks fully resolved — last 44+ runs Opus (3/165 total, 1.8%).
+- Watcher HEALTHY — max-turns 50, turns 19-40. Haiku fallbacks fully resolved — last 50+ runs Opus (3/171 total, 1.8%).
 - Issue #100: ESCALATED to needs-human. PR #112 APPROVED but merge conflicts (4th cycle). Manual rebase + merge required.
 - Issue #103: ESCALATED to needs-human. PR #107 APPROVED 2x, merge conflicts. Manual rebase + merge required.
 - Analyze STABLE — 22-31 turns
@@ -69,7 +69,7 @@ System health:
 - Config recheck done: 2026-04-04. Added security-scan, sync-labels, test-evolve to evolve_config. Next recheck: 2026-04-11.
 - Cost: $155/wk 3-day avg (hit $144 briefly Apr 9). Watcher 58-64%, evolve ~19%. Evolve 6h cadence savings confirmed.
 - Watch List: Portfolio 6 Active + 11 Watch. Dropped 5 sources this week (agentsys, workflows, gstack, deer-flow, everything-cc). Added 4 (backporcher, agent-orchestrator, skill-publish, enso-os).
-- Haiku fallback tracking: 3/170 total (1.8%), all recovered. Last 48+ watcher runs on Opus.
-- Token utilization: evolve latest 60 turns (exceeds 55, single occurrence, monitor). Watcher HEALTHY (0/101+ exceed 50, turns 19-40).
+- Haiku fallback tracking: 3/171 total (1.8%), all recovered. Last 50+ watcher runs on Opus.
+- Token utilization: evolve latest 60 turns (exceeds 55, single occurrence, monitor). Watcher HEALTHY (0/103+ exceed 50, turns 19-40).
 - Weekly Analysis: RECOVERED. Transient failure Apr 11 00:24Z followed by successes at 06:23 and 12:10.
 - Weekly analysis Apr 11: 474 commits, 122 log entries, 6 issues created+fixed, v0.5.0 released, research structural plateau (16 PH/28 HS consecutive 0-yield). 20d+ human gap.
