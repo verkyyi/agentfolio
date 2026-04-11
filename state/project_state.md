@@ -1,17 +1,17 @@
 # Project State
-Last updated: 2026-04-11T06:24:13Z
-Updated by: analyze.yml (weekly analysis)
+Last updated: 2026-04-11T06:51:00Z
+Updated by: watcher.yml (health check)
 
 ## Last Session
-Action: analyze.yml weekly analysis — Week of Apr 4-11. 474 commits, 122 agent_log entries. All 11 active workflows HEALTHY. 6 issues auto-created+fixed. Self-healing operational. Evolve 6h cadence validated, cost $155/wk (hit $144 target briefly). 20d+ human disengagement. Dependabot branch updates = #1 watcher overhead.
+Action: watcher.yml health check — 3 corrective actions: updated Dependabot PRs #133/#135/#136 branches via WORKFLOW_PAT (7 commits behind main). All workflows HEALTHY. Weekly Analysis transient failure recovered (success at 06:23Z). No broken chains, stuck runs, or repeated failures. 6 needs-human issues held. 20d+ human disengagement continues.
 
 System health:
-- Evolve: HEALTHY — turns 34-48 recent, max 55. ~15% exceed (stable). Cron 6h confirmed.
-- Watcher: HEALTHY — Haiku fallbacks fully resolved. Last 40+ runs on Opus. 3/161 total Haiku (1.9%). Turns 19-40.
+- Evolve: HEALTHY — turns 34-52 recent, max 55. ~15% exceed (stable). Cron 6h confirmed. Latest run 52 turns (close to cap).
+- Watcher: HEALTHY — Haiku fallbacks fully resolved. Last 42+ runs on Opus. 3/164 total Haiku (1.8%). Turns 19-40.
 - Coder: HEALTHY — last success Apr 8 20:51.
 - Reviewer: HEALTHY — last success Apr 8 20:53. 12 turns.
 - Triage: HEALTHY — last success Apr 10 18:20.
-- Weekly Analysis: MONITOR — 1 transient failure Apr 11 00:24Z (not repeated).
+- Weekly Analysis: RECOVERED — transient failure Apr 11 00:24Z followed by success at 06:23Z.
 - Growth: HEALTHY — last success Apr 10 18:16.
 - Analyze: STABLE (19-41 turns).
 - Feedback Learner: RECOVERED — 5 turns, #72 fix confirmed.
