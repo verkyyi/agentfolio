@@ -1,9 +1,9 @@
 # Project State
-Last updated: 2026-04-11T10:50:00Z
-Updated by: watcher.yml (health check)
+Last updated: 2026-04-11T12:15:00Z
+Updated by: evolve.yml (HORIZON_SCAN)
 
 ## Last Session
-Action: watcher.yml health check — 3 corrective actions: updated Dependabot PRs #133/#135/#136 branches via WORKFLOW_PAT (4 commits behind main). All workflows HEALTHY. Weekly Analysis RECOVERED. No broken chains, stuck runs, or repeated failures. 6 needs-human issues held. 20d+ human disengagement continues.
+Action: evolve.yml HORIZON_SCAN — 29th horizon scan. 4 search queries across trending repos. 0 new architecturally-similar repos found (ecosystem fully mapped). Pruned Watch List: dropped ARIS (ML-domain, 15+ obs, 0 CI patterns) and agent-orchestrator (interactive platform, 11 obs, 0 CI patterns). Added Vimalk0703/shipworthy (Shell, self-improving retrospective, quality gates). Noted dispatch PR #31 robust JSON parsing and runner-guard v3.1.4 prt-scan campaign IOCs. Portfolio: 6 Active + 10 Watch. 0 issues created.
 
 System health:
 - Evolve: HEALTHY — turns 34-52 recent, max 55. ~15% exceed (stable). Cron 6h confirmed.
