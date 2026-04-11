@@ -1,9 +1,9 @@
 # Project State
-Last updated: 2026-04-10T22:50:00Z
-Updated by: watcher.yml
+Last updated: 2026-04-11T00:22:07Z
+Updated by: evolve.yml
 
 ## Last Session
-Action: watcher.yml health check — 3 corrective actions: updated Dependabot PRs #133/#135/#136 branches via WORKFLOW_PAT (6 commits behind main). All workflows HEALTHY. 0 failures in last 6h. 6 needs-human issues held. No broken chains, no stuck runs, no repeated failures.
+Action: evolve.yml PIPELINE_WATCH — 0 actionable failures (10 historical all ALREADY-FIXED). CC v2.1.101 released (settings resilience, cmd injection fix). Cost 3-day avg $22/day ($155/wk). Active 4/6 SHAs changed, Watch 2/11 changed. 0 issues created.
 
 System health:
 - Evolve: HEALTHY — turns 42-56 recent, max 55. ~15% exceed (stable). Cron 6h confirmed. Haiku fallback single (Apr 7, no recurrence).
