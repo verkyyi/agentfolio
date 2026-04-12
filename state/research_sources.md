@@ -1,20 +1,20 @@
 # Research Sources
 # Managed by evolve.yml. Claude adds, prunes, and annotates freely.
 # Seeded from evolve_config.md on first run.
-# Last updated: 2026-04-11T12:15:00Z
+# Last updated: 2026-04-12T00:20:26Z
 
 ## Active Sources
 
 ### anthropics/claude-code
 - **Why:** The runtime we build on — releases, breaking changes, new hooks, CLI flags
 - **Look for:** CHANGELOG entries, new hook types, permission changes, SDK updates
-- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-04-09T18:20:16Z | **Pattern hits:** 2 | **SHA:** 9772e13
+- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-04-12T00:20:26Z | **Pattern hits:** 2 | **SHA:** 9772e13
 - **Notes:** Protected source — never drop. Check CHANGELOG and releases, not just commits. v2.1.101 (Apr 10 19:03Z): /team-onboarding cmd, OS CA cert trust default, settings resilience (bad hook event no longer breaks settings.json), rate-limit retry detail, cmd injection fix in POSIX which, SDK query() cleanup. v2.1.100 (Apr 10 05:16Z): minor. v2.1.98 (Apr 9 19:18Z): Monitor tool, PID namespace isolation, SCRIPT_CAPS, --exclude-dynamic-system-prompt-sections, Vertex wizard, Perforce mode, git_worktree status. 6 Bash security fixes. CC now has 18+ hook events.
 
 ### hesreallyhim/awesome-claude-code
 - **Why:** Curated ecosystem catalog — discover new tools, libraries, and patterns
 - **Look for:** New entries in Orchestrators/Tools/Skills sections, trending repos referenced
-- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-04-08T18:28:37Z | **Pattern hits:** 0 | **SHA:** e3fbb80
+- **Added:** 2026-03-20 (seed) | **Last deep:** 2026-04-08T18:28:37Z | **Pattern hits:** 0 | **SHA:** 858dcc1
 - **Notes:** 0 pattern hits across 50+ observations. SHA change: ticker data only. Submission enforcement governance (owner bypass), Teams subcategory — curation-specific patterns. Retain for HORIZON_SCAN cross-reference only.
 
 ### SethGammon/Citadel
@@ -38,7 +38,7 @@
 ### verkyyi/tokenman
 - **Why:** Self-reference — track forks, adopters, and how the scaffold is used
 - **Look for:** New forks, adopter modifications, issues filed by users
-- **Added:** 2026-03-20 (seed) | **Last deep:** never | **Pattern hits:** 0 | **SHA:** 273555c
+- **Added:** 2026-03-20 (seed) | **Last deep:** never | **Pattern hits:** 0 | **SHA:** 26172f8
 - **Notes:** Used during HORIZON SCAN for adoption tracking. 2 stars, 0 forks, 0 adopters as of 2026-04-11. EvoMap/awesome-agent-evolution (21 stars) monitors tokenman in data/monitor-results.json but not curated — potential growth submission target (#149).
 
 ## Watch List
@@ -89,20 +89,21 @@
 - **Look for:** Shell script quality patterns, label state machine design, worktree isolation, error trap handling, BATS test patterns
 - **Added:** 2026-04-02 (horizon scan) | **Observations:** 13 | **First seen:** 2026-04-02 | **SHA:** b1f8029
 - **Decision (2026-04-09):** RETAIN on Watch. Meets quantitative promotion criteria (14 obs, 2 hits, 7d) but deep-dives found 0 directly adoptable patterns for GHA bash/markdown harness. Shell-library architecture patterns (modular lib/, BATS testing) don't transfer. Architecturally closest peer but insufficient pattern yield for Active promotion. Re-evaluate if new PRs introduce transferable patterns.
-- **Observations:** 16 | **First seen:** 2026-04-02 | **SHA:** 80f7f93
+- **Observations:** 17 | **First seen:** 2026-04-02 | **SHA:** 561604e
 - **Notes:** Created 2026-03-21, actively maintained. Shell-only, no Node/Python deps. Reusable workflows (dispatch-*.yml) consumed via workflow_call. CI validates all scripts with ShellCheck + BATS. Architecturally closest to tokenman: issue-driven, label-based state, GHA runners, claude -p headless. 2 pattern hits. Last deep: 2026-04-08T18:28:37Z. PR #31: robust JSON extraction from AI output (_extract_review_json helper, awk brace-depth fallback for narrative preamble/fence/postamble). 172 BATS tests green.
 
 ### Vimalk0703/shipworthy
 - **Why:** Shell-based Claude Code plugin (5 stars, 1 fork) — 52 invisible engineering skills, auto specs, TDD, security hooks, quality gates, self-improving retrospective. "97% vs 41% on blind benchmark". Advisory-first approach.
 - **Look for:** Self-improving retrospective patterns, quality gate implementation in Shell, advisory-first guardrail approach, skill benchmarking methodology
 - **Added:** 2026-04-11 (horizon scan) | **Observations:** 1 | **First seen:** 2026-04-11 | **SHA:** 21a80ba
-- **Notes:** Created 2026-03-26, actively maintained. Shell language — same as tokenman scripts. v1.5.0 "Advisory-First Revamp — guide, don't gate". Self-improving retrospective validates our feedback-learner direction. Security hardening v1.4.1 (7 vulns fixed, 12-test audit suite). Guardrails + quality gates in Shell.
+- **Observations:** 2 | **First seen:** 2026-04-11 | **SHA:** 21a80ba
+- **Notes:** Created 2026-03-26, actively maintained. Shell language — same as tokenman scripts. v1.5.0 "Advisory-First Revamp — guide, don't gate" (config-gated hooks, is_rule_enabled(), suggestion tone). v1.4.1 Security Hardening (Python injection fixes, TOCTOU, 12-test audit). v1.3.0 Context Intelligence (signal→learning→constraint flywheel, regression fence). All patterns interactive-CLI, 0 CI-adoptable. Context flywheel validates our feedback-learner direction.
 
 ### amazinglvxw/enso-os
 - **Why:** Self-evolving bash+python harness (19 stars) — 1267 LOC, 10 shell hooks, agent-memory, self-evolution. Conceptually similar to tokenman.
 - **Look for:** Shell hook patterns, self-evolution mechanisms, bash harness architecture, memory persistence patterns
-- **Added:** 2026-04-08 (horizon scan) | **Observations:** 5 | **First seen:** 2026-04-08 | **SHA:** 498db73
-- **Notes:** Created 2026-03-29, actively maintained. Shell language. Topics: agent-os, self-evolution, shell-hooks, claude-code. Rapid growth: 19→40 stars, 0→3 forks in ~1 day. Apr 10: v0.4.0 discipline plugin for AI agents, proactive lesson notification, /simplify review fixes. Discipline + lesson patterns validate our feedback-learner direction. Monitor for bash-specific harness patterns.
+- **Added:** 2026-04-08 (horizon scan) | **Observations:** 6 | **First seen:** 2026-04-08 | **SHA:** e63888e
+- **Notes:** Created 2026-03-29, actively maintained. Shell language. Topics: agent-os, self-evolution, shell-hooks, claude-code. Rapid growth: 19→40 stars, 0→3 forks. v0.4.0 discipline plugin (multi-framework adapter), proactive lesson notification (text-based tracking replaces broken date comparison), lesson provenance [seed:XXXXXX] hash, applies_when context tags. All interactive-CLI patterns, 0 CI-adoptable. Validates our feedback-learner direction.
 
 ### montenegronyc/backporcher
 - **Why:** Parallel Claude Code agent dispatcher (10 stars, 1 fork, Python) — GitHub Issues as task queue, sandboxed worktrees, coordinator review, CI gating, auto-merge. 100% auto-merge rate on first production run (15 PRs, 0 manual interventions).
