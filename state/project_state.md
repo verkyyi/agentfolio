@@ -1,17 +1,17 @@
 # Project State
-Last updated: 2026-04-12T01:07:03Z
+Last updated: 2026-04-12T03:50:00Z
 Updated by: watcher.yml
 
 ## Last Session
-Action: watcher.yml health check — all clear, 0 corrective actions. Dependabot PRs #133/#135/#136 CLEAN+MERGEABLE (1 behind, no update needed — merge state CLEAN). 0 failures in last 6h. No broken chains, no stuck runs. 6 needs-human held. No issues unblocked by recent closes. Token utilization HEALTHY.
+Action: watcher.yml health check — all clear, 0 corrective actions. Dependabot PRs #133/#135/#136 CLEAN+MERGEABLE (no branch update needed). 0 failures in last 6h. No broken chains, no stuck runs. 6 needs-human held. No issues unblocked by recent closes. Token utilization HEALTHY.
 
 System health:
-- Evolve: HEALTHY — turns 34-60, max 55. 7/36 (19.4%) exceed rate (below 30% threshold). Latest HORIZON_SCAN 60 turns. Cron 6h confirmed.
-- Watcher: HEALTHY — Haiku fallbacks fully resolved. Last 60+ runs on Opus. 3/176 total Haiku (1.7%). 0/92+ exceed max 50. Turns 16-47.
+- Evolve: HEALTHY — turns 34-60, max 55. 5/28 (17.9%) exceed rate (below 30% threshold). Latest HORIZON_SCAN 60 turns (single occurrence). Cron 6h confirmed.
+- Watcher: HEALTHY — Haiku fallbacks fully resolved. Last 60+ runs on Opus. 3/153 total Haiku (2.0%). 0/83 exceed max 50. Turns 16-47.
 - Coder: HEALTHY — last success Apr 8 20:51.
 - Reviewer: HEALTHY — last success Apr 8 20:53. 12 turns.
 - Triage: HEALTHY — last success Apr 11 18:13.
-- Weekly Analysis: RECOVERED — transient failure Apr 11 00:24Z, successes at 06:23, 12:10, and 18:09.
+- Weekly Analysis: RECOVERED — transient failure Apr 11 00:24Z, successes at 06:23, 12:10, 18:09, and 00:26 Apr 12.
 - Growth: HEALTHY — last success Apr 11 18:15.
 - Analyze: STABLE (26-39 turns recent).
 - Feedback Learner: RECOVERED — 5 turns, #72 fix confirmed.
@@ -51,8 +51,8 @@ System health:
 - Reviewer.yml has a bug: README sync step doesn't handle dirty working tree (PR #55 APPROVED 456h+ — CONFLICTING, needs human rebase + merge)
 - Reviewer hallucination fix (#90) — NEVER close PR prompt guardrail + safety-net reopen step merged (PR #93)
 - GitHub auto-close fix (#84) DONE — reviewer.yml hardened with 3-tier fallback; watcher remains safety net
-- Evolve HEALTHY — max-turns 55, 7/36 (19.4%) exceed. Latest 60 turns (HORIZON_SCAN, single occurrence). Cron 6h confirmed.
-- Watcher HEALTHY — max-turns 50, 0/92+ exceed. Turns 16-47. Haiku fallbacks fully resolved — last 60+ runs Opus (3/176 total, 1.7%).
+- Evolve HEALTHY — max-turns 55, 5/28 (17.9%) exceed. Latest 60 turns (HORIZON_SCAN, single occurrence). Cron 6h confirmed.
+- Watcher HEALTHY — max-turns 50, 0/83 exceed. Turns 16-47. Haiku fallbacks fully resolved — last 60+ runs Opus (3/153 total, 2.0%).
 - Issue #100: ESCALATED to needs-human. PR #112 APPROVED but merge conflicts (4th cycle). Manual rebase + merge required.
 - Issue #103: ESCALATED to needs-human. PR #107 APPROVED 2x, merge conflicts. Manual rebase + merge required.
 - Analyze STABLE — 26-39 turns recent
@@ -69,6 +69,6 @@ System health:
 - Config recheck done: 2026-04-11. Next recheck: 2026-04-18.
 - Cost: $155/wk 3-day avg. Watcher 58-64%, evolve ~19%. Evolve 6h cadence savings confirmed.
 - Watch List: Portfolio 6 Active + 10 Watch. Dropped ARIS + agent-orchestrator this cycle. Added shipworthy.
-- Token utilization: evolve 7/36 exceed 55 (19.4%), latest 60 turns (single occurrence). Watcher 0/92+ exceed 50, turns 16-47. All Opus, 3/176 Haiku (1.7%). HEALTHY.
+- Token utilization: evolve 5/28 exceed 55 (17.9%), latest 60 turns (single occurrence). Watcher 0/83 exceed 50, turns 16-47. All Opus, 3/153 Haiku (2.0%). HEALTHY.
 - Weekly Analysis: RECOVERED. Transient failure Apr 11 00:24Z followed by successes at 06:23, 12:10, and 18:09.
 - Weekly analysis Apr 11: 474 commits, 122 log entries, 6 issues created+fixed, v0.5.0 released, research structural plateau (16 PH/29 HS consecutive 0-yield). 20d+ human gap.
