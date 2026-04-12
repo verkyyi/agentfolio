@@ -1,28 +1,28 @@
 # Last Evolve Summary
-Timestamp: 2026-04-11T12:15:00Z
-Main HEAD: 273555c
-Posture: HORIZON_SCAN (4 runs since last, highest counter. Watch List needed review — 2 sources dropped, 1 added.)
-Posture history: [HORIZON_SCAN, SYNTHESIS, PIPELINE_WATCH, PATTERN_HUNT, SYNTHESIS, HORIZON_SCAN, PIPELINE_WATCH, PATTERN_HUNT, SYNTHESIS, HORIZON_SCAN, PIPELINE_WATCH, PATTERN_HUNT, SYNTHESIS, HORIZON_SCAN, PATTERN_HUNT, PIPELINE_WATCH, PATTERN_HUNT, PIPELINE_WATCH, SYNTHESIS, PIPELINE_WATCH, HORIZON_SCAN, PATTERN_HUNT, PIPELINE_WATCH, SYNTHESIS, PIPELINE_WATCH, HORIZON_SCAN, PATTERN_HUNT, SYNTHESIS, PATTERN_HUNT, PIPELINE_WATCH, SYNTHESIS, PIPELINE_WATCH, HORIZON_SCAN, SYNTHESIS, PATTERN_HUNT, PIPELINE_WATCH, HORIZON_SCAN, SYNTHESIS, PATTERN_HUNT, SYNTHESIS, PIPELINE_WATCH, PATTERN_HUNT, PIPELINE_WATCH, SYNTHESIS, PIPELINE_WATCH, HORIZON_SCAN, PATTERN_HUNT, PATTERN_HUNT, HORIZON_SCAN, SYNTHESIS, PIPELINE_WATCH, PATTERN_HUNT]
+Timestamp: 2026-04-12T00:25:22Z
+Main HEAD: 26172f8
+Posture: PATTERN_HUNT (most overdue at 3 runs since last. Deep-dived claude-code v2.1.98-101, shipworthy v1.3-1.5, enso-os v0.4.0. 17th consecutive 0-pattern PH — CLI/GHA structural gap permanent.)
+Posture history: [PATTERN_HUNT, HORIZON_SCAN, SYNTHESIS, PIPELINE_WATCH, PATTERN_HUNT, SYNTHESIS, HORIZON_SCAN, PIPELINE_WATCH, PATTERN_HUNT]
 Runs since each:
-  PATTERN_HUNT: 3
-  PIPELINE_WATCH: 2
-  HORIZON_SCAN: 0
-  SYNTHESIS: 1
+  PATTERN_HUNT: 0
+  PIPELINE_WATCH: 3
+  HORIZON_SCAN: 1
+  SYNTHESIS: 2
 Open issues: #
 
 ## Source Digests
-anthropics/claude-code: 9772e13 | last-deep: 2026-04-09T18:20:16Z | unchanged since v2.1.101.
-hesreallyhim/awesome-claude-code: e3fbb80 | last-deep: 2026-04-08T18:28:37Z | SHA changed (ticker).
-SethGammon/Citadel: c446e88 | last-deep: 2026-04-10T18:18:54Z | unchanged.
-actions/runner: 4a587ad | last-deep: 2026-04-08T18:28:37Z | unchanged.
-withastro/astro: 7fe40bc | last-deep: 2026-04-08T18:28:37Z | unchanged.
-verkyyi/tokenman: 273555c | last-deep: never | self. 2 stars, 0 forks.
-Watch: 3/10 changed (ARIS f75e1f7 dropped, dispatch 80f7f93 json-parsing-fix, orchestrator af2af11 dropped). Added shipworthy 21a80ba. Portfolio: 6 Active + 10 Watch.
+anthropics/claude-code: 9772e13 | last-deep: 2026-04-12T00:25:22Z | v2.1.98-101: Monitor tool, SCRIPT_CAPS, PID isolation, settings resilience, CA cert trust. 0 adoptable.
+hesreallyhim/awesome-claude-code: 858dcc1 | last-deep: 2026-04-08T18:28:37Z | ticker changes only.
+SethGammon/Citadel: c446e88 | last-deep: 2026-04-10T18:18:54Z | unchanged. JS-framework patterns.
+actions/runner: 4a587ad | last-deep: 2026-04-08T18:28:37Z | unchanged. Dep bumps only.
+withastro/astro: 7fe40bc | last-deep: 2026-04-08T18:28:37Z | unchanged. No security advisories.
+verkyyi/tokenman: 26172f8 | last-deep: never | self. 2 stars, 0 forks.
+Watch: 2/10 changed (dispatch 561604e ERR-trap-guard, enso-os e63888e lesson-fix). Deep-dived shipworthy (2nd obs) and enso-os (6th obs). Portfolio: 6 Active + 10 Watch.
 
 ## Findings This Run
-- 29th HS: 4 search queries, 0 new architecturally-similar repos discovered. Ecosystem fully mapped.
-- dispatch PR #31: robust JSON extraction from AI output (awk brace-depth fallback). Real defensive parsing pattern, noted for reference.
-- runner-guard v3.1.4: 8 new prt-scan campaign IOCs (AI-powered GHA exploitation, 500+ malicious PRs). #127 already tracks adoption.
-- Watch List pruned: dropped ARIS (15+ obs, ML-domain, 0 CI patterns), dropped agent-orchestrator (11 obs, interactive platform paradigm, 0 CI patterns). Added shipworthy (Shell, self-improving retrospective, quality gates).
-- SHA scan: Active 1/5 changed, Watch 3/10 changed (post-prune).
+- claude-code v2.1.98-101: --exclude-dynamic-system-prompt-sections assessed for our workflows — per-run prompt state too unique for caching benefit. All features upstream, 0 adoptable.
+- shipworthy v1.5.0 Advisory-First pattern (config-gated hooks, suggestion tone) — for interactive CLI, not headless GHA. Context flywheel validates our feedback-learner.
+- enso-os v0.4.0 discipline plugin: lesson provenance hashing and applies_when context tags — interesting but our 7-rule learned_rules.md too small for the complexity.
+- dispatch PR #32: ERR trap double-report guard — Shell pattern, not adoptable (no ERR traps in our scripts).
+- 17th consecutive PATTERN_HUNT with 0 adoptable patterns. CLI/GHA structural gap permanent.
 0 issues created.
