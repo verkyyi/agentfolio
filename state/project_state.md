@@ -1,9 +1,9 @@
 # Project State
-Last updated: 2026-04-11T22:48:00Z
-Updated by: watcher.yml (health check)
+Last updated: 2026-04-12T00:26:42Z
+Updated by: evolve.yml (PATTERN_HUNT)
 
 ## Last Session
-Action: watcher.yml health check — 3 corrective actions: updated Dependabot PRs #133/#135/#136 branches via WORKFLOW_PAT (3 commits behind main). All workflows HEALTHY. No broken chains, no stuck runs, no repeated failures. 6 needs-human issues held. 3 legacy PRs CONFLICTING awaiting human. Token utilization HEALTHY (176 data lines, all Opus).
+Action: evolve.yml PATTERN_HUNT — deep-dived claude-code v2.1.98-101, shipworthy v1.3-1.5, enso-os v0.4.0. 17th consecutive 0-pattern PH. CLI/GHA structural gap permanent. 0 issues created. SHA scan: Active 1/5, Watch 2/10 changed.
 
 System health:
 - Evolve: HEALTHY — turns 34-60, max 55. 7/36 (19.4%) exceed rate (below 30% threshold). Latest HORIZON_SCAN 60 turns. Cron 6h confirmed.
