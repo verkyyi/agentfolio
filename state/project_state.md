@@ -1,9 +1,9 @@
 # Project State
-Last updated: 2026-04-12T03:50:00Z
+Last updated: 2026-04-12T05:25:00Z
 Updated by: watcher.yml
 
 ## Last Session
-Action: watcher.yml health check — all clear, 0 corrective actions. Dependabot PRs #133/#135/#136 CLEAN+MERGEABLE (no branch update needed). 0 failures in last 6h. No broken chains, no stuck runs. 6 needs-human held. No issues unblocked by recent closes. Token utilization HEALTHY.
+Action: watcher.yml health check — all clear, 0 corrective actions. Dependabot PRs #133/#135/#136 CLEAN+MERGEABLE (16 behind, merge state clean — no branch update needed). 0 failures in last 6h. No broken chains, no stuck runs. 6 needs-human held. No issues unblocked by recent closes. Token utilization HEALTHY.
 
 System health:
 - Evolve: HEALTHY — turns 34-60, max 55. 5/28 (17.9%) exceed rate (below 30% threshold). Latest HORIZON_SCAN 60 turns (single occurrence). Cron 6h confirmed.
@@ -20,18 +20,18 @@ System health:
 
 ## Current Priorities (ordered)
 1. **[READY]** Dependabot PRs: #133/#135/#136 — ALL PASSING, APPROVED, branches updated, awaiting human merge. #1 watcher overhead source (80+ branch updates).
-2. **[BLOCKED]** PR #55: fix reviewer.yml state reset — APPROVED 456h+, merge conflicts, awaiting human rebase + merge (workflow YAML)
+2. **[BLOCKED]** PR #55: fix reviewer.yml state reset — APPROVED 466h+, merge conflicts, awaiting human rebase + merge (workflow YAML)
 3. **[NEEDS-HUMAN]** Issue #22: Submit to awesome-claude-code — 36.9K stars, highest-leverage growth action, cooldown expired 20d+
 4. **[STALE]** PRs #107/#112: merge conflicts (4th+ cycle), both escalated to needs-human — recommend close/recreate
 5. **[NEEDS-HUMAN]** Issue #124: Update repo description metadata — requires GH_TOKEN with repo-edit permissions
 6. **[STALLED]** Profile page: 4/6 sections unchecked (live stats, timeline, capabilities, architecture) — no progress this week
 7. **[WAITING]** Issue #48: Submit to e2b-dev/awesome-ai-agents — needs-human
 8. **[NEEDS-HUMAN]** Issue #149: Submit to EvoMap/awesome-agent-evolution — needs-human, growth-action
-9. **[MONITOR]** Research cadence: 16 PH 0-pattern, 29 HS 0-architecture — structural plateau confirmed, consider reduction
+9. **[MONITOR]** Research cadence: 17 PH 0-pattern, 29 HS 0-architecture — structural plateau confirmed, consider reduction
 
 ## Open Items
 1. PRs #133, #135, #136: [ready] ALL PASSING + APPROVED + CLEAN/MERGEABLE — awaiting human merge (10d+). Watcher spent 88+ corrective actions on branch updates.
-2. PR #55: [approved] fix(workflow) reviewer.yml state reset — APPROVED 462h+, CONFLICTING, needs human rebase + merge
+2. PR #55: [approved] fix(workflow) reviewer.yml state reset — APPROVED 466h+, CONFLICTING, needs human rebase + merge
 3. Issue #22: [needs-human] Submit to awesome-claude-code — 36.9K stars, cooldown expired 20d+
 4. Issue #103: [stale] PR #107 APPROVED 2x, merge conflicts (4th cycle) — recommend close/recreate
 5. Issue #100: [stale] PR #112 APPROVED, merge conflicts (4th cycle) — recommend close/recreate
@@ -48,7 +48,7 @@ System health:
 - Evolve lightweight mode gate deployed (commit ce1994c) — skips Steps 2b-2h when sources unchanged 2+ consecutive runs
 - Posture-based research operational: PATTERN_HUNT, PIPELINE_WATCH, HORIZON_SCAN, SYNTHESIS
 - Reviewer.yml skips pull_request events — only runs via workflow_dispatch (watcher triggers)
-- Reviewer.yml has a bug: README sync step doesn't handle dirty working tree (PR #55 APPROVED 456h+ — CONFLICTING, needs human rebase + merge)
+- Reviewer.yml has a bug: README sync step doesn't handle dirty working tree (PR #55 APPROVED 466h+ — CONFLICTING, needs human rebase + merge)
 - Reviewer hallucination fix (#90) — NEVER close PR prompt guardrail + safety-net reopen step merged (PR #93)
 - GitHub auto-close fix (#84) DONE — reviewer.yml hardened with 3-tier fallback; watcher remains safety net
 - Evolve HEALTHY — max-turns 55, 5/28 (17.9%) exceed. Latest 60 turns (HORIZON_SCAN, single occurrence). Cron 6h confirmed.
@@ -59,7 +59,7 @@ System health:
 - Feedback Learner RECOVERED — 5 turns, #72 fix confirmed
 - State file compression (#78) merged — research_log.md reduced from 699 to 104 lines
 - Circuit breaker (#76) merged — PostToolUseFailure hook with 3-failure threshold
-- Pattern plateau: 16 PH runs with 0 patterns (continuing multi-week drought). CI/CLI structural gap permanent. Security sources exhausted.
+- Pattern plateau: 17 PH runs with 0 patterns (continuing multi-week drought). CI/CLI structural gap permanent. Security sources exhausted.
 - Ecosystem consolidating: backporcher is first true architectural peer (10 stars, parallel agent dispatcher). Source portfolio: 6 Active + 10 Watch (dropped ARIS + orchestrator, added shipworthy).
 - Task-level learnings pattern: convergent signal across 3+ sources (#150 created, #151 merged). Extends feedback-learner concept to agent task outcomes.
 - No human engagement since Mar 22 — 20d+ gap. All recent activity bot-generated.
