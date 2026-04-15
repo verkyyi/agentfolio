@@ -7,14 +7,25 @@ import { EducationSection } from './EducationSection';
 import { VolunteeringSection } from './VolunteeringSection';
 import { MatchScoreBar } from './MatchScoreBar';
 import { DebugPanel } from './DebugPanel';
+import { SectionDwellTracker } from './SectionDwellTracker';
 
 interface Props {
   base: BaseResume;
   adapted: AdaptedResume;
   context: VisitorContext;
+  onCtaClick?: (target: 'email' | 'linkedin' | 'github') => void;
+  onProjectClick?: (projectId: string, link: 'url' | 'github') => void;
+  onSectionDwell?: (section: SectionName, ms: number) => void;
 }
 
-export function AdaptiveResume({ base, adapted, context }: Props) {
+export function AdaptiveResume({
+  base,
+  adapted,
+  context,
+  onCtaClick,
+  onProjectClick,
+  onSectionDwell,
+}: Props) {
   const renderers: Record<SectionName, () => React.ReactElement> = {
     summary: () => <SummarySection summary={adapted.summary} />,
     experience: () => (
@@ -25,7 +36,11 @@ export function AdaptiveResume({ base, adapted, context }: Props) {
       />
     ),
     projects: () => (
-      <ProjectsSection projects={base.projects} order={adapted.project_order} />
+      <ProjectsSection
+        projects={base.projects}
+        order={adapted.project_order}
+        onProjectClick={onProjectClick}
+      />
     ),
     skills: () => (
       <SkillsSection groups={base.skills.groups} emphasis={adapted.skill_emphasis} />
@@ -39,8 +54,21 @@ export function AdaptiveResume({ base, adapted, context }: Props) {
       <header>
         <h1>{base.name}</h1>
         <p>
-          {base.contact.location} · <a href={`mailto:${base.contact.email}`}>{base.contact.email}</a>{' '}
-          · <a href={base.contact.linkedin}>LinkedIn</a> · <a href={base.contact.github}>GitHub</a>
+          {base.contact.location} ·{' '}
+          <a
+            href={`mailto:${base.contact.email}`}
+            onClick={() => onCtaClick?.('email')}
+          >
+            {base.contact.email}
+          </a>{' '}
+          ·{' '}
+          <a href={base.contact.linkedin} onClick={() => onCtaClick?.('linkedin')}>
+            LinkedIn
+          </a>{' '}
+          ·{' '}
+          <a href={base.contact.github} onClick={() => onCtaClick?.('github')}>
+            GitHub
+          </a>
         </p>
         <DebugPanel context={context} adapted={adapted} />
         <MatchScoreBar score={adapted.match_score} />
@@ -48,6 +76,17 @@ export function AdaptiveResume({ base, adapted, context }: Props) {
       {adapted.section_order.map((name) => {
         const render = renderers[name];
         if (!render) return null;
+        if (onSectionDwell) {
+          return (
+            <SectionDwellTracker
+              key={name}
+              name={name}
+              onDwell={(section, ms) => onSectionDwell(section as SectionName, ms)}
+            >
+              {render()}
+            </SectionDwellTracker>
+          );
+        }
         return <div key={name}>{render()}</div>;
       })}
     </main>

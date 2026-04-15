@@ -117,4 +117,29 @@ describe('AdaptiveResume', () => {
     expect(screen.getByText('Lianghui Yi')).toBeInTheDocument();
     expect(screen.getByText('verky.yi@gmail.com')).toBeInTheDocument();
   });
+
+  it('calls onCtaClick when email link is clicked', async () => {
+    const onCtaClick = (await import('vitest')).vi.fn();
+    const user = (await import('@testing-library/user-event')).default.setup();
+    render(
+      <AdaptiveResume base={base} adapted={adapted} context={context} onCtaClick={onCtaClick} />,
+    );
+    await user.click(screen.getByText('verky.yi@gmail.com'));
+    expect(onCtaClick).toHaveBeenCalledWith('email');
+  });
+
+  it('calls onProjectClick when a project link is clicked', async () => {
+    const onProjectClick = (await import('vitest')).vi.fn();
+    const user = (await import('@testing-library/user-event')).default.setup();
+    render(
+      <AdaptiveResume
+        base={base}
+        adapted={adapted}
+        context={context}
+        onProjectClick={onProjectClick}
+      />,
+    );
+    await user.click(screen.getByText('Project One'));
+    expect(onProjectClick).toHaveBeenCalledWith('p1', 'url');
+  });
 });

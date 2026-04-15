@@ -3,9 +3,10 @@ import type { Project } from '../types';
 interface Props {
   projects: Project[];
   order: string[];
+  onProjectClick?: (projectId: string, link: 'url' | 'github') => void;
 }
 
-export function ProjectsSection({ projects, order }: Props) {
+export function ProjectsSection({ projects, order, onProjectClick }: Props) {
   const byId = new Map(projects.map((p) => [p.id, p]));
   const ordered = order.map((id) => byId.get(id)).filter(Boolean) as Project[];
 
@@ -16,7 +17,12 @@ export function ProjectsSection({ projects, order }: Props) {
         <article key={p.id}>
           <header>
             <h3>
-              <a href={p.url} target="_blank" rel="noreferrer">
+              <a
+                href={p.url}
+                target="_blank"
+                rel="noreferrer"
+                onClick={() => onProjectClick?.(p.id, 'url')}
+              >
                 {p.name}
               </a>
             </h3>
