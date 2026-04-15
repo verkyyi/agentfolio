@@ -4,8 +4,9 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc -b && vite build",
+    "copy-data": "node -e \"require('node:fs').cpSync('../data', 'public/data', {recursive: true})\"",
+    "dev": "npm run copy-data && vite",
+    "build": "npm run copy-data && tsc -b && vite build",
     "preview": "vite preview",
     "test": "vitest run",
     "test:watch": "vitest"
