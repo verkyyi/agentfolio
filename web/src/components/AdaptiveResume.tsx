@@ -89,6 +89,9 @@ export function AdaptiveResume({
         }
         return <div key={name}>{render()}</div>;
       })}
+      <footer>
+        <a href={`${import.meta.env.BASE_URL}how-it-works`}>How this works →</a>
+      </footer>
     </main>
   );
 }

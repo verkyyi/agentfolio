@@ -8,6 +8,7 @@ import { AdaptiveResume } from './components/AdaptiveResume';
 import { SelfIdPrompt } from './components/SelfIdPrompt';
 import { AdaptationProgress } from './components/AdaptationProgress';
 import { ChatWidget } from './components/ChatWidget';
+import { ArchitecturePage } from './components/ArchitecturePage';
 import {
   createAdaptRequest,
   findOpenRequestForCompany,
@@ -161,8 +162,16 @@ export default function App() {
     onQuestion: onChatQuestion,
   });
 
+  const isArchitecturePath =
+    typeof window !== 'undefined' &&
+    window.location.pathname.replace(/\/$/, '').endsWith('/how-it-works');
+
   if (ctxError) return <main>Error loading context: {ctxError.message}</main>;
   if (adaptError) return <main>Error loading adaptation: {adaptError.message}</main>;
+
+  if (isArchitecturePath) {
+    return <ArchitecturePage compareSlugs={['cohere', 'default']} />;
+  }
 
   if (needsSelfIdForm) {
     return (
