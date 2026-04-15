@@ -170,7 +170,7 @@ export default function App() {
   if (adaptError) return <main>Error loading adaptation: {adaptError.message}</main>;
 
   if (isArchitecturePath) {
-    return <ArchitecturePage compareSlugs={['cohere', 'default']} />;
+    return <ArchitecturePage compareSlugs={['cohere', 'openai', 'default']} />;
   }
 
   if (needsSelfIdForm) {
