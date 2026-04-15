@@ -35,6 +35,9 @@ jobs:
 
       - name: Build web
         working-directory: web
+        env:
+          VITE_GITHUB_PAT: ${{ secrets.GH_ISSUES_PAT }}
+          VITE_GITHUB_REPO: verkyyi/agentfolio
         run: npm run build
 
       - uses: actions/configure-pages@v5
