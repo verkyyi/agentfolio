@@ -176,3 +176,25 @@ export interface ChatMessage {
   text: string;
   issueNumber?: number;
 }
+
+export interface CompanyAnalytics {
+  sessions: number;
+  avg_duration_s: number;
+  avg_max_scroll_pct: number;
+  section_dwell_avg_s: Record<string, number>;
+  project_clicks: Record<string, number>;
+  cta_clicks: Record<string, number>;
+}
+
+export interface AnalyticsDoc {
+  generated_at: string;
+  source_issues: number;
+  total_sessions: number;
+  unique_companies: number;
+  by_company: Record<string, CompanyAnalytics>;
+  global: {
+    avg_duration_s: number;
+    top_projects: Array<[string, number]>;
+    top_sections: Array<[string, number]>;
+  };
+}
