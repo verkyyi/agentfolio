@@ -3,9 +3,11 @@ import { useVisitorContext } from './hooks/useVisitorContext';
 import { useAdaptation } from './hooks/useAdaptation';
 import { useAdaptationProgress } from './hooks/useAdaptationProgress';
 import { useBehaviorTracker } from './hooks/useBehaviorTracker';
+import { useChat } from './hooks/useChat';
 import { AdaptiveResume } from './components/AdaptiveResume';
 import { SelfIdPrompt } from './components/SelfIdPrompt';
 import { AdaptationProgress } from './components/AdaptationProgress';
+import { ChatWidget } from './components/ChatWidget';
 import {
   createAdaptRequest,
   findOpenRequestForCompany,
@@ -142,6 +144,23 @@ export default function App() {
     [track],
   );
 
+  const onChatQuestion = useCallback(
+    (question: string, chatIssueNumber: number) => {
+      track({
+        type: 'chat_question',
+        data: { question, issue_number: chatIssueNumber },
+        ts: Date.now(),
+      });
+    },
+    [track],
+  );
+
+  const chat = useChat({
+    config: apiConfig ?? { pat: '', repo: '' },
+    enabled: trackerEnabled,
+    onQuestion: onChatQuestion,
+  });
+
   if (ctxError) return <main>Error loading context: {ctxError.message}</main>;
   if (adaptError) return <main>Error loading adaptation: {adaptError.message}</main>;
 
@@ -172,6 +191,12 @@ export default function App() {
         onCtaClick={onCtaClick}
         onProjectClick={onProjectClick}
         onSectionDwell={trackerEnabled ? onSectionDwell : undefined}
+      />
+      <ChatWidget
+        messages={chat.messages}
+        thinking={chat.thinking}
+        onAsk={chat.ask}
+        enabled={trackerEnabled}
       />
     </>
   );
