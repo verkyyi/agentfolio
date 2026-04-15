@@ -1,0 +1,64 @@
+{
+  "company": "Cohere",
+  "generated_at": "2026-04-15T08:24:18+00:00",
+  "generated_by": "adapt_one.py v0.1",
+  "summary": "Forward Deployed Engineer with 5+ years shipping agentic AI systems and full-stack products at scale. Experienced collaborating directly with enterprise customers to scope technical requirements and deploy end-to-end solutions — from autonomous agents and backend systems to private cloud infrastructure. Proven track record building production AI platforms that power 50,000+ users, with deep expertise in LLM integration, RAG pipelines, and rapid experimentation across the entire product lifecycle.",
+  "section_order": [
+    "summary",
+    "projects",
+    "experience",
+    "skills",
+    "education",
+    "volunteering"
+  ],
+  "experience_order": [
+    "24helpful",
+    "24haowan",
+    "maiduote"
+  ],
+  "bullet_overrides": {
+    "24h-evolving-code": "Designed and shipped a self-evolving agentic code system (generator/evaluator loop) that accelerated development velocity; implemented CI/CD automation with GitHub Actions to close iteration cycles in under 24 hours.",
+    "24h-aws-infra": "Delivered end-to-end multi-tenant cloud infrastructure for enterprise customers, reducing provisioning costs by 50% through automated resource management and tenant isolation across AWS services.",
+    "mdt-platform": "Led end-to-end product development and launched a production platform that increased doctor-patient engagement by 30%; built and deployed chatbot agents in collaboration with stakeholders to automate patient workflows."
+  },
+  "project_order": [
+    "agentfolio",
+    "ainbox",
+    "tokenman"
+  ],
+  "skill_emphasis": [
+    "Autonomous Agent Development",
+    "RAG Pipelines",
+    "Python",
+    "MCP (Model Context Protocol)",
+    "LLM Integration"
+  ],
+  "match_score": {
+    "overall": 0.24,
+    "by_category": {
+      "ai": 0.5,
+      "fullstack": 0.11,
+      "cloud": 0.25,
+      "methods": 0.12
+    },
+    "matched_keywords": [
+      "Autonomous Agent Development",
+      "LLM Integration",
+      "MCP (Model Context Protocol)",
+      "Python",
+      "RAG Pipelines",
+      "customer",
+      "deploy",
+      "production"
+    ],
+    "missing_keywords": [
+      "North platform",
+      "RAG",
+      "agentic",
+      "agents",
+      "enterprise",
+      "private cloud",
+      "scalability"
+    ]
+  }
+}
