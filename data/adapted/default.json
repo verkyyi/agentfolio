@@ -1,8 +1,8 @@
 {
   "company": "default",
-  "generated_at": "2026-04-15T21:54:00+00:00",
+  "generated_at": "2026-04-15T21:57:53+00:00",
   "generated_by": "adapt_one.py v0.1",
-  "summary": "Forward Deployed Engineer with 5+ years shipping full-stack products and data infrastructure at scale. Experienced collaborating directly with enterprise customers to scope technical requirements and deploy end-to-end solutions — from front-end interfaces to backend systems and cloud infrastructure. Proven track record building production AI platforms that power 50,000+ users, with deep expertise in generative AI engineering, rapid experimentation, and high-quality data solutions.",
+  "summary": "Forward Deployed Engineer with 5+ years shipping full-stack products and data infrastructure at scale. Collaborate directly with enterprise customers to scope requirements and deploy end-to-end solutions across front-end, backend, and cloud infrastructure. Built production AI platforms serving 50,000+ users with expertise in generative AI engineering, rapid experimentation, and data quality.",
   "section_order": [
     "summary",
     "experience",
