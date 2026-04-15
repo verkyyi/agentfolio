@@ -1,0 +1,18 @@
+{
+  "company": "Cohere",
+  "role": "FDE, Agentic Platform",
+  "jd_url": "https://jobs.ashbyhq.com/cohere/b0bcef37-...",
+  "jd_fetched": "2026-04-14",
+  "priority_tags": ["agentic", "customer-facing", "rag", "cloud", "enterprise"],
+  "summary_vars": {
+    "focus": "agentic AI systems and full-stack products",
+    "surface": "autonomous agents and backend systems",
+    "infra": "private cloud infrastructure",
+    "systems": "AI platforms",
+    "highlight": "LLM integration, RAG pipelines, and rapid experimentation across the entire product lifecycle"
+  },
+  "section_order": ["summary", "projects", "experience", "skills", "education", "volunteering"],
+  "project_order": ["agentfolio", "ainbox", "tokenman"],
+  "skill_emphasis": ["Autonomous Agent Development", "RAG Pipelines", "Python", "MCP (Model Context Protocol)", "LLM Integration"],
+  "jd_keywords": ["agentic", "agents", "RAG", "Python", "enterprise", "North platform", "private cloud", "customer", "deploy", "production", "scalability"]
+}
