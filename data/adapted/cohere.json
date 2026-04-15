@@ -1,6 +1,6 @@
 {
   "company": "Cohere",
-  "generated_at": "2026-04-15T21:29:17+00:00",
+  "generated_at": "2026-04-15T21:54:00+00:00",
   "generated_by": "adapt_one.py v0.1",
   "summary": "Forward Deployed Engineer with 5+ years shipping agentic AI systems and full-stack products at scale. Experienced collaborating directly with enterprise customers to scope technical requirements and deploy end-to-end solutions — from autonomous agents and backend systems to private cloud infrastructure. Proven track record building production AI platforms that power 50,000+ users, with deep expertise in LLM integration, RAG pipelines, and rapid experimentation across the entire product lifecycle.",
   "section_order": [
@@ -34,12 +34,14 @@
     "LLM Integration"
   ],
   "match_score": {
-    "overall": 0.24,
+    "overall": 0.7,
     "by_category": {
       "ai": 0.5,
       "fullstack": 0.11,
       "cloud": 0.25,
-      "methods": 0.12
+      "methods": 0.12,
+      "experience_bullets": 0.89,
+      "projects": 1.0
     },
     "matched_keywords": [
       "Autonomous Agent Development",
@@ -47,16 +49,18 @@
       "MCP (Model Context Protocol)",
       "Python",
       "RAG Pipelines",
+      "agentic",
+      "cloud",
       "customer",
+      "customer-facing",
       "deploy",
+      "enterprise",
       "production"
     ],
     "missing_keywords": [
       "North platform",
       "RAG",
-      "agentic",
       "agents",
-      "enterprise",
       "private cloud",
       "scalability"
     ]

@@ -57,7 +57,7 @@
         {
           "id": "24hw-saas",
           "text": "Designed a SaaS product and go-to-market strategy that achieved $1,000,000 ARR in 2 years by optimizing product lifecycle, user onboarding, and data-driven iteration loops.",
-          "tags": ["product", "growth", "data-driven", "saas"],
+          "tags": ["product", "growth", "data-driven", "saas", "enterprise", "customer-facing"],
           "adaptations": {}
         },
         {
@@ -93,7 +93,7 @@
         {
           "id": "mdt-fullstack",
           "text": "Scoped and delivered data-driven features across the full stack, coordinating cross-functional teams to prioritize roadmap items and ensure stable, rapid rollouts.",
-          "tags": ["full-stack", "data-driven", "rapid-experimentation"],
+          "tags": ["full-stack", "data-driven", "rapid-experimentation", "production", "deploy"],
           "adaptations": {}
         },
         {

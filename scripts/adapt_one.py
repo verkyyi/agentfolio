@@ -67,37 +67,96 @@ def _normalize_company(profile: dict) -> str:
     return str(profile.get("company", "default")).strip().lower().replace(" ", "-")
 
 
-def _match_score(base_resume: dict, profile: dict) -> dict:
-    groups = base_resume["skills"]["groups"]
-    by_category: dict[str, float] = {}
-    total_matched = 0
-    total_items = 0
-    matched_keywords: set[str] = set()
+SKILL_WEIGHT = 1.0
+BULLET_WEIGHT = 6.0
+PROJECT_WEIGHT = 6.0
+
+
+def _matches_keyword_or_emphasis(item: str, profile: dict) -> str | None:
+    """Return the matched keyword/emphasis string, or None."""
     emphasis = set(profile.get("skill_emphasis") or [])
-    keywords = [k.lower() for k in (profile.get("jd_keywords") or [])]
+    if item in emphasis:
+        return item
+    keywords = [k for k in (profile.get("jd_keywords") or [])]
+    lowered = item.lower()
+    for kw in keywords:
+        if kw.lower() in lowered:
+            return kw
+    return None
 
-    for group in groups:
+
+def _skill_matches(base_resume: dict, profile: dict):
+    matched = 0
+    total = 0
+    by_category: dict[str, float] = {}
+    matched_terms: set[str] = set()
+    for group in base_resume["skills"]["groups"]:
         items = group["items"]
-        matched = score_skill_match(items, profile)
-        by_category[group["id"]] = round(matched / len(items), 2) if items else 0.0
-        total_matched += matched
-        total_items += len(items)
-        for item in items:
-            if item in emphasis:
-                matched_keywords.add(item)
-            else:
-                lowered = item.lower()
-                for kw in keywords:
-                    if kw in lowered:
-                        matched_keywords.add(kw)
+        local = sum(1 for it in items if _matches_keyword_or_emphasis(it, profile))
+        for it in items:
+            t = _matches_keyword_or_emphasis(it, profile)
+            if t:
+                matched_terms.add(t)
+        by_category[group["id"]] = round(local / len(items), 2) if items else 0.0
+        matched += local
+        total += len(items)
+    return matched, total, by_category, matched_terms
 
-    overall = round(total_matched / total_items, 2) if total_items else 0.0
+
+def _tag_matches(items: list[dict], profile: dict, tag_field: str = "tags"):
+    """Items are objects with a .tags list (bullets, projects)."""
+    keywords = {k.lower() for k in (profile.get("jd_keywords") or [])}
+    priority = {p.lower() for p in (profile.get("priority_tags") or [])}
+    needles = keywords | priority
+    matched = 0
+    matched_terms: set[str] = set()
+    for it in items:
+        for tag in it.get(tag_field) or []:
+            if tag.lower() in needles:
+                matched += 1
+                matched_terms.add(tag)
+                break  # at most 1 per item
+    return matched, len(items), matched_terms
+
+
+def _match_score(base_resume: dict, profile: dict) -> dict:
+    skill_matched, skill_total, by_category, skill_terms = _skill_matches(
+        base_resume, profile
+    )
+
+    all_bullets = [b for exp in base_resume["experience"] for b in exp["bullets"]]
+    bullet_matched, bullet_total, bullet_terms = _tag_matches(all_bullets, profile)
+    by_category["experience_bullets"] = (
+        round(bullet_matched / bullet_total, 2) if bullet_total else 0.0
+    )
+
+    project_matched, project_total, project_terms = _tag_matches(
+        base_resume["projects"], profile
+    )
+    by_category["projects"] = (
+        round(project_matched / project_total, 2) if project_total else 0.0
+    )
+
+    weighted_matched = (
+        SKILL_WEIGHT * skill_matched
+        + BULLET_WEIGHT * bullet_matched
+        + PROJECT_WEIGHT * project_matched
+    )
+    weighted_total = (
+        SKILL_WEIGHT * skill_total
+        + BULLET_WEIGHT * bullet_total
+        + PROJECT_WEIGHT * project_total
+    )
+    overall = round(weighted_matched / weighted_total, 2) if weighted_total else 0.0
+
+    matched_terms = sorted(skill_terms | bullet_terms | project_terms)
     profile_keywords = set(profile.get("jd_keywords") or [])
-    missing = sorted(profile_keywords - {k for k in matched_keywords})
+    missing = sorted(profile_keywords - set(matched_terms))
+
     return {
         "overall": overall,
         "by_category": by_category,
-        "matched_keywords": sorted(matched_keywords),
+        "matched_keywords": matched_terms,
         "missing_keywords": missing,
     }
 
