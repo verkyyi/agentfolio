@@ -1,7 +1,8 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useVisitorContext } from './hooks/useVisitorContext';
 import { useAdaptation } from './hooks/useAdaptation';
 import { useAdaptationProgress } from './hooks/useAdaptationProgress';
+import { useBehaviorTracker } from './hooks/useBehaviorTracker';
 import { AdaptiveResume } from './components/AdaptiveResume';
 import { SelfIdPrompt } from './components/SelfIdPrompt';
 import { AdaptationProgress } from './components/AdaptationProgress';
@@ -10,7 +11,7 @@ import {
   findOpenRequestForCompany,
   getApiConfig,
 } from './utils/githubApi';
-import type { AdaptedResume, VisitorContext } from './types';
+import type { AdaptedResume, SectionName, VisitorContext } from './types';
 
 interface SelfId {
   company: string;
@@ -95,6 +96,49 @@ export default function App() {
     };
   }, [progress.status, progress.adaptedPath]);
 
+  const shownAdapted = liveAdapted ?? adapted;
+
+  const trackerEnabled =
+    !!apiConfig && !!effectiveContext && !!shownAdapted && !needsSelfIdForm;
+
+  const startCtx = useMemo(
+    () =>
+      shownAdapted && effectiveContext
+        ? {
+            company: effectiveContext.company,
+            source: effectiveContext.source,
+            adaptation: shownAdapted.company,
+            match_score: shownAdapted.match_score.overall,
+          }
+        : { company: '', source: '', adaptation: '', match_score: 0 },
+    [shownAdapted, effectiveContext],
+  );
+
+  const { track } = useBehaviorTracker({
+    config: apiConfig ?? { pat: '', repo: '' },
+    startCtx,
+    enabled: trackerEnabled,
+  });
+
+  const onCtaClick = useCallback(
+    (target: 'email' | 'linkedin' | 'github') => {
+      track({ type: 'cta_click', data: { target }, ts: Date.now() });
+    },
+    [track],
+  );
+  const onProjectClick = useCallback(
+    (projectId: string, link: 'url' | 'github') => {
+      track({ type: 'project_click', data: { project_id: projectId, link }, ts: Date.now() });
+    },
+    [track],
+  );
+  const onSectionDwell = useCallback(
+    (section: SectionName, ms: number) => {
+      track({ type: 'section_dwell', data: { section, ms }, ts: Date.now() });
+    },
+    [track],
+  );
+
   if (ctxError) return <main>Error loading context: {ctxError.message}</main>;
   if (adaptError) return <main>Error loading adaptation: {adaptError.message}</main>;
 
@@ -106,9 +150,7 @@ export default function App() {
     );
   }
 
-  if (!effectiveContext || !adapted || !base) return <main>Loading…</main>;
-
-  const shownAdapted = liveAdapted ?? adapted;
+  if (!effectiveContext || !shownAdapted || !base) return <main>Loading…</main>;
 
   return (
     <>
@@ -120,7 +162,14 @@ export default function App() {
         />
       )}
       {requestError && <p role="alert">Request error: {requestError}</p>}
-      <AdaptiveResume base={base} adapted={shownAdapted} context={effectiveContext} />
+      <AdaptiveResume
+        base={base}
+        adapted={shownAdapted}
+        context={effectiveContext}
+        onCtaClick={onCtaClick}
+        onProjectClick={onProjectClick}
+        onSectionDwell={trackerEnabled ? onSectionDwell : undefined}
+      />
     </>
   );
 }
