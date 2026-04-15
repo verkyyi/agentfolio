@@ -76,3 +76,30 @@ The site collects anonymous, aggregated engagement signals to help tune resume c
 - **Storage:** events flush to a single GitHub Issue per session (first flush creates it, subsequent flushes append comments). No client-side persistence — all session state lives in memory and is lost on tab close.
 - **Aggregation:** a weekly `analytics.yml` workflow runs `scripts/aggregate_feedback.py`, which collapses all open analytics issues into `data/analytics.json`, then closes them with the `analytics-processed` label.
 - **Disable:** the tracker only fires when `VITE_GITHUB_PAT` is configured. Unset it to disable.
+
+## Chat widget setup (Phase 4)
+
+The chat widget routes questions through a GitHub Action that calls Anthropic's API. The API key stays on GitHub — never baked into the client bundle.
+
+### Create an Anthropic API key
+
+1. Go to https://console.anthropic.com/settings/keys
+2. Create a new key with **Workspace Monthly Spend Limit: $5** (rotate monthly or on suspicion of abuse).
+3. Copy the key.
+
+### Configure the secret
+
+```bash
+gh secret set ANTHROPIC_API_KEY --repo verkyyi/agentfolio
+# paste key when prompted
+```
+
+### How it works
+
+1. Visitor asks a question in the chat widget.
+2. Browser POSTs a `[chat] <question>` issue tagged `chat-request` (via the same `VITE_GITHUB_PAT` as Phase 2).
+3. The `chat-on-request.yml` workflow triggers, calls Anthropic with the full resume JSON as the system prompt.
+4. The Action posts the answer as a JSON comment; the browser polls the issue and surfaces the answer.
+5. Each session is capped at 5 questions (client) and the repo at 20 chat-requests/hour (Action).
+
+All Q&A is publicly visible as GitHub issues — by design, for auditability.
