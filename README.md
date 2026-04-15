@@ -66,3 +66,13 @@ gh secret set GH_ISSUES_PAT --repo verkyyi/agentfolio
 # Re-run deploy workflow:
 gh workflow run deploy.yml --repo verkyyi/agentfolio
 ```
+
+## Analytics & privacy (Phase 3)
+
+The site collects anonymous, aggregated engagement signals to help tune resume content over time. The loop runs entirely on GitHub infrastructure:
+
+- **What is tracked:** session start (company, source, adaptation slug, match score), scroll depth, section dwell times, project-link clicks, contact-CTA clicks (email/LinkedIn/GitHub). Every flushed payload is visible as a GitHub Issue labeled `analytics` — fully auditable.
+- **What is NOT tracked:** cookies, IP addresses, user-agent fingerprints, form inputs, chat text, content outside the site.
+- **Storage:** events flush to a single GitHub Issue per session (first flush creates it, subsequent flushes append comments). No client-side persistence — all session state lives in memory and is lost on tab close.
+- **Aggregation:** a weekly `analytics.yml` workflow runs `scripts/aggregate_feedback.py`, which collapses all open analytics issues into `data/analytics.json`, then closes them with the `analytics-processed` label.
+- **Disable:** the tracker only fires when `VITE_GITHUB_PAT` is configured. Unset it to disable.
