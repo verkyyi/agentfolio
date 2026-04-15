@@ -1,0 +1,33 @@
+name: JD Sync
+on:
+  schedule:
+    - cron: '17 5 * * *'   # 05:17 UTC daily
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install -r scripts/requirements.txt
+      - name: Fetch JDs
+        run: python -m scripts.fetch_jds
+      - name: Commit diffs
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if git diff --quiet -- data/companies; then
+            echo "no JD changes"
+            exit 0
+          fi
+          git add data/companies/
+          git commit -m "chore(jd): refresh keywords from upstream JDs"
+          git push
