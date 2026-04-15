@@ -118,11 +118,12 @@ Two inputs: URL slug (`/c/<slug>`) and self-ID form. Slug registry at `data/slug
 
 Python, runs in GitHub Actions. Steps:
 1. Template summary (fill `{vars}` from profile, fall back to defaults)
-2. Reorder sections per `company.section_order`
-3. Score & reorder bullets by `|bullet.tags ∩ company.priority_tags|`
-4. Apply per-company bullet text overrides
-5. Score skills (emphasis + keyword match) → `match_score`
-6. Reorder projects per `company.project_order`
+2. Optional LLM polish of the templated summary (`--llm`, Phase 7) — Claude Haiku 4.5, `temperature=0`, cached by `(summary, sorted_keywords)` SHA1 under `data/llm_cache/`. Fail-soft: returns the template output on API error.
+3. Reorder sections per `company.section_order`
+4. Score & reorder bullets by `|bullet.tags ∩ company.priority_tags|`
+5. Apply per-company bullet text overrides
+6. Compute weighted match score (Phase 8): `(1.0·skill_matches + 6.0·bullet_tag_matches + 6.0·project_tag_matches) / (1.0·skill_total + 6.0·bullet_total + 6.0·project_total)`. `by_category` exposes per-skill-group ratios plus `experience_bullets` and `projects`. Known issue: the default profile's broad `priority_tags` inflate its score; discrimination across profiles is weaker than intended.
+7. Reorder projects per `company.project_order`
 
 ### 4.3 ACT — Dynamic Rendering
 
@@ -155,11 +156,11 @@ Three levels:
 
 | Workflow | Trigger | Purpose |
 |----------|---------|---------|
-| `adapt.yml` | push to data, weekly cron, manual | Regenerate adapted JSON for known companies |
+| `adapt.yml` | push to data, weekly cron, manual | Regenerate adapted JSON for known companies; passes `--llm` on the scheduled run (Phase 7) |
 | `adapt-on-request.yml` (Phase 2) | `issues.opened` with `adapt-request` label | Live generation for unknown company |
-| `jd-sync.yml` (Phase 5) | daily cron | Fetch & cache target JDs |
-| `github-stats.yml` (Phase 5) | 6-hourly cron | Pull GitHub activity |
+| `chat-on-request.yml` (Phase 4) | `issues.opened` with `chat-request` label | Answer visitor question via Claude Haiku 4.5 |
 | `analytics.yml` (Phase 3) | weekly Sunday cron | Aggregate feedback from Issues |
+| `jd-sync.yml` (Phase 6) | daily 05:17 UTC, manual | Fetch each `jd_url`, refresh `jd_keywords`, flag `stale: true` on 404 |
 | `deploy.yml` | push to main | Build web → GitHub Pages |
 
 ---
@@ -168,21 +169,28 @@ Three levels:
 
 ```
 agentfolio/
-├── .github/workflows/         # CI + deploy
+├── .github/workflows/         # CI + deploy (adapt, chat-on-request, analytics, jd-sync, deploy)
 ├── scripts/                   # Python adaptation engine
-│   ├── adapt_one.py           # Single company adaptation
-│   ├── adapt_all.py           # Batch runner
+│   ├── adapt_one.py           # Single company adaptation (--llm polish optional)
+│   ├── adapt_all.py           # Batch runner (--llm forwarded)
+│   ├── adapt_on_request.py    # Live-generation entrypoint for adapt-on-request.yml
+│   ├── chat_answer.py         # Claude-powered Q&A (Phase 4)
+│   ├── llm_polish.py          # Cached summary polish (Phase 7)
+│   ├── fetch_jds.py           # JD keyword extractor (Phase 6)
+│   ├── aggregate_feedback.py  # Weekly analytics rollup (Phase 3)
 │   └── tests/                 # pytest
 ├── data/
 │   ├── resume.json            # Base resume
 │   ├── slugs.json             # URL slug → company
-│   ├── companies/             # Company profiles
-│   └── adapted/               # Generated per-company JSON
+│   ├── companies/             # Company profiles (jd_keywords refreshed daily)
+│   ├── adapted/               # Generated per-company JSON
+│   ├── analytics.json         # Weekly-aggregated engagement (Phase 3)
+│   └── llm_cache/             # Polished-summary cache (Phase 7)
 ├── web/                       # React + Vite
 │   ├── src/
-│   │   ├── components/        # Section renderers
-│   │   ├── hooks/             # useVisitorContext, useAdaptation
-│   │   ├── utils/slugResolver.ts
+│   │   ├── components/        # Section renderers, ChatWidget, ArchitecturePage, AgentStats, AdaptationComparison
+│   │   ├── hooks/             # useVisitorContext, useAdaptation, useBehaviorTracker, useChat, useAnalytics
+│   │   ├── utils/             # slugResolver, githubApi, chatApi, trackingApi
 │   │   └── types.ts
 │   └── package.json
 └── docs/
@@ -239,8 +247,13 @@ Designed as a **framework** for others to fork:
 
 ## 10. Implementation Phases
 
-- **Phase 1 (done):** Known-company adaptation via URL slugs. Static pre-built adaptations. See `docs/superpowers/plans/2026-04-15-phase1-known-company-adaptation.md`.
+All phases deployed on `main` as of 2026-04-15. Plans live in `docs/superpowers/plans/`.
+
+- **Phase 1:** Known-company adaptation via URL slugs. Static pre-built adaptations.
 - **Phase 2:** Live generation via Issues. `adapt-on-request.yml`, `useAdaptationProgress`, `AdaptationProgress` component, fine-grained PAT.
 - **Phase 3:** Analytics. `useBehaviorTracker`, `aggregate_feedback.py`, `analytics.yml`.
-- **Phase 4:** Chat widget with RAG over `resume.json`. Domain-restricted LLM key, client-side rate limit.
-- **Phase 5:** `/how-it-works` page. Pipeline diagrams, aggregated stats, adaptation comparison. JD auto-fetch + LLM summary rewriting.
+- **Phase 4:** Chat widget. `chat_answer.py`, `chat-on-request.yml`, Claude Haiku 4.5, client-side rate limit (5/session) + server-side (20/hour).
+- **Phase 5:** `/how-it-works` page. Pipeline explanation, `AgentStats` from `analytics.json`, `AdaptationComparison` across slugs.
+- **Phase 6:** JD auto-fetching. `fetch_jds.py` + `jd-sync.yml` daily cron. Safety: 404 marks profile `stale: true`, keeps prior keywords.
+- **Phase 7:** LLM summary polish. `llm_polish.py` with SHA1 cache, `--llm` flag on `adapt_one`/`adapt_all`, adopted by scheduled `adapt.yml`.
+- **Phase 8:** Weighted match score across skills / bullet tags / project tags. Known limitation: default profile's broad `priority_tags` inflate its score; see README "Caveats".

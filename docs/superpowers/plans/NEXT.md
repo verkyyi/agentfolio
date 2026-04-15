@@ -1,47 +1,36 @@
 # AgentFolio — Next Planning Queue
 
-Tracks what still needs to be planned and executed after Phase 3 ships.
+Tracks what still needs to be planned and executed. All initially-sketched phases (1-8) are shipped on `main`.
 
-## Ready to execute (plans written)
+## Shipped
 
-- **Phase 4 — Issue-triggered chat widget** (`2026-04-15-phase4-issue-triggered-chat.md`)
-  - Prerequisite: user must create an Anthropic API key with monthly spend cap ($5), set as Actions secret `ANTHROPIC_API_KEY`.
-  - 9 tasks · adds `chat_answer.py`, `chat-on-request.yml`, `chatApi`, `useChat`, `ChatWidget`.
-  - Deploy smoke test: `gh issue create --label chat-request ...` should trigger Action and get a `status: answer` comment.
+- **Phase 1 — Known-company adaptation** (`2026-04-15-phase1-known-company-adaptation.md`)
+- **Phase 2 — Live adaptation via issues** (`2026-04-15-phase2-live-adaptation-generation.md`)
+- **Phase 3 — Analytics pipeline** (`2026-04-15-phase3-analytics-pipeline.md`)
+- **Phase 4 — Issue-triggered chat widget** (`2026-04-15-phase4-issue-triggered-chat.md`) — smoke-tested on issue #5
+- **Phase 5 — Architecture page** (`2026-04-15-phase5-architecture-page.md`) — live at `/how-it-works`
+- **Phase 6 — JD auto-fetching** (`2026-04-15-phase6-jd-auto-fetching.md`) — daily cron, stale-safe
+- **Phase 7 — LLM summary rewriting** (`2026-04-15-phase7-llm-summary-rewriting.md`) — cached by SHA1
+- **Phase 8 — Match-score refinement** (`2026-04-15-phase8-match-score-refinement.md`) — cohere 0.70
 
-- **Phase 5 — Architecture page** (`2026-04-15-phase5-architecture-page.md`)
-  - No new secrets required.
-  - 6 tasks · adds `ArchitecturePage`, `AgentStats`, `AdaptationComparison`, `useAnalytics`, `/how-it-works` route.
-  - Renders `data/analytics.json` aggregated stats + side-by-side adaptation comparison.
+## Known follow-ups (not yet planned)
 
-## To plan (not yet written)
+- **Match-score discrimination fix.** Phase 8 raised default's score to 0.71 because `data/companies/default.json` has broad `priority_tags` (`full-stack`, `agentic`, `customer-facing`) that hit many bullets/projects. Options:
+  - Narrow `default.priority_tags` to terms so generic they rarely match (or empty them entirely).
+  - Weight tag matches inversely by how many profiles share the tag (rare tags count more).
+  - Introduce a `tailored_score` separate from `overall` that only counts matches above a rarity threshold.
+- **JD keyword extraction quality.** Phase 6 only extracts the narrow `KEYWORD_VOCAB` and the initial live run on cohere pulled just `JavaScript, Java` because the placeholder `jd_url` redirected to Ashby's login page. Needs either a smarter extractor (NER / LLM-assisted), or real per-company JD URLs fed in.
+- **Live-adaptation LLM polish.** `adapt_on_request.py` doesn't currently pass `--llm`; the issue-triggered pipeline still emits the raw templated summary. Wiring it is a one-line change but adds Anthropic cost per adapt-request.
 
-- **Phase 6 — JD auto-fetching**
-  - `scripts/fetch_jds.py` + `scripts/tests/test_fetch_jds.py` — parse job-posting URLs (Ashby, Greenhouse, Lever, direct HTML) and emit keyword/skill lists.
-  - `.github/workflows/jd-sync.yml` — daily cron that re-fetches `jd_url` for each company profile and updates `jd_keywords`/`skill_emphasis`.
-  - Changes: modifies `data/companies/*.json` in-place (commits if keywords diff), triggers `adapt.yml` downstream.
-  - Risk: JD URLs rot. Fallback behavior: if 404, keep last-known keywords, flag the profile with `stale: true`.
+## Repository state
 
-- **Phase 7 — LLM-powered summary rewriting**
-  - Optional pass in `adapt_one.py`: after template substitution, send summary + JD keywords to Claude for a polish. Gated by `--llm` CLI flag (scheduled runs enable it; tests don't).
-  - Requires `ANTHROPIC_API_KEY` (already provisioned for Phase 4).
-  - Risk: non-determinism across runs → diff noise. Mitigation: seed via temperature=0 + cache by (base_summary, keyword_set) hash.
-
-- **Phase 8 — Match-score refinement**
-  - Current `score_skill_match` only counts skill-string keyword hits. Expand to score across `experience.bullets[].tags`, `projects[].tags`, and weighted keyword matches.
-  - Target: raise Cohere match from ~24% to ≥70%.
-  - No new files; modifies `scripts/adapt_one.py` and its tests.
-
-## Session state at wrap-up
-
-- **Branch:** `main` (Phases 1-3 merged and deployed)
-- **Open feature branches:** `phase1-known-company-adaptation`, `phase2-live-adaptation-generation`, `phase3-analytics-pipeline` — can be pruned.
+- **Branch:** `main` (Phases 1-8 merged and deployed)
 - **Live:** https://verkyyi.github.io/agentfolio/
-- **Data:** `data/analytics.json` generated once during Phase 3 smoke test; will auto-refresh weekly via `analytics.yml` on Sunday 06:00 UTC.
+- **Data:** `data/analytics.json` auto-refreshes weekly (Sunday 06:00 UTC). `data/llm_cache/` grows with scheduled `adapt.yml` runs. `data/companies/` refreshed daily by `jd-sync.yml`.
+- **Secrets:** `GH_ISSUES_PAT` (baked into client), `ANTHROPIC_API_KEY` (server-only, used by chat + polish).
 
 ## How to resume in a new session
 
-1. Open with: "Continue Phase 4 from `docs/superpowers/plans/2026-04-15-phase4-issue-triggered-chat.md` using subagent-driven development."
-2. Hand over the Anthropic API key status (created/not-created) and the `gh secret` command output.
-3. For Phase 5, open with: "Execute Phase 5 from the plan at `docs/superpowers/plans/2026-04-15-phase5-architecture-page.md`."
-4. For Phases 6-8, first ask to write plans using the `superpowers:writing-plans` skill.
+1. Read `MEMORY.md` (auto-loaded) — it points at the current phase-status snapshot.
+2. Verify current state matches memory — decay is real, especially `data/analytics.json` and `data/adapted/*.json`.
+3. For new work, use `superpowers:brainstorming` → `superpowers:writing-plans` → subagent-driven execution.
