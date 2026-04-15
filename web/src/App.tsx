@@ -39,9 +39,12 @@ export default function App() {
     }
   }, []);
 
-  const effectiveContext: VisitorContext | null = selfId
-    ? { source: 'self-id', company: normalize(selfId.company), role: selfId.role }
-    : urlContext;
+  const effectiveContext = useMemo<VisitorContext | null>(() => {
+    if (selfId) {
+      return { source: 'self-id', company: normalize(selfId.company), role: selfId.role };
+    }
+    return urlContext;
+  }, [selfId, urlContext]);
 
   const needsSelfIdForm =
     urlContext !== null && urlContext.source === 'default' && selfId === null;
