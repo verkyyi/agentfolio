@@ -49,7 +49,7 @@ describe('findOpenRequestForCompany', () => {
 
 describe('createAdaptRequest', () => {
   it('POSTs with correct title, body, and labels', async () => {
-    const fetchMock = vi.fn(async () => ({
+    const fetchMock = vi.fn(async (_url: string, _init?: RequestInit) => ({
       ok: true,
       json: async () => ({ number: 42 }),
     }));
@@ -60,18 +60,18 @@ describe('createAdaptRequest', () => {
 
     const [url, init] = fetchMock.mock.calls[0];
     expect(url).toBe('https://api.github.com/repos/a/b/issues');
-    expect((init as RequestInit).method).toBe('POST');
-    const body = JSON.parse((init as RequestInit).body as string);
+    expect(init?.method).toBe('POST');
+    const body = JSON.parse(init?.body as string);
     expect(body.title).toBe('[adapt] Stripe | FDE');
     expect(body.labels).toEqual(['adapt-request']);
-    const headers = (init as RequestInit).headers as Record<string, string>;
+    const headers = init?.headers as Record<string, string>;
     expect(headers.Authorization).toBe('Bearer tok');
   });
 });
 
 describe('fetchIssueComments', () => {
   it('GETs comments URL for the issue', async () => {
-    const fetchMock = vi.fn(async () => ({
+    const fetchMock = vi.fn(async (_url: string, _init?: RequestInit) => ({
       ok: true,
       json: async () => [{ body: '{"status":"progress"}' }],
     }));
