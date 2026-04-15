@@ -9,6 +9,7 @@ interface Options {
 
 export function useVisitorContext(options: Options = {}) {
   const [context, setContext] = useState<VisitorContext | null>(null);
+  const [registry, setRegistry] = useState<SlugRegistry | null>(null);
   const [error, setError] = useState<Error | null>(null);
   const pathname = options.pathname ?? window.location.pathname;
   const slugsUrl = options.slugsUrl ?? `${import.meta.env.BASE_URL}data/slugs.json`;
@@ -19,10 +20,11 @@ export function useVisitorContext(options: Options = {}) {
       try {
         const res = await fetch(slugsUrl);
         if (!res.ok) throw new Error(`slugs fetch failed: ${res.status}`);
-        const registry = (await res.json()) as SlugRegistry;
+        const reg = (await res.json()) as SlugRegistry;
         if (cancelled) return;
         const slug = parseSlugFromPath(pathname);
-        setContext(resolveSlug(slug, registry));
+        setRegistry(reg);
+        setContext(resolveSlug(slug, reg));
       } catch (e) {
         if (cancelled) return;
         setError(e as Error);
@@ -34,5 +36,5 @@ export function useVisitorContext(options: Options = {}) {
     };
   }, [pathname, slugsUrl]);
 
-  return { context, error };
+  return { context, registry, error };
 }

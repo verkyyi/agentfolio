@@ -26,7 +26,7 @@ function normalize(company: string): string {
 }
 
 export default function App() {
-  const { context: urlContext, error: ctxError } = useVisitorContext();
+  const { context: urlContext, registry, error: ctxError } = useVisitorContext();
   const [selfId, setSelfId] = useState<SelfId | null>(null);
   const [issueNumber, setIssueNumber] = useState<number | null>(null);
   const [requestError, setRequestError] = useState<string | null>(null);
@@ -174,9 +174,24 @@ export default function App() {
   }
 
   if (needsSelfIdForm) {
+    const entries = registry ? Object.values(registry) : [];
+    const companies = Array.from(
+      new Set(
+        entries
+          .map((e) => e.company)
+          .filter((c): c is string => !!c && c !== 'default'),
+      ),
+    ).sort();
+    const roles = Array.from(
+      new Set(entries.map((e) => e.role).filter((r): r is string => !!r)),
+    ).sort();
     return (
       <main>
-        <SelfIdPrompt onSubmit={setSelfId} />
+        <SelfIdPrompt
+          onSubmit={setSelfId}
+          onSkip={() => setSelfId({ company: 'default', role: '' })}
+          suggestions={{ companies, roles }}
+        />
       </main>
     );
   }

@@ -1,12 +1,21 @@
-import { useState } from 'react';
+import { useId, useState } from 'react';
+
+interface Suggestions {
+  companies: string[];
+  roles: string[];
+}
 
 interface Props {
   onSubmit: (payload: { company: string; role: string }) => void;
+  onSkip?: () => void;
+  suggestions?: Suggestions;
 }
 
-export function SelfIdPrompt({ onSubmit }: Props) {
+export function SelfIdPrompt({ onSubmit, onSkip, suggestions }: Props) {
   const [company, setCompany] = useState('');
   const [role, setRole] = useState('');
+  const companyListId = useId();
+  const roleListId = useId();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -25,17 +34,40 @@ export function SelfIdPrompt({ onSubmit }: Props) {
           name="company"
           value={company}
           onChange={(e) => setCompany(e.target.value)}
+          list={suggestions?.companies.length ? companyListId : undefined}
+          autoComplete="off"
         />
       </label>
+      {suggestions?.companies.length ? (
+        <datalist id={companyListId}>
+          {suggestions.companies.map((c) => (
+            <option key={c} value={c} />
+          ))}
+        </datalist>
+      ) : null}
       <label>
         Role
         <input
           name="role"
           value={role}
           onChange={(e) => setRole(e.target.value)}
+          list={suggestions?.roles.length ? roleListId : undefined}
+          autoComplete="off"
         />
       </label>
+      {suggestions?.roles.length ? (
+        <datalist id={roleListId}>
+          {suggestions.roles.map((r) => (
+            <option key={r} value={r} />
+          ))}
+        </datalist>
+      ) : null}
       <button type="submit">Show me →</button>
+      {onSkip && (
+        <button type="button" onClick={onSkip}>
+          Skip — show default version
+        </button>
+      )}
     </form>
   );
 }

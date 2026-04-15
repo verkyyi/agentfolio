@@ -1,5 +1,5 @@
 import { describe, it, expect, vi } from 'vitest';
-import { render, screen } from '@testing-library/react';
+import { render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { SelfIdPrompt } from '../components/SelfIdPrompt';
 
@@ -32,5 +32,46 @@ describe('SelfIdPrompt', () => {
     await user.click(screen.getByRole('button', { name: /show me/i }));
 
     expect(onSubmit).not.toHaveBeenCalled();
+  });
+
+  it('renders a skip button when onSkip is provided', async () => {
+    const user = userEvent.setup();
+    const onSkip = vi.fn();
+    render(<SelfIdPrompt onSubmit={() => {}} onSkip={onSkip} />);
+
+    const skipBtn = screen.getByRole('button', { name: /skip/i });
+    await user.click(skipBtn);
+    expect(onSkip).toHaveBeenCalledTimes(1);
+  });
+
+  it('does not render a skip button when onSkip is omitted', () => {
+    render(<SelfIdPrompt onSubmit={() => {}} />);
+    expect(screen.queryByRole('button', { name: /skip/i })).not.toBeInTheDocument();
+  });
+
+  it('wires datalist suggestions for company and role', () => {
+    const { container } = render(
+      <SelfIdPrompt
+        onSubmit={() => {}}
+        suggestions={{ companies: ['Cohere', 'OpenAI'], roles: ['FDE'] }}
+      />,
+    );
+
+    const companyInput = screen.getByLabelText(/company/i) as HTMLInputElement;
+    const roleInput = screen.getByLabelText(/role/i) as HTMLInputElement;
+    expect(companyInput.getAttribute('list')).toBeTruthy();
+    expect(roleInput.getAttribute('list')).toBeTruthy();
+
+    const companyList = container.ownerDocument.getElementById(
+      companyInput.getAttribute('list')!,
+    );
+    expect(companyList).not.toBeNull();
+    const options = within(companyList as HTMLElement).getAllByRole('option', {
+      hidden: true,
+    });
+    expect(options.map((o) => (o as HTMLOptionElement).value)).toEqual([
+      'Cohere',
+      'OpenAI',
+    ]);
   });
 });
