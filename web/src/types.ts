@@ -152,9 +152,27 @@ export type AnalyticsEvent =
       type: 'cta_click';
       data: { target: 'email' | 'linkedin' | 'github' };
       ts: number;
+    }
+  | {
+      type: 'chat_question';
+      data: { question: string; issue_number: number };
+      ts: number;
     };
 
 export interface AnalyticsFlushPayload {
   session_id: string;
   events: AnalyticsEvent[];
+}
+
+export type ChatComment =
+  | { status: 'thinking'; ts: string }
+  | { status: 'answer'; answer: string; model: string; ts: string }
+  | { status: 'rate_limited'; ts: string }
+  | { status: 'error'; message: string; ts: string };
+
+export interface ChatMessage {
+  id: string;
+  role: 'user' | 'assistant' | 'system';
+  text: string;
+  issueNumber?: number;
 }
