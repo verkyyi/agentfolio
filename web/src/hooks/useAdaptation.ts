@@ -9,6 +9,7 @@ export function useAdaptation(company: string | null) {
   const [adapted, setAdapted] = useState<AdaptedResume | null>(null);
   const [base, setBase] = useState<BaseResume | null>(null);
   const [error, setError] = useState<Error | null>(null);
+  const [needsLiveGeneration, setNeedsLiveGeneration] = useState(false);
 
   useEffect(() => {
     if (!company) return;
@@ -24,7 +25,9 @@ export function useAdaptation(company: string | null) {
 
         const primaryUrl = `${import.meta.env.BASE_URL}data/adapted/${slug}.json`;
         let adaptedRes = await fetch(primaryUrl);
+        let fellBack = false;
         if (!adaptedRes.ok) {
+          fellBack = true;
           const fallbackUrl = `${import.meta.env.BASE_URL}data/adapted/default.json`;
           adaptedRes = await fetch(fallbackUrl);
           if (!adaptedRes.ok) {
@@ -36,6 +39,7 @@ export function useAdaptation(company: string | null) {
         if (cancelled) return;
         setBase(baseData);
         setAdapted(adaptedData);
+        setNeedsLiveGeneration(fellBack);
       } catch (e) {
         if (cancelled) return;
         setError(e as Error);
@@ -47,5 +51,5 @@ export function useAdaptation(company: string | null) {
     };
   }, [company]);
 
-  return { adapted, base, error };
+  return { adapted, base, error, needsLiveGeneration };
 }

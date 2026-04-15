@@ -85,4 +85,16 @@ describe('useAdaptation', () => {
       expect(calls.some((u) => u.includes('/data/adapted/cohere-ai.json'))).toBe(true);
     });
   });
+
+  it('sets needsLiveGeneration true when primary file is 404 and default is served', async () => {
+    const { result } = renderHook(() => useAdaptation('unknown'));
+    await waitFor(() => expect(result.current.adapted).not.toBeNull());
+    expect(result.current.needsLiveGeneration).toBe(true);
+  });
+
+  it('sets needsLiveGeneration false when primary file loads', async () => {
+    const { result } = renderHook(() => useAdaptation('cohere'));
+    await waitFor(() => expect(result.current.adapted).not.toBeNull());
+    expect(result.current.needsLiveGeneration).toBe(false);
+  });
 });
