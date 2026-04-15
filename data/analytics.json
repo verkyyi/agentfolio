@@ -1,0 +1,47 @@
+{
+  "generated_at": "2026-04-15T21:09:55+00:00",
+  "source_issues": 1,
+  "total_sessions": 1,
+  "unique_companies": 1,
+  "by_company": {
+    "cohere": {
+      "sessions": 1,
+      "avg_duration_s": 45.0,
+      "avg_max_scroll_pct": 0.87,
+      "section_dwell_avg_s": {
+        "summary": 4.2,
+        "projects": 18.4,
+        "experience": 12.1
+      },
+      "project_clicks": {
+        "agentfolio": 1
+      },
+      "cta_clicks": {
+        "email": 1
+      }
+    }
+  },
+  "global": {
+    "avg_duration_s": 45.0,
+    "top_projects": [
+      [
+        "agentfolio",
+        1
+      ]
+    ],
+    "top_sections": [
+      [
+        "projects",
+        18.4
+      ],
+      [
+        "experience",
+        12.1
+      ],
+      [
+        "summary",
+        4.2
+      ]
+    ]
+  }
+}
