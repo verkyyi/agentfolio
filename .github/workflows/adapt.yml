@@ -29,16 +29,18 @@ jobs:
         run: python -m pytest scripts/tests/ -v
 
       - name: Generate adaptations
-        run: python -m scripts.adapt_all
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: python -m scripts.adapt_all --llm
 
       - name: Commit generated adaptations
         run: |
           git config user.name "AgentFolio Bot"
           git config user.email "bot@agentfolio.local"
-          git add data/adapted/
+          git add data/adapted/ data/llm_cache/
           if git diff --cached --quiet; then
             echo "no adaptation changes"
           else
-            git commit -m "chore(adapt): regenerate adapted resumes"
+            git commit -m "chore(adapt): regenerate adapted resumes (--llm)"
             git push
           fi
