@@ -126,3 +126,35 @@ export interface GithubIssue {
   state: 'open' | 'closed';
   labels: Array<{ name: string }>;
 }
+
+export type AnalyticsEvent =
+  | {
+      type: 'session_start';
+      data: { company: string; source: string; adaptation: string; match_score: number };
+      ts: number;
+    }
+  | {
+      type: 'session_heartbeat';
+      data: { duration_ms: number; max_scroll_pct: number };
+      ts: number;
+    }
+  | {
+      type: 'section_dwell';
+      data: { section: string; ms: number };
+      ts: number;
+    }
+  | {
+      type: 'project_click';
+      data: { project_id: string; link: 'url' | 'github' };
+      ts: number;
+    }
+  | {
+      type: 'cta_click';
+      data: { target: 'email' | 'linkedin' | 'github' };
+      ts: number;
+    };
+
+export interface AnalyticsFlushPayload {
+  session_id: string;
+  events: AnalyticsEvent[];
+}
