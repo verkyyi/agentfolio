@@ -105,3 +105,20 @@ def test_adapt_match_score_has_per_category(base_resume, cohere_profile):
     assert set(ms["by_category"].keys()) == {"ai", "fullstack", "cloud", "methods"}
     for v in ms["by_category"].values():
         assert 0.0 <= v <= 1.0
+
+
+def test_adapt_does_not_call_polish_when_polish_fn_none(base_resume, cohere_profile):
+    result = adapt(base_resume, cohere_profile)
+    assert result["summary"] == render_summary(base_resume, cohere_profile)
+
+
+def test_adapt_calls_polish_fn_when_provided(base_resume, cohere_profile):
+    calls = []
+
+    def fake_polish(s, k):
+        calls.append((s, k))
+        return "POLISHED: " + s
+
+    result = adapt(base_resume, cohere_profile, polish_fn=fake_polish)
+    assert result["summary"].startswith("POLISHED:")
+    assert len(calls) == 1

@@ -102,11 +102,13 @@ def _match_score(base_resume: dict, profile: dict) -> dict:
     }
 
 
-def adapt(base_resume: dict, profile: dict) -> dict:
+def adapt(base_resume: dict, profile: dict, polish_fn=None) -> dict:
     company_slug = _normalize_company(profile)
     priority = profile.get("priority_tags") or []
 
     summary = render_summary(base_resume, profile)
+    if polish_fn is not None:
+        summary = polish_fn(summary, profile.get("jd_keywords") or [])
 
     experience_order = [exp["id"] for exp in base_resume["experience"]]
 
@@ -164,6 +166,16 @@ def main(argv: list[str]) -> int:
         default=str(Path(__file__).resolve().parents[1]),
         help="Path to repo root (default: auto-detected)",
     )
+    parser.add_argument(
+        "--llm",
+        action="store_true",
+        help="Polish summary via Claude (requires ANTHROPIC_API_KEY)",
+    )
+    parser.add_argument(
+        "--cache-dir",
+        default=None,
+        help="Directory for LLM polish cache (default: <repo>/data/llm_cache)",
+    )
     args = parser.parse_args(argv)
 
     root = Path(args.repo_root)
@@ -174,7 +186,34 @@ def main(argv: list[str]) -> int:
         return 2
     profile = _load(profile_path)
 
-    adapted = adapt(base, profile)
+    polish_fn = None
+    if args.llm:
+        import os
+
+        api_key = os.environ.get("ANTHROPIC_API_KEY")
+        if not api_key:
+            print(
+                "warn: --llm set but ANTHROPIC_API_KEY missing; skipping polish",
+                file=sys.stderr,
+            )
+        else:
+            from anthropic import Anthropic
+
+            from scripts.llm_polish import polish_summary
+
+            client = Anthropic(api_key=api_key)
+            cache_dir = Path(args.cache_dir) if args.cache_dir else root / "data" / "llm_cache"
+
+            def polish_fn(s: str, k: list[str]) -> str:
+                return polish_summary(
+                    s,
+                    k,
+                    client=client,
+                    model="claude-haiku-4-5",
+                    cache_dir=cache_dir,
+                )
+
+    adapted = adapt(base, profile, polish_fn=polish_fn)
     output_slug = _normalize_company(profile)
     out_path = root / "data" / "adapted" / f"{output_slug}.json"
     _write(out_path, adapted)
