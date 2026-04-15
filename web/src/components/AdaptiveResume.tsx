@@ -50,7 +50,7 @@ export function AdaptiveResume({
   };
 
   return (
-    <main>
+    <main className="resume">
       <header>
         <h1>{base.name}</h1>
         <p>
