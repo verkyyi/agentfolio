@@ -38,6 +38,7 @@ jobs:
         env:
           VITE_GITHUB_PAT: ${{ secrets.GH_ISSUES_PAT }}
           VITE_GITHUB_REPO: ${{ github.repository }}
+          VITE_BASE_PATH: ${{ endsWith(github.event.repository.name, '.github.io') && '/' || format('/{0}/', github.event.repository.name) }}
         run: npm run build
 
       - uses: actions/configure-pages@v5
