@@ -12,9 +12,33 @@ def base_resume():
 
 @pytest.fixture
 def cohere_profile():
-    return json.loads((REPO_ROOT / "data" / "companies" / "cohere.json").read_text())
+    return {
+        "company": "Cohere",
+        "role": "FDE, Agentic Platform",
+        "priority_tags": ["agentic", "customer-facing", "rag", "cloud", "enterprise"],
+        "summary_vars": {
+            "focus": "agentic AI systems and full-stack products",
+            "surface": "autonomous agents and backend systems",
+            "infra": "private cloud infrastructure",
+            "systems": "AI platforms",
+            "highlight": "LLM integration, RAG pipelines, and rapid experimentation across the entire product lifecycle",
+        },
+        "section_order": ["summary", "projects", "experience", "skills", "education", "volunteering"],
+        "project_order": ["agentfolio", "ainbox", "tokenman"],
+        "skill_emphasis": ["Autonomous Agent Development", "RAG Pipelines", "Python", "MCP (Model Context Protocol)", "LLM Integration"],
+        "jd_keywords": ["JavaScript", "Java"],
+    }
 
 
 @pytest.fixture
 def default_profile():
-    return json.loads((REPO_ROOT / "data" / "companies" / "default.json").read_text())
+    return {
+        "company": "default",
+        "role": None,
+        "priority_tags": ["full-stack", "agentic", "customer-facing"],
+        "summary_vars": {},
+        "section_order": ["summary", "experience", "projects", "skills", "education", "volunteering"],
+        "project_order": ["ainbox", "agentfolio", "tokenman"],
+        "skill_emphasis": ["Python", "LLM Integration", "AWS (EC2, SES, Aurora Serverless, IAM, SCPs)"],
+        "jd_keywords": [],
+    }
