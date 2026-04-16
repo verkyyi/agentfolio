@@ -4,28 +4,16 @@
     "label": "Senior Software Engineer",
     "email": "alex@example.com",
     "phone": "(555) 123-4567",
-    "summary": "Senior Software Engineer with 4+ years of experience building scalable distributed systems, data pipelines, and full-stack applications. Proven track record leading architectural migrations, mentoring engineers, and shipping customer-facing products at scale.",
-    "location": {
-      "city": "San Francisco",
-      "region": "CA",
-      "countryCode": "US"
-    },
+    "summary": "Senior software engineer with 6+ years of experience across full-stack development, data infrastructure, and platform engineering. Proven track record building high-scale systems at both startups and established companies, with a passion for open-source tooling and mentoring engineers.",
+    "location": { "city": "San Francisco", "region": "CA", "countryCode": "US" },
     "profiles": [
-      {
-        "network": "LinkedIn",
-        "url": "https://linkedin.com/in/alexchen",
-        "username": "alexchen"
-      },
-      {
-        "network": "GitHub",
-        "url": "https://github.com/alexchen",
-        "username": "alexchen"
-      }
+      { "network": "LinkedIn", "url": "https://linkedin.com/in/alexchen", "username": "alexchen" },
+      { "network": "GitHub", "url": "https://github.com/alexchen", "username": "alexchen" }
     ]
   },
   "work": [
     {
-      "id": "acme-corp-senior-engineer",
+      "id": "acme-corp",
       "name": "Acme Corp",
       "position": "Senior Software Engineer",
       "location": "San Francisco, CA",
@@ -37,7 +25,7 @@
       ]
     },
     {
-      "id": "dataflow-startup-fullstack-engineer",
+      "id": "dataflow-startup",
       "name": "DataFlow Startup",
       "position": "Full-Stack Engineer",
       "location": "Remote",
@@ -54,7 +42,7 @@
     {
       "id": "ml-model-monitor",
       "name": "ML Model Monitor",
-      "description": "Open-source ML model monitoring dashboard with real-time drift detection and alerting.",
+      "description": "Open-source ML model monitoring dashboard",
       "url": "https://github.com/alexchen/ml-monitor",
       "github": "https://github.com/alexchen/ml-monitor",
       "startDate": "2024-01",
@@ -62,20 +50,12 @@
         "Built a real-time model drift detection system with configurable alerting thresholds, deployed on AWS Lambda for zero-ops monitoring.",
         "Designed a React dashboard visualizing prediction distributions, feature importance, and alert history across multiple model versions."
       ],
-      "keywords": [
-        "machine-learning",
-        "monitoring",
-        "full-stack",
-        "open-source",
-        "AWS Lambda",
-        "React",
-        "Python"
-      ]
+      "keywords": ["machine-learning", "monitoring", "full-stack", "open-source"]
     },
     {
       "id": "devcli-toolkit",
       "name": "DevCLI Toolkit",
-      "description": "Developer productivity CLI tools with sub-5ms startup time for common workflows.",
+      "description": "Developer productivity CLI tools",
       "url": "https://github.com/alexchen/devcli",
       "github": "https://github.com/alexchen/devcli",
       "startDate": "2023-06",
@@ -83,50 +63,24 @@
         "Created a Rust-based CLI toolkit with sub-5ms startup time for common developer workflows: git branch cleanup, log tailing, and config management.",
         "Published to crates.io with 2,000+ downloads; maintained backward compatibility across 8 minor releases."
       ],
-      "keywords": [
-        "cli",
-        "developer-tools",
-        "rust",
-        "open-source"
-      ]
+      "keywords": ["cli", "developer-tools", "rust", "open-source"]
     }
   ],
   "skills": [
     {
       "id": "languages-frameworks",
       "name": "Languages & Frameworks",
-      "keywords": [
-        "TypeScript",
-        "Python",
-        "Rust",
-        "React",
-        "Node.js",
-        "FastAPI",
-        "SQL"
-      ]
+      "keywords": ["TypeScript", "Python", "Rust", "React", "Node.js", "FastAPI", "SQL"]
     },
     {
       "id": "infrastructure-devops",
       "name": "Infrastructure & DevOps",
-      "keywords": [
-        "AWS",
-        "Docker",
-        "Kubernetes",
-        "GitHub Actions",
-        "Terraform",
-        "Kafka"
-      ]
+      "keywords": ["AWS", "Docker", "Kubernetes", "GitHub Actions", "Terraform", "Kafka"]
     },
     {
       "id": "data-ml",
       "name": "Data & ML",
-      "keywords": [
-        "PostgreSQL",
-        "Redis",
-        "Apache Flink",
-        "scikit-learn",
-        "MLflow"
-      ]
+      "keywords": ["PostgreSQL", "Redis", "Apache Flink", "scikit-learn", "MLflow"]
     }
   ],
   "education": [
@@ -150,11 +104,11 @@
   ],
   "meta": {
     "version": "1.0.0",
-    "lastModified": "2026-04-16T09:07:18+00:00",
+    "lastModified": "2026-04-16T00:00:00Z",
     "agentfolio": {
       "company": "default",
       "role": null,
-      "generated_by": "adapt_from_markdown.py v1.0",
+      "generated_by": "claude-code/adapt-skill",
       "match_score": {
         "overall": 0.5,
         "by_category": {
@@ -162,38 +116,11 @@
           "infrastructure-devops": 0.5,
           "data-ml": 0.5
         },
-        "matched_keywords": [
-          "TypeScript",
-          "Python",
-          "Rust",
-          "React",
-          "Node.js",
-          "AWS",
-          "Docker",
-          "Kubernetes",
-          "PostgreSQL",
-          "Apache Flink"
-        ],
+        "matched_keywords": [],
         "missing_keywords": []
       },
-      "skill_emphasis": [
-        "TypeScript",
-        "Python",
-        "Rust",
-        "React",
-        "AWS",
-        "Kubernetes",
-        "Apache Flink",
-        "PostgreSQL"
-      ],
-      "section_order": [
-        "basics",
-        "work",
-        "projects",
-        "skills",
-        "education",
-        "volunteer"
-      ]
+      "skill_emphasis": [],
+      "section_order": ["basics", "work", "projects", "skills", "education", "volunteer"]
     }
   }
 }
