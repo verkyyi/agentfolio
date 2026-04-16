@@ -1,0 +1,35 @@
+{
+  "company": "Apple",
+  "role": "Software Engineer",
+  "priority_tags": [
+    "full-stack",
+    "agentic",
+    "customer-facing"
+  ],
+  "summary_vars": {
+    "focus": "full-stack products and data infrastructure",
+    "surface": "front-end interfaces",
+    "infra": "backend systems and cloud infrastructure",
+    "systems": "AI platforms",
+    "highlight": "generative AI engineering, rapid experimentation, and high-quality data solutions"
+  },
+  "section_order": [
+    "summary",
+    "experience",
+    "projects",
+    "skills",
+    "education",
+    "volunteering"
+  ],
+  "project_order": [
+    "ainbox",
+    "agentfolio",
+    "tokenman"
+  ],
+  "skill_emphasis": [
+    "Python",
+    "LLM Integration",
+    "AWS (EC2, SES, Aurora Serverless, IAM, SCPs)"
+  ],
+  "jd_keywords": []
+}

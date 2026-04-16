@@ -1,0 +1,50 @@
+{
+  "company": "Apple",
+  "generated_at": "2026-04-16T00:04:58+00:00",
+  "generated_by": "adapt_one.py v0.1",
+  "summary": "Forward Deployed Engineer with 5+ years shipping full-stack products and data infrastructure at scale. Experienced collaborating directly with enterprise customers to scope technical requirements and deploy end-to-end solutions — from front-end interfaces to backend systems and cloud infrastructure. Proven track record building production AI platforms that power 50,000+ users, with deep expertise in generative AI engineering, rapid experimentation, and high-quality data solutions.",
+  "section_order": [
+    "summary",
+    "experience",
+    "projects",
+    "skills",
+    "education",
+    "volunteering"
+  ],
+  "experience_order": [
+    "24helpful",
+    "24haowan",
+    "maiduote"
+  ],
+  "bullet_overrides": {},
+  "project_order": [
+    "ainbox",
+    "agentfolio",
+    "tokenman"
+  ],
+  "skill_emphasis": [
+    "Python",
+    "LLM Integration",
+    "AWS (EC2, SES, Aurora Serverless, IAM, SCPs)"
+  ],
+  "match_score": {
+    "overall": 0.71,
+    "by_category": {
+      "ai": 0.12,
+      "fullstack": 0.11,
+      "cloud": 0.12,
+      "methods": 0.0,
+      "experience_bullets": 1.0,
+      "projects": 1.0
+    },
+    "matched_keywords": [
+      "AWS (EC2, SES, Aurora Serverless, IAM, SCPs)",
+      "LLM Integration",
+      "Python",
+      "agentic",
+      "customer-facing",
+      "full-stack"
+    ],
+    "missing_keywords": []
+  }
+}
