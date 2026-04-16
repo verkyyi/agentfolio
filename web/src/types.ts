@@ -1,71 +1,79 @@
-export interface Contact {
-  location: string;
-  phone: string;
-  email: string;
-  linkedin: string;
-  github: string;
+// JSON Resume types
+
+export interface Location {
+  city: string;
+  region?: string;
+  countryCode?: string;
 }
 
-export interface Bullet {
-  id: string;
-  text: string;
-  tags?: string[];
-  adaptations?: Record<string, string | null>;
-}
-
-export interface Experience {
-  id: string;
-  title: string;
-  company: string;
-  location: string;
-  dates: string;
-  subtitle?: string;
-  bullets: Bullet[];
-}
-
-export interface Project {
-  id: string;
-  name: string;
-  tagline: string;
+export interface Profile {
+  network: string;
   url: string;
-  github: string;
-  dates: string;
+  username?: string;
+}
+
+export interface Basics {
+  name: string;
+  label?: string;
+  email: string;
+  phone?: string;
+  summary?: string;
+  location: Location;
+  profiles: Profile[];
+}
+
+export interface HighlightMeta {
+  id: string;
   tags: string[];
-  bullets: Bullet[];
+}
+
+export interface Work {
+  id?: string;
+  name: string;
+  position: string;
+  location?: string;
+  description?: string;
+  startDate: string;
+  endDate?: string;
+  highlights: string[];
+  highlightMeta?: HighlightMeta[];
+}
+
+export interface ResumeProject {
+  id?: string;
+  name: string;
+  description: string;
+  url?: string;
+  github?: string;
+  startDate?: string;
+  endDate?: string;
+  highlights: string[];
+  keywords: string[];
+}
+
+export interface Skill {
+  id?: string;
+  name: string;
+  keywords: string[];
 }
 
 export interface Education {
-  degree: string;
-  school: string;
-  location: string;
-  dates: string;
-  note?: string;
+  institution: string;
+  area?: string;
+  studyType?: string;
+  startDate?: string;
+  endDate?: string;
+  location?: string;
+  score?: string;
 }
 
-export interface SkillGroup {
-  id: string;
-  label: string;
-  items: string[];
-}
-
-export interface Volunteering {
-  title: string;
-  org: string;
-  location: string;
-  dates: string;
-  description: string;
-}
-
-export interface BaseResume {
-  name: string;
-  contact: Contact;
-  summary_template: string;
-  summary_defaults: Record<string, string>;
-  experience: Experience[];
-  projects: Project[];
-  education: Education[];
-  skills: { groups: SkillGroup[] };
-  volunteering: Volunteering[];
+export interface Volunteer {
+  organization: string;
+  position: string;
+  startDate?: string;
+  endDate?: string;
+  location?: string;
+  summary?: string;
 }
 
 export interface MatchScore {
@@ -75,25 +83,48 @@ export interface MatchScore {
   missing_keywords: string[];
 }
 
+export interface AgentfolioMeta {
+  company?: string;
+  generated_by?: string;
+  summary_template?: string;
+  summary_defaults?: Record<string, string>;
+  match_score?: MatchScore;
+  skill_emphasis?: string[];
+  section_order?: SectionName[];
+}
+
+export interface Meta {
+  version?: string;
+  lastModified?: string;
+  agentfolio?: AgentfolioMeta;
+}
+
 export type SectionName =
-  | 'summary'
-  | 'experience'
+  | 'basics'
+  | 'work'
   | 'projects'
   | 'skills'
   | 'education'
-  | 'volunteering';
+  | 'volunteer';
+
+export interface BaseResume {
+  basics: Basics;
+  work: Work[];
+  projects: ResumeProject[];
+  skills: Skill[];
+  education: Education[];
+  volunteer: Volunteer[];
+  meta?: Meta;
+}
 
 export interface AdaptedResume {
-  company: string;
-  generated_at: string;
-  generated_by: string;
-  summary: string;
-  section_order: SectionName[];
-  experience_order: string[];
-  bullet_overrides: Record<string, string>;
-  project_order: string[];
-  skill_emphasis: string[];
-  match_score: MatchScore;
+  basics: Basics;
+  work: Work[];
+  projects: ResumeProject[];
+  skills: Skill[];
+  education: Education[];
+  volunteer: Volunteer[];
+  meta: Meta;
 }
 
 export interface SlugEntry {
