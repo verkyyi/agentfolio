@@ -32,15 +32,10 @@ agentfolio/
 │   │   └── __tests__/       # Vitest unit tests
 │   └── e2e/                 # Playwright E2E tests
 ├── scripts/                 # Python adaptation pipeline
-│   ├── adapt_from_markdown.py # Markdown resume + JD → adapted JSON
-│   ├── chat_answer.py       # Chat answer generation (reads resume.md)
-│   ├── fetch_jds.py         # JD auto-fetching
-│   └── aggregate_feedback.py # Analytics aggregation
+│   └── adapt_from_markdown.py # Markdown resume + JD → adapted JSON
 └── .github/workflows/       # GitHub Actions
     ├── deploy.yml           # Build + deploy to GitHub Pages
-    ├── adapt.yml            # Generate adaptations on data/input/ changes
-    ├── analytics.yml        # Analytics aggregation
-    └── jd-sync.yml          # JD auto-fetching
+    └── adapt.yml            # Generate adaptations on data/input/ changes
 ```
 
 ## Routing
