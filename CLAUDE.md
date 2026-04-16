@@ -70,7 +70,7 @@ The slug is the first path segment after the base path. `useAdaptation` parses i
 |----------|-------|---------|
 | `VITE_GITHUB_REPO` | `.env.local` / `deploy.yml` | `owner/repo` for GitHub API calls |
 | `VITE_BASE_PATH` | `.env.local` / `deploy.yml` | URL base path (auto-detected in deploy workflow) |
-| `CLAUDE_CODE_OAUTH_TOKEN` | Actions secret | For Claude Code in the adapt workflow |
+| `CLAUDE_CODE_OAUTH_TOKEN` | Actions secret | OAuth token for Claude Code in the adapt workflow. Uses your Claude Pro/Team subscription instead of usage-based API billing — no per-token cost. |
 
 ## Testing
 
