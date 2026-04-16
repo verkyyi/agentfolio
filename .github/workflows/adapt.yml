@@ -31,7 +31,7 @@ jobs:
       - name: Generate adaptations
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-        run: python -m scripts.adapt_all --llm
+        run: python -m scripts.adapt_all
 
       - name: Commit generated adaptations
         run: |
@@ -41,6 +41,6 @@ jobs:
           if git diff --cached --quiet; then
             echo "no adaptation changes"
           else
-            git commit -m "chore(adapt): regenerate adapted resumes (--llm)"
+            git commit -m "chore(adapt): regenerate adapted resumes"
             git push
           fi
