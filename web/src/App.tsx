@@ -1,21 +1,21 @@
 import { useVisitorContext } from './hooks/useVisitorContext';
 import { useAdaptation } from './hooks/useAdaptation';
 import { ResumeTheme } from './components/ResumeTheme';
-import { ArchitecturePage } from './components/ArchitecturePage';
 
 export default function App() {
   const { context, error: ctxError } = useVisitorContext();
   const { adapted, error: adaptError } = useAdaptation(context?.company ?? null);
 
-  const isArchitecturePath =
-    typeof window !== 'undefined' &&
-    window.location.pathname.replace(/\/$/, '').endsWith('/how-it-works');
-
   if (ctxError) return <main>Error loading context: {ctxError.message}</main>;
-  if (adaptError) return <main>Error loading adaptation: {adaptError.message}</main>;
 
-  if (isArchitecturePath) {
-    return <ArchitecturePage compareSlugs={['sample-company', 'default']} />;
+  if (adaptError) {
+    return (
+      <main>
+        <h1>Not Found</h1>
+        <p>No resume adaptation exists for this path.</p>
+        <a href={import.meta.env.BASE_URL}>Go to homepage</a>
+      </main>
+    );
   }
 
   if (!context || !adapted) return <main>Loading…</main>;

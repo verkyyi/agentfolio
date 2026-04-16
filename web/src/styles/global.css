@@ -463,25 +463,7 @@ section[aria-label="Volunteering"] li > p {
 @media print {
   body { background: white; }
   body::before { display: none; }
-  .resume { max-width: 100%; padding: 0; }
-  details { display: none; }
 }
-
-/* ============================================================
-   How-this-works page — editorial engineering diagram
-   ============================================================ */
-
-.sr-only {
-  position: absolute;
-  width: 1px; height: 1px;
-  padding: 0; margin: -1px;
-  overflow: hidden;
-  clip: rect(0 0 0 0);
-  white-space: nowrap;
-  border: 0;
-}
-
-.howitworks {
   --hiw-measure: 62rem;
   --hiw-rule: rgba(22, 27, 41, 0.12);
   --hiw-rule-2: rgba(22, 27, 41, 0.28);

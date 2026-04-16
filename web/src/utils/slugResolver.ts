@@ -1,32 +1,26 @@
 import type { SlugRegistry, VisitorContext } from '../types';
 
-export function parseSlugFromPath(pathname: string): string | null {
-  const parts = pathname.split('/').filter(Boolean);
-  const cIdx = parts.indexOf('c');
-  if (cIdx !== -1 && cIdx + 1 < parts.length) {
-    return parts[cIdx + 1] || null;
+export function parseSlugFromPath(pathname: string, basePath: string = '/'): string | null {
+  // Strip base path prefix
+  let path = pathname;
+  if (basePath !== '/' && path.startsWith(basePath)) {
+    path = path.slice(basePath.length);
   }
-  const last = parts[parts.length - 1];
-  if (last && last !== 'agentfolio' && last !== 'c') return last;
-  return null;
+  // Remove leading/trailing slashes, get first segment
+  const segment = path.replace(/^\/+|\/+$/g, '').split('/')[0] || null;
+  return segment || null;
 }
 
 export function resolveSlug(
   slug: string | null,
   registry: SlugRegistry,
 ): VisitorContext {
-  if (slug && registry[slug]) {
-    const entry = registry[slug];
-    return {
-      source: 'slug',
-      slug,
-      company: entry.company,
-      role: entry.role,
-    };
+  if (!slug) {
+    return { source: 'default', company: 'default', role: null };
   }
-  return {
-    source: 'default',
-    company: 'default',
-    role: null,
-  };
+  if (registry[slug]) {
+    const entry = registry[slug];
+    return { source: 'slug', slug, company: entry.company, role: entry.role };
+  }
+  return { source: 'default', slug, company: '__not_found__', role: null };
 }

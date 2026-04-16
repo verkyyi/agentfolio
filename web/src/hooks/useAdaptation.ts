@@ -16,14 +16,10 @@ export function useAdaptation(company: string | null) {
 
     (async () => {
       try {
-        const primaryUrl = `${import.meta.env.BASE_URL}data/adapted/${slug}.json`;
-        let res = await fetch(primaryUrl);
+        const url = `${import.meta.env.BASE_URL}data/adapted/${slug}.json`;
+        const res = await fetch(url);
         if (!res.ok) {
-          const fallbackUrl = `${import.meta.env.BASE_URL}data/adapted/default.json`;
-          res = await fetch(fallbackUrl);
-          if (!res.ok) {
-            throw new Error(`no adaptation available for ${slug} or default`);
-          }
+          throw new Error(`not_found`);
         }
         const data = (await res.json()) as AdaptedResume;
         if (cancelled) return;

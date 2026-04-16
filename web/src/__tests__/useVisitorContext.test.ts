@@ -3,11 +3,11 @@ import { renderHook, waitFor } from '@testing-library/react';
 import { useVisitorContext } from '../hooks/useVisitorContext';
 
 const registry = {
-  'cohere-fde': {
-    company: 'cohere',
-    role: 'FDE, Agentic Platform',
-    created: '2026-04-15',
-    context: 'Applied via Ashby',
+  'sample-company': {
+    company: 'sample-company',
+    role: 'Software Engineer',
+    created: '2026-01-01',
+    context: 'Sample',
   },
 };
 
@@ -19,9 +19,9 @@ beforeEach(() => {
 });
 
 describe('useVisitorContext', () => {
-  it('returns default context when path has no slug', async () => {
+  it('returns default context at root path', async () => {
     const { result } = renderHook(() =>
-      useVisitorContext({ pathname: '/agentfolio/' }),
+      useVisitorContext({ pathname: '/' }),
     );
     await waitFor(() => expect(result.current.context).not.toBeNull());
     expect(result.current.context).toMatchObject({
@@ -30,24 +30,24 @@ describe('useVisitorContext', () => {
     });
   });
 
-  it('resolves slug from URL path against the registry', async () => {
+  it('resolves slug from path against the registry', async () => {
     const { result } = renderHook(() =>
-      useVisitorContext({ pathname: '/agentfolio/c/cohere-fde' }),
+      useVisitorContext({ pathname: '/sample-company' }),
     );
     await waitFor(() => expect(result.current.context).not.toBeNull());
     expect(result.current.context).toMatchObject({
       source: 'slug',
-      slug: 'cohere-fde',
-      company: 'cohere',
-      role: 'FDE, Agentic Platform',
+      slug: 'sample-company',
+      company: 'sample-company',
+      role: 'Software Engineer',
     });
   });
 
-  it('falls back to default when slug is unknown', async () => {
+  it('returns not_found company for unknown slug', async () => {
     const { result } = renderHook(() =>
-      useVisitorContext({ pathname: '/c/not-a-real-slug' }),
+      useVisitorContext({ pathname: '/not-a-real-slug' }),
     );
     await waitFor(() => expect(result.current.context).not.toBeNull());
-    expect(result.current.context?.source).toBe('default');
+    expect(result.current.context?.company).toBe('__not_found__');
   });
 });

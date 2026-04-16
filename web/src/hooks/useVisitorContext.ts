@@ -22,7 +22,7 @@ export function useVisitorContext(options: Options = {}) {
         if (!res.ok) throw new Error(`slugs fetch failed: ${res.status}`);
         const reg = (await res.json()) as SlugRegistry;
         if (cancelled) return;
-        const slug = parseSlugFromPath(pathname);
+        const slug = parseSlugFromPath(pathname, import.meta.env.BASE_URL);
         setRegistry(reg);
         setContext(resolveSlug(slug, reg));
       } catch (e) {
