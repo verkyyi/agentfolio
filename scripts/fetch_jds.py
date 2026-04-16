@@ -113,7 +113,7 @@ def main(argv: list[str]) -> int:
     args = parser.parse_args(argv)
 
     root = Path(args.repo_root)
-    profiles_dir = root / "data" / "companies"
+    profiles_dir = root / "data" / "input" / "companies"
     paths: Iterable[Path]
     if args.only:
         paths = [profiles_dir / f"{args.only}.json"]
