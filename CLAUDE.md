@@ -2,6 +2,17 @@
 
 Open-source agentic portfolio engine. See `README.md` for setup and personalization.
 
+## Repo role
+
+This CLAUDE.md ships to both the upstream framework repo and every derived
+deploy. Determine which you're in by checking `git remote get-url origin`:
+
+- matches `verkyyi/agentfolio(.git)?` → **framework repo**. All files are
+  editable; changes here flow to every downstream deploy.
+- anything else (e.g. `verkyyi/verkyyi.github.io.git`) → **derived deploy**.
+  Only the `data/` folder may be modified. Framework fixes belong upstream
+  in `verkyyi/agentfolio` and re-apply here by re-running the deploy.
+
 ## Project Structure
 
 ```
