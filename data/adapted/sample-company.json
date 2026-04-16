@@ -1,10 +1,10 @@
 {
   "basics": {
     "name": "Alex Chen",
-    "label": "Software Engineer",
+    "label": "Senior Software Engineer | Data Platform Specialist",
     "email": "alex@example.com",
     "phone": "(555) 123-4567",
-    "summary": "Software Engineer with 4+ years building scalable full-stack applications and data infrastructure. Proven track record shipping production systems serving enterprise customers and leading architectural migrations. Skilled in distributed systems, real-time data pipelines, and cloud infrastructure.",
+    "summary": "Senior Software Engineer with 4+ years building scalable data infrastructure and real-time streaming systems. Proven expertise designing event-driven architectures, Kafka/Flink pipelines processing millions of events daily, and mentoring high-performing teams. Open-source contributor with deep full-stack capabilities.",
     "location": {
       "city": "San Francisco",
       "region": "CA",
@@ -13,7 +13,8 @@
     "profiles": [
       {
         "network": "LinkedIn",
-        "url": "https://linkedin.com/in/alexchen"
+        "url": "https://linkedin.com/in/alexchen",
+        "username": "alexchen"
       },
       {
         "network": "GitHub",
@@ -24,24 +25,26 @@
   },
   "work": [
     {
+      "id": "acme-corp-senior-engineer",
       "name": "Acme Corp",
       "position": "Senior Software Engineer",
       "location": "San Francisco, CA",
       "startDate": "2022-06",
       "highlights": [
+        "Built and scaled real-time data pipeline processing 2M events/day using Kafka and Apache Flink, powering personalization features that increased user engagement by 25%.",
         "Led migration of monolithic API to event-driven microservices architecture, reducing p99 latency by 40% and enabling independent team deployments.",
-        "Built real-time data pipeline processing 2M events/day using Kafka and Flink, powering personalization features that increased user engagement by 25%.",
         "Mentored 3 junior engineers through structured pairing sessions, all promoted within 12 months."
       ]
     },
     {
+      "id": "dataflow-startup-fullstack-engineer",
       "name": "DataFlow Startup",
       "position": "Full-Stack Engineer",
       "location": "Remote",
       "startDate": "2020-01",
       "endDate": "2022-05",
       "highlights": [
-        "Designed and shipped the core analytics dashboard used by 500+ enterprise customers, iterating on feedback from weekly customer calls.",
+        "Designed and shipped core analytics dashboard serving 500+ enterprise customers with weekly customer feedback iteration.",
         "Implemented CI/CD pipeline with GitHub Actions reducing deploy time from 45 minutes to 8 minutes with automated rollback on failure.",
         "Built OAuth2/OIDC integration supporting 5 identity providers, enabling enterprise SSO adoption."
       ]
@@ -49,30 +52,34 @@
   ],
   "projects": [
     {
+      "id": "ml-model-monitor",
       "name": "ML Model Monitor",
-      "description": "Open-source ML model monitoring dashboard with real-time drift detection and alerting",
-      "url": "https://example.com/ml-monitor",
+      "description": "Open-source real-time ML model drift detection and monitoring dashboard with configurable alerting.",
+      "url": "https://github.com/alexchen/ml-monitor",
+      "github": "https://github.com/alexchen/ml-monitor",
       "startDate": "2024-01",
       "highlights": [
-        "Built a real-time model drift detection system with configurable alerting thresholds, deployed on AWS Lambda for zero-ops monitoring.",
-        "Designed a React dashboard visualizing prediction distributions, feature importance, and alert history across multiple model versions."
+        "Built real-time model drift detection system with configurable alerting thresholds, deployed on AWS Lambda for zero-ops monitoring.",
+        "Designed React dashboard visualizing prediction distributions, feature importance, and alert history across multiple model versions."
       ],
       "keywords": [
         "machine-learning",
         "monitoring",
         "full-stack",
         "open-source",
-        "AWS",
+        "AWS Lambda",
         "React"
       ]
     },
     {
+      "id": "devcli-toolkit",
       "name": "DevCLI Toolkit",
-      "description": "Developer productivity CLI tools built in Rust for common workflows",
-      "url": "https://example.com/devcli",
+      "description": "High-performance Rust-based CLI toolkit for developer productivity workflows with sub-5ms startup time.",
+      "url": "https://github.com/alexchen/devcli",
+      "github": "https://github.com/alexchen/devcli",
       "startDate": "2023-06",
       "highlights": [
-        "Created a Rust-based CLI toolkit with sub-5ms startup time for common developer workflows: git branch cleanup, log tailing, and config management.",
+        "Created Rust-based CLI toolkit with sub-5ms startup time for common developer workflows: git branch cleanup, log tailing, and config management.",
         "Published to crates.io with 2,000+ downloads; maintained backward compatibility across 8 minor releases."
       ],
       "keywords": [
@@ -86,18 +93,31 @@
   ],
   "skills": [
     {
-      "name": "Languages & Frameworks",
+      "id": "data-streaming",
+      "name": "Data & Streaming",
       "keywords": [
-        "TypeScript",
-        "Python",
-        "Rust",
-        "React",
-        "Node.js",
-        "FastAPI",
-        "SQL"
+        "Apache Kafka",
+        "Apache Flink",
+        "real-time pipelines",
+        "event-driven architecture",
+        "data processing"
       ]
     },
     {
+      "id": "languages-frameworks",
+      "name": "Languages & Frameworks",
+      "keywords": [
+        "Python",
+        "TypeScript",
+        "Rust",
+        "SQL",
+        "Node.js",
+        "FastAPI",
+        "React"
+      ]
+    },
+    {
+      "id": "infrastructure-devops",
       "name": "Infrastructure & DevOps",
       "keywords": [
         "AWS",
@@ -105,17 +125,21 @@
         "Kubernetes",
         "GitHub Actions",
         "Terraform",
-        "Kafka"
+        "EC2",
+        "S3",
+        "Lambda"
       ]
     },
     {
+      "id": "data-ml",
       "name": "Data & ML",
       "keywords": [
         "PostgreSQL",
         "Redis",
-        "Apache Flink",
+        "MLflow",
         "scikit-learn",
-        "MLflow"
+        "model monitoring",
+        "model serving"
       ]
     }
   ],
@@ -140,47 +164,60 @@
   ],
   "meta": {
     "version": "1.0.0",
-    "lastModified": "2026-04-16T07:59:27+00:00",
+    "lastModified": "2026-04-16T09:07:10+00:00",
     "agentfolio": {
       "company": "Sample Company",
-      "generated_by": "llm_adapt.py v2.0",
+      "role": "Data Platform Engineer",
+      "generated_by": "adapt_from_markdown.py v1.0",
       "match_score": {
         "overall": 0.92,
         "by_category": {
-          "languages": 0.95,
-          "infrastructure": 0.9,
-          "data": 0.88
+          "data-streaming": 0.95,
+          "languages-frameworks": 0.9,
+          "infrastructure-devops": 0.93,
+          "data-ml": 0.88,
+          "experience": 0.92,
+          "open-source": 0.9
         },
         "matched_keywords": [
-          "TypeScript",
+          "Apache Kafka",
+          "Apache Flink",
           "Python",
-          "React",
-          "Node.js",
+          "SQL",
           "AWS",
           "Docker",
           "Kubernetes",
           "GitHub Actions",
-          "PostgreSQL",
-          "Redis",
-          "Kafka"
+          "EC2",
+          "S3",
+          "Lambda",
+          "Rust",
+          "open-source",
+          "real-time pipelines",
+          "event-driven architecture",
+          "model monitoring"
         ],
-        "missing_keywords": []
+        "missing_keywords": [
+          "Go"
+        ]
       },
       "skill_emphasis": [
-        "TypeScript",
+        "Apache Kafka",
+        "Apache Flink",
         "Python",
-        "React",
+        "SQL",
         "AWS",
         "Docker",
         "Kubernetes",
-        "GitHub Actions",
-        "PostgreSQL"
+        "real-time pipelines",
+        "event-driven architecture",
+        "Rust"
       ],
       "section_order": [
         "basics",
         "work",
-        "projects",
         "skills",
+        "projects",
         "education",
         "volunteer"
       ]

@@ -1,3 +1,8 @@
 {
-  "sample": { "company": "sample-company", "role": "Software Engineer", "created": "2026-01-01", "context": "Sample slug for demo" }
+  "sample-company": {
+    "company": "Sample Company",
+    "role": "Data Platform Engineer",
+    "created": "2026-04-16",
+    "context": "auto-generated"
+  }
 }
