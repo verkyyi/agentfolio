@@ -1,10 +1,11 @@
+import { useMemo, useState } from 'react';
 import type { AdaptedResume, AnalyticsDoc } from '../types';
 
 interface Props {
-  example: AdaptedResume | null;
-  exampleSlug: string | undefined;
-  baseline: AdaptedResume | null;
+  slugs: string[];
+  adaptations: Record<string, AdaptedResume | null>;
   analytics: AnalyticsDoc | null;
+  defaultSlug?: string;
 }
 
 interface Stage {
@@ -123,9 +124,23 @@ function buildStages(
   ];
 }
 
-export function PipelineDiagram({ example, exampleSlug, baseline, analytics }: Props) {
-  const stages = buildStages(example, exampleSlug, baseline, analytics);
-  const exampleLabel = example?.company ?? exampleSlug ?? 'default';
+export function PipelineDiagram({ slugs, adaptations, analytics, defaultSlug }: Props) {
+  const available = useMemo(
+    () => slugs.filter((s) => adaptations[s]),
+    [slugs, adaptations],
+  );
+  const initial =
+    (defaultSlug && available.includes(defaultSlug) && defaultSlug) ||
+    available.find((s) => s !== 'default') ||
+    available[0] ||
+    '';
+  const [selected, setSelected] = useState<string>(initial);
+  const effective = adaptations[selected] ? selected : initial;
+
+  const example = adaptations[effective] ?? null;
+  const baseline = adaptations['default'] ?? null;
+  const stages = buildStages(example, effective, baseline, analytics);
+  const exampleLabel = example?.company ?? effective ?? 'default';
 
   return (
     <section className="hiw-block hiw-pipeline" aria-labelledby="hiw-pipe-h">
@@ -135,7 +150,31 @@ export function PipelineDiagram({ example, exampleSlug, baseline, analytics }: P
         <span className="hiw-block-rule" aria-hidden />
       </header>
 
-      <p className="hiw-trace">
+      {available.length > 1 && (
+        <div className="hiw-trace-tabs" role="tablist" aria-label="Pick a trace">
+          <span className="hiw-trace-tabs-lbl">Replay</span>
+          {available.map((s) => {
+            const adapted = adaptations[s];
+            const label = adapted?.company ?? s;
+            const isActive = s === effective;
+            return (
+              <button
+                key={s}
+                role="tab"
+                aria-selected={isActive}
+                className={`hiw-trace-tab ${isActive ? 'is-active' : ''}`}
+                onClick={() => setSelected(s)}
+                type="button"
+              >
+                <span className="hiw-trace-tab-slug">/{s}</span>
+                <span className="hiw-trace-tab-co">{label}</span>
+              </button>
+            );
+          })}
+        </div>
+      )}
+
+      <p className="hiw-trace" aria-live="polite">
         <span className="hiw-trace-lbl">Trace</span>
         <span className="hiw-trace-val">visit from <strong>{exampleLabel}</strong></span>
         {example && (
@@ -145,7 +184,7 @@ export function PipelineDiagram({ example, exampleSlug, baseline, analytics }: P
         )}
       </p>
 
-      <ol className="hiw-stages">
+      <ol className="hiw-stages" key={effective}>
         {stages.map((s, i) => (
           <li key={s.n} className="hiw-stage" style={{ ['--i' as string]: i }}>
             <div className="hiw-stage-gutter" aria-hidden>

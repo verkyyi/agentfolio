@@ -899,6 +899,65 @@ section[aria-label="Chat"] form button[type="submit"]:disabled {
 /* ============================================================
    Pipeline
    ============================================================ */
+.hiw-trace-tabs {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 0 0 0.9rem;
+  padding-bottom: 0.2rem;
+}
+.hiw-trace-tabs-lbl {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  margin-right: 0.2rem;
+}
+.hiw-trace-tab {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.45rem;
+  padding: 0.4rem 0.7rem;
+  background: transparent;
+  color: var(--ink-soft);
+  border: 1px solid var(--hiw-rule);
+  border-radius: 2px;
+  cursor: pointer;
+  transition: border-color 140ms ease, background 140ms ease, color 140ms ease, transform 140ms ease;
+}
+.hiw-trace-tab:hover {
+  border-color: var(--rule-strong);
+  color: var(--ink);
+}
+.hiw-trace-tab.is-active {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--paper);
+}
+.hiw-trace-tab.is-active::before {
+  content: '●';
+  color: var(--accent);
+  font-size: 0.7rem;
+  line-height: 1;
+  margin-right: 0.1rem;
+}
+.hiw-trace-tab-slug {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.04em;
+  color: inherit;
+  opacity: 0.75;
+}
+.hiw-trace-tab-co {
+  font-family: var(--serif-display);
+  font-weight: 500;
+  font-variation-settings: 'opsz' 60;
+  font-size: 0.95rem;
+  letter-spacing: -0.01em;
+}
+
 .hiw-pipeline .hiw-trace {
   display: inline-flex;
   align-items: baseline;

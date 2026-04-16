@@ -33,9 +33,7 @@ export function ArchitecturePage({ compareSlugs }: Props) {
     return () => { cancelled = true; };
   }, [compareSlugs.join('|')]);
 
-  const exampleSlug = compareSlugs.find((s) => s !== 'default') ?? compareSlugs[0];
-  const example = exampleSlug ? adaptations[exampleSlug] ?? null : null;
-  const baseline = adaptations['default'] ?? null;
+  const defaultTrace = compareSlugs.find((s) => s !== 'default') ?? compareSlugs[0];
 
   return (
     <main className="howitworks">
@@ -49,10 +47,10 @@ export function ArchitecturePage({ compareSlugs }: Props) {
       </header>
 
       <PipelineDiagram
-        example={example}
-        exampleSlug={exampleSlug}
-        baseline={baseline}
+        slugs={compareSlugs}
+        adaptations={adaptations}
         analytics={data}
+        defaultSlug={defaultTrace}
       />
 
       <section className="hiw-block" aria-labelledby="hiw-stats-h">
