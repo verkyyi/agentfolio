@@ -1,67 +1,11 @@
-import { useCallback, useMemo } from 'react';
 import { useVisitorContext } from './hooks/useVisitorContext';
 import { useAdaptation } from './hooks/useAdaptation';
-import { useBehaviorTracker } from './hooks/useBehaviorTracker';
-import { AdaptiveResume } from './components/AdaptiveResume';
+import { ResumeTheme } from './components/ResumeTheme';
 import { ArchitecturePage } from './components/ArchitecturePage';
-import { getApiConfig } from './utils/githubApi';
-import type { SectionName } from './types';
 
 export default function App() {
   const { context, error: ctxError } = useVisitorContext();
-
-  const apiConfig = useMemo(() => {
-    try {
-      return getApiConfig({
-        pat: import.meta.env.VITE_GITHUB_PAT,
-        repo: import.meta.env.VITE_GITHUB_REPO,
-      });
-    } catch {
-      return null;
-    }
-  }, []);
-
   const { adapted, error: adaptError } = useAdaptation(context?.company ?? null);
-
-  const trackerEnabled = !!apiConfig && !!context && !!adapted;
-
-  const startCtx = useMemo(
-    () =>
-      adapted && context
-        ? {
-            company: context.company,
-            source: context.source,
-            adaptation: adapted.meta?.agentfolio?.company ?? '',
-            match_score: adapted.meta?.agentfolio?.match_score?.overall ?? 0,
-          }
-        : { company: '', source: '', adaptation: '', match_score: 0 },
-    [adapted, context],
-  );
-
-  const { track } = useBehaviorTracker({
-    config: apiConfig ?? { pat: '', repo: '' },
-    startCtx,
-    enabled: trackerEnabled,
-  });
-
-  const onCtaClick = useCallback(
-    (target: 'email' | 'linkedin' | 'github') => {
-      track({ type: 'cta_click', data: { target }, ts: Date.now() });
-    },
-    [track],
-  );
-  const onProjectClick = useCallback(
-    (projectId: string, link: 'url' | 'github') => {
-      track({ type: 'project_click', data: { project_id: projectId, link }, ts: Date.now() });
-    },
-    [track],
-  );
-  const onSectionDwell = useCallback(
-    (section: SectionName, ms: number) => {
-      track({ type: 'section_dwell', data: { section, ms }, ts: Date.now() });
-    },
-    [track],
-  );
 
   const isArchitecturePath =
     typeof window !== 'undefined' &&
@@ -76,15 +20,5 @@ export default function App() {
 
   if (!context || !adapted) return <main>Loading…</main>;
 
-  return (
-    <>
-      <AdaptiveResume
-        adapted={adapted}
-        context={context}
-        onCtaClick={onCtaClick}
-        onProjectClick={onProjectClick}
-        onSectionDwell={trackerEnabled ? onSectionDwell : undefined}
-      />
-    </>
-  );
+  return <ResumeTheme resume={adapted as unknown as Record<string, unknown>} />;
 }
