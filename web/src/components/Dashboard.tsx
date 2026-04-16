@@ -21,6 +21,10 @@ const TabBar = styled.div`
   align-items: center;
   border-bottom: 1px solid var(--rule);
   padding: 0 40px;
+  position: sticky;
+  top: 0;
+  background: var(--paper);
+  z-index: 5;
 `;
 
 const TabBarActions = styled.div`

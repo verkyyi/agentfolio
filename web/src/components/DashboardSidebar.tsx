@@ -14,7 +14,10 @@ interface Props {
 
 const Aside = styled.aside`
   width: 260px;
-  min-height: 100vh;
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  overflow-y: auto;
   border-right: 1px solid var(--rule);
   padding: 24px 0;
   background: var(--paper-deep);
