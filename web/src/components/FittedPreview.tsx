@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import Markdown from 'react-markdown';
 import styled from 'styled-components';
+import { parseFitSummary, type FitSummary } from '../utils/parseFitSummary';
 
 interface Props {
   slug: string;
@@ -20,18 +21,44 @@ const Container = styled.div`
   p { margin: 8px 0; }
 `;
 
+const SummaryCard = styled.div`
+  background: var(--paper-deep);
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  padding: 16px 20px;
+  margin-bottom: 24px;
+  font-size: 13px;
+  line-height: 1.6;
+`;
+
+const SummaryTarget = styled.div`
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 8px;
+`;
+
+const SummaryList = styled.ul`
+  margin: 0;
+  padding-left: 18px;
+  color: var(--ink-soft);
+
+  li { margin-bottom: 2px; }
+`;
+
 const ErrorMsg = styled.p`
   color: var(--accent);
   font-style: italic;
 `;
 
 export function FittedPreview({ slug }: Props) {
-  const [content, setContent] = useState<string | null>(null);
+  const [body, setBody] = useState<string | null>(null);
+  const [summary, setSummary] = useState<FitSummary | null>(null);
   const [error, setError] = useState(false);
 
   useEffect(() => {
     let cancelled = false;
-    setContent(null);
+    setBody(null);
+    setSummary(null);
     setError(false);
 
     const url = `${import.meta.env.BASE_URL}data/fitted/${slug}.md`;
@@ -40,18 +67,33 @@ export function FittedPreview({ slug }: Props) {
         if (!res.ok) throw new Error('not_found');
         return res.text();
       })
-      .then((text) => { if (!cancelled) setContent(text); })
+      .then((text) => {
+        if (cancelled) return;
+        const parsed = parseFitSummary(text);
+        setSummary(parsed.summary);
+        setBody(parsed.body);
+      })
       .catch(() => { if (!cancelled) setError(true); });
 
     return () => { cancelled = true; };
   }, [slug]);
 
   if (error) return <Container><ErrorMsg>Failed to load {slug}.md</ErrorMsg></Container>;
-  if (content === null) return <Container>Loading…</Container>;
+  if (body === null) return <Container>Loading…</Container>;
 
   return (
     <Container>
-      <Markdown>{content}</Markdown>
+      {summary && (
+        <SummaryCard>
+          <SummaryTarget>{summary.target}</SummaryTarget>
+          <SummaryList>
+            {summary.changes.map((change, i) => (
+              <li key={i}>{change}</li>
+            ))}
+          </SummaryList>
+        </SummaryCard>
+      )}
+      <Markdown>{body}</Markdown>
     </Container>
   );
 }

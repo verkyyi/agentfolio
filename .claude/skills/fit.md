@@ -23,7 +23,26 @@ Generate tailored freeform markdown resumes from a source resume, target job des
 
 ## Output Format
 
-The output is **freeform markdown** with the same structure as `resume.md`. It is NOT JSON. The markdown should:
+Each fitted file starts with a **fit summary** as an HTML comment, followed by the resume markdown. The summary describes what was changed from the base resume for this target role.
+
+```markdown
+<!--
+fit-summary:
+  target: Company Name — Role Title
+  changes:
+    - Changed headline from "X" to "Y"
+    - Reordered sections: Skills moved above Projects
+    - Tailored summary for company's specific focus area
+    - Emphasized relevant experience in N bullet points
+    - Reordered work entries to lead with most relevant role
+-->
+# Name
+...
+```
+
+The `target` field is the company and role from the JD. The `changes` list is 3-6 bullet points describing the key adaptations made. For the default fit (no JD), use `target: General` and describe which directives were applied.
+
+The resume content below the comment is **freeform markdown** with the same structure as `resume.md`. It is NOT JSON. The markdown should:
 
 - Keep the same section headings as the source resume (Experience, Projects, Skills, Education, Volunteering)
 - Rewrite bullet points to emphasize relevance to the target role, keeping all factual claims intact
