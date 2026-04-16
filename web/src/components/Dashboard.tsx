@@ -1,8 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { DashboardSidebar, type FittedEntry } from './DashboardSidebar';
 import { FittedPreview } from './FittedPreview';
 import { FittedDiff } from './FittedDiff';
+import { DirectivesView } from './DirectivesView';
 
 type Tab = 'preview' | 'diff' | 'pdf';
 
@@ -64,6 +65,45 @@ const TabButton = styled.button<{ $active: boolean }>`
   }
 `;
 
+const UrlGroup = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 4px;
+`;
+
+const UrlInput = styled.input`
+  font-size: 12px;
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  color: var(--ink-soft);
+  background: var(--paper-deep);
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  padding: 4px 8px;
+  width: 240px;
+  outline: none;
+
+  &:focus {
+    border-color: var(--rule-strong);
+  }
+`;
+
+const CopyButton = styled.button`
+  font-size: 12px;
+  color: var(--ink-mute);
+  background: transparent;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  padding: 4px 8px;
+  cursor: pointer;
+  transition: color 120ms ease, background 120ms ease;
+  white-space: nowrap;
+
+  &:hover {
+    color: var(--ink);
+    background: var(--rule);
+  }
+`;
+
 const PdfFrame = styled.iframe`
   width: 100%;
   height: calc(100vh - 43px);
@@ -83,6 +123,9 @@ export function Dashboard() {
   const [items, setItems] = useState<FittedEntry[] | null>(null);
   const [activeSlug, setActiveSlug] = useState<string | null>(null);
   const [tab, setTab] = useState<Tab>('preview');
+  const [showDirectives, setShowDirectives] = useState(false);
+  const [copied, setCopied] = useState(false);
+  const urlInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     const url = `${import.meta.env.BASE_URL}data/fitted/index.json`;
@@ -102,42 +145,73 @@ export function Dashboard() {
 
   return (
     <Layout>
-      <DashboardSidebar items={items} activeSlug={activeSlug!} onSelect={(slug) => { setActiveSlug(slug); setTab('preview'); }} />
+      <DashboardSidebar
+        items={items}
+        activeSlug={activeSlug!}
+        onSelect={(slug) => { setActiveSlug(slug); setTab('preview'); setShowDirectives(false); setCopied(false); }}
+        onDirectives={() => setShowDirectives(true)}
+        directivesActive={showDirectives}
+      />
       <Main>
-        <TabBar>
-          <TabButton $active={tab === 'preview'} onClick={() => setTab('preview')}>Preview</TabButton>
-          <TabButton
-            $active={tab === 'diff'}
-            onClick={() => !isDiffDisabled && setTab('diff')}
-            disabled={isDiffDisabled}
-            style={isDiffDisabled ? { opacity: 0.4, cursor: 'not-allowed' } : undefined}
-          >
-            Diff
-          </TabButton>
-          <TabButton $active={tab === 'pdf'} onClick={() => setTab('pdf')}>PDF</TabButton>
-          <TabBarActions>
-            {activeSlug && (
-              <ActionLink
-                href={`${import.meta.env.BASE_URL}${activeSlug === 'default' ? '' : activeSlug}`}
-                target="_blank"
-                rel="noopener"
+        {showDirectives ? (
+          <DirectivesView />
+        ) : (
+          <>
+            <TabBar>
+              <TabButton $active={tab === 'preview'} onClick={() => setTab('preview')}>Preview</TabButton>
+              <TabButton
+                $active={tab === 'diff'}
+                onClick={() => !isDiffDisabled && setTab('diff')}
+                disabled={isDiffDisabled}
+                style={isDiffDisabled ? { opacity: 0.4, cursor: 'not-allowed' } : undefined}
               >
-                Open ↗
-              </ActionLink>
-            )}
-            {activeSlug && (
-              <ActionLink
-                href={`${import.meta.env.BASE_URL}data/adapted/${activeSlug}.pdf`}
-                download
-              >
-                PDF ↓
-              </ActionLink>
-            )}
-          </TabBarActions>
-        </TabBar>
-        {activeSlug && tab === 'preview' && <FittedPreview slug={activeSlug} />}
-        {activeSlug && tab === 'diff' && <FittedDiff slug={activeSlug} />}
-        {activeSlug && tab === 'pdf' && <PdfFrame src={`${import.meta.env.BASE_URL}data/adapted/${activeSlug}.pdf#view=FitH&navpanes=0`} title={`${activeSlug} PDF`} />}
+                Diff
+              </TabButton>
+              <TabButton $active={tab === 'pdf'} onClick={() => setTab('pdf')}>PDF</TabButton>
+              <TabBarActions>
+                {activeSlug && (
+                  <UrlGroup>
+                    <UrlInput
+                      ref={urlInputRef}
+                      readOnly
+                      value={`${window.location.origin}${import.meta.env.BASE_URL}${activeSlug === 'default' ? '' : activeSlug}`}
+                      onClick={() => urlInputRef.current?.select()}
+                    />
+                    <CopyButton onClick={() => {
+                      const url = `${window.location.origin}${import.meta.env.BASE_URL}${activeSlug === 'default' ? '' : activeSlug}`;
+                      navigator.clipboard.writeText(url).then(() => {
+                        setCopied(true);
+                        setTimeout(() => setCopied(false), 1500);
+                      });
+                    }}>
+                      {copied ? 'Copied' : 'Copy'}
+                    </CopyButton>
+                  </UrlGroup>
+                )}
+                {activeSlug && (
+                  <ActionLink
+                    href={`${import.meta.env.BASE_URL}${activeSlug === 'default' ? '' : activeSlug}`}
+                    target="_blank"
+                    rel="noopener"
+                  >
+                    Open ↗
+                  </ActionLink>
+                )}
+                {activeSlug && (
+                  <ActionLink
+                    href={`${import.meta.env.BASE_URL}data/adapted/${activeSlug}.pdf`}
+                    download
+                  >
+                    PDF ↓
+                  </ActionLink>
+                )}
+              </TabBarActions>
+            </TabBar>
+            {activeSlug && tab === 'preview' && <FittedPreview slug={activeSlug} />}
+            {activeSlug && tab === 'diff' && <FittedDiff slug={activeSlug} />}
+            {activeSlug && tab === 'pdf' && <PdfFrame src={`${import.meta.env.BASE_URL}data/adapted/${activeSlug}.pdf#view=FitH&navpanes=0`} title={`${activeSlug} PDF`} />}
+          </>
+        )}
       </Main>
     </Layout>
   );

@@ -10,6 +10,8 @@ interface Props {
   items: FittedEntry[];
   activeSlug: string;
   onSelect: (slug: string) => void;
+  onDirectives?: () => void;
+  directivesActive?: boolean;
 }
 
 const Aside = styled.aside`
@@ -59,21 +61,40 @@ const ItemLabel = styled.span`
   margin-top: 2px;
 `;
 
-export function DashboardSidebar({ items, activeSlug, onSelect }: Props) {
+const Divider = styled.hr`
+  border: none;
+  border-top: 1px solid var(--rule);
+  margin: 16px 0;
+`;
+
+export function DashboardSidebar({ items, activeSlug, onSelect, onDirectives, directivesActive }: Props) {
   return (
     <Aside>
       <Heading>Fitted Resumes</Heading>
       {items.map((item) => (
         <Item
           key={item.slug}
-          $active={item.slug === activeSlug}
-          data-active={item.slug === activeSlug}
+          $active={!directivesActive && item.slug === activeSlug}
+          data-active={!directivesActive && item.slug === activeSlug}
           onClick={() => onSelect(item.slug)}
         >
           {item.slug}
           {item.label && item.label !== item.slug && <ItemLabel>{item.label}</ItemLabel>}
         </Item>
       ))}
+      {onDirectives && (
+        <>
+          <Divider />
+          <Heading>Settings</Heading>
+          <Item
+            $active={!!directivesActive}
+            data-active={!!directivesActive}
+            onClick={onDirectives}
+          >
+            Directives
+          </Item>
+        </>
+      )}
     </Aside>
   );
 }

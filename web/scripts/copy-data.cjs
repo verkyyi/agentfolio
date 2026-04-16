@@ -31,3 +31,11 @@ fs.writeFileSync(
   path.join(publicFitted, 'index.json'),
   JSON.stringify(entries, null, 2) + '\n'
 );
+
+// Copy directives if it exists
+const directivesSrc = path.join(root, '..', 'data', 'input', 'directives.md');
+const directivesDst = path.join(root, 'public', 'data', 'directives.md');
+if (fs.existsSync(directivesSrc)) {
+  fs.mkdirSync(path.dirname(directivesDst), { recursive: true });
+  fs.copyFileSync(directivesSrc, directivesDst);
+}
