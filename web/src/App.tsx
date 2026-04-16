@@ -2,9 +2,7 @@ import { useCallback, useMemo } from 'react';
 import { useVisitorContext } from './hooks/useVisitorContext';
 import { useAdaptation } from './hooks/useAdaptation';
 import { useBehaviorTracker } from './hooks/useBehaviorTracker';
-import { useChat } from './hooks/useChat';
 import { AdaptiveResume } from './components/AdaptiveResume';
-import { ChatWidget } from './components/ChatWidget';
 import { ArchitecturePage } from './components/ArchitecturePage';
 import { getApiConfig } from './utils/githubApi';
 import type { SectionName } from './types';
@@ -65,23 +63,6 @@ export default function App() {
     [track],
   );
 
-  const onChatQuestion = useCallback(
-    (question: string, chatIssueNumber: number) => {
-      track({
-        type: 'chat_question',
-        data: { question, issue_number: chatIssueNumber },
-        ts: Date.now(),
-      });
-    },
-    [track],
-  );
-
-  const chat = useChat({
-    config: apiConfig ?? { pat: '', repo: '' },
-    enabled: trackerEnabled,
-    onQuestion: onChatQuestion,
-  });
-
   const isArchitecturePath =
     typeof window !== 'undefined' &&
     window.location.pathname.replace(/\/$/, '').endsWith('/how-it-works');
@@ -103,12 +84,6 @@ export default function App() {
         onCtaClick={onCtaClick}
         onProjectClick={onProjectClick}
         onSectionDwell={trackerEnabled ? onSectionDwell : undefined}
-      />
-      <ChatWidget
-        messages={chat.messages}
-        thinking={chat.thinking}
-        onAsk={chat.ask}
-        enabled={trackerEnabled}
       />
     </>
   );
