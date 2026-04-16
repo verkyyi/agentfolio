@@ -8,7 +8,6 @@ function normalize(company: string): string {
 export function useAdaptation(company: string | null) {
   const [adapted, setAdapted] = useState<AdaptedResume | null>(null);
   const [error, setError] = useState<Error | null>(null);
-  const [needsLiveGeneration, setNeedsLiveGeneration] = useState(false);
 
   useEffect(() => {
     if (!company) return;
@@ -19,9 +18,7 @@ export function useAdaptation(company: string | null) {
       try {
         const primaryUrl = `${import.meta.env.BASE_URL}data/adapted/${slug}.json`;
         let res = await fetch(primaryUrl);
-        let fellBack = false;
         if (!res.ok) {
-          fellBack = true;
           const fallbackUrl = `${import.meta.env.BASE_URL}data/adapted/default.json`;
           res = await fetch(fallbackUrl);
           if (!res.ok) {
@@ -31,7 +28,6 @@ export function useAdaptation(company: string | null) {
         const data = (await res.json()) as AdaptedResume;
         if (cancelled) return;
         setAdapted(data);
-        setNeedsLiveGeneration(fellBack);
       } catch (e) {
         if (cancelled) return;
         setError(e as Error);
@@ -41,5 +37,5 @@ export function useAdaptation(company: string | null) {
     return () => { cancelled = true; };
   }, [company]);
 
-  return { adapted, error, needsLiveGeneration };
+  return { adapted, error };
 }
