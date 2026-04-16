@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
-    "copy-data": "node -e \"require('node:fs').cpSync('../data/adapted', 'public/data/adapted', {recursive: true})\"",
+    "copy-data": "node scripts/copy-data.cjs",
     "dev": "npm run copy-data && vite",
     "build": "npm run copy-data && tsc -b && vite build && node -e \"require('node:fs').copyFileSync('dist/index.html', 'dist/404.html')\"",
     "preview": "vite preview",
