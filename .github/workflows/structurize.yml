@@ -83,6 +83,7 @@ jobs:
         run: git diff -- data/adapted/
 
       - name: Commit generated files
+        id: commit
         if: github.event_name == 'workflow_dispatch' || steps.author.outputs.is_bot == 'true'
         run: |
           git config user.name "AgentFolio Bot"
@@ -90,7 +91,15 @@ jobs:
           git add data/adapted/
           if git diff --cached --quiet; then
             echo "no structurize changes"
+            echo "changed=false" >> "$GITHUB_OUTPUT"
           else
             git commit -m "chore(structurize): regenerate JSON resumes"
             git push
+            echo "changed=true" >> "$GITHUB_OUTPUT"
           fi
+
+      - name: Trigger deploy
+        if: steps.commit.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh workflow run deploy.yml

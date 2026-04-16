@@ -65,13 +65,22 @@ jobs:
         run: ls -la data/adapted/*.pdf 2>/dev/null || echo "No PDFs generated"
 
       - name: Commit generated PDFs
+        id: commit
         run: |
           git config user.name "AgentFolio Bot"
           git config user.email "bot@agentfolio.local"
           git add data/adapted/*.pdf
           if git diff --cached --quiet; then
             echo "no PDF changes"
+            echo "changed=false" >> "$GITHUB_OUTPUT"
           else
             git commit -m "chore(pdf): regenerate PDFs"
             git push
+            echo "changed=true" >> "$GITHUB_OUTPUT"
           fi
+
+      - name: Trigger deploy
+        if: steps.commit.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh workflow run deploy.yml
