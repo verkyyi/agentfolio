@@ -26,7 +26,7 @@ jobs:
 
       - name: Generate adaptations
         env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
         run: claude -p "Use the /adapt skill to regenerate all adapted resumes." --allowedTools Read,Write,Glob
 
       - name: Commit generated files

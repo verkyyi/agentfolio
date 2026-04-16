@@ -7,12 +7,18 @@ description: Use when the user wants to generate or regenerate adapted resumes f
 
 Generate adapted JSON Resume documents from a markdown resume and target job descriptions.
 
+## Usage
+
+- `/adapt` — adapt all JDs in `data/input/jd/` + regenerate default
+- `/adapt notion` — adapt only `data/input/jd/notion.md` (no default regeneration)
+- `/adapt notion stripe` — adapt multiple specific JDs
+
 ## Steps
 
 1. Read `data/input/resume.md`
-2. Glob `data/input/jd/*.md` to find all target JDs
+2. If slug(s) specified: use `data/input/jd/{slug}.md` for each (error if file missing). If no slug: glob `data/input/jd/*.md` to find all target JDs.
 3. For each JD file, generate an adapted JSON Resume and write to `data/adapted/{slug}.json` (where slug = JD filename without extension)
-4. Generate a default adaptation (no JD) and write to `data/adapted/default.json`
+4. Generate a default adaptation (no JD) and write to `data/adapted/default.json` — **only when no specific slug is given**
 
 ## Output Schema
 
