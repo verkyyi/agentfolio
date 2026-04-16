@@ -22,11 +22,6 @@ export interface Basics {
   profiles: Profile[];
 }
 
-export interface HighlightMeta {
-  id: string;
-  tags: string[];
-}
-
 export interface Work {
   id?: string;
   name: string;
@@ -36,7 +31,6 @@ export interface Work {
   startDate: string;
   endDate?: string;
   highlights: string[];
-  highlightMeta?: HighlightMeta[];
 }
 
 export interface ResumeProject {
@@ -107,16 +101,6 @@ export type SectionName =
   | 'education'
   | 'volunteer';
 
-export interface BaseResume {
-  basics: Basics;
-  work: Work[];
-  projects: ResumeProject[];
-  skills: Skill[];
-  education: Education[];
-  volunteer: Volunteer[];
-  meta?: Meta;
-}
-
 export interface AdaptedResume {
   basics: Basics;
   work: Work[];
@@ -141,63 +125,6 @@ export interface VisitorContext {
   slug?: string;
   company: string;
   role: string | null;
-}
-
-export interface GithubIssue {
-  number: number;
-  title: string;
-  state: 'open' | 'closed';
-  labels: Array<{ name: string }>;
-}
-
-export type AnalyticsEvent =
-  | {
-      type: 'session_start';
-      data: { company: string; source: string; adaptation: string; match_score: number };
-      ts: number;
-    }
-  | {
-      type: 'session_heartbeat';
-      data: { duration_ms: number; max_scroll_pct: number };
-      ts: number;
-    }
-  | {
-      type: 'section_dwell';
-      data: { section: string; ms: number };
-      ts: number;
-    }
-  | {
-      type: 'project_click';
-      data: { project_id: string; link: 'url' | 'github' };
-      ts: number;
-    }
-  | {
-      type: 'cta_click';
-      data: { target: 'email' | 'linkedin' | 'github' };
-      ts: number;
-    }
-  | {
-      type: 'chat_question';
-      data: { question: string; issue_number: number };
-      ts: number;
-    };
-
-export interface AnalyticsFlushPayload {
-  session_id: string;
-  events: AnalyticsEvent[];
-}
-
-export type ChatComment =
-  | { status: 'thinking'; ts: string }
-  | { status: 'answer'; answer: string; model: string; ts: string }
-  | { status: 'rate_limited'; ts: string }
-  | { status: 'error'; message: string; ts: string };
-
-export interface ChatMessage {
-  id: string;
-  role: 'user' | 'assistant' | 'system';
-  text: string;
-  issueNumber?: number;
 }
 
 export interface CompanyAnalytics {

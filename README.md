@@ -18,9 +18,7 @@ AgentFolio detects who's visiting via URL slugs and renders a resume adapted to 
 2. **Enable GitHub Pages:** go to Settings → Pages → Source → select **GitHub Actions**
 3. **Replace** `data/resume.md` with your resume (any format — paste from LinkedIn, PDF text, or write markdown)
 4. **Add target positions** in `data/jd/` — one `.md` file per role, filename becomes the URL slug (e.g., `data/jd/google.md` → `yoursite.com/c/google`)
-5. **Set secrets** on your fork:
-   - `ANTHROPIC_API_KEY` — for AI-powered adaptation ([get one here](https://console.anthropic.com/settings/keys))
-   - `GH_ISSUES_PAT` — fine-grained PAT with `issues:read+write` for analytics and chat ([create one here](https://github.com/settings/personal-access-tokens/new))
+5. **Set secret** `ANTHROPIC_API_KEY` on your fork — for AI-powered adaptation ([get one here](https://console.anthropic.com/settings/keys))
 6. **Push** — GitHub Actions generates adapted resumes and deploys to GitHub Pages
 
 No local runtime needed. No JSON to write. Just markdown and push.
@@ -44,17 +42,14 @@ Set these in `web/.env.local` for development, or as GitHub Actions secrets/env 
 
 | Variable | Purpose |
 |----------|---------|
-| `VITE_GITHUB_PAT` | Fine-grained PAT with `issues:read+write` on your fork. Enables analytics and chat. |
 | `VITE_GITHUB_REPO` | `your-username/your-repo`. Auto-set in deploy workflow via `${{ github.repository }}`. |
 | `VITE_BASE_PATH` | URL base path. Default `/`. Set to `/repo-name/` if deploying to `username.github.io/repo-name/`. |
-| `ANTHROPIC_API_KEY` | For chat widget and LLM summary polish (Actions secret only, never in client). |
+| `ANTHROPIC_API_KEY` | For LLM-powered resume adaptation (Actions secret only, never in client). |
 
 ## Features
 
-- **Adaptive resumes** — each company slug gets a tailored version with reordered sections and customized summaries
-- **Match scores** — weighted scoring shows how well your profile fits each role
-- **Chat widget** — visitors can ask questions about your background (powered by Claude via GitHub Actions)
-- **Analytics** — anonymous engagement tracking via GitHub Issues
+- **Adaptive resumes** — each JD gets a tailored version with reordered sections and customized summaries
+- **Zero-runtime quickstart** — fork, add markdown files, push, deployed. No local tools needed.
 - **Architecture page** — `/how-it-works` shows the pipeline and side-by-side adaptation comparisons
 
 ## Architecture
