@@ -1,0 +1,77 @@
+name: Generate PDFs
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'data/adapted/*.json'
+  workflow_dispatch:
+    inputs:
+      slugs:
+        description: 'Space-separated slugs to generate PDFs for (e.g. "notion stripe"). Leave empty for all.'
+        required: false
+        default: ''
+
+permissions:
+  contents: write
+
+jobs:
+  pdf:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Detect changed JSON files
+        id: changes
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            INPUT="${{ github.event.inputs.slugs }}"
+            echo "slugs=${INPUT:-all}" >> "$GITHUB_OUTPUT"
+          else
+            SLUGS=$(git diff --name-only HEAD~1 HEAD -- 'data/adapted/*.json' | sed 's|data/adapted/||;s|\.json$||' | tr '\n' ' ' | xargs)
+            echo "slugs=${SLUGS:-all}" >> "$GITHUB_OUTPUT"
+          fi
+          echo "PDF targets: $(cat "$GITHUB_OUTPUT")"
+
+      - name: Install resumed and theme
+        run: npm install -g resumed jsonresume-theme-developer-mono puppeteer
+
+      - name: Generate PDFs
+        run: |
+          SLUGS="${{ steps.changes.outputs.slugs }}"
+          if [ "$SLUGS" = "all" ]; then
+            for json in data/adapted/*.json; do
+              slug=$(basename "$json" .json)
+              echo "Generating PDF for $slug..."
+              resumed render "$json" --theme jsonresume-theme-developer-mono --type pdf --output "data/adapted/${slug}.pdf"
+            done
+          else
+            for slug in $SLUGS; do
+              json="data/adapted/${slug}.json"
+              if [ -f "$json" ]; then
+                echo "Generating PDF for $slug..."
+                resumed render "$json" --theme jsonresume-theme-developer-mono --type pdf --output "data/adapted/${slug}.pdf"
+              else
+                echo "Warning: $json not found, skipping"
+              fi
+            done
+          fi
+
+      - name: Show generated PDFs
+        run: ls -la data/adapted/*.pdf 2>/dev/null || echo "No PDFs generated"
+
+      - name: Commit generated PDFs
+        run: |
+          git config user.name "AgentFolio Bot"
+          git config user.email "bot@agentfolio.local"
+          git add data/adapted/*.pdf
+          if git diff --cached --quiet; then
+            echo "no PDF changes"
+          else
+            git commit -m "chore(pdf): regenerate PDFs"
+            git push
+          fi
