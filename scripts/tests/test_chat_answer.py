@@ -1,12 +1,13 @@
 import pytest
 from scripts.chat_answer import build_system_prompt, answer
 
+SAMPLE_RESUME_MD = "# Alex Chen\nalex@example.com\n\n## Experience\nSenior Engineer at Acme Corp"
 
-def test_build_system_prompt_includes_resume_json():
-    resume = {"name": "X", "summary_template": "hi"}
-    prompt = build_system_prompt(resume)
-    assert "X" in prompt
-    assert "hi" in prompt
+
+def test_build_system_prompt_includes_resume_text():
+    prompt = build_system_prompt(SAMPLE_RESUME_MD)
+    assert "Alex Chen" in prompt
+    assert "Acme Corp" in prompt
     assert "resume" in prompt.lower()
 
 
@@ -26,7 +27,7 @@ def test_answer_calls_client_with_expected_shape():
 
     result = answer(
         question="How many years of Python?",
-        resume={"name": "X"},
+        resume_text=SAMPLE_RESUME_MD,
         client=FakeClient(),
         model="claude-haiku-4-5",
     )
@@ -51,5 +52,5 @@ def test_answer_truncates_long_questions():
         messages = Messages()
 
     long_q = "x" * 5000
-    answer(question=long_q, resume={}, client=FakeClient(), model="m")
+    answer(question=long_q, resume_text=SAMPLE_RESUME_MD, client=FakeClient(), model="m")
     assert len(seen[0]) <= 2000
