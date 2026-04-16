@@ -26,17 +26,19 @@ function buildStages(
   analytics: AnalyticsDoc | null,
 ): Stage[] {
   const slugLabel = exampleSlug ?? '—';
-  const companyName = example?.company ?? '—';
+  const companyName = example?.meta?.agentfolio?.company ?? '—';
 
-  const summaryWords = example ? example.summary.split(/\s+/).length : 0;
-  const baseWords = baseline ? baseline.summary.split(/\s+/).length : 0;
+  const summaryWords = example ? (example.basics?.summary ?? '').split(/\s+/).length : 0;
+  const baseWords = baseline ? (baseline.basics?.summary ?? '').split(/\s+/).length : 0;
   const wordDelta = summaryWords - baseWords;
 
   const reorderDiffs = (() => {
     if (!example || !baseline) return 0;
+    const exOrder = example.meta?.agentfolio?.section_order ?? [];
+    const blOrder = baseline.meta?.agentfolio?.section_order ?? [];
     let n = 0;
-    for (let i = 0; i < example.section_order.length; i++) {
-      if (example.section_order[i] !== baseline.section_order[i]) n++;
+    for (let i = 0; i < exOrder.length; i++) {
+      if (exOrder[i] !== blOrder[i]) n++;
     }
     return n;
   })();
@@ -46,8 +48,8 @@ function buildStages(
       ? analytics.by_company[exampleSlug]
       : null;
 
-  const matchPct = example ? Math.round(example.match_score.overall * 100) : 0;
-  const matchedKw = example?.match_score.matched_keywords.length ?? 0;
+  const matchPct = example ? Math.round((example.meta?.agentfolio?.match_score?.overall ?? 0) * 100) : 0;
+  const matchedKw = example?.meta?.agentfolio?.match_score?.matched_keywords?.length ?? 0;
 
   return [
     {
@@ -72,8 +74,7 @@ function buildStages(
       source: { label: 'scripts/adapt_one.py', href: `${REPO}/blob/main/scripts/adapt_one.py` },
       telemetry: [
         { k: 'summary', v: `${summaryWords} words · ${wordDelta >= 0 ? '+' : ''}${wordDelta} vs default` },
-        { k: 'skills promoted', v: String(example?.skill_emphasis.length ?? 0) },
-        { k: 'bullet rewrites', v: String(Object.keys(example?.bullet_overrides ?? {}).length) },
+        { k: 'skills promoted', v: String(example?.meta?.agentfolio?.skill_emphasis?.length ?? 0) },
       ],
     },
     {
@@ -140,7 +141,7 @@ export function PipelineDiagram({ slugs, adaptations, analytics, defaultSlug }: 
   const example = adaptations[effective] ?? null;
   const baseline = adaptations['default'] ?? null;
   const stages = buildStages(example, effective, baseline, analytics);
-  const exampleLabel = example?.company ?? effective ?? 'default';
+  const exampleLabel = example?.meta?.agentfolio?.company ?? effective ?? 'default';
 
   return (
     <section className="hiw-block hiw-pipeline" aria-labelledby="hiw-pipe-h">
@@ -155,7 +156,7 @@ export function PipelineDiagram({ slugs, adaptations, analytics, defaultSlug }: 
           <span className="hiw-trace-tabs-lbl">Replay</span>
           {available.map((s) => {
             const adapted = adaptations[s];
-            const label = adapted?.company ?? s;
+            const label = adapted?.meta?.agentfolio?.company ?? s;
             const isActive = s === effective;
             return (
               <button
@@ -179,7 +180,7 @@ export function PipelineDiagram({ slugs, adaptations, analytics, defaultSlug }: 
         <span className="hiw-trace-val">visit from <strong>{exampleLabel}</strong></span>
         {example && (
           <span className="hiw-trace-meta">
-            · adapted {example.generated_at.slice(0, 10)}
+            · adapted {(example.meta?.lastModified ?? '').slice(0, 10)}
           </span>
         )}
       </p>

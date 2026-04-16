@@ -9,12 +9,12 @@ interface Props {
 type Loaded = { slug: string; adapted: AdaptedResume | null };
 
 const SECTION_SHORT: Record<SectionName, string> = {
-  summary: 'sum',
-  experience: 'exp',
+  basics: 'bas',
+  work: 'exp',
   projects: 'prj',
   skills: 'skl',
   education: 'edu',
-  volunteering: 'vol',
+  volunteer: 'vol',
 };
 
 function addedPhrases(base: string, next: string): string[] {
@@ -110,18 +110,18 @@ export function AdaptationComparison({ slugs, adaptations }: Props) {
           <header className="hiw-diff-head">
             <span className="hiw-diff-tag">baseline</span>
             <h3>
-              <a className="hiw-diff-link" href={`${import.meta.env.BASE_URL}`}>{baseline.company}</a>
+              <a className="hiw-diff-link" href={`${import.meta.env.BASE_URL}`}>{baseline.meta?.agentfolio?.company ?? 'default'}</a>
             </h3>
-            <span className="hiw-diff-score" aria-label={`match ${Math.round(baseline.match_score.overall * 100)}%`}>
-              {Math.round(baseline.match_score.overall * 100)}%
+            <span className="hiw-diff-score" aria-label={`match ${Math.round((baseline.meta?.agentfolio?.match_score?.overall ?? 0) * 100)}%`}>
+              {Math.round((baseline.meta?.agentfolio?.match_score?.overall ?? 0) * 100)}%
               <span className="hiw-diff-score-bar" aria-hidden>
-                <span style={{ width: `${Math.round(baseline.match_score.overall * 100)}%` }} />
+                <span style={{ width: `${Math.round((baseline.meta?.agentfolio?.match_score?.overall ?? 0) * 100)}%` }} />
               </span>
             </span>
           </header>
-          <p className="hiw-diff-summary">{baseline.summary}</p>
+          <p className="hiw-diff-summary">{baseline.basics?.summary ?? ''}</p>
           <p className="hiw-diff-order-caption">
-            {baseline.section_order.join(' → ')}
+            {(baseline.meta?.agentfolio?.section_order ?? []).join(' → ')}
           </p>
         </article>
       )}
@@ -141,19 +141,23 @@ export function AdaptationComparison({ slugs, adaptations }: Props) {
             </article>
           );
         }
-        const addedBits = addedPhrases(baseline?.summary ?? '', adapted.summary);
-        const orderCells = sectionDiff(baseline?.section_order, adapted.section_order);
+        const adaptedSummary = adapted.basics?.summary ?? '';
+        const baselineSummary = baseline?.basics?.summary ?? '';
+        const adaptedOrder = adapted.meta?.agentfolio?.section_order ?? [];
+        const baselineOrder = baseline?.meta?.agentfolio?.section_order;
+        const adaptedSkills = adapted.meta?.agentfolio?.skill_emphasis ?? [];
+        const baselineSkills = baseline?.meta?.agentfolio?.skill_emphasis;
+        const addedBits = addedPhrases(baselineSummary, adaptedSummary);
+        const orderCells = sectionDiff(baselineOrder, adaptedOrder);
         const isIdenticalToBaseline =
           baseline !== null &&
-          adapted.summary === baseline.summary &&
-          adapted.section_order.join('|') === baseline.section_order.join('|') &&
-          adapted.skill_emphasis.join('|') === baseline.skill_emphasis.join('|') &&
-          Object.keys(adapted.bullet_overrides).length === 0;
-        const skills = skillDiff(baseline?.skill_emphasis, adapted.skill_emphasis);
-        const pct = Math.round(adapted.match_score.overall * 100);
-        const basePct = baseline ? Math.round(baseline.match_score.overall * 100) : null;
+          adaptedSummary === baselineSummary &&
+          adaptedOrder.join('|') === (baselineOrder ?? []).join('|') &&
+          adaptedSkills.join('|') === (baselineSkills ?? []).join('|');
+        const skills = skillDiff(baselineSkills, adaptedSkills);
+        const pct = Math.round((adapted.meta?.agentfolio?.match_score?.overall ?? 0) * 100);
+        const basePct = baseline ? Math.round((baseline.meta?.agentfolio?.match_score?.overall ?? 0) * 100) : null;
         const delta = basePct !== null ? pct - basePct : null;
-        const overrides = Object.keys(adapted.bullet_overrides).length;
 
         return (
           <article
@@ -171,7 +175,7 @@ export function AdaptationComparison({ slugs, adaptations }: Props) {
                   target="_blank"
                   rel="noreferrer"
                 >
-                  {adapted.company}
+                  {adapted.meta?.agentfolio?.company ?? slug}
                   <span className="hiw-diff-link-arrow" aria-hidden>↗</span>
                 </a>
               </h3>
@@ -205,10 +209,10 @@ export function AdaptationComparison({ slugs, adaptations }: Props) {
             <div className="hiw-diff-grid">
               <div className="hiw-diff-col hiw-diff-col-summary">
                 <h4>Summary rewrite</h4>
-                <p className="hiw-diff-summary">{adapted.summary}</p>
+                <p className="hiw-diff-summary">{adaptedSummary}</p>
                 {addedBits.length > 0 && (
                   <p className="hiw-diff-addendum">
-                    <span className="hiw-diff-addendum-lbl">new for {adapted.company}</span>
+                    <span className="hiw-diff-addendum-lbl">new for {adapted.meta?.agentfolio?.company ?? slug}</span>
                     {addedBits.slice(0, 6).map((bit) => (
                       <mark key={bit}>{bit}</mark>
                     ))}
@@ -235,7 +239,7 @@ export function AdaptationComparison({ slugs, adaptations }: Props) {
                   ))}
                 </ol>
                 <p className="hiw-diff-order-caption">
-                  {adapted.section_order.join(' → ')}
+                  {adaptedOrder.join(' → ')}
                 </p>
               </div>
 
@@ -265,18 +269,13 @@ export function AdaptationComparison({ slugs, adaptations }: Props) {
               <div className="hiw-diff-col hiw-diff-col-meta">
                 <h4>Match keywords</h4>
                 <ul className="hiw-diff-kws">
-                  {adapted.match_score.matched_keywords.slice(0, 6).map((kw) => (
+                  {(adapted.meta?.agentfolio?.match_score?.matched_keywords ?? []).slice(0, 6).map((kw) => (
                     <li key={kw} className="hiw-kw hiw-kw-hit">{kw}</li>
                   ))}
-                  {adapted.match_score.missing_keywords.slice(0, 4).map((kw) => (
+                  {(adapted.meta?.agentfolio?.match_score?.missing_keywords ?? []).slice(0, 4).map((kw) => (
                     <li key={kw} className="hiw-kw hiw-kw-miss">{kw}</li>
                   ))}
                 </ul>
-                {overrides > 0 && (
-                  <p className="hiw-diff-overrides">
-                    <strong>{overrides}</strong> bullet{overrides === 1 ? '' : 's'} rewritten
-                  </p>
-                )}
               </div>
             </div>
           </article>
