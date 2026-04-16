@@ -137,19 +137,11 @@ export interface SlugEntry {
 export type SlugRegistry = Record<string, SlugEntry>;
 
 export interface VisitorContext {
-  source: 'slug' | 'self-id' | 'default';
+  source: 'slug' | 'default';
   slug?: string;
   company: string;
   role: string | null;
 }
-
-export type ProgressStep = 'jd_parsed' | 'profile_built' | 'adapted' | 'committed';
-
-export type ProgressComment =
-  | { status: 'progress'; step: ProgressStep; timestamp: string }
-  | { status: 'complete'; adapted_path: string; company_slug: string; timestamp: string }
-  | { status: 'rate_limited'; timestamp: string }
-  | { status: 'error'; message: string; timestamp: string };
 
 export interface GithubIssue {
   number: number;
