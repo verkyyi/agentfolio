@@ -106,6 +106,8 @@ jobs:
 
       - name: Run adaptation
         id: run
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: |
           python -m scripts.adapt_on_request "${{ steps.parse.outputs.company }}" "${{ steps.parse.outputs.role }}" > /tmp/adapt.out
           cat /tmp/adapt.out
