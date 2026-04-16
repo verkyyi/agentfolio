@@ -60,10 +60,10 @@ function mockAdapted(overrides: Record<string, any> = {}): AdaptedResume {
 
 const defaultAdapted = mockAdapted({
   basics: {
-    name: 'Lianghui Yi',
-    email: 'verky.yi@gmail.com',
+    name: 'Alex Chen',
+    email: 'alex@example.com',
     summary: 'Default summary',
-    location: { city: 'Santa Clara', region: 'CA' },
+    location: { city: 'San Francisco', region: 'CA' },
     profiles: [],
   },
   meta: {
@@ -71,7 +71,7 @@ const defaultAdapted = mockAdapted({
     lastModified: '2026-04-15T00:00:00+00:00',
     agentfolio: {
       company: 'default',
-      generated_by: 'adapt_one.py v0.1',
+      generated_by: 'sample',
       match_score: { overall: 0.1, by_category: {}, matched_keywords: [], missing_keywords: [] },
       skill_emphasis: [],
       section_order: ['basics'],
@@ -79,17 +79,17 @@ const defaultAdapted = mockAdapted({
   },
 });
 
-const cohereAdapted = mockAdapted({
+const sampleAdapted = mockAdapted({
   basics: {
     ...defaultAdapted.basics,
-    summary: 'Cohere summary',
+    summary: 'Sample company summary',
   },
   meta: {
     version: '1.0.0',
     lastModified: '2026-04-15T00:00:00+00:00',
     agentfolio: {
-      company: 'cohere',
-      generated_by: 'adapt_one.py v0.1',
+      company: 'sample-company',
+      generated_by: 'sample',
       match_score: { overall: 0.7, by_category: {}, matched_keywords: [], missing_keywords: [] },
       skill_emphasis: [],
       section_order: ['basics'],
@@ -98,7 +98,7 @@ const cohereAdapted = mockAdapted({
 });
 
 const slugRegistry: SlugRegistry = {
-  'cohere-fde': { company: 'cohere', role: 'FDE, Agentic Platform', created: '2026-04-15', context: 'Applied via Ashby' },
+  'sample': { company: 'sample-company', role: 'Software Engineer', created: '2026-01-01', context: 'Sample slug for demo' },
 };
 
 beforeEach(() => {
@@ -109,8 +109,8 @@ beforeEach(() => {
     if (url.endsWith('data/slugs.json')) {
       return { ok: true, json: async () => slugRegistry };
     }
-    if (url.includes('data/adapted/cohere.json')) {
-      return { ok: true, json: async () => cohereAdapted };
+    if (url.includes('data/adapted/sample-company.json')) {
+      return { ok: true, json: async () => sampleAdapted };
     }
     if (url.includes('data/adapted/default.json')) {
       return { ok: true, json: async () => defaultAdapted };
@@ -135,9 +135,9 @@ describe('App — default path', () => {
 
 describe('App — slug path', () => {
   it('renders company-specific adaptation for valid slug', async () => {
-    window.history.pushState({}, '', '/agentfolio/c/cohere-fde');
+    window.history.pushState({}, '', '/agentfolio/c/sample');
     render(<App />);
-    await waitFor(() => expect(screen.getByText('Cohere summary')).toBeInTheDocument());
+    await waitFor(() => expect(screen.getByText('Sample company summary')).toBeInTheDocument());
   });
 
   it('falls back to default for unknown slug', async () => {

@@ -60,13 +60,13 @@ function mockAdapted(overrides: Record<string, any> = {}): AdaptedResume {
 
 const adapted = mockAdapted({
   basics: {
-    name: 'Lianghui Yi',
-    email: 'verky.yi@gmail.com',
+    name: 'Alex Chen',
+    email: 'alex@example.com',
     summary: 'Adapted summary text',
-    location: { city: 'Santa Clara', region: 'CA' },
+    location: { city: 'San Francisco', region: 'CA' },
     profiles: [
-      { network: 'LinkedIn', url: 'https://linkedin.com/in/lianghuiyi' },
-      { network: 'GitHub', url: 'https://github.com/verkyyi' },
+      { network: 'LinkedIn', url: 'https://linkedin.com/in/alexchen' },
+      { network: 'GitHub', url: 'https://github.com/alexchen' },
     ],
   },
   work: [
@@ -97,8 +97,8 @@ const adapted = mockAdapted({
     version: '1.0.0',
     lastModified: '2026-04-15T00:00:00+00:00',
     agentfolio: {
-      company: 'Cohere',
-      generated_by: 'adapt_one.py v0.1',
+      company: 'sample-company',
+      generated_by: 'sample',
       match_score: {
         overall: 0.87,
         by_category: { ai: 0.9 },
@@ -113,9 +113,9 @@ const adapted = mockAdapted({
 
 const context: VisitorContext = {
   source: 'slug',
-  slug: 'cohere-fde',
-  company: 'cohere',
-  role: 'FDE, Agentic Platform',
+  slug: 'sample',
+  company: 'sample-company',
+  role: 'Software Engineer',
 };
 
 describe('AdaptiveResume', () => {
@@ -152,13 +152,13 @@ describe('AdaptiveResume', () => {
   it('renders debug panel with detected company', () => {
     render(<AdaptiveResume adapted={adapted} context={context} />);
     expect(screen.getByText('Agent Context')).toBeInTheDocument();
-    expect(screen.getByText('cohere')).toBeInTheDocument();
+    expect(screen.getAllByText('sample-company').length).toBeGreaterThan(0);
   });
 
   it('renders name and contact from adapted resume', () => {
     render(<AdaptiveResume adapted={adapted} context={context} />);
-    expect(screen.getByText('Lianghui Yi')).toBeInTheDocument();
-    expect(screen.getByText('verky.yi@gmail.com')).toBeInTheDocument();
+    expect(screen.getByText('Alex Chen')).toBeInTheDocument();
+    expect(screen.getByText('alex@example.com')).toBeInTheDocument();
   });
 
   it('calls onCtaClick when email link is clicked', async () => {
@@ -167,7 +167,7 @@ describe('AdaptiveResume', () => {
     render(
       <AdaptiveResume adapted={adapted} context={context} onCtaClick={onCtaClick} />,
     );
-    await user.click(screen.getByText('verky.yi@gmail.com'));
+    await user.click(screen.getByText('alex@example.com'));
     expect(onCtaClick).toHaveBeenCalledWith('email');
   });
 
