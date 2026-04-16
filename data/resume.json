@@ -1,106 +1,105 @@
 {
-  "name": "Lianghui Yi",
-  "contact": {
-    "location": "Santa Clara, CA",
-    "phone": "(925) 900-3467",
+  "basics": {
+    "name": "Lianghui Yi",
+    "label": "Forward Deployed Engineer",
     "email": "verky.yi@gmail.com",
-    "linkedin": "https://linkedin.com/in/lianghuiyi",
-    "github": "https://github.com/verkyyi"
+    "phone": "(925) 900-3467",
+    "location": {
+      "city": "Santa Clara",
+      "region": "CA",
+      "countryCode": "US"
+    },
+    "profiles": [
+      {
+        "network": "LinkedIn",
+        "url": "https://linkedin.com/in/lianghuiyi"
+      },
+      {
+        "network": "GitHub",
+        "url": "https://github.com/verkyyi",
+        "username": "verkyyi"
+      }
+    ]
   },
-  "summary_template": "Forward Deployed Engineer with 5+ years shipping {focus} at scale. Experienced collaborating directly with enterprise customers to scope technical requirements and deploy end-to-end solutions — from {surface} to {infra}. Proven track record building production {systems} that power 50,000+ users, with deep expertise in {highlight}.",
-  "summary_defaults": {
-    "focus": "full-stack products and data infrastructure",
-    "surface": "front-end interfaces",
-    "infra": "backend systems and cloud infrastructure",
-    "systems": "AI platforms",
-    "highlight": "generative AI engineering, rapid experimentation, and high-quality data solutions"
-  },
-  "experience": [
+  "work": [
     {
       "id": "24helpful",
-      "title": "Co-Founder & AI Engineer",
-      "company": "24 Helpful, LLC",
+      "name": "24 Helpful, LLC",
+      "position": "Co-Founder & AI Engineer",
       "location": "Santa Clara, CA",
-      "dates": "03/2024 – Present",
-      "bullets": [
+      "startDate": "2024-03",
+      "highlights": [
+        "Designed and shipped a self-evolving code system (generator/evaluator loop) that accelerated development velocity; implemented CI/CD automation with GitHub Actions to close iteration cycles in under 24 hours.",
+        "Delivered end-to-end multi-tenant AWS cloud infrastructure for enterprise customers, reducing provisioning costs by 50% through automated resource management and tenant isolation.",
+        "Collaborated directly with customers to scope requirements, remove deployment blockers, and accelerate rollouts — codified deployment playbooks and runbooks to standardize operational response across production systems."
+      ],
+      "highlightMeta": [
         {
           "id": "24h-evolving-code",
-          "text": "Designed and shipped a self-evolving code system (generator/evaluator loop) that accelerated development velocity; implemented CI/CD automation with GitHub Actions to close iteration cycles in under 24 hours.",
-          "tags": ["agentic", "ci-cd", "rapid-experimentation", "evaluation"],
-          "adaptations": {
-            "cohere": "Designed and shipped a self-evolving agentic code system (generator/evaluator loop) that accelerated development velocity; implemented CI/CD automation with GitHub Actions to close iteration cycles in under 24 hours."
-          }
+          "tags": ["agentic", "ci-cd", "rapid-experimentation", "evaluation"]
         },
         {
           "id": "24h-aws-infra",
-          "text": "Delivered end-to-end multi-tenant AWS cloud infrastructure for enterprise customers, reducing provisioning costs by 50% through automated resource management and tenant isolation.",
-          "tags": ["cloud", "enterprise", "infrastructure", "customer-facing"],
-          "adaptations": {
-            "cohere": "Delivered end-to-end multi-tenant cloud infrastructure for enterprise customers, reducing provisioning costs by 50% through automated resource management and tenant isolation across AWS services."
-          }
+          "tags": ["cloud", "enterprise", "infrastructure", "customer-facing"]
         },
         {
           "id": "24h-customer-collab",
-          "text": "Collaborated directly with customers to scope requirements, remove deployment blockers, and accelerate rollouts — codified deployment playbooks and runbooks to standardize operational response across production systems.",
-          "tags": ["customer-facing", "deployment", "enterprise", "playbooks"],
-          "adaptations": {}
+          "tags": ["customer-facing", "deployment", "enterprise", "playbooks"]
         }
       ]
     },
     {
       "id": "24haowan",
-      "title": "Co-Founder & Technical Lead",
-      "company": "24Haowan Network Technology Co., Ltd.",
+      "name": "24Haowan Network Technology Co., Ltd.",
+      "position": "Co-Founder & Technical Lead",
       "location": "Shanghai, China",
-      "dates": "10/2019 – 08/2023",
-      "bullets": [
+      "startDate": "2019-10",
+      "endDate": "2023-08",
+      "highlights": [
+        "Designed a SaaS product and go-to-market strategy that achieved $1,000,000 ARR in 2 years by optimizing product lifecycle, user onboarding, and data-driven iteration loops.",
+        "Led cross-functional engineering team; built internal tools that streamlined product and engineering workflows, improving team delivery cadence over a 6-month period.",
+        "Engaged directly with enterprise customers to scope technical requirements and uncover pain points, converting 3 strategic accounts within 3 months and improving product-market fit."
+      ],
+      "highlightMeta": [
         {
           "id": "24hw-saas",
-          "text": "Designed a SaaS product and go-to-market strategy that achieved $1,000,000 ARR in 2 years by optimizing product lifecycle, user onboarding, and data-driven iteration loops.",
-          "tags": ["product", "growth", "data-driven", "saas", "enterprise", "customer-facing"],
-          "adaptations": {}
+          "tags": ["product", "growth", "data-driven", "saas", "enterprise", "customer-facing"]
         },
         {
           "id": "24hw-team",
-          "text": "Led cross-functional engineering team; built internal tools that streamlined product and engineering workflows, improving team delivery cadence over a 6-month period.",
-          "tags": ["leadership", "tooling", "full-stack"],
-          "adaptations": {}
+          "tags": ["leadership", "tooling", "full-stack"]
         },
         {
           "id": "24hw-enterprise",
-          "text": "Engaged directly with enterprise customers to scope technical requirements and uncover pain points, converting 3 strategic accounts within 3 months and improving product-market fit.",
-          "tags": ["customer-facing", "enterprise", "product-market-fit"],
-          "adaptations": {}
+          "tags": ["customer-facing", "enterprise", "product-market-fit"]
         }
       ]
     },
     {
       "id": "maiduote",
-      "title": "Tech Lead",
-      "company": "Maiduote Network Technology Co., Ltd.",
+      "name": "Maiduote Network Technology Co., Ltd.",
+      "position": "Tech Lead",
       "location": "Guangzhou, China",
-      "dates": "06/2018 – 07/2019",
-      "subtitle": "Technology subsidiary of a biotech group — doctor-patient engagement platforms",
-      "bullets": [
+      "startDate": "2018-06",
+      "endDate": "2019-07",
+      "description": "Technology subsidiary of a biotech group — doctor-patient engagement platforms",
+      "highlights": [
+        "Led end-to-end product development and launched a production platform that increased doctor-patient engagement by 30%; integrated predefined forms and chatbots in collaboration with stakeholders.",
+        "Scoped and delivered data-driven features across the full stack, coordinating cross-functional teams to prioritize roadmap items and ensure stable, rapid rollouts.",
+        "Drove customer-facing growth strategies that acquired over 50,000 users in 6 months, exceeding targets through targeted outreach and workflow optimization."
+      ],
+      "highlightMeta": [
         {
           "id": "mdt-platform",
-          "text": "Led end-to-end product development and launched a production platform that increased doctor-patient engagement by 30%; integrated predefined forms and chatbots in collaboration with stakeholders.",
-          "tags": ["full-stack", "product", "customer-facing", "healthcare"],
-          "adaptations": {
-            "cohere": "Led end-to-end product development and launched a production platform that increased doctor-patient engagement by 30%; built and deployed chatbot agents in collaboration with stakeholders to automate patient workflows."
-          }
+          "tags": ["full-stack", "product", "customer-facing", "healthcare"]
         },
         {
           "id": "mdt-fullstack",
-          "text": "Scoped and delivered data-driven features across the full stack, coordinating cross-functional teams to prioritize roadmap items and ensure stable, rapid rollouts.",
-          "tags": ["full-stack", "data-driven", "rapid-experimentation", "production", "deploy"],
-          "adaptations": {}
+          "tags": ["full-stack", "data-driven", "rapid-experimentation", "production", "deploy"]
         },
         {
           "id": "mdt-growth",
-          "text": "Drove customer-facing growth strategies that acquired over 50,000 users in 6 months, exceeding targets through targeted outreach and workflow optimization.",
-          "tags": ["growth", "customer-facing", "scale"],
-          "adaptations": {}
+          "tags": ["growth", "customer-facing", "scale"]
         }
       ]
     }
@@ -109,57 +108,139 @@
     {
       "id": "tokenman",
       "name": "tokenman.io",
-      "tagline": "Claude Code Hosting & AI Repo Self-Evolution",
+      "description": "Claude Code Hosting & AI Repo Self-Evolution",
       "url": "https://tokenman.io",
       "github": "https://github.com/verkyyi/tokenman",
-      "dates": "03/2026 – Present",
-      "tags": ["agentic", "infrastructure", "ci-cd", "saas"],
-      "bullets": [
-        { "id": "tkm-hosting", "text": "Built terminal.tokenman.io — a multi-tenant Claude Code CLI hosting SaaS on EC2 with mobile-first SSH, persistent tmux sessions, and cloud-init provisioning for secure production access.", "tags": ["infrastructure", "cloud", "saas"] },
-        { "id": "tkm-evolution", "text": "Designed a skill-based repo self-evolution system with shared AI context and slash commands, enabling autonomous AI-driven code loops via GitHub Actions (human + AI and headless generator/evaluator workflows).", "tags": ["agentic", "evaluation", "ci-cd", "autonomous"] }
+      "startDate": "2026-03",
+      "keywords": ["agentic", "infrastructure", "ci-cd", "saas"],
+      "highlights": [
+        "Built terminal.tokenman.io — a multi-tenant Claude Code CLI hosting SaaS on EC2 with mobile-first SSH, persistent tmux sessions, and cloud-init provisioning for secure production access.",
+        "Designed a skill-based repo self-evolution system with shared AI context and slash commands, enabling autonomous AI-driven code loops via GitHub Actions (human + AI and headless generator/evaluator workflows)."
+      ],
+      "highlightMeta": [
+        {
+          "id": "tkm-hosting",
+          "tags": ["infrastructure", "cloud", "saas"]
+        },
+        {
+          "id": "tkm-evolution",
+          "tags": ["agentic", "evaluation", "ci-cd", "autonomous"]
+        }
       ]
     },
     {
       "id": "ainbox",
       "name": "aInbox (ainbox.io)",
-      "tagline": "MCP-Native AI Agent Email Middleware",
+      "description": "MCP-Native AI Agent Email Middleware",
       "url": "https://ainbox.io",
       "github": "https://github.com/verkyyi/ainbox",
-      "dates": "12/2025 – Present",
-      "tags": ["agentic", "mcp", "llm", "infrastructure"],
-      "bullets": [
-        { "id": "ainbox-platform", "text": "Built an MCP-native AI agent middleware platform giving LLMs a dedicated inbox and async messaging layer, operated entirely via Model Context Protocol tools with no traditional UI.", "tags": ["agentic", "mcp", "llm"] },
-        { "id": "ainbox-infra", "text": "Designed full server architecture with OAuth, JWT, and Streamable HTTP transport; implemented LLM-driven triage and labeling pipeline deployed on multi-tenant AWS infrastructure using Aurora Serverless, SES, and per-user IAM roles.", "tags": ["infrastructure", "cloud", "llm", "enterprise"] }
+      "startDate": "2025-12",
+      "keywords": ["agentic", "mcp", "llm", "infrastructure"],
+      "highlights": [
+        "Built an MCP-native AI agent middleware platform giving LLMs a dedicated inbox and async messaging layer, operated entirely via Model Context Protocol tools with no traditional UI.",
+        "Designed full server architecture with OAuth, JWT, and Streamable HTTP transport; implemented LLM-driven triage and labeling pipeline deployed on multi-tenant AWS infrastructure using Aurora Serverless, SES, and per-user IAM roles."
+      ],
+      "highlightMeta": [
+        {
+          "id": "ainbox-platform",
+          "tags": ["agentic", "mcp", "llm"]
+        },
+        {
+          "id": "ainbox-infra",
+          "tags": ["infrastructure", "cloud", "llm", "enterprise"]
+        }
       ]
     },
     {
       "id": "agentfolio",
       "name": "AgentFolio",
-      "tagline": "Open-Source Agentic Portfolio Engine",
+      "description": "Open-Source Agentic Portfolio Engine",
       "url": "https://verkyyi.github.io/agentfolio",
       "github": "https://github.com/verkyyi/agentfolio",
-      "dates": "04/2026 – Present",
-      "tags": ["agentic", "rag", "full-stack", "open-source"],
-      "bullets": [
-        { "id": "af-engine", "text": "Built an agentic portfolio engine that detects visitor context and dynamically adapts resume content using LLM-powered rewriting and JD-matching pipelines; deployed on pure GitHub infrastructure with zero third-party cost.", "tags": ["agentic", "llm", "infrastructure"] },
-        { "id": "af-architecture", "text": "Designed a five-stage agent architecture (perceive → reason → act → learn → explain) with RAG-powered chat, automated JD fetching, and visitor feedback loops that continuously optimize content resonance.", "tags": ["agentic", "rag", "evaluation", "data-driven"] }
+      "startDate": "2026-04",
+      "keywords": ["agentic", "rag", "full-stack", "open-source"],
+      "highlights": [
+        "Built an agentic portfolio engine that detects visitor context and dynamically adapts resume content using LLM-powered rewriting and JD-matching pipelines; deployed on pure GitHub infrastructure with zero third-party cost.",
+        "Designed a five-stage agent architecture (perceive \u2192 reason \u2192 act \u2192 learn \u2192 explain) with RAG-powered chat, automated JD fetching, and visitor feedback loops that continuously optimize content resonance."
+      ],
+      "highlightMeta": [
+        {
+          "id": "af-engine",
+          "tags": ["agentic", "llm", "infrastructure"]
+        },
+        {
+          "id": "af-architecture",
+          "tags": ["agentic", "rag", "evaluation", "data-driven"]
+        }
       ]
     }
   ],
-  "education": [
-    { "degree": "Master of Data Science and Analytics", "school": "Georgetown University", "location": "Washington, DC", "dates": "09/2023 – 05/2025", "note": "Returning Student Scholarship (Top 3%)" },
-    { "degree": "Executive MBA", "school": "Lingnan College, Sun Yat-Sen University", "location": "Guangzhou, China", "dates": "" },
-    { "degree": "B.E. in Information Engineering", "school": "Beijing University of Posts and Telecommunications", "location": "Beijing, China", "dates": "" }
+  "skills": [
+    {
+      "id": "ai",
+      "name": "AI & Agentic Systems",
+      "keywords": ["Autonomous Agent Development", "LLM Integration", "RAG Pipelines", "MCP (Model Context Protocol)", "Prompt Engineering", "RLHF Concepts", "Evaluation Framework Design (Generator/Evaluator)", "Data Pipeline Architecture"]
+    },
+    {
+      "id": "fullstack",
+      "name": "Full-Stack",
+      "keywords": ["Python", "JavaScript/TypeScript (Node.js, React.js)", "R", "SQL", "PHP", "HTML/CSS", "PySpark", "NumPy", "Pandas"]
+    },
+    {
+      "id": "cloud",
+      "name": "Cloud & Infrastructure",
+      "keywords": ["AWS (EC2, SES, Aurora Serverless, IAM, SCPs)", "Docker", "Kubernetes", "GitHub Actions CI/CD", "Private/Hybrid Cloud Deployment", "JWT/OAuth", "Production Systems", "Distributed Systems"]
+    },
+    {
+      "id": "methods",
+      "name": "Methods & Tools",
+      "keywords": ["Rapid Experimentation", "Customer Discovery", "Scrum/Agile", "Playbooks/Runbooks", "Figma", "Jira", "MySQL", "Redis"]
+    }
   ],
-  "skills": {
-    "groups": [
-      { "id": "ai", "label": "AI & Agentic Systems", "items": ["Autonomous Agent Development", "LLM Integration", "RAG Pipelines", "MCP (Model Context Protocol)", "Prompt Engineering", "RLHF Concepts", "Evaluation Framework Design (Generator/Evaluator)", "Data Pipeline Architecture"] },
-      { "id": "fullstack", "label": "Full-Stack", "items": ["Python", "JavaScript/TypeScript (Node.js, React.js)", "R", "SQL", "PHP", "HTML/CSS", "PySpark", "NumPy", "Pandas"] },
-      { "id": "cloud", "label": "Cloud & Infrastructure", "items": ["AWS (EC2, SES, Aurora Serverless, IAM, SCPs)", "Docker", "Kubernetes", "GitHub Actions CI/CD", "Private/Hybrid Cloud Deployment", "JWT/OAuth", "Production Systems", "Distributed Systems"] },
-      { "id": "methods", "label": "Methods & Tools", "items": ["Rapid Experimentation", "Customer Discovery", "Scrum/Agile", "Playbooks/Runbooks", "Figma", "Jira", "MySQL", "Redis"] }
-    ]
-  },
-  "volunteering": [
-    { "title": "Volunteer Lead", "org": "1124 Space", "location": "Arlington, VA", "dates": "04/2024 – 12/2025", "description": "Led community initiatives and organized weekly founder-focused events (1,000+ participants in one year), coordinated volunteers and facilitated connections to strengthen engagement and collaboration." }
-  ]
+  "education": [
+    {
+      "institution": "Georgetown University",
+      "studyType": "Master",
+      "area": "Data Science and Analytics",
+      "location": "Washington, DC",
+      "startDate": "2023-09",
+      "endDate": "2025-05",
+      "score": "Returning Student Scholarship (Top 3%)"
+    },
+    {
+      "institution": "Lingnan College, Sun Yat-Sen University",
+      "studyType": "Executive MBA",
+      "area": "",
+      "location": "Guangzhou, China"
+    },
+    {
+      "institution": "Beijing University of Posts and Telecommunications",
+      "studyType": "B.E.",
+      "area": "Information Engineering",
+      "location": "Beijing, China"
+    }
+  ],
+  "volunteer": [
+    {
+      "organization": "1124 Space",
+      "position": "Volunteer Lead",
+      "location": "Arlington, VA",
+      "startDate": "2024-04",
+      "endDate": "2025-12",
+      "summary": "Led community initiatives and organized weekly founder-focused events (1,000+ participants in one year), coordinated volunteers and facilitated connections to strengthen engagement and collaboration."
+    }
+  ],
+  "meta": {
+    "version": "1.0.0",
+    "agentfolio": {
+      "summary_template": "Forward Deployed Engineer with 5+ years shipping {focus} at scale. Experienced collaborating directly with enterprise customers to scope technical requirements and deploy end-to-end solutions \u2014 from {surface} to {infra}. Proven track record building production {systems} that power 50,000+ users, with deep expertise in {highlight}.",
+      "summary_defaults": {
+        "focus": "full-stack products and data infrastructure",
+        "surface": "front-end interfaces",
+        "infra": "backend systems and cloud infrastructure",
+        "systems": "AI platforms",
+        "highlight": "generative AI engineering, rapid experimentation, and high-quality data solutions"
+      }
+    }
+  }
 }

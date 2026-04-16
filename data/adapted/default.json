@@ -1,50 +1,165 @@
 {
-  "company": "default",
-  "generated_at": "2026-04-15T21:57:53+00:00",
-  "generated_by": "adapt_one.py v0.1",
-  "summary": "Forward Deployed Engineer with 5+ years shipping full-stack products and data infrastructure at scale. Collaborate directly with enterprise customers to scope requirements and deploy end-to-end solutions across front-end, backend, and cloud infrastructure. Built production AI platforms serving 50,000+ users with expertise in generative AI engineering, rapid experimentation, and data quality.",
-  "section_order": [
-    "summary",
-    "experience",
-    "projects",
-    "skills",
-    "education",
-    "volunteering"
-  ],
-  "experience_order": [
-    "24helpful",
-    "24haowan",
-    "maiduote"
-  ],
-  "bullet_overrides": {},
-  "project_order": [
-    "ainbox",
-    "agentfolio",
-    "tokenman"
-  ],
-  "skill_emphasis": [
-    "Python",
-    "LLM Integration",
-    "AWS (EC2, SES, Aurora Serverless, IAM, SCPs)"
-  ],
-  "match_score": {
-    "overall": 0.71,
-    "by_category": {
-      "ai": 0.12,
-      "fullstack": 0.11,
-      "cloud": 0.12,
-      "methods": 0.0,
-      "experience_bullets": 1.0,
-      "projects": 1.0
+  "basics": {
+    "name": "Lianghui Yi",
+    "label": "Forward Deployed Engineer",
+    "email": "verky.yi@gmail.com",
+    "phone": "(925) 900-3467",
+    "summary": "Forward Deployed Engineer with 5+ years shipping full-stack products and data infrastructure at scale. Experienced collaborating directly with enterprise customers to scope technical requirements and deploy end-to-end solutions \u2014 from front-end interfaces to backend systems and cloud infrastructure. Proven track record building production AI platforms that power 50,000+ users, with deep expertise in generative AI engineering, rapid experimentation, and high-quality data solutions.",
+    "location": {
+      "city": "Santa Clara",
+      "region": "CA",
+      "countryCode": "US"
     },
-    "matched_keywords": [
-      "AWS (EC2, SES, Aurora Serverless, IAM, SCPs)",
-      "LLM Integration",
-      "Python",
-      "agentic",
-      "customer-facing",
-      "full-stack"
-    ],
-    "missing_keywords": []
+    "profiles": [
+      {
+        "network": "LinkedIn",
+        "url": "https://linkedin.com/in/lianghuiyi"
+      },
+      {
+        "network": "GitHub",
+        "url": "https://github.com/verkyyi",
+        "username": "verkyyi"
+      }
+    ]
+  },
+  "work": [
+    {
+      "name": "24 Helpful, LLC",
+      "position": "Co-Founder & AI Engineer",
+      "location": "Santa Clara, CA",
+      "startDate": "2024-03",
+      "highlights": [
+        "Designed and shipped a self-evolving code system (generator/evaluator loop) that accelerated development velocity; implemented CI/CD automation with GitHub Actions to close iteration cycles in under 24 hours.",
+        "Delivered end-to-end multi-tenant AWS cloud infrastructure for enterprise customers, reducing provisioning costs by 50% through automated resource management and tenant isolation.",
+        "Collaborated directly with customers to scope requirements, remove deployment blockers, and accelerate rollouts \u2014 codified deployment playbooks and runbooks to standardize operational response across production systems."
+      ]
+    },
+    {
+      "name": "24Haowan Network Technology Co., Ltd.",
+      "position": "Co-Founder & Technical Lead",
+      "location": "Shanghai, China",
+      "startDate": "2019-10",
+      "endDate": "2023-08",
+      "highlights": [
+        "Designed a SaaS product and go-to-market strategy that achieved $1,000,000 ARR in 2 years by optimizing product lifecycle, user onboarding, and data-driven iteration loops.",
+        "Led cross-functional engineering team; built internal tools that streamlined product and engineering workflows, improving team delivery cadence over a 6-month period.",
+        "Engaged directly with enterprise customers to scope technical requirements and uncover pain points, converting 3 strategic accounts within 3 months and improving product-market fit."
+      ]
+    },
+    {
+      "name": "Maiduote Network Technology Co., Ltd.",
+      "position": "Tech Lead",
+      "location": "Guangzhou, China",
+      "startDate": "2018-06",
+      "endDate": "2019-07",
+      "description": "Technology subsidiary of a biotech group \u2014 doctor-patient engagement platforms",
+      "highlights": [
+        "Led end-to-end product development and launched a production platform that increased doctor-patient engagement by 30%; integrated predefined forms and chatbots in collaboration with stakeholders.",
+        "Scoped and delivered data-driven features across the full stack, coordinating cross-functional teams to prioritize roadmap items and ensure stable, rapid rollouts.",
+        "Drove customer-facing growth strategies that acquired over 50,000 users in 6 months, exceeding targets through targeted outreach and workflow optimization."
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "name": "tokenman.io",
+      "description": "Claude Code Hosting & AI Repo Self-Evolution",
+      "url": "https://tokenman.io",
+      "startDate": "2026-03",
+      "keywords": ["agentic", "infrastructure", "ci-cd", "saas"],
+      "highlights": [
+        "Built terminal.tokenman.io \u2014 a multi-tenant Claude Code CLI hosting SaaS on EC2 with mobile-first SSH, persistent tmux sessions, and cloud-init provisioning for secure production access.",
+        "Designed a skill-based repo self-evolution system with shared AI context and slash commands, enabling autonomous AI-driven code loops via GitHub Actions (human + AI and headless generator/evaluator workflows)."
+      ]
+    },
+    {
+      "name": "aInbox (ainbox.io)",
+      "description": "MCP-Native AI Agent Email Middleware",
+      "url": "https://ainbox.io",
+      "startDate": "2025-12",
+      "keywords": ["agentic", "mcp", "llm", "infrastructure"],
+      "highlights": [
+        "Built an MCP-native AI agent middleware platform giving LLMs a dedicated inbox and async messaging layer, operated entirely via Model Context Protocol tools with no traditional UI.",
+        "Designed full server architecture with OAuth, JWT, and Streamable HTTP transport; implemented LLM-driven triage and labeling pipeline deployed on multi-tenant AWS infrastructure using Aurora Serverless, SES, and per-user IAM roles."
+      ]
+    },
+    {
+      "name": "AgentFolio",
+      "description": "Open-Source Agentic Portfolio Engine",
+      "url": "https://verkyyi.github.io/agentfolio",
+      "startDate": "2026-04",
+      "keywords": ["agentic", "rag", "full-stack", "open-source"],
+      "highlights": [
+        "Built an agentic portfolio engine that detects visitor context and dynamically adapts resume content using LLM-powered rewriting and JD-matching pipelines; deployed on pure GitHub infrastructure with zero third-party cost.",
+        "Designed a five-stage agent architecture (perceive \u2192 reason \u2192 act \u2192 learn \u2192 explain) with RAG-powered chat, automated JD fetching, and visitor feedback loops that continuously optimize content resonance."
+      ]
+    }
+  ],
+  "skills": [
+    {
+      "name": "AI & Agentic Systems",
+      "keywords": ["Autonomous Agent Development", "LLM Integration", "RAG Pipelines", "MCP (Model Context Protocol)", "Prompt Engineering", "RLHF Concepts", "Evaluation Framework Design (Generator/Evaluator)", "Data Pipeline Architecture"]
+    },
+    {
+      "name": "Full-Stack",
+      "keywords": ["Python", "JavaScript/TypeScript (Node.js, React.js)", "R", "SQL", "PHP", "HTML/CSS", "PySpark", "NumPy", "Pandas"]
+    },
+    {
+      "name": "Cloud & Infrastructure",
+      "keywords": ["AWS (EC2, SES, Aurora Serverless, IAM, SCPs)", "Docker", "Kubernetes", "GitHub Actions CI/CD", "Private/Hybrid Cloud Deployment", "JWT/OAuth", "Production Systems", "Distributed Systems"]
+    },
+    {
+      "name": "Methods & Tools",
+      "keywords": ["Rapid Experimentation", "Customer Discovery", "Scrum/Agile", "Playbooks/Runbooks", "Figma", "Jira", "MySQL", "Redis"]
+    }
+  ],
+  "education": [
+    {
+      "institution": "Georgetown University",
+      "studyType": "Master",
+      "area": "Data Science and Analytics",
+      "location": "Washington, DC",
+      "startDate": "2023-09",
+      "endDate": "2025-05",
+      "score": "Returning Student Scholarship (Top 3%)"
+    },
+    {
+      "institution": "Lingnan College, Sun Yat-Sen University",
+      "studyType": "Executive MBA",
+      "area": "",
+      "location": "Guangzhou, China"
+    },
+    {
+      "institution": "Beijing University of Posts and Telecommunications",
+      "studyType": "B.E.",
+      "area": "Information Engineering",
+      "location": "Beijing, China"
+    }
+  ],
+  "volunteer": [
+    {
+      "organization": "1124 Space",
+      "position": "Volunteer Lead",
+      "location": "Arlington, VA",
+      "startDate": "2024-04",
+      "endDate": "2025-12",
+      "summary": "Led community initiatives and organized weekly founder-focused events (1,000+ participants in one year), coordinated volunteers and facilitated connections to strengthen engagement and collaboration."
+    }
+  ],
+  "meta": {
+    "version": "1.0.0",
+    "lastModified": "2026-04-16T03:00:00+00:00",
+    "agentfolio": {
+      "company": "default",
+      "generated_by": "manual",
+      "match_score": {
+        "overall": 0,
+        "by_category": {},
+        "matched_keywords": [],
+        "missing_keywords": []
+      },
+      "skill_emphasis": [],
+      "section_order": ["basics", "work", "projects", "skills", "education", "volunteer"]
+    }
   }
 }
