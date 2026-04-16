@@ -29,8 +29,8 @@ agentfolio/
 │   │   ├── types.ts         # TypeScript types
 │   │   └── __tests__/       # Vitest unit tests
 │   └── e2e/                 # Playwright E2E tests
-├── scripts/                 # Python adaptation pipeline
-│   └── adapt_from_markdown.py # Markdown resume + JD → adapted JSON
+├── .claude/skills/          # Claude Code skills
+│   └── adapt.md             # /adapt — generate adapted resumes
 └── .github/workflows/       # GitHub Actions
     ├── deploy.yml           # Build + deploy to GitHub Pages
     └── adapt.yml            # Generate adaptations on data/input/ changes

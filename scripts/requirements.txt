@@ -1,4 +1,0 @@
-pytest==8.3.3
-anthropic==0.40.0
-requests==2.32.3
-beautifulsoup4==4.12.3
