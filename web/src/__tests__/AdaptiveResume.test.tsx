@@ -1,71 +1,115 @@
 import { describe, it, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { AdaptiveResume } from '../components/AdaptiveResume';
-import type { AdaptedResume, BaseResume, VisitorContext } from '../types';
+import type { AdaptedResume, VisitorContext } from '../types';
 
-const base: BaseResume = {
-  name: 'Lianghui Yi',
-  contact: {
-    location: 'Santa Clara, CA',
-    phone: '(925) 900-3467',
+function mockAdapted(overrides: Record<string, any> = {}): AdaptedResume {
+  return {
+    basics: {
+      name: 'Test User',
+      email: 'test@example.com',
+      summary: 'Test summary',
+      location: { city: 'Test City', region: 'TC' },
+      profiles: [
+        { network: 'LinkedIn', url: 'https://linkedin.com/in/test' },
+        { network: 'GitHub', url: 'https://github.com/test' },
+      ],
+    },
+    work: [
+      {
+        id: 'job1',
+        name: 'Test Corp',
+        position: 'Engineer',
+        location: 'Test City',
+        startDate: '2024-01',
+        highlights: ['Did something great'],
+      },
+    ],
+    projects: [
+      {
+        id: 'proj1',
+        name: 'Test Project',
+        description: 'A test project',
+        url: 'https://example.com',
+        startDate: '2024-01',
+        highlights: ['Built something'],
+        keywords: ['test'],
+      },
+    ],
+    skills: [
+      { id: 'sk1', name: 'Languages', keywords: ['Python', 'TypeScript'] },
+    ],
+    education: [
+      { institution: 'Test University', area: 'CS', studyType: 'BS', location: 'Test City' },
+    ],
+    volunteer: [],
+    meta: {
+      version: '1.0.0',
+      lastModified: '2026-04-16T00:00:00+00:00',
+      agentfolio: {
+        company: 'default',
+        generated_by: 'test',
+        match_score: { overall: 0.5, by_category: { sk1: 0.5 }, matched_keywords: ['Python'], missing_keywords: ['Ruby'] },
+        skill_emphasis: ['Python'],
+        section_order: ['basics', 'work', 'projects', 'skills', 'education', 'volunteer'],
+      },
+    },
+    ...overrides,
+  } as AdaptedResume;
+}
+
+const adapted = mockAdapted({
+  basics: {
+    name: 'Lianghui Yi',
     email: 'verky.yi@gmail.com',
-    linkedin: 'https://linkedin.com/in/lianghuiyi',
-    github: 'https://github.com/verkyyi',
+    summary: 'Adapted summary text',
+    location: { city: 'Santa Clara', region: 'CA' },
+    profiles: [
+      { network: 'LinkedIn', url: 'https://linkedin.com/in/lianghuiyi' },
+      { network: 'GitHub', url: 'https://github.com/verkyyi' },
+    ],
   },
-  summary_template: 'ignored',
-  summary_defaults: {},
-  experience: [
+  work: [
     {
       id: 'a',
-      title: 'A Title',
-      company: 'A Co',
+      name: 'A Co',
+      position: 'A Title',
       location: 'X',
-      dates: '2024',
-      bullets: [{ id: 'b1', text: 'Original bullet' }],
+      startDate: '2024',
+      highlights: ['Overridden bullet'],
     },
   ],
   projects: [
     {
       id: 'p1',
       name: 'Project One',
-      tagline: 'tag',
+      description: 'tag',
       url: 'https://example.com',
-      github: 'https://example.com',
-      dates: '2025',
-      tags: [],
-      bullets: [{ id: 'pb1', text: 'Project bullet' }],
+      startDate: '2025',
+      highlights: ['Project bullet'],
+      keywords: [],
     },
   ],
-  education: [
-    { degree: 'Deg', school: 'Sch', location: 'Loc', dates: '2023' },
+  skills: [
+    { id: 'ai', name: 'AI', keywords: ['Python', 'RAG Pipelines'] },
   ],
-  skills: {
-    groups: [
-      { id: 'ai', label: 'AI', items: ['Python', 'RAG Pipelines'] },
-    ],
+  meta: {
+    version: '1.0.0',
+    lastModified: '2026-04-15T00:00:00+00:00',
+    agentfolio: {
+      company: 'Cohere',
+      generated_by: 'adapt_one.py v0.1',
+      match_score: {
+        overall: 0.87,
+        by_category: { ai: 0.9 },
+        matched_keywords: ['Python'],
+        missing_keywords: [],
+      },
+      skill_emphasis: ['RAG Pipelines'],
+      section_order: ['basics', 'projects', 'work', 'skills'],
+    },
   },
-  volunteering: [
-    { title: 'V', org: 'O', location: 'L', dates: 'd', description: 'desc' },
-  ],
-};
-
-const adapted: AdaptedResume = {
-  company: 'Cohere',
-  generated_at: '2026-04-15T00:00:00+00:00',
-  generated_by: 'adapt_one.py v0.1',
-  summary: 'Adapted summary text',
-  section_order: ['summary', 'projects', 'experience', 'skills'],
-  experience_order: ['a'],
-  bullet_overrides: { b1: 'Overridden bullet' },
-  project_order: ['p1'],
-  skill_emphasis: ['RAG Pipelines'],
-  match_score: {
-    overall: 0.87,
-    by_category: { ai: 0.9 },
-    matched_keywords: ['Python'],
-    missing_keywords: [],
-  },
-};
+});
 
 const context: VisitorContext = {
   source: 'slug',
@@ -76,25 +120,24 @@ const context: VisitorContext = {
 
 describe('AdaptiveResume', () => {
   it('renders the adapted summary', () => {
-    render(<AdaptiveResume base={base} adapted={adapted} context={context} />);
+    render(<AdaptiveResume adapted={adapted} context={context} />);
     expect(screen.getByText('Adapted summary text')).toBeInTheDocument();
   });
 
-  it('renders experience bullets with overrides applied', () => {
-    render(<AdaptiveResume base={base} adapted={adapted} context={context} />);
+  it('renders experience highlights from adapted work', () => {
+    render(<AdaptiveResume adapted={adapted} context={context} />);
     expect(screen.getByText('Overridden bullet')).toBeInTheDocument();
-    expect(screen.queryByText('Original bullet')).not.toBeInTheDocument();
   });
 
-  it('renders sections in the order specified by adapted.section_order', () => {
-    render(<AdaptiveResume base={base} adapted={adapted} context={context} />);
+  it('renders sections in the order specified by adapted.meta.agentfolio.section_order', () => {
+    render(<AdaptiveResume adapted={adapted} context={context} />);
     const sections = screen.getAllByRole('region');
     const labels = sections.map((s) => s.getAttribute('aria-label'));
     expect(labels).toEqual(['Summary', 'Projects', 'Experience', 'Skills']);
   });
 
-  it('emphasizes skills listed in adapted.skill_emphasis', () => {
-    render(<AdaptiveResume base={base} adapted={adapted} context={context} />);
+  it('emphasizes skills listed in adapted.meta.agentfolio.skill_emphasis', () => {
+    render(<AdaptiveResume adapted={adapted} context={context} />);
     const rag = screen.getByText('RAG Pipelines');
     expect(rag.getAttribute('data-emphasized')).toBe('true');
     const py = screen.getByText('Python');
@@ -102,18 +145,18 @@ describe('AdaptiveResume', () => {
   });
 
   it('renders match score', () => {
-    render(<AdaptiveResume base={base} adapted={adapted} context={context} />);
+    render(<AdaptiveResume adapted={adapted} context={context} />);
     expect(screen.getByText(/87% match/)).toBeInTheDocument();
   });
 
   it('renders debug panel with detected company', () => {
-    render(<AdaptiveResume base={base} adapted={adapted} context={context} />);
+    render(<AdaptiveResume adapted={adapted} context={context} />);
     expect(screen.getByText('Agent Context')).toBeInTheDocument();
     expect(screen.getByText('cohere')).toBeInTheDocument();
   });
 
-  it('renders name and contact from base resume', () => {
-    render(<AdaptiveResume base={base} adapted={adapted} context={context} />);
+  it('renders name and contact from adapted resume', () => {
+    render(<AdaptiveResume adapted={adapted} context={context} />);
     expect(screen.getByText('Lianghui Yi')).toBeInTheDocument();
     expect(screen.getByText('verky.yi@gmail.com')).toBeInTheDocument();
   });
@@ -122,7 +165,7 @@ describe('AdaptiveResume', () => {
     const onCtaClick = (await import('vitest')).vi.fn();
     const user = (await import('@testing-library/user-event')).default.setup();
     render(
-      <AdaptiveResume base={base} adapted={adapted} context={context} onCtaClick={onCtaClick} />,
+      <AdaptiveResume adapted={adapted} context={context} onCtaClick={onCtaClick} />,
     );
     await user.click(screen.getByText('verky.yi@gmail.com'));
     expect(onCtaClick).toHaveBeenCalledWith('email');
@@ -133,7 +176,6 @@ describe('AdaptiveResume', () => {
     const user = (await import('@testing-library/user-event')).default.setup();
     render(
       <AdaptiveResume
-        base={base}
         adapted={adapted}
         context={context}
         onProjectClick={onProjectClick}

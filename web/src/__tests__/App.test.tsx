@@ -2,40 +2,101 @@ import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import { render, screen, waitFor, act } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import App from '../App';
-import type { AdaptedResume, BaseResume, SlugRegistry } from '../types';
+import type { AdaptedResume, SlugRegistry } from '../types';
 
-const baseResume: BaseResume = {
-  name: 'Lianghui Yi',
-  contact: {
-    location: 'Santa Clara, CA',
-    phone: '',
+function mockAdapted(overrides: Record<string, any> = {}): AdaptedResume {
+  return {
+    basics: {
+      name: 'Test User',
+      email: 'test@example.com',
+      summary: 'Test summary',
+      location: { city: 'Test City', region: 'TC' },
+      profiles: [
+        { network: 'LinkedIn', url: 'https://linkedin.com/in/test' },
+        { network: 'GitHub', url: 'https://github.com/test' },
+      ],
+    },
+    work: [
+      {
+        id: 'job1',
+        name: 'Test Corp',
+        position: 'Engineer',
+        location: 'Test City',
+        startDate: '2024-01',
+        highlights: ['Did something great'],
+      },
+    ],
+    projects: [
+      {
+        id: 'proj1',
+        name: 'Test Project',
+        description: 'A test project',
+        url: 'https://example.com',
+        startDate: '2024-01',
+        highlights: ['Built something'],
+        keywords: ['test'],
+      },
+    ],
+    skills: [
+      { id: 'sk1', name: 'Languages', keywords: ['Python', 'TypeScript'] },
+    ],
+    education: [
+      { institution: 'Test University', area: 'CS', studyType: 'BS', location: 'Test City' },
+    ],
+    volunteer: [],
+    meta: {
+      version: '1.0.0',
+      lastModified: '2026-04-16T00:00:00+00:00',
+      agentfolio: {
+        company: 'default',
+        generated_by: 'test',
+        match_score: { overall: 0.5, by_category: { sk1: 0.5 }, matched_keywords: ['Python'], missing_keywords: ['Ruby'] },
+        skill_emphasis: ['Python'],
+        section_order: ['basics', 'work', 'projects', 'skills', 'education', 'volunteer'],
+      },
+    },
+    ...overrides,
+  } as AdaptedResume;
+}
+
+const defaultAdapted = mockAdapted({
+  basics: {
+    name: 'Lianghui Yi',
     email: 'verky.yi@gmail.com',
-    linkedin: '',
-    github: '',
+    summary: 'Default summary',
+    location: { city: 'Santa Clara', region: 'CA' },
+    profiles: [],
   },
-  summary_template: 'ignored',
-  summary_defaults: {},
-  experience: [],
-  projects: [],
-  education: [],
-  skills: { groups: [] },
-  volunteering: [],
-};
+  meta: {
+    version: '1.0.0',
+    lastModified: '2026-04-15T00:00:00+00:00',
+    agentfolio: {
+      company: 'default',
+      generated_by: 'adapt_one.py v0.1',
+      match_score: { overall: 0.1, by_category: {}, matched_keywords: [], missing_keywords: [] },
+      skill_emphasis: [],
+      section_order: ['basics'],
+    },
+  },
+});
 
-const defaultAdapted: AdaptedResume = {
-  company: 'default',
-  generated_at: '2026-04-15T00:00:00+00:00',
-  generated_by: 'adapt_one.py v0.1',
-  summary: 'Default summary',
-  section_order: ['summary'],
-  experience_order: [],
-  bullet_overrides: {},
-  project_order: [],
-  skill_emphasis: [],
-  match_score: { overall: 0.1, by_category: {}, matched_keywords: [], missing_keywords: [] },
-};
-
-const stripeAdapted: AdaptedResume = { ...defaultAdapted, company: 'Stripe', summary: 'Stripe summary' };
+const stripeAdapted = mockAdapted({
+  basics: {
+    ...defaultAdapted.basics,
+    summary: 'Stripe summary',
+  },
+  meta: {
+    version: '1.0.0',
+    lastModified: '2026-04-15T00:00:00+00:00',
+    agentfolio: {
+      company: 'Stripe',
+      generated_by: 'adapt_one.py v0.1',
+      match_score: { overall: 0.1, by_category: {}, matched_keywords: [], missing_keywords: [] },
+      skill_emphasis: [],
+      section_order: ['basics'],
+    },
+  },
+});
 
 const slugRegistry: SlugRegistry = {};
 
@@ -49,9 +110,6 @@ beforeEach(() => {
   vi.stubGlobal('fetch', vi.fn(async (url: string, init?: RequestInit) => {
     if (url.endsWith('data/slugs.json')) {
       return { ok: true, json: async () => slugRegistry };
-    }
-    if (url.endsWith('data/resume.json')) {
-      return { ok: true, json: async () => baseResume };
     }
     if (url.includes('data/adapted/stripe.json')) {
       stripeCallCount += 1;
