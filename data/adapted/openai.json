@@ -4,7 +4,6 @@
     "label": "Forward Deployed Engineer",
     "email": "verky.yi@gmail.com",
     "phone": "(925) 900-3467",
-    "summary": "Forward Deployed Engineer with 5+ years shipping AI-powered products and infrastructure at scale. Specialized in autonomous agent development, LLM integration, and multi-tenant cloud systems deployed directly with enterprise customers. Proven expertise building production agentic systems, designing evaluation frameworks, and accelerating deployment cycles through CI/CD automation and customer-centric engineering.",
     "location": {
       "city": "Santa Clara",
       "region": "CA",
@@ -20,103 +19,253 @@
         "url": "https://github.com/verkyyi",
         "username": "verkyyi"
       }
-    ]
+    ],
+    "summary": "Forward Deployed Engineer with 5+ years shipping AI products and agentic systems at scale. Experienced collaborating directly with enterprise customers to scope technical requirements and deploy end-to-end solutions—from LLM integration and agent architecture to cloud infrastructure. Proven track record building production AI platforms that power 50,000+ users, with deep expertise in autonomous agent development, rapid experimentation, and enterprise-grade deployment."
   },
   "work": [
     {
+      "id": "24helpful",
       "name": "24 Helpful, LLC",
       "position": "Co-Founder & AI Engineer",
       "location": "Santa Clara, CA",
       "startDate": "2024-03",
       "highlights": [
-        "Designed and shipped a self-evolving code system with generator/evaluator loops that accelerated development velocity; implemented CI/CD automation with GitHub Actions to close iteration cycles in under 24 hours—directly applicable to agentic system evaluation and autonomous code generation.",
-        "Delivered end-to-end multi-tenant AWS cloud infrastructure for enterprise customers, reducing provisioning costs by 50% through automated resource management, tenant isolation, and production-grade deployment patterns.",
-        "Collaborated directly with enterprise customers to scope technical requirements, remove deployment blockers, and accelerate rollouts; codified deployment playbooks and runbooks to standardize operational response across production systems."
+        "Designed and shipped a self-evolving agentic code system (generator/evaluator loop) that accelerated development velocity; implemented CI/CD automation with GitHub Actions to close iteration cycles in under 24 hours—directly applicable to autonomous agent workflows and LLM-driven code generation.",
+        "Delivered end-to-end multi-tenant AWS cloud infrastructure for enterprise customers, reducing provisioning costs by 50% through automated resource management and tenant isolation; experience spans EC2, IAM, and serverless architectures critical for scaling AI systems.",
+        "Collaborated directly with enterprise customers to scope requirements, remove deployment blockers, and accelerate rollouts of AI-powered systems; codified deployment playbooks and runbooks to standardize operational response across production AI infrastructure."
+      ],
+      "highlightMeta": [
+        {
+          "id": "24h-evolving-code",
+          "tags": [
+            "agentic",
+            "ci-cd",
+            "rapid-experimentation",
+            "evaluation"
+          ]
+        },
+        {
+          "id": "24h-aws-infra",
+          "tags": [
+            "cloud",
+            "enterprise",
+            "infrastructure",
+            "customer-facing"
+          ]
+        },
+        {
+          "id": "24h-customer-collab",
+          "tags": [
+            "customer-facing",
+            "deployment",
+            "enterprise",
+            "playbooks"
+          ]
+        }
       ]
     },
     {
+      "id": "maiduote",
+      "name": "Maiduote Network Technology Co., Ltd.",
+      "position": "Tech Lead",
+      "location": "Guangzhou, China",
+      "startDate": "2018-06",
+      "endDate": "2019-07",
+      "description": "Technology subsidiary of a biotech group — doctor-patient engagement platforms",
+      "highlights": [
+        "Led end-to-end product development and launched a production platform that increased engagement by 30%; built and deployed autonomous agent systems in collaboration with stakeholders to automate customer workflows at scale.",
+        "Scoped and delivered data-driven features across the full stack, coordinating cross-functional teams to prioritize roadmap items and ensure stable, rapid rollouts.",
+        "Drove customer-facing growth strategies that acquired over 50,000 users in 6 months, exceeding targets through targeted outreach and workflow optimization."
+      ],
+      "highlightMeta": [
+        {
+          "id": "mdt-platform",
+          "tags": [
+            "full-stack",
+            "product",
+            "customer-facing",
+            "healthcare"
+          ]
+        },
+        {
+          "id": "mdt-fullstack",
+          "tags": [
+            "full-stack",
+            "data-driven",
+            "rapid-experimentation",
+            "production",
+            "deploy"
+          ]
+        },
+        {
+          "id": "mdt-growth",
+          "tags": [
+            "growth",
+            "customer-facing",
+            "scale"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "24haowan",
       "name": "24Haowan Network Technology Co., Ltd.",
       "position": "Co-Founder & Technical Lead",
       "location": "Shanghai, China",
       "startDate": "2019-10",
       "endDate": "2023-08",
       "highlights": [
-        "Designed a SaaS product and go-to-market strategy that achieved $1,000,000 ARR in 2 years through data-driven iteration loops, customer discovery, and rapid experimentation—core competencies for forward deployment.",
-        "Led cross-functional engineering team; built internal tools and infrastructure that streamlined product and engineering workflows, improving team delivery cadence and enabling faster customer feedback cycles.",
-        "Engaged directly with enterprise customers to scope technical requirements and uncover pain points, converting 3 strategic accounts within 3 months and driving product-market fit through customer-centric engineering."
-      ]
-    },
-    {
-      "name": "Maiduote Network Technology Co., Ltd.",
-      "position": "Tech Lead",
-      "location": "Guangzhou, China",
-      "startDate": "2018-06",
-      "endDate": "2019-07",
-      "highlights": [
-        "Led end-to-end product development and launched a production platform that increased doctor-patient engagement by 30%; integrated predefined forms and chatbots in collaboration with stakeholders—demonstrating full-stack deployment expertise.",
-        "Scoped and delivered data-driven features across the full stack, coordinating cross-functional teams to prioritize roadmap items and ensure stable, rapid rollouts to production systems.",
-        "Drove customer-facing growth strategies that acquired over 50,000 users in 6 months, exceeding targets through targeted outreach and workflow optimization."
+        "Designed a SaaS product and go-to-market strategy that achieved $1,000,000 ARR in 2 years by optimizing product lifecycle, user onboarding, and data-driven iteration loops.",
+        "Led cross-functional engineering team; built internal tools that streamlined product and engineering workflows, improving team delivery cadence over a 6-month period.",
+        "Engaged directly with enterprise customers to scope technical requirements and uncover pain points, converting 3 strategic accounts within 3 months and improving product-market fit."
+      ],
+      "highlightMeta": [
+        {
+          "id": "24hw-saas",
+          "tags": [
+            "product",
+            "growth",
+            "data-driven",
+            "saas",
+            "enterprise",
+            "customer-facing"
+          ]
+        },
+        {
+          "id": "24hw-team",
+          "tags": [
+            "leadership",
+            "tooling",
+            "full-stack"
+          ]
+        },
+        {
+          "id": "24hw-enterprise",
+          "tags": [
+            "customer-facing",
+            "enterprise",
+            "product-market-fit"
+          ]
+        }
       ]
     }
   ],
   "projects": [
     {
+      "id": "ainbox",
       "name": "aInbox (ainbox.io)",
       "description": "MCP-Native AI Agent Email Middleware",
       "url": "https://ainbox.io",
+      "github": "https://github.com/verkyyi/ainbox",
       "startDate": "2025-12",
-      "highlights": [
-        "Built an MCP-native AI agent middleware platform giving LLMs a dedicated inbox and async messaging layer, operated entirely via Model Context Protocol tools—directly aligned with OpenAI's MCP ecosystem and agentic system design.",
-        "Designed full server architecture with OAuth, JWT, and Streamable HTTP transport; implemented LLM-driven triage and labeling pipeline deployed on multi-tenant AWS infrastructure using Aurora Serverless, SES, and per-user IAM roles for enterprise-grade security and scalability."
-      ],
       "keywords": [
-        "MCP (Model Context Protocol)",
-        "Autonomous Agent Development",
-        "LLM Integration",
-        "AWS (Aurora Serverless, SES, IAM)",
-        "Multi-tenant Architecture",
-        "Production Systems"
+        "agentic",
+        "mcp",
+        "llm",
+        "infrastructure"
+      ],
+      "highlights": [
+        "Built an MCP-native AI agent middleware platform giving LLMs a dedicated inbox and async messaging layer, operated entirely via Model Context Protocol tools with no traditional UI.",
+        "Designed full server architecture with OAuth, JWT, and Streamable HTTP transport; implemented LLM-driven triage and labeling pipeline deployed on multi-tenant AWS infrastructure using Aurora Serverless, SES, and per-user IAM roles."
+      ],
+      "highlightMeta": [
+        {
+          "id": "ainbox-platform",
+          "tags": [
+            "agentic",
+            "mcp",
+            "llm"
+          ]
+        },
+        {
+          "id": "ainbox-infra",
+          "tags": [
+            "infrastructure",
+            "cloud",
+            "llm",
+            "enterprise"
+          ]
+        }
       ]
     },
     {
+      "id": "tokenman",
       "name": "tokenman.io",
       "description": "Claude Code Hosting & AI Repo Self-Evolution",
       "url": "https://tokenman.io",
+      "github": "https://github.com/verkyyi/tokenman",
       "startDate": "2026-03",
-      "highlights": [
-        "Built terminal.tokenman.io—a multi-tenant Claude Code CLI hosting SaaS on EC2 with mobile-first SSH, persistent tmux sessions, and cloud-init provisioning for secure production access and autonomous agent deployment.",
-        "Designed a skill-based repo self-evolution system with shared AI context and slash commands, enabling autonomous AI-driven code loops via GitHub Actions with human + AI and headless generator/evaluator workflows—core agentic evaluation patterns."
-      ],
       "keywords": [
-        "Autonomous Agent Development",
-        "Evaluation Framework Design (Generator/Evaluator)",
-        "LLM Integration",
-        "AWS (EC2)",
-        "GitHub Actions CI/CD",
-        "Production Systems"
+        "agentic",
+        "infrastructure",
+        "ci-cd",
+        "saas"
+      ],
+      "highlights": [
+        "Built terminal.tokenman.io — a multi-tenant Claude Code CLI hosting SaaS on EC2 with mobile-first SSH, persistent tmux sessions, and cloud-init provisioning for secure production access.",
+        "Designed a skill-based repo self-evolution system with shared AI context and slash commands, enabling autonomous AI-driven code loops via GitHub Actions (human + AI and headless generator/evaluator workflows)."
+      ],
+      "highlightMeta": [
+        {
+          "id": "tkm-hosting",
+          "tags": [
+            "infrastructure",
+            "cloud",
+            "saas"
+          ]
+        },
+        {
+          "id": "tkm-evolution",
+          "tags": [
+            "agentic",
+            "evaluation",
+            "ci-cd",
+            "autonomous"
+          ]
+        }
       ]
     },
     {
+      "id": "agentfolio",
       "name": "AgentFolio",
       "description": "Open-Source Agentic Portfolio Engine",
       "url": "https://verkyyi.github.io/agentfolio",
+      "github": "https://github.com/verkyyi/agentfolio",
       "startDate": "2026-04",
+      "keywords": [
+        "agentic",
+        "rag",
+        "full-stack",
+        "open-source"
+      ],
       "highlights": [
         "Built an agentic portfolio engine that detects visitor context and dynamically adapts resume content using LLM-powered rewriting and JD-matching pipelines; deployed on pure GitHub infrastructure with zero third-party cost.",
-        "Designed a five-stage agent architecture (perceive → reason → act → learn → explain) with RAG-powered chat, automated JD fetching, and visitor feedback loops that continuously optimize content resonance—demonstrating end-to-end agentic system design."
+        "Designed a five-stage agent architecture (perceive → reason → act → learn → explain) with RAG-powered chat, automated JD fetching, and visitor feedback loops that continuously optimize content resonance."
       ],
-      "keywords": [
-        "Autonomous Agent Development",
-        "LLM Integration",
-        "RAG Pipelines",
-        "Evaluation Framework Design",
-        "Data Pipeline Architecture",
-        "GitHub Actions CI/CD"
+      "highlightMeta": [
+        {
+          "id": "af-engine",
+          "tags": [
+            "agentic",
+            "llm",
+            "infrastructure"
+          ]
+        },
+        {
+          "id": "af-architecture",
+          "tags": [
+            "agentic",
+            "rag",
+            "evaluation",
+            "data-driven"
+          ]
+        }
       ]
     }
   ],
   "skills": [
     {
+      "id": "ai",
       "name": "AI & Agentic Systems",
       "keywords": [
         "Autonomous Agent Development",
@@ -130,19 +279,7 @@
       ]
     },
     {
-      "name": "Cloud & Infrastructure",
-      "keywords": [
-        "AWS (EC2, SES, Aurora Serverless, IAM, SCPs)",
-        "Docker",
-        "Kubernetes",
-        "GitHub Actions CI/CD",
-        "Private/Hybrid Cloud Deployment",
-        "JWT/OAuth",
-        "Production Systems",
-        "Distributed Systems"
-      ]
-    },
-    {
+      "id": "fullstack",
       "name": "Full-Stack",
       "keywords": [
         "Python",
@@ -157,6 +294,21 @@
       ]
     },
     {
+      "id": "cloud",
+      "name": "Cloud & Infrastructure",
+      "keywords": [
+        "AWS (EC2, SES, Aurora Serverless, IAM, SCPs)",
+        "Docker",
+        "Kubernetes",
+        "GitHub Actions CI/CD",
+        "Private/Hybrid Cloud Deployment",
+        "JWT/OAuth",
+        "Production Systems",
+        "Distributed Systems"
+      ]
+    },
+    {
+      "id": "methods",
       "name": "Methods & Tools",
       "keywords": [
         "Rapid Experimentation",
@@ -205,10 +357,10 @@
   ],
   "meta": {
     "version": "1.0.0",
-    "lastModified": "2026-04-16T05:34:45+00:00",
+    "lastModified": "2026-04-16T02:51:48+00:00",
     "agentfolio": {
       "company": "OpenAI",
-      "generated_by": "llm_adapt.py v2.0",
+      "generated_by": "llm_adapt.py v2.0 (migrated)",
       "match_score": {
         "overall": 0.88,
         "by_category": {
@@ -221,20 +373,27 @@
           "Autonomous Agent Development",
           "LLM Integration",
           "MCP (Model Context Protocol)",
-          "Evaluation Framework Design (Generator/Evaluator)",
+          "Evaluation Framework Design",
           "RAG Pipelines",
-          "AWS Production Systems",
+          "AWS Infrastructure",
           "GitHub Actions CI/CD",
-          "Customer Discovery",
+          "Production Systems",
+          "Enterprise Deployment",
+          "Customer Collaboration",
           "Rapid Experimentation",
-          "Multi-tenant Architecture"
+          "Agentic Systems",
+          "Multi-tenant Architecture",
+          "Python",
+          "Distributed Systems"
         ],
         "missing_keywords": [
-          "GPT API Integration",
-          "Fine-tuning Workflows",
-          "Reinforcement Learning from Human Feedback (RLHF) Implementation",
-          "Vision API Experience",
-          "Kubernetes at Scale"
+          "GPT/Claude API expertise (implicit but not explicit)",
+          "Large-scale model fine-tuning",
+          "Real-time inference optimization",
+          "Safety/alignment frameworks",
+          "Prompt optimization at scale",
+          "Model evaluation metrics",
+          "Batch processing systems"
         ]
       },
       "skill_emphasis": [
@@ -245,9 +404,11 @@
         "RAG Pipelines",
         "AWS (EC2, SES, Aurora Serverless, IAM, SCPs)",
         "GitHub Actions CI/CD",
-        "Customer Discovery",
+        "Python",
         "Rapid Experimentation",
-        "Production Systems"
+        "Customer Discovery",
+        "Production Systems",
+        "Distributed Systems"
       ],
       "section_order": [
         "basics",
