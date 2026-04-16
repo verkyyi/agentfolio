@@ -2,6 +2,10 @@
 
 An open-source agentic portfolio engine. Fork it, drop in your resume, and deploy a portfolio site that adapts to each visitor's context.
 
+![Resume preview](docs/screenshots/resume.png)
+
+**[Live Demo](https://verkyyi.github.io/agentfolio/)** · **[Dashboard Demo](https://verkyyi.github.io/agentfolio/dashboard)**
+
 ## How It Works
 
 AgentFolio renders a resume adapted to the target company and role. A three-stage pipeline (`/fit` → `/extract-directives` → `/structurize`) tailors your resume, lets you edit the result in markdown, and converts it to JSON Resume for rendering and PDF export. Each URL slug maps to a tailored adaptation.
@@ -9,6 +13,7 @@ AgentFolio renders a resume adapted to the target company and role. A three-stag
 ```
 /                    → default resume
 /company-slug        → company-specific adaptation
+/dashboard           → owner dashboard (not public)
 /unknown             → 404 page
 ```
 
@@ -74,6 +79,9 @@ data/adapted/notion.pdf        ← PDF export
 
 - **Three-stage pipeline** — separate tailoring from schema conversion, with human editing in between
 - **Directive learning** — your edits are automatically extracted as reusable preferences
+- **Preset directives** — research-backed resume optimization rules out of the box
+- **Owner dashboard** — preview, word-level diff, inline PDF, and JD tabs for each fitted resume
+- **Fit summaries** — auto-generated change descriptions for each adaptation
 - **PDF export** — auto-generated PDFs alongside each adaptation, with a download button on the site
 - **Zero-runtime quickstart** — fork, add markdown files, push, deployed. No local tools needed.
 - **JSON Resume theme** — renders all 12 JSON Resume sections using the developer-mono theme
