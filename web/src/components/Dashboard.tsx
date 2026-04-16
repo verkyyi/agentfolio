@@ -4,8 +4,9 @@ import { DashboardSidebar, type FittedEntry } from './DashboardSidebar';
 import { FittedPreview } from './FittedPreview';
 import { FittedDiff } from './FittedDiff';
 import { DirectivesView } from './DirectivesView';
+import { JdView } from './JdView';
 
-type Tab = 'preview' | 'diff' | 'pdf';
+type Tab = 'preview' | 'diff' | 'pdf' | 'jd';
 
 const Layout = styled.div`
   display: flex;
@@ -168,6 +169,14 @@ export function Dashboard() {
                 Diff
               </TabButton>
               <TabButton $active={tab === 'pdf'} onClick={() => setTab('pdf')}>PDF</TabButton>
+              <TabButton
+                $active={tab === 'jd'}
+                onClick={() => !isDiffDisabled && setTab('jd')}
+                disabled={isDiffDisabled}
+                style={isDiffDisabled ? { opacity: 0.4, cursor: 'not-allowed' } : undefined}
+              >
+                JD
+              </TabButton>
               <TabBarActions>
                 {activeSlug && (
                   <UrlGroup>
@@ -210,6 +219,7 @@ export function Dashboard() {
             {activeSlug && tab === 'preview' && <FittedPreview slug={activeSlug} />}
             {activeSlug && tab === 'diff' && <FittedDiff slug={activeSlug} />}
             {activeSlug && tab === 'pdf' && <PdfFrame src={`${import.meta.env.BASE_URL}data/adapted/${activeSlug}.pdf#view=FitH&navpanes=0`} title={`${activeSlug} PDF`} />}
+            {activeSlug && tab === 'jd' && <JdView slug={activeSlug} />}
           </>
         )}
       </Main>

@@ -32,6 +32,17 @@ fs.writeFileSync(
   JSON.stringify(entries, null, 2) + '\n'
 );
 
+// Copy JD files if they exist
+const dataJd = path.join(root, '..', 'data', 'input', 'jd');
+const publicJd = path.join(root, 'public', 'data', 'jd');
+if (fs.existsSync(dataJd)) {
+  fs.mkdirSync(publicJd, { recursive: true });
+  for (const file of fs.readdirSync(dataJd)) {
+    if (!file.endsWith('.md')) continue;
+    fs.copyFileSync(path.join(dataJd, file), path.join(publicJd, file));
+  }
+}
+
 // Copy directives if it exists
 const directivesSrc = path.join(root, '..', 'data', 'input', 'directives.md');
 const directivesDst = path.join(root, 'public', 'data', 'directives.md');
