@@ -1,35 +1,16 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useMemo } from 'react';
 import { useVisitorContext } from './hooks/useVisitorContext';
 import { useAdaptation } from './hooks/useAdaptation';
-import { useAdaptationProgress } from './hooks/useAdaptationProgress';
 import { useBehaviorTracker } from './hooks/useBehaviorTracker';
 import { useChat } from './hooks/useChat';
 import { AdaptiveResume } from './components/AdaptiveResume';
-import { SelfIdPrompt } from './components/SelfIdPrompt';
-import { AdaptationProgress } from './components/AdaptationProgress';
 import { ChatWidget } from './components/ChatWidget';
 import { ArchitecturePage } from './components/ArchitecturePage';
-import {
-  createAdaptRequest,
-  findOpenRequestForCompany,
-  getApiConfig,
-} from './utils/githubApi';
-import type { AdaptedResume, SectionName, VisitorContext } from './types';
-
-interface SelfId {
-  company: string;
-  role: string;
-}
-
-function normalize(company: string): string {
-  return company.trim().toLowerCase().replace(/\s+/g, '-');
-}
+import { getApiConfig } from './utils/githubApi';
+import type { SectionName } from './types';
 
 export default function App() {
-  const { context: urlContext, registry, error: ctxError } = useVisitorContext();
-  const [selfId, setSelfId] = useState<SelfId | null>(null);
-  const [issueNumber, setIssueNumber] = useState<number | null>(null);
-  const [requestError, setRequestError] = useState<string | null>(null);
+  const { context, error: ctxError } = useVisitorContext();
 
   const apiConfig = useMemo(() => {
     try {
@@ -42,82 +23,21 @@ export default function App() {
     }
   }, []);
 
-  const effectiveContext = useMemo<VisitorContext | null>(() => {
-    if (selfId) {
-      return { source: 'self-id', company: normalize(selfId.company), role: selfId.role };
-    }
-    return urlContext;
-  }, [selfId, urlContext]);
+  const { adapted, error: adaptError } = useAdaptation(context?.company ?? null);
 
-  const needsSelfIdForm =
-    urlContext !== null && urlContext.source === 'default' && selfId === null;
-
-  const { adapted, error: adaptError, needsLiveGeneration } = useAdaptation(
-    needsSelfIdForm ? null : effectiveContext?.company ?? null,
-  );
-
-  useEffect(() => {
-    if (!needsLiveGeneration || !selfId || issueNumber !== null || !apiConfig) return;
-    let cancelled = false;
-    (async () => {
-      try {
-        const existing = await findOpenRequestForCompany(selfId.company, apiConfig);
-        if (cancelled) return;
-        if (existing !== null) {
-          setIssueNumber(existing);
-          return;
-        }
-        const n = await createAdaptRequest(selfId.company, selfId.role, apiConfig);
-        if (cancelled) return;
-        setIssueNumber(n);
-      } catch (e) {
-        if (cancelled) return;
-        setRequestError((e as Error).message);
-      }
-    })();
-    return () => {
-      cancelled = true;
-    };
-  }, [needsLiveGeneration, selfId, issueNumber, apiConfig]);
-
-  const progress = useAdaptationProgress(
-    issueNumber,
-    apiConfig ?? { pat: '', repo: '' },
-  );
-
-  const [liveAdapted, setLiveAdapted] = useState<AdaptedResume | null>(null);
-  useEffect(() => {
-    if (progress.status !== 'complete' || !progress.adaptedPath) return;
-    let cancelled = false;
-    (async () => {
-      const url = `${import.meta.env.BASE_URL}${progress.adaptedPath}`;
-      const res = await fetch(url);
-      if (!res.ok) return;
-      const data = (await res.json()) as AdaptedResume;
-      if (cancelled) return;
-      setLiveAdapted(data);
-    })();
-    return () => {
-      cancelled = true;
-    };
-  }, [progress.status, progress.adaptedPath]);
-
-  const shownAdapted = liveAdapted ?? adapted;
-
-  const trackerEnabled =
-    !!apiConfig && !!effectiveContext && !!shownAdapted && !needsSelfIdForm;
+  const trackerEnabled = !!apiConfig && !!context && !!adapted;
 
   const startCtx = useMemo(
     () =>
-      shownAdapted && effectiveContext
+      adapted && context
         ? {
-            company: effectiveContext.company,
-            source: effectiveContext.source,
-            adaptation: shownAdapted.meta?.agentfolio?.company ?? '',
-            match_score: shownAdapted.meta?.agentfolio?.match_score?.overall ?? 0,
+            company: context.company,
+            source: context.source,
+            adaptation: adapted.meta?.agentfolio?.company ?? '',
+            match_score: adapted.meta?.agentfolio?.match_score?.overall ?? 0,
           }
         : { company: '', source: '', adaptation: '', match_score: 0 },
-    [shownAdapted, effectiveContext],
+    [adapted, context],
   );
 
   const { track } = useBehaviorTracker({
@@ -173,44 +93,13 @@ export default function App() {
     return <ArchitecturePage compareSlugs={['cohere', 'openai', 'default']} />;
   }
 
-  if (needsSelfIdForm) {
-    const entries = registry ? Object.values(registry) : [];
-    const companies = Array.from(
-      new Set(
-        entries
-          .map((e) => e.company)
-          .filter((c): c is string => !!c && c !== 'default'),
-      ),
-    ).sort();
-    const roles = Array.from(
-      new Set(entries.map((e) => e.role).filter((r): r is string => !!r)),
-    ).sort();
-    return (
-      <main>
-        <SelfIdPrompt
-          onSubmit={setSelfId}
-          onSkip={() => setSelfId({ company: 'default', role: '' })}
-          suggestions={{ companies, roles }}
-        />
-      </main>
-    );
-  }
-
-  if (!effectiveContext || !shownAdapted) return <main>Loading…</main>;
+  if (!context || !adapted) return <main>Loading…</main>;
 
   return (
     <>
-      {needsLiveGeneration && issueNumber !== null && progress.status !== 'complete' && (
-        <AdaptationProgress
-          step={progress.step}
-          status={progress.status}
-          errorMessage={progress.errorMessage}
-        />
-      )}
-      {requestError && <p role="alert">Request error: {requestError}</p>}
       <AdaptiveResume
-        adapted={shownAdapted}
-        context={effectiveContext}
+        adapted={adapted}
+        context={context}
         onCtaClick={onCtaClick}
         onProjectClick={onProjectClick}
         onSectionDwell={trackerEnabled ? onSectionDwell : undefined}
