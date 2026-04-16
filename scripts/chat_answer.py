@@ -22,8 +22,9 @@ class _ClientLike(Protocol):
 
 
 def build_system_prompt(resume: dict) -> str:
+    name = resume.get("basics", {}).get("name", "the candidate")
     return (
-        "You are a helpful assistant answering questions about Lianghui Yi's "
+        f"You are a helpful assistant answering questions about {name}'s "
         "professional background. Use only the resume JSON below as ground truth. "
         "If the resume does not contain the answer, say so — do not invent. "
         "Keep answers concise (1-3 sentences).\n\n"

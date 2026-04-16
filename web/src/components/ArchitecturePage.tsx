@@ -84,7 +84,7 @@ export function ArchitecturePage({ compareSlugs }: Props) {
       )}
 
       <footer className="hiw-foot">
-        <a href="https://github.com/verkyyi/agentfolio" target="_blank" rel="noreferrer">
+        <a href={import.meta.env.VITE_GITHUB_REPO ? `https://github.com/${import.meta.env.VITE_GITHUB_REPO}` : '#'} target="_blank" rel="noreferrer">
           View source on GitHub ↗
         </a>
       </footer>

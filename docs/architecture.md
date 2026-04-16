@@ -2,8 +2,8 @@
 
 > An open-source agentic portfolio engine that detects visitor context and dynamically adapts your resume to match what they're looking for.
 
-**Repo:** github.com/verkyyi/agentfolio
-**Live:** verkyyi.github.io/agentfolio
+**Repo:** (your fork)
+**Live:** (your GitHub Pages URL)
 **Stack:** React (GitHub Pages) + Python (GitHub Actions) + LLM APIs
 **Infra cost:** $0 (pure GitHub infrastructure)
 

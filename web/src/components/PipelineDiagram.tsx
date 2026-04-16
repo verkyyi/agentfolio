@@ -17,7 +17,9 @@ interface Stage {
   telemetry: Array<{ k: string; v: string }>;
 }
 
-const REPO = 'https://github.com/verkyyi/agentfolio';
+const REPO = import.meta.env.VITE_GITHUB_REPO
+  ? `https://github.com/${import.meta.env.VITE_GITHUB_REPO}`
+  : 'https://github.com';
 
 function buildStages(
   example: AdaptedResume | null,

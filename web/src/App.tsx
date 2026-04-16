@@ -90,7 +90,7 @@ export default function App() {
   if (adaptError) return <main>Error loading adaptation: {adaptError.message}</main>;
 
   if (isArchitecturePath) {
-    return <ArchitecturePage compareSlugs={['cohere', 'openai', 'default']} />;
+    return <ArchitecturePage compareSlugs={['sample-company', 'default']} />;
   }
 
   if (!context || !adapted) return <main>Loading…</main>;
