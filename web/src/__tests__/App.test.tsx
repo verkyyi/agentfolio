@@ -41,6 +41,12 @@ beforeEach(() => {
     if (init?.method === 'HEAD') {
       return { ok: false, status: 404 };
     }
+    if (url.includes('data/fitted/index.json')) {
+      return { ok: true, json: async () => [{ slug: 'default', filename: 'default.md' }] };
+    }
+    if (url.includes('data/fitted/default.md')) {
+      return { ok: true, text: async () => '# Alex Chen\n\nDefault summary' };
+    }
     if (url.includes('data/adapted/notion.json')) {
       return { ok: true, json: async () => sampleAdapted };
     }
