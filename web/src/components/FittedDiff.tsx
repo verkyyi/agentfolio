@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { diffWords } from 'diff';
 import styled from 'styled-components';
+import { parseFitSummary } from '../utils/parseFitSummary';
 
 interface Props {
   slug: string;
@@ -67,7 +68,7 @@ export function FittedDiff({ slug }: Props) {
     ])
       .then(([baseText, fittedText]) => {
         if (cancelled) return;
-        setParts(diffWords(baseText, fittedText));
+        setParts(diffWords(parseFitSummary(baseText).body, parseFitSummary(fittedText).body));
       })
       .catch(() => { if (!cancelled) setError(true); });
 
