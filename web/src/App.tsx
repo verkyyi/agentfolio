@@ -52,7 +52,7 @@ export default function App() {
   const needsSelfIdForm =
     urlContext !== null && urlContext.source === 'default' && selfId === null;
 
-  const { adapted, base, error: adaptError, needsLiveGeneration } = useAdaptation(
+  const { adapted, error: adaptError, needsLiveGeneration } = useAdaptation(
     needsSelfIdForm ? null : effectiveContext?.company ?? null,
   );
 
@@ -113,8 +113,8 @@ export default function App() {
         ? {
             company: effectiveContext.company,
             source: effectiveContext.source,
-            adaptation: shownAdapted.company,
-            match_score: shownAdapted.match_score.overall,
+            adaptation: shownAdapted.meta?.agentfolio?.company ?? '',
+            match_score: shownAdapted.meta?.agentfolio?.match_score?.overall ?? 0,
           }
         : { company: '', source: '', adaptation: '', match_score: 0 },
     [shownAdapted, effectiveContext],
@@ -196,7 +196,7 @@ export default function App() {
     );
   }
 
-  if (!effectiveContext || !shownAdapted || !base) return <main>Loading…</main>;
+  if (!effectiveContext || !shownAdapted) return <main>Loading…</main>;
 
   return (
     <>
@@ -209,7 +209,6 @@ export default function App() {
       )}
       {requestError && <p role="alert">Request error: {requestError}</p>}
       <AdaptiveResume
-        base={base}
         adapted={shownAdapted}
         context={effectiveContext}
         onCtaClick={onCtaClick}

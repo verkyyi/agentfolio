@@ -1,38 +1,38 @@
-import type { Project } from '../types';
+import type { ResumeProject } from '../types';
 
 interface Props {
-  projects: Project[];
-  order: string[];
+  projects: ResumeProject[];
   onProjectClick?: (projectId: string, link: 'url' | 'github') => void;
 }
 
-export function ProjectsSection({ projects, order, onProjectClick }: Props) {
-  const byId = new Map(projects.map((p) => [p.id, p]));
-  const ordered = order.map((id) => byId.get(id)).filter(Boolean) as Project[];
-
+export function ProjectsSection({ projects, onProjectClick }: Props) {
   return (
     <section aria-label="Projects">
       <h2>Projects</h2>
-      {ordered.map((p) => (
-        <article key={p.id}>
+      {projects.map((p, i) => (
+        <article key={p.id ?? i}>
           <header>
             <h3>
-              <a
-                href={p.url}
-                target="_blank"
-                rel="noreferrer"
-                onClick={() => onProjectClick?.(p.id, 'url')}
-              >
-                {p.name}
-              </a>
+              {p.url ? (
+                <a
+                  href={p.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  onClick={() => onProjectClick?.(p.id ?? p.name, 'url')}
+                >
+                  {p.name}
+                </a>
+              ) : (
+                p.name
+              )}
             </h3>
             <p>
-              {p.tagline} · {p.dates}
+              {p.description}{p.startDate ? ` · ${p.startDate}` : ''}{p.endDate ? ` – ${p.endDate}` : p.startDate ? ' – Present' : ''}
             </p>
           </header>
           <ul>
-            {p.bullets.map((b) => (
-              <li key={b.id}>{b.text}</li>
+            {p.highlights.map((h, j) => (
+              <li key={j}>{h}</li>
             ))}
           </ul>
         </article>

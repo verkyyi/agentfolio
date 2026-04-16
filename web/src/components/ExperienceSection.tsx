@@ -1,32 +1,27 @@
-import type { Experience } from '../types';
+import type { Work } from '../types';
 
 interface Props {
-  experience: Experience[];
-  order: string[];
-  bulletOverrides: Record<string, string>;
+  work: Work[];
 }
 
-export function ExperienceSection({ experience, order, bulletOverrides }: Props) {
-  const byId = new Map(experience.map((e) => [e.id, e]));
-  const ordered = order.map((id) => byId.get(id)).filter(Boolean) as Experience[];
-
+export function ExperienceSection({ work }: Props) {
   return (
     <section aria-label="Experience">
       <h2>Experience</h2>
-      {ordered.map((exp) => (
-        <article key={exp.id}>
+      {work.map((w, i) => (
+        <article key={w.id ?? i}>
           <header>
             <h3>
-              {exp.title} · {exp.company}
+              {w.position} · {w.name}
             </h3>
             <p>
-              {exp.location} · {exp.dates}
+              {w.location}{w.location && w.startDate ? ' · ' : ''}{w.startDate}{w.endDate ? ` – ${w.endDate}` : w.startDate ? ' – Present' : ''}
             </p>
-            {exp.subtitle && <p>{exp.subtitle}</p>}
+            {w.description && <p>{w.description}</p>}
           </header>
           <ul>
-            {exp.bullets.map((b) => (
-              <li key={b.id}>{bulletOverrides[b.id] ?? b.text}</li>
+            {w.highlights.map((h, j) => (
+              <li key={j}>{h}</li>
             ))}
           </ul>
         </article>

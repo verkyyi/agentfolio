@@ -1,25 +1,22 @@
-import type { SkillGroup } from '../types';
+import type { Skill } from '../types';
 
 interface Props {
-  groups: SkillGroup[];
+  skills: Skill[];
   emphasis: string[];
 }
 
-export function SkillsSection({ groups, emphasis }: Props) {
+export function SkillsSection({ skills, emphasis }: Props) {
   const emphasisSet = new Set(emphasis);
   return (
     <section aria-label="Skills">
       <h2>Skills</h2>
-      {groups.map((g) => (
-        <div key={g.id}>
-          <h3>{g.label}</h3>
+      {skills.map((s, i) => (
+        <div key={s.id ?? i}>
+          <h3>{s.name}</h3>
           <ul>
-            {g.items.map((item) => (
-              <li
-                key={item}
-                data-emphasized={emphasisSet.has(item) ? 'true' : 'false'}
-              >
-                {item}
+            {s.keywords.map((kw) => (
+              <li key={kw} data-emphasized={emphasisSet.has(kw) ? 'true' : 'false'}>
+                {kw}
               </li>
             ))}
           </ul>

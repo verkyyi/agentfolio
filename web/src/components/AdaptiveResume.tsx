@@ -1,4 +1,4 @@
-import type { AdaptedResume, BaseResume, SectionName, VisitorContext } from '../types';
+import type { AdaptedResume, SectionName, VisitorContext } from '../types';
 import { SummarySection } from './SummarySection';
 import { ExperienceSection } from './ExperienceSection';
 import { ProjectsSection } from './ProjectsSection';
@@ -10,7 +10,6 @@ import { DebugPanel } from './DebugPanel';
 import { SectionDwellTracker } from './SectionDwellTracker';
 
 interface Props {
-  base: BaseResume;
   adapted: AdaptedResume;
   context: VisitorContext;
   onCtaClick?: (target: 'email' | 'linkedin' | 'github') => void;
@@ -19,65 +18,60 @@ interface Props {
 }
 
 export function AdaptiveResume({
-  base,
   adapted,
   context,
   onCtaClick,
   onProjectClick,
   onSectionDwell,
 }: Props) {
+  const af = adapted.meta?.agentfolio;
+  const sectionOrder = af?.section_order ?? ['basics', 'work', 'projects', 'skills', 'education', 'volunteer'];
+  const linkedIn = adapted.basics.profiles.find((p) => p.network === 'LinkedIn');
+  const gitHub = adapted.basics.profiles.find((p) => p.network === 'GitHub');
+
   const renderers: Record<SectionName, () => React.ReactElement> = {
-    summary: () => <SummarySection summary={adapted.summary} />,
-    experience: () => (
-      <ExperienceSection
-        experience={base.experience}
-        order={adapted.experience_order}
-        bulletOverrides={adapted.bullet_overrides}
-      />
-    ),
+    basics: () => <SummarySection summary={adapted.basics.summary ?? ''} />,
+    work: () => <ExperienceSection work={adapted.work} />,
     projects: () => (
-      <ProjectsSection
-        projects={base.projects}
-        order={adapted.project_order}
-        onProjectClick={onProjectClick}
-      />
+      <ProjectsSection projects={adapted.projects} onProjectClick={onProjectClick} />
     ),
     skills: () => (
-      <SkillsSection groups={base.skills.groups} emphasis={adapted.skill_emphasis} />
+      <SkillsSection skills={adapted.skills} emphasis={af?.skill_emphasis ?? []} />
     ),
-    education: () => <EducationSection education={base.education} />,
-    volunteering: () => <VolunteeringSection items={base.volunteering} />,
+    education: () => <EducationSection education={adapted.education} />,
+    volunteer: () => <VolunteeringSection items={adapted.volunteer} />,
   };
 
   return (
     <main className="resume">
       <header>
-        <h1>{base.name}</h1>
+        <h1>{adapted.basics.name}</h1>
         <p>
-          {base.contact.location} ·{' '}
-          <a
-            href={`mailto:${base.contact.email}`}
-            onClick={() => onCtaClick?.('email')}
-          >
-            {base.contact.email}
+          {adapted.basics.location.city}{adapted.basics.location.region ? `, ${adapted.basics.location.region}` : ''} ·{' '}
+          <a href={`mailto:${adapted.basics.email}`} onClick={() => onCtaClick?.('email')}>
+            {adapted.basics.email}
           </a>{' '}
-          ·{' '}
-          <a href={base.contact.linkedin} onClick={() => onCtaClick?.('linkedin')}>
-            LinkedIn
-          </a>{' '}
-          ·{' '}
-          <a href={base.contact.github} onClick={() => onCtaClick?.('github')}>
-            GitHub
-          </a>
+          {linkedIn && (
+            <>
+              ·{' '}
+              <a href={linkedIn.url} onClick={() => onCtaClick?.('linkedin')}>LinkedIn</a>{' '}
+            </>
+          )}
+          {gitHub && (
+            <>
+              ·{' '}
+              <a href={gitHub.url} onClick={() => onCtaClick?.('github')}>GitHub</a>
+            </>
+          )}
         </p>
-        {context.company !== 'default' && (
+        {context.company !== 'default' && af?.match_score && (
           <>
             <DebugPanel context={context} adapted={adapted} />
-            <MatchScoreBar score={adapted.match_score} />
+            <MatchScoreBar score={af.match_score} />
           </>
         )}
       </header>
-      {adapted.section_order.map((name) => {
+      {sectionOrder.map((name) => {
         const render = renderers[name];
         if (!render) return null;
         if (onSectionDwell) {

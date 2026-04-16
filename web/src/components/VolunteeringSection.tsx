@@ -1,7 +1,7 @@
-import type { Volunteering } from '../types';
+import type { Volunteer } from '../types';
 
 interface Props {
-  items: Volunteering[];
+  items: Volunteer[];
 }
 
 export function VolunteeringSection({ items }: Props) {
@@ -9,10 +9,10 @@ export function VolunteeringSection({ items }: Props) {
     <section aria-label="Volunteering">
       <h2>Volunteering</h2>
       <ul>
-        {items.map((v) => (
-          <li key={`${v.org}-${v.title}`}>
-            <strong>{v.title}</strong> · {v.org} · {v.dates}
-            <p>{v.description}</p>
+        {items.map((v, i) => (
+          <li key={i}>
+            <strong>{v.position}</strong> · {v.organization}{v.startDate ? ` · ${v.startDate}` : ''}{v.endDate ? ` – ${v.endDate}` : ''}
+            {v.summary && <p>{v.summary}</p>}
           </li>
         ))}
       </ul>

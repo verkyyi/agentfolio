@@ -8,6 +8,7 @@ interface Props {
 
 export function DebugPanel({ context, adapted }: Props) {
   const [open, setOpen] = useState(false);
+  const af = adapted.meta?.agentfolio;
   return (
     <details open={open} onToggle={(e) => setOpen((e.target as HTMLDetailsElement).open)}>
       <summary>Agent Context</summary>
@@ -19,11 +20,11 @@ export function DebugPanel({ context, adapted }: Props) {
         <dt>Role</dt>
         <dd>{context.role ?? '—'}</dd>
         <dt>Adaptation</dt>
-        <dd>{adapted.company}</dd>
+        <dd>{af?.company ?? '—'}</dd>
         <dt>Generated</dt>
-        <dd>{adapted.generated_at}</dd>
+        <dd>{adapted.meta?.lastModified ?? '—'}</dd>
         <dt>Match Score</dt>
-        <dd>{Math.round(adapted.match_score.overall * 100)}%</dd>
+        <dd>{af?.match_score ? Math.round(af.match_score.overall * 100) : 0}%</dd>
       </dl>
     </details>
   );
