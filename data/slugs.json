@@ -2,6 +2,5 @@
   "cohere-fde": { "company": "cohere", "role": "FDE, Agentic Platform", "created": "2026-04-15", "context": "Applied via Ashby" },
   "cohere": { "company": "cohere", "role": "FDE, Agentic Platform", "created": "2026-04-16", "context": "Short link from how-it-works" },
   "openai": { "company": "openai", "role": "Forward Deployed Engineer", "created": "2026-04-16", "context": "Short link from how-it-works" },
-  "apple": { "company": "apple", "role": "Software Engineer", "created": "2026-04-16", "context": "Backfilled from existing adaptation" },
-  "general": { "company": "default", "role": null, "created": "2026-04-15", "context": "LinkedIn profile link" }
+  "apple": { "company": "apple", "role": "Software Engineer", "created": "2026-04-16", "context": "Backfilled from existing adaptation" }
 }

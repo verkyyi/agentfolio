@@ -57,7 +57,7 @@ function buildStages(
       name: 'Perceive',
       skill: 'routing · context resolution',
       blurb:
-        'Detect who is visiting. URL slug, self-identification, or the default profile. Nothing personalised without a source.',
+        'Detect who is visiting. URL slug or the default profile. Nothing personalised without a source.',
       source: { label: 'useVisitorContext.ts', href: `${REPO}/blob/main/web/src/hooks/useVisitorContext.ts` },
       telemetry: [
         { k: 'slug', v: `/${slugLabel}` },
