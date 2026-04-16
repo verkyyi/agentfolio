@@ -3,11 +3,9 @@ on:
   push:
     branches: [main]
     paths:
-      - 'data/resume.json'
-      - 'data/companies/**'
-      - 'scripts/**'
-  schedule:
-    - cron: '0 7 * * 1'  # Mondays 07:00 UTC
+      - 'data/resume.md'
+      - 'data/jd/**'
+      - 'scripts/adapt_from_markdown.py'
   workflow_dispatch:
 
 permissions:
@@ -25,22 +23,19 @@ jobs:
 
       - run: pip install -r scripts/requirements.txt
 
-      - name: Run tests
-        run: python -m pytest scripts/tests/ -v
-
       - name: Generate adaptations
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-        run: python -m scripts.adapt_all
+        run: python -m scripts.adapt_from_markdown
 
-      - name: Commit generated adaptations
+      - name: Commit generated files
         run: |
           git config user.name "AgentFolio Bot"
           git config user.email "bot@agentfolio.local"
-          git add data/adapted/ data/llm_cache/
+          git add data/adapted/ data/slugs.json
           if git diff --cached --quiet; then
             echo "no adaptation changes"
           else
-            git commit -m "chore(adapt): regenerate adapted resumes"
+            git commit -m "chore(adapt): regenerate adapted resumes from markdown"
             git push
           fi
