@@ -27,7 +27,15 @@ jobs:
       - name: Generate adaptations
         env:
           CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
-        run: claude -p "Use the /adapt skill to regenerate all adapted resumes." --allowedTools Read,Write,Glob
+        run: claude -p "Use the /adapt skill to regenerate all adapted resumes." --allowedTools Read,Write,Glob 2>&1 | tee adapt-output.log
+
+      - name: Upload Claude output
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: adapt-log
+          path: adapt-output.log
+          retention-days: 7
 
       - name: Commit generated files
         run: |
