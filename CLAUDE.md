@@ -10,7 +10,7 @@ npm install
 npm run dev
 ```
 
-Open `http://localhost:5173/` to see the sample portfolio. Visit `http://localhost:5173/sample-company` to see a company-specific adaptation.
+Open `http://localhost:5173/` to see the sample portfolio. Visit `http://localhost:5173/notion` to see a company-specific adaptation.
 
 ## Project Structure
 
@@ -42,7 +42,7 @@ Slugs live at the root — no `/c/` prefix:
 
 ```
 /                → data/adapted/default.json
-/sample-company  → data/adapted/sample-company.json
+/notion  → data/adapted/notion.json
 /unknown         → 404 page
 ```
 

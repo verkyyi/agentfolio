@@ -7,7 +7,7 @@ test.describe('Adaptation Access', () => {
   });
 
   test('slug loads company adaptation', async ({ page }) => {
-    await page.goto('./sample-company');
+    await page.goto('./notion');
     await expect(page.locator('h1')).toContainText('Alex Chen', { timeout: 10_000 });
   });
 
@@ -26,7 +26,7 @@ test.describe('Adaptation Access', () => {
   test('no console errors on adaptation pages', async ({ page }) => {
     const errors: string[] = [];
     page.on('pageerror', (err) => errors.push(err.message));
-    await page.goto('./sample-company');
+    await page.goto('./notion');
     await page.waitForTimeout(3000);
     expect(errors).toEqual([]);
   });

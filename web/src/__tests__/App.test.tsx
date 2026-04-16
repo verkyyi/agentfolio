@@ -31,13 +31,13 @@ const defaultAdapted = mockAdapted({
 });
 
 const sampleAdapted = mockAdapted({
-  basics: { ...defaultAdapted.basics, summary: 'Sample company summary' },
-  meta: { version: '1.0.0', agentfolio: { company: 'sample-company', generated_by: 'sample' } },
+  basics: { ...defaultAdapted.basics, summary: 'Notion summary' },
+  meta: { version: '1.0.0', agentfolio: { company: 'notion', generated_by: 'test' } },
 });
 
 beforeEach(() => {
   vi.stubGlobal('fetch', vi.fn(async (url: string) => {
-    if (url.includes('data/adapted/sample-company.json')) {
+    if (url.includes('data/adapted/notion.json')) {
       return { ok: true, json: async () => sampleAdapted };
     }
     if (url.includes('data/adapted/default.json')) {
@@ -61,9 +61,9 @@ describe('App — default path', () => {
 
 describe('App — slug path', () => {
   it('renders adaptation for known slug', async () => {
-    window.history.pushState({}, '', '/sample-company');
+    window.history.pushState({}, '', '/notion');
     render(<App />);
-    await waitFor(() => expect(screen.getByText('Sample company summary')).toBeInTheDocument());
+    await waitFor(() => expect(screen.getByText('Notion summary')).toBeInTheDocument());
   });
 
   it('shows not found for unknown slug', async () => {
