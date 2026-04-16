@@ -50,7 +50,7 @@ def answer(question: str, resume_text: str, client: _ClientLike, model: str) -> 
 def main(argv: list[str]) -> int:
     parser = argparse.ArgumentParser(description="Answer one chat question.")
     parser.add_argument("--question", required=True)
-    parser.add_argument("--resume", default="data/resume.md")
+    parser.add_argument("--resume", default="data/input/resume.md")
     parser.add_argument("--model", default="claude-haiku-4-5")
     args = parser.parse_args(argv)
 
