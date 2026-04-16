@@ -70,8 +70,12 @@ export function AdaptiveResume({
             GitHub
           </a>
         </p>
-        <DebugPanel context={context} adapted={adapted} />
-        <MatchScoreBar score={adapted.match_score} />
+        {context.company !== 'default' && (
+          <>
+            <DebugPanel context={context} adapted={adapted} />
+            <MatchScoreBar score={adapted.match_score} />
+          </>
+        )}
       </header>
       {adapted.section_order.map((name) => {
         const render = renderers[name];
