@@ -1,29 +1,35 @@
 import { describe, it, expect, beforeAll } from 'vitest';
 import { execSync } from 'node:child_process';
-import { existsSync, readFileSync } from 'node:fs';
+import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
 
+const dataFitted = join(__dirname, '..', '..', '..', 'data', 'fitted');
 const publicFitted = join(__dirname, '..', '..', 'public', 'data', 'fitted');
+
+function fittedSources(): string[] {
+  return existsSync(dataFitted)
+    ? readdirSync(dataFitted).filter((f) => f.endsWith('.md'))
+    : [];
+}
 
 describe('copy-data script', () => {
   beforeAll(() => {
     execSync('npm run copy-data', { cwd: join(__dirname, '..', '..') });
   });
 
-  it('copies fitted markdown files to public/', () => {
-    expect(existsSync(join(publicFitted, 'default.md'))).toBe(true);
-    expect(existsSync(join(publicFitted, 'notion.md'))).toBe(true);
+  it('copies every fitted markdown file to public/', () => {
+    for (const file of fittedSources()) {
+      expect(existsSync(join(publicFitted, file))).toBe(true);
+    }
   });
 
-  it('generates index.json with slug entries and labels', () => {
+  it('generates index.json with one entry per fitted markdown file', () => {
     const index = JSON.parse(readFileSync(join(publicFitted, 'index.json'), 'utf-8'));
     expect(Array.isArray(index)).toBe(true);
-    expect(index.length).toBeGreaterThanOrEqual(2);
-    const defaultEntry = index.find((e: { slug: string }) => e.slug === 'default');
-    const notionEntry = index.find((e: { slug: string }) => e.slug === 'notion');
-    expect(defaultEntry).toBeDefined();
-    expect(notionEntry).toBeDefined();
-    expect(defaultEntry.label).toBeDefined();
-    expect(notionEntry.label).toBeDefined();
+    expect(index.length).toBe(fittedSources().length);
+    for (const entry of index) {
+      expect(entry.slug).toBeTruthy();
+      expect(entry.label).toBeTruthy();
+    }
   });
 });
