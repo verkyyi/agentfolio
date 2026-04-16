@@ -3,8 +3,8 @@ on:
   push:
     branches: [main]
     paths:
-      - 'data/resume.md'
-      - 'data/jd/**'
+      - 'data/input/resume.md'
+      - 'data/input/jd/**'
       - 'scripts/adapt_from_markdown.py'
   workflow_dispatch:
 
