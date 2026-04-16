@@ -8,25 +8,28 @@ REPO_ROOT = Path(__file__).resolve().parents[2]
 
 
 def _fake_adaptation():
-    resume = json.loads((REPO_ROOT / "data" / "resume.json").read_text())
-    exp_ids = [e["id"] for e in resume["experience"]]
-    proj_ids = [p["id"] for p in resume["projects"]]
-    group_ids = [g["id"] for g in resume["skills"]["groups"]]
     return {
-        "company": "Stripe",
-        "generated_at": "2026-04-16T00:00:00+00:00",
-        "generated_by": "llm_adapt.py v1.0",
-        "summary": "Tailored for Stripe.",
-        "section_order": ["summary", "projects", "experience", "skills", "education", "volunteering"],
-        "experience_order": exp_ids,
-        "bullet_overrides": {},
-        "project_order": proj_ids,
-        "skill_emphasis": ["Python"],
-        "match_score": {
-            "overall": 0.75,
-            "by_category": {gid: 0.5 for gid in group_ids},
-            "matched_keywords": ["Python"],
-            "missing_keywords": [],
+        "basics": {
+            "name": "Test User",
+            "email": "test@example.com",
+            "summary": "Tailored for Stripe.",
+            "location": {"city": "Test City", "region": "TC"},
+            "profiles": [],
+        },
+        "work": [],
+        "projects": [],
+        "skills": [],
+        "education": [],
+        "volunteer": [],
+        "meta": {
+            "version": "1.0.0",
+            "agentfolio": {
+                "company": "Stripe",
+                "generated_by": "llm_adapt.py v2.0",
+                "match_score": {"overall": 0.75, "by_category": {}, "matched_keywords": ["Python"], "missing_keywords": []},
+                "skill_emphasis": ["Python"],
+                "section_order": ["basics", "work", "projects", "skills", "education", "volunteer"],
+            },
         },
     }
 
@@ -54,8 +57,9 @@ def test_run_writes_company_and_adapted_json(tmp_path):
     assert company == {"company": "Stripe", "role": "Forward Deployed Engineer"}
 
     adapted = json.loads(adapted_path.read_text())
-    assert adapted["company"] == "Stripe"
-    assert adapted["summary"] == "Tailored for Stripe."
+    assert adapted["meta"]["agentfolio"]["company"] == "Stripe"
+    assert adapted["basics"]["summary"] == "Tailored for Stripe."
+    assert "match_score" in adapted["meta"]["agentfolio"]
 
 
 def test_run_normalizes_slug(tmp_path):
@@ -65,7 +69,7 @@ def test_run_normalizes_slug(tmp_path):
     (tmp_path / "data" / "resume.json").write_text(base)
 
     fake = _fake_adaptation()
-    fake["company"] = "Scale AI"
+    fake["meta"]["agentfolio"]["company"] = "Scale AI"
     with patch("scripts.adapt_on_request.generate_adaptation", return_value=fake):
         company_path, adapted_path = run(
             company="Scale AI",

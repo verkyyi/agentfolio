@@ -32,13 +32,4 @@ def cohere_profile():
 
 @pytest.fixture
 def default_profile():
-    return {
-        "company": "default",
-        "role": None,
-        "priority_tags": ["full-stack", "agentic", "customer-facing"],
-        "summary_vars": {},
-        "section_order": ["summary", "experience", "projects", "skills", "education", "volunteering"],
-        "project_order": ["ainbox", "agentfolio", "tokenman"],
-        "skill_emphasis": ["Python", "LLM Integration", "AWS (EC2, SES, Aurora Serverless, IAM, SCPs)"],
-        "jd_keywords": [],
-    }
+    return {"company": "default", "role": None}

@@ -22,16 +22,28 @@ def _write_minimal_repo(tmp_path: Path) -> None:
 
 def _fake_result(company: str) -> dict:
     return {
-        "company": company,
-        "generated_at": "2026-04-16T00:00:00+00:00",
-        "generated_by": "llm_adapt.py v1.0",
-        "summary": f"Summary for {company}",
-        "section_order": ["summary", "experience", "projects", "skills", "education", "volunteering"],
-        "experience_order": [],
-        "bullet_overrides": {},
-        "project_order": [],
-        "skill_emphasis": [],
-        "match_score": {"overall": 0.5, "by_category": {}, "matched_keywords": [], "missing_keywords": []},
+        "basics": {
+            "name": "Test User",
+            "email": "test@example.com",
+            "summary": f"Summary for {company}",
+            "location": {"city": "Test City"},
+            "profiles": [],
+        },
+        "work": [],
+        "projects": [],
+        "skills": [],
+        "education": [],
+        "volunteer": [],
+        "meta": {
+            "version": "1.0.0",
+            "agentfolio": {
+                "company": company,
+                "generated_by": "llm_adapt.py v2.0",
+                "match_score": {"overall": 0.5, "by_category": {}, "matched_keywords": [], "missing_keywords": []},
+                "skill_emphasis": [],
+                "section_order": ["basics", "work", "projects", "skills", "education", "volunteer"],
+            },
+        },
     }
 
 
@@ -50,7 +62,7 @@ def test_run_generates_one_file_per_company(tmp_path):
     assert (tmp_path / "data" / "adapted" / "beta.json").exists()
 
     alpha = json.loads((tmp_path / "data" / "adapted" / "alpha.json").read_text())
-    assert alpha["summary"] == "Summary for Alpha"
+    assert alpha["basics"]["summary"] == "Summary for Alpha"
 
 
 def test_main_forwards_cache_dir(tmp_path):
