@@ -77,6 +77,9 @@ data/adapted/notion.pdf        ← PDF export
 
 ## Features
 
+![Dashboard](docs/screenshots/dashboard.png)
+*Owner dashboard for reviewing fitted resumes, diffs, PDFs, and JDs*
+
 - **Three-stage pipeline** — separate tailoring from schema conversion, with human editing in between
 - **Directive learning** — your edits are automatically extracted as reusable preferences
 - **Preset directives** — research-backed resume optimization rules out of the box
