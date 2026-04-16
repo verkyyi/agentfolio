@@ -76,3 +76,11 @@ describe('App — slug path', () => {
     await waitFor(() => expect(screen.getByText('Not Found')).toBeInTheDocument());
   });
 });
+
+describe('App — /dashboard route', () => {
+  it('renders dashboard at /dashboard', async () => {
+    window.history.pushState({}, '', '/dashboard');
+    render(<App />);
+    await waitFor(() => expect(screen.getByText('Fitted Resumes')).toBeInTheDocument());
+  });
+});
