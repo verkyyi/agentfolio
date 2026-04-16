@@ -133,7 +133,7 @@ export function Dashboard() {
         </TabBar>
         {activeSlug && tab === 'preview' && <FittedPreview slug={activeSlug} />}
         {activeSlug && tab === 'diff' && <FittedDiff slug={activeSlug} />}
-        {activeSlug && tab === 'pdf' && <PdfFrame src={`${import.meta.env.BASE_URL}data/adapted/${activeSlug}.pdf`} title={`${activeSlug} PDF`} />}
+        {activeSlug && tab === 'pdf' && <PdfFrame src={`${import.meta.env.BASE_URL}data/adapted/${activeSlug}.pdf#view=FitH&navpanes=0`} title={`${activeSlug} PDF`} />}
       </Main>
     </Layout>
   );
