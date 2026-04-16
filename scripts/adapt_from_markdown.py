@@ -1,6 +1,6 @@
 """Adapt a resume from markdown sources via single LLM calls.
 
-Reads data/input/resume.md + data/input/jd/*.md, produces data/adapted/*.json + data/slugs.json.
+Reads data/input/resume.md + data/input/jd/*.md, produces data/adapted/*.json.
 Each adaptation is a single LLM call — no intermediate JSON Resume authoring needed.
 """
 
@@ -166,22 +166,6 @@ def adapt_one_from_markdown(
     raise ValueError("LLM returned no text content")
 
 
-def generate_slugs_json(adapted_results: dict[str, dict]) -> dict:
-    """Generate slugs.json from adapted result metadata."""
-    slugs = {}
-    for slug, data in adapted_results.items():
-        if slug == "default":
-            continue
-        meta = data.get("meta", {}).get("agentfolio", {})
-        slugs[slug] = {
-            "company": meta.get("company", slug),
-            "role": meta.get("role"),
-            "created": datetime.now(timezone.utc).strftime("%Y-%m-%d"),
-            "context": "auto-generated",
-        }
-    return slugs
-
-
 def adapt_all_from_markdown(
     data_dir: Path,
     *,
@@ -224,12 +208,6 @@ def adapt_all_from_markdown(
     )
     results["default"] = default_result
     print(f"  wrote {default_path}")
-
-    # Generate slugs.json
-    slugs = generate_slugs_json(results)
-    slugs_path = data_dir / "slugs.json"
-    slugs_path.write_text(json.dumps(slugs, indent=2, ensure_ascii=False) + "\n")
-    print(f"  wrote {slugs_path}")
 
     return results
 

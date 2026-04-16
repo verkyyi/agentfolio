@@ -11,7 +11,6 @@ import pytest
 from scripts.adapt_from_markdown import (
     adapt_one_from_markdown,
     adapt_all_from_markdown,
-    generate_slugs_json,
     build_adaptation_prompt,
     build_default_prompt,
     parse_llm_response,
@@ -154,24 +153,6 @@ class TestAdaptOneFromMarkdown:
             client=client,
         )
         assert result["basics"]["name"] == "Alex Chen"
-
-
-class TestGenerateSlugsJson:
-    def test_generates_from_adapted_meta(self):
-        adapted = {
-            "techco": {
-                "meta": {
-                    "agentfolio": {
-                        "company": "TechCo",
-                        "role": "Data Platform Engineer",
-                    }
-                }
-            }
-        }
-        slugs = generate_slugs_json(adapted)
-        assert "techco" in slugs
-        assert slugs["techco"]["company"] == "TechCo"
-        assert slugs["techco"]["role"] == "Data Platform Engineer"
 
 
 class TestAdaptAllFromMarkdown:
