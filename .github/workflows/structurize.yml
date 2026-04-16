@@ -1,0 +1,96 @@
+name: Structurize Resumes
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'data/fitted/*.md'
+  workflow_dispatch:
+    inputs:
+      slugs:
+        description: 'Space-separated slugs to structurize (e.g. "notion stripe"). Leave empty for all.'
+        required: false
+        default: ''
+
+permissions:
+  contents: write
+
+jobs:
+  structurize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check commit author (push trigger only)
+        id: author
+        if: github.event_name == 'push'
+        run: |
+          AUTHOR=$(git log -1 --format='%an')
+          echo "author=$AUTHOR" >> "$GITHUB_OUTPUT"
+          IS_BOT=$( [ "$AUTHOR" = "AgentFolio Bot" ] && echo true || echo false )
+          echo "is_bot=$IS_BOT" >> "$GITHUB_OUTPUT"
+          echo "Commit author: $AUTHOR (is_bot=$IS_BOT)"
+
+      - name: Skip if non-bot push
+        if: github.event_name == 'push' && steps.author.outputs.is_bot == 'false'
+        run: |
+          echo "Non-bot commit — extract.yml handles this path"
+          exit 0
+
+      - uses: actions/setup-node@v4
+        if: github.event_name == 'workflow_dispatch' || steps.author.outputs.is_bot == 'true'
+        with:
+          node-version: '20'
+
+      - name: Install Claude Code
+        if: github.event_name == 'workflow_dispatch' || steps.author.outputs.is_bot == 'true'
+        run: npm install -g @anthropic-ai/claude-code
+
+      - name: Detect slugs
+        if: github.event_name == 'workflow_dispatch' || steps.author.outputs.is_bot == 'true'
+        id: slugs
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            INPUT="${{ github.event.inputs.slugs }}"
+            echo "slugs=${INPUT:-all}" >> "$GITHUB_OUTPUT"
+          else
+            SLUGS=$(git diff --name-only HEAD~1 HEAD -- 'data/fitted/*.md' | sed 's|data/fitted/||;s|\.md$||' | tr '\n' ' ' | xargs)
+            echo "slugs=${SLUGS:-all}" >> "$GITHUB_OUTPUT"
+          fi
+          echo "Structurize targets: $(cat "$GITHUB_OUTPUT")"
+
+      - name: Generate JSON Resumes
+        if: github.event_name == 'workflow_dispatch' || steps.author.outputs.is_bot == 'true'
+        env:
+          CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+        run: |
+          SLUGS="${{ steps.slugs.outputs.slugs }}"
+          if [ "$SLUGS" = "all" ]; then
+            claude -p "Use the /structurize skill to convert all fitted resumes to JSON Resume format." --allowedTools Read,Write,Glob 2>&1 | tee structurize-output.log
+          else
+            claude -p "Use the /structurize skill to convert these specific slugs: $SLUGS" --allowedTools Read,Write,Glob 2>&1 | tee structurize-output.log
+          fi
+
+      - name: Upload Claude output
+        if: always() && (github.event_name == 'workflow_dispatch' || steps.author.outputs.is_bot == 'true')
+        uses: actions/upload-artifact@v4
+        with:
+          name: structurize-log
+          path: structurize-output.log
+          retention-days: 7
+
+      - name: Show JSON changes
+        if: github.event_name == 'workflow_dispatch' || steps.author.outputs.is_bot == 'true'
+        run: git diff -- data/adapted/
+
+      - name: Commit generated files
+        if: github.event_name == 'workflow_dispatch' || steps.author.outputs.is_bot == 'true'
+        run: |
+          git config user.name "AgentFolio Bot"
+          git config user.email "bot@agentfolio.local"
+          git add data/adapted/
+          if git diff --cached --quiet; then
+            echo "no structurize changes"
+          else
+            git commit -m "chore(structurize): regenerate JSON resumes"
+            git push
+          fi

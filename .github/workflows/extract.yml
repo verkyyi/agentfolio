@@ -1,0 +1,75 @@
+name: Extract Directives
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'data/fitted/*.md'
+
+permissions:
+  contents: write
+  actions: write
+
+jobs:
+  extract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 10
+
+      - name: Check commit author
+        id: author
+        run: |
+          AUTHOR=$(git log -1 --format='%an')
+          echo "author=$AUTHOR" >> "$GITHUB_OUTPUT"
+          IS_BOT=$( [ "$AUTHOR" = "AgentFolio Bot" ] && echo true || echo false )
+          echo "is_bot=$IS_BOT" >> "$GITHUB_OUTPUT"
+          echo "Commit author: $AUTHOR (is_bot=$IS_BOT)"
+
+      - name: Skip if bot commit
+        if: steps.author.outputs.is_bot == 'true'
+        run: echo "Bot commit — skipping directive extraction"
+
+      - uses: actions/setup-node@v4
+        if: steps.author.outputs.is_bot == 'false'
+        with:
+          node-version: '20'
+
+      - name: Install Claude Code
+        if: steps.author.outputs.is_bot == 'false'
+        run: npm install -g @anthropic-ai/claude-code
+
+      - name: Extract directives
+        if: steps.author.outputs.is_bot == 'false'
+        env:
+          CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+        run: |
+          claude -p "Use the /extract-directives skill to extract intentions from human edits to fitted files." --allowedTools Read,Write,Glob,Bash 2>&1 | tee extract-output.log
+
+      - name: Upload Claude output
+        if: always() && steps.author.outputs.is_bot == 'false'
+        uses: actions/upload-artifact@v4
+        with:
+          name: extract-log
+          path: extract-output.log
+          retention-days: 7
+
+      - name: Commit updated directives
+        if: steps.author.outputs.is_bot == 'false'
+        run: |
+          git config user.name "AgentFolio Bot"
+          git config user.email "bot@agentfolio.local"
+          git add data/input/directives.md
+          if git diff --cached --quiet; then
+            echo "no directive changes"
+          else
+            git commit -m "chore(extract): update directives from human edits"
+            git push
+          fi
+
+      - name: Trigger structurize workflow
+        if: steps.author.outputs.is_bot == 'false'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh workflow run structurize.yml

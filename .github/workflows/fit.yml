@@ -1,0 +1,81 @@
+name: Fit Resumes
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'data/input/resume.md'
+      - 'data/input/jd/**'
+      - '.claude/skills/fit.md'
+  workflow_dispatch:
+    inputs:
+      slugs:
+        description: 'Space-separated slugs to fit (e.g. "notion stripe"). Leave empty to fit all.'
+        required: false
+        default: ''
+
+permissions:
+  contents: write
+
+jobs:
+  fit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Detect changed files
+        id: changes
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            INPUT="${{ github.event.inputs.slugs }}"
+            echo "slugs=${INPUT:-all}" >> "$GITHUB_OUTPUT"
+          else
+            CHANGED=$(git diff --name-only HEAD~1 HEAD)
+            if echo "$CHANGED" | grep -qE '(data/input/resume\.md|\.claude/skills/fit\.md)'; then
+              echo "slugs=all" >> "$GITHUB_OUTPUT"
+            else
+              SLUGS=$(echo "$CHANGED" | grep '^data/input/jd/' | sed 's|data/input/jd/||;s|\.md$||' | tr '\n' ' ' | xargs)
+              echo "slugs=${SLUGS:-all}" >> "$GITHUB_OUTPUT"
+            fi
+          fi
+          echo "Fit targets: $(cat "$GITHUB_OUTPUT")"
+
+      - name: Install Claude Code
+        run: npm install -g @anthropic-ai/claude-code
+
+      - name: Generate fitted resumes
+        env:
+          CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+        run: |
+          SLUGS="${{ steps.changes.outputs.slugs }}"
+          if [ "$SLUGS" = "all" ]; then
+            claude -p "Use the /fit skill to generate all fitted resumes." --allowedTools Read,Write,Glob 2>&1 | tee fit-output.log
+          else
+            claude -p "Use the /fit skill to generate fitted resumes for these specific slugs: $SLUGS" --allowedTools Read,Write,Glob 2>&1 | tee fit-output.log
+          fi
+
+      - name: Upload Claude output
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: fit-log
+          path: fit-output.log
+          retention-days: 7
+
+      - name: Show fitted file changes
+        run: git diff -- data/fitted/
+
+      - name: Commit generated files
+        run: |
+          git config user.name "AgentFolio Bot"
+          git config user.email "bot@agentfolio.local"
+          git add data/fitted/
+          if git diff --cached --quiet; then
+            echo "no fit changes"
+          else
+            git commit -m "chore(fit): regenerate fitted resumes"
+            git push
+          fi
