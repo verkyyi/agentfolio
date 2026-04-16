@@ -1,9 +1,16 @@
+import { useEffect } from 'react';
 import { useAdaptation } from './hooks/useAdaptation';
 import { ResumeTheme } from './components/ResumeTheme';
 import { DownloadPdf } from './components/DownloadPdf';
 
 export default function App() {
   const { adapted, error, slug } = useAdaptation();
+
+  useEffect(() => {
+    if (adapted?.basics?.name) {
+      document.title = `${adapted.basics.name} — Resume`;
+    }
+  }, [adapted]);
 
   if (error) {
     return (
