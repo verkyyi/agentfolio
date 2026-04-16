@@ -110,19 +110,7 @@
     "agentfolio": {
       "company": "default",
       "role": null,
-      "generated_by": "claude-code/adapt-skill",
-      "match_score": {
-        "overall": 0.5,
-        "by_category": {
-          "languages-frameworks": 0.5,
-          "infrastructure-devops": 0.5,
-          "data-ml": 0.5
-        },
-        "matched_keywords": [],
-        "missing_keywords": []
-      },
-      "skill_emphasis": [],
-      "section_order": ["basics", "work", "projects", "skills", "education", "volunteer"]
+      "generated_by": "claude-code/structurize-skill"
     }
   }
 }

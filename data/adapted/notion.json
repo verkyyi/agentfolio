@@ -1,10 +1,10 @@
 {
   "basics": {
     "name": "Alex Chen",
-    "label": "Senior Software Engineer, Data Infrastructure",
+    "label": "Senior Data Infrastructure Engineer",
     "email": "alex@example.com",
     "phone": "(555) 123-4567",
-    "summary": "Senior software engineer with 6+ years building large-scale data pipelines and distributed systems at high-growth companies. At Acme Corp, architected a real-time Kafka/Flink pipeline processing 2M events/day and led a microservices migration that cut p99 latency by 40%. Eager to bring deep data infrastructure expertise to Notion's enterprise data platform, where reliability, cost efficiency, and compliance at scale are mission-critical.",
+    "summary": "Experienced software engineer with 6+ years building large-scale data pipelines and distributed systems. At Acme Corp, architected a real-time Kafka/Flink pipeline processing 2M events/day and led a microservices migration that cut p99 latency by 40%. Eager to bring deep data infrastructure expertise to Notion's enterprise data platform, where reliability, cost efficiency, and compliance at scale are mission-critical.",
     "location": { "city": "San Francisco", "region": "CA", "countryCode": "US" },
     "profiles": [
       { "network": "LinkedIn", "url": "https://linkedin.com/in/alexchen", "username": "alexchen" },
@@ -110,19 +110,7 @@
     "agentfolio": {
       "company": "Notion",
       "role": "Software Engineer, Enterprise Data Platform",
-      "generated_by": "claude-code/adapt-skill",
-      "match_score": {
-        "overall": 0.78,
-        "by_category": {
-          "data-ml": 0.85,
-          "infrastructure-devops": 0.80,
-          "languages-frameworks": 0.70
-        },
-        "matched_keywords": ["Kafka", "Apache Flink", "Python", "SQL", "AWS", "Kubernetes", "PostgreSQL", "open-source", "data pipelines", "enterprise", "cloud infrastructure"],
-        "missing_keywords": ["Java", "Scala", "Spark", "Delta Lake", "Iceberg", "Hudi", "data lakehouse", "FedRAMP", "SOC 2"]
-      },
-      "skill_emphasis": ["Apache Flink", "Kafka", "AWS", "Kubernetes", "Python", "PostgreSQL", "SQL"],
-      "section_order": ["basics", "work", "skills", "projects", "education", "volunteer"]
+      "generated_by": "claude-code/structurize-skill"
     }
   }
 }
