@@ -9,7 +9,9 @@ from __future__ import annotations
 
 import argparse
 import copy
+import json
 import sys
+from datetime import datetime, timezone
 from pathlib import Path
 
 from scripts.adapt_one import _load, _normalize_company, _write, adapt
@@ -35,6 +37,20 @@ def run(company: str, role: str, repo_root: Path) -> tuple[Path, Path]:
     _write(profile_path, profile)
     result = adapt(base, profile)
     _write(adapted_path, result)
+
+    slugs_path = repo_root / "data" / "slugs.json"
+    if slugs_path.exists():
+        registry = json.loads(slugs_path.read_text())
+    else:
+        registry = {}
+    if slug not in registry:
+        registry[slug] = {
+            "company": slug,
+            "role": role,
+            "created": datetime.now(timezone.utc).strftime("%Y-%m-%d"),
+            "context": "Auto-generated from self-ID",
+        }
+        _write(slugs_path, registry)
 
     return profile_path, adapted_path
 

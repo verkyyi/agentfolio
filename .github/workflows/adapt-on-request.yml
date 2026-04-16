@@ -129,7 +129,7 @@ jobs:
         run: |
           git config user.name "AgentFolio Bot"
           git config user.email "bot@agentfolio.local"
-          git add data/companies/ data/adapted/
+          git add data/companies/ data/adapted/ data/slugs.json
           if git diff --cached --quiet; then
             echo "no changes to commit (already cached?)"
           else
