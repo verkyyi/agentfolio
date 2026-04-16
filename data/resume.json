@@ -1,245 +1,144 @@
 {
   "basics": {
-    "name": "Lianghui Yi",
-    "label": "Forward Deployed Engineer",
-    "email": "verky.yi@gmail.com",
-    "phone": "(925) 900-3467",
+    "name": "Alex Chen",
+    "label": "Software Engineer",
+    "email": "alex@example.com",
+    "phone": "(555) 123-4567",
     "location": {
-      "city": "Santa Clara",
+      "city": "San Francisco",
       "region": "CA",
       "countryCode": "US"
     },
     "profiles": [
       {
         "network": "LinkedIn",
-        "url": "https://linkedin.com/in/lianghuiyi"
+        "url": "https://linkedin.com/in/alexchen"
       },
       {
         "network": "GitHub",
-        "url": "https://github.com/verkyyi",
-        "username": "verkyyi"
+        "url": "https://github.com/alexchen",
+        "username": "alexchen"
       }
     ]
   },
   "work": [
     {
-      "id": "24helpful",
-      "name": "24 Helpful, LLC",
-      "position": "Co-Founder & AI Engineer",
-      "location": "Santa Clara, CA",
-      "startDate": "2024-03",
+      "id": "acme",
+      "name": "Acme Corp",
+      "position": "Senior Software Engineer",
+      "location": "San Francisco, CA",
+      "startDate": "2022-06",
       "highlights": [
-        "Designed and shipped a self-evolving code system (generator/evaluator loop) that accelerated development velocity; implemented CI/CD automation with GitHub Actions to close iteration cycles in under 24 hours.",
-        "Delivered end-to-end multi-tenant AWS cloud infrastructure for enterprise customers, reducing provisioning costs by 50% through automated resource management and tenant isolation.",
-        "Collaborated directly with customers to scope requirements, remove deployment blockers, and accelerate rollouts — codified deployment playbooks and runbooks to standardize operational response across production systems."
+        "Led migration of monolithic API to event-driven microservices architecture, reducing p99 latency by 40% and enabling independent team deployments.",
+        "Built real-time data pipeline processing 2M events/day using Kafka and Flink, powering personalization features that increased user engagement by 25%.",
+        "Mentored 3 junior engineers through structured pairing sessions, all promoted within 12 months."
       ],
       "highlightMeta": [
-        {
-          "id": "24h-evolving-code",
-          "tags": ["agentic", "ci-cd", "rapid-experimentation", "evaluation"]
-        },
-        {
-          "id": "24h-aws-infra",
-          "tags": ["cloud", "enterprise", "infrastructure", "customer-facing"]
-        },
-        {
-          "id": "24h-customer-collab",
-          "tags": ["customer-facing", "deployment", "enterprise", "playbooks"]
-        }
+        { "id": "acme-migration", "tags": ["architecture", "microservices", "performance"] },
+        { "id": "acme-pipeline", "tags": ["data-engineering", "real-time", "infrastructure"] },
+        { "id": "acme-mentoring", "tags": ["leadership", "mentoring"] }
       ]
     },
     {
-      "id": "24haowan",
-      "name": "24Haowan Network Technology Co., Ltd.",
-      "position": "Co-Founder & Technical Lead",
-      "location": "Shanghai, China",
-      "startDate": "2019-10",
-      "endDate": "2023-08",
+      "id": "startup",
+      "name": "DataFlow Startup",
+      "position": "Full-Stack Engineer",
+      "location": "Remote",
+      "startDate": "2020-01",
+      "endDate": "2022-05",
       "highlights": [
-        "Designed a SaaS product and go-to-market strategy that achieved $1,000,000 ARR in 2 years by optimizing product lifecycle, user onboarding, and data-driven iteration loops.",
-        "Led cross-functional engineering team; built internal tools that streamlined product and engineering workflows, improving team delivery cadence over a 6-month period.",
-        "Engaged directly with enterprise customers to scope technical requirements and uncover pain points, converting 3 strategic accounts within 3 months and improving product-market fit."
+        "Designed and shipped the core analytics dashboard used by 500+ enterprise customers, iterating on feedback from weekly customer calls.",
+        "Implemented CI/CD pipeline with GitHub Actions reducing deploy time from 45 minutes to 8 minutes with automated rollback on failure.",
+        "Built OAuth2/OIDC integration supporting 5 identity providers, enabling enterprise SSO adoption."
       ],
       "highlightMeta": [
-        {
-          "id": "24hw-saas",
-          "tags": ["product", "growth", "data-driven", "saas", "enterprise", "customer-facing"]
-        },
-        {
-          "id": "24hw-team",
-          "tags": ["leadership", "tooling", "full-stack"]
-        },
-        {
-          "id": "24hw-enterprise",
-          "tags": ["customer-facing", "enterprise", "product-market-fit"]
-        }
-      ]
-    },
-    {
-      "id": "maiduote",
-      "name": "Maiduote Network Technology Co., Ltd.",
-      "position": "Tech Lead",
-      "location": "Guangzhou, China",
-      "startDate": "2018-06",
-      "endDate": "2019-07",
-      "description": "Technology subsidiary of a biotech group — doctor-patient engagement platforms",
-      "highlights": [
-        "Led end-to-end product development and launched a production platform that increased doctor-patient engagement by 30%; integrated predefined forms and chatbots in collaboration with stakeholders.",
-        "Scoped and delivered data-driven features across the full stack, coordinating cross-functional teams to prioritize roadmap items and ensure stable, rapid rollouts.",
-        "Drove customer-facing growth strategies that acquired over 50,000 users in 6 months, exceeding targets through targeted outreach and workflow optimization."
-      ],
-      "highlightMeta": [
-        {
-          "id": "mdt-platform",
-          "tags": ["full-stack", "product", "customer-facing", "healthcare"]
-        },
-        {
-          "id": "mdt-fullstack",
-          "tags": ["full-stack", "data-driven", "rapid-experimentation", "production", "deploy"]
-        },
-        {
-          "id": "mdt-growth",
-          "tags": ["growth", "customer-facing", "scale"]
-        }
+        { "id": "df-dashboard", "tags": ["full-stack", "product", "customer-facing"] },
+        { "id": "df-cicd", "tags": ["ci-cd", "infrastructure", "automation"] },
+        { "id": "df-auth", "tags": ["security", "enterprise", "full-stack"] }
       ]
     }
   ],
   "projects": [
     {
-      "id": "tokenman",
-      "name": "tokenman.io",
-      "description": "Claude Code Hosting & AI Repo Self-Evolution",
-      "url": "https://tokenman.io",
-      "github": "https://github.com/verkyyi/tokenman",
-      "startDate": "2026-03",
-      "keywords": ["agentic", "infrastructure", "ci-cd", "saas"],
+      "id": "ml-monitor",
+      "name": "ML Model Monitor",
+      "description": "Open-source ML model monitoring dashboard",
+      "url": "https://example.com/ml-monitor",
+      "github": "https://github.com/alexchen/ml-monitor",
+      "startDate": "2024-01",
+      "keywords": ["machine-learning", "monitoring", "full-stack", "open-source"],
       "highlights": [
-        "Built terminal.tokenman.io — a multi-tenant Claude Code CLI hosting SaaS on EC2 with mobile-first SSH, persistent tmux sessions, and cloud-init provisioning for secure production access.",
-        "Designed a skill-based repo self-evolution system with shared AI context and slash commands, enabling autonomous AI-driven code loops via GitHub Actions (human + AI and headless generator/evaluator workflows)."
+        "Built a real-time model drift detection system with configurable alerting thresholds, deployed on AWS Lambda for zero-ops monitoring.",
+        "Designed a React dashboard visualizing prediction distributions, feature importance, and alert history across multiple model versions."
       ],
       "highlightMeta": [
-        {
-          "id": "tkm-hosting",
-          "tags": ["infrastructure", "cloud", "saas"]
-        },
-        {
-          "id": "tkm-evolution",
-          "tags": ["agentic", "evaluation", "ci-cd", "autonomous"]
-        }
+        { "id": "mlm-drift", "tags": ["machine-learning", "infrastructure", "monitoring"] },
+        { "id": "mlm-dashboard", "tags": ["full-stack", "data-visualization", "react"] }
       ]
     },
     {
-      "id": "ainbox",
-      "name": "aInbox (ainbox.io)",
-      "description": "MCP-Native AI Agent Email Middleware",
-      "url": "https://ainbox.io",
-      "github": "https://github.com/verkyyi/ainbox",
-      "startDate": "2025-12",
-      "keywords": ["agentic", "mcp", "llm", "infrastructure"],
+      "id": "cli-toolkit",
+      "name": "DevCLI Toolkit",
+      "description": "Developer productivity CLI tools",
+      "url": "https://example.com/devcli",
+      "github": "https://github.com/alexchen/devcli",
+      "startDate": "2023-06",
+      "keywords": ["cli", "developer-tools", "rust", "open-source"],
       "highlights": [
-        "Built an MCP-native AI agent middleware platform giving LLMs a dedicated inbox and async messaging layer, operated entirely via Model Context Protocol tools with no traditional UI.",
-        "Designed full server architecture with OAuth, JWT, and Streamable HTTP transport; implemented LLM-driven triage and labeling pipeline deployed on multi-tenant AWS infrastructure using Aurora Serverless, SES, and per-user IAM roles."
+        "Created a Rust-based CLI toolkit with sub-5ms startup time for common developer workflows: git branch cleanup, log tailing, and config management.",
+        "Published to crates.io with 2,000+ downloads; maintained backward compatibility across 8 minor releases."
       ],
       "highlightMeta": [
-        {
-          "id": "ainbox-platform",
-          "tags": ["agentic", "mcp", "llm"]
-        },
-        {
-          "id": "ainbox-infra",
-          "tags": ["infrastructure", "cloud", "llm", "enterprise"]
-        }
-      ]
-    },
-    {
-      "id": "agentfolio",
-      "name": "AgentFolio",
-      "description": "Open-Source Agentic Portfolio Engine",
-      "url": "https://verkyyi.github.io/agentfolio",
-      "github": "https://github.com/verkyyi/agentfolio",
-      "startDate": "2026-04",
-      "keywords": ["agentic", "rag", "full-stack", "open-source"],
-      "highlights": [
-        "Built an agentic portfolio engine that detects visitor context and dynamically adapts resume content using LLM-powered rewriting and JD-matching pipelines; deployed on pure GitHub infrastructure with zero third-party cost.",
-        "Designed a five-stage agent architecture (perceive \u2192 reason \u2192 act \u2192 learn \u2192 explain) with RAG-powered chat, automated JD fetching, and visitor feedback loops that continuously optimize content resonance."
-      ],
-      "highlightMeta": [
-        {
-          "id": "af-engine",
-          "tags": ["agentic", "llm", "infrastructure"]
-        },
-        {
-          "id": "af-architecture",
-          "tags": ["agentic", "rag", "evaluation", "data-driven"]
-        }
+        { "id": "cli-perf", "tags": ["rust", "performance", "developer-tools"] },
+        { "id": "cli-community", "tags": ["open-source", "community"] }
       ]
     }
   ],
   "skills": [
     {
-      "id": "ai",
-      "name": "AI & Agentic Systems",
-      "keywords": ["Autonomous Agent Development", "LLM Integration", "RAG Pipelines", "MCP (Model Context Protocol)", "Prompt Engineering", "RLHF Concepts", "Evaluation Framework Design (Generator/Evaluator)", "Data Pipeline Architecture"]
+      "id": "languages",
+      "name": "Languages & Frameworks",
+      "keywords": ["TypeScript", "Python", "Rust", "React", "Node.js", "FastAPI", "SQL"]
     },
     {
-      "id": "fullstack",
-      "name": "Full-Stack",
-      "keywords": ["Python", "JavaScript/TypeScript (Node.js, React.js)", "R", "SQL", "PHP", "HTML/CSS", "PySpark", "NumPy", "Pandas"]
+      "id": "infrastructure",
+      "name": "Infrastructure & DevOps",
+      "keywords": ["AWS", "Docker", "Kubernetes", "GitHub Actions", "Terraform", "Kafka"]
     },
     {
-      "id": "cloud",
-      "name": "Cloud & Infrastructure",
-      "keywords": ["AWS (EC2, SES, Aurora Serverless, IAM, SCPs)", "Docker", "Kubernetes", "GitHub Actions CI/CD", "Private/Hybrid Cloud Deployment", "JWT/OAuth", "Production Systems", "Distributed Systems"]
-    },
-    {
-      "id": "methods",
-      "name": "Methods & Tools",
-      "keywords": ["Rapid Experimentation", "Customer Discovery", "Scrum/Agile", "Playbooks/Runbooks", "Figma", "Jira", "MySQL", "Redis"]
+      "id": "data",
+      "name": "Data & ML",
+      "keywords": ["PostgreSQL", "Redis", "Apache Flink", "scikit-learn", "MLflow"]
     }
   ],
   "education": [
     {
-      "institution": "Georgetown University",
-      "studyType": "Master",
-      "area": "Data Science and Analytics",
-      "location": "Washington, DC",
-      "startDate": "2023-09",
-      "endDate": "2025-05",
-      "score": "Returning Student Scholarship (Top 3%)"
-    },
-    {
-      "institution": "Lingnan College, Sun Yat-Sen University",
-      "studyType": "Executive MBA",
-      "area": "",
-      "location": "Guangzhou, China"
-    },
-    {
-      "institution": "Beijing University of Posts and Telecommunications",
-      "studyType": "B.E.",
-      "area": "Information Engineering",
-      "location": "Beijing, China"
+      "institution": "UC Berkeley",
+      "studyType": "B.S.",
+      "area": "Computer Science",
+      "location": "Berkeley, CA",
+      "startDate": "2016-08",
+      "endDate": "2020-05"
     }
   ],
   "volunteer": [
     {
-      "organization": "1124 Space",
-      "position": "Volunteer Lead",
-      "location": "Arlington, VA",
-      "startDate": "2024-04",
-      "endDate": "2025-12",
-      "summary": "Led community initiatives and organized weekly founder-focused events (1,000+ participants in one year), coordinated volunteers and facilitated connections to strengthen engagement and collaboration."
+      "organization": "Code for SF",
+      "position": "Tech Lead",
+      "location": "San Francisco, CA",
+      "startDate": "2023-01",
+      "summary": "Led a team of 8 volunteers building civic tech tools for local nonprofits, delivering 3 projects in 12 months."
     }
   ],
   "meta": {
     "version": "1.0.0",
     "agentfolio": {
-      "summary_template": "Forward Deployed Engineer with 5+ years shipping {focus} at scale. Experienced collaborating directly with enterprise customers to scope technical requirements and deploy end-to-end solutions \u2014 from {surface} to {infra}. Proven track record building production {systems} that power 50,000+ users, with deep expertise in {highlight}.",
+      "summary_template": "Software Engineer with {years}+ years building {focus} at scale. {strength}. Skilled in {highlight}.",
       "summary_defaults": {
-        "focus": "full-stack products and data infrastructure",
-        "surface": "front-end interfaces",
-        "infra": "backend systems and cloud infrastructure",
-        "systems": "AI platforms",
-        "highlight": "generative AI engineering, rapid experimentation, and high-quality data solutions"
+        "years": "4",
+        "focus": "full-stack applications and data infrastructure",
+        "strength": "Experienced shipping production systems serving enterprise customers",
+        "highlight": "distributed systems, real-time data pipelines, and developer tooling"
       }
     }
   }

@@ -4,7 +4,7 @@
     "label": "Software Engineer",
     "email": "alex@example.com",
     "phone": "(555) 123-4567",
-    "summary": "Software Engineer with 4+ years building full-stack applications and data infrastructure at scale. Experienced shipping production systems serving enterprise customers. Skilled in distributed systems, real-time data pipelines, and developer tooling.",
+    "summary": "Software Engineer with 4+ years building data-intensive applications and ML infrastructure. Experienced shipping real-time pipelines and monitoring systems serving enterprise customers. Skilled in distributed systems, machine learning operations, and full-stack development.",
     "location": {
       "city": "San Francisco",
       "region": "CA",
@@ -23,8 +23,8 @@
       "location": "San Francisco, CA",
       "startDate": "2022-06",
       "highlights": [
-        "Led migration of monolithic API to event-driven microservices architecture, reducing p99 latency by 40% and enabling independent team deployments.",
         "Built real-time data pipeline processing 2M events/day using Kafka and Flink, powering personalization features that increased user engagement by 25%.",
+        "Led migration of monolithic API to event-driven microservices architecture, reducing p99 latency by 40% and enabling independent team deployments.",
         "Mentored 3 junior engineers through structured pairing sessions, all promoted within 12 months."
       ]
     },
@@ -85,11 +85,11 @@
     "version": "1.0.0",
     "lastModified": "2026-01-01T00:00:00+00:00",
     "agentfolio": {
-      "company": "default",
+      "company": "sample-company",
       "generated_by": "sample",
-      "match_score": { "overall": 0.5, "by_category": { "languages": 0.5, "infrastructure": 0.5, "data": 0.5 }, "matched_keywords": ["TypeScript", "Python", "AWS"], "missing_keywords": [] },
-      "skill_emphasis": [],
-      "section_order": ["basics", "work", "projects", "skills", "education", "volunteer"]
+      "match_score": { "overall": 0.82, "by_category": { "languages": 0.7, "infrastructure": 0.9, "data": 0.85 }, "matched_keywords": ["Python", "Kafka", "AWS", "scikit-learn"], "missing_keywords": ["Go", "Spark"] },
+      "skill_emphasis": ["Kafka", "scikit-learn", "Apache Flink"],
+      "section_order": ["basics", "projects", "work", "skills", "education", "volunteer"]
     }
   }
 }
