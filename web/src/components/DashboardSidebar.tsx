@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export interface FittedEntry {
   slug: string;
   filename: string;
+  label?: string;
 }
 
 interface Props {
@@ -12,7 +13,7 @@ interface Props {
 }
 
 const Aside = styled.aside`
-  width: 220px;
+  width: 260px;
   min-height: 100vh;
   border-right: 1px solid var(--rule);
   padding: 24px 0;
@@ -40,10 +41,19 @@ const Item = styled.button<{ $active: boolean }>`
   border: none;
   cursor: pointer;
   transition: background 120ms ease;
+  line-height: 1.4;
 
   &:hover {
     background: ${({ $active }) => ($active ? 'var(--highlight)' : 'var(--rule)')};
   }
+`;
+
+const ItemLabel = styled.span`
+  display: block;
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--ink-mute);
+  margin-top: 2px;
 `;
 
 export function DashboardSidebar({ items, activeSlug, onSelect }: Props) {
@@ -58,6 +68,7 @@ export function DashboardSidebar({ items, activeSlug, onSelect }: Props) {
           onClick={() => onSelect(item.slug)}
         >
           {item.slug}
+          {item.label && item.label !== item.slug && <ItemLabel>{item.label}</ItemLabel>}
         </Item>
       ))}
     </Aside>

@@ -13,12 +13,17 @@ fs.cpSync(dataAdapted, publicAdapted, { recursive: true });
 // Copy fitted markdown + generate index
 fs.mkdirSync(publicFitted, { recursive: true });
 
+const TARGET_RE = /^<!--\s*\nfit-summary:\s*\n[\s\S]*?target:\s*(.+)/;
+
 const entries = [];
 if (fs.existsSync(dataFitted)) {
   for (const file of fs.readdirSync(dataFitted)) {
     if (!file.endsWith('.md')) continue;
     fs.copyFileSync(path.join(dataFitted, file), path.join(publicFitted, file));
-    entries.push({ slug: file.replace(/\.md$/, ''), filename: file });
+    const content = fs.readFileSync(path.join(dataFitted, file), 'utf-8');
+    const match = content.match(TARGET_RE);
+    const label = match ? match[1].trim() : file.replace(/\.md$/, '');
+    entries.push({ slug: file.replace(/\.md$/, ''), filename: file, label });
   }
 }
 

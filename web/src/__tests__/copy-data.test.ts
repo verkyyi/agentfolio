@@ -15,11 +15,15 @@ describe('copy-data script', () => {
     expect(existsSync(join(publicFitted, 'notion.md'))).toBe(true);
   });
 
-  it('generates index.json with slug entries', () => {
+  it('generates index.json with slug entries and labels', () => {
     const index = JSON.parse(readFileSync(join(publicFitted, 'index.json'), 'utf-8'));
     expect(Array.isArray(index)).toBe(true);
     expect(index.length).toBeGreaterThanOrEqual(2);
-    expect(index).toContainEqual({ slug: 'default', filename: 'default.md' });
-    expect(index).toContainEqual({ slug: 'notion', filename: 'notion.md' });
+    const defaultEntry = index.find((e: { slug: string }) => e.slug === 'default');
+    const notionEntry = index.find((e: { slug: string }) => e.slug === 'notion');
+    expect(defaultEntry).toBeDefined();
+    expect(notionEntry).toBeDefined();
+    expect(defaultEntry.label).toBeDefined();
+    expect(notionEntry.label).toBeDefined();
   });
 });
