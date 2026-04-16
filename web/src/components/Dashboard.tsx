@@ -4,7 +4,7 @@ import { DashboardSidebar, type FittedEntry } from './DashboardSidebar';
 import { FittedPreview } from './FittedPreview';
 import { FittedDiff } from './FittedDiff';
 
-type Tab = 'preview' | 'diff';
+type Tab = 'preview' | 'diff' | 'pdf';
 
 const Layout = styled.div`
   display: flex;
@@ -60,6 +60,12 @@ const TabButton = styled.button<{ $active: boolean }>`
   }
 `;
 
+const PdfFrame = styled.iframe`
+  width: 100%;
+  height: calc(100vh - 43px);
+  border: none;
+`;
+
 const EmptyState = styled.div`
   display: flex;
   align-items: center;
@@ -104,6 +110,7 @@ export function Dashboard() {
           >
             Diff
           </TabButton>
+          <TabButton $active={tab === 'pdf'} onClick={() => setTab('pdf')}>PDF</TabButton>
           <TabBarActions>
             {activeSlug && (
               <ActionLink
@@ -126,6 +133,7 @@ export function Dashboard() {
         </TabBar>
         {activeSlug && tab === 'preview' && <FittedPreview slug={activeSlug} />}
         {activeSlug && tab === 'diff' && <FittedDiff slug={activeSlug} />}
+        {activeSlug && tab === 'pdf' && <PdfFrame src={`${import.meta.env.BASE_URL}data/adapted/${activeSlug}.pdf`} title={`${activeSlug} PDF`} />}
       </Main>
     </Layout>
   );
