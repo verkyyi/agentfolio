@@ -110,9 +110,7 @@ export function AdaptationComparison({ slugs, adaptations }: Props) {
           <header className="hiw-diff-head">
             <span className="hiw-diff-tag">baseline</span>
             <h3>
-              <a className="hiw-diff-link" href={`${import.meta.env.BASE_URL}`}>
-                {baseline.company}
-              </a>
+              <a className="hiw-diff-link" href={`${import.meta.env.BASE_URL}`}>{baseline.company}</a>
             </h3>
             <span className="hiw-diff-score" aria-label={`match ${Math.round(baseline.match_score.overall * 100)}%`}>
               {Math.round(baseline.match_score.overall * 100)}%
