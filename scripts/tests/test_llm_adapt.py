@@ -14,26 +14,62 @@ def _load_resume():
 
 def _valid_adaptation():
     resume = _load_resume()
-    exp_ids = [e["id"] for e in resume["experience"]]
-    proj_ids = [p["id"] for p in resume["projects"]]
-    bullet_ids = [b["id"] for e in resume["experience"] for b in e["bullets"]]
-    skill_items = [item for g in resume["skills"]["groups"] for item in g["items"]]
-    group_ids = [g["id"] for g in resume["skills"]["groups"]]
     return {
-        "company": "Stripe",
-        "generated_at": "2026-04-16T00:00:00+00:00",
-        "generated_by": "llm_adapt.py v1.0",
-        "summary": "A tailored summary for Stripe.",
-        "section_order": ["summary", "projects", "experience", "skills", "education", "volunteering"],
-        "experience_order": exp_ids,
-        "bullet_overrides": {bullet_ids[0]: "Rewritten bullet for Stripe."},
-        "project_order": proj_ids,
-        "skill_emphasis": [skill_items[0], skill_items[1]],
-        "match_score": {
-            "overall": 0.75,
-            "by_category": {gid: 0.5 for gid in group_ids},
-            "matched_keywords": ["Python"],
-            "missing_keywords": ["Ruby"],
+        "basics": {
+            "name": resume["basics"]["name"],
+            "label": resume["basics"].get("label", ""),
+            "email": resume["basics"]["email"],
+            "phone": resume["basics"].get("phone", ""),
+            "summary": "A tailored summary for Stripe.",
+            "location": resume["basics"]["location"],
+            "profiles": resume["basics"]["profiles"],
+        },
+        "work": [
+            {
+                "name": w["name"],
+                "position": w["position"],
+                "location": w.get("location", ""),
+                "startDate": w["startDate"],
+                "highlights": w["highlights"],
+            }
+            for w in resume["work"]
+        ],
+        "projects": [
+            {
+                "name": p["name"],
+                "description": p.get("description", ""),
+                "url": p.get("url", ""),
+                "startDate": p.get("startDate", ""),
+                "highlights": p.get("highlights", []),
+                "keywords": p.get("keywords", []),
+            }
+            for p in resume["projects"]
+        ],
+        "skills": [
+            {"name": s["name"], "keywords": s["keywords"]}
+            for s in resume["skills"]
+        ],
+        "education": [
+            {k: v for k, v in e.items()} for e in resume.get("education", [])
+        ],
+        "volunteer": [
+            {k: v for k, v in v.items()} for v in resume.get("volunteer", [])
+        ],
+        "meta": {
+            "version": "1.0.0",
+            "lastModified": "2026-04-16T00:00:00+00:00",
+            "agentfolio": {
+                "company": "Stripe",
+                "generated_by": "llm_adapt.py v2.0",
+                "match_score": {
+                    "overall": 0.75,
+                    "by_category": {s["id"]: 0.5 for s in resume["skills"]},
+                    "matched_keywords": ["Python"],
+                    "missing_keywords": ["Ruby"],
+                },
+                "skill_emphasis": [resume["skills"][0]["keywords"][0]],
+                "section_order": ["basics", "work", "projects", "skills", "education", "volunteer"],
+            },
         },
     }
 
@@ -68,8 +104,8 @@ def test_generate_adaptation_returns_cached_result(tmp_path):
         "Stripe", "FDE", resume,
         client=FakeClient(), cache_dir=cache_dir,
     )
-    assert result["company"] == "Stripe"
-    assert result["summary"] == expected["summary"]
+    assert result["meta"]["agentfolio"]["company"] == "Stripe"
+    assert result["basics"]["summary"] == expected["basics"]["summary"]
 
 
 def test_generate_adaptation_calls_api_and_caches(tmp_path):
@@ -93,9 +129,9 @@ def test_generate_adaptation_calls_api_and_caches(tmp_path):
         "Stripe", "FDE", resume,
         client=FakeClient(), cache_dir=cache_dir,
     )
-    assert result["company"] == "Stripe"
-    assert "summary" in result
-    assert "match_score" in result
+    assert result["meta"]["agentfolio"]["company"] == "Stripe"
+    assert "summary" in result["basics"]
+    assert "match_score" in result["meta"]["agentfolio"]
 
     # Verify it was cached
     key = cache_key("Stripe", "FDE", resume)

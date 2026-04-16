@@ -8,45 +8,79 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
-VERSION = "llm_adapt.py v1.0"
+VERSION = "llm_adapt.py v2.0"
 
 MAX_TOKENS = 4096
 
 SYSTEM_PROMPT = """\
 You are a resume adaptation engine. Given a candidate's base resume and a target company/role, \
-generate an adapted resume JSON that tailors the content for maximum relevance.
+generate a complete JSON Resume document tailored for maximum relevance.
 
 You MUST output valid JSON matching the schema below — nothing else, no markdown fences, no commentary.
 
 ## Output Schema
 
 {{
-  "company": "<company name>",
-  "generated_at": "<ISO 8601 timestamp>",
-  "generated_by": "llm_adapt.py v1.0",
-  "summary": "<free-form tailored professional summary, 2-3 sentences>",
-  "section_order": [<ordered list of exactly these 6 values: "summary", "experience", "projects", "skills", "education", "volunteering">],
-  "experience_order": [<ordered list of experience IDs, most relevant first>],
-  "bullet_overrides": {{<bullet_id: rewritten text tailored to the company — only include bullets worth rewriting>}},
-  "project_order": [<ordered list of project IDs, most relevant first>],
-  "skill_emphasis": [<list of exact skill strings from the resume to highlight>],
-  "match_score": {{
-    "overall": <0.0 to 1.0>,
-    "by_category": {{<skill_group_id: 0.0 to 1.0>}},
-    "matched_keywords": [<keywords from the resume relevant to this role>],
-    "missing_keywords": [<keywords the role likely needs that aren't in the resume>]
+  "basics": {{
+    "name": "<from resume>",
+    "label": "<from resume>",
+    "email": "<from resume>",
+    "phone": "<from resume>",
+    "summary": "<FREE-FORM tailored summary, 2-3 sentences>",
+    "location": {{<from resume>}},
+    "profiles": [<from resume>]
+  }},
+  "work": [
+    {{
+      "name": "<company name>",
+      "position": "<position>",
+      "location": "<location>",
+      "startDate": "<ISO date>",
+      "endDate": "<ISO date or omit if current>",
+      "highlights": ["<tailored bullet text>", ...]
+    }}
+  ],
+  "projects": [
+    {{
+      "name": "<project name>",
+      "description": "<description>",
+      "url": "<url>",
+      "startDate": "<ISO date>",
+      "highlights": ["<tailored text>"],
+      "keywords": ["<tech keywords>"]
+    }}
+  ],
+  "skills": [
+    {{ "name": "<category>", "keywords": ["<skill1>", ...] }}
+  ],
+  "education": [<copy from resume>],
+  "volunteer": [<copy from resume>],
+  "meta": {{
+    "version": "1.0.0",
+    "lastModified": "<ISO 8601 timestamp>",
+    "agentfolio": {{
+      "company": "<target company>",
+      "generated_by": "llm_adapt.py v2.0",
+      "match_score": {{
+        "overall": <0.0 to 1.0>,
+        "by_category": {{<skill_id: 0.0 to 1.0>}},
+        "matched_keywords": [<relevant keywords>],
+        "missing_keywords": [<missing keywords>]
+      }},
+      "skill_emphasis": [<exact skill strings to highlight>],
+      "section_order": [<ordered: "basics", "work", "projects", "skills", "education", "volunteer">]
+    }}
   }}
 }}
 
 ## Constraints
 
-- section_order must contain all 6 sections, reordered by relevance
-- experience_order values must be from: {experience_ids}
-- project_order values must be from: {project_ids}
-- bullet_overrides keys must be from: {bullet_ids}
-- skill_emphasis items must be exact strings from the resume's skill groups
-- match_score.by_category keys must be from: {group_ids}
-- Rewrite bullets to emphasize aspects relevant to the target company/role — keep factual claims intact
+- Work entries order matters — most relevant first (arrange the work array accordingly)
+- Project entries order matters — most relevant first (arrange the projects array accordingly)
+- skill_emphasis items must be exact strings from the resume's skill keywords
+- match_score.by_category keys must be skill id values from: {group_ids}
+- section_order must contain all 6 values: "basics", "work", "projects", "skills", "education", "volunteer"
+- Keep factual claims intact when rewriting highlights
 - The summary should be specific to the company and role, not generic
 - match_score should honestly reflect how well the candidate fits the role
 """
@@ -59,14 +93,8 @@ def cache_key(company: str, role: str, base_resume: dict) -> str:
 
 
 def _extract_ids(base_resume: dict) -> dict[str, list[str]]:
-    experience_ids = [e["id"] for e in base_resume["experience"]]
-    project_ids = [p["id"] for p in base_resume["projects"]]
-    bullet_ids = [b["id"] for e in base_resume["experience"] for b in e["bullets"]]
-    group_ids = [g["id"] for g in base_resume["skills"]["groups"]]
+    group_ids = [s["id"] for s in base_resume["skills"]]
     return {
-        "experience_ids": json.dumps(experience_ids),
-        "project_ids": json.dumps(project_ids),
-        "bullet_ids": json.dumps(bullet_ids),
         "group_ids": json.dumps(group_ids),
     }
 
@@ -106,8 +134,8 @@ def generate_adaptation(
             if text.startswith("```"):
                 text = text.split("\n", 1)[1].rsplit("```", 1)[0].strip()
             result = json.loads(text)
-            result["generated_at"] = datetime.now(timezone.utc).isoformat(timespec="seconds")
-            result["generated_by"] = VERSION
+            result.setdefault("meta", {})["lastModified"] = datetime.now(timezone.utc).isoformat(timespec="seconds")
+            result.setdefault("meta", {}).setdefault("agentfolio", {})["generated_by"] = VERSION
             cache_path.parent.mkdir(parents=True, exist_ok=True)
             cache_path.write_text(json.dumps(result, indent=2, ensure_ascii=False) + "\n")
             return result
