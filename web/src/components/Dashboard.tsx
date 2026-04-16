@@ -18,9 +18,30 @@ const Main = styled.main`
 
 const TabBar = styled.div`
   display: flex;
-  gap: 0;
+  align-items: center;
   border-bottom: 1px solid var(--rule);
   padding: 0 40px;
+`;
+
+const TabBarActions = styled.div`
+  margin-left: auto;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+`;
+
+const ActionLink = styled.a`
+  font-size: 13px;
+  color: var(--ink-mute);
+  text-decoration: none;
+  padding: 6px 10px;
+  border-radius: 4px;
+  transition: color 120ms ease, background 120ms ease;
+
+  &:hover {
+    color: var(--ink);
+    background: var(--rule);
+  }
 `;
 
 const TabButton = styled.button<{ $active: boolean }>`
@@ -83,6 +104,25 @@ export function Dashboard() {
           >
             Diff
           </TabButton>
+          <TabBarActions>
+            {activeSlug && (
+              <ActionLink
+                href={`${import.meta.env.BASE_URL}${activeSlug === 'default' ? '' : activeSlug}`}
+                target="_blank"
+                rel="noopener"
+              >
+                Open ↗
+              </ActionLink>
+            )}
+            {activeSlug && (
+              <ActionLink
+                href={`${import.meta.env.BASE_URL}data/adapted/${activeSlug}.pdf`}
+                download
+              >
+                PDF ↓
+              </ActionLink>
+            )}
+          </TabBarActions>
         </TabBar>
         {activeSlug && tab === 'preview' && <FittedPreview slug={activeSlug} />}
         {activeSlug && tab === 'diff' && <FittedDiff slug={activeSlug} />}
