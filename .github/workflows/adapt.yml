@@ -37,6 +37,9 @@ jobs:
           path: adapt-output.log
           retention-days: 7
 
+      - name: Show adapted file changes
+        run: git diff -- data/adapted/
+
       - name: Commit generated files
         run: |
           git config user.name "AgentFolio Bot"
