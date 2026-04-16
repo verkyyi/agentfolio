@@ -14,9 +14,10 @@ export function useAdaptation() {
   const [adapted, setAdapted] = useState<AdaptedResume | null>(null);
   const [error, setError] = useState<Error | null>(null);
 
+  const slug = parseSlug(window.location.pathname, import.meta.env.BASE_URL);
+
   useEffect(() => {
     let cancelled = false;
-    const slug = parseSlug(window.location.pathname, import.meta.env.BASE_URL);
     const file = slug ?? 'default';
     const url = `${import.meta.env.BASE_URL}data/adapted/${file}.json`;
 
@@ -34,7 +35,7 @@ export function useAdaptation() {
     })();
 
     return () => { cancelled = true; };
-  }, []);
+  }, [slug]);
 
-  return { adapted, error };
+  return { adapted, error, slug };
 }

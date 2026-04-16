@@ -36,7 +36,11 @@ const sampleAdapted = mockAdapted({
 });
 
 beforeEach(() => {
-  vi.stubGlobal('fetch', vi.fn(async (url: string) => {
+  vi.stubGlobal('fetch', vi.fn(async (url: string, init?: RequestInit) => {
+    // HEAD requests for PDF availability check
+    if (init?.method === 'HEAD') {
+      return { ok: false, status: 404 };
+    }
     if (url.includes('data/adapted/notion.json')) {
       return { ok: true, json: async () => sampleAdapted };
     }

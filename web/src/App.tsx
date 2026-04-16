@@ -1,8 +1,9 @@
 import { useAdaptation } from './hooks/useAdaptation';
 import { ResumeTheme } from './components/ResumeTheme';
+import { DownloadPdf } from './components/DownloadPdf';
 
 export default function App() {
-  const { adapted, error } = useAdaptation();
+  const { adapted, error, slug } = useAdaptation();
 
   if (error) {
     return (
@@ -16,5 +17,10 @@ export default function App() {
 
   if (!adapted) return <main>Loading…</main>;
 
-  return <ResumeTheme resume={adapted as unknown as Record<string, unknown>} />;
+  return (
+    <>
+      <DownloadPdf slug={slug} />
+      <ResumeTheme resume={adapted as unknown as Record<string, unknown>} />
+    </>
+  );
 }
