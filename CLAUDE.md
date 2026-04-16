@@ -59,9 +59,9 @@ The slug is the first path segment after the base path. `useAdaptation` parses i
 
 ## How to Personalize
 
-1. Replace `data/input/resume.md` with your resume (any text format)
-2. Add target JDs in `data/input/jd/` (one `.md` per role, filename = URL slug)
-3. Set secret: `ANTHROPIC_API_KEY`
+1. Set secret: `CLAUDE_CODE_OAUTH_TOKEN` (for the adapt workflow)
+2. Replace `data/input/resume.md` with your resume (any text format)
+3. Add target JDs in `data/input/jd/` (one `.md` per role, filename = URL slug)
 4. Push — GitHub Actions generates adaptations and deploys
 
 ## Environment Variables
@@ -70,7 +70,7 @@ The slug is the first path segment after the base path. `useAdaptation` parses i
 |----------|-------|---------|
 | `VITE_GITHUB_REPO` | `.env.local` / `deploy.yml` | `owner/repo` for GitHub API calls |
 | `VITE_BASE_PATH` | `.env.local` / `deploy.yml` | URL base path (auto-detected in deploy workflow) |
-| `ANTHROPIC_API_KEY` | Actions secret | For LLM-powered resume adaptation |
+| `CLAUDE_CODE_OAUTH_TOKEN` | Actions secret | For Claude Code in the adapt workflow |
 
 ## Testing
 
