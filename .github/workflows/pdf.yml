@@ -38,7 +38,7 @@ jobs:
           echo "PDF targets: $(cat "$GITHUB_OUTPUT")"
 
       - name: Install resumed and theme
-        run: npm install -g resumed jsonresume-theme-even puppeteer
+        run: npm install -g resumed jsonresume-theme-onepage puppeteer
 
       - name: Generate PDFs
         run: |
@@ -47,14 +47,14 @@ jobs:
             for json in data/adapted/*.json; do
               slug=$(basename "$json" .json)
               echo "Generating PDF for $slug..."
-              resumed export "$json" -t jsonresume-theme-even -o "data/adapted/${slug}.pdf" --puppeteer-arg=--no-sandbox
+              resumed export "$json" -t jsonresume-theme-onepage -o "data/adapted/${slug}.pdf" --puppeteer-arg=--no-sandbox
             done
           else
             for slug in $SLUGS; do
               json="data/adapted/${slug}.json"
               if [ -f "$json" ]; then
                 echo "Generating PDF for $slug..."
-                resumed export "$json" -t jsonresume-theme-even -o "data/adapted/${slug}.pdf" --puppeteer-arg=--no-sandbox
+                resumed export "$json" -t jsonresume-theme-onepage -o "data/adapted/${slug}.pdf" --puppeteer-arg=--no-sandbox
               else
                 echo "Warning: $json not found, skipping"
               fi

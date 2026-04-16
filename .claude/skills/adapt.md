@@ -39,6 +39,7 @@ Each output file must be valid JSON matching this schema exactly:
     {
       "id": "<slug>",
       "name": "<company name>",
+      "company": "<company name (same as name, for theme compat)>",
       "position": "<position>",
       "location": "<location>",
       "startDate": "<YYYY-MM>",
