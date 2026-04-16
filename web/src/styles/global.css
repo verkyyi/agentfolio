@@ -1400,6 +1400,26 @@ section[aria-label="Chat"] form button[type="submit"]:disabled {
   flex: 1;
   min-width: 0;
 }
+.hiw-diff-link {
+  text-decoration: none;
+  color: inherit;
+  transition: color 120ms ease;
+}
+.hiw-diff-link:hover { color: var(--accent); }
+.hiw-diff-link-arrow {
+  display: inline-block;
+  margin-left: 0.3rem;
+  font-size: 0.75em;
+  color: var(--accent);
+  opacity: 0;
+  transform: translate(-2px, -1px);
+  transition: opacity 140ms ease, transform 140ms ease;
+}
+.hiw-diff-link:hover .hiw-diff-link-arrow {
+  opacity: 1;
+  transform: translate(0, -1px);
+}
+
 .hiw-diff-score {
   display: inline-flex;
   align-items: center;

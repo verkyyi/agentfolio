@@ -109,7 +109,11 @@ export function AdaptationComparison({ slugs, adaptations }: Props) {
         <article className="hiw-diff hiw-diff-baseline">
           <header className="hiw-diff-head">
             <span className="hiw-diff-tag">baseline</span>
-            <h3>{baseline.company}</h3>
+            <h3>
+              <a className="hiw-diff-link" href={`${import.meta.env.BASE_URL}`}>
+                {baseline.company}
+              </a>
+            </h3>
             <span className="hiw-diff-score" aria-label={`match ${Math.round(baseline.match_score.overall * 100)}%`}>
               {Math.round(baseline.match_score.overall * 100)}%
               <span className="hiw-diff-score-bar" aria-hidden>
@@ -129,7 +133,11 @@ export function AdaptationComparison({ slugs, adaptations }: Props) {
           return (
             <article key={slug} className="hiw-diff hiw-diff-missing">
               <header className="hiw-diff-head">
-                <h3>{slug}</h3>
+                <h3>
+                  <a className="hiw-diff-link" href={`${import.meta.env.BASE_URL}${slug}`}>
+                    {slug}
+                  </a>
+                </h3>
               </header>
               <p className="hiw-muted">not available</p>
             </article>
@@ -158,7 +166,17 @@ export function AdaptationComparison({ slugs, adaptations }: Props) {
               <span className="hiw-diff-tag">
                 {isIdenticalToBaseline ? 'no rewrite' : 'adaptation'}
               </span>
-              <h3>{adapted.company}</h3>
+              <h3>
+                <a
+                  className="hiw-diff-link"
+                  href={`${import.meta.env.BASE_URL}${slug}`}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  {adapted.company}
+                  <span className="hiw-diff-link-arrow" aria-hidden>↗</span>
+                </a>
+              </h3>
               <span
                 className="hiw-diff-score"
                 aria-label={`match ${pct}% versus baseline ${basePct ?? '—'}%`}
