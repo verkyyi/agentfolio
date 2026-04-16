@@ -1,6 +1,5 @@
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
-import { render, screen, waitFor, act } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
+import { render, screen, waitFor } from '@testing-library/react';
 import App from '../App';
 import type { AdaptedResume, SlugRegistry } from '../types';
 
@@ -80,64 +79,41 @@ const defaultAdapted = mockAdapted({
   },
 });
 
-const stripeAdapted = mockAdapted({
+const cohereAdapted = mockAdapted({
   basics: {
     ...defaultAdapted.basics,
-    summary: 'Stripe summary',
+    summary: 'Cohere summary',
   },
   meta: {
     version: '1.0.0',
     lastModified: '2026-04-15T00:00:00+00:00',
     agentfolio: {
-      company: 'Stripe',
+      company: 'cohere',
       generated_by: 'adapt_one.py v0.1',
-      match_score: { overall: 0.1, by_category: {}, matched_keywords: [], missing_keywords: [] },
+      match_score: { overall: 0.7, by_category: {}, matched_keywords: [], missing_keywords: [] },
       skill_emphasis: [],
       section_order: ['basics'],
     },
   },
 });
 
-const slugRegistry: SlugRegistry = {};
+const slugRegistry: SlugRegistry = {
+  'cohere-fde': { company: 'cohere', role: 'FDE, Agentic Platform', created: '2026-04-15', context: 'Applied via Ashby' },
+};
 
 beforeEach(() => {
   vi.stubEnv('VITE_GITHUB_PAT', 'test-pat');
   vi.stubEnv('VITE_GITHUB_REPO', 'a/b');
 
-  let stripeCallCount = 0;
-  let commentsCallCount = 0;
-
-  vi.stubGlobal('fetch', vi.fn(async (url: string, init?: RequestInit) => {
+  vi.stubGlobal('fetch', vi.fn(async (url: string) => {
     if (url.endsWith('data/slugs.json')) {
       return { ok: true, json: async () => slugRegistry };
     }
-    if (url.includes('data/adapted/stripe.json')) {
-      stripeCallCount += 1;
-      // First call (initial useAdaptation): 404. Subsequent (after complete): 200.
-      if (stripeCallCount === 1) return { ok: false, status: 404 };
-      return { ok: true, json: async () => stripeAdapted };
+    if (url.includes('data/adapted/cohere.json')) {
+      return { ok: true, json: async () => cohereAdapted };
     }
     if (url.includes('data/adapted/default.json')) {
       return { ok: true, json: async () => defaultAdapted };
-    }
-    // GitHub API
-    if (url.includes('/issues?labels=adapt-request')) {
-      return { ok: true, json: async () => [] };
-    }
-    if (url.endsWith('/issues') && init?.method === 'POST') {
-      return { ok: true, json: async () => ({ number: 7 }) };
-    }
-    if (url.includes('/issues/7/comments')) {
-      commentsCallCount += 1;
-      if (commentsCallCount >= 2) {
-        return {
-          ok: true,
-          json: async () => [
-            { body: JSON.stringify({ status: 'complete', adapted_path: 'data/adapted/stripe.json', company_slug: 'stripe' }) },
-          ],
-        };
-      }
-      return { ok: true, json: async () => [] };
     }
     return { ok: false, status: 404 };
   }));
@@ -146,46 +122,27 @@ beforeEach(() => {
 afterEach(() => {
   vi.unstubAllGlobals();
   vi.unstubAllEnvs();
-  vi.useRealTimers();
 });
 
-describe('App — self-ID + live generation flow', () => {
-  it('shows SelfIdPrompt when no URL slug', async () => {
+describe('App — default path', () => {
+  it('renders default resume immediately without self-id form', async () => {
     window.history.pushState({}, '', '/agentfolio/');
     render(<App />);
-    await waitFor(() => expect(screen.getByLabelText(/company/i)).toBeInTheDocument());
+    await waitFor(() => expect(screen.getByText('Default summary')).toBeInTheDocument());
+    expect(screen.queryByLabelText(/company/i)).not.toBeInTheDocument();
+  });
+});
+
+describe('App — slug path', () => {
+  it('renders company-specific adaptation for valid slug', async () => {
+    window.history.pushState({}, '', '/agentfolio/c/cohere-fde');
+    render(<App />);
+    await waitFor(() => expect(screen.getByText('Cohere summary')).toBeInTheDocument());
   });
 
-  it('creates Issue and renders progress, then hot-swaps on complete', async () => {
-    vi.useFakeTimers({ shouldAdvanceTime: true });
-    window.history.pushState({}, '', '/agentfolio/');
-
-    const user = userEvent.setup({ advanceTimers: vi.advanceTimersByTime.bind(vi) });
+  it('falls back to default for unknown slug', async () => {
+    window.history.pushState({}, '', '/agentfolio/c/unknown-co');
     render(<App />);
-
-    await waitFor(() => expect(screen.getByLabelText(/company/i)).toBeInTheDocument());
-
-    await user.type(screen.getByLabelText(/company/i), 'Stripe');
-    await user.type(screen.getByLabelText(/role/i), 'FDE');
-    await user.click(screen.getByRole('button', { name: /show me/i }));
-
-    // Progress panel should appear; default summary should render underneath
-    await waitFor(() =>
-      expect(screen.getByText(/generating your adapted resume/i)).toBeInTheDocument(),
-    );
-    expect(screen.getByText('Default summary')).toBeInTheDocument();
-
-    // Advance through polling (2 cycles × 5s)
-    await act(async () => {
-      await vi.advanceTimersByTimeAsync(6000);
-    });
-    await act(async () => {
-      await vi.advanceTimersByTimeAsync(6000);
-    });
-
-    // After complete comment + refetch, Stripe summary should appear
-    await waitFor(() => expect(screen.getByText('Stripe summary')).toBeInTheDocument(), {
-      timeout: 3000,
-    });
+    await waitFor(() => expect(screen.getByText('Default summary')).toBeInTheDocument());
   });
 });
