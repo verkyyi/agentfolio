@@ -15,12 +15,13 @@ AgentFolio detects who's visiting via URL slugs and renders a resume adapted to 
 ## Quick Start
 
 1. **Fork** this repo
-2. **Replace** `data/resume.md` with your resume (any format — paste from LinkedIn, PDF text, or write markdown)
-3. **Add target positions** in `data/jd/` — one `.md` file per role, filename becomes the URL slug (e.g., `data/jd/google.md` → `yoursite.com/c/google`)
-4. **Set secrets** on your fork:
+2. **Enable GitHub Pages:** go to Settings → Pages → Source → select **GitHub Actions**
+3. **Replace** `data/resume.md` with your resume (any format — paste from LinkedIn, PDF text, or write markdown)
+4. **Add target positions** in `data/jd/` — one `.md` file per role, filename becomes the URL slug (e.g., `data/jd/google.md` → `yoursite.com/c/google`)
+5. **Set secrets** on your fork:
    - `ANTHROPIC_API_KEY` — for AI-powered adaptation ([get one here](https://console.anthropic.com/settings/keys))
    - `GH_ISSUES_PAT` — fine-grained PAT with `issues:read+write` for analytics and chat ([create one here](https://github.com/settings/personal-access-tokens/new))
-5. **Push** — GitHub Actions generates adapted resumes and deploys to GitHub Pages
+6. **Push** — GitHub Actions generates adapted resumes and deploys to GitHub Pages
 
 No local runtime needed. No JSON to write. Just markdown and push.
 
