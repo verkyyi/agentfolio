@@ -1,3 +1,13 @@
+<!--
+fit-summary:
+  target: General
+  changes:
+    - Applied summary directive: 2-sentence summary with top metric (2M events/day, 40% latency) and role title, under 50 words
+    - Applied bullet formula throughout: action verb + scope/context + quantified result
+    - Used exact tool names per directives: "Apache Flink", "React.js", "Single Sign-On (SSO)"
+    - Reordered Skills: hard/technical skills first within each category
+    - Kept original section ordering (Experience → Projects → Skills → Education → Volunteering) per default-fit guidelines
+-->
 # Alex Chen
 Software Engineer | San Francisco, CA
 alex@example.com | (555) 123-4567
@@ -5,7 +15,7 @@ LinkedIn: https://linkedin.com/in/alexchen
 GitHub: https://github.com/alexchen
 
 ## Summary
-Software Engineer with 6+ years building scalable data infrastructure, distributed systems, and full-stack applications. Designed Kafka and Apache Flink pipelines processing 2M events/day and led microservices migrations reducing p99 latency by 40%. Proficient in Python, TypeScript, AWS, and Kubernetes.
+Software Engineer with 6+ years building scalable data infrastructure, distributed systems, and full-stack applications. Designed Kafka and Apache Flink pipelines processing 2M events/day and led microservices migrations reducing p99 latency by 40%.
 
 ## Experience
 
@@ -37,7 +47,7 @@ Keywords: cli, developer-tools, rust, open-source
 
 ## Skills
 - Languages & Frameworks: TypeScript, Python, Rust, React.js, Node.js, FastAPI, SQL
-- Infrastructure & DevOps: AWS, Docker, Kubernetes, GitHub Actions, Terraform, Kafka
+- Infrastructure & DevOps: AWS, Kubernetes, Docker, GitHub Actions, Terraform, Kafka
 - Data & ML: PostgreSQL, Redis, Apache Flink, scikit-learn, MLflow
 
 ## Education

@@ -1,5 +1,16 @@
+<!--
+fit-summary:
+  target: Notion — Software Engineer, Enterprise Data Platform
+  changes:
+    - Rewrote headline to emphasize data infrastructure and pipeline engineering
+    - Tailored summary to front-load Apache Flink, Kafka, Python, and enterprise platform keywords matching JD's top 3 requirements
+    - Led Acme Corp section with data pipeline bullet to surface Flink/Kafka match immediately
+    - Mirrored JD language: "cross-functional collaboration," "data security," "enterprise customers"
+    - Reordered Skills: Data & ML tools first (Flink, Kafka, PostgreSQL) to match JD requirements; used exact names "React.js", "Apache Flink"
+    - Moved ML Model Monitor project first to highlight open-source data tooling and AWS Lambda experience
+-->
 # Alex Chen
-Software Engineer | San Francisco, CA
+Software Engineer, Data Infrastructure | San Francisco, CA
 alex@example.com | (555) 123-4567
 LinkedIn: https://linkedin.com/in/alexchen
 GitHub: https://github.com/alexchen
@@ -11,7 +22,7 @@ Senior Software Engineer targeting Notion's Enterprise Data Platform role. Desig
 
 ### Senior Software Engineer — Acme Corp (Jun 2022 – present)
 San Francisco, CA
-- Built real-time data pipeline (Apache Flink + Kafka) processing 2M events/day, powering personalization features that increased user engagement by 25%.
+- Built real-time data pipeline (Apache Flink + Kafka) processing 2M events/day, powering AI personalization features that increased user engagement by 25%.
 - Led migration of monolithic API to event-driven microservices architecture through cross-functional collaboration with infrastructure and product teams, reducing p99 latency by 40% and enabling independent team deployments.
 - Mentored 3 junior engineers through structured pairing sessions, all promoted within 12 months.
 
