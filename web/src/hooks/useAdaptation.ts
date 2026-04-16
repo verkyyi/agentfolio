@@ -1,26 +1,29 @@
 import { useEffect, useState } from 'react';
 import type { AdaptedResume } from '../types';
 
-function normalize(company: string): string {
-  return company.trim().toLowerCase().replace(/\s+/g, '-');
+function parseSlug(pathname: string, basePath: string = '/'): string | null {
+  let path = pathname;
+  if (basePath !== '/' && path.startsWith(basePath)) {
+    path = path.slice(basePath.length);
+  }
+  const segment = path.replace(/^\/+|\/+$/g, '').split('/')[0] || null;
+  return segment || null;
 }
 
-export function useAdaptation(company: string | null) {
+export function useAdaptation() {
   const [adapted, setAdapted] = useState<AdaptedResume | null>(null);
   const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
-    if (!company) return;
     let cancelled = false;
-    const slug = normalize(company);
+    const slug = parseSlug(window.location.pathname, import.meta.env.BASE_URL);
+    const file = slug ?? 'default';
+    const url = `${import.meta.env.BASE_URL}data/adapted/${file}.json`;
 
     (async () => {
       try {
-        const url = `${import.meta.env.BASE_URL}data/adapted/${slug}.json`;
         const res = await fetch(url);
-        if (!res.ok) {
-          throw new Error(`not_found`);
-        }
+        if (!res.ok) throw new Error('not_found');
         const data = (await res.json()) as AdaptedResume;
         if (cancelled) return;
         setAdapted(data);
@@ -31,7 +34,7 @@ export function useAdaptation(company: string | null) {
     })();
 
     return () => { cancelled = true; };
-  }, [company]);
+  }, []);
 
   return { adapted, error };
 }

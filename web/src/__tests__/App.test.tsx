@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import { render, screen, waitFor } from '@testing-library/react';
 import App from '../App';
-import type { AdaptedResume, SlugRegistry } from '../types';
+import type { AdaptedResume } from '../types';
 
 function mockAdapted(overrides: Record<string, any> = {}): AdaptedResume {
   return {
@@ -35,15 +35,8 @@ const sampleAdapted = mockAdapted({
   meta: { version: '1.0.0', agentfolio: { company: 'sample-company', generated_by: 'sample' } },
 });
 
-const slugRegistry: SlugRegistry = {
-  'sample-company': { company: 'sample-company', role: 'Software Engineer', created: '2026-01-01', context: 'Sample' },
-};
-
 beforeEach(() => {
   vi.stubGlobal('fetch', vi.fn(async (url: string) => {
-    if (url.endsWith('data/slugs.json')) {
-      return { ok: true, json: async () => slugRegistry };
-    }
     if (url.includes('data/adapted/sample-company.json')) {
       return { ok: true, json: async () => sampleAdapted };
     }

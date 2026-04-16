@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeEach, vi } from 'vitest';
+import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import { renderHook, waitFor } from '@testing-library/react';
 import { useAdaptation } from '../hooks/useAdaptation';
 import type { AdaptedResume } from '../types';
@@ -46,31 +46,30 @@ beforeEach(() => {
   }));
 });
 
+afterEach(() => {
+  vi.unstubAllGlobals();
+});
+
 describe('useAdaptation', () => {
-  it('returns null until company is provided', () => {
-    const { result } = renderHook(() => useAdaptation(null));
-    expect(result.current.adapted).toBeNull();
+  it('fetches default adaptation at root path', async () => {
+    window.history.pushState({}, '', '/');
+    const { result } = renderHook(() => useAdaptation());
+    await waitFor(() => expect(result.current.adapted).not.toBeNull());
+    expect(result.current.adapted?.meta?.agentfolio?.company).toBe('default');
   });
 
-  it('fetches adapted JSON for known company', async () => {
-    const { result } = renderHook(() => useAdaptation('sample-company'));
+  it('fetches adapted JSON for slug in path', async () => {
+    window.history.pushState({}, '', '/sample-company');
+    const { result } = renderHook(() => useAdaptation());
     await waitFor(() => expect(result.current.adapted).not.toBeNull());
     expect(result.current.adapted?.meta?.agentfolio?.company).toBe('sample-company');
   });
 
-  it('returns error for unknown company (no fallback)', async () => {
-    const { result } = renderHook(() => useAdaptation('unknown'));
+  it('returns error for unknown slug', async () => {
+    window.history.pushState({}, '', '/unknown');
+    const { result } = renderHook(() => useAdaptation());
     await waitFor(() => expect(result.current.error).not.toBeNull());
     expect(result.current.adapted).toBeNull();
     expect(result.current.error?.message).toBe('not_found');
-  });
-
-  it('normalizes company name to lowercase-dashed', async () => {
-    const fetchMock = globalThis.fetch as ReturnType<typeof vi.fn>;
-    renderHook(() => useAdaptation('Sample Company'));
-    await waitFor(() => {
-      const calls = fetchMock.mock.calls.map((c) => c[0] as string);
-      expect(calls.some((u) => u.includes('/data/adapted/sample-company.json'))).toBe(true);
-    });
   });
 });
