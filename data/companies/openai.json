@@ -2,16 +2,19 @@
   "company": "OpenAI",
   "role": "Forward Deployed Engineer",
   "priority_tags": [
-    "full-stack",
     "agentic",
-    "customer-facing"
+    "customer-facing",
+    "rapid-experimentation",
+    "evaluation",
+    "deployment",
+    "enterprise"
   ],
   "summary_vars": {
-    "focus": "full-stack products and data infrastructure",
-    "surface": "front-end interfaces",
-    "infra": "backend systems and cloud infrastructure",
-    "systems": "AI platforms",
-    "highlight": "generative AI engineering, rapid experimentation, and high-quality data solutions"
+    "focus": "agentic products and reference agents",
+    "surface": "customer-facing prototypes and developer tools",
+    "infra": "scalable inference deployments",
+    "systems": "frontier AI platforms",
+    "highlight": "LLM integration, evaluation framework design, and rapid experimentation alongside enterprise customers"
   },
   "section_order": [
     "summary",
@@ -22,14 +25,27 @@
     "volunteering"
   ],
   "project_order": [
-    "ainbox",
     "agentfolio",
+    "ainbox",
     "tokenman"
   ],
   "skill_emphasis": [
+    "Autonomous Agent Development",
+    "LLM Integration",
+    "Evaluation Framework Design (Generator/Evaluator)",
+    "Prompt Engineering",
+    "Python",
+    "Rapid Experimentation"
+  ],
+  "jd_keywords": [
     "Python",
     "LLM Integration",
-    "AWS (EC2, SES, Aurora Serverless, IAM, SCPs)"
-  ],
-  "jd_keywords": []
+    "Autonomous Agent Development",
+    "agentic",
+    "customer-facing",
+    "evaluation",
+    "Assistants API",
+    "safety alignment",
+    "reference implementations"
+  ]
 }

@@ -1,8 +1,8 @@
 {
   "company": "OpenAI",
-  "generated_at": "2026-04-15T21:57:53+00:00",
+  "generated_at": "2026-04-16T00:51:55+00:00",
   "generated_by": "adapt_one.py v0.1",
-  "summary": "Forward Deployed Engineer with 5+ years shipping full-stack products and data infrastructure at scale. Collaborate directly with enterprise customers to scope requirements and deploy end-to-end solutions across front-end, backend, and cloud infrastructure. Built production AI platforms serving 50,000+ users with expertise in generative AI engineering, rapid experimentation, and data quality.",
+  "summary": "Forward Deployed Engineer with 5+ years shipping agentic products and reference agents at scale. Experienced collaborating directly with enterprise customers to scope technical requirements and deploy end-to-end solutions — from customer-facing prototypes and developer tools to scalable inference deployments. Proven track record building production frontier AI platforms that power 50,000+ users, with deep expertise in LLM integration, evaluation framework design, and rapid experimentation alongside enterprise customers.",
   "section_order": [
     "summary",
     "experience",
@@ -18,33 +18,45 @@
   ],
   "bullet_overrides": {},
   "project_order": [
-    "ainbox",
     "agentfolio",
+    "ainbox",
     "tokenman"
   ],
   "skill_emphasis": [
-    "Python",
+    "Autonomous Agent Development",
     "LLM Integration",
-    "AWS (EC2, SES, Aurora Serverless, IAM, SCPs)"
+    "Evaluation Framework Design (Generator/Evaluator)",
+    "Prompt Engineering",
+    "Python",
+    "Rapid Experimentation"
   ],
   "match_score": {
-    "overall": 0.71,
+    "overall": 0.69,
     "by_category": {
-      "ai": 0.12,
+      "ai": 0.5,
       "fullstack": 0.11,
-      "cloud": 0.12,
-      "methods": 0.0,
-      "experience_bullets": 1.0,
+      "cloud": 0.0,
+      "methods": 0.12,
+      "experience_bullets": 0.89,
       "projects": 1.0
     },
     "matched_keywords": [
-      "AWS (EC2, SES, Aurora Serverless, IAM, SCPs)",
+      "Autonomous Agent Development",
+      "Evaluation Framework Design (Generator/Evaluator)",
       "LLM Integration",
+      "Prompt Engineering",
       "Python",
+      "Rapid Experimentation",
       "agentic",
       "customer-facing",
-      "full-stack"
+      "enterprise",
+      "rapid-experimentation"
     ],
-    "missing_keywords": []
+    "missing_keywords": [
+      "Assistants API",
+      "evaluation",
+      "reference implementations",
+      "safety alignment"
+    ]
   }
 }
