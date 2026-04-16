@@ -10,7 +10,12 @@ REPO_ROOT = Path(__file__).resolve().parents[2]
 def _write_minimal_repo(tmp_path: Path) -> None:
     (tmp_path / "data" / "companies").mkdir(parents=True)
     (tmp_path / "data" / "adapted").mkdir(parents=True)
-    base = (REPO_ROOT / "data" / "resume.json").read_text()
+    base = json.dumps({
+        "basics": {"name": "Test", "email": "t@t.com", "location": {}, "profiles": []},
+        "work": [], "projects": [], "skills": [{"id": "lang", "name": "Languages", "keywords": ["Python"]}],
+        "education": [], "volunteer": [],
+        "meta": {"version": "1.0.0", "agentfolio": {}}
+    })
     (tmp_path / "data" / "resume.json").write_text(base)
     (tmp_path / "data" / "companies" / "alpha.json").write_text(
         json.dumps({"company": "Alpha", "role": "Engineer"})

@@ -9,7 +9,13 @@ REPO_ROOT = Path(__file__).resolve().parents[2]
 
 
 def _load_resume():
-    return json.loads((REPO_ROOT / "data" / "resume.json").read_text())
+    return {
+        "basics": {"name": "Test", "email": "t@t.com", "location": {}, "profiles": []},
+        "work": [], "projects": [],
+        "skills": [{"id": "lang", "name": "Languages", "keywords": ["Python"]}],
+        "education": [], "volunteer": [],
+        "meta": {"version": "1.0.0", "agentfolio": {}},
+    }
 
 
 def _valid_adaptation():

@@ -37,7 +37,12 @@ def _fake_adaptation():
 def test_run_writes_company_and_adapted_json(tmp_path):
     (tmp_path / "data" / "companies").mkdir(parents=True)
     (tmp_path / "data" / "adapted").mkdir(parents=True)
-    base = (REPO_ROOT / "data" / "resume.json").read_text()
+    base = json.dumps({
+        "basics": {"name": "Test", "email": "t@t.com", "location": {}, "profiles": []},
+        "work": [], "projects": [], "skills": [{"id": "lang", "name": "Languages", "keywords": ["Python"]}],
+        "education": [], "volunteer": [],
+        "meta": {"version": "1.0.0", "agentfolio": {}}
+    })
     (tmp_path / "data" / "resume.json").write_text(base)
 
     fake = _fake_adaptation()
@@ -65,7 +70,12 @@ def test_run_writes_company_and_adapted_json(tmp_path):
 def test_run_normalizes_slug(tmp_path):
     (tmp_path / "data" / "companies").mkdir(parents=True)
     (tmp_path / "data" / "adapted").mkdir(parents=True)
-    base = (REPO_ROOT / "data" / "resume.json").read_text()
+    base = json.dumps({
+        "basics": {"name": "Test", "email": "t@t.com", "location": {}, "profiles": []},
+        "work": [], "projects": [], "skills": [{"id": "lang", "name": "Languages", "keywords": ["Python"]}],
+        "education": [], "volunteer": [],
+        "meta": {"version": "1.0.0", "agentfolio": {}}
+    })
     (tmp_path / "data" / "resume.json").write_text(base)
 
     fake = _fake_adaptation()
@@ -84,7 +94,12 @@ def test_run_normalizes_slug(tmp_path):
 def test_run_updates_slugs_registry(tmp_path):
     (tmp_path / "data" / "companies").mkdir(parents=True)
     (tmp_path / "data" / "adapted").mkdir(parents=True)
-    base = (REPO_ROOT / "data" / "resume.json").read_text()
+    base = json.dumps({
+        "basics": {"name": "Test", "email": "t@t.com", "location": {}, "profiles": []},
+        "work": [], "projects": [], "skills": [{"id": "lang", "name": "Languages", "keywords": ["Python"]}],
+        "education": [], "volunteer": [],
+        "meta": {"version": "1.0.0", "agentfolio": {}}
+    })
     (tmp_path / "data" / "resume.json").write_text(base)
     (tmp_path / "data" / "slugs.json").write_text(json.dumps({}))
 
@@ -101,7 +116,12 @@ def test_run_updates_slugs_registry(tmp_path):
 def test_run_does_not_overwrite_existing_slug(tmp_path):
     (tmp_path / "data" / "companies").mkdir(parents=True)
     (tmp_path / "data" / "adapted").mkdir(parents=True)
-    base = (REPO_ROOT / "data" / "resume.json").read_text()
+    base = json.dumps({
+        "basics": {"name": "Test", "email": "t@t.com", "location": {}, "profiles": []},
+        "work": [], "projects": [], "skills": [{"id": "lang", "name": "Languages", "keywords": ["Python"]}],
+        "education": [], "volunteer": [],
+        "meta": {"version": "1.0.0", "agentfolio": {}}
+    })
     (tmp_path / "data" / "resume.json").write_text(base)
     existing = {"stripe": {"company": "stripe", "role": "FDE", "created": "2026-01-01", "context": "Manual"}}
     (tmp_path / "data" / "slugs.json").write_text(json.dumps(existing))

@@ -7,7 +7,33 @@ REPO_ROOT = Path(__file__).resolve().parents[2]
 
 @pytest.fixture
 def base_resume():
-    return json.loads((REPO_ROOT / "data" / "resume.json").read_text())
+    """Inline sample resume for legacy script tests (resume.json no longer exists)."""
+    return {
+        "summary_template": "Engineer with {focus}. Skilled in {highlight}.",
+        "summary_defaults": {"focus": "full-stack apps", "highlight": "Python and AWS"},
+        "experience": [
+            {
+                "id": "acme",
+                "company": "Acme Corp",
+                "title": "Senior Engineer",
+                "bullets": [
+                    {"id": "b1", "text": "Led migration to microservices", "tags": ["architecture", "microservices"]},
+                    {"id": "b2", "text": "Built data pipeline", "tags": ["data-engineering", "infrastructure"]},
+                ],
+            }
+        ],
+        "projects": [
+            {"id": "ml-monitor", "name": "ML Monitor", "tags": ["machine-learning", "monitoring"]},
+        ],
+        "skills": {
+            "groups": [
+                {"id": "languages", "items": ["Python", "TypeScript", "Rust"]},
+                {"id": "infra", "items": ["AWS", "Docker", "Kafka"]},
+            ]
+        },
+        "education": [{"institution": "UC Berkeley", "degree": "B.S. CS"}],
+        "volunteering": [],
+    }
 
 
 @pytest.fixture
