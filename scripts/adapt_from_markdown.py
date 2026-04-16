@@ -1,6 +1,6 @@
 """Adapt a resume from markdown sources via single LLM calls.
 
-Reads data/resume.md + data/jd/*.md, produces data/adapted/*.json + data/slugs.json.
+Reads data/input/resume.md + data/input/jd/*.md, produces data/adapted/*.json + data/slugs.json.
 Each adaptation is a single LLM call — no intermediate JSON Resume authoring needed.
 """
 
@@ -189,8 +189,9 @@ def adapt_all_from_markdown(
     model: str = "claude-haiku-4-5",
 ) -> dict[str, dict]:
     """Adapt resume for all JDs in data_dir/jd/ + generate default."""
-    resume_md = (data_dir / "resume.md").read_text()
-    jd_dir = data_dir / "jd"
+    input_dir = data_dir / "input"
+    resume_md = (input_dir / "resume.md").read_text()
+    jd_dir = input_dir / "jd"
     adapted_dir = data_dir / "adapted"
     adapted_dir.mkdir(parents=True, exist_ok=True)
 

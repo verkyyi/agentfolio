@@ -179,8 +179,10 @@ class TestAdaptAllFromMarkdown:
         # Set up data dir
         data_dir = tmp_path / "data"
         data_dir.mkdir()
-        (data_dir / "resume.md").write_text(SAMPLE_RESUME_MD)
-        jd_dir = data_dir / "jd"
+        input_dir = data_dir / "input"
+        input_dir.mkdir()
+        (input_dir / "resume.md").write_text(SAMPLE_RESUME_MD)
+        jd_dir = input_dir / "jd"
         jd_dir.mkdir()
         (jd_dir / "techco.md").write_text(SAMPLE_JD_MD)
 
