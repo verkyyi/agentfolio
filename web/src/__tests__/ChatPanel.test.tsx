@@ -198,6 +198,47 @@ describe('ChatPanel — streaming send', () => {
     );
     await screen.findByText('Hi there');
   });
+
+  it('includes the rendered greeting in the POST body', async () => {
+    vi.stubEnv('VITE_CHAT_PROXY_URL', 'https://proxy.example');
+    const fetchMock = vi.fn(async (_url: string, _init: RequestInit) => sseResponse([
+      'event: message_stop\ndata: {}\n\n',
+    ]));
+    vi.stubGlobal('fetch', fetchMock);
+    const user = userEvent.setup();
+    render(
+      <ChatPanel
+        slug="notion"
+        ownerName="Alex Chen"
+        greeting="Hey — ask about the Flink pipeline."
+      />,
+    );
+    await user.type(screen.getByRole('textbox'), 'hi');
+    await user.click(screen.getByRole('button', { name: /send/i }));
+
+    const [, init] = fetchMock.mock.calls[0];
+    const body = JSON.parse(init.body as string);
+    expect(body.greeting).toBe('Hey — ask about the Flink pipeline.');
+    expect(body.slug).toBe('notion');
+    expect(Array.isArray(body.messages)).toBe(true);
+  });
+
+  it('sends the fallback greeting when no greeting prop is provided', async () => {
+    vi.stubEnv('VITE_CHAT_PROXY_URL', 'https://proxy.example');
+    const fetchMock = vi.fn(async (_url: string, _init: RequestInit) => sseResponse([
+      'event: message_stop\ndata: {}\n\n',
+    ]));
+    vi.stubGlobal('fetch', fetchMock);
+    const user = userEvent.setup();
+    render(<ChatPanel slug="notion" ownerName="Alex Chen" />);
+    await user.type(screen.getByRole('textbox'), 'hi');
+    await user.click(screen.getByRole('button', { name: /send/i }));
+
+    const [, init] = fetchMock.mock.calls[0];
+    const body = JSON.parse(init.body as string);
+    expect(body.greeting).toContain('Alex Chen');
+    expect(body.greeting).toContain('Ask me anything');
+  });
 });
 
 describe('ChatPanel — persistence + reset', () => {

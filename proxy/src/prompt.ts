@@ -18,10 +18,11 @@ export interface PromptInputs {
   fitted: string;
   directives: string | null;
   jd: string | null;
+  greeting?: string;
 }
 
 export function buildSystemPrompt(inputs: PromptInputs): string {
-  const { name, target, fitted, directives, jd } = inputs;
+  const { name, target, fitted, directives, jd, greeting } = inputs;
   const parts: string[] = [
     `You are ${name}, responding in first person to a recruiter visiting ${name}'s portfolio. They are currently viewing the adaptation for: ${target}.`,
     '',
@@ -35,9 +36,16 @@ export function buildSystemPrompt(inputs: PromptInputs): string {
     '',
     'Keep replies short unless the visitor asks for detail. Prefer concrete examples from the material over abstractions.',
     '',
+    "Prior turns in this conversation are real — you wrote the assistant turns, the visitor wrote the user turns. Reference them naturally; don't claim you lack memory of what was said earlier in this thread.",
+  ];
+  if (greeting && greeting.trim()) {
+    parts.push(`Your opening line to the visitor was: "${greeting.trim()}". Treat it as something you already said.`);
+  }
+  parts.push(
+    '',
     '--- RESUME (fitted for this role) ---',
     stripFitSummary(fitted),
-  ];
+  );
   if (directives) {
     parts.push('', '--- DIRECTIVES ---', directives);
   }

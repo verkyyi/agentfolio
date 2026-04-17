@@ -8,6 +8,7 @@ export interface CallInputs {
   name: string;
   ctx: SlugContext;
   messages: { role: 'user' | 'assistant'; content: string }[];
+  greeting?: string;
   signal?: AbortSignal;
 }
 
@@ -19,6 +20,7 @@ export async function callAnthropic(inputs: CallInputs): Promise<Response> {
     fitted: inputs.ctx.fitted,
     directives: inputs.ctx.directives,
     jd: inputs.ctx.jd,
+    greeting: inputs.greeting,
   };
   const systemText = buildSystemPrompt(promptInputs);
 

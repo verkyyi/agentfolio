@@ -52,4 +52,42 @@ describe('buildSystemPrompt', () => {
     expect(p).not.toContain('--- JOB DESCRIPTION ---');
     expect(p).toContain('--- RESUME');
   });
+
+  it('always tells the model to treat prior turns as real history', () => {
+    const p = buildSystemPrompt({
+      name: 'Verky',
+      target: 'X',
+      fitted: '# r',
+      directives: null,
+      jd: null,
+    });
+    expect(p).toContain('Prior turns in this conversation are real');
+    expect(p).toContain("don't claim you lack memory");
+  });
+
+  it('embeds the greeting line when a greeting is provided', () => {
+    const p = buildSystemPrompt({
+      name: 'Verky',
+      target: 'X',
+      fitted: '# r',
+      directives: null,
+      jd: null,
+      greeting: 'Hey — ask me about the Flink pipeline.',
+    });
+    expect(p).toContain('Your opening line to the visitor was: "Hey — ask me about the Flink pipeline."');
+    expect(p).toContain('Treat it as something you already said.');
+  });
+
+  it('omits the greeting line when greeting is absent or blank', () => {
+    const base = {
+      name: 'Verky',
+      target: 'X',
+      fitted: '# r',
+      directives: null,
+      jd: null,
+    };
+    expect(buildSystemPrompt(base)).not.toContain('Your opening line to the visitor');
+    expect(buildSystemPrompt({ ...base, greeting: '' })).not.toContain('Your opening line to the visitor');
+    expect(buildSystemPrompt({ ...base, greeting: '   ' })).not.toContain('Your opening line to the visitor');
+  });
 });
