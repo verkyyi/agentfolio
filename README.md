@@ -99,6 +99,10 @@ data/adapted/notion.pdf        ← PDF export
 
 **`/structurize`** converts the fitted markdown into a valid JSON Resume document for the web theme and PDF export.
 
+### Growing your base
+
+**`/grow-resume`** expands `data/input/resume.md` through a structured conversation so `/fit` has richer material to work with. Section-by-section walkthrough, gap audit against directives, integrity checks against fabrication. Run it once to set a career goal (persisted in `data/input/career-goal.md`) and any time afterward to iterate a specific section. Orthogonal to the pipeline — grow the base first, then `/fit` uses the expanded version.
+
 ## Features
 
 ![Dashboard](docs/screenshots/dashboard.png)
@@ -117,7 +121,7 @@ data/adapted/notion.pdf        ← PDF export
 
 ```
 web/              React SPA (Vite + TypeScript + styled-components)
-.claude/skills/   Claude Code skills (fit, extract-directives, structurize)
+.claude/skills/   Claude Code skills (grow-resume, fit, extract-directives, structurize)
 data/input/       Your personal data — resume, JDs, directives
 data/fitted/      Tailored markdown (auto-generated, human-editable)
 data/adapted/     Final JSON Resume + PDFs (auto-generated)

@@ -20,3 +20,4 @@ web/vitest.config.d.ts
 .DS_Store
 .superpowers/
 .playwright-mcp/
+.worktrees/

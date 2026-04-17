@@ -21,6 +21,7 @@ agentfolio/
 │   ├── input/               # ← User input (the only directory you edit)
 │   │   ├── resume.md        # Your resume (any text format — source of truth)
 │   │   ├── directives.md    # Global resume preferences (human + auto-extracted)
+│   │   ├── career-goal.md   # Target roles + constraints (written by /grow-resume)
 │   │   └── jd/              # Target job descriptions (one .md per role)
 │   ├── fitted/              # Tailored markdown resumes (human-editable)
 │   └── adapted/             # Final JSON Resume + PDFs (auto-generated)
@@ -36,6 +37,7 @@ agentfolio/
 │   │   └── __tests__/       # Vitest unit tests
 │   └── e2e/                 # Playwright E2E tests
 ├── .claude/skills/          # Claude Code skills
+│   ├── grow-resume.md       # /grow-resume — expand/iterate base resume via conversation
 │   ├── fit.md               # /fit — tailor resume markdown for a target role
 │   ├── extract-directives.md # /extract-directives — extract intentions from human edits
 │   └── structurize.md       # /structurize — convert fitted markdown to JSON Resume
