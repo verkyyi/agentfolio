@@ -7,7 +7,7 @@ type Status = 'idle' | 'streaming' | 'error';
 
 export interface ChatPanelProps {
   slug: string;
-  target: string;
+  ownerName: string;
   email?: string;
   profiles?: { network: string; url: string }[];
 }
@@ -43,7 +43,7 @@ async function* parseSse(body: ReadableStream<Uint8Array>): AsyncGenerator<strin
   }
 }
 
-export function ChatPanel({ slug, target, email, profiles }: ChatPanelProps) {
+export function ChatPanel({ slug, ownerName, email, profiles }: ChatPanelProps) {
   const proxyUrl = import.meta.env.VITE_CHAT_PROXY_URL as string | undefined;
 
   // Hooks must be called unconditionally; the offline early-return below
@@ -70,7 +70,6 @@ export function ChatPanel({ slug, target, email, profiles }: ChatPanelProps) {
     return (
       <section className="chatp chatp-offline">
         <div className="chatp-header">
-          <span>· chat</span>
           <span className="chatp-status-off">● offline</span>
         </div>
         <p className="chatp-offline-body">
@@ -144,7 +143,6 @@ export function ChatPanel({ slug, target, email, profiles }: ChatPanelProps) {
   return (
     <section className="chatp" aria-label="Chat">
       <div className="chatp-header">
-        <span>· chat · context: {target}</span>
         <div className="chatp-header-right">
           {messages.length > 0 && (
             <button type="button" className="chatp-clear" onClick={reset}>
@@ -157,7 +155,7 @@ export function ChatPanel({ slug, target, email, profiles }: ChatPanelProps) {
 
       <div className="chatp-messages">
         <div className="chatp-msg assistant chatp-greeting" data-testid="chat-greeting">
-          <span className="chatp-prompt">&gt;</span> Hey — I'm an agent that knows this résumé cold. Ask me about the work and I'll keep it relevant to the {target} context.
+          <span className="chatp-prompt">&gt;</span> Hey, I'm an agent that knows {ownerName}. Ask me anything.
         </div>
         {messages.map((m, i) => (
           <div key={i} className={`chatp-msg ${m.role}`}>

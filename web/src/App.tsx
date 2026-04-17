@@ -7,7 +7,6 @@ import { ChatPanel } from './components/ChatPanel';
 import { ActivityStrip } from './components/ActivityStrip';
 import { Footer } from './components/Footer';
 import { GithubActivity, type ActivityData } from './components/GithubActivity';
-import { parseFitSummary } from './utils/parseFitSummary';
 
 function isDashboard(): boolean {
   const base = import.meta.env.BASE_URL ?? '/';
@@ -25,7 +24,6 @@ export default function App() {
 
 function ResumePage() {
   const { adapted, error, slug } = useAdaptation();
-  const [target, setTarget] = useState<string | null>(null);
   const [activity, setActivity] = useState<ActivityData | null>(null);
 
   useEffect(() => {
@@ -33,20 +31,6 @@ function ResumePage() {
       document.title = `${adapted.basics.name} — Resume`;
     }
   }, [adapted]);
-
-  useEffect(() => {
-    const s = slug ?? 'default';
-    let cancelled = false;
-    fetch(`${import.meta.env.BASE_URL}data/fitted/${s}.md`)
-      .then((r) => (r.ok ? r.text() : ''))
-      .then((md) => {
-        if (cancelled) return;
-        const summary = parseFitSummary(md).summary;
-        setTarget(summary?.target ?? s);
-      })
-      .catch(() => { if (!cancelled) setTarget(s); });
-    return () => { cancelled = true; };
-  }, [slug]);
 
   useEffect(() => {
     let cancelled = false;
@@ -75,16 +59,14 @@ function ResumePage() {
   return (
     <>
       <main>
-        <IdentityCard basics={basics} slug={activeSlug} />
-        {target !== null && (
-          <ChatPanel
-            key={activeSlug}
-            slug={activeSlug}
-            target={target}
-            email={basics.email}
-            profiles={basics.profiles}
-          />
-        )}
+        <IdentityCard basics={basics} />
+        <ChatPanel
+          key={activeSlug}
+          slug={activeSlug}
+          ownerName={basics.name}
+          email={basics.email}
+          profiles={basics.profiles}
+        />
         <ActivityStrip data={activity} />
         <ResumeTheme resume={adapted as unknown as Record<string, unknown>} />
         <GithubActivity data={activity} />

@@ -22,7 +22,7 @@
 
 .chatp-header {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
   font-size: 10px;
   letter-spacing: 0.08em;

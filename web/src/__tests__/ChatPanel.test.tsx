@@ -25,20 +25,43 @@ function sseResponse(chunks: string[]) {
 describe('ChatPanel — offline state', () => {
   it('renders an offline card when VITE_CHAT_PROXY_URL is empty', () => {
     vi.stubEnv('VITE_CHAT_PROXY_URL', '');
-    render(<ChatPanel slug="default" target="default" email="a@b.co" profiles={[{ network: 'LinkedIn', url: 'https://l.co' }]} />);
+    render(<ChatPanel slug="default" ownerName="Alex Chen" email="a@b.co" profiles={[{ network: 'LinkedIn', url: 'https://l.co' }]} />);
     expect(screen.getByText(/chat is offline/i)).toBeInTheDocument();
     expect(screen.getByRole('link', { name: /a@b\.co/ })).toHaveAttribute('href', 'mailto:a@b.co');
     expect(screen.getByRole('link', { name: /LinkedIn/ })).toHaveAttribute('href', 'https://l.co');
+  });
+
+  it('does not render the "· chat" left label in offline state', () => {
+    vi.stubEnv('VITE_CHAT_PROXY_URL', '');
+    render(<ChatPanel slug="default" ownerName="Alex Chen" />);
+    // No leading "· chat" span anywhere
+    expect(screen.queryByText(/· chat/)).not.toBeInTheDocument();
   });
 });
 
 describe('ChatPanel — inline default state', () => {
   it('always shows greeting + suggestion chips without needing a click', () => {
     vi.stubEnv('VITE_CHAT_PROXY_URL', 'https://proxy.example');
-    render(<ChatPanel slug="notion" target="Notion" />);
+    render(<ChatPanel slug="notion" ownerName="Alex Chen" />);
     expect(screen.getByTestId('chat-greeting')).toBeInTheDocument();
     const chips = screen.getAllByTestId('chat-suggestion');
     expect(chips).toHaveLength(3);
+  });
+
+  it('greeting names the owner and does not mention target/context', () => {
+    vi.stubEnv('VITE_CHAT_PROXY_URL', 'https://proxy.example');
+    render(<ChatPanel slug="notion" ownerName="Alex Chen" />);
+    const greeting = screen.getByTestId('chat-greeting');
+    expect(greeting).toHaveTextContent(/knows Alex Chen/);
+    expect(greeting).toHaveTextContent(/ask me anything/i);
+    expect(greeting).not.toHaveTextContent(/context/i);
+  });
+
+  it('header does not render a "· chat" or "context:" left label', () => {
+    vi.stubEnv('VITE_CHAT_PROXY_URL', 'https://proxy.example');
+    render(<ChatPanel slug="notion" ownerName="Alex Chen" />);
+    expect(screen.queryByText(/· chat/)).not.toBeInTheDocument();
+    expect(screen.queryByText(/context:/i)).not.toBeInTheDocument();
   });
 
   it('clicking a chip prefills the input but does not auto-submit', async () => {
@@ -46,7 +69,7 @@ describe('ChatPanel — inline default state', () => {
     const fetchMock = vi.fn();
     vi.stubGlobal('fetch', fetchMock);
     const user = userEvent.setup();
-    render(<ChatPanel slug="notion" target="Notion" />);
+    render(<ChatPanel slug="notion" ownerName="Alex Chen" />);
     const chip = screen.getAllByTestId('chat-suggestion')[0];
     await user.click(chip);
     const input = screen.getByRole('textbox') as HTMLInputElement;
@@ -60,13 +83,13 @@ describe('ChatPanel — inline default state', () => {
       'agentfolio.chat.notion',
       JSON.stringify([{ role: 'assistant', content: 'hi again' }]),
     );
-    render(<ChatPanel slug="notion" target="Notion" />);
+    render(<ChatPanel slug="notion" ownerName="Alex Chen" />);
     expect(screen.getByRole('button', { name: /clear conversation/i })).toBeInTheDocument();
   });
 
   it('reset link is hidden when there are no messages', () => {
     vi.stubEnv('VITE_CHAT_PROXY_URL', 'https://proxy.example');
-    render(<ChatPanel slug="notion" target="Notion" />);
+    render(<ChatPanel slug="notion" ownerName="Alex Chen" />);
     expect(screen.queryByRole('button', { name: /clear conversation/i })).not.toBeInTheDocument();
   });
 });
@@ -81,7 +104,7 @@ describe('ChatPanel — streaming send', () => {
     ]));
     vi.stubGlobal('fetch', fetchMock);
     const user = userEvent.setup();
-    render(<ChatPanel slug="notion" target="Notion" />);
+    render(<ChatPanel slug="notion" ownerName="Alex Chen" />);
     await user.type(screen.getByRole('textbox'), 'tell me about notion');
     await user.click(screen.getByRole('button', { name: /send/i }));
 
@@ -100,7 +123,7 @@ describe('ChatPanel — persistence + reset', () => {
       'agentfolio.chat.notion',
       JSON.stringify([{ role: 'assistant', content: 'Welcome back' }]),
     );
-    render(<ChatPanel slug="notion" target="Notion" />);
+    render(<ChatPanel slug="notion" ownerName="Alex Chen" />);
     expect(screen.getByText('Welcome back')).toBeInTheDocument();
   });
 
@@ -111,7 +134,7 @@ describe('ChatPanel — persistence + reset', () => {
       JSON.stringify([{ role: 'assistant', content: 'old' }]),
     );
     const user = userEvent.setup();
-    render(<ChatPanel slug="notion" target="Notion" />);
+    render(<ChatPanel slug="notion" ownerName="Alex Chen" />);
     await user.click(screen.getByRole('button', { name: /clear conversation/i }));
     expect(screen.queryByText('old')).not.toBeInTheDocument();
     expect(sessionStorage.getItem('agentfolio.chat.notion')).toBeNull();
@@ -123,7 +146,7 @@ describe('ChatPanel — error handling', () => {
     vi.stubEnv('VITE_CHAT_PROXY_URL', 'https://proxy.example');
     vi.stubGlobal('fetch', vi.fn(async () => new Response('no', { status: 500 })));
     const user = userEvent.setup();
-    render(<ChatPanel slug="notion" target="Notion" />);
+    render(<ChatPanel slug="notion" ownerName="Alex Chen" />);
     await user.type(screen.getByRole('textbox'), 'hi');
     await user.click(screen.getByRole('button', { name: /send/i }));
     await screen.findByText(/something went wrong/i);
