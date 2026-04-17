@@ -271,7 +271,7 @@ const HighlightsList = styled.ul`
 const EducationItem = styled.div`
   margin-bottom: 28px;
   padding: 20px;
-  background: #f9fafb;
+  background: var(--surface);
   border-left: 3px solid var(--accent-blue);
   border-radius: 2px;
 
@@ -317,14 +317,14 @@ const SkillsGrid = styled.div`
 
 const SkillCard = styled.div`
   padding: 16px;
-  background: #f9fafb;
+  background: var(--surface);
   border: 1px solid var(--border-soft);
   border-radius: 2px;
   transition: all 0.2s ease;
 
   &:hover {
     border-color: var(--accent-blue);
-    background: #eff6ff;
+    background: var(--surface-raised);
   }
 `;
 
@@ -402,7 +402,7 @@ const SimpleList = styled.div`
 
 const SimpleItem = styled.div`
   padding: 16px;
-  background: #f9fafb;
+  background: var(--surface);
   border-left: 2px solid var(--accent-blue);
   border-radius: 2px;
 `;
