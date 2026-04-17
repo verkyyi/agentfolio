@@ -127,8 +127,8 @@ AgentFolio stands on the shoulders of open source. Thanks to:
 
 **Resume stack**
 - [JSON Resume](https://jsonresume.org/) — the open resume schema that every adaptation conforms to
-- [jsonresume-theme-developer-mono](https://github.com/jrpruit1/jsonresume-theme-developer-mono) — `web/src/components/ResumeTheme.tsx` is adapted from this theme
-- [jsonresume-theme-onepage](https://github.com/findup-dev/jsonresume-theme-onepage) — PDF theme used by the `pdf` workflow
+- [jsonresume-theme-developer-mono](https://www.npmjs.com/package/jsonresume-theme-developer-mono) by Thomas Davis — `web/src/components/ResumeTheme.tsx` is adapted from this theme
+- [jsonresume-theme-onepage](https://github.com/ainsleychong/jsonresume-theme-onepage) by Ainsley Chong — PDF theme used by the `pdf` workflow
 - [resumed](https://github.com/rbardini/resumed) — CLI that drives PDF export
 
 **Framework**
