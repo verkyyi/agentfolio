@@ -90,3 +90,43 @@ describe('App — /dashboard route', () => {
     await waitFor(() => expect(screen.getByText('Fitted Resumes')).toBeInTheDocument());
   });
 });
+
+describe('App — GithubActivity', () => {
+  it('mounts GithubActivity when activity.json is present', async () => {
+    window.history.pushState({}, '', '/');
+
+    const activity = {
+      user: 'verkyyi',
+      fetchedAt: '2026-04-17T06:00:00.000Z',
+      stats: { publicRepos: 3, contributions30d: 7, contributionsLastYear: 100 },
+      contributions: {
+        weeks: [Array.from({ length: 7 }, (_, i) => ({ date: `2026-04-${10 + i}`, count: 1 }))],
+      },
+      languages: [{ name: 'TS', color: '#3178c6', pct: 100 }],
+      repos: [],
+    };
+
+    vi.stubGlobal('fetch', vi.fn(async (url: string, init?: RequestInit) => {
+      if (init?.method === 'HEAD') {
+        return { ok: false, status: 404 };
+      }
+      if (url.includes('activity.json')) {
+        return { ok: true, json: async () => activity };
+      }
+      if (url.includes('data/fitted/index.json')) {
+        return { ok: true, json: async () => [{ slug: 'default', filename: 'default.md' }] };
+      }
+      if (url.includes('data/fitted/default.md')) {
+        return { ok: true, text: async () => '# Alex Chen\n\nDefault summary' };
+      }
+      if (url.includes('data/adapted/default.json')) {
+        return { ok: true, json: async () => defaultAdapted };
+      }
+      return { ok: false, status: 404 };
+    }));
+
+    render(<App />);
+    await screen.findByText(/@verkyyi/);
+    expect(screen.getByText(/3 public repos/)).toBeInTheDocument();
+  });
+});

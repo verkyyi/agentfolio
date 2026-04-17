@@ -116,6 +116,7 @@ data/adapted/notion.pdf        ← PDF export
 - **PDF export** — auto-generated PDFs alongside each adaptation, with a download button on the site
 - **Zero-runtime quickstart** — fork, add markdown files, push, deployed. No local tools needed.
 - **JSON Resume theme** — renders all 12 JSON Resume sections using the developer-mono theme
+- **Live GitHub activity** — daily cron pulls contribution heatmap, top languages, and recent repos into a dynamic section below the resume. Independent of the resume pipeline.
 
 ## Architecture
 

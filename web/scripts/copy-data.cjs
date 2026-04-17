@@ -50,3 +50,11 @@ if (fs.existsSync(directivesSrc)) {
   fs.mkdirSync(path.dirname(directivesDst), { recursive: true });
   fs.copyFileSync(directivesSrc, directivesDst);
 }
+
+// Copy github activity JSON if it exists
+const activitySrc = path.join(root, '..', 'data', 'github', 'activity.json');
+const activityDst = path.join(root, 'public', 'data', 'github', 'activity.json');
+if (fs.existsSync(activitySrc)) {
+  fs.mkdirSync(path.dirname(activityDst), { recursive: true });
+  fs.copyFileSync(activitySrc, activityDst);
+}

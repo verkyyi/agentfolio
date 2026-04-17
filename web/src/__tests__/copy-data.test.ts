@@ -32,4 +32,16 @@ describe('copy-data script', () => {
       expect(entry.label).toBeTruthy();
     }
   });
+
+  it('copies data/github/activity.json when it exists', () => {
+    const src = join(__dirname, '..', '..', '..', 'data', 'github', 'activity.json');
+    const dst = join(__dirname, '..', '..', 'public', 'data', 'github', 'activity.json');
+    if (existsSync(src)) {
+      expect(existsSync(dst)).toBe(true);
+      expect(readFileSync(src, 'utf-8')).toBe(readFileSync(dst, 'utf-8'));
+    } else {
+      // Absent source must not crash the copy — verify no output path was created.
+      expect(existsSync(dst)).toBe(false);
+    }
+  });
 });
