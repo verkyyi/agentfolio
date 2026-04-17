@@ -121,6 +121,25 @@ data/adapted/     Final JSON Resume + PDFs (auto-generated)
 .github/          GitHub Actions workflows (fit, extract, structurize, deploy, pdf)
 ```
 
+## Credits
+
+AgentFolio stands on the shoulders of open source. Thanks to:
+
+**Resume stack**
+- [JSON Resume](https://jsonresume.org/) — the open resume schema that every adaptation conforms to
+- [jsonresume-theme-developer-mono](https://www.npmjs.com/package/jsonresume-theme-developer-mono) by Thomas Davis — `web/src/components/ResumeTheme.tsx` is adapted from this theme
+- [jsonresume-theme-onepage](https://github.com/ainsleychong/jsonresume-theme-onepage) by Ainsley Chong — PDF theme used by the `pdf` workflow
+- [resumed](https://github.com/rbardini/resumed) — CLI that drives PDF export
+
+**Framework**
+- [React](https://react.dev/), [Vite](https://vitejs.dev/), [TypeScript](https://www.typescriptlang.org/), [styled-components](https://styled-components.com/), [react-markdown](https://github.com/remarkjs/react-markdown), [diff](https://github.com/kpdecker/jsdiff)
+- [Vitest](https://vitest.dev/), [Playwright](https://playwright.dev/) — test runners
+- [Puppeteer](https://pptr.dev/) — PDF rendering inside the workflow
+- [Cloudflare Workers](https://workers.cloudflare.com/) — chat proxy runtime
+
+**Agentic engine**
+- [Claude Code](https://claude.com/claude-code) by Anthropic — powers the `/fit`, `/extract-directives`, and `/structurize` skills
+
 ## License
 
 MIT

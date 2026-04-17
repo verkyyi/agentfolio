@@ -4,6 +4,7 @@ import { ResumeTheme } from './components/ResumeTheme';
 import { DownloadPdf } from './components/DownloadPdf';
 import { Dashboard } from './components/Dashboard';
 import { ChatWidget } from './components/ChatWidget';
+import { Footer } from './components/Footer';
 import { parseFitSummary } from './utils/parseFitSummary';
 
 function isDashboard(): boolean {
@@ -65,6 +66,7 @@ function ResumePage() {
     <>
       <DownloadPdf slug={slug} />
       <ResumeTheme resume={adapted as unknown as Record<string, unknown>} />
+      <Footer />
       {target && <ChatWidget key={activeSlug} slug={activeSlug} target={target} />}
     </>
   );
