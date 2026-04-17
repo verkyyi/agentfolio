@@ -8,6 +8,7 @@ export interface CallInputs {
   name: string;
   ctx: SlugContext;
   messages: { role: 'user' | 'assistant'; content: string }[];
+  signal?: AbortSignal;
 }
 
 export async function callAnthropic(inputs: CallInputs): Promise<Response> {
@@ -37,5 +38,6 @@ export async function callAnthropic(inputs: CallInputs): Promise<Response> {
       'anthropic-version': '2023-06-01',
     },
     body: JSON.stringify(body),
+    signal: inputs.signal,
   });
 }

@@ -39,6 +39,18 @@ function json(status: number, body: unknown, extra: HeadersInit = {}) {
   });
 }
 
+function logAndReturn(
+  res: Response,
+  meta: { slug?: string; ipHash?: string; status: number },
+): Response {
+  console.log(JSON.stringify({
+    slug: meta.slug ?? null,
+    ip_hash: meta.ipHash ?? null,
+    status: meta.status,
+  }));
+  return res;
+}
+
 function validateBody(parsed: unknown): ChatBody | null {
   if (!parsed || typeof parsed !== 'object') return null;
   const b = parsed as Partial<ChatBody>;
@@ -80,12 +92,18 @@ export default {
     try {
       parsed = await req.json();
     } catch {
-      return json(400, { error: 'invalid_json' }, corsHeaders(origin));
+      return logAndReturn(
+        json(400, { error: 'invalid_json' }, corsHeaders(origin)),
+        { status: 400 },
+      );
     }
 
     const body = validateBody(parsed);
     if (!body) {
-      return json(400, { error: 'invalid_body' }, corsHeaders(origin));
+      return logAndReturn(
+        json(400, { error: 'invalid_body' }, corsHeaders(origin)),
+        { status: 400 },
+      );
     }
 
     const ip = req.headers.get('CF-Connecting-IP') ?? '0.0.0.0';
@@ -93,18 +111,26 @@ export default {
     const ipHash = await hashIp(ip, env.IP_HASH_SALT);
     const rl = await checkRateLimit(env.RATE_LIMIT_KV, ipHash);
     if (!rl.allowed) {
-      return json(
-        429,
-        { error: 'rate_limited' },
-        { ...corsHeaders(origin), 'Retry-After': String(rl.retryAfter) },
+      return logAndReturn(
+        json(
+          429,
+          { error: 'rate_limited' },
+          { ...corsHeaders(origin), 'Retry-After': String(rl.retryAfter) },
+        ),
+        { slug: body.slug, ipHash, status: 429 },
       );
     }
 
     const ctx = await loadSlugContext(body.slug, env.PAGES_ORIGIN);
     if (!ctx) {
-      return json(404, { error: 'unknown_slug' }, corsHeaders(origin));
+      return logAndReturn(
+        json(404, { error: 'unknown_slug' }, corsHeaders(origin)),
+        { slug: body.slug, ipHash, status: 404 },
+      );
     }
 
+    const ac = new AbortController();
+    req.signal.addEventListener('abort', () => ac.abort());
     const started = Date.now();
     const { callAnthropic } = await import('./anthropic');
     const upstream = await callAnthropic({
@@ -114,10 +140,14 @@ export default {
       name: env.NAME || 'the owner',
       ctx,
       messages: body.messages,
+      signal: ac.signal,
     });
 
     if (!upstream.ok || !upstream.body) {
-      return json(502, { error: 'upstream_error' }, corsHeaders(origin));
+      return logAndReturn(
+        json(502, { error: 'upstream_error' }, corsHeaders(origin)),
+        { slug: body.slug, ipHash, status: 502 },
+      );
     }
 
     const response = new Response(upstream.body, {

@@ -126,6 +126,15 @@ describe('worker: input validation', () => {
     expect(res.headers.get('Access-Control-Allow-Origin')).toBe('https://site.example');
     expect(res.headers.get('Vary')).toBe('Origin');
   });
+
+  it('logs 4xx rejections', async () => {
+    const spy = vi.spyOn(console, 'log').mockImplementation(() => {});
+    await worker.fetch(chatRequest({ messages: [] }), baseEnv() as any);
+    expect(spy).toHaveBeenCalled();
+    const logged = spy.mock.calls.map((c) => String(c[0])).find((s) => s.includes('"status":400'));
+    expect(logged).toBeDefined();
+    spy.mockRestore();
+  });
 });
 
 describe('worker: context + rate limit', () => {
