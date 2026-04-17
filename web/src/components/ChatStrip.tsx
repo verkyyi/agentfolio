@@ -6,6 +6,13 @@ export interface ChatStripMessage {
   content: string;
 }
 
+export function hintCharBudget(viewportWidth: number): number {
+  if (viewportWidth < 480) return 40;
+  if (viewportWidth < 768) return 55;
+  if (viewportWidth < 1200) return 80;
+  return 100;
+}
+
 export interface ChatStripProps {
   slug: string;
   ownerName: string;
@@ -160,12 +167,15 @@ export function ChatStrip({
     const turns = recentMessages && recentMessages.length > 0
       ? { recentMessages: recentMessages.slice(-4) }
       : {};
+    const maxChars = hintCharBudget(
+      typeof window !== 'undefined' ? window.innerWidth : 1024,
+    );
     let resp: Response;
     try {
       resp = await fetch(`${proxyUrl}/hints`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ slug, ...turns }),
+        body: JSON.stringify({ slug, maxChars, ...turns }),
         signal: ctrl.signal,
       });
     } catch {

@@ -19,6 +19,7 @@ interface ChatBody {
 interface HintsBody {
   slug: string;
   recentMessages?: { role: 'user' | 'assistant'; content: string }[];
+  maxChars?: number;
 }
 
 const MAX_TURNS = 20;
@@ -91,6 +92,9 @@ function validateHintsBody(parsed: unknown): HintsBody | null {
       if (typeof m.content !== 'string') return null;
       if (m.content.length > MAX_CONTENT) return null;
     }
+  }
+  if (b.maxChars !== undefined) {
+    if (typeof b.maxChars !== 'number' || !Number.isFinite(b.maxChars)) return null;
   }
   return b as HintsBody;
 }
@@ -255,6 +259,7 @@ async function handleHints(req: Request, env: Env, origin: string): Promise<Resp
     directives: ctx.directives,
     jd: ctx.jd,
     recentMessages: body.recentMessages ?? [],
+    maxChars: body.maxChars,
     signal: ac.signal,
   });
   console.log(JSON.stringify({

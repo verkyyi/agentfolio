@@ -2,8 +2,12 @@ import { describe, it, expect, vi, afterEach, beforeEach } from 'vitest';
 import { act, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { useRef, type ComponentProps } from 'react';
-import { ChatStrip } from '../components/ChatStrip';
+import { ChatStrip, hintCharBudget } from '../components/ChatStrip';
 import { triggerIntersection } from '../test-setup';
+
+function setViewportWidth(w: number) {
+  Object.defineProperty(window, 'innerWidth', { value: w, configurable: true, writable: true });
+}
 
 function Harness(props: Partial<ComponentProps<typeof ChatStrip>> = {}) {
   const sentinelRef = useRef<HTMLDivElement>(null);
@@ -122,6 +126,51 @@ describe('ChatStrip — hints fetch', () => {
     act(() => { triggerIntersection(false); });
     await act(async () => { vi.advanceTimersByTime(5000); });
     expect(fetchMock).toHaveBeenCalledTimes(1);
+  });
+});
+
+describe('hintCharBudget', () => {
+  it('tiers maxChars by viewport width', () => {
+    expect(hintCharBudget(360)).toBe(40);
+    expect(hintCharBudget(600)).toBe(55);
+    expect(hintCharBudget(1000)).toBe(80);
+    expect(hintCharBudget(1440)).toBe(100);
+  });
+});
+
+describe('ChatStrip — width-aware maxChars', () => {
+  it('sends maxChars=40 on narrow viewports', async () => {
+    setViewportWidth(375);
+    const fetchMock = vi.fn(async (_url: string, _init: RequestInit) => new Response(
+      JSON.stringify({ hints: ['h'] }),
+      { status: 200 },
+    ));
+    vi.stubGlobal('fetch', fetchMock);
+    render(<Harness />);
+    act(() => { triggerIntersection(true); });
+    act(() => { triggerIntersection(false); });
+    await act(async () => { await vi.advanceTimersByTimeAsync(500); });
+    const call = fetchMock.mock.calls[0];
+    if (!call) throw new Error('fetch not called');
+    const body = JSON.parse(call[1].body as string);
+    expect(body.maxChars).toBe(40);
+  });
+
+  it('sends maxChars=80 on desktop viewports', async () => {
+    setViewportWidth(1024);
+    const fetchMock = vi.fn(async (_url: string, _init: RequestInit) => new Response(
+      JSON.stringify({ hints: ['h'] }),
+      { status: 200 },
+    ));
+    vi.stubGlobal('fetch', fetchMock);
+    render(<Harness />);
+    act(() => { triggerIntersection(true); });
+    act(() => { triggerIntersection(false); });
+    await act(async () => { await vi.advanceTimersByTimeAsync(500); });
+    const call = fetchMock.mock.calls[0];
+    if (!call) throw new Error('fetch not called');
+    const body = JSON.parse(call[1].body as string);
+    expect(body.maxChars).toBe(80);
   });
 });
 

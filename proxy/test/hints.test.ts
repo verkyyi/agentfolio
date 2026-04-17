@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, afterEach } from 'vitest';
-import { callHints, buildHintsPrompt, parseHintsResponse } from '../src/hints';
+import { callHints, buildHintsPrompt, parseHintsResponse, clampHintMaxChars } from '../src/hints';
 
 afterEach(() => {
   vi.restoreAllMocks();
@@ -28,6 +28,33 @@ describe('buildHintsPrompt', () => {
     expect(p).toContain('use markdown');
     expect(p).toContain('Senior role');
   });
+  it('bakes maxChars into the length rule', () => {
+    const p = buildHintsPrompt({
+      name: 'Alex', target: 't', fitted: 'r',
+      directives: null, jd: null, maxChars: 40,
+    });
+    expect(p).toContain('≤ 40 characters');
+  });
+  it('defaults maxChars to 80 when unset', () => {
+    const p = buildHintsPrompt({
+      name: 'Alex', target: 't', fitted: 'r',
+      directives: null, jd: null,
+    });
+    expect(p).toContain('≤ 80 characters');
+  });
+});
+
+describe('clampHintMaxChars', () => {
+  it('clamps to [20, 120]', () => {
+    expect(clampHintMaxChars(5)).toBe(20);
+    expect(clampHintMaxChars(200)).toBe(120);
+    expect(clampHintMaxChars(55)).toBe(55);
+  });
+  it('defaults to 80 on non-numeric input', () => {
+    expect(clampHintMaxChars(undefined)).toBe(80);
+    expect(clampHintMaxChars('40')).toBe(80);
+    expect(clampHintMaxChars(NaN)).toBe(80);
+  });
 });
 
 describe('parseHintsResponse', () => {
@@ -39,12 +66,19 @@ describe('parseHintsResponse', () => {
     const body = { content: [{ type: 'text', text: 'Here you go:\n```json\n["x","y"]\n```' }] };
     expect(parseHintsResponse(body)).toEqual(['x', 'y']);
   });
-  it('caps at 5 items and trims each to 80 chars', () => {
+  it('caps at 5 items and trims each to 80 chars by default', () => {
     const many = new Array(8).fill(0).map((_, i) => `hint ${i} ${'x'.repeat(100)}`);
     const body = { content: [{ type: 'text', text: JSON.stringify(many) }] };
     const out = parseHintsResponse(body);
     expect(out.length).toBe(5);
     for (const h of out) expect(h.length).toBeLessThanOrEqual(80);
+  });
+  it('honors explicit maxChars for per-item length cap', () => {
+    const many = new Array(4).fill(0).map((_, i) => `hint ${i} ${'x'.repeat(100)}`);
+    const body = { content: [{ type: 'text', text: JSON.stringify(many) }] };
+    const out = parseHintsResponse(body, 40);
+    expect(out.length).toBe(4);
+    for (const h of out) expect(h.length).toBeLessThanOrEqual(40);
   });
   it('returns [] for malformed JSON', () => {
     const body = { content: [{ type: 'text', text: 'not json' }] };
