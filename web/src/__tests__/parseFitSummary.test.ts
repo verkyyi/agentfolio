@@ -36,3 +36,45 @@ describe('parseFitSummary', () => {
     expect(body).toBe(withoutSummary);
   });
 });
+
+const withGreetingAndSuggestions = `<!--
+fit-summary:
+  target: Notion — Software Engineer, Enterprise Data Platform
+  changes:
+    - Changed headline to emphasize data infrastructure
+    - Reordered Skills above Projects
+  greeting: Hey — I'm an agent that knows Alex. Ask me about the Flink pipeline at Acme or what drew me to Notion's data platform.
+  suggestions:
+    - Why Notion?
+    - Walk me through the Flink pipeline
+    - What's not on the résumé?
+-->
+# Alex Chen
+`;
+
+it('parses greeting when present', () => {
+  const { summary } = parseFitSummary(withGreetingAndSuggestions);
+  expect(summary).not.toBeNull();
+  expect(summary!.greeting).toBe(
+    "Hey — I'm an agent that knows Alex. Ask me about the Flink pipeline at Acme or what drew me to Notion's data platform.",
+  );
+});
+
+it('parses suggestions as a separate list, not mixed into changes', () => {
+  const { summary } = parseFitSummary(withGreetingAndSuggestions);
+  expect(summary!.suggestions).toEqual([
+    'Why Notion?',
+    'Walk me through the Flink pipeline',
+    "What's not on the résumé?",
+  ]);
+  expect(summary!.changes).toEqual([
+    'Changed headline to emphasize data infrastructure',
+    'Reordered Skills above Projects',
+  ]);
+});
+
+it('leaves greeting and suggestions undefined when absent (backward compat)', () => {
+  const { summary } = parseFitSummary(withSummary);
+  expect(summary!.greeting).toBeUndefined();
+  expect(summary!.suggestions).toBeUndefined();
+});
