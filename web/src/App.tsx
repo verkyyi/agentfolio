@@ -76,19 +76,21 @@ function ResumePage() {
   return (
     <>
       <DownloadPdf slug={slug} />
-      <IdentityCard basics={basics} slug={activeSlug} />
-      {target !== null && (
-        <ChatPanel
-          key={activeSlug}
-          slug={activeSlug}
-          target={target}
-          email={basics.email}
-          profiles={basics.profiles}
-        />
-      )}
-      <ActivityStrip data={activity} />
-      <ResumeTheme resume={adapted as unknown as Record<string, unknown>} />
-      <GithubActivity data={activity} />
+      <main>
+        <IdentityCard basics={basics} slug={activeSlug} />
+        {target !== null && (
+          <ChatPanel
+            key={activeSlug}
+            slug={activeSlug}
+            target={target}
+            email={basics.email}
+            profiles={basics.profiles}
+          />
+        )}
+        <ActivityStrip data={activity} />
+        <ResumeTheme resume={adapted as unknown as Record<string, unknown>} />
+        <GithubActivity data={activity} />
+      </main>
       <Footer />
     </>
   );
