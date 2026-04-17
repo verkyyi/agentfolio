@@ -1,17 +1,14 @@
+const FIT_SUMMARY_RE = /^<!--\s*\nfit-summary:\s*\n([\s\S]*?)-->\s*\n?/;
+
 export function stripFitSummary(md: string): string {
-  return md.replace(/^<!--\s*fit-summary:[^>]*-->\s*\n?/, '');
+  return md.replace(FIT_SUMMARY_RE, '');
 }
 
 export function extractTarget(fittedMd: string, slug: string): string {
-  const m = fittedMd.match(/<!--\s*fit-summary:\s*(\{[\s\S]*?\})\s*-->/);
-  if (m && m[1]) {
-    try {
-      const obj = JSON.parse(m[1]) as { target?: string };
-      if (obj.target) return obj.target;
-    } catch {
-      // fall through
-    }
-  }
+  const m = fittedMd.match(FIT_SUMMARY_RE);
+  if (!m || !m[1]) return slug;
+  const targetMatch = m[1].match(/^\s*target:\s*(.+)$/m);
+  if (targetMatch && targetMatch[1]) return targetMatch[1].trim();
   return slug;
 }
 

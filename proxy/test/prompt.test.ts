@@ -3,7 +3,7 @@ import { buildSystemPrompt, extractTarget, stripFitSummary } from '../src/prompt
 
 describe('stripFitSummary', () => {
   it('removes a fit-summary HTML comment', () => {
-    const md = '<!-- fit-summary: {"target":"Notion · Eng"} -->\n# Body';
+    const md = '<!--\nfit-summary:\n  target: Notion · Eng\n-->\n# Body';
     expect(stripFitSummary(md)).toBe('# Body');
   });
 
@@ -14,7 +14,7 @@ describe('stripFitSummary', () => {
 
 describe('extractTarget', () => {
   it('prefers fit-summary target', () => {
-    const fitted = '<!-- fit-summary: {"target":"Notion · Platform Eng"} -->\n# r';
+    const fitted = '<!--\nfit-summary:\n  target: Notion · Platform Eng\n  changes:\n    - a\n-->\n# r';
     expect(extractTarget(fitted, 'notion')).toBe('Notion · Platform Eng');
   });
 

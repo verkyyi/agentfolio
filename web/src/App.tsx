@@ -4,7 +4,7 @@ import { ResumeTheme } from './components/ResumeTheme';
 import { DownloadPdf } from './components/DownloadPdf';
 import { Dashboard } from './components/Dashboard';
 import { ChatWidget } from './components/ChatWidget';
-import { extractTargetFromFitted } from './utils/fitSummary';
+import { parseFitSummary } from './utils/parseFitSummary';
 
 function isDashboard(): boolean {
   const base = import.meta.env.BASE_URL ?? '/';
@@ -38,7 +38,11 @@ function ResumePage() {
     let cancelled = false;
     fetch(`${import.meta.env.BASE_URL}data/fitted/${s}.md`)
       .then((r) => (r.ok ? r.text() : ''))
-      .then((md) => { if (!cancelled) setTarget(extractTargetFromFitted(md, s)); })
+      .then((md) => {
+        if (cancelled) return;
+        const summary = parseFitSummary(md).summary;
+        setTarget(summary?.target ?? s);
+      })
       .catch(() => { if (!cancelled) setTarget(s); });
     return () => { cancelled = true; };
   }, [slug]);
