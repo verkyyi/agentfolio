@@ -13,11 +13,6 @@ export interface IdentityCardProps {
   basics: IdentityBasics;
 }
 
-function firstSentence(s: string): string {
-  const m = s.match(/^(.+?[.!?])\s+(?=[A-Z])/);
-  return m ? m[1] : s;
-}
-
 function locationLine(loc?: IdentityBasics['location']): string | null {
   if (!loc) return null;
   const parts = [loc.city, loc.region].filter(Boolean);
@@ -27,7 +22,6 @@ function locationLine(loc?: IdentityBasics['location']): string | null {
 export function IdentityCard({ basics }: IdentityCardProps) {
   const loc = locationLine(basics.location);
   const roleBits = basics.label ? [basics.label, loc].filter(Boolean).join(' · ') : null;
-  const oneLiner = basics.summary ? firstSentence(basics.summary) : null;
   const hasProfiles = (basics.profiles && basics.profiles.length > 0) || !!basics.email;
 
   return (
@@ -37,12 +31,6 @@ export function IdentityCard({ basics }: IdentityCardProps) {
         <span className="caret">_</span>
       </h1>
       {roleBits && <div className="idcard-role">{roleBits}</div>}
-      {oneLiner && (
-        <p className="idcard-oneliner">
-          <span className="idcard-comment">{'// '}</span>
-          {oneLiner}
-        </p>
-      )}
       {hasProfiles && (
         <div className="idcard-profiles">
           {basics.profiles?.map((p) => (

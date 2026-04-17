@@ -15,17 +15,18 @@ const baseBasics = {
 };
 
 describe('IdentityCard', () => {
-  it('renders name, role line, and one-liner', () => {
+  it('renders name and role line', () => {
     render(<IdentityCard basics={baseBasics} />);
     expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent(/verky yi/i);
     expect(screen.getByText(/Senior Engineer/)).toBeInTheDocument();
     expect(screen.getByText(/New York, NY/)).toBeInTheDocument();
-    expect(screen.getByText(/Shipped search infra/)).toBeInTheDocument();
   });
 
-  it('does not render any adapter-meta label', () => {
+  it('does not render the summary one-liner or adapter-meta label', () => {
     const { container } = render(<IdentityCard basics={baseBasics} />);
+    expect(container.querySelector('.idcard-oneliner')).toBeNull();
     expect(container.querySelector('.idcard-label')).toBeNull();
+    expect(screen.queryByText(/Shipped search infra/)).not.toBeInTheDocument();
     expect(screen.queryByText(/adapted for/i)).not.toBeInTheDocument();
     expect(screen.queryByText(/~\//)).not.toBeInTheDocument();
   });
@@ -37,41 +38,13 @@ describe('IdentityCard', () => {
     expect(screen.getByRole('link', { name: /verky\.yi@gmail\.com/ })).toHaveAttribute('href', 'mailto:verky.yi@gmail.com');
   });
 
-  it('truncates summary to the first sentence for the one-liner', () => {
-    const basics = {
-      ...baseBasics,
-      summary: 'First sentence here. Second sentence should not appear in the card one-liner. Third also excluded.',
-    };
-    render(<IdentityCard basics={basics} />);
-    expect(screen.getByText(/First sentence here\./)).toBeInTheDocument();
-    expect(screen.queryByText(/Second sentence should not appear/)).not.toBeInTheDocument();
-  });
-
   it('skips role line when label is absent', () => {
     const { container } = render(<IdentityCard basics={{ ...baseBasics, label: undefined }} />);
     expect(container.querySelector('.idcard-role')).toBeNull();
   });
 
-  it('skips one-liner when summary is absent', () => {
-    const { container } = render(<IdentityCard basics={{ ...baseBasics, summary: undefined }} />);
-    expect(container.querySelector('.idcard-oneliner')).toBeNull();
-  });
-
   it('skips profile row when profiles and email are both absent', () => {
     const { container } = render(<IdentityCard basics={{ ...baseBasics, profiles: [], email: undefined }} />);
     expect(container.querySelector('.idcard-profiles')).toBeNull();
-  });
-
-  it('handles abbreviations like "U.S." without splitting on them', () => {
-    const basics = { ...baseBasics, summary: 'U.S. citizen with a long résumé. Looking for staff roles.' };
-    render(<IdentityCard basics={basics} />);
-    expect(screen.getByText(/U\.S\. citizen with a long résumé\./)).toBeInTheDocument();
-    expect(screen.queryByText(/Looking for staff roles/)).not.toBeInTheDocument();
-  });
-
-  it('returns the whole summary when there is no second sentence', () => {
-    const basics = { ...baseBasics, summary: 'Just one sentence without a real boundary' };
-    render(<IdentityCard basics={basics} />);
-    expect(screen.getByText(/Just one sentence without a real boundary/)).toBeInTheDocument();
   });
 });

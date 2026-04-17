@@ -57,6 +57,31 @@ describe('ChatPanel — inline default state', () => {
     expect(greeting).not.toHaveTextContent(/context/i);
   });
 
+  it('greeting includes the tagline sentence when provided', () => {
+    vi.stubEnv('VITE_CHAT_PROXY_URL', 'https://proxy.example');
+    render(
+      <ChatPanel
+        slug="notion"
+        ownerName="Alex Chen"
+        tagline="Senior engineer with a decade of experience."
+      />,
+    );
+    const greeting = screen.getByTestId('chat-greeting');
+    expect(greeting).toHaveTextContent(
+      /Hey, I'm an agent that knows Alex Chen\. Senior engineer with a decade of experience\. Ask me anything\./,
+    );
+  });
+
+  it('greeting falls back gracefully when tagline is absent', () => {
+    vi.stubEnv('VITE_CHAT_PROXY_URL', 'https://proxy.example');
+    render(<ChatPanel slug="notion" ownerName="Alex Chen" />);
+    const greeting = screen.getByTestId('chat-greeting');
+    expect(greeting).toHaveTextContent(
+      /Hey, I'm an agent that knows Alex Chen\. Ask me anything\./,
+    );
+    expect(greeting.textContent).not.toMatch(/\.\s{2,}Ask/);
+  });
+
   it('header does not render a "· chat" or "context:" left label', () => {
     vi.stubEnv('VITE_CHAT_PROXY_URL', 'https://proxy.example');
     render(<ChatPanel slug="notion" ownerName="Alex Chen" />);

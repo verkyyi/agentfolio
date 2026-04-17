@@ -7,6 +7,7 @@ import { ChatPanel } from './components/ChatPanel';
 import { ActivityStrip } from './components/ActivityStrip';
 import { Footer } from './components/Footer';
 import { GithubActivity, type ActivityData } from './components/GithubActivity';
+import { firstSentence } from './utils/firstSentence';
 
 function isDashboard(): boolean {
   const base = import.meta.env.BASE_URL ?? '/';
@@ -55,6 +56,7 @@ function ResumePage() {
 
   const activeSlug = slug ?? 'default';
   const basics = (adapted.basics ?? {}) as IdentityBasics;
+  const tagline = basics.summary ? firstSentence(basics.summary) : undefined;
 
   return (
     <>
@@ -64,6 +66,7 @@ function ResumePage() {
           key={activeSlug}
           slug={activeSlug}
           ownerName={basics.name}
+          tagline={tagline}
           email={basics.email}
           profiles={basics.profiles}
         />

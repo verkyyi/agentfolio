@@ -24,18 +24,6 @@
   animation: idcard-in 280ms ease-out 160ms forwards;
 }
 
-.idcard-oneliner {
-  font-size: 15px;
-  color: var(--text);
-  margin: 14px 0 0;
-  line-height: 1.55;
-  max-width: 580px;
-  opacity: 0;
-  animation: idcard-in 280ms ease-out 240ms forwards;
-}
-
-.idcard-comment { color: var(--text-muted); }
-
 .idcard-profiles {
   display: flex;
   gap: 14px;
@@ -58,6 +46,6 @@
 
 @media print {
   .idcard-name { animation: none; opacity: 1; }
-  .idcard-role, .idcard-oneliner, .idcard-profiles { animation: none; opacity: 1; }
+  .idcard-role, .idcard-profiles { animation: none; opacity: 1; }
   .idcard .caret { display: none; }
 }
