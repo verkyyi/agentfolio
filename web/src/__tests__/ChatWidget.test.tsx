@@ -72,8 +72,9 @@ describe('ChatWidget — streaming send', () => {
       'https://proxy.example/chat',
       expect.objectContaining({ method: 'POST' }),
     );
-    const [, init] = fetchMock.mock.calls[0]!;
-    const body = JSON.parse(init.body as string);
+    const call = fetchMock.mock.calls[0] as unknown as [string, RequestInit] | undefined;
+    expect(call).toBeDefined();
+    const body = JSON.parse(call![1].body as string);
     expect(body.slug).toBe('notion');
     expect(body.messages[0]).toEqual({ role: 'user', content: 'tell me about notion' });
 
