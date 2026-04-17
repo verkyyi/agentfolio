@@ -1,7 +1,14 @@
 // web/src/__tests__/GithubActivity.test.tsx
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, beforeAll, afterAll, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import { GithubActivity } from '../components/GithubActivity';
+import { GithubActivity, scopeToLast30Days } from '../components/GithubActivity';
+
+// Pin "now" so the 30-day scope is deterministic across runs.
+beforeAll(() => {
+  vi.useFakeTimers();
+  vi.setSystemTime(new Date('2026-04-17T06:00:00Z'));
+});
+afterAll(() => vi.useRealTimers());
 
 const fixture = {
   user: 'verkyyi',
@@ -9,8 +16,10 @@ const fixture = {
   stats: { publicRepos: 12, contributions30d: 84, contributionsLastYear: 1247 },
   contributions: {
     weeks: [
+      // Week 1 is ~1 year old and will be filtered out by the 30-day scope.
       Array.from({ length: 7 }, (_, i) => ({ date: `2025-04-${20 + i}`, count: i })),
-      Array.from({ length: 7 }, (_, i) => ({ date: `2025-04-${27 + i}`, count: 2 })),
+      // Week 2 is within the window (2026-04-11..17).
+      Array.from({ length: 7 }, (_, i) => ({ date: `2026-04-${11 + i}`, count: 2 })),
     ],
   },
   languages: [
@@ -38,10 +47,32 @@ describe('GithubActivity', () => {
     expect(screen.getByText(/84 contributions/)).toBeInTheDocument();
   });
 
-  it('renders one heatmap cell per contribution day', () => {
+  it('renders one heatmap cell per in-scope contribution day', () => {
     const { container } = render(<GithubActivity data={fixture} />);
     const cells = container.querySelectorAll('svg rect.heatmap-cell');
-    expect(cells.length).toBe(14);
+    // Only the 2026 week (7 days) is within the 30-day window; the 2025 week
+    // is scoped out and its entire week is dropped from the grid.
+    expect(cells.length).toBe(7);
+  });
+
+  it('scopeToLast30Days keeps only weeks touching the 30-day window', () => {
+    const now = new Date('2026-04-17T06:00:00Z');
+    const kept = scopeToLast30Days(fixture.contributions.weeks, now);
+    expect(kept).toHaveLength(1);
+    expect(kept[0][0].date).toBe('2026-04-11');
+  });
+
+  it('scopeToLast30Days pads a mixed week with sentinel -1 for days outside the window', () => {
+    const now = new Date('2026-04-17T06:00:00Z');
+    const mixedWeek = Array.from({ length: 7 }, (_, i) => ({
+      date: `2026-03-${16 + i}`, // Mar 16..22; cutoff is Mar 18, so Mar 16-17 pad, 18-22 keep
+      count: 5,
+    }));
+    const kept = scopeToLast30Days([mixedWeek], now);
+    expect(kept).toHaveLength(1);
+    expect(kept[0][0].count).toBe(-1); // Mar 16 padded
+    expect(kept[0][1].count).toBe(-1); // Mar 17 padded
+    expect(kept[0][2].count).toBe(5);  // Mar 18 kept
   });
 
   it('renders language legend entries', () => {
