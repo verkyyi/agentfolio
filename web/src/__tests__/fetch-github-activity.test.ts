@@ -1,5 +1,7 @@
 // web/src/__tests__/fetch-github-activity.test.ts
 import { describe, it, expect } from 'vitest';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-expect-error — .mjs has no .d.ts; runtime import works via vitest's native ESM loader
 import { buildActivity } from '../../../scripts/fetch-github-activity.mjs';
 
 const fixture = {
@@ -80,7 +82,11 @@ describe('buildActivity', () => {
     expect(result.repos[0].languageColor).toBe('#3178c6');
     expect(result.languages.length).toBeGreaterThan(0);
     expect(result.languages[0].name).toBe('TypeScript');
-    expect(Math.round(result.languages.reduce((s, l) => s + l.pct, 0))).toBe(100);
+    expect(
+      Math.round(
+        result.languages.reduce((s: number, l: { pct: number }) => s + l.pct, 0)
+      )
+    ).toBe(100);
   });
 
   it('computes 30-day contributions from the tail of the calendar', () => {
