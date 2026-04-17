@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useAdaptation } from './hooks/useAdaptation';
 import { ResumeTheme } from './components/ResumeTheme';
-import { DownloadPdf } from './components/DownloadPdf';
 import { Dashboard } from './components/Dashboard';
 import { IdentityCard, type IdentityBasics } from './components/IdentityCard';
 import { ChatPanel } from './components/ChatPanel';
@@ -75,7 +74,6 @@ function ResumePage() {
 
   return (
     <>
-      <DownloadPdf slug={slug} />
       <main>
         <IdentityCard basics={basics} slug={activeSlug} />
         {target !== null && (
