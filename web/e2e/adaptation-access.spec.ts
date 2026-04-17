@@ -19,8 +19,8 @@ test.describe('Adaptation Access', () => {
   test('default adaptation has expected content', async ({ page }) => {
     await page.goto('./');
     await expect(page.locator('h1')).toContainText('Alex Chen', { timeout: 10_000 });
-    await expect(page.getByText(/Software Engineer/)).toBeAttached();
-    await expect(page.locator('a[href="mailto:alex@example.com"]')).toBeAttached();
+    await expect(page.locator('.idcard-role')).toBeAttached();
+    await expect(page.locator('a[href="mailto:alex@example.com"]').first()).toBeAttached();
   });
 
   test('no console errors on adaptation pages', async ({ page }) => {

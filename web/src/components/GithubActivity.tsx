@@ -1,6 +1,7 @@
 // web/src/components/GithubActivity.tsx
 import styled from 'styled-components';
 import { colorFor } from '../utils/githubColors';
+import { bucketIndex } from '../utils/activityMetrics';
 
 export interface ActivityData {
   user: string;
@@ -24,24 +25,29 @@ export interface ActivityData {
 }
 
 const Wrapper = styled.section`
-  max-width: 800px;
+  max-width: var(--column-max);
   margin: 48px auto 24px;
-  padding: 0 40px;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  color: #1f2937;
-  border-top: 1px solid #e5e7eb;
+  padding: 0 var(--side-gutter);
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  color: var(--text);
+  border-top: 1px solid var(--border-soft);
   padding-top: 32px;
+
+  @media (max-width: 640px) {
+    padding-left: var(--side-gutter-mobile);
+    padding-right: var(--side-gutter-mobile);
+  }
 
   @media print { display: none; }
 `;
 
 const Header = styled.div`
   font-size: 14px;
-  color: #6b7280;
+  color: var(--text-muted);
   margin-bottom: 20px;
 
-  a { color: #1f2937; text-decoration: none; font-weight: 600; }
-  a:hover { color: #2563eb; }
+  a { color: var(--text); text-decoration: none; font-weight: 600; }
+  a:hover { color: var(--accent-blue); }
 `;
 
 const HeatmapWrap = styled.div`
@@ -64,7 +70,7 @@ const LangLegend = styled.div`
   flex-wrap: wrap;
   gap: 12px;
   font-size: 13px;
-  color: #4b5563;
+  color: var(--text-muted);
   margin-bottom: 24px;
 
   span { display: inline-flex; align-items: center; gap: 6px; }
@@ -80,29 +86,21 @@ const RepoList = styled.ul`
   padding: 0;
   margin: 0 0 16px;
 
-  li { padding: 8px 0; border-bottom: 1px solid #f3f4f6; font-size: 14px; }
+  li { padding: 8px 0; border-bottom: 1px solid var(--border-soft); font-size: 14px; }
   li:last-child { border-bottom: none; }
-  a { color: #1f2937; font-weight: 600; text-decoration: none; }
-  a:hover { color: #2563eb; }
-  .meta { color: #6b7280; font-size: 12px; margin-left: 8px; }
-  .desc { color: #4b5563; display: block; margin-top: 2px; }
+  a { color: var(--text); font-weight: 600; text-decoration: none; }
+  a:hover { color: var(--accent-blue); }
+  .meta { color: var(--text-muted); font-size: 12px; margin-left: 8px; }
+  .desc { color: var(--text-muted); display: block; margin-top: 2px; }
 `;
 
 const Footnote = styled.div`
   font-size: 11px;
-  color: #9ca3af;
+  color: var(--text-dim);
   text-align: right;
 `;
 
 const HEATMAP_BUCKETS = ['#ebedf0', '#9be9a8', '#40c463', '#30a14e', '#216e39'];
-
-function bucket(count: number): number {
-  if (count <= 0) return 0; // -1 = out-of-scope pad day, rendered same as zero
-  if (count < 3) return 1;
-  if (count < 6) return 2;
-  if (count < 10) return 3;
-  return 4;
-}
 
 const MONTH_NAMES = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
@@ -156,10 +154,10 @@ function Heatmap({ weeks }: { weeks: ActivityData['contributions']['weeks'] }) {
   return (
     <svg width={width} height={height} role="img" aria-label="Contribution heatmap">
       {monthLabels.map((m, i) => (
-        <text key={`mo-${i}`} x={m.x} y={10} fontSize={9} fill="#6b7280">{m.label}</text>
+        <text key={`mo-${i}`} x={m.x} y={10} fontSize={9} fill="var(--text-muted)">{m.label}</text>
       ))}
       {weekdayLabels.map((w) => (
-        <text key={`wd-${w.label}`} x={0} y={w.y} fontSize={9} fill="#6b7280">{w.label}</text>
+        <text key={`wd-${w.label}`} x={0} y={w.y} fontSize={9} fill="var(--text-muted)">{w.label}</text>
       ))}
       {weeks.map((week, wi) =>
         week.map((day, di) => (
@@ -171,7 +169,7 @@ function Heatmap({ weeks }: { weeks: ActivityData['contributions']['weeks'] }) {
             width={cell}
             height={cell}
             rx={2}
-            fill={HEATMAP_BUCKETS[bucket(day.count)]}
+            fill={HEATMAP_BUCKETS[bucketIndex(day.count)]}
           >
             {day.count >= 0 && (
               <title>{`${day.count} contribution${day.count === 1 ? '' : 's'} on ${day.date}`}</title>
@@ -200,7 +198,7 @@ export function GithubActivity({ data }: { data: ActivityData | null }) {
   if (!data) return null;
 
   return (
-    <Wrapper>
+    <Wrapper id="activity">
       <Header>
         <a href={`https://github.com/${data.user}`} target="_blank" rel="noopener noreferrer">
           @{data.user}

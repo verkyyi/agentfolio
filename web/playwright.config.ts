@@ -13,6 +13,10 @@ export default defineConfig({
   webServer: {
     command: 'npm run dev',
     port: 5173,
-    reuseExistingServer: true,
+    reuseExistingServer: false,
+    env: {
+      VITE_BASE_PATH: '/agentfolio/',
+      VITE_CHAT_PROXY_URL: 'https://proxy.example',
+    },
   },
 });

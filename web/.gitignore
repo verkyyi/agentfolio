@@ -1,3 +1,4 @@
 public/data/
 .env.local
 .env*.local
+test-results/

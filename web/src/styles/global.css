@@ -1,17 +1,43 @@
-/* AgentFolio — base styles */
+/* AgentFolio — dark terminal-forward theme */
 
 :root {
-  --paper: #f5efe4;
-  --paper-deep: #ece3d2;
-  --ink: #161b29;
-  --ink-soft: #3a3f50;
-  --ink-mute: #6c7080;
-  --rule: rgba(22, 27, 41, 0.14);
-  --rule-strong: rgba(22, 27, 41, 0.32);
-  --accent: #cf3a2a;
-  --accent-soft: #fce7df;
-  --accent-ink: #7a1d10;
-  --highlight: rgba(207, 58, 42, 0.22);
+  /* Surfaces */
+  --bg: #0d1117;
+  --surface: #161b22;
+  --surface-raised: #1c2230;
+  --border: #30363d;
+  --border-soft: #21262d;
+
+  /* Text */
+  --text: #e6edf3;
+  --text-muted: #7d8590;
+  --text-dim: #6e7681;
+
+  /* Accents */
+  --accent-green: #7ee787;
+  --accent-blue: #79c0ff;
+  --accent-teal: #4ec9b0;
+  --accent-orange: #ffa657;
+
+  /* Legacy variable names kept for components that still reference them.
+     These map onto the dark palette so nothing looks catastrophically broken
+     during the transition. Components should migrate to the new tokens. */
+  --paper: var(--bg);
+  --paper-deep: var(--surface);
+  --ink: var(--text);
+  --ink-soft: var(--text-muted);
+  --ink-mute: var(--text-dim);
+  --rule: var(--border-soft);
+  --rule-strong: var(--border);
+  --accent: var(--accent-green);
+  --accent-soft: rgba(126, 231, 135, 0.16);
+  --accent-ink: var(--accent-green);
+  --highlight: rgba(126, 231, 135, 0.22);
+
+  /* Layout */
+  --column-max: 760px;
+  --side-gutter: 32px;
+  --side-gutter-mobile: 20px;
 }
 
 * { box-sizing: border-box; }
@@ -20,13 +46,11 @@ html { -webkit-text-size-adjust: 100%; }
 
 body {
   margin: 0;
-  background:
-    radial-gradient(110% 60% at 50% -10%, #fbf6ec 0%, transparent 60%),
-    var(--paper);
-  color: var(--ink);
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  font-size: 17px;
-  line-height: 1.65;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'JetBrains Mono', ui-monospace, 'Menlo', 'Consolas', monospace;
+  font-size: 15px;
+  line-height: 1.55;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   min-height: 100dvh;
@@ -34,31 +58,18 @@ body {
   padding-right: env(safe-area-inset-right);
 }
 
-/* faint paper grain */
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-  opacity: 0.4;
-  mix-blend-mode: multiply;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.09  0 0 0 0 0.1  0 0 0 0 0.16  0 0 0 0.05 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
-}
-
 #root { position: relative; z-index: 1; }
 
 a {
-  color: var(--ink);
-  text-decoration: underline;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 3px;
-  text-decoration-color: var(--rule-strong);
-  transition: color 120ms ease, text-decoration-color 120ms ease;
+  color: var(--accent-blue);
+  text-decoration: none;
+  border-bottom: 1px dashed rgba(121, 192, 255, 0.35);
+  padding-bottom: 1px;
+  transition: color 120ms ease, border-color 120ms ease;
 }
-a:hover { color: var(--accent); text-decoration-color: var(--accent); }
+a:hover { color: var(--accent-green); border-color: var(--accent-green); }
 a:focus-visible {
-  outline: 2px solid var(--accent);
+  outline: 2px solid var(--accent-green);
   outline-offset: 3px;
   border-radius: 2px;
 }
@@ -68,11 +79,22 @@ button {
   font-size: 1rem;
   cursor: pointer;
   border: 0;
+  color: inherit;
+  background: transparent;
 }
 button:focus-visible {
-  outline: 2px solid var(--accent);
+  outline: 2px solid var(--accent-green);
   outline-offset: 3px;
   border-radius: 4px;
+}
+
+/* Blinking caret used by identity card and chat input */
+@keyframes blink { 50% { opacity: 0; } }
+.caret {
+  display: inline-block;
+  color: var(--accent-green);
+  animation: blink 1.1s steps(1) infinite;
+  margin-left: 2px;
 }
 
 /* ---------- Reduced motion ---------- */
@@ -86,6 +108,22 @@ button:focus-visible {
 
 /* ---------- Print ---------- */
 @media print {
+  :root {
+    --bg: #ffffff;
+    --surface: #ffffff;
+    --surface-raised: #ffffff;
+    --border: #d0d0d0;
+    --border-soft: #eeeeee;
+    --text: #111111;
+    --text-muted: #555555;
+    --text-dim: #777777;
+    --accent-green: #111111;
+    --accent-blue: #111111;
+    --accent-teal: #111111;
+    --accent-orange: #111111;
+  }
   body { background: white; }
-  body::before { display: none; }
+  a { color: #111; border-bottom: none; }
+  .caret { display: none; }
+  /* Components opt out of print via their own `@media print { display: none }`. */
 }
