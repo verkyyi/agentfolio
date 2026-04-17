@@ -21,6 +21,7 @@ query UserActivity($login: String!) {
       totalCount
       nodes {
         name
+        pushedAt
         languages(first: 10, orderBy: { field: SIZE, direction: DESC }) {
           edges { size node { name color } }
         }
@@ -52,10 +53,13 @@ export function buildActivity(login, data, now = new Date()) {
     .filter((d) => new Date(d.date) >= cutoff)
     .reduce((s, d) => s + d.count, 0);
 
-  // Aggregate language bytes across all repos
+  // Aggregate language bytes across repos pushed within the last 30 days.
+  // Scoped (not all-time) because the strip renders this next to the 30d
+  // contribution count; showing all-time language mix there would mislead.
   const bytes = new Map();
   const colors = new Map();
   for (const repo of data.user.repositories.nodes) {
+    if (!repo.pushedAt || new Date(repo.pushedAt) < cutoff) continue;
     for (const edge of repo.languages.edges) {
       const name = edge.node.name;
       bytes.set(name, (bytes.get(name) ?? 0) + edge.size);

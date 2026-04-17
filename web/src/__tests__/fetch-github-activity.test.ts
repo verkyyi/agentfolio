@@ -35,6 +35,7 @@ const fixture = {
       nodes: [
         {
           name: 'r1',
+          pushedAt: '2026-04-10T00:00:00Z', // within 30d of 2026-04-17
           languages: {
             edges: [
               { size: 5000, node: { name: 'TypeScript', color: '#3178c6' } },
@@ -44,6 +45,7 @@ const fixture = {
         },
         {
           name: 'r2',
+          pushedAt: '2026-04-15T00:00:00Z', // within 30d
           languages: {
             edges: [
               { size: 1000, node: { name: 'Python', color: '#3572a5' } },
@@ -101,5 +103,37 @@ describe('buildActivity', () => {
     // Same fixture, `now` nudged forward 2 months — week 2 falls out of range too.
     const result = buildActivity('verkyyi', fixture, new Date('2026-06-17T06:00:00Z'));
     expect(result.stats.contributions30d).toBe(0);
+  });
+
+  it('excludes repos pushed outside the 30-day window from language totals', () => {
+    const staleFixture = {
+      ...fixture,
+      user: {
+        ...fixture.user,
+        repositories: {
+          totalCount: 12,
+          nodes: [
+            {
+              name: 'stale',
+              pushedAt: '2025-04-10T00:00:00Z', // ~12 months old
+              languages: {
+                edges: [{ size: 9000, node: { name: 'COBOL', color: '#a1a1a1' } }],
+              },
+            },
+            {
+              name: 'fresh',
+              pushedAt: '2026-04-16T00:00:00Z', // within 30d
+              languages: {
+                edges: [{ size: 500, node: { name: 'Rust', color: '#dea584' } }],
+              },
+            },
+          ],
+        },
+      },
+    };
+    const result = buildActivity('verkyyi', staleFixture, new Date('2026-04-17T06:00:00Z'));
+    const names = result.languages.map((l: { name: string }) => l.name);
+    expect(names).toContain('Rust');
+    expect(names).not.toContain('COBOL');
   });
 });
