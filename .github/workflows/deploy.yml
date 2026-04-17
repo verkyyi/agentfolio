@@ -39,8 +39,6 @@ jobs:
       - name: Build web
         working-directory: web
         env:
-          VITE_GITHUB_PAT: ${{ secrets.GH_ISSUES_PAT }}
-          VITE_GITHUB_REPO: ${{ github.repository }}
           VITE_BASE_PATH: ${{ steps.pages.outputs.base_path }}
           VITE_CHAT_PROXY_URL: ${{ vars.VITE_CHAT_PROXY_URL }}
         run: npm run build
