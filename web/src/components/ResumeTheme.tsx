@@ -105,7 +105,7 @@ const Layout = styled.div`
   max-width: var(--column-max);
   margin: 0 auto;
   padding: 60px var(--side-gutter);
-  background: #ffffff;
+  background: transparent;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   color: var(--text);
   line-height: 1.7;
