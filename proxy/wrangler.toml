@@ -10,6 +10,7 @@ id = "REPLACE_WITH_KV_NAMESPACE_ID"
 
 [vars]
 MODEL = "claude-haiku-4-5"
+NAME = "Owner"
 
 # Secrets (set with: wrangler secret put <NAME>)
 #   ANTHROPIC_API_KEY

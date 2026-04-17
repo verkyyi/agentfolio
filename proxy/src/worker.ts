@@ -6,6 +6,7 @@ export interface Env {
   PAGES_ORIGIN: string;
   IP_HASH_SALT: string;
   MODEL: string;
+  NAME: string;
   RATE_LIMIT_KV: KVNamespace;
 }
 
@@ -104,6 +105,37 @@ export default {
       return json(404, { error: 'unknown_slug' }, corsHeaders(origin));
     }
 
-    return json(501, { error: 'not_implemented' }, corsHeaders(origin));
+    const started = Date.now();
+    const { callAnthropic } = await import('./anthropic');
+    const upstream = await callAnthropic({
+      apiKey: env.ANTHROPIC_API_KEY,
+      model: env.MODEL,
+      slug: body.slug,
+      name: env.NAME || 'the owner',
+      ctx,
+      messages: body.messages,
+    });
+
+    if (!upstream.ok || !upstream.body) {
+      return json(502, { error: 'upstream_error' }, corsHeaders(origin));
+    }
+
+    const response = new Response(upstream.body, {
+      status: 200,
+      headers: {
+        ...corsHeaders(origin),
+        'Content-Type': 'text/event-stream',
+        'Cache-Control': 'no-cache',
+        'X-Accel-Buffering': 'no',
+      },
+    });
+    console.log(JSON.stringify({
+      slug: body.slug,
+      ip_hash: ipHash,
+      messages: body.messages.length,
+      status: 200,
+      latency_ms: Date.now() - started,
+    }));
+    return response;
   },
 };

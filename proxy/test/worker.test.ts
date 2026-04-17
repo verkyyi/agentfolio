@@ -18,6 +18,7 @@ function baseEnv(overrides: Partial<any> = {}) {
     PAGES_ORIGIN: 'https://pages.example',
     IP_HASH_SALT: 'salt',
     MODEL: 'claude-haiku-4-5',
+    NAME: 'Verky',
     RATE_LIMIT_KV: makeKV(),
     ...overrides,
   };
@@ -156,5 +157,53 @@ describe('worker: context + rate limit', () => {
     const res = await worker.fetch(chatRequest(body), env);
     expect(res.status).toBe(429);
     expect(res.headers.get('Retry-After')).toBeTruthy();
+  });
+});
+
+describe('worker: anthropic passthrough', () => {
+  beforeEach(() => {
+    __resetCacheForTests();
+    const pagesFetch = async (u: string) => {
+      if (u.endsWith('/data/fitted/notion.md')) return new Response('# R', { status: 200 });
+      if (u.includes('/data/input/')) return new Response('', { status: 404 });
+      return new Response('', { status: 404 });
+    };
+    vi.stubGlobal('fetch', vi.fn(async (u: string, init?: RequestInit) => {
+      if (u.startsWith('https://api.anthropic.com/')) {
+        expect(init?.method).toBe('POST');
+        const bodyStr = init?.body as string;
+        expect(bodyStr).toContain('# R');
+        expect(bodyStr).toContain('cache_control');
+        const chunks = [
+          'event: content_block_delta\ndata: {"delta":{"text":"Hi"}}\n\n',
+          'event: content_block_delta\ndata: {"delta":{"text":" there"}}\n\n',
+          'event: message_stop\ndata: {}\n\n',
+        ];
+        const stream = new ReadableStream({
+          start(controller) {
+            for (const c of chunks) controller.enqueue(new TextEncoder().encode(c));
+            controller.close();
+          },
+        });
+        return new Response(stream, {
+          status: 200,
+          headers: { 'Content-Type': 'text/event-stream' },
+        });
+      }
+      return pagesFetch(u);
+    }));
+  });
+
+  it('streams SSE body back to the client', async () => {
+    const res = await worker.fetch(
+      chatRequest({ slug: 'notion', messages: [{ role: 'user', content: 'hey' }] }),
+      baseEnv() as any,
+    );
+    expect(res.status).toBe(200);
+    expect(res.headers.get('Content-Type')).toContain('text/event-stream');
+    const text = await res.text();
+    expect(text).toContain('Hi');
+    expect(text).toContain('there');
+    expect(text).toContain('message_stop');
   });
 });
