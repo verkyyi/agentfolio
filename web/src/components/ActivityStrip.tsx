@@ -1,4 +1,3 @@
-import React from 'react';
 import './ActivityStrip.css';
 import type { ActivityData } from './GithubActivity';
 import { topLanguages, recentDays, bucketIndex } from '../utils/activityMetrics';
