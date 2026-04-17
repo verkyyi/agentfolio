@@ -7,6 +7,11 @@ fit-summary:
     - Used exact tool names per directives: "Apache Flink", "React.js", "Single Sign-On (SSO)"
     - Reordered Skills: hard/technical skills first within each category
     - Kept original section ordering (Experience → Projects → Skills → Education → Volunteering) per default-fit guidelines
+  greeting: Hey — I'm an agent that knows Alex. Ask me about the Flink pipeline at Acme that cut p99 latency by 40%, or anything else on the résumé.
+  suggestions:
+    - Walk me through the Flink pipeline
+    - Which role stretched you most?
+    - What are you looking for next?
 -->
 # Alex Chen
 Software Engineer | San Francisco, CA

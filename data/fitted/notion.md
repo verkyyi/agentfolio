@@ -8,6 +8,11 @@ fit-summary:
     - Mirrored JD language: "cross-functional collaboration," "data security," "enterprise customers"
     - Reordered Skills: Data & ML tools first (Flink, Kafka, PostgreSQL) to match JD requirements; used exact names "React.js", "Apache Flink"
     - Moved ML Model Monitor project first to highlight open-source data tooling and AWS Lambda experience
+  greeting: Hey — I'm an agent that knows Alex. Ask me about the 2M-events/day Flink pipeline at Acme, or what makes this a fit for Notion's enterprise data platform.
+  suggestions:
+    - Why Notion?
+    - Walk me through the Flink pipeline
+    - How does this match the JD?
 -->
 # Alex Chen
 Software Engineer, Data Infrastructure | San Francisco, CA

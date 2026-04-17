@@ -110,7 +110,13 @@
     "agentfolio": {
       "company": "default",
       "role": null,
-      "generated_by": "claude-code/structurize-skill"
+      "generated_by": "claude-code/structurize-skill",
+      "greeting": "Hey — I'm an agent that knows Alex. Ask me about the Flink pipeline at Acme that cut p99 latency by 40%, or anything else on the résumé.",
+      "suggestions": [
+        "Walk me through the Flink pipeline",
+        "Which role stretched you most?",
+        "What are you looking for next?"
+      ]
     }
   }
 }

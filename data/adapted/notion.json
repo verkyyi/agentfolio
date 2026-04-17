@@ -110,7 +110,13 @@
     "agentfolio": {
       "company": "Notion",
       "role": "Software Engineer, Enterprise Data Platform",
-      "generated_by": "claude-code/structurize-skill"
+      "generated_by": "claude-code/structurize-skill",
+      "greeting": "Hey — I'm an agent that knows Alex. Ask me about the 2M-events/day Flink pipeline at Acme, or what makes this a fit for Notion's enterprise data platform.",
+      "suggestions": [
+        "Why Notion?",
+        "Walk me through the Flink pipeline",
+        "How does this match the JD?"
+      ]
     }
   }
 }
