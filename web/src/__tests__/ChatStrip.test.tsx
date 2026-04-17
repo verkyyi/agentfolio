@@ -75,3 +75,52 @@ describe('ChatStrip — visibility', () => {
     expect(onJump).toHaveBeenCalledTimes(1);
   });
 });
+
+describe('ChatStrip — hints fetch', () => {
+  it('fetches /hints once, 400ms after first pin, and renders the first hint', async () => {
+    const fetchMock = vi.fn(async () => new Response(
+      JSON.stringify({ hints: ['Why this fit?', 'Walk me through Acme'] }),
+      { status: 200, headers: { 'Content-Type': 'application/json' } },
+    ));
+    vi.stubGlobal('fetch', fetchMock);
+    render(<Harness />);
+    act(() => { triggerIntersection(true); });
+    act(() => { triggerIntersection(false); });
+    act(() => { vi.advanceTimersByTime(100); });
+    expect(fetchMock).not.toHaveBeenCalled();
+    await act(async () => { vi.advanceTimersByTime(400); });
+    expect(fetchMock).toHaveBeenCalledTimes(1);
+    const call = fetchMock.mock.calls[0];
+    expect(call?.[0]).toBe('https://proxy.example/hints');
+    const init = call?.[1] as RequestInit;
+    expect(init.method).toBe('POST');
+    const body = JSON.parse(init.body as string);
+    expect(body.slug).toBe('notion');
+  });
+
+  it('does not fetch if user scrolled back up before debounce fires', async () => {
+    const fetchMock = vi.fn();
+    vi.stubGlobal('fetch', fetchMock);
+    render(<Harness />);
+    act(() => { triggerIntersection(true); });
+    act(() => { triggerIntersection(false); });
+    act(() => { vi.advanceTimersByTime(200); });
+    act(() => { triggerIntersection(true); });
+    act(() => { vi.advanceTimersByTime(500); });
+    expect(fetchMock).not.toHaveBeenCalled();
+  });
+
+  it('on 404, disables hints for session', async () => {
+    const fetchMock = vi.fn(async () => new Response('nope', { status: 404 }));
+    vi.stubGlobal('fetch', fetchMock);
+    render(<Harness />);
+    act(() => { triggerIntersection(true); });
+    act(() => { triggerIntersection(false); });
+    await act(async () => { vi.advanceTimersByTime(500); });
+    expect(fetchMock).toHaveBeenCalledTimes(1);
+    act(() => { triggerIntersection(true); });
+    act(() => { triggerIntersection(false); });
+    await act(async () => { vi.advanceTimersByTime(5000); });
+    expect(fetchMock).toHaveBeenCalledTimes(1);
+  });
+});
