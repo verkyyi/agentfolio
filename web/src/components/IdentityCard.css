@@ -6,16 +6,6 @@
   color: var(--text);
 }
 
-.idcard-label {
-  font-size: 11px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-  margin-bottom: 12px;
-  opacity: 0;
-  animation: idcard-in 280ms ease-out 0ms forwards;
-}
-
 .idcard-name {
   font-size: 34px;
   font-weight: 700;
@@ -67,7 +57,6 @@
 }
 
 @media print {
-  .idcard-label { display: none; }
   .idcard-name { animation: none; opacity: 1; }
   .idcard-role, .idcard-oneliner, .idcard-profiles { animation: none; opacity: 1; }
   .idcard .caret { display: none; }
