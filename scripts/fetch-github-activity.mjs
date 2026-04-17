@@ -2,7 +2,7 @@
 // Node 20 script. No deps. Called from .github/workflows/activity.yml.
 // Exports buildActivity for unit tests; runs the fetch when invoked directly.
 
-import { writeFile } from 'node:fs/promises';
+import { mkdir, writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 
@@ -117,6 +117,7 @@ async function main() {
 
   const activity = buildActivity(login, json.data);
   const outPath = path.resolve('data/github/activity.json');
+  await mkdir(path.dirname(outPath), { recursive: true });
   await writeFile(outPath, JSON.stringify(activity, null, 2) + '\n', 'utf-8');
   console.log(`Wrote ${outPath}`);
 }
