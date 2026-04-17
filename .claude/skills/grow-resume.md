@@ -19,8 +19,10 @@ Expand and iterate `data/input/resume.md` through a structured conversation so `
 
 Read `data/input/career-goal.md`:
 
-- **Absent** → **first-time mode** (full flow)
-- **Present** → **re-entry mode** (scoped iteration)
+- **Absent, empty, or missing the `## Target Roles` section** → **first-time mode** (full flow)
+- **Present and well-formed** → **re-entry mode** (scoped iteration)
+
+If `career-goal.md` exists but `resume.md` has not been updated since it was written, the previous run was likely aborted mid-flow. Ask the user whether to **continue** the interrupted walk or **restart** from section selection.
 
 ## Persisted State: `data/input/career-goal.md`
 
@@ -87,11 +89,13 @@ Read directives. Audit the current base against them. Common gaps to check:
 
 ### 4. Propose priorities informed by the goal
 
-Rank the gaps by FDE-usefulness (or whatever role type the user chose). Present the top 3-4 as a ranked list with one-sentence rationale each. The user confirms or reorders.
+Rank the gaps by usefulness for the user's chosen target roles. Present the top 3-4 as a ranked list with one-sentence rationale each. The user confirms or reorders.
 
 ### 5. Section-by-section walk
 
-For each section below, show current content, ask targeted unlock questions, draft expanded content, confirm with the user, move on. One section per turn.
+Walk the sections one at a time. For each, show current content, ask targeted unlock questions, draft expanded content, confirm with the user, move on. Within Experience and Projects (multi-entry sections), take **one entry per turn** — do not dump prompts for all roles at once.
+
+When drafting, always confirm with the user whether to **add** new bullets alongside existing ones, **rewrite** existing bullets, or **both**. Integrity checks (step 6) apply inline to every draft, not only at the end.
 
 **Experience** — per role, ask:
 - One customer + one problem (anonymized is fine)
@@ -112,15 +116,20 @@ For each section below, show current content, ask targeted unlock questions, dra
 
 **New sections** — quick yes/no on Certifications, Talks / Demos, Open Source Contributions, Awards. Only add sections that have real material; skip empty placeholders.
 
-### 6. Integrity pass
+### 6. Integrity checks
 
-Before presenting the assembled preview, scan every drafted bullet for:
+Integrity applies at two layers:
+
+- **Inline, per section.** As each draft is produced in step 5, scan for overstatement, unshipped claims, and invented metrics. Flag them to the user in the same turn, not at the end.
+- **Final sanity scan before preview.** Once all sections are drafted, re-read the assembled resume as a whole and check for any overstatements that only become visible in aggregate (e.g., the same metric being double-counted across role and project bullets).
+
+What to watch for:
 
 - **Overstated scope.** "Enterprise customers" when users were friends. "50% reduction" with no measured baseline. Rewrite honestly.
 - **Unshipped claims.** Features described as real that are roadmap. Check against the linked URLs / repos when possible.
 - **Invented metrics.** Numbers not supplied by the user. Remove or soften to original wording.
 
-Surface any rewrites explicitly when presenting the preview — do not slip them in silently.
+Surface every rewrite explicitly — never slip integrity adjustments in silently.
 
 ### 7. Preview, approve, write
 
