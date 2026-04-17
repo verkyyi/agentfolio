@@ -82,5 +82,5 @@ jobs:
       - name: Trigger deploy
         if: steps.commit.outputs.changed == 'true'
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.WORKFLOW_PAT }}
         run: gh workflow run deploy.yml

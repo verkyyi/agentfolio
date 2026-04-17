@@ -73,6 +73,6 @@ jobs:
       - name: Trigger structurize workflow
         if: steps.author.outputs.is_bot == 'false'
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.WORKFLOW_PAT }}
         run: |
           gh workflow run structurize.yml
