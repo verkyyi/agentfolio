@@ -124,3 +124,45 @@ describe('ChatStrip — hints fetch', () => {
     expect(fetchMock).toHaveBeenCalledTimes(1);
   });
 });
+
+describe('ChatStrip — drip', () => {
+  async function tick(ms: number) {
+    await act(async () => { await vi.advanceTimersByTimeAsync(ms); });
+  }
+
+  it('types hints char-by-char and swaps to the next after a hold + erase', async () => {
+    const fetchMock = vi.fn(async () => new Response(
+      JSON.stringify({ hints: ['abc', 'xy'] }),
+      { status: 200 },
+    ));
+    vi.stubGlobal('fetch', fetchMock);
+    render(<Harness />);
+    act(() => { triggerIntersection(true); });
+    act(() => { triggerIntersection(false); });
+    await tick(500);
+
+    const hint = () => (document.querySelector('.chat-strip__hint') as HTMLElement).textContent;
+
+    // Type "abc" (one char per 40ms tick — React batches so each tick needs its own flush)
+    for (let i = 0; i < 3; i++) await tick(40);
+    expect(hint()).toBe('abc');
+    // typing → holding (0ms); holding → erasing (4000ms)
+    await tick(1);
+    await tick(4000);
+    // Erase 3 chars at 30ms each
+    for (let i = 0; i < 3; i++) await tick(30);
+    expect(hint()).toBe('');
+    // erasing → next typing (0ms)
+    await tick(1);
+    // Type "xy"
+    for (let i = 0; i < 2; i++) await tick(40);
+    expect(hint()).toBe('xy');
+  });
+
+  it('pauses drip during streaming and shows liveTail instead', () => {
+    render(<Harness isStreaming={true} liveTail="…reply tail" />);
+    act(() => { triggerIntersection(true); });
+    act(() => { triggerIntersection(false); });
+    expect((document.querySelector('.chat-strip__hint') as HTMLElement).textContent).toBe('…reply tail');
+  });
+});
