@@ -176,7 +176,7 @@ export function ChatPanel({ slug, ownerName, tagline, email, profiles, greeting,
       const resp = await fetch(`${proxyUrl}/chat`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ slug, messages: toSend }),
+        body: JSON.stringify({ slug, messages: toSend, greeting: displayGreeting }),
         signal: ctrl.signal,
       });
       if (!resp.ok || !resp.body) throw new Error(`status_${resp.status}`);

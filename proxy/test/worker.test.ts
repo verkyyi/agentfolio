@@ -120,6 +120,26 @@ describe('worker: input validation', () => {
     expect(res.status).toBe(400);
   });
 
+  it('400 on oversized greeting', async () => {
+    const body = {
+      slug: 'notion',
+      messages: [{ role: 'user', content: 'hi' }],
+      greeting: 'x'.repeat(501),
+    };
+    const res = await worker.fetch(chatRequest(body), baseEnv() as any);
+    expect(res.status).toBe(400);
+  });
+
+  it('400 on non-string greeting', async () => {
+    const body = {
+      slug: 'notion',
+      messages: [{ role: 'user', content: 'hi' }],
+      greeting: 42,
+    };
+    const res = await worker.fetch(chatRequest(body), baseEnv() as any);
+    expect(res.status).toBe(400);
+  });
+
   it('includes CORS headers on 400 body-validation responses', async () => {
     const res = await worker.fetch(chatRequest({ messages: [] }), baseEnv() as any);
     expect(res.status).toBe(400);
@@ -214,5 +234,46 @@ describe('worker: anthropic passthrough', () => {
     expect(text).toContain('Hi');
     expect(text).toContain('there');
     expect(text).toContain('message_stop');
+  });
+});
+
+describe('worker: greeting forwarding', () => {
+  let lastAnthropicBody = '';
+  beforeEach(() => {
+    __resetCacheForTests();
+    lastAnthropicBody = '';
+    vi.stubGlobal('fetch', vi.fn(async (u: string, init?: RequestInit) => {
+      if (u.startsWith('https://api.anthropic.com/')) {
+        lastAnthropicBody = init?.body as string;
+        const stream = new ReadableStream({
+          start(controller) {
+            controller.enqueue(new TextEncoder().encode('event: message_stop\ndata: {}\n\n'));
+            controller.close();
+          },
+        });
+        return new Response(stream, { status: 200 });
+      }
+      if (u.endsWith('/data/fitted/notion.md')) return new Response('# R', { status: 200 });
+      return new Response('', { status: 404 });
+    }));
+  });
+
+  it('embeds the greeting in the Anthropic system prompt when provided', async () => {
+    const body = {
+      slug: 'notion',
+      messages: [{ role: 'user', content: 'hey' }],
+      greeting: 'Hey — ask me anything.',
+    };
+    const res = await worker.fetch(chatRequest(body), baseEnv() as any);
+    expect(res.status).toBe(200);
+    expect(lastAnthropicBody).toContain('Your opening line to the visitor was: \\"Hey — ask me anything.\\"');
+  });
+
+  it('omits the greeting line when no greeting is provided', async () => {
+    const body = { slug: 'notion', messages: [{ role: 'user', content: 'hey' }] };
+    const res = await worker.fetch(chatRequest(body), baseEnv() as any);
+    expect(res.status).toBe(200);
+    expect(lastAnthropicBody).not.toContain('Your opening line to the visitor');
+    expect(lastAnthropicBody).toContain('Prior turns in this conversation are real');
   });
 });

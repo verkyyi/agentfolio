@@ -13,10 +13,12 @@ export interface Env {
 interface ChatBody {
   slug: string;
   messages: { role: 'user' | 'assistant'; content: string }[];
+  greeting?: string;
 }
 
 const MAX_TURNS = 20;
 const MAX_CONTENT = 2000;
+const MAX_GREETING = 500;
 
 function allowedOrigins(env: Env): string[] {
   return env.ALLOWED_ORIGIN.split(',').map((s) => s.trim()).filter(Boolean);
@@ -62,6 +64,10 @@ function validateBody(parsed: unknown): ChatBody | null {
     if (m.role !== 'user' && m.role !== 'assistant') return null;
     if (typeof m.content !== 'string') return null;
     if (m.content.length > MAX_CONTENT) return null;
+  }
+  if (b.greeting !== undefined) {
+    if (typeof b.greeting !== 'string') return null;
+    if (b.greeting.length > MAX_GREETING) return null;
   }
   return b as ChatBody;
 }
@@ -140,6 +146,7 @@ export default {
       name: env.NAME || 'the owner',
       ctx,
       messages: body.messages,
+      greeting: body.greeting,
       signal: ac.signal,
     });
 
