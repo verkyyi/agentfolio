@@ -87,7 +87,18 @@ export default {
       return json(400, { error: 'invalid_body' }, corsHeaders(origin));
     }
 
-    // context loading, rate limiting, and Anthropic call land in later tasks.
+    const ip = req.headers.get('CF-Connecting-IP') ?? '0.0.0.0';
+    const { hashIp, checkRateLimit } = await import('./rateLimit');
+    const ipHash = await hashIp(ip, env.IP_HASH_SALT);
+    const rl = await checkRateLimit(env.RATE_LIMIT_KV, ipHash);
+    if (!rl.allowed) {
+      return json(
+        429,
+        { error: 'rate_limited' },
+        { ...corsHeaders(origin), 'Retry-After': String(rl.retryAfter) },
+      );
+    }
+
     const ctx = await loadSlugContext(body.slug, env.PAGES_ORIGIN);
     if (!ctx) {
       return json(404, { error: 'unknown_slug' }, corsHeaders(origin));

@@ -126,3 +126,35 @@ describe('worker: input validation', () => {
     expect(res.headers.get('Vary')).toBe('Origin');
   });
 });
+
+describe('worker: context + rate limit', () => {
+  beforeEach(() => {
+    __resetCacheForTests();
+    vi.stubGlobal('fetch', vi.fn(async (u: string) => {
+      if (u.endsWith('/data/fitted/notion.md')) {
+        return new Response('<!-- fit-summary: {"target":"Notion"} -->\n# R', { status: 200 });
+      }
+      if (u.endsWith('/data/input/directives.md')) return new Response('D', { status: 200 });
+      if (u.endsWith('/data/input/jd/notion.md')) return new Response('J', { status: 200 });
+      return new Response('missing', { status: 404 });
+    }));
+  });
+
+  it('404 when fitted slug missing', async () => {
+    vi.stubGlobal('fetch', vi.fn(async () => new Response('', { status: 404 })));
+    const res = await worker.fetch(
+      chatRequest({ slug: 'missing', messages: [{ role: 'user', content: 'hi' }] }),
+      baseEnv() as any,
+    );
+    expect(res.status).toBe(404);
+  });
+
+  it('429 after 21 requests from the same IP', async () => {
+    const env = baseEnv() as any;
+    const body = { slug: 'notion', messages: [{ role: 'user', content: 'hi' }] };
+    for (let i = 0; i < 20; i++) await worker.fetch(chatRequest(body), env);
+    const res = await worker.fetch(chatRequest(body), env);
+    expect(res.status).toBe(429);
+    expect(res.headers.get('Retry-After')).toBeTruthy();
+  });
+});
