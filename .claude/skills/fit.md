@@ -35,12 +35,17 @@ fit-summary:
     - Tailored summary for company's specific focus area
     - Emphasized relevant experience in N bullet points
     - Reordered work entries to lead with most relevant role
+  greeting: Hey — I'm an agent that knows {Owner}. Ask me about the {specific project} or what drew me to {Company}.
+  suggestions:
+    - Why {Company}?
+    - Walk me through the {specific project}
+    - What's not on the résumé?
 -->
 # Name
 ...
 ```
 
-The `target` field is the company and role from the JD. The `changes` list is 3-6 bullet points describing the key adaptations made. For the default fit (no JD), use `target: General` and describe which directives were applied.
+The `target` field is the company and role from the JD. The `changes` list is 3-6 bullet points describing the key adaptations made. The `greeting` is a single line (1–2 sentences, ≤200 chars) written in first person as the résumé owner — it becomes the first message the chatbot says when a visitor lands on this slug. It must reference something specific from the tailored résumé (a project, stack, or company) so visitors immediately see that the chat is grounded in the adaptation. The `suggestions` list is exactly 3 opener questions, each ≤40 chars, also tailored to this slug. For the default fit (no JD), use `target: General`, describe which directives were applied, and write a generic-but-warm greeting and three generic suggestion prompts that make sense without a target company.
 
 The resume content below the comment is **freeform markdown** with the same structure as `resume.md`. It is NOT JSON. The markdown should:
 
