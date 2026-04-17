@@ -50,7 +50,7 @@ Set these in `web/.env.local` for development, or as GitHub Actions secrets/env 
 | Variable | Purpose |
 |----------|---------|
 | `VITE_GITHUB_REPO` | `your-username/your-repo`. Auto-set in deploy workflow via `${{ github.repository }}`. |
-| `VITE_BASE_PATH` | URL base path. Auto-detected: `/` for user pages, `/<repo-name>/` for project pages. |
+| `VITE_BASE_PATH` | URL base path. Auto-detected from `actions/configure-pages`: `/` for user pages or custom domains, `/<repo-name>/` for project pages. |
 | `CLAUDE_CODE_OAUTH_TOKEN` | OAuth token for Claude Code in the adapt workflow. Uses your Claude Pro/Team subscription instead of usage-based API billing. |
 | `VITE_CHAT_PROXY_URL` | URL of the deployed chat Worker. If unset, the chat widget doesn't mount. |
 
