@@ -97,7 +97,7 @@ const Footnote = styled.div`
 const HEATMAP_BUCKETS = ['#ebedf0', '#9be9a8', '#40c463', '#30a14e', '#216e39'];
 
 function bucket(count: number): number {
-  if (count === 0) return 0;
+  if (count <= 0) return 0; // -1 = out-of-scope pad day, rendered same as zero
   if (count < 3) return 1;
   if (count < 6) return 2;
   if (count < 10) return 3;
@@ -105,6 +105,27 @@ function bucket(count: number): number {
 }
 
 const MONTH_NAMES = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+// Scope heatmap to match the "last 30 days" stat in the header: keep only
+// weeks containing at least one day within the past 30 days. Days older
+// than the cutoff within a kept week are rendered as inactive-bucket cells
+// so the grid stays rectangular but the hot region is visually clear.
+export function scopeToLast30Days(
+  weeks: { date: string; count: number }[][],
+  now: Date = new Date(),
+): { date: string; count: number }[][] {
+  // Normalize to UTC midnight so the cutoff compares cleanly with "YYYY-MM-DD"
+  // day strings (which parse to 00:00 UTC).
+  const cutoff = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate()));
+  cutoff.setUTCDate(cutoff.getUTCDate() - 30);
+  return weeks
+    .map((week) =>
+      week.map((day) =>
+        new Date(day.date) < cutoff ? { date: day.date, count: -1 } : day,
+      ),
+    )
+    .filter((week) => week.some((d) => d.count !== -1));
+}
 
 function Heatmap({ weeks }: { weeks: ActivityData['contributions']['weeks'] }) {
   const cell = 11;
@@ -152,7 +173,9 @@ function Heatmap({ weeks }: { weeks: ActivityData['contributions']['weeks'] }) {
             rx={2}
             fill={HEATMAP_BUCKETS[bucket(day.count)]}
           >
-            <title>{`${day.count} contribution${day.count === 1 ? '' : 's'} on ${day.date}`}</title>
+            {day.count >= 0 && (
+              <title>{`${day.count} contribution${day.count === 1 ? '' : 's'} on ${day.date}`}</title>
+            )}
           </rect>
         ))
       )}
@@ -189,7 +212,7 @@ export function GithubActivity({ data }: { data: ActivityData | null }) {
       </Header>
 
       <HeatmapWrap>
-        <Heatmap weeks={data.contributions.weeks} />
+        <Heatmap weeks={scopeToLast30Days(data.contributions.weeks)} />
       </HeatmapWrap>
 
       <LangBar>
