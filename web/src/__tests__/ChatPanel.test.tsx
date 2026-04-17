@@ -89,6 +89,65 @@ describe('ChatPanel — inline default state', () => {
     expect(screen.queryByText(/context:/i)).not.toBeInTheDocument();
   });
 
+  it('renders the greeting prop when provided, replacing the hardcoded line', () => {
+    vi.stubEnv('VITE_CHAT_PROXY_URL', 'https://proxy.example');
+    render(
+      <ChatPanel
+        slug="notion"
+        ownerName="Alex Chen"
+        greeting="Hey — I'm an agent that knows Alex. Ask me about the Flink pipeline."
+      />,
+    );
+    const greeting = screen.getByTestId('chat-greeting');
+    expect(greeting).toHaveTextContent(
+      /Hey — I'm an agent that knows Alex\. Ask me about the Flink pipeline\./,
+    );
+    expect(greeting).not.toHaveTextContent(/Ask me anything/);
+  });
+
+  it('renders three tailored suggestion chips when suggestions prop is provided', () => {
+    vi.stubEnv('VITE_CHAT_PROXY_URL', 'https://proxy.example');
+    render(
+      <ChatPanel
+        slug="notion"
+        ownerName="Alex Chen"
+        suggestions={['Why Notion?', 'Walk me through the Flink pipeline', "What's not on the résumé?"]}
+      />,
+    );
+    const chips = screen.getAllByTestId('chat-suggestion').map((el) => el.textContent);
+    expect(chips).toEqual([
+      'Why Notion?',
+      'Walk me through the Flink pipeline',
+      "What's not on the résumé?",
+    ]);
+  });
+
+  it('falls back to DEFAULT_SUGGESTIONS when suggestions prop is not an array of exactly 3', () => {
+    vi.stubEnv('VITE_CHAT_PROXY_URL', 'https://proxy.example');
+    render(
+      <ChatPanel
+        slug="notion"
+        ownerName="Alex Chen"
+        suggestions={['only one']}
+      />,
+    );
+    const chips = screen.getAllByTestId('chat-suggestion').map((el) => el.textContent);
+    expect(chips).toEqual([
+      'Walk me through the résumé',
+      'Why is this a fit?',
+      "What's not on the résumé?",
+    ]);
+  });
+
+  it('falls back to the hardcoded greeting when greeting prop is empty', () => {
+    vi.stubEnv('VITE_CHAT_PROXY_URL', 'https://proxy.example');
+    render(<ChatPanel slug="notion" ownerName="Alex Chen" greeting="" />);
+    const greeting = screen.getByTestId('chat-greeting');
+    expect(greeting).toHaveTextContent(
+      /Hey, I'm an agent that knows Alex Chen\. Ask me anything\./,
+    );
+  });
+
   it('clicking a chip prefills the input but does not auto-submit', async () => {
     vi.stubEnv('VITE_CHAT_PROXY_URL', 'https://proxy.example');
     const fetchMock = vi.fn();

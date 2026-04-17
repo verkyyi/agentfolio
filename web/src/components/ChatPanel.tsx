@@ -11,6 +11,8 @@ export interface ChatPanelProps {
   tagline?: string;
   email?: string;
   profiles?: { network: string; url: string }[];
+  greeting?: string;
+  suggestions?: string[];
 }
 
 const DEFAULT_SUGGESTIONS = [
@@ -44,7 +46,7 @@ async function* parseSse(body: ReadableStream<Uint8Array>): AsyncGenerator<strin
   }
 }
 
-export function ChatPanel({ slug, ownerName, tagline, email, profiles }: ChatPanelProps) {
+export function ChatPanel({ slug, ownerName, tagline, email, profiles, greeting, suggestions }: ChatPanelProps) {
   const proxyUrl = import.meta.env.VITE_CHAT_PROXY_URL as string | undefined;
 
   // Hooks must be called unconditionally; the offline early-return below
@@ -141,6 +143,11 @@ export function ChatPanel({ slug, ownerName, tagline, email, profiles }: ChatPan
     }
   }
 
+  const fallbackGreeting = `Hey, I'm an agent that knows ${ownerName}.${tagline ? ` ${tagline}` : ''} Ask me anything.`;
+  const displayGreeting = greeting && greeting.trim() ? greeting.trim() : fallbackGreeting;
+  const displaySuggestions =
+    Array.isArray(suggestions) && suggestions.length === 3 ? suggestions : DEFAULT_SUGGESTIONS;
+
   return (
     <section className="chatp" aria-label="Chat">
       <div className="chatp-header">
@@ -156,7 +163,7 @@ export function ChatPanel({ slug, ownerName, tagline, email, profiles }: ChatPan
 
       <div className="chatp-messages">
         <div className="chatp-msg assistant chatp-greeting" data-testid="chat-greeting">
-          <span className="chatp-prompt">&gt;</span> Hey, I'm an agent that knows {ownerName}.{tagline ? ` ${tagline}` : ''} Ask me anything.
+          <span className="chatp-prompt">&gt;</span> {displayGreeting}
         </div>
         {messages.map((m, i) => (
           <div key={i} className={`chatp-msg ${m.role}`}>
@@ -169,7 +176,7 @@ export function ChatPanel({ slug, ownerName, tagline, email, profiles }: ChatPan
 
       {messages.length === 0 && (
         <div className="chatp-suggestions" role="group" aria-label="Suggested questions">
-          {DEFAULT_SUGGESTIONS.map((s) => (
+          {displaySuggestions.map((s) => (
             <button
               key={s}
               type="button"

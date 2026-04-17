@@ -85,6 +85,8 @@ export interface AgentfolioMeta {
   match_score?: MatchScore;
   skill_emphasis?: string[];
   section_order?: SectionName[];
+  greeting?: string;
+  suggestions?: string[];
 }
 
 export interface Meta {
