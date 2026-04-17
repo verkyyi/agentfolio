@@ -57,6 +57,9 @@ function ResumePage() {
   const activeSlug = slug ?? 'default';
   const basics = (adapted.basics ?? {}) as IdentityBasics;
   const tagline = basics.summary ? firstSentence(basics.summary) : undefined;
+  const agentMeta = adapted.meta?.agentfolio;
+  const greeting = agentMeta?.greeting;
+  const suggestions = agentMeta?.suggestions;
 
   return (
     <>
@@ -69,6 +72,8 @@ function ResumePage() {
           tagline={tagline}
           email={basics.email}
           profiles={basics.profiles}
+          greeting={greeting}
+          suggestions={suggestions}
         />
         <ActivityStrip data={activity} />
         <ResumeTheme resume={adapted as unknown as Record<string, unknown>} />
