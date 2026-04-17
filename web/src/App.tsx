@@ -3,7 +3,9 @@ import { useAdaptation } from './hooks/useAdaptation';
 import { ResumeTheme } from './components/ResumeTheme';
 import { DownloadPdf } from './components/DownloadPdf';
 import { Dashboard } from './components/Dashboard';
-import { ChatWidget } from './components/ChatWidget';
+import { IdentityCard, type IdentityBasics } from './components/IdentityCard';
+import { ChatPanel } from './components/ChatPanel';
+import { ActivityStrip } from './components/ActivityStrip';
 import { Footer } from './components/Footer';
 import { GithubActivity, type ActivityData } from './components/GithubActivity';
 import { parseFitSummary } from './utils/parseFitSummary';
@@ -18,9 +20,7 @@ function isDashboard(): boolean {
 }
 
 export default function App() {
-  if (isDashboard()) {
-    return <Dashboard />;
-  }
+  if (isDashboard()) return <Dashboard />;
   return <ResumePage />;
 }
 
@@ -71,14 +71,25 @@ function ResumePage() {
   if (!adapted) return <main>Loading…</main>;
 
   const activeSlug = slug ?? 'default';
+  const basics = (adapted.basics ?? {}) as IdentityBasics;
 
   return (
     <>
       <DownloadPdf slug={slug} />
+      <IdentityCard basics={basics} slug={activeSlug} />
+      {target !== null && (
+        <ChatPanel
+          key={activeSlug}
+          slug={activeSlug}
+          target={target}
+          email={basics.email}
+          profiles={basics.profiles}
+        />
+      )}
+      <ActivityStrip data={activity} />
       <ResumeTheme resume={adapted as unknown as Record<string, unknown>} />
       <GithubActivity data={activity} />
       <Footer />
-      {target && <ChatWidget key={activeSlug} slug={activeSlug} target={target} />}
     </>
   );
 }

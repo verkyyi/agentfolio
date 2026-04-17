@@ -65,7 +65,10 @@ describe('App — default path', () => {
   it('renders default resume at root', async () => {
     window.history.pushState({}, '', '/');
     render(<App />);
-    await waitFor(() => expect(screen.getByText('Default summary')).toBeInTheDocument());
+    await waitFor(() => {
+      const matches = screen.getAllByText(/Default summary/);
+      expect(matches.length).toBeGreaterThan(0);
+    });
   });
 });
 
@@ -73,7 +76,10 @@ describe('App — slug path', () => {
   it('renders adaptation for known slug', async () => {
     window.history.pushState({}, '', '/notion');
     render(<App />);
-    await waitFor(() => expect(screen.getByText('Notion summary')).toBeInTheDocument());
+    await waitFor(() => {
+      const matches = screen.getAllByText(/Notion summary/);
+      expect(matches.length).toBeGreaterThan(0);
+    });
   });
 
   it('shows not found for unknown slug', async () => {
@@ -128,5 +134,44 @@ describe('App — GithubActivity', () => {
     render(<App />);
     await screen.findByText(/@verkyyi/);
     expect(screen.getByText(/3 public repos/)).toBeInTheDocument();
+  });
+});
+
+describe('App — new stack composition', () => {
+  it('renders IdentityCard, ActivityStrip, ResumeTheme, and GithubActivity in order for slug "default"', async () => {
+    const activity = {
+      user: 'verkyyi',
+      fetchedAt: '2026-04-17T00:00:00.000Z',
+      stats: { publicRepos: 3, contributions30d: 42, contributionsLastYear: 100 },
+      contributions: { weeks: [Array.from({ length: 7 }, (_, i) => ({ date: `2026-04-0${i+1}`, count: i }))] },
+      languages: [{ name: 'TypeScript', color: '#3178c6', pct: 100 }],
+      repos: [],
+    };
+
+    vi.stubGlobal('fetch', vi.fn(async (url: string, init?: RequestInit) => {
+      if (init?.method === 'HEAD') return { ok: false, status: 404 };
+      if (url.includes('activity.json')) return { ok: true, json: async () => activity };
+      if (url.includes('data/fitted/index.json')) return { ok: true, json: async () => [{ slug: 'default', filename: 'default.md' }] };
+      if (url.includes('data/fitted/default.md')) return { ok: true, text: async () => '# Alex Chen\n\nDefault summary' };
+      if (url.includes('data/adapted/default.json')) return { ok: true, json: async () => defaultAdapted };
+      return { ok: false, status: 404 };
+    }));
+
+    window.history.pushState({}, '', '/');
+    render(<App />);
+
+    // Wait for everything to mount
+    await screen.findAllByText('Alex Chen'); // identity card name (may appear in multiple elements)
+    await screen.findAllByText(/42/);        // activity strip count (may appear in multiple elements)
+
+    const idcard = document.querySelector('.idcard')!;
+    const strip = document.querySelector('.strip')!;
+    const activityEl = document.getElementById('activity')!;
+    expect(idcard).not.toBeNull();
+    expect(strip).not.toBeNull();
+    expect(activityEl).not.toBeNull();
+    // Compare DOCUMENT_POSITION bitmasks to assert document order
+    expect(idcard.compareDocumentPosition(strip) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+    expect(strip.compareDocumentPosition(activityEl) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
   });
 });
