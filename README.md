@@ -52,6 +52,27 @@ Set these in `web/.env.local` for development, or as GitHub Actions secrets/env 
 | `VITE_GITHUB_REPO` | `your-username/your-repo`. Auto-set in deploy workflow via `${{ github.repository }}`. |
 | `VITE_BASE_PATH` | URL base path. Auto-detected: `/` for user pages, `/<repo-name>/` for project pages. |
 | `CLAUDE_CODE_OAUTH_TOKEN` | OAuth token for Claude Code in the adapt workflow. Uses your Claude Pro/Team subscription instead of usage-based API billing. |
+| `VITE_CHAT_PROXY_URL` | URL of the deployed chat Worker. If unset, the chat widget doesn't mount. |
+
+## Enable chat (optional)
+
+Adds a floating "Chat with me" widget on every public slug, backed by
+Claude. Visitors ask questions about you and get first-person streaming
+answers grounded in that slug's fitted resume, directives, and JD.
+
+Skipping these steps leaves your site identical to the baseline.
+
+1. `cd proxy && npm install && npm i -g wrangler && wrangler login`
+2. Create a KV namespace: `wrangler kv namespace create RATE_LIMIT`.
+   Paste the returned `id` into `proxy/wrangler.toml`.
+3. Set `NAME` under `[vars]` in `proxy/wrangler.toml` to your display name.
+4. Set secrets: `wrangler secret put ANTHROPIC_API_KEY`,
+   `ALLOWED_ORIGIN`, `PAGES_ORIGIN`, `IP_HASH_SALT`.
+5. `wrangler deploy`. Copy the `*.workers.dev` URL.
+6. Set `VITE_CHAT_PROXY_URL` on your Pages env (repo Settings →
+   Secrets and variables → Actions → Variables) and redeploy.
+
+See [`proxy/README.md`](proxy/README.md) for full configuration reference.
 
 ## Pipeline
 
