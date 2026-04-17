@@ -4,7 +4,6 @@ import { ResumeTheme } from './components/ResumeTheme';
 import { Dashboard } from './components/Dashboard';
 import { IdentityCard, type IdentityBasics } from './components/IdentityCard';
 import { ChatPanel } from './components/ChatPanel';
-import { ActivityStrip } from './components/ActivityStrip';
 import { Footer } from './components/Footer';
 import { GithubActivity, type ActivityData } from './components/GithubActivity';
 import { firstSentence } from './utils/firstSentence';
@@ -75,7 +74,6 @@ function ResumePage() {
           greeting={greeting}
           suggestions={suggestions}
         />
-        <ActivityStrip data={activity} />
         <ResumeTheme resume={adapted as unknown as Record<string, unknown>} />
         <GithubActivity data={activity} />
       </main>

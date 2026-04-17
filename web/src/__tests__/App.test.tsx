@@ -132,13 +132,15 @@ describe('App — GithubActivity', () => {
     }));
 
     render(<App />);
-    await screen.findByText(/@verkyyi/);
-    expect(screen.getByText(/3 public repos/)).toBeInTheDocument();
+    await screen.findByText(/Updated 2026-04-17/);
+    const activityEl = document.getElementById('activity');
+    expect(activityEl).not.toBeNull();
+    expect(activityEl!.querySelector('.strip')).not.toBeNull();
   });
 });
 
 describe('App — new stack composition', () => {
-  it('renders IdentityCard, ActivityStrip, ResumeTheme, and GithubActivity in order for slug "default"', async () => {
+  it('renders IdentityCard, ResumeTheme, and GithubActivity (with embedded strip) in order for slug "default"', async () => {
     const activity = {
       user: 'verkyyi',
       fetchedAt: '2026-04-17T00:00:00.000Z',
@@ -160,18 +162,20 @@ describe('App — new stack composition', () => {
     window.history.pushState({}, '', '/');
     render(<App />);
 
-    // Wait for everything to mount
-    await screen.findAllByText('Alex Chen'); // identity card name (may appear in multiple elements)
-    await screen.findAllByText(/42/);        // activity strip count (may appear in multiple elements)
+    await screen.findAllByText('Alex Chen');
+    await screen.findAllByText(/42/);
 
     const idcard = document.querySelector('.idcard')!;
-    const strip = document.querySelector('.strip')!;
     const activityEl = document.getElementById('activity')!;
+    const strip = document.querySelector('.strip')!;
     expect(idcard).not.toBeNull();
-    expect(strip).not.toBeNull();
     expect(activityEl).not.toBeNull();
-    // Compare DOCUMENT_POSITION bitmasks to assert document order
-    expect(idcard.compareDocumentPosition(strip) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
-    expect(strip.compareDocumentPosition(activityEl) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+    expect(strip).not.toBeNull();
+
+    expect(activityEl.contains(strip)).toBe(true);
+
+    expect(idcard.compareDocumentPosition(activityEl) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+
+    expect(document.querySelectorAll('.strip').length).toBe(1);
   });
 });
