@@ -39,6 +39,7 @@ jobs:
           VITE_GITHUB_PAT: ${{ secrets.GH_ISSUES_PAT }}
           VITE_GITHUB_REPO: ${{ github.repository }}
           VITE_BASE_PATH: ${{ endsWith(github.event.repository.name, '.github.io') && '/' || format('/{0}/', github.event.repository.name) }}
+          VITE_CHAT_PROXY_URL: ${{ vars.VITE_CHAT_PROXY_URL }}
         run: npm run build
 
       - uses: actions/configure-pages@v5
