@@ -72,7 +72,9 @@ Each output file must be valid JSON matching this schema exactly:
     "agentfolio": {
       "company": "<from slug: 'default' for default.md, company name for JD-specific>",
       "role": "<from fitted markdown title/context, or null for default>",
-      "generated_by": "claude-code/structurize-skill"
+      "generated_by": "claude-code/structurize-skill",
+      "greeting": "<greeting line from fit-summary, or omit if absent>",
+      "suggestions": ["<3 items from fit-summary suggestions, or omit if absent>"]
     }
   }
 }
@@ -89,6 +91,8 @@ Each output file must be valid JSON matching this schema exactly:
 - Generate slugified `id` fields by lowercasing and replacing spaces/special chars with hyphens
 - For the `meta.agentfolio.company` field: use "default" for `default.md`, otherwise infer the company name from the fitted markdown content
 - For the `meta.agentfolio.role` field: extract from the fitted markdown title/context, or null for default
+- For `meta.agentfolio.greeting`: copy the `greeting:` value from the fit-summary block verbatim. Omit the field if the fit-summary has no `greeting:` line.
+- For `meta.agentfolio.suggestions`: copy the `suggestions:` list from the fit-summary block verbatim. Omit the field if the fit-summary has no `suggestions:` list, or if the list has a number of items other than 3.
 
 ## Output
 
