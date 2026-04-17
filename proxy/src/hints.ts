@@ -76,7 +76,7 @@ function extractText(body: unknown): string {
 
 function extractJsonArray(text: string): string | null {
   const fence = text.match(FENCE_RE);
-  const candidate = fence ? fence[1] : text;
+  const candidate = (fence && fence[1]) || text;
   const start = candidate.indexOf('[');
   const end = candidate.lastIndexOf(']');
   if (start < 0 || end <= start) return null;

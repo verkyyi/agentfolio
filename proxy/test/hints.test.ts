@@ -58,7 +58,7 @@ describe('parseHintsResponse', () => {
 
 describe('callHints', () => {
   it('POSTs to /messages with stream:false and system cached block', async () => {
-    const fetchMock = vi.fn(async () => new Response(
+    const fetchMock = vi.fn(async (_url: string, _init: RequestInit) => new Response(
       JSON.stringify({ content: [{ type: 'text', text: '["q1","q2","q3"]' }] }),
       { status: 200 },
     ));
@@ -69,8 +69,9 @@ describe('callHints', () => {
       recentMessages: [],
     });
     expect(hints).toEqual(['q1', 'q2', 'q3']);
-    const [, init] = fetchMock.mock.calls[0];
-    const body = JSON.parse((init as RequestInit).body as string);
+    const firstCall = fetchMock.mock.calls[0];
+    if (!firstCall) throw new Error('fetch not called');
+    const body = JSON.parse(firstCall[1].body as string);
     expect(body.stream).toBe(false);
     expect(body.system[0].cache_control).toEqual({ type: 'ephemeral' });
   });
@@ -83,7 +84,7 @@ describe('callHints', () => {
     expect(hints).toEqual([]);
   });
   it('forwards recentMessages as Anthropic user/assistant turns', async () => {
-    const fetchMock = vi.fn(async () => new Response(
+    const fetchMock = vi.fn(async (_url: string, _init: RequestInit) => new Response(
       JSON.stringify({ content: [{ type: 'text', text: '[]' }] }),
       { status: 200 },
     ));
@@ -93,8 +94,9 @@ describe('callHints', () => {
       fitted: 'r', directives: null, jd: null,
       recentMessages: [{ role: 'user', content: 'hi' }, { role: 'assistant', content: 'hello' }],
     });
-    const [, init] = fetchMock.mock.calls[0];
-    const body = JSON.parse((init as RequestInit).body as string);
+    const firstCall = fetchMock.mock.calls[0];
+    if (!firstCall) throw new Error('fetch not called');
+    const body = JSON.parse(firstCall[1].body as string);
     expect(body.messages).toEqual([
       { role: 'user', content: 'hi' },
       { role: 'assistant', content: 'hello' },
