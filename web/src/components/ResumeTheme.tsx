@@ -125,7 +125,7 @@ const Header = styled.header`
   border-bottom: 3px solid var(--accent-blue);
 `;
 
-const Name = styled.h1`
+const Name = styled.h2`
   font-size: 48px;
   font-weight: 700;
   font-family: 'JetBrains Mono', 'Courier New', monospace;
