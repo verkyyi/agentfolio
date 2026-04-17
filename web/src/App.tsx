@@ -1,9 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useAdaptation } from './hooks/useAdaptation';
 import { ResumeTheme } from './components/ResumeTheme';
 import { Dashboard } from './components/Dashboard';
 import { IdentityCard, type IdentityBasics } from './components/IdentityCard';
-import { ChatPanel } from './components/ChatPanel';
+import { ChatPanel, type ChatPanelHandle, type ChatPanelState } from './components/ChatPanel';
+import { ChatStrip } from './components/ChatStrip';
 import { Footer } from './components/Footer';
 import { GithubActivity, type ActivityData } from './components/GithubActivity';
 import { firstSentence } from './utils/firstSentence';
@@ -25,6 +26,14 @@ export default function App() {
 function ResumePage() {
   const { adapted, error, slug } = useAdaptation();
   const [activity, setActivity] = useState<ActivityData | null>(null);
+  const chatRef = useRef<ChatPanelHandle>(null);
+  const sentinelRef = useRef<HTMLDivElement>(null);
+  const [chatState, setChatState] = useState<ChatPanelState>({
+    isStreaming: false,
+    liveTail: '',
+    recentMessages: [],
+  });
+  const proxyUrl = import.meta.env.VITE_CHAT_PROXY_URL as string | undefined;
 
   useEffect(() => {
     if (adapted?.basics?.name) {
@@ -65,6 +74,7 @@ function ResumePage() {
       <main>
         <IdentityCard basics={basics} />
         <ChatPanel
+          ref={chatRef}
           key={activeSlug}
           slug={activeSlug}
           ownerName={basics.name}
@@ -73,7 +83,21 @@ function ResumePage() {
           profiles={basics.profiles}
           greeting={greeting}
           suggestions={suggestions}
+          sentinelRef={sentinelRef}
+          onStateChange={setChatState}
         />
+        {proxyUrl && (
+          <ChatStrip
+            slug={activeSlug}
+            ownerName={basics.name}
+            proxyUrl={proxyUrl}
+            isStreaming={chatState.isStreaming}
+            liveTail={chatState.liveTail}
+            recentMessages={chatState.recentMessages}
+            sentinelRef={sentinelRef}
+            onJump={() => chatRef.current?.jumpTo()}
+          />
+        )}
         <ResumeTheme resume={adapted as unknown as Record<string, unknown>} />
         <GithubActivity data={activity} />
       </main>

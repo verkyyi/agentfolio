@@ -57,9 +57,10 @@ async function bump(
 export async function checkRateLimit(
   kv: KVNamespace,
   ipHash: string,
+  prefix = '',
 ): Promise<LimitDecision> {
-  const shortKey = `rl:short:${ipHash}`;
-  const dayKey = `rl:day:${ipHash}`;
+  const shortKey = `rl:${prefix}short:${ipHash}`;
+  const dayKey = `rl:${prefix}day:${ipHash}`;
   const short = await bump(kv, shortKey, SHORT_WINDOW_MS, SHORT_WINDOW_MAX);
   if (!short.allowed) {
     return { allowed: false, retryAfter: Math.ceil(short.remainingMs / 1000) };
