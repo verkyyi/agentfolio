@@ -108,3 +108,21 @@ describe('ChatWidget — persistence + reset', () => {
     expect(sessionStorage.getItem('agentfolio.chat.notion')).toBeNull();
   });
 });
+
+describe('ChatWidget — error handling', () => {
+  it('removes the trailing empty assistant bubble on fetch error', async () => {
+    vi.stubEnv('VITE_CHAT_PROXY_URL', 'https://proxy.example');
+    vi.stubGlobal('fetch', vi.fn(async () => new Response('no', { status: 500 })));
+    const user = userEvent.setup();
+    render(<ChatWidget slug="notion" target="Notion" />);
+    await user.click(screen.getByRole('button', { name: /chat/i }));
+    await user.type(screen.getByRole('textbox'), 'hi');
+    await user.click(screen.getByRole('button', { name: /send/i }));
+    await screen.findByText(/something went wrong/i);
+    // User message remains; empty assistant placeholder is gone.
+    expect(screen.getByText('hi')).toBeInTheDocument();
+    const bubbles = document.querySelectorAll('.chat-msg.assistant');
+    // Greeting is the only assistant bubble (no empty placeholder).
+    expect(bubbles.length).toBe(1);
+  });
+});

@@ -97,6 +97,13 @@ export function ChatWidget({ slug, target }: ChatWidgetProps) {
       setStatus('idle');
     } catch (err) {
       if ((err as Error).name === 'AbortError') return;
+      setMessages((cur) => {
+        const last = cur[cur.length - 1];
+        if (last && last.role === 'assistant' && last.content === '') {
+          return cur.slice(0, -1);
+        }
+        return cur;
+      });
       setStatus('error');
     }
   }
@@ -135,6 +142,7 @@ export function ChatWidget({ slug, target }: ChatWidgetProps) {
               value={draft}
               onChange={(e) => setDraft(e.target.value)}
               disabled={status === 'streaming'}
+              maxLength={2000}
             />
             <button type="submit" disabled={status === 'streaming' || !draft.trim()}>Send</button>
           </form>
