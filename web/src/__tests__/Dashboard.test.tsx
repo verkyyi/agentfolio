@@ -5,11 +5,11 @@ import { Dashboard } from '../components/Dashboard';
 
 const indexJson = [
   { slug: 'default', filename: 'default.md' },
-  { slug: 'notion', filename: 'notion.md' },
+  { slug: 'anthropic-fde-nyc', filename: 'anthropic-fde-nyc.md' },
 ];
 
-const defaultMd = '# Alex Chen\n\nSenior Software Engineer';
-const notionMd = '# Alex Chen\n\nSenior Data Infrastructure Engineer';
+const defaultMd = '# Lianghui Yi\n\nSenior Software Engineer';
+const anthropicMd = '# Lianghui Yi\n\nSenior Data Infrastructure Engineer';
 
 beforeEach(() => {
   vi.stubGlobal('fetch', vi.fn(async (url: string) => {
@@ -19,8 +19,8 @@ beforeEach(() => {
     if (url.includes('data/fitted/default.md')) {
       return { ok: true, text: async () => defaultMd };
     }
-    if (url.includes('data/fitted/notion.md')) {
-      return { ok: true, text: async () => notionMd };
+    if (url.includes('data/fitted/anthropic-fde-nyc.md')) {
+      return { ok: true, text: async () => anthropicMd };
     }
     return { ok: false, status: 404 };
   }));
@@ -34,22 +34,22 @@ describe('Dashboard', () => {
   it('loads manifest and renders sidebar with first item selected', async () => {
     render(<Dashboard />);
     await waitFor(() => expect(screen.getByText('default')).toBeInTheDocument());
-    expect(screen.getByText('notion')).toBeInTheDocument();
+    expect(screen.getByText('anthropic-fde-nyc')).toBeInTheDocument();
     // First item preview loads
     await waitFor(() => expect(screen.getByText('Senior Software Engineer')).toBeInTheDocument());
   });
 
   it('switches to another resume when sidebar item is clicked', async () => {
     render(<Dashboard />);
-    await waitFor(() => expect(screen.getByText('notion')).toBeInTheDocument());
-    await userEvent.click(screen.getByText('notion'));
+    await waitFor(() => expect(screen.getByText('anthropic-fde-nyc')).toBeInTheDocument());
+    await userEvent.click(screen.getByText('anthropic-fde-nyc'));
     await waitFor(() => expect(screen.getByText('Senior Data Infrastructure Engineer')).toBeInTheDocument());
   });
 
   it('switches between Preview and Diff tabs', async () => {
     render(<Dashboard />);
-    await waitFor(() => expect(screen.getByText('notion')).toBeInTheDocument());
-    await userEvent.click(screen.getByText('notion'));
+    await waitFor(() => expect(screen.getByText('anthropic-fde-nyc')).toBeInTheDocument());
+    await userEvent.click(screen.getByText('anthropic-fde-nyc'));
     await waitFor(() => expect(screen.getByText('Senior Data Infrastructure Engineer')).toBeInTheDocument());
 
     await userEvent.click(screen.getByRole('button', { name: 'Diff' }));

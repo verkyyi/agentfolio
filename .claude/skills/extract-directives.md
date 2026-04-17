@@ -10,7 +10,7 @@ Extract human editing intentions from changes to fitted resume markdown and appe
 ## Usage
 
 - `/extract-directives` — extract from all fitted files with human changes
-- `/extract-directives notion` — extract from `data/fitted/notion.md` only
+- `/extract-directives anthropic-fde-nyc` — extract from `data/fitted/anthropic-fde-nyc.md` only
 
 ## How It Works
 

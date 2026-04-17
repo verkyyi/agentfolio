@@ -8,7 +8,7 @@ test.describe('sticky chat strip', () => {
         contentType: 'application/json',
         body: JSON.stringify({
           hints: [
-            'Why Notion?',
+            'Why Anthropic?',
             'Walk me through the Flink pipeline',
             "What's not on the résumé?",
           ],

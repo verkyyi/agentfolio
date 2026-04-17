@@ -30,13 +30,13 @@ function mockAdapted(overrides: Record<string, any> = {}): AdaptedResume {
 }
 
 const sampleAdapted = mockAdapted({
-  meta: { version: '1.0.0', agentfolio: { company: 'notion' } },
+  meta: { version: '1.0.0', agentfolio: { company: 'anthropic-fde-nyc' } },
 });
 const defaultAdapted = mockAdapted();
 
 beforeEach(() => {
   vi.stubGlobal('fetch', vi.fn((url: string) => {
-    if (url.includes('/data/adapted/notion.json')) {
+    if (url.includes('/data/adapted/anthropic-fde-nyc.json')) {
       return Promise.resolve({ ok: true, json: async () => sampleAdapted });
     }
     if (url.includes('/data/adapted/default.json')) {
@@ -59,10 +59,10 @@ describe('useAdaptation', () => {
   });
 
   it('fetches adapted JSON for slug in path', async () => {
-    window.history.pushState({}, '', '/notion');
+    window.history.pushState({}, '', '/anthropic-fde-nyc');
     const { result } = renderHook(() => useAdaptation());
     await waitFor(() => expect(result.current.adapted).not.toBeNull());
-    expect(result.current.adapted?.meta?.agentfolio?.company).toBe('notion');
+    expect(result.current.adapted?.meta?.agentfolio?.company).toBe('anthropic-fde-nyc');
   });
 
   it('returns error for unknown slug', async () => {

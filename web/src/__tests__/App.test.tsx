@@ -27,12 +27,12 @@ function mockAdapted(overrides: Record<string, any> = {}): AdaptedResume {
 }
 
 const defaultAdapted = mockAdapted({
-  basics: { name: 'Alex Chen', email: 'alex@example.com', summary: 'Default summary', location: { city: 'San Francisco', region: 'CA' }, profiles: [] },
+  basics: { name: 'Lianghui Yi', email: 'verky.yi@gmail.com', summary: 'Default summary', location: { city: 'Santa Clara', region: 'CA' }, profiles: [] },
 });
 
 const sampleAdapted = mockAdapted({
-  basics: { ...defaultAdapted.basics, summary: 'Notion summary' },
-  meta: { version: '1.0.0', agentfolio: { company: 'notion', generated_by: 'test' } },
+  basics: { ...defaultAdapted.basics, summary: 'Anthropic summary' },
+  meta: { version: '1.0.0', agentfolio: { company: 'anthropic-fde-nyc', generated_by: 'test' } },
 });
 
 beforeEach(() => {
@@ -45,9 +45,9 @@ beforeEach(() => {
       return { ok: true, json: async () => [{ slug: 'default', filename: 'default.md' }] };
     }
     if (url.includes('data/fitted/default.md')) {
-      return { ok: true, text: async () => '# Alex Chen\n\nDefault summary' };
+      return { ok: true, text: async () => '# Lianghui Yi\n\nDefault summary' };
     }
-    if (url.includes('data/adapted/notion.json')) {
+    if (url.includes('data/adapted/anthropic-fde-nyc.json')) {
       return { ok: true, json: async () => sampleAdapted };
     }
     if (url.includes('data/adapted/default.json')) {
@@ -74,10 +74,10 @@ describe('App — default path', () => {
 
 describe('App — slug path', () => {
   it('renders adaptation for known slug', async () => {
-    window.history.pushState({}, '', '/notion');
+    window.history.pushState({}, '', '/anthropic-fde-nyc');
     render(<App />);
     await waitFor(() => {
-      const matches = screen.getAllByText(/Notion summary/);
+      const matches = screen.getAllByText(/Anthropic summary/);
       expect(matches.length).toBeGreaterThan(0);
     });
   });
@@ -123,7 +123,7 @@ describe('App — GithubActivity', () => {
         return { ok: true, json: async () => [{ slug: 'default', filename: 'default.md' }] };
       }
       if (url.includes('data/fitted/default.md')) {
-        return { ok: true, text: async () => '# Alex Chen\n\nDefault summary' };
+        return { ok: true, text: async () => '# Lianghui Yi\n\nDefault summary' };
       }
       if (url.includes('data/adapted/default.json')) {
         return { ok: true, json: async () => defaultAdapted };
@@ -154,7 +154,7 @@ describe('App — new stack composition', () => {
       if (init?.method === 'HEAD') return { ok: false, status: 404 };
       if (url.includes('activity.json')) return { ok: true, json: async () => activity };
       if (url.includes('data/fitted/index.json')) return { ok: true, json: async () => [{ slug: 'default', filename: 'default.md' }] };
-      if (url.includes('data/fitted/default.md')) return { ok: true, text: async () => '# Alex Chen\n\nDefault summary' };
+      if (url.includes('data/fitted/default.md')) return { ok: true, text: async () => '# Lianghui Yi\n\nDefault summary' };
       if (url.includes('data/adapted/default.json')) return { ok: true, json: async () => defaultAdapted };
       return { ok: false, status: 404 };
     }));
@@ -162,7 +162,7 @@ describe('App — new stack composition', () => {
     window.history.pushState({}, '', '/');
     render(<App />);
 
-    await screen.findAllByText('Alex Chen');
+    await screen.findAllByText('Lianghui Yi');
     await screen.findAllByText(/42/);
 
     const idcard = document.querySelector('.idcard')!;

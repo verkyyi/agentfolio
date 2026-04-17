@@ -3,7 +3,7 @@ import { buildSystemPrompt, extractTarget, stripFitSummary } from '../src/prompt
 
 describe('stripFitSummary', () => {
   it('removes a fit-summary HTML comment', () => {
-    const md = '<!--\nfit-summary:\n  target: Notion · Eng\n-->\n# Body';
+    const md = '<!--\nfit-summary:\n  target: Anthropic · FDE\n-->\n# Body';
     expect(stripFitSummary(md)).toBe('# Body');
   });
 
@@ -14,12 +14,12 @@ describe('stripFitSummary', () => {
 
 describe('extractTarget', () => {
   it('prefers fit-summary target', () => {
-    const fitted = '<!--\nfit-summary:\n  target: Notion · Platform Eng\n  changes:\n    - a\n-->\n# r';
-    expect(extractTarget(fitted, 'notion')).toBe('Notion · Platform Eng');
+    const fitted = '<!--\nfit-summary:\n  target: Anthropic · FDE\n  changes:\n    - a\n-->\n# r';
+    expect(extractTarget(fitted, 'anthropic-fde-nyc')).toBe('Anthropic · FDE');
   });
 
   it('falls back to slug when no fit-summary', () => {
-    expect(extractTarget('# resume', 'notion')).toBe('notion');
+    expect(extractTarget('# resume', 'anthropic-fde-nyc')).toBe('anthropic-fde-nyc');
   });
 });
 
@@ -27,13 +27,13 @@ describe('buildSystemPrompt', () => {
   it('includes name, target, and all three sections', () => {
     const p = buildSystemPrompt({
       name: 'Verky',
-      target: 'Notion · Eng',
+      target: 'Anthropic · FDE',
       fitted: '# Resume body',
       directives: 'Prefer platform engineer.',
       jd: 'Build tools.',
     });
     expect(p).toContain('You are Verky');
-    expect(p).toContain('Notion · Eng');
+    expect(p).toContain('Anthropic · FDE');
     expect(p).toContain('# Resume body');
     expect(p).toContain('Prefer platform engineer.');
     expect(p).toContain('Build tools.');

@@ -9,20 +9,20 @@ afterEach(() => {
 describe('buildHintsPrompt', () => {
   it('includes name, target, and resume body', () => {
     const p = buildHintsPrompt({
-      name: 'Alex',
-      target: 'Notion — Staff Engineer',
-      fitted: '<!--\nfit-summary:\ntarget: Notion\n-->\nExperience at Acme.',
+      name: 'Verky',
+      target: 'Anthropic — Staff Engineer',
+      fitted: '<!--\nfit-summary:\ntarget: Anthropic\n-->\nExperience at Acme.',
       directives: null,
       jd: null,
     });
-    expect(p).toContain('Alex');
-    expect(p).toContain('Notion — Staff Engineer');
+    expect(p).toContain('Verky');
+    expect(p).toContain('Anthropic — Staff Engineer');
     expect(p).toContain('Experience at Acme.');
     expect(p).toContain('JSON array');
   });
   it('includes directives + jd when present', () => {
     const p = buildHintsPrompt({
-      name: 'Alex', target: 't', fitted: 'r',
+      name: 'Verky', target: 't', fitted: 'r',
       directives: 'use markdown', jd: 'Senior role',
     });
     expect(p).toContain('use markdown');
@@ -30,14 +30,14 @@ describe('buildHintsPrompt', () => {
   });
   it('bakes maxChars into the length rule', () => {
     const p = buildHintsPrompt({
-      name: 'Alex', target: 't', fitted: 'r',
+      name: 'Verky', target: 't', fitted: 'r',
       directives: null, jd: null, maxChars: 40,
     });
     expect(p).toContain('≤ 40 characters');
   });
   it('defaults maxChars to 80 when unset', () => {
     const p = buildHintsPrompt({
-      name: 'Alex', target: 't', fitted: 'r',
+      name: 'Verky', target: 't', fitted: 'r',
       directives: null, jd: null,
     });
     expect(p).toContain('≤ 80 characters');
@@ -99,7 +99,7 @@ describe('callHints', () => {
     vi.stubGlobal('fetch', fetchMock);
     const hints = await callHints({
       apiKey: 'sk-x', model: 'claude',
-      name: 'Alex', target: 't', fitted: 'r', directives: null, jd: null,
+      name: 'Verky', target: 't', fitted: 'r', directives: null, jd: null,
       recentMessages: [],
     });
     expect(hints).toEqual(['q1', 'q2', 'q3']);
@@ -112,7 +112,7 @@ describe('callHints', () => {
   it('returns [] on non-200', async () => {
     vi.stubGlobal('fetch', vi.fn(async () => new Response('nope', { status: 500 })));
     const hints = await callHints({
-      apiKey: 'sk-x', model: 'claude', name: 'Alex', target: 't',
+      apiKey: 'sk-x', model: 'claude', name: 'Verky', target: 't',
       fitted: 'r', directives: null, jd: null, recentMessages: [],
     });
     expect(hints).toEqual([]);
@@ -124,7 +124,7 @@ describe('callHints', () => {
     ));
     vi.stubGlobal('fetch', fetchMock);
     await callHints({
-      apiKey: 'sk-x', model: 'claude', name: 'Alex', target: 't',
+      apiKey: 'sk-x', model: 'claude', name: 'Verky', target: 't',
       fitted: 'r', directives: null, jd: null,
       recentMessages: [{ role: 'user', content: 'hi' }, { role: 'assistant', content: 'hello' }],
     });

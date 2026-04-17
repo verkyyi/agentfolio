@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
     inputs:
       slugs:
-        description: 'Space-separated slugs to fit (e.g. "notion stripe"). Leave empty to fit all.'
+        description: 'Space-separated slugs to fit (e.g. "anthropic-fde-nyc stripe"). Leave empty to fit all.'
         required: false
         default: ''
 

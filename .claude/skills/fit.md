@@ -10,8 +10,8 @@ Generate tailored freeform markdown resumes from a source resume, target job des
 ## Usage
 
 - `/fit` — fit all JDs in `data/input/jd/` + generate default
-- `/fit notion` — fit only for `data/input/jd/notion.md` (no default)
-- `/fit notion stripe` — fit for multiple specific JDs
+- `/fit anthropic-fde-nyc` — fit only for `data/input/jd/anthropic-fde-nyc.md` (no default)
+- `/fit anthropic-fde-nyc stripe` — fit for multiple specific JDs
 
 ## Steps
 

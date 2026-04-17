@@ -10,8 +10,8 @@ Convert tailored freeform markdown resumes into valid JSON Resume documents.
 ## Usage
 
 - `/structurize` — convert all files in `data/fitted/`
-- `/structurize notion` — convert only `data/fitted/notion.md`
-- `/structurize notion stripe` — convert multiple specific slugs
+- `/structurize anthropic-fde-nyc` — convert only `data/fitted/anthropic-fde-nyc.md`
+- `/structurize anthropic-fde-nyc stripe` — convert multiple specific slugs
 
 ## Steps
 

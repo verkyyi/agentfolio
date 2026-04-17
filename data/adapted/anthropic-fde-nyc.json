@@ -1,0 +1,219 @@
+{
+  "basics": {
+    "name": "Lianghui Yi",
+    "label": "Forward Deployed Engineer, Applied AI",
+    "email": "verky.yi@gmail.com",
+    "summary": "Forward Deployed AI Engineer with 7+ years shipping production agentic systems \u2014 built MCP-native Claude integrations serving 100+ beta users and scaled a technical product to $1M ARR as co-founder. Deep expertise in LLM Agent Development, Prompt Engineering, and customer-facing technical deployment with Claude and ChatGPT.",
+    "location": {
+      "city": "New York City",
+      "region": "NY",
+      "countryCode": "US"
+    },
+    "profiles": [
+      {
+        "network": "LinkedIn",
+        "url": "https://linkedin.com/in/lianghuiyi",
+        "username": "lianghuiyi"
+      },
+      {
+        "network": "GitHub",
+        "url": "https://github.com/verkyyi",
+        "username": "verkyyi"
+      }
+    ]
+  },
+  "work": [
+    {
+      "id": "24-helpful-llc",
+      "name": "24 Helpful, LLC",
+      "company": "24 Helpful, LLC",
+      "position": "Co-Founder & AI Engineer",
+      "location": "Santa Clara, CA",
+      "startDate": "2024-03",
+      "highlights": [
+        "Shipped aInbox, an MCP-native messaging middleware giving Claude and ChatGPT a dedicated async inbox \u2014 implemented Streamable HTTP transport and OAuth 2.0 authorization, resolving multi-week integration edge cases across Claude and ChatGPT client implementations to achieve stable production auth.",
+        "Deployed advanced AI applications on multi-tenant AWS (EC2, Aurora Serverless, SES, per-user IAM) serving 100+ beta users, including an LLM-driven triage and labeling pipeline.",
+        "Designed a self-evolving agent code loop (generator/evaluator pattern) with GitHub Actions CI/CD, closing AI product iteration cycles in under 24 hours across multiple agentic prototypes.",
+        "Codified deployment playbooks, runbooks, and shared AI-context conventions that standardized rollout of experimental AI applications to enterprise and early-adopter users."
+      ]
+    },
+    {
+      "id": "24haowan-network-technology",
+      "name": "24Haowan Network Technology Co., Ltd.",
+      "company": "24Haowan Network Technology Co., Ltd.",
+      "position": "Co-Founder & Technical Lead",
+      "location": "Shanghai, China",
+      "startDate": "2019-10",
+      "endDate": "2023-08",
+      "highlights": [
+        "Co-founded and scaled 24Haowan to $1,000,000 ARR in 2 years through data-driven product iteration and direct enterprise customer engagement.",
+        "Engaged directly with enterprise customers to scope technical requirements, uncover pain points, and convert 3 strategic accounts within 3 months \u2014 tightening product-market fit through discovery.",
+        "Led a cross-functional engineering team of 10 across PHP/Node.js/Python/Vue stack shipped on Kubernetes and Docker over Aliyun."
+      ]
+    },
+    {
+      "id": "maiduote-network-technology",
+      "name": "Maiduote Network Technology Co., Ltd.",
+      "company": "Maiduote Network Technology Co., Ltd.",
+      "position": "Tech Lead",
+      "location": "Guangzhou, China",
+      "startDate": "2018-06",
+      "endDate": "2019-07",
+      "highlights": [
+        "Launched a production doctor-patient engagement platform that increased engagement by 30% and acquired 50,000+ users in 6 months."
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "id": "ainbox",
+      "name": "aInbox (ainbox.io)",
+      "description": "MCP-Native AI Agent Email Middleware",
+      "url": "https://ainbox.io",
+      "startDate": "2025-12",
+      "highlights": [
+        "Built aInbox, an MCP-native AI agent middleware giving LLMs (Claude, ChatGPT) a dedicated inbox and async messaging layer \u2014 operated entirely via Model Context Protocol tools with no traditional UI.",
+        "Shipped multi-provider integration supporting ChatGPT and Claude chatbot clients with an LLM-driven triage and labeling pipeline, scaled to 100+ beta users."
+      ],
+      "keywords": [
+        "agentic",
+        "mcp",
+        "llm",
+        "infrastructure"
+      ]
+    },
+    {
+      "id": "agentfolio",
+      "name": "AgentFolio",
+      "description": "Open-Source Agentic Portfolio Engine",
+      "url": "https://verkyyi.github.io/agentfolio",
+      "startDate": "2026-04",
+      "highlights": [
+        "Built AgentFolio, an open-source agentic portfolio engine (MIT-licensed, published as a GitHub template) that generates JD-tailored resumes using LLM-powered rewriting and JD-matching pipelines.",
+        "Designed a skill-based fit \u2192 extract \u2192 structurize pipeline orchestrated by GitHub Actions, auto-generating JSON Resume + PDFs on data changes; deployed on pure GitHub infrastructure with zero third-party cost."
+      ],
+      "keywords": [
+        "agentic",
+        "open-source",
+        "ci-cd",
+        "llm"
+      ]
+    },
+    {
+      "id": "tokenman-io",
+      "name": "tokenman.io",
+      "description": "Hosted Claude Code terminal + auto-evolving agentic workflow scaffold",
+      "url": "https://tokenman.io",
+      "startDate": "2026-03",
+      "highlights": [
+        "Built terminal.tokenman.io, a multi-tenant Claude Code CLI hosting SaaS on EC2 with mobile-first SSH, persistent tmux sessions, and cloud-init provisioning for secure, disposable production access."
+      ],
+      "keywords": [
+        "agentic",
+        "infrastructure",
+        "ci-cd",
+        "saas"
+      ]
+    }
+  ],
+  "skills": [
+    {
+      "id": "ai-agentic-systems",
+      "name": "AI & Agentic Systems",
+      "keywords": [
+        "LLM Agent Development",
+        "Prompt Engineering",
+        "MCP (Model Context Protocol)",
+        "Autonomous Agent Development",
+        "RAG Pipelines",
+        "Evaluation Framework Design (Generator/Evaluator)",
+        "LLM Integration"
+      ]
+    },
+    {
+      "id": "full-stack",
+      "name": "Full-Stack",
+      "keywords": [
+        "TypeScript (Node.js, React.js)",
+        "Python",
+        "JavaScript",
+        "SQL",
+        "PHP",
+        "HTML/CSS"
+      ]
+    },
+    {
+      "id": "cloud-infrastructure",
+      "name": "Cloud & Infrastructure",
+      "keywords": [
+        "AWS (EC2, SES, Aurora Serverless, IAM, SCPs)",
+        "Docker",
+        "Kubernetes",
+        "GitHub Actions CI/CD",
+        "JWT/OAuth 2.0",
+        "Multi-Tenant Systems",
+        "Production Systems"
+      ]
+    },
+    {
+      "id": "methods-tools",
+      "name": "Methods & Tools",
+      "keywords": [
+        "Customer Discovery",
+        "Technical Scoping",
+        "Rapid Experimentation",
+        "Scrum/Agile",
+        "Playbooks/Runbooks"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "institution": "Georgetown University",
+      "studyType": "Master",
+      "area": "Data Science and Analytics",
+      "location": "Washington, DC",
+      "startDate": "2023-09",
+      "endDate": "2025-05",
+      "score": "Returning Student Scholarship (Top 3%)"
+    },
+    {
+      "institution": "Lingnan College, Sun Yat-Sen University",
+      "studyType": "Executive MBA",
+      "area": "",
+      "location": "Guangzhou, China"
+    },
+    {
+      "institution": "Beijing University of Posts and Telecommunications",
+      "studyType": "B.E.",
+      "area": "Information Engineering",
+      "location": "Beijing, China"
+    }
+  ],
+  "volunteer": [
+    {
+      "organization": "1124 Space",
+      "position": "Volunteer Lead",
+      "location": "Arlington, VA",
+      "startDate": "2024-04",
+      "endDate": "2025-12",
+      "summary": "Led community initiatives and organized weekly founder-focused events (1,000+ participants in one year)."
+    },
+    {
+      "organization": "Anthropic",
+      "position": "Open Source Contributor",
+      "location": "",
+      "startDate": "2025-12",
+      "summary": "Submitted a bug-fix pull request to Anthropic's public Claude Agent SDK demos repository for an issue discovered while integrating the released SDK."
+    }
+  ],
+  "meta": {
+    "version": "1.0.0",
+    "lastModified": "2026-04-17T00:00:00Z",
+    "agentfolio": {
+      "company": "Anthropic",
+      "role": "Forward Deployed Engineer, Applied AI",
+      "generated_by": "claude-code/structurize-skill"
+    }
+  }
+}

@@ -3,17 +3,17 @@ import { parseFitSummary } from '../utils/parseFitSummary';
 
 const withSummary = `<!--
 fit-summary:
-  target: Notion — Software Engineer, Enterprise Data Platform
+  target: Anthropic — Forward Deployed Engineer, Applied AI
   changes:
     - Changed headline from "Senior Software Engineer" to "Senior Data Infrastructure Engineer"
     - Reordered Skills above Projects
-    - Tailored summary for Notion's enterprise data platform
+    - Tailored summary for Anthropic's FDE role
 -->
-# Alex Chen
+# Lianghui Yi
 Senior Data Infrastructure Engineer
 `;
 
-const withoutSummary = `# Alex Chen
+const withoutSummary = `# Lianghui Yi
 Senior Software Engineer
 `;
 
@@ -21,13 +21,13 @@ describe('parseFitSummary', () => {
   it('parses target and changes from fit-summary comment', () => {
     const { summary, body } = parseFitSummary(withSummary);
     expect(summary).not.toBeNull();
-    expect(summary!.target).toBe('Notion — Software Engineer, Enterprise Data Platform');
+    expect(summary!.target).toBe('Anthropic — Forward Deployed Engineer, Applied AI');
     expect(summary!.changes).toEqual([
       'Changed headline from "Senior Software Engineer" to "Senior Data Infrastructure Engineer"',
       'Reordered Skills above Projects',
-      "Tailored summary for Notion's enterprise data platform",
+      "Tailored summary for Anthropic's FDE role",
     ]);
-    expect(body).toBe('# Alex Chen\nSenior Data Infrastructure Engineer\n');
+    expect(body).toBe('# Lianghui Yi\nSenior Data Infrastructure Engineer\n');
   });
 
   it('returns null summary and full body when no comment present', () => {
@@ -39,31 +39,31 @@ describe('parseFitSummary', () => {
 
 const withGreetingAndSuggestions = `<!--
 fit-summary:
-  target: Notion — Software Engineer, Enterprise Data Platform
+  target: Anthropic — Forward Deployed Engineer, Applied AI
   changes:
     - Changed headline to emphasize data infrastructure
     - Reordered Skills above Projects
-  greeting: Hey — I'm an agent that knows Alex. Ask me about the Flink pipeline at Acme or what drew me to Notion's data platform.
+  greeting: Hey — I'm an agent that knows Verky. Ask me about the Flink pipeline at Acme or what drew me to Anthropic's platform.
   suggestions:
-    - Why Notion?
+    - Why Anthropic?
     - Walk me through the Flink pipeline
     - What's not on the résumé?
 -->
-# Alex Chen
+# Lianghui Yi
 `;
 
 it('parses greeting when present', () => {
   const { summary } = parseFitSummary(withGreetingAndSuggestions);
   expect(summary).not.toBeNull();
   expect(summary!.greeting).toBe(
-    "Hey — I'm an agent that knows Alex. Ask me about the Flink pipeline at Acme or what drew me to Notion's data platform.",
+    "Hey — I'm an agent that knows Verky. Ask me about the Flink pipeline at Acme or what drew me to Anthropic's platform.",
   );
 });
 
 it('parses suggestions as a separate list, not mixed into changes', () => {
   const { summary } = parseFitSummary(withGreetingAndSuggestions);
   expect(summary!.suggestions).toEqual([
-    'Why Notion?',
+    'Why Anthropic?',
     'Walk me through the Flink pipeline',
     "What's not on the résumé?",
   ]);

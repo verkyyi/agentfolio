@@ -25,7 +25,7 @@ function sseResponse(chunks: string[]) {
 describe('ChatPanel — offline state', () => {
   it('renders an offline card when VITE_CHAT_PROXY_URL is empty', () => {
     vi.stubEnv('VITE_CHAT_PROXY_URL', '');
-    render(<ChatPanel slug="default" ownerName="Alex Chen" email="a@b.co" profiles={[{ network: 'LinkedIn', url: 'https://l.co' }]} />);
+    render(<ChatPanel slug="default" ownerName="Lianghui Yi" email="a@b.co" profiles={[{ network: 'LinkedIn', url: 'https://l.co' }]} />);
     expect(screen.getByText(/chat is offline/i)).toBeInTheDocument();
     expect(screen.getByRole('link', { name: /a@b\.co/ })).toHaveAttribute('href', 'mailto:a@b.co');
     expect(screen.getByRole('link', { name: /LinkedIn/ })).toHaveAttribute('href', 'https://l.co');
@@ -33,7 +33,7 @@ describe('ChatPanel — offline state', () => {
 
   it('does not render the "· chat" left label in offline state', () => {
     vi.stubEnv('VITE_CHAT_PROXY_URL', '');
-    render(<ChatPanel slug="default" ownerName="Alex Chen" />);
+    render(<ChatPanel slug="default" ownerName="Lianghui Yi" />);
     // No leading "· chat" span anywhere
     expect(screen.queryByText(/· chat/)).not.toBeInTheDocument();
   });
@@ -42,7 +42,7 @@ describe('ChatPanel — offline state', () => {
 describe('ChatPanel — inline default state', () => {
   it('always shows greeting + suggestion chips without needing a click', () => {
     vi.stubEnv('VITE_CHAT_PROXY_URL', 'https://proxy.example');
-    render(<ChatPanel slug="notion" ownerName="Alex Chen" />);
+    render(<ChatPanel slug="anthropic-fde-nyc" ownerName="Lianghui Yi" />);
     expect(screen.getByTestId('chat-greeting')).toBeInTheDocument();
     const chips = screen.getAllByTestId('chat-suggestion');
     expect(chips).toHaveLength(3);
@@ -50,9 +50,9 @@ describe('ChatPanel — inline default state', () => {
 
   it('greeting names the owner and does not mention target/context', () => {
     vi.stubEnv('VITE_CHAT_PROXY_URL', 'https://proxy.example');
-    render(<ChatPanel slug="notion" ownerName="Alex Chen" />);
+    render(<ChatPanel slug="anthropic-fde-nyc" ownerName="Lianghui Yi" />);
     const greeting = screen.getByTestId('chat-greeting');
-    expect(greeting).toHaveTextContent(/knows Alex Chen/);
+    expect(greeting).toHaveTextContent(/knows Lianghui Yi/);
     expect(greeting).toHaveTextContent(/ask me anything/i);
     expect(greeting).not.toHaveTextContent(/context/i);
   });
@@ -61,30 +61,30 @@ describe('ChatPanel — inline default state', () => {
     vi.stubEnv('VITE_CHAT_PROXY_URL', 'https://proxy.example');
     render(
       <ChatPanel
-        slug="notion"
-        ownerName="Alex Chen"
+        slug="anthropic-fde-nyc"
+        ownerName="Lianghui Yi"
         tagline="Senior engineer with a decade of experience."
       />,
     );
     const greeting = screen.getByTestId('chat-greeting');
     expect(greeting).toHaveTextContent(
-      /Hey, I'm an agent that knows Alex Chen\. Senior engineer with a decade of experience\. Ask me anything\./,
+      /Hey, I'm an agent that knows Lianghui Yi\. Senior engineer with a decade of experience\. Ask me anything\./,
     );
   });
 
   it('greeting falls back gracefully when tagline is absent', () => {
     vi.stubEnv('VITE_CHAT_PROXY_URL', 'https://proxy.example');
-    render(<ChatPanel slug="notion" ownerName="Alex Chen" />);
+    render(<ChatPanel slug="anthropic-fde-nyc" ownerName="Lianghui Yi" />);
     const greeting = screen.getByTestId('chat-greeting');
     expect(greeting).toHaveTextContent(
-      /Hey, I'm an agent that knows Alex Chen\. Ask me anything\./,
+      /Hey, I'm an agent that knows Lianghui Yi\. Ask me anything\./,
     );
     expect(greeting.textContent).not.toMatch(/\.\s{2,}Ask/);
   });
 
   it('header does not render a "· chat" or "context:" left label', () => {
     vi.stubEnv('VITE_CHAT_PROXY_URL', 'https://proxy.example');
-    render(<ChatPanel slug="notion" ownerName="Alex Chen" />);
+    render(<ChatPanel slug="anthropic-fde-nyc" ownerName="Lianghui Yi" />);
     expect(screen.queryByText(/· chat/)).not.toBeInTheDocument();
     expect(screen.queryByText(/context:/i)).not.toBeInTheDocument();
   });
@@ -93,14 +93,14 @@ describe('ChatPanel — inline default state', () => {
     vi.stubEnv('VITE_CHAT_PROXY_URL', 'https://proxy.example');
     render(
       <ChatPanel
-        slug="notion"
-        ownerName="Alex Chen"
-        greeting="Hey — I'm an agent that knows Alex. Ask me about the Flink pipeline."
+        slug="anthropic-fde-nyc"
+        ownerName="Lianghui Yi"
+        greeting="Hey — I'm an agent that knows Verky. Ask me about the Flink pipeline."
       />,
     );
     const greeting = screen.getByTestId('chat-greeting');
     expect(greeting).toHaveTextContent(
-      /Hey — I'm an agent that knows Alex\. Ask me about the Flink pipeline\./,
+      /Hey — I'm an agent that knows Verky\. Ask me about the Flink pipeline\./,
     );
     expect(greeting).not.toHaveTextContent(/Ask me anything/);
   });
@@ -109,14 +109,14 @@ describe('ChatPanel — inline default state', () => {
     vi.stubEnv('VITE_CHAT_PROXY_URL', 'https://proxy.example');
     render(
       <ChatPanel
-        slug="notion"
-        ownerName="Alex Chen"
-        suggestions={['Why Notion?', 'Walk me through the Flink pipeline', "What's not on the résumé?"]}
+        slug="anthropic-fde-nyc"
+        ownerName="Lianghui Yi"
+        suggestions={['Why Anthropic?', 'Walk me through the Flink pipeline', "What's not on the résumé?"]}
       />,
     );
     const chips = screen.getAllByTestId('chat-suggestion').map((el) => el.textContent);
     expect(chips).toEqual([
-      'Why Notion?',
+      'Why Anthropic?',
       'Walk me through the Flink pipeline',
       "What's not on the résumé?",
     ]);
@@ -126,8 +126,8 @@ describe('ChatPanel — inline default state', () => {
     vi.stubEnv('VITE_CHAT_PROXY_URL', 'https://proxy.example');
     render(
       <ChatPanel
-        slug="notion"
-        ownerName="Alex Chen"
+        slug="anthropic-fde-nyc"
+        ownerName="Lianghui Yi"
         suggestions={['only one']}
       />,
     );
@@ -141,10 +141,10 @@ describe('ChatPanel — inline default state', () => {
 
   it('falls back to the hardcoded greeting when greeting prop is empty', () => {
     vi.stubEnv('VITE_CHAT_PROXY_URL', 'https://proxy.example');
-    render(<ChatPanel slug="notion" ownerName="Alex Chen" greeting="" />);
+    render(<ChatPanel slug="anthropic-fde-nyc" ownerName="Lianghui Yi" greeting="" />);
     const greeting = screen.getByTestId('chat-greeting');
     expect(greeting).toHaveTextContent(
-      /Hey, I'm an agent that knows Alex Chen\. Ask me anything\./,
+      /Hey, I'm an agent that knows Lianghui Yi\. Ask me anything\./,
     );
   });
 
@@ -153,7 +153,7 @@ describe('ChatPanel — inline default state', () => {
     const fetchMock = vi.fn();
     vi.stubGlobal('fetch', fetchMock);
     const user = userEvent.setup();
-    render(<ChatPanel slug="notion" ownerName="Alex Chen" />);
+    render(<ChatPanel slug="anthropic-fde-nyc" ownerName="Lianghui Yi" />);
     const chip = screen.getAllByTestId('chat-suggestion')[0];
     await user.click(chip);
     const input = screen.getByRole('textbox') as HTMLInputElement;
@@ -164,16 +164,16 @@ describe('ChatPanel — inline default state', () => {
   it('reset link appears only when messages exist', async () => {
     vi.stubEnv('VITE_CHAT_PROXY_URL', 'https://proxy.example');
     sessionStorage.setItem(
-      'agentfolio.chat.notion',
+      'agentfolio.chat.anthropic-fde-nyc',
       JSON.stringify([{ role: 'assistant', content: 'hi again' }]),
     );
-    render(<ChatPanel slug="notion" ownerName="Alex Chen" />);
+    render(<ChatPanel slug="anthropic-fde-nyc" ownerName="Lianghui Yi" />);
     expect(screen.getByRole('button', { name: /clear conversation/i })).toBeInTheDocument();
   });
 
   it('reset link is hidden when there are no messages', () => {
     vi.stubEnv('VITE_CHAT_PROXY_URL', 'https://proxy.example');
-    render(<ChatPanel slug="notion" ownerName="Alex Chen" />);
+    render(<ChatPanel slug="anthropic-fde-nyc" ownerName="Lianghui Yi" />);
     expect(screen.queryByRole('button', { name: /clear conversation/i })).not.toBeInTheDocument();
   });
 });
@@ -188,8 +188,8 @@ describe('ChatPanel — streaming send', () => {
     ]));
     vi.stubGlobal('fetch', fetchMock);
     const user = userEvent.setup();
-    render(<ChatPanel slug="notion" ownerName="Alex Chen" />);
-    await user.type(screen.getByRole('textbox'), 'tell me about notion');
+    render(<ChatPanel slug="anthropic-fde-nyc" ownerName="Lianghui Yi" />);
+    await user.type(screen.getByRole('textbox'), 'tell me about anthropic-fde-nyc');
     await user.click(screen.getByRole('button', { name: /send/i }));
 
     expect(fetchMock).toHaveBeenCalledWith(
@@ -208,8 +208,8 @@ describe('ChatPanel — streaming send', () => {
     const user = userEvent.setup();
     render(
       <ChatPanel
-        slug="notion"
-        ownerName="Alex Chen"
+        slug="anthropic-fde-nyc"
+        ownerName="Lianghui Yi"
         greeting="Hey — ask about the Flink pipeline."
       />,
     );
@@ -219,7 +219,7 @@ describe('ChatPanel — streaming send', () => {
     const [, init] = fetchMock.mock.calls[0];
     const body = JSON.parse(init.body as string);
     expect(body.greeting).toBe('Hey — ask about the Flink pipeline.');
-    expect(body.slug).toBe('notion');
+    expect(body.slug).toBe('anthropic-fde-nyc');
     expect(Array.isArray(body.messages)).toBe(true);
   });
 
@@ -230,13 +230,13 @@ describe('ChatPanel — streaming send', () => {
     ]));
     vi.stubGlobal('fetch', fetchMock);
     const user = userEvent.setup();
-    render(<ChatPanel slug="notion" ownerName="Alex Chen" />);
+    render(<ChatPanel slug="anthropic-fde-nyc" ownerName="Lianghui Yi" />);
     await user.type(screen.getByRole('textbox'), 'hi');
     await user.click(screen.getByRole('button', { name: /send/i }));
 
     const [, init] = fetchMock.mock.calls[0];
     const body = JSON.parse(init.body as string);
-    expect(body.greeting).toContain('Alex Chen');
+    expect(body.greeting).toContain('Lianghui Yi');
     expect(body.greeting).toContain('Ask me anything');
   });
 });
@@ -245,24 +245,24 @@ describe('ChatPanel — persistence + reset', () => {
   it('loads messages from sessionStorage on mount', async () => {
     vi.stubEnv('VITE_CHAT_PROXY_URL', 'https://proxy.example');
     sessionStorage.setItem(
-      'agentfolio.chat.notion',
+      'agentfolio.chat.anthropic-fde-nyc',
       JSON.stringify([{ role: 'assistant', content: 'Welcome back' }]),
     );
-    render(<ChatPanel slug="notion" ownerName="Alex Chen" />);
+    render(<ChatPanel slug="anthropic-fde-nyc" ownerName="Lianghui Yi" />);
     expect(screen.getByText('Welcome back')).toBeInTheDocument();
   });
 
   it('reset clears messages and sessionStorage', async () => {
     vi.stubEnv('VITE_CHAT_PROXY_URL', 'https://proxy.example');
     sessionStorage.setItem(
-      'agentfolio.chat.notion',
+      'agentfolio.chat.anthropic-fde-nyc',
       JSON.stringify([{ role: 'assistant', content: 'old' }]),
     );
     const user = userEvent.setup();
-    render(<ChatPanel slug="notion" ownerName="Alex Chen" />);
+    render(<ChatPanel slug="anthropic-fde-nyc" ownerName="Lianghui Yi" />);
     await user.click(screen.getByRole('button', { name: /clear conversation/i }));
     expect(screen.queryByText('old')).not.toBeInTheDocument();
-    expect(sessionStorage.getItem('agentfolio.chat.notion')).toBeNull();
+    expect(sessionStorage.getItem('agentfolio.chat.anthropic-fde-nyc')).toBeNull();
   });
 });
 
@@ -271,7 +271,7 @@ describe('ChatPanel — error handling', () => {
     vi.stubEnv('VITE_CHAT_PROXY_URL', 'https://proxy.example');
     vi.stubGlobal('fetch', vi.fn(async () => new Response('no', { status: 500 })));
     const user = userEvent.setup();
-    render(<ChatPanel slug="notion" ownerName="Alex Chen" />);
+    render(<ChatPanel slug="anthropic-fde-nyc" ownerName="Lianghui Yi" />);
     await user.type(screen.getByRole('textbox'), 'hi');
     await user.click(screen.getByRole('button', { name: /send/i }));
     await screen.findByText(/something went wrong/i);
@@ -286,10 +286,10 @@ describe('ChatPanel — UX optimizations', () => {
   it('preserves newlines in rendered messages via a pre-wrap body span', () => {
     vi.stubEnv('VITE_CHAT_PROXY_URL', 'https://proxy.example');
     sessionStorage.setItem(
-      'agentfolio.chat.notion',
+      'agentfolio.chat.anthropic-fde-nyc',
       JSON.stringify([{ role: 'assistant', content: 'line one\nline two\nline three' }]),
     );
-    render(<ChatPanel slug="notion" ownerName="Alex Chen" />);
+    render(<ChatPanel slug="anthropic-fde-nyc" ownerName="Lianghui Yi" />);
     const body = document.querySelector('.chatp-msg.assistant:not(.chatp-greeting) .chatp-msg-body');
     expect(body).not.toBeNull();
     expect(body!.textContent).toBe('line one\nline two\nline three');
@@ -306,7 +306,7 @@ describe('ChatPanel — UX optimizations', () => {
     ]));
     vi.stubGlobal('fetch', fetchMock);
     const user = userEvent.setup();
-    render(<ChatPanel slug="notion" ownerName="Alex Chen" />);
+    render(<ChatPanel slug="anthropic-fde-nyc" ownerName="Lianghui Yi" />);
     await user.type(screen.getByRole('textbox'), 'go');
     await user.click(screen.getByRole('button', { name: /send/i }));
 
@@ -329,7 +329,7 @@ describe('ChatPanel — UX optimizations', () => {
     ]));
     vi.stubGlobal('fetch', fetchMock);
     const user = userEvent.setup();
-    render(<ChatPanel slug="notion" ownerName="Alex Chen" />);
+    render(<ChatPanel slug="anthropic-fde-nyc" ownerName="Lianghui Yi" />);
     await user.type(screen.getByRole('textbox'), 'hi');
     await user.click(screen.getByRole('button', { name: /send/i }));
 

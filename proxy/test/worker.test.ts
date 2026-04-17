@@ -51,7 +51,7 @@ describe('worker: CORS + routing', () => {
   });
 
   it('rejects disallowed origin', async () => {
-    const req = chatRequest({ slug: 'notion', messages: [] }, 'https://evil.example');
+    const req = chatRequest({ slug: 'anthropic-fde-nyc', messages: [] }, 'https://evil.example');
     const res = await worker.fetch(req, baseEnv() as any);
     expect(res.status).toBe(403);
   });
@@ -104,25 +104,25 @@ describe('worker: input validation', () => {
 
   it('400 on too many turns', async () => {
     const messages = Array.from({ length: 21 }, () => ({ role: 'user', content: 'hi' }));
-    const res = await worker.fetch(chatRequest({ slug: 'notion', messages }), baseEnv() as any);
+    const res = await worker.fetch(chatRequest({ slug: 'anthropic-fde-nyc', messages }), baseEnv() as any);
     expect(res.status).toBe(400);
   });
 
   it('400 on oversized content', async () => {
     const messages = [{ role: 'user', content: 'x'.repeat(2001) }];
-    const res = await worker.fetch(chatRequest({ slug: 'notion', messages }), baseEnv() as any);
+    const res = await worker.fetch(chatRequest({ slug: 'anthropic-fde-nyc', messages }), baseEnv() as any);
     expect(res.status).toBe(400);
   });
 
   it('400 on unknown role', async () => {
     const messages = [{ role: 'system', content: 'hi' }];
-    const res = await worker.fetch(chatRequest({ slug: 'notion', messages }), baseEnv() as any);
+    const res = await worker.fetch(chatRequest({ slug: 'anthropic-fde-nyc', messages }), baseEnv() as any);
     expect(res.status).toBe(400);
   });
 
   it('400 on oversized greeting', async () => {
     const body = {
-      slug: 'notion',
+      slug: 'anthropic-fde-nyc',
       messages: [{ role: 'user', content: 'hi' }],
       greeting: 'x'.repeat(501),
     };
@@ -132,7 +132,7 @@ describe('worker: input validation', () => {
 
   it('400 on non-string greeting', async () => {
     const body = {
-      slug: 'notion',
+      slug: 'anthropic-fde-nyc',
       messages: [{ role: 'user', content: 'hi' }],
       greeting: 42,
     };
@@ -161,11 +161,11 @@ describe('worker: context + rate limit', () => {
   beforeEach(() => {
     __resetCacheForTests();
     vi.stubGlobal('fetch', vi.fn(async (u: string) => {
-      if (u.endsWith('/data/fitted/notion.md')) {
-        return new Response('<!-- fit-summary: {"target":"Notion"} -->\n# R', { status: 200 });
+      if (u.endsWith('/data/fitted/anthropic-fde-nyc.md')) {
+        return new Response('<!-- fit-summary: {"target":"Anthropic"} -->\n# R', { status: 200 });
       }
       if (u.endsWith('/data/input/directives.md')) return new Response('D', { status: 200 });
-      if (u.endsWith('/data/input/jd/notion.md')) return new Response('J', { status: 200 });
+      if (u.endsWith('/data/input/jd/anthropic-fde-nyc.md')) return new Response('J', { status: 200 });
       return new Response('missing', { status: 404 });
     }));
   });
@@ -181,7 +181,7 @@ describe('worker: context + rate limit', () => {
 
   it('429 after 21 requests from the same IP', async () => {
     const env = baseEnv() as any;
-    const body = { slug: 'notion', messages: [{ role: 'user', content: 'hi' }] };
+    const body = { slug: 'anthropic-fde-nyc', messages: [{ role: 'user', content: 'hi' }] };
     for (let i = 0; i < 20; i++) await worker.fetch(chatRequest(body), env);
     const res = await worker.fetch(chatRequest(body), env);
     expect(res.status).toBe(429);
@@ -193,7 +193,7 @@ describe('worker: anthropic passthrough', () => {
   beforeEach(() => {
     __resetCacheForTests();
     const pagesFetch = async (u: string) => {
-      if (u.endsWith('/data/fitted/notion.md')) return new Response('# R', { status: 200 });
+      if (u.endsWith('/data/fitted/anthropic-fde-nyc.md')) return new Response('# R', { status: 200 });
       if (u.includes('/data/input/')) return new Response('', { status: 404 });
       return new Response('', { status: 404 });
     };
@@ -225,7 +225,7 @@ describe('worker: anthropic passthrough', () => {
 
   it('streams SSE body back to the client', async () => {
     const res = await worker.fetch(
-      chatRequest({ slug: 'notion', messages: [{ role: 'user', content: 'hey' }] }),
+      chatRequest({ slug: 'anthropic-fde-nyc', messages: [{ role: 'user', content: 'hey' }] }),
       baseEnv() as any,
     );
     expect(res.status).toBe(200);
@@ -253,14 +253,14 @@ describe('worker: greeting forwarding', () => {
         });
         return new Response(stream, { status: 200 });
       }
-      if (u.endsWith('/data/fitted/notion.md')) return new Response('# R', { status: 200 });
+      if (u.endsWith('/data/fitted/anthropic-fde-nyc.md')) return new Response('# R', { status: 200 });
       return new Response('', { status: 404 });
     }));
   });
 
   it('embeds the greeting in the Anthropic system prompt when provided', async () => {
     const body = {
-      slug: 'notion',
+      slug: 'anthropic-fde-nyc',
       messages: [{ role: 'user', content: 'hey' }],
       greeting: 'Hey — ask me anything.',
     };
@@ -270,7 +270,7 @@ describe('worker: greeting forwarding', () => {
   });
 
   it('omits the greeting line when no greeting is provided', async () => {
-    const body = { slug: 'notion', messages: [{ role: 'user', content: 'hey' }] };
+    const body = { slug: 'anthropic-fde-nyc', messages: [{ role: 'user', content: 'hey' }] };
     const res = await worker.fetch(chatRequest(body), baseEnv() as any);
     expect(res.status).toBe(200);
     expect(lastAnthropicBody).not.toContain('Your opening line to the visitor');

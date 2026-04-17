@@ -4,8 +4,8 @@ import { FittedPreview } from '../components/FittedPreview';
 
 beforeEach(() => {
   vi.stubGlobal('fetch', vi.fn(async (url: string) => {
-    if (url.includes('data/fitted/notion.md')) {
-      return { ok: true, text: async () => '# Alex Chen\n\nSenior Data Infrastructure Engineer' };
+    if (url.includes('data/fitted/anthropic-fde-nyc.md')) {
+      return { ok: true, text: async () => '# Lianghui Yi\n\nSenior Data Infrastructure Engineer' };
     }
     return { ok: false, status: 404 };
   }));
@@ -17,8 +17,8 @@ afterEach(() => {
 
 describe('FittedPreview', () => {
   it('renders markdown content for a slug', async () => {
-    render(<FittedPreview slug="notion" />);
-    await waitFor(() => expect(screen.getByText('Alex Chen')).toBeInTheDocument());
+    render(<FittedPreview slug="anthropic-fde-nyc" />);
+    await waitFor(() => expect(screen.getByText('Lianghui Yi')).toBeInTheDocument());
     expect(screen.getByText('Senior Data Infrastructure Engineer')).toBeInTheDocument();
   });
 

@@ -80,17 +80,17 @@ See [`proxy/README.md`](proxy/README.md) for full configuration reference.
 ## Pipeline
 
 ```
-data/input/resume.md + jd/notion.md + directives.md
+data/input/resume.md + jd/anthropic-fde-nyc.md + directives.md
         │
         ▼  /fit
-data/fitted/notion.md          ← tailored markdown (human-editable)
+data/fitted/anthropic-fde-nyc.md          ← tailored markdown (human-editable)
         │
         ▼  /extract-directives  (only if you edited the fitted file)
 data/input/directives.md       ← preferences auto-extracted from your edits
         │
         ▼  /structurize
-data/adapted/notion.json       ← JSON Resume for rendering
-data/adapted/notion.pdf        ← PDF export
+data/adapted/anthropic-fde-nyc.json       ← JSON Resume for rendering
+data/adapted/anthropic-fde-nyc.pdf        ← PDF export
 ```
 
 **`/fit`** reads your resume, a target JD, and your directives. Outputs tailored markdown you can review and edit.

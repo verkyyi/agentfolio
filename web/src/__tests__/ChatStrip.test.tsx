@@ -16,8 +16,8 @@ function Harness(props: Partial<ComponentProps<typeof ChatStrip>> = {}) {
       <div>chat body above</div>
       <div ref={sentinelRef} />
       <ChatStrip
-        slug="notion"
-        ownerName="Alex Chen"
+        slug="anthropic-fde-nyc"
+        ownerName="Lianghui Yi"
         proxyUrl="https://proxy.example"
         isStreaming={false}
         liveTail=""
@@ -99,7 +99,7 @@ describe('ChatStrip — hints fetch', () => {
     expect(call[0]).toBe('https://proxy.example/hints');
     expect(call[1].method).toBe('POST');
     const body = JSON.parse(call[1].body as string);
-    expect(body.slug).toBe('notion');
+    expect(body.slug).toBe('anthropic-fde-nyc');
   });
 
   it('does not fetch if user scrolled back up before debounce fires', async () => {
@@ -182,7 +182,7 @@ describe('ChatStrip — history-aware fetching', () => {
     ));
     vi.stubGlobal('fetch', fetchMock);
     render(<Harness recentMessages={[
-      { role: 'user', content: 'Why Notion?' },
+      { role: 'user', content: 'Why Anthropic?' },
       { role: 'assistant', content: 'Because of scale.' },
     ]} />);
     act(() => { triggerIntersection(true); });
@@ -191,9 +191,9 @@ describe('ChatStrip — history-aware fetching', () => {
     const call = fetchMock.mock.calls[0];
     if (!call) throw new Error('fetch not called');
     const body = JSON.parse(call[1].body as string);
-    expect(body.slug).toBe('notion');
+    expect(body.slug).toBe('anthropic-fde-nyc');
     expect(body.recentMessages).toEqual([
-      { role: 'user', content: 'Why Notion?' },
+      { role: 'user', content: 'Why Anthropic?' },
       { role: 'assistant', content: 'Because of scale.' },
     ]);
   });

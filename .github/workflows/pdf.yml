@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
     inputs:
       slugs:
-        description: 'Space-separated slugs to generate PDFs for (e.g. "notion stripe"). Leave empty for all.'
+        description: 'Space-separated slugs to generate PDFs for (e.g. "anthropic-fde-nyc stripe"). Leave empty for all.'
         required: false
         default: ''
 

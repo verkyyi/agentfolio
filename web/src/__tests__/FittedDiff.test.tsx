@@ -2,16 +2,16 @@ import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import { render, screen, waitFor } from '@testing-library/react';
 import { FittedDiff } from '../components/FittedDiff';
 
-const defaultMd = '# Alex Chen\n\nSenior Software Engineer with experience in full-stack development.';
-const notionMd = '# Alex Chen\n\nSenior Data Infrastructure Engineer with experience in large-scale pipelines.';
+const defaultMd = '# Lianghui Yi\n\nSenior Software Engineer with experience in full-stack development.';
+const anthropicMd = '# Lianghui Yi\n\nSenior Data Infrastructure Engineer with experience in large-scale pipelines.';
 
 beforeEach(() => {
   vi.stubGlobal('fetch', vi.fn(async (url: string) => {
     if (url.includes('data/fitted/default.md')) {
       return { ok: true, text: async () => defaultMd };
     }
-    if (url.includes('data/fitted/notion.md')) {
-      return { ok: true, text: async () => notionMd };
+    if (url.includes('data/fitted/anthropic-fde-nyc.md')) {
+      return { ok: true, text: async () => anthropicMd };
     }
     return { ok: false, status: 404 };
   }));
@@ -23,7 +23,7 @@ afterEach(() => {
 
 describe('FittedDiff', () => {
   it('renders inline diff with additions and deletions', async () => {
-    render(<FittedDiff slug="notion" />);
+    render(<FittedDiff slug="anthropic-fde-nyc" />);
     await waitFor(() => {
       expect(screen.getByText(/Data Infrastructure/)).toBeInTheDocument();
     });

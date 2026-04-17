@@ -56,7 +56,7 @@ Slugs live at the root — no `/c/` prefix:
 
 ```
 /                → data/adapted/default.json
-/notion          → data/adapted/notion.json
+/anthropic-fde-nyc          → data/adapted/anthropic-fde-nyc.json
 /dashboard       → Owner-only dashboard (not linked from public pages)
 /unknown         → 404 page
 ```

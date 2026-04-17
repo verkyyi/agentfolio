@@ -30,10 +30,10 @@ test.describe('Portfolio layout — chat-first', () => {
     }
   });
 
-  test('/notion slug renders with same layout', async ({ page }) => {
-    await page.goto('./notion');
-    // If this deploy has no notion adaptation, App renders "Not Found" instead of the layout
-    if (await page.getByText('Not Found').count()) test.skip(true, 'no notion adaptation in this deploy');
+  test('/anthropic-fde-nyc slug renders with same layout', async ({ page }) => {
+    await page.goto('./anthropic-fde-nyc');
+    // If this deploy has no anthropic-fde-nyc adaptation, App renders "Not Found" instead of the layout
+    if (await page.getByText('Not Found').count()) test.skip(true, 'no anthropic-fde-nyc adaptation in this deploy');
 
     await expect(page.locator('.idcard')).toBeVisible();
     await expect(page.locator('.chatp')).toBeVisible();
@@ -76,8 +76,8 @@ test.describe('Portfolio layout — chat-first', () => {
       });
     });
 
-    await page.goto('./notion');
-    if (await page.getByText('Not Found').count()) test.skip(true, 'no notion adaptation');
+    await page.goto('./anthropic-fde-nyc');
+    if (await page.getByText('Not Found').count()) test.skip(true, 'no anthropic-fde-nyc adaptation');
 
     const chat = page.locator('.chatp');
     await expect(chat).toBeVisible();
@@ -87,7 +87,7 @@ test.describe('Portfolio layout — chat-first', () => {
     const input = page.getByRole('textbox', { name: /message/i });
     if (!(await input.count())) test.skip(true, 'chat is offline in this deploy');
 
-    await input.fill('tell me about notion');
+    await input.fill('tell me about anthropic-fde-nyc');
     await page.getByRole('button', { name: /send/i }).click();
     await expect(page.getByText(/Hi there/)).toBeVisible();
   });

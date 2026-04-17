@@ -16,35 +16,35 @@ describe('loadSlugContext', () => {
   it('returns null when fitted file is 404', async () => {
     const fetchMock = mockFetch({});
     vi.stubGlobal('fetch', fetchMock);
-    const ctx = await loadSlugContext('notion', 'https://pages.example');
+    const ctx = await loadSlugContext('anthropic-fde-nyc', 'https://pages.example');
     expect(ctx).toBeNull();
   });
 
   it('returns fitted+directives+jd when all present', async () => {
     vi.stubGlobal('fetch', mockFetch({
-      'https://pages.example/data/fitted/notion.md': { status: 200, body: '# R' },
+      'https://pages.example/data/fitted/anthropic-fde-nyc.md': { status: 200, body: '# R' },
       'https://pages.example/data/input/directives.md': { status: 200, body: 'D' },
-      'https://pages.example/data/input/jd/notion.md': { status: 200, body: 'J' },
+      'https://pages.example/data/input/jd/anthropic-fde-nyc.md': { status: 200, body: 'J' },
     }));
-    const ctx = await loadSlugContext('notion', 'https://pages.example');
+    const ctx = await loadSlugContext('anthropic-fde-nyc', 'https://pages.example');
     expect(ctx).toEqual({ fitted: '# R', directives: 'D', jd: 'J' });
   });
 
   it('treats missing directives and jd as null but still succeeds', async () => {
     vi.stubGlobal('fetch', mockFetch({
-      'https://pages.example/data/fitted/notion.md': { status: 200, body: '# R' },
+      'https://pages.example/data/fitted/anthropic-fde-nyc.md': { status: 200, body: '# R' },
     }));
-    const ctx = await loadSlugContext('notion', 'https://pages.example');
+    const ctx = await loadSlugContext('anthropic-fde-nyc', 'https://pages.example');
     expect(ctx).toEqual({ fitted: '# R', directives: null, jd: null });
   });
 
   it('caches responses across calls within TTL', async () => {
     const fetchMock = mockFetch({
-      'https://pages.example/data/fitted/notion.md': { status: 200, body: '# R' },
+      'https://pages.example/data/fitted/anthropic-fde-nyc.md': { status: 200, body: '# R' },
     });
     vi.stubGlobal('fetch', fetchMock);
-    await loadSlugContext('notion', 'https://pages.example');
-    await loadSlugContext('notion', 'https://pages.example');
+    await loadSlugContext('anthropic-fde-nyc', 'https://pages.example');
+    await loadSlugContext('anthropic-fde-nyc', 'https://pages.example');
     // 3 URLs fetched first call, 0 on second call (all cached, including negative caches)
     expect(fetchMock).toHaveBeenCalledTimes(3);
   });
