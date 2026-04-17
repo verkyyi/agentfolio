@@ -1,17 +1,9 @@
 import React from 'react';
 import './ActivityStrip.css';
 import type { ActivityData } from './GithubActivity';
-import { topLanguages, recentDays } from '../utils/activityMetrics';
+import { topLanguages, recentDays, bucketIndex } from '../utils/activityMetrics';
 
 const SPARK_BUCKETS = ['#161b22', '#033a16', '#196c2e', '#2ea043', '#56d364'];
-
-function sparkBucket(count: number): number {
-  if (count <= 0) return 0;
-  if (count < 3) return 1;
-  if (count < 6) return 2;
-  if (count < 10) return 3;
-  return 4;
-}
 
 function handleJump(e: React.MouseEvent<HTMLButtonElement>) {
   e.preventDefault();
@@ -32,7 +24,7 @@ export function ActivityStrip({ data }: { data: ActivityData | null }) {
         {days.map((d) => (
           <span
             key={d.date}
-            style={{ background: SPARK_BUCKETS[sparkBucket(d.count)] }}
+            style={{ background: SPARK_BUCKETS[bucketIndex(d.count)] }}
             title={`${d.count} on ${d.date}`}
           />
         ))}

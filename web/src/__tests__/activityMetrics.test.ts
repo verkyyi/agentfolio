@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { topLanguages, recentDays } from '../utils/activityMetrics';
+import { topLanguages, recentDays, bucketIndex } from '../utils/activityMetrics';
 import type { ActivityData } from '../components/GithubActivity';
 
 function makeActivity(overrides: Partial<ActivityData> = {}): ActivityData {
@@ -87,5 +87,28 @@ describe('recentDays', () => {
       },
     });
     expect(recentDays(a, 14)).toHaveLength(2);
+  });
+});
+
+describe('bucketIndex', () => {
+  it('maps 0 and negative counts to bucket 0', () => {
+    expect(bucketIndex(0)).toBe(0);
+    expect(bucketIndex(-1)).toBe(0);
+  });
+  it('bucket 1 for 1..2', () => {
+    expect(bucketIndex(1)).toBe(1);
+    expect(bucketIndex(2)).toBe(1);
+  });
+  it('bucket 2 for 3..5', () => {
+    expect(bucketIndex(3)).toBe(2);
+    expect(bucketIndex(5)).toBe(2);
+  });
+  it('bucket 3 for 6..9', () => {
+    expect(bucketIndex(6)).toBe(3);
+    expect(bucketIndex(9)).toBe(3);
+  });
+  it('bucket 4 for 10 and above', () => {
+    expect(bucketIndex(10)).toBe(4);
+    expect(bucketIndex(100)).toBe(4);
   });
 });

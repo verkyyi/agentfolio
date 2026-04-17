@@ -98,4 +98,17 @@ describe('GithubActivity', () => {
     const { container } = render(<GithubActivity data={null} />);
     expect(container.firstChild).toBeNull();
   });
+
+  it('has id="activity" for in-page anchor scrolling', () => {
+    const data = {
+      user: 'u',
+      fetchedAt: '2026-04-17T00:00:00.000Z',
+      stats: { publicRepos: 1, contributions30d: 1, contributionsLastYear: 1 },
+      contributions: { weeks: [[{ date: '2026-04-10', count: 1 }]] },
+      languages: [{ name: 'TS', color: '#3178c6', pct: 100 }],
+      repos: [],
+    };
+    const { container } = render(<GithubActivity data={data} />);
+    expect(container.querySelector('#activity')).not.toBeNull();
+  });
 });
