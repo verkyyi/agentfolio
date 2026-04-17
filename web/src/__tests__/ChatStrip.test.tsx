@@ -78,7 +78,7 @@ describe('ChatStrip — visibility', () => {
 
 describe('ChatStrip — hints fetch', () => {
   it('fetches /hints once, 400ms after first pin, and renders the first hint', async () => {
-    const fetchMock = vi.fn(async () => new Response(
+    const fetchMock = vi.fn(async (_url: string, _init: RequestInit) => new Response(
       JSON.stringify({ hints: ['Why this fit?', 'Walk me through Acme'] }),
       { status: 200, headers: { 'Content-Type': 'application/json' } },
     ));
@@ -91,10 +91,10 @@ describe('ChatStrip — hints fetch', () => {
     await act(async () => { vi.advanceTimersByTime(400); });
     expect(fetchMock).toHaveBeenCalledTimes(1);
     const call = fetchMock.mock.calls[0];
-    expect(call?.[0]).toBe('https://proxy.example/hints');
-    const init = call?.[1] as RequestInit;
-    expect(init.method).toBe('POST');
-    const body = JSON.parse(init.body as string);
+    if (!call) throw new Error('fetch not called');
+    expect(call[0]).toBe('https://proxy.example/hints');
+    expect(call[1].method).toBe('POST');
+    const body = JSON.parse(call[1].body as string);
     expect(body.slug).toBe('notion');
   });
 
