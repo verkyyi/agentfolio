@@ -5,12 +5,6 @@ import { topLanguages, recentDays, bucketIndex } from '../utils/activityMetrics'
 
 const SPARK_BUCKETS = ['#161b22', '#033a16', '#196c2e', '#2ea043', '#56d364'];
 
-function handleJump(e: React.MouseEvent<HTMLButtonElement>) {
-  e.preventDefault();
-  const target = document.getElementById('activity');
-  target?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-}
-
 export function ActivityStrip({ data }: { data: ActivityData | null }) {
   if (!data) return null;
 
@@ -39,9 +33,6 @@ export function ActivityStrip({ data }: { data: ActivityData | null }) {
           {l.name} {Math.round(l.pct)}%
         </span>
       ))}
-      <button className="strip-jump" type="button" onClick={handleJump}>
-        ↓ jump to full activity
-      </button>
     </section>
   );
 }

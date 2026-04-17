@@ -1,6 +1,5 @@
-import { describe, it, expect, vi } from 'vitest';
+import { describe, it, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
 import { ActivityStrip } from '../components/ActivityStrip';
 import type { ActivityData } from '../components/GithubActivity';
 
@@ -45,20 +44,5 @@ describe('ActivityStrip', () => {
   it('returns nothing when data is null', () => {
     const { container } = render(<ActivityStrip data={null} />);
     expect(container).toBeEmptyDOMElement();
-  });
-
-  it('jump-to-activity link scrolls to #activity', async () => {
-    const scrollSpy = vi.fn();
-    const target = document.createElement('div');
-    target.id = 'activity';
-    target.scrollIntoView = scrollSpy;
-    document.body.appendChild(target);
-
-    const user = userEvent.setup();
-    render(<ActivityStrip data={sample()} />);
-    await user.click(screen.getByRole('button', { name: /jump to full activity/i }));
-    expect(scrollSpy).toHaveBeenCalledWith({ behavior: 'smooth', block: 'start' });
-
-    document.body.removeChild(target);
   });
 });
