@@ -1,0 +1,18 @@
+name = "agentfolio-chat"
+main = "src/worker.ts"
+compatibility_date = "2025-04-01"
+
+# KV namespace must be created with: wrangler kv namespace create RATE_LIMIT
+# Then paste the resulting id below.
+[[kv_namespaces]]
+binding = "RATE_LIMIT_KV"
+id = "REPLACE_WITH_KV_NAMESPACE_ID"
+
+[vars]
+MODEL = "claude-haiku-4-5"
+
+# Secrets (set with: wrangler secret put <NAME>)
+#   ANTHROPIC_API_KEY
+#   ALLOWED_ORIGIN        comma-separated list
+#   PAGES_ORIGIN          e.g. https://user.github.io/agentfolio
+#   IP_HASH_SALT          any random string
