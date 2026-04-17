@@ -15,8 +15,16 @@ export interface IdentityCardProps {
 }
 
 function firstSentence(s: string): string {
-  const m = s.match(/^(.+?[.!?])(\s|$)/);
+  const m = s.match(/^(.+?[.!?])\s+(?=[A-Z])/);
   return m ? m[1] : s;
+}
+
+function githubHandle(profiles?: IdentityBasics['profiles']): string | null {
+  const gh = profiles?.find((p) => p.network.toLowerCase() === 'github');
+  if (!gh?.url) return null;
+  // Extract last path segment from a url like https://github.com/verkyyi
+  const parts = gh.url.split('/').filter(Boolean);
+  return parts[parts.length - 1] ?? null;
 }
 
 function locationLine(loc?: IdentityBasics['location']): string | null {
@@ -30,10 +38,11 @@ export function IdentityCard({ basics, slug }: IdentityCardProps) {
   const roleBits = basics.label ? [basics.label, loc].filter(Boolean).join(' · ') : null;
   const oneLiner = basics.summary ? firstSentence(basics.summary) : null;
   const hasProfiles = (basics.profiles && basics.profiles.length > 0) || !!basics.email;
+  const handle = githubHandle(basics.profiles) ?? slug;
 
   return (
     <section className="idcard">
-      <div className="idcard-label">~/{slug} · adapted for {slug}</div>
+      <div className="idcard-label">~/{handle} · adapted for {slug}</div>
       <h1 className="idcard-name">
         {basics.name}
         <span className="caret">_</span>

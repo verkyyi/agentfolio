@@ -59,4 +59,29 @@ describe('IdentityCard', () => {
     const { container } = render(<IdentityCard basics={{ ...baseBasics, profiles: [], email: undefined }} slug="default" />);
     expect(container.querySelector('.idcard-profiles')).toBeNull();
   });
+
+  it('extracts ~/handle from the GitHub profile url', () => {
+    render(<IdentityCard basics={baseBasics} slug="default" />);
+    expect(screen.getByText(/~\/verkyyi/)).toBeInTheDocument();
+    expect(screen.getByText(/adapted for default/)).toBeInTheDocument();
+  });
+
+  it('falls back to slug when no GitHub profile exists', () => {
+    const basics = { ...baseBasics, profiles: [{ network: 'LinkedIn', url: 'https://linkedin.com/in/foo' }] };
+    render(<IdentityCard basics={basics} slug="acme" />);
+    expect(screen.getByText(/~\/acme/)).toBeInTheDocument();
+  });
+
+  it('handles abbreviations like "U.S." without splitting on them', () => {
+    const basics = { ...baseBasics, summary: 'U.S. citizen with a long résumé. Looking for staff roles.' };
+    render(<IdentityCard basics={basics} slug="default" />);
+    expect(screen.getByText(/U\.S\. citizen with a long résumé\./)).toBeInTheDocument();
+    expect(screen.queryByText(/Looking for staff roles/)).not.toBeInTheDocument();
+  });
+
+  it('returns the whole summary when there is no second sentence', () => {
+    const basics = { ...baseBasics, summary: 'Just one sentence without a real boundary' };
+    render(<IdentityCard basics={basics} slug="default" />);
+    expect(screen.getByText(/Just one sentence without a real boundary/)).toBeInTheDocument();
+  });
 });
