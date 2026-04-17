@@ -21,6 +21,14 @@ const DEFAULT_SUGGESTIONS = [
   "What's not on the résumé?",
 ];
 
+// UX tuning for streamed responses.
+const MAX_RESPONSE_CHARS = 2000;
+const TRUNCATION_SUFFIX = '… (response truncated)';
+const DRIP_TICK_MS = 18;
+const DRIP_BASE_CHARS_PER_TICK = 1;
+// Keep visible lag bounded: if the buffer runs ahead, reveal extra chars per tick.
+const DRIP_BACKLOG_DIVISOR = 40;
+
 async function* parseSse(body: ReadableStream<Uint8Array>): AsyncGenerator<string> {
   const reader = body.getReader();
   const decoder = new TextDecoder();
@@ -61,9 +69,13 @@ export function ChatPanel({ slug, ownerName, tagline, email, profiles, greeting,
   const [draft, setDraft] = useState('');
   const [status, setStatus] = useState<Status>('idle');
   const abortRef = useRef<AbortController | null>(null);
+  const dripRef = useRef<number | null>(null);
   const inputRef = useRef<HTMLInputElement | null>(null);
 
-  useEffect(() => () => abortRef.current?.abort(), []);
+  useEffect(() => () => {
+    abortRef.current?.abort();
+    if (dripRef.current !== null) window.clearInterval(dripRef.current);
+  }, []);
   useEffect(() => {
     if (messages.length === 0) sessionStorage.removeItem(storageKey);
     else sessionStorage.setItem(storageKey, JSON.stringify(messages));
@@ -90,6 +102,10 @@ export function ChatPanel({ slug, ownerName, tagline, email, profiles, greeting,
 
   function reset() {
     abortRef.current?.abort();
+    if (dripRef.current !== null) {
+      window.clearInterval(dripRef.current);
+      dripRef.current = null;
+    }
     setMessages([]);
     setStatus('idle');
     sessionStorage.removeItem(storageKey);
@@ -110,6 +126,51 @@ export function ChatPanel({ slug, ownerName, tagline, email, profiles, greeting,
 
     const ctrl = new AbortController();
     abortRef.current = ctrl;
+
+    // Full text accumulated from SSE; what's revealed to the user is a growing prefix of this.
+    let fullText = '';
+    let revealed = 0;
+    let streamDone = false;
+    let truncated = false;
+
+    // Typewriter drip: reveals chars from fullText on a timer so fast SSE feels human-paced.
+    // Adaptive: speeds up proportionally when the buffer runs ahead so we never lag far behind.
+    const tick = () => {
+      const backlog = fullText.length - revealed;
+      if (backlog <= 0) {
+        if (streamDone) {
+          if (dripRef.current !== null) {
+            window.clearInterval(dripRef.current);
+            dripRef.current = null;
+          }
+          if (truncated) {
+            setMessages((cur) => {
+              const copy = cur.slice();
+              const last = copy[copy.length - 1];
+              if (last && last.role === 'assistant') {
+                copy[copy.length - 1] = { role: 'assistant', content: fullText + TRUNCATION_SUFFIX };
+              }
+              return copy;
+            });
+          }
+          setStatus('idle');
+        }
+        return;
+      }
+      const step = Math.max(DRIP_BASE_CHARS_PER_TICK, Math.ceil(backlog / DRIP_BACKLOG_DIVISOR));
+      revealed = Math.min(fullText.length, revealed + step);
+      const visible = fullText.slice(0, revealed);
+      setMessages((cur) => {
+        const copy = cur.slice();
+        const last = copy[copy.length - 1];
+        if (last && last.role === 'assistant') {
+          copy[copy.length - 1] = { role: 'assistant', content: visible };
+        }
+        return copy;
+      });
+    };
+    dripRef.current = window.setInterval(tick, DRIP_TICK_MS);
+
     try {
       const toSend = next.slice(0, -1);
       const resp = await fetch(`${proxyUrl}/chat`, {
@@ -120,18 +181,28 @@ export function ChatPanel({ slug, ownerName, tagline, email, profiles, greeting,
       });
       if (!resp.ok || !resp.body) throw new Error(`status_${resp.status}`);
       for await (const delta of parseSse(resp.body)) {
-        setMessages((cur) => {
-          const copy = cur.slice();
-          const last = copy[copy.length - 1];
-          if (last && last.role === 'assistant') {
-            copy[copy.length - 1] = { role: 'assistant', content: last.content + delta };
-          }
-          return copy;
-        });
+        fullText += delta;
+        if (fullText.length >= MAX_RESPONSE_CHARS) {
+          fullText = fullText.slice(0, MAX_RESPONSE_CHARS);
+          truncated = true;
+          break;
+        }
       }
-      setStatus('idle');
+      if (truncated) ctrl.abort();
+      streamDone = true;
     } catch (err) {
-      if ((err as Error).name === 'AbortError') return;
+      if ((err as Error).name === 'AbortError') {
+        // Caller-initiated (reset/unmount). Stop the drip; state is already being reset.
+        if (dripRef.current !== null) {
+          window.clearInterval(dripRef.current);
+          dripRef.current = null;
+        }
+        return;
+      }
+      if (dripRef.current !== null) {
+        window.clearInterval(dripRef.current);
+        dripRef.current = null;
+      }
       setMessages((cur) => {
         const last = cur[cur.length - 1];
         if (last && last.role === 'assistant' && last.content === '') {
@@ -163,15 +234,22 @@ export function ChatPanel({ slug, ownerName, tagline, email, profiles, greeting,
 
       <div className="chatp-messages">
         <div className="chatp-msg assistant chatp-greeting" data-testid="chat-greeting">
-          <span className="chatp-prompt">&gt;</span> {displayGreeting}
+          <span className="chatp-prompt">&gt;</span>
+          <span className="chatp-msg-body">{displayGreeting}</span>
         </div>
-        {messages.map((m, i) => (
-          <div key={i} className={`chatp-msg ${m.role}`}>
-            {m.role === 'assistant' && <span className="chatp-prompt">&gt;</span>}
-            {m.role === 'user' && <span className="chatp-prompt chatp-prompt-user">$</span>}
-            {m.content}
-          </div>
-        ))}
+        {messages.map((m, i) => {
+          const isLast = i === messages.length - 1;
+          const isStreaming = status === 'streaming' && m.role === 'assistant' && isLast;
+          const cls = `chatp-msg ${m.role}${isStreaming ? ' streaming' : ''}`;
+          return (
+            <div key={i} className={cls} data-streaming={isStreaming || undefined}>
+              <span className={`chatp-prompt${m.role === 'user' ? ' chatp-prompt-user' : ''}`}>
+                {m.role === 'assistant' ? '>' : '$'}
+              </span>
+              <span className="chatp-msg-body">{m.content}</span>
+            </div>
+          );
+        })}
       </div>
 
       {messages.length === 0 && (
