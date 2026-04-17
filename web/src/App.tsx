@@ -5,6 +5,7 @@ import { DownloadPdf } from './components/DownloadPdf';
 import { Dashboard } from './components/Dashboard';
 import { ChatWidget } from './components/ChatWidget';
 import { Footer } from './components/Footer';
+import { GithubActivity, type ActivityData } from './components/GithubActivity';
 import { parseFitSummary } from './utils/parseFitSummary';
 
 function isDashboard(): boolean {
@@ -20,13 +21,13 @@ export default function App() {
   if (isDashboard()) {
     return <Dashboard />;
   }
-
   return <ResumePage />;
 }
 
 function ResumePage() {
   const { adapted, error, slug } = useAdaptation();
   const [target, setTarget] = useState<string | null>(null);
+  const [activity, setActivity] = useState<ActivityData | null>(null);
 
   useEffect(() => {
     if (adapted?.basics?.name) {
@@ -48,6 +49,15 @@ function ResumePage() {
     return () => { cancelled = true; };
   }, [slug]);
 
+  useEffect(() => {
+    let cancelled = false;
+    fetch(`${import.meta.env.BASE_URL}data/github/activity.json`)
+      .then((r) => (r.ok ? r.json() : null))
+      .then((data: ActivityData | null) => { if (!cancelled) setActivity(data); })
+      .catch(() => { if (!cancelled) setActivity(null); });
+    return () => { cancelled = true; };
+  }, []);
+
   if (error) {
     return (
       <main>
@@ -66,6 +76,7 @@ function ResumePage() {
     <>
       <DownloadPdf slug={slug} />
       <ResumeTheme resume={adapted as unknown as Record<string, unknown>} />
+      <GithubActivity data={activity} />
       <Footer />
       {target && <ChatWidget key={activeSlug} slug={activeSlug} target={target} />}
     </>
