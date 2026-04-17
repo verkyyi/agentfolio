@@ -104,7 +104,7 @@
       "id": "agentfolio",
       "name": "AgentFolio",
       "description": "Open-Source Agentic Portfolio Engine",
-      "url": "https://github.com/verkyyi/agentfolio",
+      "url": "https://lianghuiyi.com",
       "startDate": "2026-04",
       "highlights": [
         "Built AgentFolio, an open-source agentic portfolio engine (MIT-licensed, GitHub template) with a GitHub Actions pipeline auto-generating JSON Resume + PDFs on data changes; zero third-party infrastructure cost."
