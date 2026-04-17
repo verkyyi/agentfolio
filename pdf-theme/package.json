@@ -1,0 +1,13 @@
+{
+  "name": "jsonresume-theme-onepage-agentfolio",
+  "version": "0.0.4",
+  "description": "Compact, printable JSON Resume theme — AgentFolio fork of jsonresume-theme-onepage with a projects section.",
+  "author": "Ainsley Chong (original), AgentFolio contributors (fork)",
+  "license": "MIT",
+  "dependencies": {
+    "handlebars": "^2.0.0-alpha.4",
+    "css": "2.2.x"
+  },
+  "main": "index.js",
+  "devDependencies": {}
+}
