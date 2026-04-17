@@ -53,7 +53,7 @@ MCP-Native AI Agent Email Middleware on AWS
 - Implemented Streamable HTTP transport and OAuth 2.0 for production MCP server, resolving networking edge cases across multiple LLM client implementations.
 Keywords: agentic, mcp, llm, infrastructure
 
-### AgentFolio — https://verkyyi.github.io/agentfolio (Apr 2026)
+### AgentFolio — https://github.com/verkyyi/agentfolio (Apr 2026)
 Open-Source Agentic Portfolio Engine
 - Built AgentFolio, an open-source agentic portfolio engine (MIT-licensed, GitHub template) with a GitHub Actions pipeline auto-generating JSON Resume + PDFs on data changes; zero third-party infrastructure cost.
 Keywords: agentic, open-source, ci-cd, llm

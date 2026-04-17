@@ -4,7 +4,7 @@ An open-source agentic portfolio engine. Fork it, drop in your resume, and deplo
 
 ![Resume preview](docs/screenshots/resume.png)
 
-**[Live Demo](https://verkyyi.github.io/agentfolio/)** · **[Dashboard Demo](https://verkyyi.github.io/agentfolio/dashboard)**
+**[Live Demo](https://lianghuiyi.com/)** · **[Dashboard Demo](https://lianghuiyi.com/dashboard)**
 
 ## How It Works
 

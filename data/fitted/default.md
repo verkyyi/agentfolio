@@ -52,7 +52,7 @@ MCP-Native AI Agent Email Middleware
 - Designed full server architecture with OAuth, JWT, and Streamable HTTP transport; implemented LLM-driven triage and labeling pipeline deployed on multi-tenant AWS infrastructure using Aurora Serverless, SES, and per-user IAM roles.
 Keywords: agentic, mcp, llm, infrastructure
 
-### AgentFolio — https://verkyyi.github.io/agentfolio (Apr 2026)
+### AgentFolio — https://github.com/verkyyi/agentfolio (Apr 2026)
 Open-Source Agentic Portfolio Engine
 - Built an agentic portfolio engine that detects visitor context and dynamically adapts resume content using LLM-powered rewriting and JD-matching pipelines; deployed on pure GitHub infrastructure with zero third-party cost.
 - Designed a five-stage agent architecture (perceive → reason → act → learn → explain) with Retrieval-Augmented Generation (RAG)-powered chat, automated JD fetching, and visitor feedback loops that continuously optimize content resonance.

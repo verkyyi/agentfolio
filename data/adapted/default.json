@@ -103,7 +103,7 @@
       "id": "agentfolio",
       "name": "AgentFolio",
       "description": "Open-Source Agentic Portfolio Engine",
-      "url": "https://verkyyi.github.io/agentfolio",
+      "url": "https://github.com/verkyyi/agentfolio",
       "startDate": "2026-04",
       "highlights": [
         "Built an agentic portfolio engine that detects visitor context and dynamically adapts resume content using LLM-powered rewriting and JD-matching pipelines; deployed on pure GitHub infrastructure with zero third-party cost.",

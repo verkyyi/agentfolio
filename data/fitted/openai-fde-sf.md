@@ -48,7 +48,7 @@ MCP-Native AI Agent Email Middleware
 - Shipped multi-provider LLM deployment supporting ChatGPT and Claude chatbot clients with an LLM-driven triage and labeling pipeline, scaled to 100+ beta users.
 Keywords: agentic, mcp, llm, infrastructure
 
-### AgentFolio — https://verkyyi.github.io/agentfolio (Apr 2026)
+### AgentFolio — https://github.com/verkyyi/agentfolio (Apr 2026)
 Open-Source Agentic Portfolio Engine
 - Built AgentFolio, an open-source agentic portfolio engine (MIT-licensed) that generates JD-tailored resumes from a single markdown source using LLM-powered rewriting and JD-matching pipelines.
 - Designed a GitHub Actions pipeline for auto-generating JSON Resume + PDFs on data changes; zero third-party infrastructure cost.

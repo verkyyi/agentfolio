@@ -9,9 +9,10 @@ deploy. Determine which you're in by checking `git remote get-url origin`:
 
 - matches `verkyyi/agentfolio(.git)?` → **framework repo**. All files are
   editable; changes here flow to every downstream deploy.
-- anything else (e.g. `verkyyi/verkyyi.github.io.git`) → **derived deploy**.
-  Only the `data/` folder may be modified. Framework fixes belong upstream
-  in `verkyyi/agentfolio` and re-apply here by re-running the deploy.
+- anything else → **derived deploy** (a fork where `data/` holds one
+  person's resume). Only the `data/` folder may be modified. Framework
+  fixes belong upstream in `verkyyi/agentfolio` and re-apply here by
+  re-running the deploy.
 
 ## Project Structure
 
@@ -95,7 +96,7 @@ Owner-only readonly dashboard at `/dashboard` for reviewing fitted resumes. Not 
 
 ```bash
 cd web
-npm test              # Run all unit tests (9 files, 26 tests)
+npm test              # Run all unit tests (16 files, 101 tests)
 npx vitest run        # Same, non-watch mode
 npx playwright test   # E2E tests (requires built site)
 ```
