@@ -120,9 +120,6 @@ export const ChatPanel = forwardRef<ChatPanelHandle, ChatPanelProps>(function Ch
   if (!proxyUrl) {
     return (
       <section ref={sectionRef} className="chatp chatp-offline">
-        <div className="chatp-header">
-          <span className="chatp-status-off">● offline</span>
-        </div>
         <p className="chatp-offline-body">
           Chat is offline — reach out directly:
         </p>
@@ -258,16 +255,13 @@ export const ChatPanel = forwardRef<ChatPanelHandle, ChatPanelProps>(function Ch
 
   return (
     <section ref={sectionRef} className="chatp" aria-label="Chat">
-      <div className="chatp-header">
-        <div className="chatp-header-right">
-          {messages.length > 0 && (
-            <button type="button" className="chatp-clear" onClick={reset}>
-              clear conversation
-            </button>
-          )}
-          <span className="chatp-status-on">● connected</span>
+      {messages.length > 0 && (
+        <div className="chatp-header">
+          <button type="button" className="chatp-clear" onClick={reset}>
+            clear conversation
+          </button>
         </div>
-      </div>
+      )}
 
       <div className="chatp-messages">
         <div className="chatp-msg assistant chatp-greeting" data-testid="chat-greeting">

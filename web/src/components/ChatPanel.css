@@ -29,10 +29,6 @@
   text-transform: uppercase;
   color: var(--text-muted);
 }
-.chatp-header-right { display: flex; gap: 14px; align-items: center; }
-.chatp-status-on { color: var(--accent-teal); }
-.chatp-status-off { color: var(--text-dim); }
-
 .chatp-clear {
   font-family: inherit;
   font-size: 10px;
