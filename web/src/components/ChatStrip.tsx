@@ -1,5 +1,10 @@
-import { useEffect, useRef, useState, type RefObject } from 'react';
+import { useEffect, useMemo, useRef, useState, type RefObject } from 'react';
 import './ChatStrip.css';
+
+export interface ChatStripMessage {
+  role: 'user' | 'assistant';
+  content: string;
+}
 
 export interface ChatStripProps {
   slug: string;
@@ -7,13 +12,23 @@ export interface ChatStripProps {
   proxyUrl: string;
   isStreaming: boolean;
   liveTail: string;
+  recentMessages?: ChatStripMessage[];
   sentinelRef: RefObject<Element>;
   onJump: () => void;
 }
 
 type DripPhase = 'typing' | 'holding' | 'erasing';
 
-export function ChatStrip({ slug, ownerName, proxyUrl, isStreaming, liveTail, sentinelRef, onJump }: ChatStripProps) {
+export function ChatStrip({
+  slug,
+  ownerName,
+  proxyUrl,
+  isStreaming,
+  liveTail,
+  recentMessages,
+  sentinelRef,
+  onJump,
+}: ChatStripProps) {
   const [pinned, setPinned] = useState(false);
   const [hints, setHints] = useState<string[]>([]);
   const [disabled, setDisabled] = useState(false);
@@ -24,6 +39,15 @@ export function ChatStrip({ slug, ownerName, proxyUrl, isStreaming, liveTail, se
   const pendingFetch = useRef<number | null>(null);
   const abortRef = useRef<AbortController | null>(null);
   const dripTimer = useRef<number | null>(null);
+  const lastFetchedKey = useRef<string | null>(null);
+
+  // Stable key representing the message history we'd send to /hints. When this
+  // changes after the first successful fetch, we invalidate the batch so the
+  // next batch can be tailored around what the visitor just said.
+  const messagesKey = useMemo(
+    () => JSON.stringify(recentMessages ?? []),
+    [recentMessages],
+  );
 
   const prefersReducedMotion = typeof window !== 'undefined' &&
     typeof window.matchMedia === 'function' &&
@@ -67,6 +91,16 @@ export function ChatStrip({ slug, ownerName, proxyUrl, isStreaming, liveTail, se
       void fetchHints();
     }, 400);
   }, [pinned, disabled, hints.length]);
+
+  // If the visitor has chatted since the current batch was fetched, drop
+  // the batch so the next fetch can incorporate the new turns.
+  useEffect(() => {
+    if (lastFetchedKey.current === null) return;
+    if (lastFetchedKey.current === messagesKey) return;
+    lastFetchedKey.current = null;
+    abortRef.current?.abort();
+    setHints([]);
+  }, [messagesKey]);
 
   useEffect(() => {
     setDripIndex(0);
@@ -122,12 +156,16 @@ export function ChatStrip({ slug, ownerName, proxyUrl, isStreaming, liveTail, se
   async function fetchHints() {
     const ctrl = new AbortController();
     abortRef.current = ctrl;
+    const keyAtFetch = messagesKey;
+    const turns = recentMessages && recentMessages.length > 0
+      ? { recentMessages: recentMessages.slice(-4) }
+      : {};
     let resp: Response;
     try {
       resp = await fetch(`${proxyUrl}/hints`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ slug }),
+        body: JSON.stringify({ slug, ...turns }),
         signal: ctrl.signal,
       });
     } catch {
@@ -144,6 +182,7 @@ export function ChatStrip({ slug, ownerName, proxyUrl, isStreaming, liveTail, se
       ? data.hints.filter((h): h is string => typeof h === 'string').slice(0, 5)
       : [];
     setHints(arr);
+    lastFetchedKey.current = keyAtFetch;
   }
 
   const showLiveTail = isStreaming && liveTail.length > 0;

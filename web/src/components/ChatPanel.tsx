@@ -2,11 +2,17 @@ import React, { forwardRef, useEffect, useImperativeHandle, useRef, useState } f
 import './ChatPanel.css';
 
 type Role = 'user' | 'assistant';
-interface Msg { role: Role; content: string }
+export interface Msg { role: Role; content: string }
 type Status = 'idle' | 'streaming' | 'error';
 
 export interface ChatPanelHandle {
   jumpTo(): void;
+}
+
+export interface ChatPanelState {
+  isStreaming: boolean;
+  liveTail: string;
+  recentMessages: Msg[];
 }
 
 export interface ChatPanelProps {
@@ -18,7 +24,7 @@ export interface ChatPanelProps {
   greeting?: string;
   suggestions?: string[];
   sentinelRef?: React.RefObject<HTMLDivElement>;
-  onStateChange?: (s: { isStreaming: boolean; liveTail: string }) => void;
+  onStateChange?: (s: ChatPanelState) => void;
   onSend?: () => void;
 }
 
@@ -105,7 +111,10 @@ export const ChatPanel = forwardRef<ChatPanelHandle, ChatPanelProps>(function Ch
     const liveTail = status === 'streaming' && lastAssistant
       ? lastAssistant.content.slice(-60)
       : '';
-    onStateChange({ isStreaming: status === 'streaming', liveTail });
+    // Drop empty placeholders (the assistant stub we insert before a response arrives)
+    // so the hint LLM doesn't see a dangling empty turn.
+    const recentMessages = messages.filter((m) => m.content.length > 0).slice(-4);
+    onStateChange({ isStreaming: status === 'streaming', liveTail, recentMessages });
   }, [messages, status, onStateChange]);
 
   if (!proxyUrl) {

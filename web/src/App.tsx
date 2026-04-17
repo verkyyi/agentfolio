@@ -3,7 +3,7 @@ import { useAdaptation } from './hooks/useAdaptation';
 import { ResumeTheme } from './components/ResumeTheme';
 import { Dashboard } from './components/Dashboard';
 import { IdentityCard, type IdentityBasics } from './components/IdentityCard';
-import { ChatPanel, type ChatPanelHandle } from './components/ChatPanel';
+import { ChatPanel, type ChatPanelHandle, type ChatPanelState } from './components/ChatPanel';
 import { ChatStrip } from './components/ChatStrip';
 import { Footer } from './components/Footer';
 import { GithubActivity, type ActivityData } from './components/GithubActivity';
@@ -28,7 +28,11 @@ function ResumePage() {
   const [activity, setActivity] = useState<ActivityData | null>(null);
   const chatRef = useRef<ChatPanelHandle>(null);
   const sentinelRef = useRef<HTMLDivElement>(null);
-  const [chatState, setChatState] = useState({ isStreaming: false, liveTail: '' });
+  const [chatState, setChatState] = useState<ChatPanelState>({
+    isStreaming: false,
+    liveTail: '',
+    recentMessages: [],
+  });
   const proxyUrl = import.meta.env.VITE_CHAT_PROXY_URL as string | undefined;
 
   useEffect(() => {
@@ -89,6 +93,7 @@ function ResumePage() {
             proxyUrl={proxyUrl}
             isStreaming={chatState.isStreaming}
             liveTail={chatState.liveTail}
+            recentMessages={chatState.recentMessages}
             sentinelRef={sentinelRef}
             onJump={() => chatRef.current?.jumpTo()}
           />

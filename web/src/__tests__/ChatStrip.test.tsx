@@ -125,6 +125,68 @@ describe('ChatStrip — hints fetch', () => {
   });
 });
 
+describe('ChatStrip — history-aware fetching', () => {
+  it('forwards recentMessages in the POST body when provided', async () => {
+    const fetchMock = vi.fn(async (_url: string, _init: RequestInit) => new Response(
+      JSON.stringify({ hints: ['h1', 'h2'] }),
+      { status: 200 },
+    ));
+    vi.stubGlobal('fetch', fetchMock);
+    render(<Harness recentMessages={[
+      { role: 'user', content: 'Why Notion?' },
+      { role: 'assistant', content: 'Because of scale.' },
+    ]} />);
+    act(() => { triggerIntersection(true); });
+    act(() => { triggerIntersection(false); });
+    await act(async () => { await vi.advanceTimersByTimeAsync(500); });
+    const call = fetchMock.mock.calls[0];
+    if (!call) throw new Error('fetch not called');
+    const body = JSON.parse(call[1].body as string);
+    expect(body.slug).toBe('notion');
+    expect(body.recentMessages).toEqual([
+      { role: 'user', content: 'Why Notion?' },
+      { role: 'assistant', content: 'Because of scale.' },
+    ]);
+  });
+
+  it('omits recentMessages when none are provided', async () => {
+    const fetchMock = vi.fn(async (_url: string, _init: RequestInit) => new Response(
+      JSON.stringify({ hints: ['h1'] }),
+      { status: 200 },
+    ));
+    vi.stubGlobal('fetch', fetchMock);
+    render(<Harness />);
+    act(() => { triggerIntersection(true); });
+    act(() => { triggerIntersection(false); });
+    await act(async () => { await vi.advanceTimersByTimeAsync(500); });
+    const call = fetchMock.mock.calls[0];
+    if (!call) throw new Error('fetch not called');
+    const body = JSON.parse(call[1].body as string);
+    expect(body.recentMessages).toBeUndefined();
+  });
+
+  it('refetches when recentMessages changes after a successful batch', async () => {
+    const fetchMock = vi.fn(async (_url: string, _init: RequestInit) => new Response(
+      JSON.stringify({ hints: ['h1'] }),
+      { status: 200 },
+    ));
+    vi.stubGlobal('fetch', fetchMock);
+    const { rerender } = render(<Harness recentMessages={[]} />);
+    act(() => { triggerIntersection(true); });
+    act(() => { triggerIntersection(false); });
+    await act(async () => { await vi.advanceTimersByTimeAsync(500); });
+    expect(fetchMock).toHaveBeenCalledTimes(1);
+
+    rerender(<Harness recentMessages={[{ role: 'user', content: 'new question' }]} />);
+    await act(async () => { await vi.advanceTimersByTimeAsync(500); });
+    expect(fetchMock).toHaveBeenCalledTimes(2);
+    const secondCall = fetchMock.mock.calls[1];
+    if (!secondCall) throw new Error('second fetch not called');
+    const body = JSON.parse(secondCall[1].body as string);
+    expect(body.recentMessages).toEqual([{ role: 'user', content: 'new question' }]);
+  });
+});
+
 describe('ChatStrip — drip', () => {
   async function tick(ms: number) {
     await act(async () => { await vi.advanceTimersByTimeAsync(ms); });
