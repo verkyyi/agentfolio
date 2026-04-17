@@ -1,14 +1,7 @@
 // web/src/__tests__/GithubActivity.test.tsx
-import { describe, it, expect, beforeAll, afterAll, vi } from 'vitest';
+import { describe, it, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import { GithubActivity, scopeToLast30Days } from '../components/GithubActivity';
-
-// Pin "now" so the 30-day scope is deterministic across runs.
-beforeAll(() => {
-  vi.useFakeTimers();
-  vi.setSystemTime(new Date('2026-04-17T06:00:00Z'));
-});
-afterAll(() => vi.useRealTimers());
+import { GithubActivity } from '../components/GithubActivity';
 
 const fixture = {
   user: 'verkyyi',
@@ -16,9 +9,6 @@ const fixture = {
   stats: { publicRepos: 12, contributions30d: 84, contributionsLastYear: 1247 },
   contributions: {
     weeks: [
-      // Week 1 is ~1 year old and will be filtered out by the 30-day scope.
-      Array.from({ length: 7 }, (_, i) => ({ date: `2025-04-${20 + i}`, count: i })),
-      // Week 2 is within the window (2026-04-11..17).
       Array.from({ length: 7 }, (_, i) => ({ date: `2026-04-${11 + i}`, count: 2 })),
     ],
   },
@@ -40,49 +30,24 @@ const fixture = {
 };
 
 describe('GithubActivity', () => {
-  it('renders the header strip with stats', () => {
-    render(<GithubActivity data={fixture} />);
-    expect(screen.getByText(/@verkyyi/)).toBeInTheDocument();
-    expect(screen.getByText(/12 public repos/)).toBeInTheDocument();
-    expect(screen.getByText(/84 contributions/)).toBeInTheDocument();
-  });
-
-  it('renders one heatmap cell per in-scope contribution day', () => {
+  it('embeds the activity strip inside the activity section', () => {
     const { container } = render(<GithubActivity data={fixture} />);
-    const cells = container.querySelectorAll('svg rect.heatmap-cell');
-    // Only the 2026 week (7 days) is within the 30-day window; the 2025 week
-    // is scoped out and its entire week is dropped from the grid.
-    expect(cells.length).toBe(7);
+    const section = container.querySelector('#activity');
+    expect(section).not.toBeNull();
+    expect(section!.querySelector('.strip')).not.toBeNull();
   });
 
-  it('scopeToLast30Days keeps only weeks touching the 30-day window', () => {
-    const now = new Date('2026-04-17T06:00:00Z');
-    const kept = scopeToLast30Days(fixture.contributions.weeks, now);
-    expect(kept).toHaveLength(1);
-    expect(kept[0][0].date).toBe('2026-04-11');
+  it('does not render a contribution heatmap', () => {
+    const { container } = render(<GithubActivity data={fixture} />);
+    expect(container.querySelector('svg rect.heatmap-cell')).toBeNull();
   });
 
-  it('scopeToLast30Days pads a mixed week with sentinel -1 for days outside the window', () => {
-    const now = new Date('2026-04-17T06:00:00Z');
-    const mixedWeek = Array.from({ length: 7 }, (_, i) => ({
-      date: `2026-03-${16 + i}`, // Mar 16..22; cutoff is Mar 18, so Mar 16-17 pad, 18-22 keep
-      count: 5,
-    }));
-    const kept = scopeToLast30Days([mixedWeek], now);
-    expect(kept).toHaveLength(1);
-    expect(kept[0][0].count).toBe(-1); // Mar 16 padded
-    expect(kept[0][1].count).toBe(-1); // Mar 17 padded
-    expect(kept[0][2].count).toBe(5);  // Mar 18 kept
-  });
-
-  it('renders language legend entries', () => {
+  it('renders the 30d contribution count from the embedded strip', () => {
     render(<GithubActivity data={fixture} />);
-    expect(screen.getAllByText(/TypeScript/).length).toBeGreaterThan(0);
-    expect(screen.getByText(/Python/)).toBeInTheDocument();
-    expect(screen.getByText(/60%/)).toBeInTheDocument();
+    expect(screen.getByText('84')).toBeInTheDocument();
   });
 
-  it('renders each repo with link and language', () => {
+  it('renders each repo with link and description', () => {
     render(<GithubActivity data={fixture} />);
     const link = screen.getByRole('link', { name: 'agentfolio' });
     expect(link).toHaveAttribute('href', 'https://github.com/verkyyi/agentfolio');
@@ -100,15 +65,7 @@ describe('GithubActivity', () => {
   });
 
   it('has id="activity" for in-page anchor scrolling', () => {
-    const data = {
-      user: 'u',
-      fetchedAt: '2026-04-17T00:00:00.000Z',
-      stats: { publicRepos: 1, contributions30d: 1, contributionsLastYear: 1 },
-      contributions: { weeks: [[{ date: '2026-04-10', count: 1 }]] },
-      languages: [{ name: 'TS', color: '#3178c6', pct: 100 }],
-      repos: [],
-    };
-    const { container } = render(<GithubActivity data={data} />);
+    const { container } = render(<GithubActivity data={fixture} />);
     expect(container.querySelector('#activity')).not.toBeNull();
   });
 });
