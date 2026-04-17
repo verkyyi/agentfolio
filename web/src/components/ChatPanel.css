@@ -1,6 +1,6 @@
 .chatp {
   max-width: var(--column-max);
-  margin: 0 auto;
+  margin: 18px auto 0;
   padding: 22px 20px;
   background: var(--surface);
   border: 1px solid var(--border);
@@ -16,7 +16,7 @@
 @media (max-width: 640px) {
   .chatp {
     min-height: 360px;
-    margin: 0 var(--side-gutter-mobile);
+    margin: 14px var(--side-gutter-mobile) 0;
   }
 }
 

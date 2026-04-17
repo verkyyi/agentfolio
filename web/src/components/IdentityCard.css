@@ -2,7 +2,6 @@
   max-width: var(--column-max);
   margin: 0 auto;
   padding: 48px var(--side-gutter) 28px;
-  border-bottom: 1px solid var(--border-soft);
   color: var(--text);
 }
 
