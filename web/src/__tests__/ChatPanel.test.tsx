@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, afterEach } from 'vitest';
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { ChatPanel } from '../components/ChatPanel';
 
@@ -238,5 +238,68 @@ describe('ChatPanel — error handling', () => {
     const assistantBubbles = document.querySelectorAll('.chatp-msg.assistant');
     // Only the greeting — no empty placeholder
     expect(assistantBubbles.length).toBe(1);
+  });
+});
+
+describe('ChatPanel — UX optimizations', () => {
+  it('preserves newlines in rendered messages via a pre-wrap body span', () => {
+    vi.stubEnv('VITE_CHAT_PROXY_URL', 'https://proxy.example');
+    sessionStorage.setItem(
+      'agentfolio.chat.notion',
+      JSON.stringify([{ role: 'assistant', content: 'line one\nline two\nline three' }]),
+    );
+    render(<ChatPanel slug="notion" ownerName="Alex Chen" />);
+    const body = document.querySelector('.chatp-msg.assistant:not(.chatp-greeting) .chatp-msg-body');
+    expect(body).not.toBeNull();
+    expect(body!.textContent).toBe('line one\nline two\nline three');
+  });
+
+  it('caps response length and appends a truncation indicator', async () => {
+    vi.stubEnv('VITE_CHAT_PROXY_URL', 'https://proxy.example');
+    // Stream > 2000 chars across two deltas so truncation fires mid-stream.
+    const huge = 'x'.repeat(1500);
+    const fetchMock = vi.fn(async () => sseResponse([
+      `event: content_block_delta\ndata: ${JSON.stringify({ delta: { text: huge } })}\n\n`,
+      `event: content_block_delta\ndata: ${JSON.stringify({ delta: { text: huge } })}\n\n`,
+      'event: message_stop\ndata: {}\n\n',
+    ]));
+    vi.stubGlobal('fetch', fetchMock);
+    const user = userEvent.setup();
+    render(<ChatPanel slug="notion" ownerName="Alex Chen" />);
+    await user.type(screen.getByRole('textbox'), 'go');
+    await user.click(screen.getByRole('button', { name: /send/i }));
+
+    // Drip animation finishes and the truncation suffix appears.
+    await screen.findByText(/response truncated/i, {}, { timeout: 4000 });
+    const body = document.querySelector(
+      '.chatp-msg.assistant:not(.chatp-greeting) .chatp-msg-body',
+    ) as HTMLElement | null;
+    expect(body).not.toBeNull();
+    // 2000 x's + suffix. Never more than 2000 x's.
+    expect(body!.textContent!.length).toBeLessThanOrEqual(2000 + ' … (response truncated)'.length);
+    expect(body!.textContent).toMatch(/^x{2000}/);
+  });
+
+  it('shows a streaming class on the active assistant bubble and drops it when done', async () => {
+    vi.stubEnv('VITE_CHAT_PROXY_URL', 'https://proxy.example');
+    const fetchMock = vi.fn(async () => sseResponse([
+      'event: content_block_delta\ndata: {"delta":{"text":"hey"}}\n\n',
+      'event: message_stop\ndata: {}\n\n',
+    ]));
+    vi.stubGlobal('fetch', fetchMock);
+    const user = userEvent.setup();
+    render(<ChatPanel slug="notion" ownerName="Alex Chen" />);
+    await user.type(screen.getByRole('textbox'), 'hi');
+    await user.click(screen.getByRole('button', { name: /send/i }));
+
+    // Text fully revealed by the drip; streaming class dropped on the final tick.
+    await screen.findByText('hey');
+    await waitFor(() => {
+      const last = document.querySelector(
+        '.chatp-msg.assistant:not(.chatp-greeting)',
+      );
+      expect(last).not.toBeNull();
+      expect(last!.classList.contains('streaming')).toBe(false);
+    });
   });
 });

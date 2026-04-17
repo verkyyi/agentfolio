@@ -65,6 +65,20 @@
 .chatp-prompt { color: var(--accent-green); margin-right: 6px; }
 .chatp-prompt-user { color: var(--accent-orange); }
 
+/* Preserve newlines from streamed responses. Long lines still wrap naturally. */
+.chatp-msg-body { white-space: pre-wrap; overflow-wrap: anywhere; }
+
+/* Typewriter caret while an assistant response is still streaming. */
+.chatp-msg.streaming .chatp-msg-body::after {
+  content: '▋';
+  margin-left: 2px;
+  color: var(--accent-green);
+  animation: chatp-blink 1s steps(2, start) infinite;
+}
+@keyframes chatp-blink {
+  to { visibility: hidden; }
+}
+
 @keyframes chatp-in {
   from { opacity: 0; transform: translateY(12px); }
   to   { opacity: 1; transform: translateY(0); }
