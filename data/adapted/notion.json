@@ -1,10 +1,10 @@
 {
   "basics": {
     "name": "Alex Chen",
-    "label": "Senior Data Infrastructure Engineer",
+    "label": "Software Engineer, Data Infrastructure",
     "email": "alex@example.com",
     "phone": "(555) 123-4567",
-    "summary": "Experienced software engineer with 6+ years building large-scale data pipelines and distributed systems. At Acme Corp, architected a real-time Kafka/Flink pipeline processing 2M events/day and led a microservices migration that cut p99 latency by 40%. Eager to bring deep data infrastructure expertise to Notion's enterprise data platform, where reliability, cost efficiency, and compliance at scale are mission-critical.",
+    "summary": "Senior Software Engineer targeting Notion's Enterprise Data Platform role. Designed Apache Flink and Kafka pipelines processing 2M events/day at Acme Corp, reducing p99 latency by 40%. Expert in Python, AWS cloud infrastructure, and open-source data tooling at enterprise scale.",
     "location": { "city": "San Francisco", "region": "CA", "countryCode": "US" },
     "profiles": [
       { "network": "LinkedIn", "url": "https://linkedin.com/in/alexchen", "username": "alexchen" },
@@ -20,8 +20,8 @@
       "location": "San Francisco, CA",
       "startDate": "2022-06",
       "highlights": [
-        "Built real-time data pipeline processing 2M events/day using Kafka and Apache Flink, powering personalization features that increased user engagement by 25% — directly applicable to Notion's AI and analytics data infrastructure.",
-        "Led migration of monolithic API to event-driven microservices architecture, reducing p99 latency by 40% and enabling independent team deployments at scale.",
+        "Built real-time data pipeline (Apache Flink + Kafka) processing 2M events/day, powering AI personalization features that increased user engagement by 25%.",
+        "Led migration of monolithic API to event-driven microservices architecture through cross-functional collaboration with infrastructure and product teams, reducing p99 latency by 40% and enabling independent team deployments.",
         "Mentored 3 junior engineers through structured pairing sessions, all promoted within 12 months."
       ]
     },
@@ -34,9 +34,9 @@
       "startDate": "2020-01",
       "endDate": "2022-05",
       "highlights": [
-        "Designed and shipped core analytics dashboard serving 500+ enterprise customers, with direct customer feedback loops informing reliability and performance improvements.",
-        "Implemented CI/CD pipeline with GitHub Actions reducing deploy time from 45 minutes to 8 minutes with automated rollback — relevant to operating Notion's data infrastructure reliably.",
-        "Built OAuth2/OIDC integration supporting 5 identity providers, enabling enterprise SSO adoption — applicable to Notion's enterprise security and compliance requirements."
+        "Designed and shipped the core analytics dashboard serving 500+ enterprise customers, iterating on feedback from weekly customer calls.",
+        "Built OAuth2/OIDC integration supporting 5 identity providers, enabling enterprise Single Sign-On (SSO) adoption and strengthening data security compliance for enterprise accounts.",
+        "Implemented CI/CD pipeline (GitHub Actions) reducing deploy time from 45 to 8 minutes with automated rollback on failure."
       ]
     }
   ],
@@ -44,26 +44,26 @@
     {
       "id": "ml-model-monitor",
       "name": "ML Model Monitor",
-      "description": "Open-source real-time ML model monitoring dashboard deployed on AWS Lambda",
+      "description": "Open-source ML model monitoring dashboard",
       "url": "https://github.com/alexchen/ml-monitor",
       "github": "https://github.com/alexchen/ml-monitor",
       "startDate": "2024-01",
       "highlights": [
-        "Built a real-time model drift detection system with configurable alerting thresholds on AWS Lambda — demonstrates experience designing cloud-native data systems with zero-ops reliability.",
-        "Designed a React dashboard visualizing prediction distributions, feature importance, and alert history across multiple model versions."
+        "Built a real-time model drift detection system with configurable alerting thresholds, deployed on AWS Lambda for zero-ops monitoring.",
+        "Designed a React.js dashboard visualizing prediction distributions, feature importance, and alert history across multiple model versions."
       ],
-      "keywords": ["machine-learning", "monitoring", "AWS", "full-stack", "open-source"]
+      "keywords": ["machine-learning", "monitoring", "full-stack", "open-source"]
     },
     {
       "id": "devcli-toolkit",
       "name": "DevCLI Toolkit",
-      "description": "Rust-based developer productivity CLI tools published to crates.io",
+      "description": "Developer productivity CLI tools",
       "url": "https://github.com/alexchen/devcli",
       "github": "https://github.com/alexchen/devcli",
       "startDate": "2023-06",
       "highlights": [
         "Created a Rust-based CLI toolkit with sub-5ms startup time for common developer workflows: git branch cleanup, log tailing, and config management.",
-        "Published to crates.io with 2,000+ downloads; maintained backward compatibility across 8 minor releases — demonstrates open-source stewardship and internal platform engineering."
+        "Published to crates.io with 2,000+ downloads; maintained backward compatibility across 8 minor releases."
       ],
       "keywords": ["cli", "developer-tools", "rust", "open-source"]
     }
@@ -75,14 +75,14 @@
       "keywords": ["Apache Flink", "Kafka", "PostgreSQL", "Redis", "SQL", "scikit-learn", "MLflow"]
     },
     {
+      "id": "languages-frameworks",
+      "name": "Languages & Frameworks",
+      "keywords": ["Python", "TypeScript", "Rust", "React.js", "Node.js", "FastAPI"]
+    },
+    {
       "id": "infrastructure-devops",
       "name": "Infrastructure & DevOps",
       "keywords": ["AWS", "Kubernetes", "Docker", "Terraform", "GitHub Actions"]
-    },
-    {
-      "id": "languages-frameworks",
-      "name": "Languages & Frameworks",
-      "keywords": ["Python", "TypeScript", "Rust", "Node.js", "FastAPI", "React"]
     }
   ],
   "education": [
@@ -101,12 +101,12 @@
       "position": "Tech Lead",
       "location": "San Francisco, CA",
       "startDate": "2023-01",
-      "summary": "Led a team of 8 volunteers building civic tech tools for local nonprofits, delivering 3 projects in 12 months — demonstrates open-source collaboration and experience building platforms for internal teams."
+      "summary": "Led a team of 8 volunteers building civic tech tools for local nonprofits, delivering 3 projects in 12 months."
     }
   ],
   "meta": {
     "version": "1.0.0",
-    "lastModified": "2026-04-16T00:00:00Z",
+    "lastModified": "2026-04-17T00:00:00Z",
     "agentfolio": {
       "company": "Notion",
       "role": "Software Engineer, Enterprise Data Platform",
