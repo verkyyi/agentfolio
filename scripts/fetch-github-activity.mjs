@@ -41,9 +41,16 @@ export function buildActivity(login, data, now = new Date()) {
     w.contributionDays.map((d) => ({ date: d.date, count: d.contributionCount }))
   );
 
-  const flat = weeks.flat();
-  const last30 = flat.slice(-30);
-  const contributions30d = last30.reduce((s, d) => s + d.count, 0);
+  // Sum contributions within the last 30 calendar days of `now`.
+  // Uses date-filtering rather than slicing the tail of the grid, because the
+  // grid always ends on the current week's Saturday — a tail-slice window
+  // drifts by up to 6 days depending on which weekday the cron fires on.
+  const cutoff = new Date(now);
+  cutoff.setUTCDate(cutoff.getUTCDate() - 30);
+  const contributions30d = weeks
+    .flat()
+    .filter((d) => new Date(d.date) >= cutoff)
+    .reduce((s, d) => s + d.count, 0);
 
   // Aggregate language bytes across all repos
   const bytes = new Map();

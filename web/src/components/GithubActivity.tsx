@@ -104,21 +104,49 @@ function bucket(count: number): number {
   return 4;
 }
 
+const MONTH_NAMES = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
 function Heatmap({ weeks }: { weeks: ActivityData['contributions']['weeks'] }) {
   const cell = 11;
   const gap = 2;
-  const width = weeks.length * (cell + gap);
-  const height = 7 * (cell + gap);
+  const left = 24;  // gutter for weekday labels
+  const top = 16;   // gutter for month labels
+  const width = left + weeks.length * (cell + gap);
+  const height = top + 7 * (cell + gap);
+
+  const monthLabels: { x: number; label: string }[] = [];
+  weeks.forEach((week, wi) => {
+    const first = week[0];
+    if (!first) return;
+    const mo = new Date(first.date + 'T00:00:00Z').getUTCMonth();
+    const prevFirst = wi > 0 ? weeks[wi - 1][0]?.date : null;
+    const prevMo = prevFirst ? new Date(prevFirst + 'T00:00:00Z').getUTCMonth() : -1;
+    if (mo !== prevMo) {
+      monthLabels.push({ x: left + wi * (cell + gap), label: MONTH_NAMES[mo] });
+    }
+  });
+
+  const weekdayLabels = [
+    { y: top + 1 * (cell + gap) + cell - 2, label: 'Mon' },
+    { y: top + 3 * (cell + gap) + cell - 2, label: 'Wed' },
+    { y: top + 5 * (cell + gap) + cell - 2, label: 'Fri' },
+  ];
 
   return (
     <svg width={width} height={height} role="img" aria-label="Contribution heatmap">
+      {monthLabels.map((m, i) => (
+        <text key={`mo-${i}`} x={m.x} y={10} fontSize={9} fill="#6b7280">{m.label}</text>
+      ))}
+      {weekdayLabels.map((w) => (
+        <text key={`wd-${w.label}`} x={0} y={w.y} fontSize={9} fill="#6b7280">{w.label}</text>
+      ))}
       {weeks.map((week, wi) =>
         week.map((day, di) => (
           <rect
             key={`${wi}-${di}`}
             className="heatmap-cell"
-            x={wi * (cell + gap)}
-            y={di * (cell + gap)}
+            x={left + wi * (cell + gap)}
+            y={top + di * (cell + gap)}
             width={cell}
             height={cell}
             rx={2}

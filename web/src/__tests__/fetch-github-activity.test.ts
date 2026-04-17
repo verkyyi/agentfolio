@@ -89,12 +89,17 @@ describe('buildActivity', () => {
     ).toBe(100);
   });
 
-  it('computes 30-day contributions from the tail of the calendar', () => {
+  it('computes 30-day contributions by calendar date, not tail slice', () => {
     const result = buildActivity('verkyyi', fixture, new Date('2026-04-17T06:00:00Z'));
-    // Last 30 daily entries exist only if we have 30+ days; with 14 total, 30d sum = all
-    const expected = fixture.user.contributionsCollection.contributionCalendar.weeks
-      .flatMap((w) => w.contributionDays)
-      .reduce((s, d) => s + d.contributionCount, 0);
-    expect(result.stats.contributions30d).toBe(expected);
+    // Cutoff = 2026-04-17 minus 30 days = 2026-03-18.
+    // Week 1 (2025-04-20..26) is ~12 months old → excluded.
+    // Week 2 (2026-04-11..17) all within window → 1+2+3+4+5+6+7 = 28.
+    expect(result.stats.contributions30d).toBe(28);
+  });
+
+  it('excludes days older than the 30-day cutoff even when they dominate the calendar', () => {
+    // Same fixture, `now` nudged forward 2 months — week 2 falls out of range too.
+    const result = buildActivity('verkyyi', fixture, new Date('2026-06-17T06:00:00Z'));
+    expect(result.stats.contributions30d).toBe(0);
   });
 });
