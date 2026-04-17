@@ -72,6 +72,15 @@ describe('worker: CORS + routing', () => {
     const res = await worker.fetch(req, baseEnv() as any);
     expect(res.status).toBe(404);
   });
+
+  it('returns 403 for disallowed origin on any path', async () => {
+    const req = new Request('https://worker.example/other', {
+      method: 'POST',
+      headers: { Origin: 'https://evil.example' },
+    });
+    const res = await worker.fetch(req, baseEnv() as any);
+    expect(res.status).toBe(403);
+  });
 });
 
 describe('worker: input validation', () => {
@@ -108,5 +117,12 @@ describe('worker: input validation', () => {
     const messages = [{ role: 'system', content: 'hi' }];
     const res = await worker.fetch(chatRequest({ slug: 'notion', messages }), baseEnv() as any);
     expect(res.status).toBe(400);
+  });
+
+  it('includes CORS headers on 400 body-validation responses', async () => {
+    const res = await worker.fetch(chatRequest({ messages: [] }), baseEnv() as any);
+    expect(res.status).toBe(400);
+    expect(res.headers.get('Access-Control-Allow-Origin')).toBe('https://site.example');
+    expect(res.headers.get('Vary')).toBe('Origin');
   });
 });

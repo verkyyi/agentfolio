@@ -27,6 +27,7 @@ function corsHeaders(origin: string): HeadersInit {
     'Access-Control-Allow-Methods': 'POST, OPTIONS',
     'Access-Control-Allow-Headers': 'Content-Type',
     'Access-Control-Max-Age': '86400',
+    'Vary': 'Origin',
   };
 }
 
@@ -62,15 +63,16 @@ export default {
       return new Response(null, { status: 204, headers: corsHeaders(origin) });
     }
 
-    const url = new URL(req.url);
-    if (url.pathname !== '/chat') {
-      return new Response('not found', { status: 404 });
-    }
-    if (req.method !== 'POST') {
-      return new Response('method not allowed', { status: 405 });
-    }
     if (!allow.includes(origin)) {
       return new Response('forbidden', { status: 403 });
+    }
+
+    const url = new URL(req.url);
+    if (url.pathname !== '/chat') {
+      return new Response('not found', { status: 404, headers: corsHeaders(origin) });
+    }
+    if (req.method !== 'POST') {
+      return new Response('method not allowed', { status: 405, headers: corsHeaders(origin) });
     }
 
     let parsed: unknown;
