@@ -38,12 +38,30 @@ async function* parseSse(body: ReadableStream<Uint8Array>): AsyncGenerator<strin
 export function ChatWidget({ slug, target }: ChatWidgetProps) {
   const proxyUrl = import.meta.env.VITE_CHAT_PROXY_URL as string | undefined;
   const [open, setOpen] = useState(false);
-  const [messages, setMessages] = useState<Msg[]>([]);
+  const storageKey = `agentfolio.chat.${slug}`;
+  const [messages, setMessages] = useState<Msg[]>(() => {
+    try {
+      const raw = sessionStorage.getItem(storageKey);
+      return raw ? (JSON.parse(raw) as Msg[]) : [];
+    } catch { return []; }
+  });
   const [draft, setDraft] = useState('');
   const [status, setStatus] = useState<Status>('idle');
   const abortRef = useRef<AbortController | null>(null);
 
   useEffect(() => () => abortRef.current?.abort(), []);
+
+  useEffect(() => {
+    if (messages.length === 0) sessionStorage.removeItem(storageKey);
+    else sessionStorage.setItem(storageKey, JSON.stringify(messages));
+  }, [messages, storageKey]);
+
+  function reset() {
+    abortRef.current?.abort();
+    setMessages([]);
+    setStatus('idle');
+    sessionStorage.removeItem(storageKey);
+  }
 
   if (!proxyUrl) return null;
 
@@ -96,7 +114,10 @@ export function ChatWidget({ slug, target }: ChatWidgetProps) {
         <div className="chat-panel" role="dialog" aria-label="Chat">
           <div className="chat-header">
             <span>Chat</span>
-            <button aria-label="Close" onClick={() => setOpen(false)}>×</button>
+            <div>
+              <button aria-label="Reset" onClick={reset}>Reset</button>
+              <button aria-label="Close" onClick={() => setOpen(false)}>×</button>
+            </div>
           </div>
           <div className="chat-messages">
             <div className="chat-msg assistant" data-testid="chat-greeting">

@@ -80,3 +80,31 @@ describe('ChatWidget — streaming send', () => {
     await screen.findByText('Hi there');
   });
 });
+
+describe('ChatWidget — persistence + reset', () => {
+  it('loads messages from sessionStorage on mount', async () => {
+    vi.stubEnv('VITE_CHAT_PROXY_URL', 'https://proxy.example');
+    sessionStorage.setItem(
+      'agentfolio.chat.notion',
+      JSON.stringify([{ role: 'assistant', content: 'Welcome back' }]),
+    );
+    const user = userEvent.setup();
+    render(<ChatWidget slug="notion" target="Notion" />);
+    await user.click(screen.getByRole('button', { name: /chat/i }));
+    expect(screen.getByText('Welcome back')).toBeInTheDocument();
+  });
+
+  it('reset clears messages and sessionStorage', async () => {
+    vi.stubEnv('VITE_CHAT_PROXY_URL', 'https://proxy.example');
+    sessionStorage.setItem(
+      'agentfolio.chat.notion',
+      JSON.stringify([{ role: 'assistant', content: 'old' }]),
+    );
+    const user = userEvent.setup();
+    render(<ChatWidget slug="notion" target="Notion" />);
+    await user.click(screen.getByRole('button', { name: /chat/i }));
+    await user.click(screen.getByRole('button', { name: /reset/i }));
+    expect(screen.queryByText('old')).not.toBeInTheDocument();
+    expect(sessionStorage.getItem('agentfolio.chat.notion')).toBeNull();
+  });
+});
