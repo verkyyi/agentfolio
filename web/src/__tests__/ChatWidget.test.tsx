@@ -39,3 +39,44 @@ describe('ChatWidget — mount condition', () => {
     expect(greeting.textContent).toMatch(/Notion · Eng/);
   });
 });
+
+function sseResponse(chunks: string[]) {
+  const stream = new ReadableStream({
+    start(c) {
+      for (const s of chunks) c.enqueue(new TextEncoder().encode(s));
+      c.close();
+    },
+  });
+  return new Response(stream, {
+    status: 200,
+    headers: { 'Content-Type': 'text/event-stream' },
+  });
+}
+
+describe('ChatWidget — streaming send', () => {
+  it('sends a POST and renders streamed assistant deltas', async () => {
+    vi.stubEnv('VITE_CHAT_PROXY_URL', 'https://proxy.example');
+    const fetchMock = vi.fn(async () => sseResponse([
+      'event: content_block_delta\ndata: {"delta":{"text":"Hi"}}\n\n',
+      'event: content_block_delta\ndata: {"delta":{"text":" there"}}\n\n',
+      'event: message_stop\ndata: {}\n\n',
+    ]));
+    vi.stubGlobal('fetch', fetchMock);
+    const user = userEvent.setup();
+    render(<ChatWidget slug="notion" target="Notion" />);
+    await user.click(screen.getByRole('button', { name: /chat/i }));
+    await user.type(screen.getByRole('textbox'), 'tell me about notion');
+    await user.click(screen.getByRole('button', { name: /send/i }));
+
+    expect(fetchMock).toHaveBeenCalledWith(
+      'https://proxy.example/chat',
+      expect.objectContaining({ method: 'POST' }),
+    );
+    const [, init] = fetchMock.mock.calls[0]!;
+    const body = JSON.parse(init.body as string);
+    expect(body.slug).toBe('notion');
+    expect(body.messages[0]).toEqual({ role: 'user', content: 'tell me about notion' });
+
+    await screen.findByText('Hi there');
+  });
+});
