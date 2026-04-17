@@ -23,7 +23,9 @@ AgentFolio renders a resume adapted to the target company and role. A three-stag
 2. **Enable GitHub Pages:** go to Settings → Pages → Source → select **GitHub Actions**
 3. **Replace** `data/input/resume.md` with your resume (any format — paste from LinkedIn, PDF text, or write markdown)
 4. **Add target positions** in `data/input/jd/` — one `.md` file per role, filename becomes the URL slug (e.g., `data/input/jd/google.md` → `yoursite.com/google`)
-5. **Set secret** `CLAUDE_CODE_OAUTH_TOKEN` on your fork — uses your Claude Pro/Team subscription instead of usage-based API billing
+5. **Set secrets** on your fork:
+   - `CLAUDE_CODE_OAUTH_TOKEN` — uses your Claude Pro/Team subscription instead of usage-based API billing
+   - `WORKFLOW_PAT` — a fine-grained or classic PAT with `actions: write` (or classic `workflow`) scope, so bot workflows can chain (fit → structurize → pdf → deploy). Without it, each stage's "Trigger …" step 403s and the chain stops after `fit`.
 6. **Push** — GitHub Actions generates adapted resumes, PDFs, and deploys to GitHub Pages
 
 No local runtime needed. No JSON to write. Just markdown and push.
@@ -52,6 +54,7 @@ Set these in `web/.env.local` for development, or as GitHub Actions secrets/env 
 | `VITE_GITHUB_REPO` | `your-username/your-repo`. Auto-set in deploy workflow via `${{ github.repository }}`. |
 | `VITE_BASE_PATH` | URL base path. Auto-detected from `actions/configure-pages`: `/` for user pages or custom domains, `/<repo-name>/` for project pages. |
 | `CLAUDE_CODE_OAUTH_TOKEN` | OAuth token for Claude Code in the adapt workflow. Uses your Claude Pro/Team subscription instead of usage-based API billing. |
+| `WORKFLOW_PAT` | PAT with `actions: write` (fine-grained) or `workflow` (classic) scope. Used by bot workflows to dispatch downstream stages (fit → structurize, extract → structurize, structurize → deploy, pdf → deploy). The default `GITHUB_TOKEN` lacks this permission and 403s on cross-workflow dispatch. |
 | `VITE_CHAT_PROXY_URL` | URL of the deployed chat Worker. If unset, the chat widget doesn't mount. |
 
 ## Enable chat (optional)
