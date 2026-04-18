@@ -1,10 +1,10 @@
 {
   "user": "verkyyi",
-  "fetchedAt": "2026-04-17T06:06:31.077Z",
+  "fetchedAt": "2026-04-18T06:20:25.352Z",
   "stats": {
     "publicRepos": 12,
-    "contributions30d": 793,
-    "contributionsLastYear": 1508
+    "contributions30d": 828,
+    "contributionsLastYear": 1589
   },
   "contributions": {
     "weeks": [
@@ -1587,43 +1587,56 @@
         },
         {
           "date": "2026-04-16",
-          "count": 175
+          "count": 185
         },
         {
           "date": "2026-04-17",
-          "count": 1
+          "count": 59
+        },
+        {
+          "date": "2026-04-18",
+          "count": 13
         }
       ]
     ]
   },
   "languages": [
     {
-      "name": "Jupyter Notebook",
-      "color": "#DA5B0B",
-      "pct": 91.1
-    },
-    {
-      "name": "HTML",
-      "color": "#e34c26",
-      "pct": 3.3
+      "name": "TypeScript",
+      "color": "#3178c6",
+      "pct": 58.5
     },
     {
       "name": "Shell",
       "color": "#89e051",
-      "pct": 1.9
+      "pct": 32.4
     },
     {
-      "name": "TypeScript",
-      "color": "#3178c6",
-      "pct": 1.7
+      "name": "CSS",
+      "color": "#663399",
+      "pct": 3.5
     },
     {
       "name": "JavaScript",
       "color": "#f1e05a",
-      "pct": 1.4
+      "pct": 2.9
+    },
+    {
+      "name": "Handlebars",
+      "color": "#f7931e",
+      "pct": 1.8
     }
   ],
   "repos": [
+    {
+      "name": "tokenman",
+      "url": "https://github.com/verkyyi/tokenman",
+      "description": "A self-evolving scaffold for autonomous web projects. 9 workflows, hourly self-evolution, self-healing pipeline, feedback learning loop. The repo is the system.",
+      "language": "Shell",
+      "languageColor": "#89e051",
+      "stars": 2,
+      "pushedAt": "2026-04-18T03:15:02Z"
+    },
     {
       "name": "agentfolio",
       "url": "https://github.com/verkyyi/agentfolio",
@@ -1631,7 +1644,7 @@
       "language": "TypeScript",
       "languageColor": "#3178c6",
       "stars": 1,
-      "pushedAt": "2026-04-17T06:06:16Z"
+      "pushedAt": "2026-04-17T23:43:47Z"
     },
     {
       "name": "verkyyi.github.io",
@@ -1640,16 +1653,7 @@
       "language": "TypeScript",
       "languageColor": "#3178c6",
       "stars": 0,
-      "pushedAt": "2026-04-17T05:57:46Z"
-    },
-    {
-      "name": "tokenman",
-      "url": "https://github.com/verkyyi/tokenman",
-      "description": "A self-evolving scaffold for autonomous web projects. 9 workflows, hourly self-evolution, self-healing pipeline, feedback learning loop. The repo is the system.",
-      "language": "Shell",
-      "languageColor": "#89e051",
-      "stars": 2,
-      "pushedAt": "2026-04-17T05:21:00Z"
+      "pushedAt": "2026-04-17T21:29:29Z"
     },
     {
       "name": "always-on-claude",
