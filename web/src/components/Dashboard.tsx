@@ -19,14 +19,18 @@ const Main = styled.main`
 `;
 
 const TabBar = styled.div`
-  display: flex;
-  align-items: center;
   border-bottom: 1px solid var(--rule);
-  padding: 0 40px;
   position: sticky;
   top: 0;
   background: var(--paper);
   z-index: 5;
+`;
+
+const TabBarInner = styled.div`
+  display: flex;
+  align-items: center;
+  max-width: 800px;
+  padding: 0 40px;
 `;
 
 const TabBarActions = styled.div`
@@ -159,6 +163,7 @@ export function Dashboard() {
         ) : (
           <>
             <TabBar>
+              <TabBarInner>
               <TabButton $active={tab === 'preview'} onClick={() => setTab('preview')}>Preview</TabButton>
               <TabButton
                 $active={tab === 'diff'}
@@ -215,6 +220,7 @@ export function Dashboard() {
                   </ActionLink>
                 )}
               </TabBarActions>
+              </TabBarInner>
             </TabBar>
             {activeSlug && tab === 'preview' && <FittedPreview slug={activeSlug} />}
             {activeSlug && tab === 'diff' && <FittedDiff slug={activeSlug} />}
