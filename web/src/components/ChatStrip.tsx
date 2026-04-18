@@ -206,16 +206,18 @@ export function ChatStrip({
       onClick={onJump}
       aria-label="Return to chat"
     >
-      <span className="chat-strip__left">
-        <span className="chat-strip__prompt">&gt;</span>
-        <span className="chat-strip__name">{ownerName}</span>
-        <span className={`chat-strip__dot${isStreaming ? ' chat-strip__dot--pulse' : ''}`} />
-        <span className="chat-strip__sep">—</span>
-        <span className={`chat-strip__hint${hintTyping ? ' chat-strip__hint--typing' : ''}`}>
-          {showLiveTail ? liveTail : dripText}
+      <span className="chat-strip__inner">
+        <span className="chat-strip__left">
+          <span className="chat-strip__prompt">&gt;</span>
+          <span className="chat-strip__name">{ownerName}</span>
+          <span className={`chat-strip__dot${isStreaming ? ' chat-strip__dot--pulse' : ''}`} />
+          <span className="chat-strip__sep">—</span>
+          <span className={`chat-strip__hint${hintTyping ? ' chat-strip__hint--typing' : ''}`}>
+            {showLiveTail ? liveTail : dripText}
+          </span>
         </span>
+        <span className="chat-strip__cue">tap to chat ↑</span>
       </span>
-      <span className="chat-strip__cue">tap to chat ↑</span>
     </button>
   );
 }
