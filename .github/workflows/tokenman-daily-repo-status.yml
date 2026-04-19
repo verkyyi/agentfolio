@@ -34,6 +34,62 @@ jobs:
         with:
           fetch-depth: 50
 
+      - name: Gather repo activity
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          since=$(date -u -d '24 hours ago' +%Y-%m-%dT%H:%M:%SZ)
+          today=$(date -u +%Y-%m-%d)
+          mkdir -p /tmp/tokenman
+
+          gh api "repos/$REPO/commits?since=$since" --paginate \
+            --jq '[.[] | {sha: .sha[0:7], message: (.commit.message | split("\n") | .[0]), author: (.commit.author.name), url: .html_url, date: .commit.author.date}]' \
+            > /tmp/tokenman/commits.json 2>/dev/null || echo '[]' > /tmp/tokenman/commits.json
+
+          gh pr list --state all --limit 30 \
+            --json number,title,state,author,createdAt,updatedAt,mergedAt,closedAt,url,labels \
+            | jq --arg since "$since" '[.[] | select(.updatedAt >= $since)]' \
+            > /tmp/tokenman/prs.json
+
+          gh issue list --state all --limit 30 \
+            --json number,title,state,author,createdAt,updatedAt,closedAt,url,labels \
+            | jq --arg since "$since" '[.[] | select(.updatedAt >= $since)]' \
+            > /tmp/tokenman/issues.json
+
+          gh run list --limit 20 \
+            --json name,status,conclusion,createdAt,url,headBranch,event \
+            | jq --arg since "$since" '[.[] | select(.createdAt >= $since)]' \
+            > /tmp/tokenman/runs.json
+
+          gh release list --limit 5 \
+            --json tagName,publishedAt,name,url \
+            | jq --arg since "$since" '[.[] | select(.publishedAt >= $since)]' \
+            > /tmp/tokenman/releases.json
+
+          jq -n \
+            --slurpfile commits /tmp/tokenman/commits.json \
+            --slurpfile prs /tmp/tokenman/prs.json \
+            --slurpfile issues /tmp/tokenman/issues.json \
+            --slurpfile runs /tmp/tokenman/runs.json \
+            --slurpfile releases /tmp/tokenman/releases.json \
+            --arg since "$since" \
+            --arg today "$today" \
+            --arg repo "$REPO" \
+            '{since: $since, today: $today, repo: $repo,
+              commits: $commits[0], pull_requests: $prs[0],
+              issues: $issues[0], ci_runs: $runs[0], releases: $releases[0]}' \
+            > /tmp/tokenman/activity.json
+
+          echo "### Activity snapshot" >> "$GITHUB_STEP_SUMMARY"
+          printf -- '- commits: %s\n- prs: %s\n- issues: %s\n- ci_runs: %s\n- releases: %s\n' \
+            "$(jq 'length' /tmp/tokenman/commits.json)" \
+            "$(jq 'length' /tmp/tokenman/prs.json)" \
+            "$(jq 'length' /tmp/tokenman/issues.json)" \
+            "$(jq 'length' /tmp/tokenman/runs.json)" \
+            "$(jq 'length' /tmp/tokenman/releases.json)" >> "$GITHUB_STEP_SUMMARY"
+
       - name: Run Claude
         uses: anthropics/claude-code-action@v1
         with:
@@ -41,45 +97,49 @@ jobs:
           prompt: |
             You are the daily status-report agent for this repository (agentfolio — an open-source agentic portfolio engine).
 
-            Configuration:
-            - history_window_hours: 24
-            - report_sections: [commits, pull_requests, issues, ci, releases]
-            - skip_on_quiet_day: false
+            The activity data has already been gathered. Read /tmp/tokenman/activity.json. It has this shape:
+            {
+              "since": "ISO timestamp (24h ago)",
+              "today": "YYYY-MM-DD (UTC today)",
+              "repo": "owner/name",
+              "commits": [...],
+              "pull_requests": [...],
+              "issues": [...],
+              "ci_runs": [...],
+              "releases": [...]
+            }
 
-            Process:
-            1. Gather activity from the last 24 hours using:
-               - `gh api "repos/${{ github.repository }}/commits?since=$(date -u -d '24 hours ago' +%Y-%m-%dT%H:%M:%SZ)" --paginate` for commits
-               - `gh pr list --state all --limit 30 --json number,title,state,author,updatedAt,url,labels` then filter to last 24h
-               - `gh issue list --state all --limit 30 --json number,title,state,author,updatedAt,url,labels` then filter to last 24h
-               - `gh run list --limit 20 --json name,status,conclusion,createdAt,url` for CI runs
-               - `gh release list --limit 5 --json tagName,publishedAt,name` for releases
-            2. Compose a concise, scannable status report as markdown. Structure:
-               - Opening line: one-sentence summary (e.g., "Active day: 3 commits, 2 PRs opened, 1 merged.")
-               - "## Commits" section (omit if none): bullet list of up to 10 recent commits with links
-               - "## Pull requests" section (omit if none): opened / merged / closed subsections
-               - "## Issues" section (omit if none): opened / closed subsections
-               - "## CI" section (omit if all green): any failed runs with links
-               - "## Releases" section (omit if none): any new releases
-               - Closing line: brief observation or nothing-to-flag note
-            3. Keep it under ~500 words. Link to issues/PRs with their numbers. Use a friendly-neutral tone (no CONTRIBUTING.md in this repo).
-            4. Write the output to /tmp/tokenman-report.json with this exact schema:
-               {
-                 "version": 1,
-                 "type": "create_status_report_issue",
-                 "payload": {
-                   "title": "[repo-status] YYYY-MM-DD",
-                   "body": "... markdown report ...",
-                   "labels": ["report", "tokenman"],
-                   "has_activity": true
-                 }
-               }
-               Set has_activity to false ONLY if truly zero activity in all sections.
-               When there is no activity, still produce a short body like "Quiet day — no commits, PRs, or issues in the last 24 hours." (skip_on_quiet_day is false, so we still post.)
-            5. Do not create, modify, comment on, or close any GitHub resource yourself. The apply job will execute.
+            Compose a concise, friendly-neutral markdown report and write it to /tmp/tokenman-report.json using this exact schema:
+            {
+              "version": 1,
+              "type": "create_status_report_issue",
+              "payload": {
+                "title": "[repo-status] <today>",
+                "body": "... markdown report ...",
+                "labels": ["report", "tokenman"],
+                "has_activity": <true|false>
+              }
+            }
+
+            Body structure:
+            - Opening line: one-sentence summary (e.g., "Active day: 3 commits, 2 PRs opened, 1 merged.")
+            - "## Commits" section (omit if none): bullet list of up to 10, with short SHA and link
+            - "## Pull requests" section (omit if none): opened / merged / closed subsections
+            - "## Issues" section (omit if none): opened / closed subsections
+            - "## CI" section (omit if all green): failed runs with links
+            - "## Releases" section (omit if none): new releases
+            - Closing line: brief observation or nothing-to-flag note
+
+            Constraints:
+            - Keep body under ~500 words
+            - Title: "[repo-status] " + the `today` value from activity.json
+            - Set has_activity=false ONLY if commits, pull_requests, issues, ci_runs, and releases are ALL empty
+            - On a fully quiet day (has_activity=false) still post a short body: "Quiet day — no commits, PRs, or issues in the last 24 hours."
+            - Do NOT call gh, git, or any network tools. All data is in the JSON file. Only Read and Write are available.
           claude_args: |
             --model claude-sonnet-4-6
-            --max-turns 25
-            --allowedTools "Bash(gh api:*),Bash(gh pr list:*),Bash(gh issue list:*),Bash(gh run list:*),Bash(gh release list:*),Bash(date:*),Read,Write(/tmp/tokenman-report.json)"
+            --max-turns 5
+            --allowedTools "Read,Write(/tmp/tokenman-report.json)"
 
       - name: Validate Claude's output
         id: validate
@@ -144,8 +204,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
-          # Find open issues with BOTH the tokenman label AND title starting with [repo-status].
-          # The dual-marker check protects hand-authored issues that coincidentally share the prefix.
+          # Dual-marker check: title prefix AND tokenman label. Protects hand-authored issues.
           old_issues=$(gh issue list \
             --state open \
             --label tokenman \
