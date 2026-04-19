@@ -1,43 +1,13 @@
 {
   "user": "verkyyi",
-  "fetchedAt": "2026-04-18T06:20:25.352Z",
+  "fetchedAt": "2026-04-19T06:28:42.787Z",
   "stats": {
-    "publicRepos": 12,
-    "contributions30d": 828,
-    "contributionsLastYear": 1589
+    "publicRepos": 13,
+    "contributions30d": 891,
+    "contributionsLastYear": 1726
   },
   "contributions": {
     "weeks": [
-      [
-        {
-          "date": "2025-04-13",
-          "count": 0
-        },
-        {
-          "date": "2025-04-14",
-          "count": 0
-        },
-        {
-          "date": "2025-04-15",
-          "count": 3
-        },
-        {
-          "date": "2025-04-16",
-          "count": 0
-        },
-        {
-          "date": "2025-04-17",
-          "count": 0
-        },
-        {
-          "date": "2025-04-18",
-          "count": 0
-        },
-        {
-          "date": "2025-04-19",
-          "count": 0
-        }
-      ],
       [
         {
           "date": "2025-04-20",
@@ -1595,7 +1565,13 @@
         },
         {
           "date": "2026-04-18",
-          "count": 13
+          "count": 150
+        }
+      ],
+      [
+        {
+          "date": "2026-04-19",
+          "count": 0
         }
       ]
     ]
@@ -1604,27 +1580,27 @@
     {
       "name": "TypeScript",
       "color": "#3178c6",
-      "pct": 58.5
+      "pct": 51.3
     },
     {
       "name": "Shell",
       "color": "#89e051",
-      "pct": 32.4
+      "pct": 28.4
+    },
+    {
+      "name": "Python",
+      "color": "#3572A5",
+      "pct": 12.3
     },
     {
       "name": "CSS",
       "color": "#663399",
-      "pct": 3.5
+      "pct": 3.1
     },
     {
       "name": "JavaScript",
       "color": "#f1e05a",
-      "pct": 2.9
-    },
-    {
-      "name": "Handlebars",
-      "color": "#f7931e",
-      "pct": 1.8
+      "pct": 2.5
     }
   ],
   "repos": [
@@ -1632,10 +1608,10 @@
       "name": "tokenman",
       "url": "https://github.com/verkyyi/tokenman",
       "description": "A self-evolving scaffold for autonomous web projects. 9 workflows, hourly self-evolution, self-healing pipeline, feedback learning loop. The repo is the system.",
-      "language": "Shell",
-      "languageColor": "#89e051",
+      "language": "Python",
+      "languageColor": "#3572A5",
       "stars": 2,
-      "pushedAt": "2026-04-18T03:15:02Z"
+      "pushedAt": "2026-04-19T05:47:19Z"
     },
     {
       "name": "agentfolio",
@@ -1644,7 +1620,16 @@
       "language": "TypeScript",
       "languageColor": "#3178c6",
       "stars": 1,
-      "pushedAt": "2026-04-17T23:43:47Z"
+      "pushedAt": "2026-04-19T02:24:03Z"
+    },
+    {
+      "name": "readme-maintainer-skill",
+      "url": "https://github.com/verkyyi/readme-maintainer-skill",
+      "description": "Keep the repo's README aligned with actual repo contents. Skill for tokenman.",
+      "language": null,
+      "languageColor": null,
+      "stars": 0,
+      "pushedAt": "2026-04-18T20:41:45Z"
     },
     {
       "name": "verkyyi.github.io",
@@ -1663,15 +1648,6 @@
       "languageColor": "#89e051",
       "stars": 5,
       "pushedAt": "2026-04-17T02:18:30Z"
-    },
-    {
-      "name": "ainbox-skills",
-      "url": "https://github.com/verkyyi/ainbox-skills",
-      "description": "Agent Skills for aInbox — community-editable prompts and templates for AI email assistants",
-      "language": null,
-      "languageColor": null,
-      "stars": 0,
-      "pushedAt": "2026-02-16T09:25:29Z"
     }
   ]
 }
