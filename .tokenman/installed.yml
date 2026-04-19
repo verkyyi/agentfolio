@@ -1,7 +1,0 @@
-version: 1
-workflows:
-  daily-repo-status:
-    recipe_version: 1.0.0
-    installed_at: 2026-04-19
-    values_file: .tokenman/workflows/daily-repo-status/values.yml
-    workflow_file: .github/workflows/tokenman-daily-repo-status.yml
