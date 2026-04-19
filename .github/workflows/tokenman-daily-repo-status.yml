@@ -78,7 +78,7 @@ jobs:
             5. Do not create, modify, comment on, or close any GitHub resource yourself. The apply job will execute.
           claude_args: |
             --model claude-sonnet-4-6
-            --max-turns 10
+            --max-turns 25
             --allowedTools "Bash(gh api:*),Bash(gh pr list:*),Bash(gh issue list:*),Bash(gh run list:*),Bash(gh release list:*),Bash(date:*),Read,Write(/tmp/tokenman-report.json)"
 
       - name: Validate Claude's output
