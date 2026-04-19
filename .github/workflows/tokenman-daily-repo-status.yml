@@ -64,7 +64,7 @@ jobs:
             > /tmp/tokenman/runs.json
 
           gh release list --limit 5 \
-            --json tagName,publishedAt,name,url \
+            --json tagName,publishedAt,name \
             | jq --arg since "$since" '[.[] | select(.publishedAt >= $since)]' \
             > /tmp/tokenman/releases.json
 
