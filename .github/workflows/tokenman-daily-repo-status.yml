@@ -202,10 +202,12 @@ jobs:
       - name: Close older report issues
         env:
           GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
         run: |
           set -euo pipefail
           # Dual-marker check: title prefix AND tokenman label. Protects hand-authored issues.
           old_issues=$(gh issue list \
+            -R "$REPO" \
             --state open \
             --label tokenman \
             --search '"[repo-status]" in:title' \
@@ -220,8 +222,8 @@ jobs:
 
           for num in $old_issues; do
             echo "Closing prior report #$num"
-            gh issue comment "$num" --body "Superseded by the new daily report."
-            gh issue close "$num" --reason completed
+            gh issue comment "$num" -R "$REPO" --body "Superseded by the new daily report."
+            gh issue close "$num" -R "$REPO" --reason completed
           done
 
       - name: Create new status-report issue
