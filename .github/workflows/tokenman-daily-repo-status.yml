@@ -139,7 +139,7 @@ jobs:
           claude_args: |
             --model claude-sonnet-4-6
             --max-turns 5
-            --allowedTools "Read,Write(/tmp/tokenman-report.json)"
+            --allowedTools "Read,Write"
 
       - name: Validate Claude's output
         id: validate
