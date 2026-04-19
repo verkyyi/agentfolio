@@ -25,6 +25,7 @@ jobs:
       issues: read
       pull-requests: read
       actions: read
+      id-token: write
     outputs:
       has_activity: ${{ steps.validate.outputs.has_activity }}
     steps:
