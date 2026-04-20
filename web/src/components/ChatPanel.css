@@ -87,15 +87,6 @@
   margin: 12px 0;
 }
 
-@media (max-width: 640px) {
-  .chatp-suggestions {
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    scrollbar-width: none;
-  }
-  .chatp-suggestions::-webkit-scrollbar { display: none; }
-}
-
 .chatp-suggestion {
   font-family: inherit;
   font-size: 11px;
