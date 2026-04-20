@@ -1,10 +1,10 @@
 {
   "user": "verkyyi",
-  "fetchedAt": "2026-04-19T06:28:42.787Z",
+  "fetchedAt": "2026-04-20T06:37:33.806Z",
   "stats": {
-    "publicRepos": 13,
-    "contributions30d": 891,
-    "contributionsLastYear": 1726
+    "publicRepos": 14,
+    "contributions30d": 913,
+    "contributionsLastYear": 1772
   },
   "contributions": {
     "weeks": [
@@ -1565,13 +1565,17 @@
         },
         {
           "date": "2026-04-18",
-          "count": 150
+          "count": 151
         }
       ],
       [
         {
           "date": "2026-04-19",
-          "count": 0
+          "count": 38
+        },
+        {
+          "date": "2026-04-20",
+          "count": 10
         }
       ]
     ]
@@ -1585,12 +1589,12 @@
     {
       "name": "Shell",
       "color": "#89e051",
-      "pct": 28.4
+      "pct": 29.7
     },
     {
       "name": "Python",
       "color": "#3572A5",
-      "pct": 12.3
+      "pct": 11.1
     },
     {
       "name": "CSS",
@@ -1605,13 +1609,22 @@
   ],
   "repos": [
     {
-      "name": "tokenman",
-      "url": "https://github.com/verkyyi/tokenman",
-      "description": "A self-evolving scaffold for autonomous web projects. 9 workflows, hourly self-evolution, self-healing pipeline, feedback learning loop. The repo is the system.",
-      "language": "Python",
-      "languageColor": "#3572A5",
-      "stars": 2,
-      "pushedAt": "2026-04-19T05:47:19Z"
+      "name": "github-agent-runner",
+      "url": "https://github.com/verkyyi/github-agent-runner",
+      "description": "Claude Code plugin to discover and install GitHub agentic workflows (gh-aw) into your repo",
+      "language": "Shell",
+      "languageColor": "#89e051",
+      "stars": 1,
+      "pushedAt": "2026-04-20T05:21:05Z"
+    },
+    {
+      "name": "always-on-claude",
+      "url": "https://github.com/verkyyi/always-on-claude",
+      "description": "Always-on Claude Code dev environment on EC2 + Docker Compose (~$22/mo)",
+      "language": "Shell",
+      "languageColor": "#89e051",
+      "stars": 5,
+      "pushedAt": "2026-04-20T05:09:12Z"
     },
     {
       "name": "agentfolio",
@@ -1620,7 +1633,16 @@
       "language": "TypeScript",
       "languageColor": "#3178c6",
       "stars": 1,
-      "pushedAt": "2026-04-19T02:24:03Z"
+      "pushedAt": "2026-04-19T08:37:57Z"
+    },
+    {
+      "name": "tokenman",
+      "url": "https://github.com/verkyyi/tokenman",
+      "description": "A self-evolving scaffold for autonomous web projects. 9 workflows, hourly self-evolution, self-healing pipeline, feedback learning loop. The repo is the system.",
+      "language": "Python",
+      "languageColor": "#3572A5",
+      "stars": 2,
+      "pushedAt": "2026-04-19T06:57:48Z"
     },
     {
       "name": "readme-maintainer-skill",
@@ -1630,24 +1652,6 @@
       "languageColor": null,
       "stars": 0,
       "pushedAt": "2026-04-18T20:41:45Z"
-    },
-    {
-      "name": "verkyyi.github.io",
-      "url": "https://github.com/verkyyi/verkyyi.github.io",
-      "description": "Personal Github Pages",
-      "language": "TypeScript",
-      "languageColor": "#3178c6",
-      "stars": 0,
-      "pushedAt": "2026-04-17T21:29:29Z"
-    },
-    {
-      "name": "always-on-claude",
-      "url": "https://github.com/verkyyi/always-on-claude",
-      "description": "Always-on Claude Code dev environment on EC2 + Docker Compose (~$22/mo)",
-      "language": "Shell",
-      "languageColor": "#89e051",
-      "stars": 5,
-      "pushedAt": "2026-04-17T02:18:30Z"
     }
   ]
 }
