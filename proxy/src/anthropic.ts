@@ -1,6 +1,6 @@
 import { buildSystemPrompt, extractTarget, type PromptInputs } from './prompt';
 import type { SlugContext } from './context';
-import { TOOL_DEFS, executeTool, type ToolContext } from './tools';
+import { TOOL_DEFS, executeTool, makeBlockIdGenerator, type ToolContext } from './tools';
 
 export interface CallInputs {
   apiKey: string;
@@ -24,7 +24,7 @@ export interface ToolLoopInputs {
   model: string;
   system: string;
   messages: Array<{ role: 'user' | 'assistant'; content: unknown }>;
-  ctx: ToolContext;
+  ctx: { slug: string; blockId?: () => string };
   writer: LoopWriter;
   signal?: AbortSignal;
 }
@@ -45,9 +45,12 @@ const SSE_DONE = 'event: done\ndata: {}\n\n';
 export async function runToolLoop(inputs: ToolLoopInputs): Promise<void> {
   const { claude, apiKey, model, system, ctx, writer, signal } = inputs;
   const history = inputs.messages.slice();
+  const localBlockId = makeBlockIdGenerator();
+  const scopedCtx: ToolContext = { slug: ctx.slug, blockId: ctx.blockId ?? localBlockId };
 
   try {
-    for (let round = 0; round < MAX_ROUNDS; round++) {
+    let round = 0;
+    for (; round < MAX_ROUNDS; round++) {
       const resp = await claude('https://api.anthropic.com/v1/messages', {
         method: 'POST',
         headers: {
@@ -65,6 +68,15 @@ export async function runToolLoop(inputs: ToolLoopInputs): Promise<void> {
         signal,
       });
       if (!resp.ok) {
+        let upstreamBody = '';
+        try { upstreamBody = await resp.text(); } catch { /* ignore */ }
+        console.log(JSON.stringify({
+          level: 'error',
+          where: 'claude_upstream',
+          slug: scopedCtx.slug,
+          status: resp.status,
+          body: upstreamBody.slice(0, 500),
+        }));
         await writer.write(sseError(`upstream_${resp.status}`));
         return;
       }
@@ -82,7 +94,7 @@ export async function runToolLoop(inputs: ToolLoopInputs): Promise<void> {
           await writer.write(sseText(block.text));
         } else if (block.type === 'tool_use') {
           try {
-            const { result, display_block } = await executeTool(block.name, block.input, ctx);
+            const { result, display_block } = await executeTool(block.name, block.input, scopedCtx);
             if (display_block) await writer.write(sseBlock(display_block));
             toolResults.push({
               type: 'tool_result',
@@ -105,9 +117,26 @@ export async function runToolLoop(inputs: ToolLoopInputs): Promise<void> {
       history.push({ role: 'assistant', content: body.content });
       history.push({ role: 'user', content: toolResults });
     }
+    if (round >= MAX_ROUNDS) {
+      console.log(JSON.stringify({
+        level: 'warn',
+        where: 'tool_loop',
+        slug: scopedCtx.slug,
+        message: 'max_rounds_reached',
+      }));
+      await writer.write(sseError('max_rounds_reached'));
+      return;
+    }
     await writer.write(SSE_DONE);
   } catch (e) {
-    await writer.write(sseError(String((e as Error).message)));
+    const msg = e instanceof Error ? e.message : 'internal_error';
+    console.log(JSON.stringify({
+      level: 'error',
+      where: 'tool_loop',
+      slug: scopedCtx.slug,
+      message: msg,
+    }));
+    await writer.write(sseError('internal_error'));
   } finally {
     await writer.close();
   }
@@ -144,7 +173,14 @@ export async function callAnthropic(inputs: CallInputs): Promise<Response> {
     ctx: { slug: inputs.slug },
     writer,
     signal: inputs.signal,
-  }).catch(() => { /* loop handles its own errors */ });
+  }).catch((e) => {
+    console.log(JSON.stringify({
+      level: 'error',
+      where: 'tool_loop_outer',
+      slug: inputs.slug,
+      message: String((e as Error).message ?? e),
+    }));
+  });
 
   return new Response(readable, { status: 200 });
 }

@@ -1,6 +1,5 @@
-import { describe, expect, it, vi, beforeEach } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import { runToolLoop } from '../src/anthropic';
-import { _resetBlockCounter } from '../src/tools';
 
 function mockClaude(responses: unknown[]) {
   let i = 0;
@@ -20,8 +19,6 @@ function collector() {
   };
   return writer;
 }
-
-beforeEach(() => _resetBlockCounter());
 
 describe('runToolLoop', () => {
   it('streams text frames for a plain response', async () => {
@@ -77,6 +74,7 @@ describe('runToolLoop', () => {
   it('emits error frame on upstream failure', async () => {
     const claude = vi.fn(async () => ({
       ok: false, status: 500,
+      async text() { return 'upstream body detail'; },
       async json() { return {}; },
     } as unknown as Response));
     const writer = collector();
@@ -88,6 +86,8 @@ describe('runToolLoop', () => {
     const joined = writer.frames.join('');
     expect(joined).toContain('event: error');
     expect(joined).toContain('upstream_500');
+    // Upstream body must NOT leak to the wire.
+    expect(joined).not.toContain('upstream body detail');
   });
 
   it('sends tool results back when claude invokes a tool', async () => {
@@ -119,5 +119,50 @@ describe('runToolLoop', () => {
     expect(Array.isArray(lastMessage.content)).toBe(true);
     expect(lastMessage.content[0].type).toBe('tool_result');
     expect(lastMessage.content[0].tool_use_id).toBe('tu_1');
+  });
+
+  it('emits max_rounds_reached when the loop hits the ceiling', async () => {
+    // Always return tool_use so the loop never breaks on end_turn.
+    const claude = vi.fn(async () => ({
+      ok: true,
+      status: 200,
+      async json() {
+        return {
+          id: 'msg_n',
+          stop_reason: 'tool_use',
+          content: [
+            { type: 'tool_use', id: 'tu_x', name: 'open_panel', input: { panel: 'resume' } },
+          ],
+        };
+      },
+    } as unknown as Response));
+    const writer = collector();
+    await runToolLoop({
+      claude: claude as typeof fetch, model: 'test-model', apiKey: 'k',
+      system: 'sys', messages: [{ role: 'user', content: 'go' }],
+      ctx: { slug: 'default' }, writer,
+    });
+    const joined = writer.frames.join('');
+    expect(joined).toContain('event: error');
+    expect(joined).toContain('max_rounds_reached');
+    // Should not also emit done.
+    expect(joined).not.toContain('event: done');
+    // Exactly MAX_ROUNDS claude calls.
+    expect((claude as ReturnType<typeof vi.fn>).mock.calls.length).toBe(8);
+  });
+
+  it('emits generic internal_error on thrown error (server logs real message)', async () => {
+    const claude = vi.fn().mockRejectedValueOnce(new Error('boom')) as unknown as typeof fetch;
+    const writer = collector();
+    await runToolLoop({
+      claude, model: 'test-model', apiKey: 'k',
+      system: 'sys', messages: [{ role: 'user', content: 'hi' }],
+      ctx: { slug: 'default' }, writer,
+    });
+    const joined = writer.frames.join('');
+    expect(joined).toContain('event: error');
+    expect(joined).toContain('"message":"internal_error"');
+    // Real error message must NOT leak to wire.
+    expect(joined).not.toContain('boom');
   });
 });

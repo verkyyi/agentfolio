@@ -23,6 +23,7 @@ export const TOOL_DEFS: ToolDef[] = [
 
 export interface ToolContext {
   slug: string;
+  blockId: () => string;
 }
 
 export interface ToolResult {
@@ -30,9 +31,10 @@ export interface ToolResult {
   display_block?: BlockFrame;
 }
 
-let blockCounter = 0;
-export function _resetBlockCounter(): void { blockCounter = 0; }
-function blockId(): string { return `blk_${++blockCounter}`; }
+export function makeBlockIdGenerator(): () => string {
+  let n = 0;
+  return () => `blk_${++n}`;
+}
 
 export async function executeTool(
   name: string,
@@ -46,7 +48,7 @@ export async function executeTool(
     }
     return {
       result: { ok: true },
-      display_block: { id: blockId(), type: 'open-panel', data: { panel } },
+      display_block: { id: _ctx.blockId(), type: 'open-panel', data: { panel } },
     };
   }
   throw new Error(`unknown tool: ${name}`);

@@ -1,7 +1,5 @@
-import { describe, expect, it, beforeEach } from 'vitest';
-import { TOOL_DEFS, executeTool, _resetBlockCounter } from '../src/tools';
-
-beforeEach(() => _resetBlockCounter());
+import { describe, expect, it } from 'vitest';
+import { TOOL_DEFS, executeTool, makeBlockIdGenerator } from '../src/tools';
 
 describe('TOOL_DEFS', () => {
   it('includes open_panel', () => {
@@ -12,7 +10,8 @@ describe('TOOL_DEFS', () => {
 
 describe('executeTool open_panel', () => {
   it('returns ok and an open-panel display_block', async () => {
-    const res = await executeTool('open_panel', { panel: 'resume' }, { slug: 'default' });
+    const blockId = makeBlockIdGenerator();
+    const res = await executeTool('open_panel', { panel: 'resume' }, { slug: 'default', blockId });
     expect(res.result).toEqual({ ok: true });
     expect(res.display_block).toEqual({
       id: 'blk_1',
@@ -22,14 +21,16 @@ describe('executeTool open_panel', () => {
   });
 
   it('rejects unknown panel', async () => {
-    await expect(executeTool('open_panel', { panel: 'other' } as never, { slug: 'default' }))
+    const blockId = makeBlockIdGenerator();
+    await expect(executeTool('open_panel', { panel: 'other' } as never, { slug: 'default', blockId }))
       .rejects.toThrow();
   });
 });
 
 describe('executeTool unknown name', () => {
   it('throws', async () => {
-    await expect(executeTool('nope' as never, {}, { slug: 'default' }))
+    const blockId = makeBlockIdGenerator();
+    await expect(executeTool('nope' as never, {}, { slug: 'default', blockId }))
       .rejects.toThrow(/unknown tool/i);
   });
 });
