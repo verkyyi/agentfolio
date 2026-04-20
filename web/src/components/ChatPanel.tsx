@@ -1,8 +1,16 @@
 import React, { useEffect, useRef, useState } from 'react';
+import type { BlockFrame } from '../blocks/types';
 import './ChatPanel.css';
 
 type Role = 'user' | 'assistant';
-export interface Msg { role: Role; content: string }
+export type Segment =
+  | { kind: 'text'; text: string }
+  | { kind: 'block'; block: BlockFrame };
+
+export interface Msg {
+  role: Role;
+  segments: Segment[];
+}
 type Status = 'idle' | 'streaming' | 'error';
 
 export interface ChatPanelProps {
@@ -28,6 +36,43 @@ const DRIP_TICK_MS = 18;
 const DRIP_BASE_CHARS_PER_TICK = 1;
 // Keep visible lag bounded: if the buffer runs ahead, reveal extra chars per tick.
 const DRIP_BACKLOG_DIVISOR = 40;
+
+export function mergeDelta(segments: Segment[], delta: string): Segment[] {
+  if (!delta) return segments;
+  const last = segments[segments.length - 1];
+  if (last && last.kind === 'text') {
+    const next = segments.slice(0, -1);
+    next.push({ kind: 'text', text: last.text + delta });
+    return next;
+  }
+  return [...segments, { kind: 'text', text: delta }];
+}
+
+export function appendBlock(segments: Segment[], block: BlockFrame): Segment[] {
+  return [...segments, { kind: 'block', block }];
+}
+
+export function segmentsToText(segments: Segment[]): string {
+  return segments
+    .filter((s): s is Extract<Segment, { kind: 'text' }> => s.kind === 'text')
+    .map((s) => s.text)
+    .join('');
+}
+
+function withTrailingText(cur: Msg[], text: string): Msg[] {
+  const copy = cur.slice();
+  const last = copy[copy.length - 1];
+  if (!last || last.role !== 'assistant') return cur;
+  const segs = last.segments.slice();
+  const lastSeg = segs[segs.length - 1];
+  if (lastSeg && lastSeg.kind === 'text') {
+    segs[segs.length - 1] = { kind: 'text', text };
+  } else if (text) {
+    segs.push({ kind: 'text', text });
+  }
+  copy[copy.length - 1] = { role: 'assistant', segments: segs };
+  return copy;
+}
 
 async function* parseSse(body: ReadableStream<Uint8Array>): AsyncGenerator<string> {
   const reader = body.getReader();
@@ -63,7 +108,13 @@ export function ChatPanel({ slug, ownerName, tagline, email, profiles, greeting,
   const [messages, setMessages] = useState<Msg[]>(() => {
     try {
       const raw = sessionStorage.getItem(storageKey);
-      return raw ? (JSON.parse(raw) as Msg[]) : [];
+      if (!raw) return [];
+      const parsed = JSON.parse(raw);
+      if (!Array.isArray(parsed)) return [];
+      // Accept only new-shape messages; discard stale content-shape entries.
+      return (parsed as unknown[]).filter((m): m is Msg => {
+        return !!m && typeof m === 'object' && Array.isArray((m as Msg).segments);
+      });
     } catch { return []; }
   });
   const [draft, setDraft] = useState('');
@@ -116,7 +167,11 @@ export function ChatPanel({ slug, ownerName, tagline, email, profiles, greeting,
   async function send(e: React.FormEvent) {
     e.preventDefault();
     if (status === 'streaming' || !draft.trim()) return;
-    const next: Msg[] = [...messages, { role: 'user', content: draft.trim() }, { role: 'assistant', content: '' }];
+    const next: Msg[] = [
+      ...messages,
+      { role: 'user', segments: [{ kind: 'text', text: draft.trim() }] },
+      { role: 'assistant', segments: [] },
+    ];
     setMessages(next);
     setDraft('');
     setStatus('streaming');
@@ -141,14 +196,7 @@ export function ChatPanel({ slug, ownerName, tagline, email, profiles, greeting,
             dripRef.current = null;
           }
           if (truncated) {
-            setMessages((cur) => {
-              const copy = cur.slice();
-              const last = copy[copy.length - 1];
-              if (last && last.role === 'assistant') {
-                copy[copy.length - 1] = { role: 'assistant', content: fullText + TRUNCATION_SUFFIX };
-              }
-              return copy;
-            });
+            setMessages((cur) => withTrailingText(cur, fullText + TRUNCATION_SUFFIX));
           }
           setStatus('idle');
         }
@@ -157,23 +205,17 @@ export function ChatPanel({ slug, ownerName, tagline, email, profiles, greeting,
       const step = Math.max(DRIP_BASE_CHARS_PER_TICK, Math.ceil(backlog / DRIP_BACKLOG_DIVISOR));
       revealed = Math.min(fullText.length, revealed + step);
       const visible = fullText.slice(0, revealed);
-      setMessages((cur) => {
-        const copy = cur.slice();
-        const last = copy[copy.length - 1];
-        if (last && last.role === 'assistant') {
-          copy[copy.length - 1] = { role: 'assistant', content: visible };
-        }
-        return copy;
-      });
+      setMessages((cur) => withTrailingText(cur, visible));
     };
     dripRef.current = window.setInterval(tick, DRIP_TICK_MS);
 
     try {
       const toSend = next.slice(0, -1);
+      const wire = toSend.map((m) => ({ role: m.role, content: segmentsToText(m.segments) }));
       const resp = await fetch(`${proxyUrl}/chat`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ slug, messages: toSend, greeting: displayGreeting }),
+        body: JSON.stringify({ slug, messages: wire, greeting: displayGreeting }),
         signal: ctrl.signal,
       });
       if (!resp.ok || !resp.body) throw new Error(`status_${resp.status}`);
@@ -202,7 +244,7 @@ export function ChatPanel({ slug, ownerName, tagline, email, profiles, greeting,
       }
       setMessages((cur) => {
         const last = cur[cur.length - 1];
-        if (last && last.role === 'assistant' && last.content === '') {
+        if (last && last.role === 'assistant' && last.segments.length === 0) {
           return cur.slice(0, -1);
         }
         return cur;
@@ -242,7 +284,16 @@ export function ChatPanel({ slug, ownerName, tagline, email, profiles, greeting,
               <span className={`chatp-prompt${m.role === 'user' ? ' chatp-prompt-user' : ''}`}>
                 {m.role === 'assistant' ? '>' : '$'}
               </span>
-              <span className="chatp-msg-body">{m.content}</span>
+              <span className="chatp-msg-body">
+                {m.segments.map((seg, j) =>
+                  seg.kind === 'text' ? (
+                    <span key={j}>{seg.text}</span>
+                  ) : (
+                    // Block dispatcher arrives in Task 2.4; render placeholder for now.
+                    <span key={j}>[block:{seg.block.type}]</span>
+                  )
+                )}
+              </span>
             </div>
           );
         })}

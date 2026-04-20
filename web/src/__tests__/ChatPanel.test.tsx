@@ -1,7 +1,8 @@
 import { describe, it, expect, vi, afterEach } from 'vitest';
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { ChatPanel } from '../components/ChatPanel';
+import { ChatPanel, mergeDelta, appendBlock, type Segment } from '../components/ChatPanel';
+import type { BlockFrame } from '../blocks/types';
 
 afterEach(() => {
   vi.unstubAllEnvs();
@@ -191,7 +192,7 @@ describe('ChatPanel — inline default state', () => {
     vi.stubEnv('VITE_CHAT_PROXY_URL', 'https://proxy.example');
     sessionStorage.setItem(
       'agentfolio.chat.anthropic-fde-nyc',
-      JSON.stringify([{ role: 'assistant', content: 'hi again' }]),
+      JSON.stringify([{ role: 'assistant', segments: [{ kind: 'text', text: 'hi again' }] }]),
     );
     render(<ChatPanel slug="anthropic-fde-nyc" ownerName="Lianghui Yi" />);
     expect(screen.getByRole('button', { name: /clear conversation/i })).toBeInTheDocument();
@@ -272,7 +273,7 @@ describe('ChatPanel — persistence + reset', () => {
     vi.stubEnv('VITE_CHAT_PROXY_URL', 'https://proxy.example');
     sessionStorage.setItem(
       'agentfolio.chat.anthropic-fde-nyc',
-      JSON.stringify([{ role: 'assistant', content: 'Welcome back' }]),
+      JSON.stringify([{ role: 'assistant', segments: [{ kind: 'text', text: 'Welcome back' }] }]),
     );
     render(<ChatPanel slug="anthropic-fde-nyc" ownerName="Lianghui Yi" />);
     expect(screen.getByText('Welcome back')).toBeInTheDocument();
@@ -282,7 +283,7 @@ describe('ChatPanel — persistence + reset', () => {
     vi.stubEnv('VITE_CHAT_PROXY_URL', 'https://proxy.example');
     sessionStorage.setItem(
       'agentfolio.chat.anthropic-fde-nyc',
-      JSON.stringify([{ role: 'assistant', content: 'old' }]),
+      JSON.stringify([{ role: 'assistant', segments: [{ kind: 'text', text: 'old' }] }]),
     );
     const user = userEvent.setup();
     render(<ChatPanel slug="anthropic-fde-nyc" ownerName="Lianghui Yi" />);
@@ -313,7 +314,7 @@ describe('ChatPanel — UX optimizations', () => {
     vi.stubEnv('VITE_CHAT_PROXY_URL', 'https://proxy.example');
     sessionStorage.setItem(
       'agentfolio.chat.anthropic-fde-nyc',
-      JSON.stringify([{ role: 'assistant', content: 'line one\nline two\nline three' }]),
+      JSON.stringify([{ role: 'assistant', segments: [{ kind: 'text', text: 'line one\nline two\nline three' }] }]),
     );
     render(<ChatPanel slug="anthropic-fde-nyc" ownerName="Lianghui Yi" />);
     const body = document.querySelector('.chatp-msg.assistant:not(.chatp-greeting) .chatp-msg-body');
@@ -368,5 +369,41 @@ describe('ChatPanel — UX optimizations', () => {
       expect(last).not.toBeNull();
       expect(last!.classList.contains('streaming')).toBe(false);
     });
+  });
+});
+
+describe('segment helpers', () => {
+  it('mergeDelta appends to trailing text segment', () => {
+    const segs: Segment[] = [{ kind: 'text', text: 'hello' }];
+    const result = mergeDelta(segs, ' world');
+    expect(result).toEqual([{ kind: 'text', text: 'hello world' }]);
+  });
+
+  it('mergeDelta starts new text segment after a block', () => {
+    const block: BlockFrame = {
+      id: 'b1', type: 'open-panel', data: { panel: 'resume' },
+    };
+    const segs: Segment[] = [
+      { kind: 'text', text: 'See ' },
+      { kind: 'block', block },
+    ];
+    const result = mergeDelta(segs, 'here');
+    expect(result).toEqual([
+      { kind: 'text', text: 'See ' },
+      { kind: 'block', block },
+      { kind: 'text', text: 'here' },
+    ]);
+  });
+
+  it('appendBlock appends a block segment', () => {
+    const block: BlockFrame = {
+      id: 'b1', type: 'open-panel', data: { panel: 'resume' },
+    };
+    const segs: Segment[] = [{ kind: 'text', text: 'See ' }];
+    const result = appendBlock(segs, block);
+    expect(result).toEqual([
+      { kind: 'text', text: 'See ' },
+      { kind: 'block', block },
+    ]);
   });
 });
