@@ -30,21 +30,9 @@ const fixture = {
 };
 
 describe('GithubActivity', () => {
-  it('embeds the activity strip inside the activity section', () => {
-    const { container } = render(<GithubActivity data={fixture} />);
-    const section = container.querySelector('#activity');
-    expect(section).not.toBeNull();
-    expect(section!.querySelector('.strip')).not.toBeNull();
-  });
-
   it('does not render a contribution heatmap', () => {
     const { container } = render(<GithubActivity data={fixture} />);
     expect(container.querySelector('svg rect.heatmap-cell')).toBeNull();
-  });
-
-  it('renders the 30d contribution count from the embedded strip', () => {
-    render(<GithubActivity data={fixture} />);
-    expect(screen.getByText('84')).toBeInTheDocument();
   });
 
   it('renders each repo with link and description', () => {

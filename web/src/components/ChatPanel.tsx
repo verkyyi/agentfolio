@@ -1,19 +1,9 @@
-import React, { forwardRef, useEffect, useImperativeHandle, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './ChatPanel.css';
 
 type Role = 'user' | 'assistant';
 export interface Msg { role: Role; content: string }
 type Status = 'idle' | 'streaming' | 'error';
-
-export interface ChatPanelHandle {
-  jumpTo(): void;
-}
-
-export interface ChatPanelState {
-  isStreaming: boolean;
-  liveTail: string;
-  recentMessages: Msg[];
-}
 
 export interface ChatPanelProps {
   slug: string;
@@ -23,9 +13,6 @@ export interface ChatPanelProps {
   profiles?: { network: string; url: string }[];
   greeting?: string;
   suggestions?: string[];
-  sentinelRef?: React.RefObject<HTMLDivElement>;
-  onStateChange?: (s: ChatPanelState) => void;
-  onSend?: () => void;
 }
 
 const DEFAULT_SUGGESTIONS = [
@@ -67,10 +54,7 @@ async function* parseSse(body: ReadableStream<Uint8Array>): AsyncGenerator<strin
   }
 }
 
-export const ChatPanel = forwardRef<ChatPanelHandle, ChatPanelProps>(function ChatPanel(
-  { slug, ownerName, tagline, email, profiles, greeting, suggestions, sentinelRef, onStateChange, onSend },
-  ref,
-) {
+export function ChatPanel({ slug, ownerName, tagline, email, profiles, greeting, suggestions }: ChatPanelProps) {
   const proxyUrl = import.meta.env.VITE_CHAT_PROXY_URL as string | undefined;
 
   // Hooks must be called unconditionally; the offline early-return below
@@ -87,14 +71,6 @@ export const ChatPanel = forwardRef<ChatPanelHandle, ChatPanelProps>(function Ch
   const abortRef = useRef<AbortController | null>(null);
   const dripRef = useRef<number | null>(null);
   const inputRef = useRef<HTMLInputElement | null>(null);
-  const sectionRef = useRef<HTMLElement | null>(null);
-
-  useImperativeHandle(ref, () => ({
-    jumpTo() {
-      sectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      inputRef.current?.focus({ preventScroll: true });
-    },
-  }), []);
 
   useEffect(() => () => {
     abortRef.current?.abort();
@@ -105,21 +81,9 @@ export const ChatPanel = forwardRef<ChatPanelHandle, ChatPanelProps>(function Ch
     else sessionStorage.setItem(storageKey, JSON.stringify(messages));
   }, [messages, storageKey]);
 
-  useEffect(() => {
-    if (!onStateChange) return;
-    const lastAssistant = [...messages].reverse().find((m) => m.role === 'assistant');
-    const liveTail = status === 'streaming' && lastAssistant
-      ? lastAssistant.content.slice(-60)
-      : '';
-    // Drop empty placeholders (the assistant stub we insert before a response arrives)
-    // so the hint LLM doesn't see a dangling empty turn.
-    const recentMessages = messages.filter((m) => m.content.length > 0).slice(-4);
-    onStateChange({ isStreaming: status === 'streaming', liveTail, recentMessages });
-  }, [messages, status, onStateChange]);
-
   if (!proxyUrl) {
     return (
-      <section ref={sectionRef} className="chatp chatp-offline">
+      <section className="chatp chatp-offline">
         <p className="chatp-offline-body">
           Chat is offline — reach out directly:
         </p>
@@ -156,7 +120,6 @@ export const ChatPanel = forwardRef<ChatPanelHandle, ChatPanelProps>(function Ch
     setMessages(next);
     setDraft('');
     setStatus('streaming');
-    onSend?.();
 
     const ctrl = new AbortController();
     abortRef.current = ctrl;
@@ -256,7 +219,7 @@ export const ChatPanel = forwardRef<ChatPanelHandle, ChatPanelProps>(function Ch
       : DEFAULT_SUGGESTIONS;
 
   return (
-    <section ref={sectionRef} className="chatp" aria-label="Chat">
+    <section className="chatp" aria-label="Chat">
       {messages.length > 0 && (
         <div className="chatp-header">
           <button type="button" className="chatp-clear" onClick={reset}>
@@ -318,14 +281,6 @@ export const ChatPanel = forwardRef<ChatPanelHandle, ChatPanelProps>(function Ch
           send ⏎
         </button>
       </form>
-      {sentinelRef && (
-        <div
-          ref={sentinelRef}
-          aria-hidden="true"
-          style={{ height: 1, width: '100%' }}
-          data-testid="chatp-sentinel"
-        />
-      )}
     </section>
   );
-});
+}

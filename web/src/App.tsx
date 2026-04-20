@@ -1,20 +1,16 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect } from 'react';
 import { useAdaptation } from './hooks/useAdaptation';
-import { ResumeTheme } from './components/ResumeTheme';
 import { Dashboard } from './components/Dashboard';
-import { IdentityCard, type IdentityBasics } from './components/IdentityCard';
-import { ChatPanel, type ChatPanelHandle, type ChatPanelState } from './components/ChatPanel';
-import { ChatStrip } from './components/ChatStrip';
+import { Hero } from './components/Hero';
+import { ChatPanel } from './components/ChatPanel';
 import { Footer } from './components/Footer';
-import { GithubActivity, type ActivityData } from './components/GithubActivity';
 import { firstSentence } from './utils/firstSentence';
+import type { IdentityBasics } from './components/IdentityCard';
 
 function isDashboard(): boolean {
   const base = import.meta.env.BASE_URL ?? '/';
   let path = window.location.pathname;
-  if (base !== '/' && path.startsWith(base)) {
-    path = path.slice(base.length);
-  }
+  if (base !== '/' && path.startsWith(base)) path = path.slice(base.length);
   return path.replace(/^\/+|\/+$/g, '') === 'dashboard';
 }
 
@@ -25,30 +21,12 @@ export default function App() {
 
 function ResumePage() {
   const { adapted, error, slug } = useAdaptation();
-  const [activity, setActivity] = useState<ActivityData | null>(null);
-  const chatRef = useRef<ChatPanelHandle>(null);
-  const sentinelRef = useRef<HTMLDivElement>(null);
-  const [chatState, setChatState] = useState<ChatPanelState>({
-    isStreaming: false,
-    liveTail: '',
-    recentMessages: [],
-  });
-  const proxyUrl = import.meta.env.VITE_CHAT_PROXY_URL as string | undefined;
 
   useEffect(() => {
     if (adapted?.basics?.name) {
       document.title = `${adapted.basics.name} — Resume`;
     }
   }, [adapted]);
-
-  useEffect(() => {
-    let cancelled = false;
-    fetch(`${import.meta.env.BASE_URL}data/github/activity.json`)
-      .then((r) => (r.ok ? r.json() : null))
-      .then((data: ActivityData | null) => { if (!cancelled) setActivity(data); })
-      .catch(() => { if (!cancelled) setActivity(null); });
-    return () => { cancelled = true; };
-  }, []);
 
   if (error) {
     return (
@@ -72,34 +50,17 @@ function ResumePage() {
   return (
     <>
       <main>
-        <IdentityCard basics={basics} />
+        <Hero name={basics.name ?? ''} tagline={tagline} image={basics.image} />
         <ChatPanel
-          ref={chatRef}
           key={activeSlug}
           slug={activeSlug}
-          ownerName={basics.name}
+          ownerName={basics.name ?? ''}
           tagline={tagline}
           email={basics.email}
           profiles={basics.profiles}
           greeting={greeting}
           suggestions={suggestions}
-          sentinelRef={sentinelRef}
-          onStateChange={setChatState}
         />
-        {proxyUrl && (
-          <ChatStrip
-            slug={activeSlug}
-            ownerName={basics.name}
-            proxyUrl={proxyUrl}
-            isStreaming={chatState.isStreaming}
-            liveTail={chatState.liveTail}
-            recentMessages={chatState.recentMessages}
-            sentinelRef={sentinelRef}
-            onJump={() => chatRef.current?.jumpTo()}
-          />
-        )}
-        <ResumeTheme resume={adapted as unknown as Record<string, unknown>} />
-        <GithubActivity data={activity} />
       </main>
       <Footer />
     </>

@@ -462,7 +462,7 @@ export function ResumeTheme({ resume }: ResumeProps) {
   const references = (resume.references || []) as Array<Record<string, any>>;
 
   return (
-    <ResumeContainer ref={ref as React.Ref<HTMLElement>} className={visible ? 'is-visible' : ''}>
+    <ResumeContainer ref={ref as React.Ref<HTMLElement>} className={visible ? 'is-visible' : ''} data-testid="resume-theme">
       <Layout>
         <Header>
           <Name>{basics.name as string}</Name>
