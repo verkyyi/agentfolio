@@ -251,7 +251,9 @@ export const ChatPanel = forwardRef<ChatPanelHandle, ChatPanelProps>(function Ch
   const fallbackGreeting = `Hey, I'm an agent that knows ${ownerName}.${tagline ? ` ${tagline}` : ''} Ask me anything.`;
   const displayGreeting = greeting && greeting.trim() ? greeting.trim() : fallbackGreeting;
   const displaySuggestions =
-    Array.isArray(suggestions) && suggestions.length === 3 ? suggestions : DEFAULT_SUGGESTIONS;
+    Array.isArray(suggestions) && suggestions.length >= 1 && suggestions.length <= 6
+      ? suggestions
+      : DEFAULT_SUGGESTIONS;
 
   return (
     <section ref={sectionRef} className="chatp" aria-label="Chat">

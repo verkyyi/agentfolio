@@ -122,13 +122,13 @@ describe('ChatPanel — inline default state', () => {
     ]);
   });
 
-  it('falls back to DEFAULT_SUGGESTIONS when suggestions prop is not an array of exactly 3', () => {
+  it('falls back to DEFAULT_SUGGESTIONS when suggestions prop has 0 or 7+ items', () => {
     vi.stubEnv('VITE_CHAT_PROXY_URL', 'https://proxy.example');
     render(
       <ChatPanel
         slug="anthropic-fde-nyc"
         ownerName="Lianghui Yi"
-        suggestions={['only one']}
+        suggestions={['A', 'B', 'C', 'D', 'E', 'F', 'G']}
       />,
     );
     const chips = screen.getAllByTestId('chat-suggestion').map((el) => el.textContent);
@@ -137,6 +137,32 @@ describe('ChatPanel — inline default state', () => {
       'Why is this a fit?',
       "What's not on the résumé?",
     ]);
+  });
+
+  it('renders 4 suggestions when 4 are provided', () => {
+    vi.stubEnv('VITE_CHAT_PROXY_URL', 'https://proxy.example');
+    render(
+      <ChatPanel
+        slug="default"
+        ownerName="Verky"
+        suggestions={['A', 'B', 'C', 'D']}
+      />
+    );
+    const buttons = screen.getAllByTestId('chat-suggestion');
+    expect(buttons).toHaveLength(4);
+    expect(buttons.map((b) => b.textContent)).toEqual(['A', 'B', 'C', 'D']);
+  });
+
+  it('renders 2 suggestions when 2 are provided', () => {
+    vi.stubEnv('VITE_CHAT_PROXY_URL', 'https://proxy.example');
+    render(
+      <ChatPanel
+        slug="default"
+        ownerName="Verky"
+        suggestions={['A', 'B']}
+      />
+    );
+    expect(screen.getAllByTestId('chat-suggestion')).toHaveLength(2);
   });
 
   it('falls back to the hardcoded greeting when greeting prop is empty', () => {
