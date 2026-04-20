@@ -95,6 +95,16 @@ export interface Meta {
   agentfolio?: AgentfolioMeta;
 }
 
+export interface IdentityBasics {
+  name: string;
+  label?: string;
+  summary?: string;
+  image?: string;
+  location?: { city?: string; region?: string };
+  profiles?: { network: string; url: string }[];
+  email?: string;
+}
+
 export type SectionName =
   | 'basics'
   | 'work'

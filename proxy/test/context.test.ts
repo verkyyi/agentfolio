@@ -20,22 +20,33 @@ describe('loadSlugContext', () => {
     expect(ctx).toBeNull();
   });
 
-  it('returns fitted+directives+jd when all present', async () => {
+  it('returns fitted+directives+jd+adapted when all present', async () => {
+    const adapted = { basics: { name: 'Verky' }, work: [{ name: 'Acme', position: 'SWE' }] };
     vi.stubGlobal('fetch', mockFetch({
       'https://pages.example/data/fitted/anthropic-fde-nyc.md': { status: 200, body: '# R' },
       'https://pages.example/data/input/directives.md': { status: 200, body: 'D' },
       'https://pages.example/data/input/jd/anthropic-fde-nyc.md': { status: 200, body: 'J' },
+      'https://pages.example/data/adapted/anthropic-fde-nyc.json': { status: 200, body: JSON.stringify(adapted) },
     }));
     const ctx = await loadSlugContext('anthropic-fde-nyc', 'https://pages.example');
-    expect(ctx).toEqual({ fitted: '# R', directives: 'D', jd: 'J' });
+    expect(ctx).toEqual({ fitted: '# R', directives: 'D', jd: 'J', adapted });
   });
 
-  it('treats missing directives and jd as null but still succeeds', async () => {
+  it('treats missing directives, jd, and adapted as null but still succeeds', async () => {
     vi.stubGlobal('fetch', mockFetch({
       'https://pages.example/data/fitted/anthropic-fde-nyc.md': { status: 200, body: '# R' },
     }));
     const ctx = await loadSlugContext('anthropic-fde-nyc', 'https://pages.example');
-    expect(ctx).toEqual({ fitted: '# R', directives: null, jd: null });
+    expect(ctx).toEqual({ fitted: '# R', directives: null, jd: null, adapted: null });
+  });
+
+  it('leaves adapted as null on invalid JSON', async () => {
+    vi.stubGlobal('fetch', mockFetch({
+      'https://pages.example/data/fitted/anthropic-fde-nyc.md': { status: 200, body: '# R' },
+      'https://pages.example/data/adapted/anthropic-fde-nyc.json': { status: 200, body: 'not json {' },
+    }));
+    const ctx = await loadSlugContext('anthropic-fde-nyc', 'https://pages.example');
+    expect(ctx?.adapted).toBeNull();
   });
 
   it('caches responses across calls within TTL', async () => {
@@ -45,8 +56,8 @@ describe('loadSlugContext', () => {
     vi.stubGlobal('fetch', fetchMock);
     await loadSlugContext('anthropic-fde-nyc', 'https://pages.example');
     await loadSlugContext('anthropic-fde-nyc', 'https://pages.example');
-    // 3 URLs fetched first call, 0 on second call (all cached, including negative caches)
-    expect(fetchMock).toHaveBeenCalledTimes(3);
+    // 4 URLs fetched first call, 0 on second call (all cached, including negative caches)
+    expect(fetchMock).toHaveBeenCalledTimes(4);
   });
 
   it('rejects slugs that are not simple identifiers', async () => {

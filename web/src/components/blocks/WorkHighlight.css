@@ -1,0 +1,11 @@
+.block-work-highlight {
+  border: 1px solid var(--border, #ddd);
+  border-radius: 6px;
+  padding: 10px 12px;
+  margin: 6px 0;
+}
+.block-work-head { font-size: 13px; display: flex; flex-wrap: wrap; gap: 4px; align-items: baseline; }
+.block-work-role { opacity: 0.8; }
+.block-work-period { margin-left: auto; opacity: 0.5; font-size: 11px; }
+.block-work-bullets { margin: 6px 0 0; padding-left: 18px; font-size: 12px; }
+.block-work-bullets li { margin: 2px 0; }

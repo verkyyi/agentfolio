@@ -189,7 +189,7 @@ describe('worker: context + rate limit', () => {
   });
 });
 
-describe('worker: anthropic passthrough', () => {
+describe('worker: anthropic tool loop', () => {
   beforeEach(() => {
     __resetCacheForTests();
     const pagesFetch = async (u: string) => {
@@ -203,27 +203,20 @@ describe('worker: anthropic passthrough', () => {
         const bodyStr = init?.body as string;
         expect(bodyStr).toContain('# R');
         expect(bodyStr).toContain('cache_control');
-        const chunks = [
-          'event: content_block_delta\ndata: {"delta":{"text":"Hi"}}\n\n',
-          'event: content_block_delta\ndata: {"delta":{"text":" there"}}\n\n',
-          'event: message_stop\ndata: {}\n\n',
-        ];
-        const stream = new ReadableStream({
-          start(controller) {
-            for (const c of chunks) controller.enqueue(new TextEncoder().encode(c));
-            controller.close();
-          },
-        });
-        return new Response(stream, {
-          status: 200,
-          headers: { 'Content-Type': 'text/event-stream' },
-        });
+        return new Response(
+          JSON.stringify({
+            id: 'msg_1',
+            stop_reason: 'end_turn',
+            content: [{ type: 'text', text: 'Hi there' }],
+          }),
+          { status: 200, headers: { 'Content-Type': 'application/json' } },
+        );
       }
       return pagesFetch(u);
     }));
   });
 
-  it('streams SSE body back to the client', async () => {
+  it('streams framed SSE body back to the client', async () => {
     const res = await worker.fetch(
       chatRequest({ slug: 'anthropic-fde-nyc', messages: [{ role: 'user', content: 'hey' }] }),
       baseEnv() as any,
@@ -231,9 +224,9 @@ describe('worker: anthropic passthrough', () => {
     expect(res.status).toBe(200);
     expect(res.headers.get('Content-Type')).toContain('text/event-stream');
     const text = await res.text();
-    expect(text).toContain('Hi');
-    expect(text).toContain('there');
-    expect(text).toContain('message_stop');
+    expect(text).toContain('event: text');
+    expect(text).toContain('"delta":"Hi there"');
+    expect(text).toContain('event: done');
   });
 });
 
@@ -245,13 +238,14 @@ describe('worker: greeting forwarding', () => {
     vi.stubGlobal('fetch', vi.fn(async (u: string, init?: RequestInit) => {
       if (u.startsWith('https://api.anthropic.com/')) {
         lastAnthropicBody = init?.body as string;
-        const stream = new ReadableStream({
-          start(controller) {
-            controller.enqueue(new TextEncoder().encode('event: message_stop\ndata: {}\n\n'));
-            controller.close();
-          },
-        });
-        return new Response(stream, { status: 200 });
+        return new Response(
+          JSON.stringify({
+            id: 'msg_1',
+            stop_reason: 'end_turn',
+            content: [{ type: 'text', text: 'ok' }],
+          }),
+          { status: 200, headers: { 'Content-Type': 'application/json' } },
+        );
       }
       if (u.endsWith('/data/fitted/anthropic-fde-nyc.md')) return new Response('# R', { status: 200 });
       return new Response('', { status: 404 });

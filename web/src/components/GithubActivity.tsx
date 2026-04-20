@@ -1,7 +1,6 @@
 // web/src/components/GithubActivity.tsx
 import styled from 'styled-components';
 import { colorFor } from '../utils/githubColors';
-import { ActivityStrip } from './ActivityStrip';
 
 export interface ActivityData {
   user: string;
@@ -77,9 +76,7 @@ export function GithubActivity({ data }: { data: ActivityData | null }) {
   if (!data) return null;
 
   return (
-    <Wrapper id="activity">
-      <ActivityStrip data={data} />
-
+    <Wrapper id="activity" data-testid="github-activity">
       <RepoList>
         {data.repos.map((r) => (
           <li key={r.name}>

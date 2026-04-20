@@ -1,0 +1,12 @@
+.block-activity-summary {
+  border: 1px solid var(--border, #ddd);
+  border-radius: 6px;
+  padding: 10px 12px;
+  margin: 6px 0;
+}
+.block-activity-head { font-size: 13px; }
+.block-activity-spark { display: flex; gap: 2px; align-items: flex-end; height: 28px; margin: 8px 0; }
+.block-activity-spark span { flex: 1; background: var(--accent, #3aa); min-height: 1px; }
+.block-activity-repos { list-style: none; padding: 0; margin: 0; font-size: 12px; }
+.block-activity-repos li { display: flex; justify-content: space-between; padding: 2px 0; }
+.block-activity-repo-count { opacity: 0.6; }

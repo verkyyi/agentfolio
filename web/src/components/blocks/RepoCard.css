@@ -1,0 +1,15 @@
+.block-repo-card {
+  display: block;
+  border: 1px solid var(--border, #ddd);
+  border-radius: 6px;
+  padding: 10px 12px;
+  margin: 6px 0;
+  color: inherit;
+  text-decoration: none;
+}
+.block-repo-card:hover { background: var(--accent-dim, #f8f8f8); }
+.block-repo-card-head { display: flex; justify-content: space-between; font-weight: 500; }
+.block-repo-card-commits { font-weight: 400; opacity: 0.6; font-size: 12px; }
+.block-repo-card-desc { font-size: 12px; opacity: 0.75; margin-top: 2px; }
+.block-repo-card-spark { display: flex; gap: 2px; align-items: flex-end; height: 20px; margin-top: 6px; }
+.block-repo-card-spark span { flex: 1; background: var(--accent, #3aa); min-height: 1px; }
