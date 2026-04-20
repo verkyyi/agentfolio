@@ -31,6 +31,16 @@ export const TOOL_DEFS: ToolDef[] = [
       },
     },
   },
+  {
+    name: 'get_repo_highlight',
+    description:
+      'Look up a specific GitHub repo by name and return a highlight card with description and primary language. Use when the visitor asks about a specific project.',
+    input_schema: {
+      type: 'object',
+      properties: { repo: { type: 'string' } },
+      required: ['repo'],
+    },
+  },
 ];
 
 export interface ToolContext {
@@ -85,6 +95,22 @@ export async function executeTool(
     return {
       result: data,
       display_block: { id: _ctx.blockId(), type: 'activity-summary', data },
+    };
+  }
+  if (name === 'get_repo_highlight') {
+    const repoName = typeof input.repo === 'string' ? input.repo : '';
+    const { repos } = getActivity();
+    const match = repos.find((r) => r.name.toLowerCase() === repoName.toLowerCase());
+    if (!match) throw new Error(`repo not found: ${repoName}`);
+    const data = {
+      name: match.name,
+      description: match.description ?? '',
+      url: match.url,
+      primaryLang: match.language ?? undefined,
+    };
+    return {
+      result: data,
+      display_block: { id: _ctx.blockId(), type: 'repo-card', data },
     };
   }
   throw new Error(`unknown tool: ${name}`);

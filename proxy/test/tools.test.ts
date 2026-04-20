@@ -96,3 +96,40 @@ describe('get_recent_activity', () => {
     expect(data.window).toBe('30d');
   });
 });
+
+describe('get_repo_highlight', () => {
+  it('returns a repo-card for a known repo', async () => {
+    const blockId = makeBlockIdGenerator();
+    const res = await executeTool(
+      'get_repo_highlight',
+      { repo: 'RepoA' },
+      { slug: 'default', blockId },
+    );
+    expect(res.display_block).toMatchObject({
+      type: 'repo-card',
+      data: {
+        name: 'RepoA',
+        description: 'A',
+        url: 'https://x/a',
+        primaryLang: 'TS',
+      },
+    });
+  });
+
+  it('case-insensitive lookup', async () => {
+    const blockId = makeBlockIdGenerator();
+    const res = await executeTool(
+      'get_repo_highlight',
+      { repo: 'repoa' },
+      { slug: 'default', blockId },
+    );
+    expect((res.display_block as any).data.name).toBe('RepoA');
+  });
+
+  it('throws on unknown repo', async () => {
+    const blockId = makeBlockIdGenerator();
+    await expect(
+      executeTool('get_repo_highlight', { repo: 'Missing' }, { slug: 'default', blockId }),
+    ).rejects.toThrow(/not found/i);
+  });
+});
