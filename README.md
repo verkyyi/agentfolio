@@ -2,7 +2,7 @@
 
 An open-source agentic portfolio engine. Fork it, drop in your resume, and deploy a portfolio site that adapts to each visitor's context.
 
-![Resume preview](docs/screenshots/resume.png)
+![Agent-first landing — chat with an agent that knows the resume](docs/screenshots/landing.png)
 
 **[Live Demo](https://lianghuiyi.com/)** · **[Dashboard Demo](https://lianghuiyi.com/dashboard)**
 
