@@ -150,6 +150,8 @@ export function ChatPanel({ slug, ownerName, tagline, email, profiles, greeting,
   const abortRef = useRef<AbortController | null>(null);
   const dripRef = useRef<number | null>(null);
   const inputRef = useRef<HTMLInputElement | null>(null);
+  const scrollContainerRef = useRef<HTMLDivElement | null>(null);
+  const pinnedRef = useRef(true);
 
   useEffect(() => () => {
     abortRef.current?.abort();
@@ -159,6 +161,17 @@ export function ChatPanel({ slug, ownerName, tagline, email, profiles, greeting,
     if (messages.length === 0) sessionStorage.removeItem(storageKey);
     else sessionStorage.setItem(storageKey, JSON.stringify(messages));
   }, [messages, storageKey]);
+
+  const handleScroll = () => {
+    const el = scrollContainerRef.current;
+    if (!el) return;
+    pinnedRef.current = el.scrollHeight - el.scrollTop - el.clientHeight < 50;
+  };
+
+  useEffect(() => {
+    const el = scrollContainerRef.current;
+    if (pinnedRef.current && el) el.scrollTop = el.scrollHeight;
+  }, [messages, status]);
 
   if (!proxyUrl) {
     return (
@@ -200,6 +213,7 @@ export function ChatPanel({ slug, ownerName, tagline, email, profiles, greeting,
       { role: 'user', segments: [{ kind: 'text', text: draft.trim() }] },
       { role: 'assistant', segments: [] },
     ];
+    pinnedRef.current = true;
     setMessages(next);
     setDraft('');
     setStatus('streaming');
@@ -325,7 +339,7 @@ export function ChatPanel({ slug, ownerName, tagline, email, profiles, greeting,
         </div>
       )}
 
-      <div className="chatp-messages">
+      <div className="chatp-messages" ref={scrollContainerRef} onScroll={handleScroll}>
         <div className="chatp-msg assistant chatp-greeting" data-testid="chat-greeting">
           <span className="chatp-prompt">&gt;</span>
           <span className="chatp-msg-body">{displayGreeting}</span>
