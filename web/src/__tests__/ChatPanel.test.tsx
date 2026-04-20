@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, afterEach } from 'vitest';
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen, waitFor, fireEvent, act } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { ChatPanel, mergeDelta, appendBlock, parseSse, type Segment, type SseEvent } from '../components/ChatPanel';
 import type { BlockFrame } from '../blocks/types';
@@ -400,6 +400,99 @@ describe('ChatPanel — UX optimizations', () => {
       expect(last).not.toBeNull();
       expect(last!.classList.contains('streaming')).toBe(false);
     });
+  });
+});
+
+describe('ChatPanel — auto-scroll', () => {
+  afterEach(() => {
+    vi.useRealTimers();
+  });
+
+  function setupScrollMocks(el: HTMLElement): { calls: number[]; setVal: (v: number) => void } {
+    const calls: number[] = [];
+    let val = 0;
+    Object.defineProperty(el, 'scrollHeight', { value: 500, configurable: true });
+    Object.defineProperty(el, 'clientHeight', { value: 400, configurable: true });
+    Object.defineProperty(el, 'scrollTop', {
+      get: () => val,
+      set: (v: number) => { val = v; calls.push(v); },
+      configurable: true,
+    });
+    return { calls, setVal: (v) => { val = v; } };
+  }
+
+  it('scrolls to bottom when pinned on message update', async () => {
+    vi.stubEnv('VITE_CHAT_PROXY_URL', 'https://proxy.example');
+    vi.stubGlobal('fetch', vi.fn(async () => sseResponse(['event: done\ndata: {}\n\n'])));
+
+    const { container } = render(<ChatPanel slug="default" ownerName="Verky" />);
+    const el = container.querySelector('.chatp-messages') as HTMLElement;
+    const { calls } = setupScrollMocks(el);
+
+    const user = userEvent.setup();
+    await user.type(screen.getByRole('textbox'), 'hi');
+    await user.click(screen.getByRole('button', { name: /send/i }));
+
+    expect(calls).toContain(500);
+  });
+
+  it('suppresses scroll when user has scrolled up mid-stream', async () => {
+    vi.useFakeTimers();
+    vi.stubEnv('VITE_CHAT_PROXY_URL', 'https://proxy.example');
+    vi.stubGlobal('fetch', vi.fn(async () => sseResponse([
+      'event: text\ndata: {"delta":"' + 'a'.repeat(200) + '"}\n\n',
+      'event: done\ndata: {}\n\n',
+    ])));
+
+    const user = userEvent.setup({ advanceTimers: vi.advanceTimersByTime.bind(vi) });
+    const { container } = render(<ChatPanel slug="default" ownerName="Verky" />);
+    const el = container.querySelector('.chatp-messages') as HTMLElement;
+    const { calls, setVal } = setupScrollMocks(el);
+
+    await user.type(screen.getByRole('textbox'), 'hi');
+    await user.click(screen.getByRole('button', { name: /send/i }));
+
+    // User scrolls up (500 - 0 - 400 = 100 >= 50 → unpinned)
+    setVal(0);
+    fireEvent.scroll(el);
+
+    const countAfterUnpin = calls.length;
+
+    // Advance drip ticks — messages update but scroll is suppressed (unpinned)
+    await act(async () => { vi.advanceTimersByTime(18 * 5); });
+
+    expect(calls.length).toBe(countAfterUnpin);
+  });
+
+  it('resumes scroll after user scrolls back to bottom', async () => {
+    vi.useFakeTimers();
+    vi.stubEnv('VITE_CHAT_PROXY_URL', 'https://proxy.example');
+    vi.stubGlobal('fetch', vi.fn(async () => sseResponse([
+      'event: text\ndata: {"delta":"' + 'a'.repeat(200) + '"}\n\n',
+      'event: done\ndata: {}\n\n',
+    ])));
+
+    const user = userEvent.setup({ advanceTimers: vi.advanceTimersByTime.bind(vi) });
+    const { container } = render(<ChatPanel slug="default" ownerName="Verky" />);
+    const el = container.querySelector('.chatp-messages') as HTMLElement;
+    const { calls, setVal } = setupScrollMocks(el);
+
+    await user.type(screen.getByRole('textbox'), 'hi');
+    await user.click(screen.getByRole('button', { name: /send/i }));
+
+    // Unpin (scroll to top)
+    setVal(0);
+    fireEvent.scroll(el);
+    await act(async () => { vi.advanceTimersByTime(18 * 3); });
+
+    const countAfterUnpin = calls.length;
+
+    // Re-pin (scroll to near-bottom: 500 - 60 - 400 = 40 < 50)
+    setVal(60);
+    fireEvent.scroll(el);
+    await act(async () => { vi.advanceTimersByTime(18 * 3); });
+
+    expect(calls.length).toBeGreaterThan(countAfterUnpin);
   });
 });
 
