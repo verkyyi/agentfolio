@@ -266,6 +266,36 @@ describe('ChatPanel — streaming send', () => {
     expect(body.greeting).toContain('Lianghui Yi');
     expect(body.greeting).toContain('Ask me anything');
   });
+
+  it('renders interleaved text → block → text in wire order', async () => {
+    vi.stubEnv('VITE_CHAT_PROXY_URL', 'https://proxy.example');
+    const sse =
+      'event: text\ndata: {"delta":"before "}\n\n' +
+      'event: block\ndata: {"id":"b1","type":"open-panel","data":{"panel":"resume"}}\n\n' +
+      'event: text\ndata: {"delta":"after"}\n\n' +
+      'event: done\ndata: {}\n\n';
+    const fetchMock = vi.fn(async () => sseResponse([sse]));
+    vi.stubGlobal('fetch', fetchMock);
+    const user = userEvent.setup();
+    render(<ChatPanel slug="anthropic-fde-nyc" ownerName="Lianghui Yi" />);
+    await user.type(screen.getByRole('textbox'), 'hi');
+    await user.click(screen.getByRole('button', { name: /send/i }));
+
+    // Wait for streaming to finish and all segments to be rendered.
+    await waitFor(() => {
+      expect(screen.getByText(/before/)).toBeInTheDocument();
+      expect(screen.getByText(/\[block:open-panel\]/)).toBeInTheDocument();
+      expect(screen.getByText(/after/)).toBeInTheDocument();
+    }, { timeout: 3000 });
+
+    // Verify ordering in the assistant message body.
+    const bubbles = document.querySelectorAll('.chatp-msg.assistant:not(.chatp-greeting) .chatp-msg-body');
+    expect(bubbles.length).toBeGreaterThan(0);
+    const last = bubbles[bubbles.length - 1] as HTMLElement;
+    const text = last.textContent || '';
+    expect(text.indexOf('before')).toBeLessThan(text.indexOf('[block:open-panel]'));
+    expect(text.indexOf('[block:open-panel]')).toBeLessThan(text.indexOf('after'));
+  });
 });
 
 describe('ChatPanel — persistence + reset', () => {

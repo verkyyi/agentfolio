@@ -100,7 +100,9 @@ export async function* parseSse(body: ReadableStream<Uint8Array>): AsyncGenerato
       let dataLine = '';
       for (const line of frame.split('\n')) {
         if (line.startsWith('event: ')) eventType = line.slice(7).trim();
-        else if (line.startsWith('data: ')) dataLine = line.slice(6);
+        else if (line.startsWith('data: ')) {
+          dataLine = dataLine ? dataLine + '\n' + line.slice(6) : line.slice(6);
+        }
       }
       if (!dataLine) continue;
       try {
