@@ -29,7 +29,7 @@ function ResumePage() {
 
   useEffect(() => {
     if (adapted?.basics?.name) {
-      document.title = `${adapted.basics.name} — Resume`;
+      document.title = `${adapted.basics.name} — Agentfolio`;
     }
   }, [adapted]);
 
