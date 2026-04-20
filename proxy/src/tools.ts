@@ -103,6 +103,8 @@ export async function executeTool(
     const data = {
       window: window as '30d' | '90d',
       totalCommits,
+      // activity.json has no per-repo commit counts; topRepos stays empty.
+      // The renderer hides this field when empty (ActivitySummary.tsx).
       topRepos: [] as Array<{ name: string; commits: number }>,
       sparkline,
     };

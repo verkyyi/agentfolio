@@ -8,7 +8,7 @@ import { Footer } from './components/Footer';
 import { SidePanel } from './components/SidePanel';
 import type { ActivityData } from './components/GithubActivity';
 import { firstSentence } from './utils/firstSentence';
-import type { IdentityBasics } from './components/IdentityCard';
+import type { IdentityBasics } from './types';
 
 function isDashboard(): boolean {
   const base = import.meta.env.BASE_URL ?? '/';

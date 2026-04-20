@@ -1,9 +1,9 @@
 import type { OpenPanelData } from '../../blocks/types';
 
 const LABEL: Record<OpenPanelData['panel'], string> = {
-  resume: '📄 Resume',
-  activity: '📊 Activity',
-  jd: '📝 Job description',
+  resume: 'Resume',
+  activity: 'Activity',
+  jd: 'Job description',
 };
 
 export interface OpenPanelChipProps {
