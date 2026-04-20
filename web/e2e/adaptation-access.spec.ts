@@ -19,8 +19,7 @@ test.describe('Adaptation Access', () => {
   test('default adaptation has expected content', async ({ page }) => {
     await page.goto('./');
     await expect(page.locator('h1')).toContainText('Lianghui Yi', { timeout: 10_000 });
-    await expect(page.locator('.idcard-role')).toBeAttached();
-    await expect(page.locator('a[href="mailto:verky.yi@gmail.com"]').first()).toBeAttached();
+    await expect(page.locator('.hero-tagline')).toBeAttached();
   });
 
   test('no console errors on adaptation pages', async ({ page }) => {

@@ -1,33 +1,21 @@
 import { test, expect } from '@playwright/test';
 
 test.describe('Portfolio layout — chat-first', () => {
-  test('default slug: identity → chat → strip → résumé in order', async ({ page }) => {
+  test('default slug renders hero + chat', async ({ page }) => {
     await page.goto('./');
 
-    // Identity card visible
-    const idcard = page.locator('.idcard');
-    await expect(idcard).toBeVisible();
-    await expect(idcard.locator('.idcard-name')).toContainText(/./);
+    // Hero section visible
+    const hero = page.locator('.hero');
+    await expect(hero).toBeVisible();
+    await expect(hero.locator('.hero-name')).toContainText(/./);
 
     // Chat panel (or offline card) is present regardless of env
     const chat = page.locator('.chatp');
     await expect(chat).toBeVisible();
 
-    // Activity strip present iff activity.json exists — allow absence
-    const strip = page.locator('.strip');
-    if (await strip.count()) {
-      await expect(strip).toBeVisible();
-    }
-
     // Main résumé content is present
     const main = page.locator('main');
     await expect(main).toBeVisible();
-
-    // #activity anchor exists iff activity.json was loaded
-    const activityTarget = page.locator('#activity');
-    if (await activityTarget.count()) {
-      await expect(activityTarget).toBeAttached();
-    }
   });
 
   test('/anthropic-fde-nyc slug renders with same layout', async ({ page }) => {
@@ -35,14 +23,14 @@ test.describe('Portfolio layout — chat-first', () => {
     // If this deploy has no anthropic-fde-nyc adaptation, App renders "Not Found" instead of the layout
     if (await page.getByText('Not Found').count()) test.skip(true, 'no anthropic-fde-nyc adaptation in this deploy');
 
-    await expect(page.locator('.idcard')).toBeVisible();
+    await expect(page.locator('.hero')).toBeVisible();
     await expect(page.locator('.chatp')).toBeVisible();
   });
 
   test('mobile viewport — no horizontal overflow', async ({ page }) => {
     await page.setViewportSize({ width: 375, height: 667 });
     await page.goto('./');
-    await expect(page.locator('.idcard')).toBeVisible();
+    await expect(page.locator('.hero')).toBeVisible();
     const overflow = await page.evaluate(() => document.documentElement.scrollWidth > document.documentElement.clientWidth);
     expect(overflow).toBe(false);
   });
@@ -63,12 +51,12 @@ test.describe('Portfolio layout — chat-first', () => {
   });
 
   test('chat exchange (mocked proxy) renders assistant response', async ({ page, context }) => {
-    // Intercept POST /chat with a short mocked SSE body
+    // Intercept POST /chat with a short mocked SSE body in the new framed format
     await context.route('**/chat', async (route) => {
       const body =
-        'event: content_block_delta\ndata: {"delta":{"text":"Hi"}}\n\n' +
-        'event: content_block_delta\ndata: {"delta":{"text":" there"}}\n\n' +
-        'event: message_stop\ndata: {}\n\n';
+        'event: text\ndata: {"delta":"Hi"}\n\n' +
+        'event: text\ndata: {"delta":" there"}\n\n' +
+        'event: done\ndata: {}\n\n';
       await route.fulfill({
         status: 200,
         contentType: 'text/event-stream',
