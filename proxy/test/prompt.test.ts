@@ -90,4 +90,12 @@ describe('buildSystemPrompt', () => {
     expect(buildSystemPrompt({ ...base, greeting: '' })).not.toContain('Your opening line to the visitor');
     expect(buildSystemPrompt({ ...base, greeting: '   ' })).not.toContain('Your opening line to the visitor');
   });
+
+  it('includes tool guidance mentioning open_panel', () => {
+    const prompt = buildSystemPrompt({
+      name: 'Verky', target: 'FDE', fitted: '# resume', directives: null, jd: null,
+    });
+    expect(prompt).toMatch(/open_panel/);
+    expect(prompt).toMatch(/explicitly ask/i);
+  });
 });

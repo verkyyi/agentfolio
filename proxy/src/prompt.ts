@@ -52,5 +52,9 @@ export function buildSystemPrompt(inputs: PromptInputs): string {
   if (jd) {
     parts.push('', '--- JOB DESCRIPTION ---', jd);
   }
+  parts.push('');
+  parts.push('Tool guidance:');
+  parts.push('- You have tools available. Prefer calling tools over paraphrasing from memory when the question is about recent activity, a specific repo, or a specific work experience.');
+  parts.push('- Use `open_panel` ONLY when the visitor explicitly asks to see the full resume, the full activity history, or the target job description. Do not call it proactively.');
   return parts.join('\n');
 }
