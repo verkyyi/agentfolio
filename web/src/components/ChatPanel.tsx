@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import type { BlockFrame } from '../blocks/types';
+import { Block } from './blocks';
 import './ChatPanel.css';
 
 type Role = 'user' | 'assistant';
@@ -21,6 +22,7 @@ export interface ChatPanelProps {
   profiles?: { network: string; url: string }[];
   greeting?: string;
   suggestions?: string[];
+  onOpenPanel?: (panel: 'resume' | 'activity' | 'jd') => void;
 }
 
 const DEFAULT_SUGGESTIONS = [
@@ -125,7 +127,7 @@ export async function* parseSse(body: ReadableStream<Uint8Array>): AsyncGenerato
   }
 }
 
-export function ChatPanel({ slug, ownerName, tagline, email, profiles, greeting, suggestions }: ChatPanelProps) {
+export function ChatPanel({ slug, ownerName, tagline, email, profiles, greeting, suggestions, onOpenPanel }: ChatPanelProps) {
   const proxyUrl = import.meta.env.VITE_CHAT_PROXY_URL as string | undefined;
 
   // Hooks must be called unconditionally; the offline early-return below
@@ -271,6 +273,9 @@ export function ChatPanel({ slug, ownerName, tagline, email, profiles, greeting,
             copy[copy.length - 1] = { role: 'assistant', segments: segs };
             return copy;
           });
+          if (ev.block.type === 'open-panel') {
+            onOpenPanel?.(ev.block.data.panel);
+          }
         } else if (ev.kind === 'error') {
           throw new Error(ev.message);
         } else if (ev.kind === 'done') {
@@ -339,8 +344,7 @@ export function ChatPanel({ slug, ownerName, tagline, email, profiles, greeting,
                   seg.kind === 'text' ? (
                     <span key={j}>{seg.text}</span>
                   ) : (
-                    // Block dispatcher arrives in Task 2.4; render placeholder for now.
-                    <span key={j}>[block:{seg.block.type}]</span>
+                    <Block key={j} block={seg.block} onOpenPanel={(p) => onOpenPanel?.(p)} />
                   )
                 )}
               </span>

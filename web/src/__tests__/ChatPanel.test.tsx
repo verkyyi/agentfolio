@@ -284,7 +284,7 @@ describe('ChatPanel — streaming send', () => {
     // Wait for streaming to finish and all segments to be rendered.
     await waitFor(() => {
       expect(screen.getByText(/before/)).toBeInTheDocument();
-      expect(screen.getByText(/\[block:open-panel\]/)).toBeInTheDocument();
+      expect(screen.getByTestId('open-panel-chip')).toBeInTheDocument();
       expect(screen.getByText(/after/)).toBeInTheDocument();
     }, { timeout: 3000 });
 
@@ -293,8 +293,9 @@ describe('ChatPanel — streaming send', () => {
     expect(bubbles.length).toBeGreaterThan(0);
     const last = bubbles[bubbles.length - 1] as HTMLElement;
     const text = last.textContent || '';
-    expect(text.indexOf('before')).toBeLessThan(text.indexOf('[block:open-panel]'));
-    expect(text.indexOf('[block:open-panel]')).toBeLessThan(text.indexOf('after'));
+    const chipText = (screen.getByTestId('open-panel-chip').textContent || '');
+    expect(text.indexOf('before')).toBeLessThan(text.indexOf(chipText));
+    expect(text.indexOf(chipText)).toBeLessThan(text.indexOf('after'));
   });
 });
 

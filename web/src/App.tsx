@@ -1,9 +1,12 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useAdaptation } from './hooks/useAdaptation';
+import { useSidePanel } from './hooks/useSidePanel';
 import { Dashboard } from './components/Dashboard';
 import { Hero } from './components/Hero';
 import { ChatPanel } from './components/ChatPanel';
 import { Footer } from './components/Footer';
+import { SidePanel } from './components/SidePanel';
+import type { ActivityData } from './components/GithubActivity';
 import { firstSentence } from './utils/firstSentence';
 import type { IdentityBasics } from './components/IdentityCard';
 
@@ -21,12 +24,25 @@ export default function App() {
 
 function ResumePage() {
   const { adapted, error, slug } = useAdaptation();
+  const sidePanel = useSidePanel();
+  const [activity, setActivity] = useState<ActivityData | null>(null);
 
   useEffect(() => {
     if (adapted?.basics?.name) {
       document.title = `${adapted.basics.name} — Resume`;
     }
   }, [adapted]);
+
+  useEffect(() => {
+    if (sidePanel.panel === 'activity' && !activity) {
+      let cancelled = false;
+      fetch(`${import.meta.env.BASE_URL}data/github/activity.json`)
+        .then((r) => (r.ok ? r.json() : null))
+        .then((d: ActivityData | null) => { if (!cancelled) setActivity(d); })
+        .catch(() => { if (!cancelled) setActivity(null); });
+      return () => { cancelled = true; };
+    }
+  }, [sidePanel.panel, activity]);
 
   if (error) {
     return (
@@ -60,8 +76,16 @@ function ResumePage() {
           profiles={basics.profiles}
           greeting={greeting}
           suggestions={suggestions}
+          onOpenPanel={sidePanel.open}
         />
       </main>
+      <SidePanel
+        panel={sidePanel.panel}
+        onClose={sidePanel.close}
+        slug={activeSlug}
+        adapted={adapted as unknown as Record<string, unknown>}
+        activity={activity}
+      />
       <Footer />
     </>
   );
