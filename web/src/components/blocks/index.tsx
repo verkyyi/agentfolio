@@ -2,6 +2,7 @@ import type { BlockFrame, OpenPanelData } from '../../blocks/types';
 import { ActivitySummary } from './ActivitySummary';
 import { OpenPanelChip } from './OpenPanelChip';
 import { RepoCard } from './RepoCard';
+import { WorkHighlight } from './WorkHighlight';
 
 export interface BlockProps {
   block: BlockFrame;
@@ -16,9 +17,10 @@ export function Block({ block, onOpenPanel }: BlockProps) {
       return <RepoCard data={block.data} />;
     case 'activity-summary':
       return <ActivitySummary data={block.data} />;
+    case 'work-highlight':
+      return <WorkHighlight data={block.data} />;
     default:
       // Silent drop for unknown types.
-      // Renderers for 'work-highlight' lands in Task 3.7.
       return null;
   }
 }
