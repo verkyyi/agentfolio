@@ -1,5 +1,5 @@
 import { buildSystemPrompt, extractTarget, type PromptInputs } from './prompt';
-import type { SlugContext } from './context';
+import type { AdaptedResume, SlugContext } from './context';
 import { TOOL_DEFS, executeTool, makeBlockIdGenerator, type ToolContext } from './tools';
 
 export interface CallInputs {
@@ -24,7 +24,7 @@ export interface ToolLoopInputs {
   model: string;
   system: string;
   messages: Array<{ role: 'user' | 'assistant'; content: unknown }>;
-  ctx: { slug: string; blockId?: () => string };
+  ctx: { slug: string; blockId?: () => string; adapted?: AdaptedResume | null };
   writer: LoopWriter;
   signal?: AbortSignal;
 }
@@ -46,7 +46,11 @@ export async function runToolLoop(inputs: ToolLoopInputs): Promise<void> {
   const { claude, apiKey, model, system, ctx, writer, signal } = inputs;
   const history = inputs.messages.slice();
   const localBlockId = makeBlockIdGenerator();
-  const scopedCtx: ToolContext = { slug: ctx.slug, blockId: ctx.blockId ?? localBlockId };
+  const scopedCtx: ToolContext = {
+    slug: ctx.slug,
+    blockId: ctx.blockId ?? localBlockId,
+    adapted: ctx.adapted ?? null,
+  };
 
   try {
     let round = 0;
@@ -170,7 +174,7 @@ export async function callAnthropic(inputs: CallInputs): Promise<Response> {
     model: inputs.model,
     system,
     messages: inputs.messages,
-    ctx: { slug: inputs.slug },
+    ctx: { slug: inputs.slug, adapted: inputs.ctx.adapted },
     writer,
     signal: inputs.signal,
   }).catch((e) => {

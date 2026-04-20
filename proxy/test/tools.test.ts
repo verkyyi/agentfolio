@@ -133,3 +133,55 @@ describe('get_repo_highlight', () => {
     ).rejects.toThrow(/not found/i);
   });
 });
+
+describe('get_work_highlight', () => {
+  const adapted = {
+    basics: { name: 'Verky' },
+    work: [
+      {
+        name: 'Acme',
+        position: 'Staff Engineer',
+        startDate: '2022-01',
+        endDate: '2024-06',
+        highlights: ['Led agent platform', 'Scaled infra 10x', 'Mentored 4 engineers', 'Shipped tool-use SDK', 'Extra bullet'],
+      },
+    ],
+  } as const;
+
+  it('returns a work-highlight block and caps at 4 bullets', async () => {
+    const blockId = makeBlockIdGenerator();
+    const res = await executeTool(
+      'get_work_highlight',
+      { company: 'Acme', focus: 'agents' },
+      { slug: 'default', blockId, adapted: adapted as never },
+    );
+    const d = (res.display_block as any).data;
+    expect(d).toMatchObject({ company: 'Acme', role: 'Staff Engineer', period: '2022-01 – 2024-06' });
+    expect(d.bullets).toHaveLength(4);
+    expect(d.bullets[0]).toBe('Led agent platform');
+  });
+
+  it('case-insensitive company lookup', async () => {
+    const blockId = makeBlockIdGenerator();
+    const res = await executeTool(
+      'get_work_highlight',
+      { company: 'acme', focus: '' },
+      { slug: 'default', blockId, adapted: adapted as never },
+    );
+    expect((res.display_block as any).data.company).toBe('acme');
+  });
+
+  it('throws when adapted missing', async () => {
+    const blockId = makeBlockIdGenerator();
+    await expect(
+      executeTool('get_work_highlight', { company: 'Acme', focus: '' }, { slug: 'default', blockId }),
+    ).rejects.toThrow(/not found/i);
+  });
+
+  it('throws on unknown company', async () => {
+    const blockId = makeBlockIdGenerator();
+    await expect(
+      executeTool('get_work_highlight', { company: 'Nope', focus: '' }, { slug: 'default', blockId, adapted: adapted as never }),
+    ).rejects.toThrow(/not found/i);
+  });
+});

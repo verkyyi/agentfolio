@@ -41,11 +41,25 @@ export const TOOL_DEFS: ToolDef[] = [
       required: ['repo'],
     },
   },
+  {
+    name: 'get_work_highlight',
+    description:
+      'Look up a specific work experience entry by company name and return a highlight card with role, period, and up to 4 bullet points. Use when the visitor asks about a specific job or company.',
+    input_schema: {
+      type: 'object',
+      properties: {
+        company: { type: 'string' },
+        focus: { type: 'string' },
+      },
+      required: ['company'],
+    },
+  },
 ];
 
 export interface ToolContext {
   slug: string;
   blockId: () => string;
+  adapted?: import('./context').AdaptedResume | null;
 }
 
 export interface ToolResult {
@@ -111,6 +125,28 @@ export async function executeTool(
     return {
       result: data,
       display_block: { id: _ctx.blockId(), type: 'repo-card', data },
+    };
+  }
+  if (name === 'get_work_highlight') {
+    const company = typeof input.company === 'string' ? input.company : '';
+    const work = _ctx.adapted?.work ?? [];
+    const match = work.find((w) => {
+      const n = (w.name ?? w.company) as string | undefined;
+      return typeof n === 'string' && n.toLowerCase() === company.toLowerCase();
+    });
+    if (!match) throw new Error(`work entry not found: ${company}`);
+    const period = [match.startDate, match.endDate].filter(Boolean).join(' – ');
+    const rawBullets = Array.isArray(match.highlights) ? match.highlights : [];
+    const bullets = rawBullets.slice(0, 4);
+    const data = {
+      company,
+      role: (match.position as string) ?? '',
+      period,
+      bullets,
+    };
+    return {
+      result: data,
+      display_block: { id: _ctx.blockId(), type: 'work-highlight', data },
     };
   }
   throw new Error(`unknown tool: ${name}`);

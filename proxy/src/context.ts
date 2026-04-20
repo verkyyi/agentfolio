@@ -1,7 +1,24 @@
+export interface WorkEntry {
+  name?: string;
+  company?: string;
+  position?: string;
+  startDate?: string;
+  endDate?: string;
+  highlights?: string[];
+  [k: string]: unknown;
+}
+
+export interface AdaptedResume {
+  basics?: Record<string, unknown>;
+  work?: WorkEntry[];
+  [k: string]: unknown;
+}
+
 export interface SlugContext {
   fitted: string;
   directives: string | null;
   jd: string | null;
+  adapted: AdaptedResume | null;
 }
 
 interface Entry {
@@ -33,11 +50,16 @@ export async function loadSlugContext(
 ): Promise<SlugContext | null> {
   if (!SLUG_RE.test(slug)) return null;
   const base = pagesOrigin.replace(/\/$/, '');
-  const [fitted, directives, jd] = await Promise.all([
+  const [fitted, directives, jd, adaptedRaw] = await Promise.all([
     fetchCached(`${base}/data/fitted/${slug}.md`),
     fetchCached(`${base}/data/input/directives.md`),
     fetchCached(`${base}/data/input/jd/${slug}.md`),
+    fetchCached(`${base}/data/adapted/${slug}.json`),
   ]);
   if (fitted === null) return null;
-  return { fitted, directives, jd };
+  let adapted: AdaptedResume | null = null;
+  if (adaptedRaw) {
+    try { adapted = JSON.parse(adaptedRaw) as AdaptedResume; } catch { adapted = null; }
+  }
+  return { fitted, directives, jd, adapted };
 }
