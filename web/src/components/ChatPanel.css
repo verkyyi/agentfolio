@@ -151,3 +151,15 @@
 .chatp-offline-links { display: flex; flex-wrap: wrap; gap: 14px; font-size: 13px; }
 
 @media print { .chatp { display: none; } }
+
+.block-open-panel-chip {
+  display: inline-block;
+  border: 1px solid var(--border, #ddd);
+  border-radius: 999px;
+  padding: 2px 10px;
+  font-size: 12px;
+  background: transparent;
+  cursor: pointer;
+  margin: 2px 4px;
+}
+.block-open-panel-chip:hover { background: var(--accent-dim, #f2f2f2); }
