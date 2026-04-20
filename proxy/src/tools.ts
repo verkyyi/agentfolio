@@ -1,4 +1,5 @@
 import type { BlockFrame } from './blocks';
+import { getActivity, getRecentDailyCounts } from './bundledData';
 
 export interface ToolDef {
   name: string;
@@ -17,6 +18,17 @@ export const TOOL_DEFS: ToolDef[] = [
         panel: { type: 'string', enum: ['resume', 'activity', 'jd'] },
       },
       required: ['panel'],
+    },
+  },
+  {
+    name: 'get_recent_activity',
+    description:
+      'Summarizes recent GitHub activity over a recent window (30 or 90 days). Returns total commits and a daily sparkline. Use when the visitor asks about recent work, momentum, or what you have been shipping.',
+    input_schema: {
+      type: 'object',
+      properties: {
+        window: { type: 'string', enum: ['30d', '90d'] },
+      },
     },
   },
 ];
@@ -49,6 +61,30 @@ export async function executeTool(
     return {
       result: { ok: true },
       display_block: { id: _ctx.blockId(), type: 'open-panel', data: { panel } },
+    };
+  }
+  if (name === 'get_recent_activity') {
+    const window = input.window === '90d' ? '90d' : '30d';
+    const days = window === '90d' ? 90 : 30;
+    const all = getRecentDailyCounts();
+    // Tail slice (oldest-first is preserved; we want the last `days` entries).
+    const recent = all.slice(Math.max(0, all.length - days));
+    // Pad at the front if the bundle has fewer days than requested.
+    const sparkline: number[] = [];
+    for (let i = 0; i < days; i++) {
+      const idx = recent.length - days + i;
+      sparkline.push(idx >= 0 ? (recent[idx]?.count ?? 0) : 0);
+    }
+    const totalCommits = sparkline.reduce((a, b) => a + b, 0);
+    const data = {
+      window: window as '30d' | '90d',
+      totalCommits,
+      topRepos: [] as Array<{ name: string; commits: number }>,
+      sparkline,
+    };
+    return {
+      result: data,
+      display_block: { id: _ctx.blockId(), type: 'activity-summary', data },
     };
   }
   throw new Error(`unknown tool: ${name}`);
