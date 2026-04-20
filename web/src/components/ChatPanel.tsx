@@ -59,6 +59,10 @@ export function segmentsToText(segments: Segment[]): string {
     .join('');
 }
 
+// Updates the trailing text segment of the last assistant message.
+// Invariant: `text` represents the text-so-far AFTER the most recent block
+// segment (if any). When a block frame arrives, the caller resets fullText=''
+// so the next drip tick starts a fresh trailing text segment.
 function withTrailingText(cur: Msg[], text: string): Msg[] {
   const copy = cur.slice();
   const last = copy[copy.length - 1];
@@ -74,7 +78,13 @@ function withTrailingText(cur: Msg[], text: string): Msg[] {
   return copy;
 }
 
-async function* parseSse(body: ReadableStream<Uint8Array>): AsyncGenerator<string> {
+export type SseEvent =
+  | { kind: 'text'; delta: string }
+  | { kind: 'block'; block: BlockFrame }
+  | { kind: 'done' }
+  | { kind: 'error'; message: string };
+
+export async function* parseSse(body: ReadableStream<Uint8Array>): AsyncGenerator<SseEvent> {
   const reader = body.getReader();
   const decoder = new TextDecoder();
   let buffer = '';
@@ -85,13 +95,27 @@ async function* parseSse(body: ReadableStream<Uint8Array>): AsyncGenerator<strin
     const frames = buffer.split('\n\n');
     buffer = frames.pop() ?? '';
     for (const frame of frames) {
-      const dataLine = frame.split('\n').find((l) => l.startsWith('data: '));
+      if (!frame.trim()) continue;
+      let eventType = 'message';
+      let dataLine = '';
+      for (const line of frame.split('\n')) {
+        if (line.startsWith('event: ')) eventType = line.slice(7).trim();
+        else if (line.startsWith('data: ')) dataLine = line.slice(6);
+      }
       if (!dataLine) continue;
-      const payload = dataLine.slice(6);
-      if (payload === '[DONE]') return;
       try {
-        const parsed = JSON.parse(payload) as { delta?: { text?: string } };
-        if (parsed.delta?.text) yield parsed.delta.text;
+        const payload = JSON.parse(dataLine);
+        if (eventType === 'text' && typeof payload.delta === 'string') {
+          yield { kind: 'text', delta: payload.delta };
+        } else if (eventType === 'block' && payload && typeof payload.type === 'string') {
+          yield { kind: 'block', block: payload as BlockFrame };
+        } else if (eventType === 'done') {
+          yield { kind: 'done' };
+          return;
+        } else if (eventType === 'error' && typeof payload.message === 'string') {
+          yield { kind: 'error', message: payload.message };
+          return;
+        }
       } catch {
         // ignore non-JSON pings
       }
@@ -219,11 +243,35 @@ export function ChatPanel({ slug, ownerName, tagline, email, profiles, greeting,
         signal: ctrl.signal,
       });
       if (!resp.ok || !resp.body) throw new Error(`status_${resp.status}`);
-      for await (const delta of parseSse(resp.body)) {
-        fullText += delta;
-        if (fullText.length >= MAX_RESPONSE_CHARS) {
-          fullText = fullText.slice(0, MAX_RESPONSE_CHARS);
-          truncated = true;
+      for await (const ev of parseSse(resp.body)) {
+        if (ev.kind === 'text') {
+          fullText += ev.delta;
+          if (fullText.length >= MAX_RESPONSE_CHARS) {
+            fullText = fullText.slice(0, MAX_RESPONSE_CHARS);
+            truncated = true;
+            break;
+          }
+        } else if (ev.kind === 'block') {
+          // Flush any pending text up to fullText into segments, then insert the block.
+          // After this point, new text deltas accumulate into a fresh fullText buffer
+          // and the drip will write them as a new trailing text segment (via withTrailingText).
+          const flushed = fullText;
+          fullText = '';
+          revealed = 0;
+          const incomingBlock = ev.block;
+          setMessages((cur) => {
+            const copy = cur.slice();
+            const last = copy[copy.length - 1];
+            if (!last || last.role !== 'assistant') return cur;
+            let segs = last.segments;
+            if (flushed) segs = mergeDelta(segs, flushed);
+            segs = appendBlock(segs, incomingBlock);
+            copy[copy.length - 1] = { role: 'assistant', segments: segs };
+            return copy;
+          });
+        } else if (ev.kind === 'error') {
+          throw new Error(ev.message);
+        } else if (ev.kind === 'done') {
           break;
         }
       }

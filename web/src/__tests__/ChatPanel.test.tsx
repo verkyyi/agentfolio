@@ -1,7 +1,7 @@
 import { describe, it, expect, vi, afterEach } from 'vitest';
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { ChatPanel, mergeDelta, appendBlock, type Segment } from '../components/ChatPanel';
+import { ChatPanel, mergeDelta, appendBlock, parseSse, type Segment, type SseEvent } from '../components/ChatPanel';
 import type { BlockFrame } from '../blocks/types';
 
 afterEach(() => {
@@ -209,9 +209,9 @@ describe('ChatPanel — streaming send', () => {
   it('sends a POST and renders streamed assistant deltas', async () => {
     vi.stubEnv('VITE_CHAT_PROXY_URL', 'https://proxy.example');
     const fetchMock = vi.fn(async () => sseResponse([
-      'event: content_block_delta\ndata: {"delta":{"text":"Hi"}}\n\n',
-      'event: content_block_delta\ndata: {"delta":{"text":" there"}}\n\n',
-      'event: message_stop\ndata: {}\n\n',
+      'event: text\ndata: {"delta":"Hi"}\n\n',
+      'event: text\ndata: {"delta":" there"}\n\n',
+      'event: done\ndata: {}\n\n',
     ]));
     vi.stubGlobal('fetch', fetchMock);
     const user = userEvent.setup();
@@ -229,7 +229,7 @@ describe('ChatPanel — streaming send', () => {
   it('includes the rendered greeting in the POST body', async () => {
     vi.stubEnv('VITE_CHAT_PROXY_URL', 'https://proxy.example');
     const fetchMock = vi.fn(async (_url: string, _init: RequestInit) => sseResponse([
-      'event: message_stop\ndata: {}\n\n',
+      'event: done\ndata: {}\n\n',
     ]));
     vi.stubGlobal('fetch', fetchMock);
     const user = userEvent.setup();
@@ -253,7 +253,7 @@ describe('ChatPanel — streaming send', () => {
   it('sends the fallback greeting when no greeting prop is provided', async () => {
     vi.stubEnv('VITE_CHAT_PROXY_URL', 'https://proxy.example');
     const fetchMock = vi.fn(async (_url: string, _init: RequestInit) => sseResponse([
-      'event: message_stop\ndata: {}\n\n',
+      'event: done\ndata: {}\n\n',
     ]));
     vi.stubGlobal('fetch', fetchMock);
     const user = userEvent.setup();
@@ -327,9 +327,9 @@ describe('ChatPanel — UX optimizations', () => {
     // Stream > 2000 chars across two deltas so truncation fires mid-stream.
     const huge = 'x'.repeat(1500);
     const fetchMock = vi.fn(async () => sseResponse([
-      `event: content_block_delta\ndata: ${JSON.stringify({ delta: { text: huge } })}\n\n`,
-      `event: content_block_delta\ndata: ${JSON.stringify({ delta: { text: huge } })}\n\n`,
-      'event: message_stop\ndata: {}\n\n',
+      `event: text\ndata: ${JSON.stringify({ delta: huge })}\n\n`,
+      `event: text\ndata: ${JSON.stringify({ delta: huge })}\n\n`,
+      'event: done\ndata: {}\n\n',
     ]));
     vi.stubGlobal('fetch', fetchMock);
     const user = userEvent.setup();
@@ -351,8 +351,8 @@ describe('ChatPanel — UX optimizations', () => {
   it('shows a streaming class on the active assistant bubble and drops it when done', async () => {
     vi.stubEnv('VITE_CHAT_PROXY_URL', 'https://proxy.example');
     const fetchMock = vi.fn(async () => sseResponse([
-      'event: content_block_delta\ndata: {"delta":{"text":"hey"}}\n\n',
-      'event: message_stop\ndata: {}\n\n',
+      'event: text\ndata: {"delta":"hey"}\n\n',
+      'event: done\ndata: {}\n\n',
     ]));
     vi.stubGlobal('fetch', fetchMock);
     const user = userEvent.setup();
@@ -404,6 +404,79 @@ describe('segment helpers', () => {
     expect(result).toEqual([
       { kind: 'text', text: 'See ' },
       { kind: 'block', block },
+    ]);
+  });
+});
+
+function streamFrom(s: string): ReadableStream<Uint8Array> {
+  const enc = new TextEncoder();
+  return new ReadableStream({
+    start(c) { c.enqueue(enc.encode(s)); c.close(); },
+  });
+}
+
+async function collect(s: string): Promise<SseEvent[]> {
+  const out: SseEvent[] = [];
+  for await (const ev of parseSse(streamFrom(s))) out.push(ev);
+  return out;
+}
+
+describe('parseSse (framed)', () => {
+  it('yields text delta frames', async () => {
+    const s =
+      'event: text\ndata: {"delta":"hello "}\n\n' +
+      'event: text\ndata: {"delta":"world"}\n\n' +
+      'event: done\ndata: {}\n\n';
+    expect(await collect(s)).toEqual([
+      { kind: 'text', delta: 'hello ' },
+      { kind: 'text', delta: 'world' },
+      { kind: 'done' },
+    ]);
+  });
+
+  it('yields block frames', async () => {
+    const block = { id: 'b1', type: 'open-panel', data: { panel: 'resume' } };
+    const s =
+      'event: text\ndata: {"delta":"see "}\n\n' +
+      `event: block\ndata: ${JSON.stringify(block)}\n\n` +
+      'event: done\ndata: {}\n\n';
+    expect(await collect(s)).toEqual([
+      { kind: 'text', delta: 'see ' },
+      { kind: 'block', block },
+      { kind: 'done' },
+    ]);
+  });
+
+  it('yields error frame and stops', async () => {
+    const s =
+      'event: text\ndata: {"delta":"partial "}\n\n' +
+      'event: error\ndata: {"message":"boom"}\n\n' +
+      'event: text\ndata: {"delta":"should-not-appear"}\n\n';
+    expect(await collect(s)).toEqual([
+      { kind: 'text', delta: 'partial ' },
+      { kind: 'error', message: 'boom' },
+    ]);
+  });
+
+  it('tolerates chunks split mid-frame', async () => {
+    const enc = new TextEncoder();
+    const stream = new ReadableStream<Uint8Array>({
+      start(c) {
+        c.enqueue(enc.encode('event: text\nda'));
+        c.enqueue(enc.encode('ta: {"delta":"hi"}\n\nevent: done\ndata: {}\n\n'));
+        c.close();
+      },
+    });
+    const out: SseEvent[] = [];
+    for await (const ev of parseSse(stream)) out.push(ev);
+    expect(out).toEqual([{ kind: 'text', delta: 'hi' }, { kind: 'done' }]);
+  });
+
+  it('ignores frames missing data lines', async () => {
+    const s = 'event: text\n\nevent: text\ndata: {"delta":"ok"}\n\nevent: done\ndata: {}\n\n';
+    expect(await collect(s)).toEqual([
+      { kind: 'text', delta: 'ok' },
+      { kind: 'done' },
     ]);
   });
 });
