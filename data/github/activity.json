@@ -1,10 +1,10 @@
 {
   "user": "verkyyi",
-  "fetchedAt": "2026-04-20T06:37:33.806Z",
+  "fetchedAt": "2026-04-21T06:30:51.912Z",
   "stats": {
-    "publicRepos": 14,
-    "contributions30d": 913,
-    "contributionsLastYear": 1772
+    "publicRepos": 16,
+    "contributions30d": 942,
+    "contributionsLastYear": 1886
   },
   "contributions": {
     "weeks": [
@@ -1305,7 +1305,7 @@
         },
         {
           "date": "2026-02-16",
-          "count": 7
+          "count": 6
         },
         {
           "date": "2026-02-17",
@@ -1451,7 +1451,7 @@
       [
         {
           "date": "2026-03-22",
-          "count": 87
+          "count": 86
         },
         {
           "date": "2026-03-23",
@@ -1575,7 +1575,11 @@
         },
         {
           "date": "2026-04-20",
-          "count": 10
+          "count": 108
+        },
+        {
+          "date": "2026-04-21",
+          "count": 18
         }
       ]
     ]
@@ -1584,27 +1588,27 @@
     {
       "name": "TypeScript",
       "color": "#3178c6",
-      "pct": 51.3
+      "pct": 49.6
     },
     {
       "name": "Shell",
       "color": "#89e051",
-      "pct": 29.7
+      "pct": 33.4
     },
     {
       "name": "Python",
       "color": "#3572A5",
-      "pct": 11.1
+      "pct": 9.9
     },
     {
       "name": "CSS",
       "color": "#663399",
-      "pct": 3.1
+      "pct": 2.6
     },
     {
       "name": "JavaScript",
       "color": "#f1e05a",
-      "pct": 2.5
+      "pct": 2.3
     }
   ],
   "repos": [
@@ -1614,17 +1618,17 @@
       "description": "Claude Code plugin to discover and install GitHub agentic workflows (gh-aw) into your repo",
       "language": "Shell",
       "languageColor": "#89e051",
-      "stars": 1,
-      "pushedAt": "2026-04-20T05:21:05Z"
+      "stars": 5,
+      "pushedAt": "2026-04-21T03:16:46Z"
     },
     {
-      "name": "always-on-claude",
-      "url": "https://github.com/verkyyi/always-on-claude",
-      "description": "Always-on Claude Code dev environment on EC2 + Docker Compose (~$22/mo)",
-      "language": "Shell",
-      "languageColor": "#89e051",
-      "stars": 5,
-      "pushedAt": "2026-04-20T05:09:12Z"
+      "name": "verkyyi",
+      "url": "https://github.com/verkyyi/verkyyi",
+      "description": "Verky Yi — software engineer building agentic tools",
+      "language": null,
+      "languageColor": null,
+      "stars": 0,
+      "pushedAt": "2026-04-21T01:05:05Z"
     },
     {
       "name": "agentfolio",
@@ -1633,25 +1637,25 @@
       "language": "TypeScript",
       "languageColor": "#3178c6",
       "stars": 1,
-      "pushedAt": "2026-04-19T08:37:57Z"
+      "pushedAt": "2026-04-21T01:03:00Z"
     },
     {
-      "name": "tokenman",
-      "url": "https://github.com/verkyyi/tokenman",
-      "description": "A self-evolving scaffold for autonomous web projects. 9 workflows, hourly self-evolution, self-healing pipeline, feedback learning loop. The repo is the system.",
+      "name": "always-on-claude",
+      "url": "https://github.com/verkyyi/always-on-claude",
+      "description": "Always-on Claude Code dev environment on EC2 + Docker Compose (~$22/mo)",
+      "language": "Shell",
+      "languageColor": "#89e051",
+      "stars": 5,
+      "pushedAt": "2026-04-21T01:03:00Z"
+    },
+    {
+      "name": "agent-team-playground",
+      "url": "https://github.com/verkyyi/agent-team-playground",
+      "description": "Long-lasting playground for dogfooding the agent-team pattern and other gh-aw workflows from github-agent-runner.",
       "language": "Python",
       "languageColor": "#3572A5",
-      "stars": 2,
-      "pushedAt": "2026-04-19T06:57:48Z"
-    },
-    {
-      "name": "readme-maintainer-skill",
-      "url": "https://github.com/verkyyi/readme-maintainer-skill",
-      "description": "Keep the repo's README aligned with actual repo contents. Skill for tokenman.",
-      "language": null,
-      "languageColor": null,
-      "stars": 0,
-      "pushedAt": "2026-04-18T20:41:45Z"
+      "stars": 1,
+      "pushedAt": "2026-04-20T18:52:48Z"
     }
   ]
 }
