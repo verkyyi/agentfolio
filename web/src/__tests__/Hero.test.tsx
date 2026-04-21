@@ -3,7 +3,7 @@ import { describe, expect, it } from 'vitest';
 import { Hero } from '../components/Hero';
 
 describe('Hero', () => {
-  it('renders name, tagline, and explainer', () => {
+  it('renders name and tagline', () => {
     render(
       <Hero
         name="Verky Yi"
@@ -13,17 +13,15 @@ describe('Hero', () => {
     );
     expect(screen.getByText('Verky Yi')).toBeInTheDocument();
     expect(screen.getByText(/Product engineer building AI-native tools/)).toBeInTheDocument();
-    expect(screen.getByText(/This page is an agent/i)).toBeInTheDocument();
   });
 
-  it('falls back to initials when no image', () => {
+  it('avatar is absent when no image', () => {
     render(<Hero name="Verky Yi" />);
-    expect(screen.getByTestId('hero-avatar')).toHaveTextContent('VY');
+    expect(screen.queryByTestId('hero-avatar')).not.toBeInTheDocument();
   });
 
   it('renders without tagline', () => {
     render(<Hero name="Verky Yi" />);
     expect(screen.getByText('Verky Yi')).toBeInTheDocument();
-    expect(screen.getByText(/This page is an agent/i)).toBeInTheDocument();
   });
 });

@@ -188,21 +188,6 @@ describe('ChatPanel — inline default state', () => {
     expect(fetchMock).not.toHaveBeenCalled();
   });
 
-  it('reset link appears only when messages exist', async () => {
-    vi.stubEnv('VITE_CHAT_PROXY_URL', 'https://proxy.example');
-    sessionStorage.setItem(
-      'agentfolio.chat.anthropic-fde-nyc',
-      JSON.stringify([{ role: 'assistant', segments: [{ kind: 'text', text: 'hi again' }] }]),
-    );
-    render(<ChatPanel slug="anthropic-fde-nyc" ownerName="Lianghui Yi" />);
-    expect(screen.getByRole('button', { name: /clear conversation/i })).toBeInTheDocument();
-  });
-
-  it('reset link is hidden when there are no messages', () => {
-    vi.stubEnv('VITE_CHAT_PROXY_URL', 'https://proxy.example');
-    render(<ChatPanel slug="anthropic-fde-nyc" ownerName="Lianghui Yi" />);
-    expect(screen.queryByRole('button', { name: /clear conversation/i })).not.toBeInTheDocument();
-  });
 });
 
 describe('ChatPanel — streaming send', () => {
@@ -310,18 +295,6 @@ describe('ChatPanel — persistence + reset', () => {
     expect(screen.getByText('Welcome back')).toBeInTheDocument();
   });
 
-  it('reset clears messages and sessionStorage', async () => {
-    vi.stubEnv('VITE_CHAT_PROXY_URL', 'https://proxy.example');
-    sessionStorage.setItem(
-      'agentfolio.chat.anthropic-fde-nyc',
-      JSON.stringify([{ role: 'assistant', segments: [{ kind: 'text', text: 'old' }] }]),
-    );
-    const user = userEvent.setup();
-    render(<ChatPanel slug="anthropic-fde-nyc" ownerName="Lianghui Yi" />);
-    await user.click(screen.getByRole('button', { name: /clear conversation/i }));
-    expect(screen.queryByText('old')).not.toBeInTheDocument();
-    expect(sessionStorage.getItem('agentfolio.chat.anthropic-fde-nyc')).toBeNull();
-  });
 });
 
 describe('ChatPanel — error handling', () => {
@@ -355,11 +328,10 @@ describe('ChatPanel — UX optimizations', () => {
 
   it('caps response length and appends a truncation indicator', async () => {
     vi.stubEnv('VITE_CHAT_PROXY_URL', 'https://proxy.example');
-    // Stream > 2000 chars across two deltas so truncation fires mid-stream.
-    const huge = 'x'.repeat(1500);
+    // Stream > 800 chars across two deltas so truncation fires mid-stream.
     const fetchMock = vi.fn(async () => sseResponse([
-      `event: text\ndata: ${JSON.stringify({ delta: huge })}\n\n`,
-      `event: text\ndata: ${JSON.stringify({ delta: huge })}\n\n`,
+      `event: text\ndata: ${JSON.stringify({ delta: 'x'.repeat(900) })}\n\n`,
+      `event: text\ndata: ${JSON.stringify({ delta: 'x'.repeat(100) })}\n\n`,
       'event: done\ndata: {}\n\n',
     ]));
     vi.stubGlobal('fetch', fetchMock);
@@ -369,15 +341,15 @@ describe('ChatPanel — UX optimizations', () => {
     await user.click(screen.getByRole('button', { name: /send/i }));
 
     // Drip animation finishes and the truncation suffix appears.
-    await screen.findByText(/response truncated/i, {}, { timeout: 4000 });
+    await screen.findByText(/response truncated/i, {}, { timeout: 10000 });
     const body = document.querySelector(
       '.chatp-msg.assistant:not(.chatp-greeting) .chatp-msg-body',
     ) as HTMLElement | null;
     expect(body).not.toBeNull();
-    // 2000 x's + suffix. Never more than 2000 x's.
-    expect(body!.textContent!.length).toBeLessThanOrEqual(2000 + ' … (response truncated)'.length);
-    expect(body!.textContent).toMatch(/^x{2000}/);
-  });
+    // 800 x's + suffix. Never more than 800 x's.
+    expect(body!.textContent!.length).toBeLessThanOrEqual(800 + ' … (response truncated)'.length);
+    expect(body!.textContent).toMatch(/^x{800}/);
+  }, 12000);
 
   it('shows a streaming class on the active assistant bubble and drops it when done', async () => {
     vi.stubEnv('VITE_CHAT_PROXY_URL', 'https://proxy.example');

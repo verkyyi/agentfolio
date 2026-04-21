@@ -32,9 +32,9 @@ const DEFAULT_SUGGESTIONS = [
 ];
 
 // UX tuning for streamed responses.
-const MAX_RESPONSE_CHARS = 2000;
+const MAX_RESPONSE_CHARS = 800;
 const TRUNCATION_SUFFIX = '… (response truncated)';
-const DRIP_TICK_MS = 18;
+const DRIP_TICK_MS = 40;
 const DRIP_BASE_CHARS_PER_TICK = 1;
 // Keep visible lag bounded: if the buffer runs ahead, reveal extra chars per tick.
 const DRIP_BACKLOG_DIVISOR = 40;
@@ -158,6 +158,21 @@ export function ChatPanel({ slug, ownerName, tagline, email, profiles, greeting,
     if (dripRef.current !== null) window.clearInterval(dripRef.current);
   }, []);
   useEffect(() => {
+    const vv = window.visualViewport;
+    if (!vv) return;
+    const update = () => {
+      const inset = Math.max(0, window.innerHeight - (vv.offsetTop + vv.height));
+      document.documentElement.style.setProperty('--keyboard-inset', inset + 'px');
+    };
+    vv.addEventListener('resize', update);
+    vv.addEventListener('scroll', update);
+    return () => {
+      vv.removeEventListener('resize', update);
+      vv.removeEventListener('scroll', update);
+      document.documentElement.style.removeProperty('--keyboard-inset');
+    };
+  }, []);
+  useEffect(() => {
     if (messages.length === 0) sessionStorage.removeItem(storageKey);
     else sessionStorage.setItem(storageKey, JSON.stringify(messages));
   }, [messages, storageKey]);
@@ -187,17 +202,6 @@ export function ChatPanel({ slug, ownerName, tagline, email, profiles, greeting,
         </div>
       </section>
     );
-  }
-
-  function reset() {
-    abortRef.current?.abort();
-    if (dripRef.current !== null) {
-      window.clearInterval(dripRef.current);
-      dripRef.current = null;
-    }
-    setMessages([]);
-    setStatus('idle');
-    sessionStorage.removeItem(storageKey);
   }
 
   function pickSuggestion(text: string) {
@@ -331,14 +335,6 @@ export function ChatPanel({ slug, ownerName, tagline, email, profiles, greeting,
 
   return (
     <section className="chatp" aria-label="Chat">
-      {messages.length > 0 && (
-        <div className="chatp-header">
-          <button type="button" className="chatp-clear" onClick={reset}>
-            clear conversation
-          </button>
-        </div>
-      )}
-
       <div className="chatp-messages" ref={scrollContainerRef} onScroll={handleScroll}>
         <div className="chatp-msg assistant chatp-greeting" data-testid="chat-greeting">
           <span className="chatp-prompt">&gt;</span>

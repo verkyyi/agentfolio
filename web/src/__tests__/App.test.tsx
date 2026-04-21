@@ -29,7 +29,6 @@ describe('App landing', () => {
   it('renders Hero and ChatPanel, not ResumeTheme or GithubActivity', async () => {
     render(<App />);
     await waitFor(() => expect(screen.getByText('Verky Yi')).toBeInTheDocument());
-    expect(screen.getByText(/This page is an agent/i)).toBeInTheDocument();
     expect(screen.getByLabelText('Chat')).toBeInTheDocument();
     expect(screen.queryByTestId('resume-theme')).not.toBeInTheDocument();
     expect(screen.queryByTestId('github-activity')).not.toBeInTheDocument();
