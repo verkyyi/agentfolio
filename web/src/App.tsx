@@ -65,20 +65,23 @@ function ResumePage() {
 
   return (
     <>
-      <main>
-        <Hero name={basics.name ?? ''} tagline={tagline} image={basics.image} />
-        <ChatPanel
-          key={activeSlug}
-          slug={activeSlug}
-          ownerName={basics.name ?? ''}
-          tagline={tagline}
-          email={basics.email}
-          profiles={basics.profiles}
-          greeting={greeting}
-          suggestions={suggestions}
-          onOpenPanel={sidePanel.open}
-        />
-      </main>
+      <div className="resume-viewport">
+        <main className="resume-main">
+          <Hero name={basics.name ?? ''} tagline={tagline} image={basics.image} />
+          <ChatPanel
+            key={activeSlug}
+            slug={activeSlug}
+            ownerName={basics.name ?? ''}
+            tagline={tagline}
+            email={basics.email}
+            profiles={basics.profiles}
+            greeting={greeting}
+            suggestions={suggestions}
+            onOpenPanel={sidePanel.open}
+          />
+        </main>
+        <Footer />
+      </div>
       <SidePanel
         panel={sidePanel.panel}
         onClose={sidePanel.close}
@@ -86,7 +89,6 @@ function ResumePage() {
         adapted={adapted as unknown as Record<string, unknown>}
         activity={activity}
       />
-      <Footer />
     </>
   );
 }

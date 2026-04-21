@@ -60,6 +60,21 @@ body {
 
 #root { position: relative; z-index: 1; }
 
+.resume-viewport {
+  height: 100vh;       /* fallback */
+  height: 100dvh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.resume-main {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
 a {
   color: var(--accent-blue);
   text-decoration: none;
