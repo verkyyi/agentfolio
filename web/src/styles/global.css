@@ -62,7 +62,7 @@ body {
 
 .resume-viewport {
   height: 100vh;       /* fallback */
-  height: 100dvh;
+  height: calc(100dvh - var(--keyboard-inset, 0px));
   overflow: hidden;
   display: flex;
   flex-direction: column;

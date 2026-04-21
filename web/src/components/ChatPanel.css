@@ -20,26 +20,6 @@
   }
 }
 
-.chatp-header {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  font-size: 10px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-}
-.chatp-clear {
-  font-family: inherit;
-  font-size: 10px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-  padding: 0;
-  border-bottom: 1px dashed transparent;
-}
-.chatp-clear:hover { color: var(--accent-green); border-bottom-color: var(--accent-green); }
-
 .chatp-messages {
   flex: 1;
   overflow-y: auto;

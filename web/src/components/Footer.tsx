@@ -34,11 +34,6 @@ export function Footer() {
       <a href="https://github.com/verkyyi/agentfolio" target="_blank" rel="noopener noreferrer">
         AgentFolio
       </a>
-      {' · '}
-      Resume schema:{' '}
-      <a href="https://jsonresume.org/" target="_blank" rel="noopener noreferrer">
-        JSON Resume
-      </a>
     </FooterWrapper>
   );
 }
