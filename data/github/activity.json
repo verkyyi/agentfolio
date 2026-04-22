@@ -1,10 +1,10 @@
 {
   "user": "verkyyi",
-  "fetchedAt": "2026-04-21T06:30:51.912Z",
+  "fetchedAt": "2026-04-22T06:31:02.688Z",
   "stats": {
     "publicRepos": 16,
-    "contributions30d": 942,
-    "contributionsLastYear": 1886
+    "contributions30d": 946,
+    "contributionsLastYear": 1922
   },
   "contributions": {
     "weeks": [
@@ -1579,7 +1579,11 @@
         },
         {
           "date": "2026-04-21",
-          "count": 18
+          "count": 54
+        },
+        {
+          "date": "2026-04-22",
+          "count": 0
         }
       ]
     ]
@@ -1603,7 +1607,7 @@
     {
       "name": "CSS",
       "color": "#663399",
-      "pct": 2.6
+      "pct": 2.7
     },
     {
       "name": "JavaScript",
@@ -1618,8 +1622,17 @@
       "description": "Claude Code plugin to discover and install GitHub agentic workflows (gh-aw) into your repo",
       "language": "Shell",
       "languageColor": "#89e051",
-      "stars": 5,
-      "pushedAt": "2026-04-21T03:16:46Z"
+      "stars": 9,
+      "pushedAt": "2026-04-21T11:00:07Z"
+    },
+    {
+      "name": "agentfolio",
+      "url": "https://github.com/verkyyi/agentfolio",
+      "description": "Open-source agentic portfolio engine — fork, drop in your resume, deploy. Adapts to each target role with Claude.",
+      "language": "TypeScript",
+      "languageColor": "#3178c6",
+      "stars": 1,
+      "pushedAt": "2026-04-21T09:54:38Z"
     },
     {
       "name": "verkyyi",
@@ -1629,15 +1642,6 @@
       "languageColor": null,
       "stars": 0,
       "pushedAt": "2026-04-21T01:05:05Z"
-    },
-    {
-      "name": "agentfolio",
-      "url": "https://github.com/verkyyi/agentfolio",
-      "description": "Open-source agentic portfolio engine — fork, drop in your resume, deploy. Adapts to each target role with Claude.",
-      "language": "TypeScript",
-      "languageColor": "#3178c6",
-      "stars": 1,
-      "pushedAt": "2026-04-21T01:03:00Z"
     },
     {
       "name": "always-on-claude",
