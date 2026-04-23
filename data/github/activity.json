@@ -1,10 +1,10 @@
 {
   "user": "verkyyi",
-  "fetchedAt": "2026-04-22T06:31:02.688Z",
+  "fetchedAt": "2026-04-23T06:31:40.971Z",
   "stats": {
     "publicRepos": 16,
-    "contributions30d": 946,
-    "contributionsLastYear": 1922
+    "contributions30d": 943,
+    "contributionsLastYear": 1977
   },
   "contributions": {
     "weeks": [
@@ -1579,11 +1579,15 @@
         },
         {
           "date": "2026-04-21",
-          "count": 54
+          "count": 63
         },
         {
           "date": "2026-04-22",
-          "count": 0
+          "count": 45
+        },
+        {
+          "date": "2026-04-23",
+          "count": 1
         }
       ]
     ]
@@ -1617,13 +1621,22 @@
   ],
   "repos": [
     {
+      "name": "agent-team-playground",
+      "url": "https://github.com/verkyyi/agent-team-playground",
+      "description": "Long-lasting playground for dogfooding the agent-team pattern and other gh-aw workflows from github-agent-runner.",
+      "language": "Python",
+      "languageColor": "#3572A5",
+      "stars": 1,
+      "pushedAt": "2026-04-23T01:09:44Z"
+    },
+    {
       "name": "github-agent-runner",
       "url": "https://github.com/verkyyi/github-agent-runner",
       "description": "Claude Code plugin to discover and install GitHub agentic workflows (gh-aw) into your repo",
       "language": "Shell",
       "languageColor": "#89e051",
       "stars": 9,
-      "pushedAt": "2026-04-21T11:00:07Z"
+      "pushedAt": "2026-04-23T00:52:09Z"
     },
     {
       "name": "agentfolio",
@@ -1632,7 +1645,7 @@
       "language": "TypeScript",
       "languageColor": "#3178c6",
       "stars": 1,
-      "pushedAt": "2026-04-21T09:54:38Z"
+      "pushedAt": "2026-04-22T06:31:03Z"
     },
     {
       "name": "verkyyi",
@@ -1651,15 +1664,6 @@
       "languageColor": "#89e051",
       "stars": 5,
       "pushedAt": "2026-04-21T01:03:00Z"
-    },
-    {
-      "name": "agent-team-playground",
-      "url": "https://github.com/verkyyi/agent-team-playground",
-      "description": "Long-lasting playground for dogfooding the agent-team pattern and other gh-aw workflows from github-agent-runner.",
-      "language": "Python",
-      "languageColor": "#3572A5",
-      "stars": 1,
-      "pushedAt": "2026-04-20T18:52:48Z"
     }
   ]
 }
