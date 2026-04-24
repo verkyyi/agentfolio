@@ -1,10 +1,10 @@
 {
   "user": "verkyyi",
-  "fetchedAt": "2026-04-23T06:31:40.971Z",
+  "fetchedAt": "2026-04-24T06:32:05.208Z",
   "stats": {
     "publicRepos": 16,
-    "contributions30d": 943,
-    "contributionsLastYear": 1977
+    "contributions30d": 952,
+    "contributionsLastYear": 2034
   },
   "contributions": {
     "weeks": [
@@ -1583,11 +1583,15 @@
         },
         {
           "date": "2026-04-22",
-          "count": 45
+          "count": 47
         },
         {
           "date": "2026-04-23",
-          "count": 1
+          "count": 56
+        },
+        {
+          "date": "2026-04-24",
+          "count": 0
         }
       ]
     ]
@@ -1596,38 +1600,38 @@
     {
       "name": "TypeScript",
       "color": "#3178c6",
-      "pct": 49.6
+      "pct": 48.7
     },
     {
       "name": "Shell",
       "color": "#89e051",
-      "pct": 33.4
+      "pct": 34.7
     },
     {
       "name": "Python",
       "color": "#3572A5",
-      "pct": 9.9
+      "pct": 9.7
     },
     {
       "name": "CSS",
       "color": "#663399",
-      "pct": 2.7
+      "pct": 2.6
     },
     {
       "name": "JavaScript",
       "color": "#f1e05a",
-      "pct": 2.3
+      "pct": 2.2
     }
   ],
   "repos": [
     {
-      "name": "agent-team-playground",
-      "url": "https://github.com/verkyyi/agent-team-playground",
-      "description": "Long-lasting playground for dogfooding the agent-team pattern and other gh-aw workflows from github-agent-runner.",
-      "language": "Python",
-      "languageColor": "#3572A5",
-      "stars": 1,
-      "pushedAt": "2026-04-23T01:09:44Z"
+      "name": "always-on-claude",
+      "url": "https://github.com/verkyyi/always-on-claude",
+      "description": "Always-on Claude Code dev environment on EC2 + Docker Compose (~$22/mo)",
+      "language": "Shell",
+      "languageColor": "#89e051",
+      "stars": 5,
+      "pushedAt": "2026-04-24T05:25:32Z"
     },
     {
       "name": "github-agent-runner",
@@ -1636,7 +1640,16 @@
       "language": "Shell",
       "languageColor": "#89e051",
       "stars": 9,
-      "pushedAt": "2026-04-23T00:52:09Z"
+      "pushedAt": "2026-04-23T11:02:00Z"
+    },
+    {
+      "name": "agent-team-playground",
+      "url": "https://github.com/verkyyi/agent-team-playground",
+      "description": "Long-lasting playground for dogfooding the agent-team pattern and other gh-aw workflows from github-agent-runner.",
+      "language": "Python",
+      "languageColor": "#3572A5",
+      "stars": 1,
+      "pushedAt": "2026-04-23T07:56:41Z"
     },
     {
       "name": "agentfolio",
@@ -1645,7 +1658,7 @@
       "language": "TypeScript",
       "languageColor": "#3178c6",
       "stars": 1,
-      "pushedAt": "2026-04-22T06:31:03Z"
+      "pushedAt": "2026-04-23T06:31:41Z"
     },
     {
       "name": "verkyyi",
@@ -1655,15 +1668,6 @@
       "languageColor": null,
       "stars": 0,
       "pushedAt": "2026-04-21T01:05:05Z"
-    },
-    {
-      "name": "always-on-claude",
-      "url": "https://github.com/verkyyi/always-on-claude",
-      "description": "Always-on Claude Code dev environment on EC2 + Docker Compose (~$22/mo)",
-      "language": "Shell",
-      "languageColor": "#89e051",
-      "stars": 5,
-      "pushedAt": "2026-04-21T01:03:00Z"
     }
   ]
 }
