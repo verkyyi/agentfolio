@@ -70,7 +70,6 @@ function ResumePage() {
           <Hero
             name={basics.name ?? ''}
             tagline={tagline}
-            image={basics.image}
             profiles={basics.profiles}
           />
           <ChatPanel

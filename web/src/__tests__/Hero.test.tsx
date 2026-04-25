@@ -8,7 +8,6 @@ describe('Hero', () => {
       <Hero
         name="Verky Yi"
         tagline="Product engineer building AI-native tools"
-        image="/avatar.png"
         profiles={[
           { network: 'LinkedIn', url: 'https://linkedin.com/in/verky' },
           { network: 'GitHub', url: 'https://github.com/verky' },
@@ -20,11 +19,12 @@ describe('Hero', () => {
     expect(screen.getByRole('link', { name: 'LinkedIn' })).toHaveAttribute('href', 'https://linkedin.com/in/verky');
     expect(screen.getByRole('link', { name: 'GitHub' })).toHaveAttribute('href', 'https://github.com/verky');
     expect(screen.queryByText(/This page is an agent/i)).not.toBeInTheDocument();
+    expect(screen.queryByTestId('hero-avatar')).not.toBeInTheDocument();
   });
 
-  it('falls back to initials when no image', () => {
+  it('does not render the old initials avatar', () => {
     render(<Hero name="Verky Yi" />);
-    expect(screen.getByTestId('hero-avatar')).toHaveTextContent('VY');
+    expect(screen.queryByTestId('hero-avatar')).not.toBeInTheDocument();
   });
 
   it('renders without tagline', () => {
