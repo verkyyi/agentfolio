@@ -24,4 +24,11 @@
 .hero-avatar img { width: 100%; height: 100%; object-fit: cover; }
 .hero-name { margin: 0; font-size: 22px; font-weight: 600; }
 .hero-tagline { margin: 4px 0 0; font-size: 14px; opacity: 0.72; }
-.hero-explainer { margin: 12px 0 0; font-size: 13px; opacity: 0.6; max-width: 420px; }
+.hero-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px 16px;
+  margin-top: 12px;
+  font-size: 13px;
+}

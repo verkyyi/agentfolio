@@ -4,6 +4,7 @@ export interface HeroProps {
   name: string;
   tagline?: string;
   image?: string;
+  profiles?: { network: string; url: string }[];
 }
 
 function initials(name: string): string {
@@ -15,7 +16,9 @@ function initials(name: string): string {
     .slice(0, 2);
 }
 
-export function Hero({ name, tagline, image }: HeroProps) {
+export function Hero({ name, tagline, image, profiles }: HeroProps) {
+  const visibleProfiles = profiles?.filter((p) => p.network && p.url) ?? [];
+
   return (
     <header className="hero">
       <div className="hero-avatar" data-testid="hero-avatar">
@@ -23,9 +26,15 @@ export function Hero({ name, tagline, image }: HeroProps) {
       </div>
       <h1 className="hero-name">{name}</h1>
       {tagline && <p className="hero-tagline">{tagline}</p>}
-      <p className="hero-explainer">
-        This page is an agent — ask it anything about my background, projects, or fit for a role.
-      </p>
+      {visibleProfiles.length > 0 && (
+        <nav className="hero-links" aria-label="Social links">
+          {visibleProfiles.map((profile) => (
+            <a key={`${profile.network}-${profile.url}`} href={profile.url} target="_blank" rel="noreferrer">
+              {profile.network}
+            </a>
+          ))}
+        </nav>
+      )}
     </header>
   );
 }
