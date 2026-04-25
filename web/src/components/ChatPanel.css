@@ -108,22 +108,42 @@
   margin-top: auto;
   padding-top: 14px;
   border-top: 1px solid var(--border-soft);
+  min-width: 0;
 }
 .chatp-input-row input {
   flex: 1;
-  background: transparent;
-  border: none;
+  min-width: 0;
+  width: 100%;
+  min-height: 32px;
+  padding: 6px 10px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 4px;
   color: var(--text);
   font: inherit;
   font-size: 13px;
+  line-height: 1.4;
   outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+.chatp-input-row input:focus {
+  border-color: var(--accent-green);
 }
 /* iOS Safari auto-zooms focused inputs < 16px; bump on touch devices to hold the viewport lock. */
 @media (pointer: coarse) {
-  .chatp-input-row input { font-size: 16px; }
+  .chatp-input-row {
+    gap: 8px;
+    padding-top: 12px;
+  }
+  .chatp-input-row input {
+    font-size: 16px;
+    min-height: 40px;
+  }
 }
 .chatp-input-row input:disabled { opacity: 0.6; }
 .chatp-input-row button[type="submit"] {
+  flex: 0 0 auto;
   font-family: inherit;
   font-size: 11px;
   padding: 4px 10px;

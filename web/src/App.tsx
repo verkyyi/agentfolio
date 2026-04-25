@@ -67,7 +67,12 @@ function ResumePage() {
     <>
       <div className="resume-viewport">
         <main className="resume-main">
-          <Hero name={basics.name ?? ''} tagline={tagline} image={basics.image} />
+          <Hero
+            name={basics.name ?? ''}
+            tagline={tagline}
+            image={basics.image}
+            profiles={basics.profiles}
+          />
           <ChatPanel
             key={activeSlug}
             slug={activeSlug}
