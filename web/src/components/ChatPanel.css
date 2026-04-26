@@ -16,7 +16,10 @@
 
 @media (max-width: 640px) {
   .chatp {
-    margin: 14px var(--side-gutter-mobile) 0;
+    margin: 8px 12px 0;
+    padding: 14px 12px 12px;
+    border-radius: 8px;
+    gap: 9px;
   }
 }
 
@@ -47,6 +50,14 @@
   flex-direction: column;
   gap: 12px;
   min-height: 300px;
+}
+
+@media (max-width: 640px) {
+  .chatp-messages {
+    gap: 9px;
+    min-height: 0;
+    -webkit-overflow-scrolling: touch;
+  }
 }
 
 .chatp-msg {
@@ -101,6 +112,23 @@
 }
 .chatp-suggestion:hover { color: var(--accent-green); border-color: var(--accent-green); }
 
+@media (max-width: 640px) {
+  .chatp-suggestions {
+    display: block;
+    margin: 4px 0 6px;
+  }
+
+  .chatp-suggestion {
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .chatp-suggestion:nth-child(n+2) {
+    display: none;
+  }
+}
+
 .chatp-input-row {
   display: flex;
   align-items: center;
@@ -134,11 +162,11 @@
 @media (pointer: coarse) {
   .chatp-input-row {
     gap: 8px;
-    padding-top: 12px;
+    padding-top: 10px;
   }
   .chatp-input-row input {
     font-size: 16px;
-    min-height: 40px;
+    min-height: 38px;
   }
 }
 .chatp-input-row input:disabled { opacity: 0.6; }

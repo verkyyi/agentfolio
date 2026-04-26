@@ -17,3 +17,30 @@
   margin-top: 12px;
   font-size: 13px;
 }
+
+@media (max-width: 640px) {
+  .hero {
+    padding: 14px 12px 8px;
+  }
+
+  .hero-name {
+    font-size: 20px;
+    line-height: 1.2;
+  }
+
+  .hero-tagline {
+    display: -webkit-box;
+    margin-top: 3px;
+    font-size: 12px;
+    line-height: 1.35;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+  }
+
+  .hero-links {
+    gap: 6px 12px;
+    margin-top: 7px;
+    font-size: 12px;
+  }
+}
