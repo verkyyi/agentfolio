@@ -25,6 +25,10 @@ const FooterWrapper = styled.footer`
   @media print {
     display: none;
   }
+
+  @media (max-width: 640px) {
+    display: none;
+  }
 `;
 
 export function Footer() {

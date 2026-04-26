@@ -31,6 +31,8 @@ test.describe('Portfolio layout — chat-first', () => {
     await page.setViewportSize({ width: 375, height: 667 });
     await page.goto('./');
     await expect(page.locator('.hero')).toBeVisible();
+    await expect(page.locator('.chatp-suggestion:visible')).toHaveCount(1);
+    await expect(page.getByRole('textbox', { name: /message/i })).toBeVisible();
     const overflow = await page.evaluate(() => document.documentElement.scrollWidth > document.documentElement.clientWidth);
     expect(overflow).toBe(false);
   });
