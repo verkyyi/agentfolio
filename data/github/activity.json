@@ -1,43 +1,13 @@
 {
   "user": "verkyyi",
-  "fetchedAt": "2026-04-25T06:24:56.363Z",
+  "fetchedAt": "2026-04-26T06:32:18.031Z",
   "stats": {
     "publicRepos": 16,
-    "contributions30d": 1028,
-    "contributionsLastYear": 2142
+    "contributions30d": 1067,
+    "contributionsLastYear": 2181
   },
   "contributions": {
     "weeks": [
-      [
-        {
-          "date": "2025-04-20",
-          "count": 0
-        },
-        {
-          "date": "2025-04-21",
-          "count": 0
-        },
-        {
-          "date": "2025-04-22",
-          "count": 0
-        },
-        {
-          "date": "2025-04-23",
-          "count": 0
-        },
-        {
-          "date": "2025-04-24",
-          "count": 0
-        },
-        {
-          "date": "2025-04-25",
-          "count": 0
-        },
-        {
-          "date": "2025-04-26",
-          "count": 0
-        }
-      ],
       [
         {
           "date": "2025-04-27",
@@ -1595,6 +1565,12 @@
         },
         {
           "date": "2026-04-25",
+          "count": 39
+        }
+      ],
+      [
+        {
+          "date": "2026-04-26",
           "count": 0
         }
       ]
@@ -1604,22 +1580,22 @@
     {
       "name": "Shell",
       "color": "#89e051",
-      "pct": 36
+      "pct": 36.2
     },
     {
       "name": "TypeScript",
       "color": "#3178c6",
-      "pct": 31.4
+      "pct": 31.3
     },
     {
       "name": "Python",
       "color": "#3572A5",
-      "pct": 28
+      "pct": 27.9
     },
     {
       "name": "CSS",
       "color": "#663399",
-      "pct": 1.7
+      "pct": 1.8
     },
     {
       "name": "JavaScript",
@@ -1629,13 +1605,22 @@
   ],
   "repos": [
     {
+      "name": "agentfolio",
+      "url": "https://github.com/verkyyi/agentfolio",
+      "description": "Open-source agentic portfolio engine — fork, drop in your resume, deploy. Adapts to each target role with Claude.",
+      "language": "TypeScript",
+      "languageColor": "#3178c6",
+      "stars": 1,
+      "pushedAt": "2026-04-26T01:22:26Z"
+    },
+    {
       "name": "always-on-claude",
       "url": "https://github.com/verkyyi/always-on-claude",
       "description": "Always-on Claude Code dev environment on EC2 + Docker Compose (~$22/mo)",
       "language": "Shell",
       "languageColor": "#89e051",
       "stars": 5,
-      "pushedAt": "2026-04-25T01:21:34Z"
+      "pushedAt": "2026-04-25T20:24:35Z"
     },
     {
       "name": "github-agent-runner",
@@ -1644,16 +1629,7 @@
       "language": "Shell",
       "languageColor": "#89e051",
       "stars": 9,
-      "pushedAt": "2026-04-24T10:59:18Z"
-    },
-    {
-      "name": "agentfolio",
-      "url": "https://github.com/verkyyi/agentfolio",
-      "description": "Open-source agentic portfolio engine — fork, drop in your resume, deploy. Adapts to each target role with Claude.",
-      "language": "TypeScript",
-      "languageColor": "#3178c6",
-      "stars": 1,
-      "pushedAt": "2026-04-24T06:32:05Z"
+      "pushedAt": "2026-04-25T10:50:36Z"
     },
     {
       "name": "agent-team-playground",
