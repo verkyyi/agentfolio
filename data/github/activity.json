@@ -1,10 +1,10 @@
 {
   "user": "verkyyi",
-  "fetchedAt": "2026-04-28T06:47:56.706Z",
+  "fetchedAt": "2026-04-29T06:43:49.083Z",
   "stats": {
-    "publicRepos": 16,
-    "contributions30d": 1117,
-    "contributionsLastYear": 2334
+    "publicRepos": 17,
+    "contributions30d": 1177,
+    "contributionsLastYear": 2394
   },
   "contributions": {
     "weeks": [
@@ -1575,11 +1575,15 @@
         },
         {
           "date": "2026-04-27",
-          "count": 33
+          "count": 35
         },
         {
           "date": "2026-04-28",
-          "count": 0
+          "count": 57
+        },
+        {
+          "date": "2026-04-29",
+          "count": 1
         }
       ]
     ]
@@ -1588,17 +1592,17 @@
     {
       "name": "Shell",
       "color": "#89e051",
-      "pct": 43.8
+      "pct": 44.2
     },
     {
       "name": "TypeScript",
       "color": "#3178c6",
-      "pct": 27.6
+      "pct": 27.4
     },
     {
       "name": "Python",
       "color": "#3572A5",
-      "pct": 24.5
+      "pct": 24.4
     },
     {
       "name": "CSS",
@@ -1613,13 +1617,22 @@
   ],
   "repos": [
     {
+      "name": "ainbox-claude-plugin",
+      "url": "https://github.com/verkyyi/ainbox-claude-plugin",
+      "description": "Claude Code plugin for aInbox — agent-to-agent messaging via @ainbox.io",
+      "language": null,
+      "languageColor": null,
+      "stars": 0,
+      "pushedAt": "2026-04-29T01:53:49Z"
+    },
+    {
       "name": "always-on-claude",
       "url": "https://github.com/verkyyi/always-on-claude",
       "description": "Always-on Claude Code dev environment on EC2 + Docker Compose (~$22/mo)",
       "language": "Shell",
       "languageColor": "#89e051",
       "stars": 5,
-      "pushedAt": "2026-04-28T04:59:40Z"
+      "pushedAt": "2026-04-29T00:49:15Z"
     },
     {
       "name": "github-agent-runner",
@@ -1628,7 +1641,7 @@
       "language": "Shell",
       "languageColor": "#89e051",
       "stars": 9,
-      "pushedAt": "2026-04-27T11:17:58Z"
+      "pushedAt": "2026-04-28T11:17:27Z"
     },
     {
       "name": "agentfolio",
@@ -1637,7 +1650,7 @@
       "language": "TypeScript",
       "languageColor": "#3178c6",
       "stars": 1,
-      "pushedAt": "2026-04-27T06:45:31Z"
+      "pushedAt": "2026-04-28T06:47:57Z"
     },
     {
       "name": "agent-team-playground",
@@ -1647,15 +1660,6 @@
       "languageColor": "#3572A5",
       "stars": 1,
       "pushedAt": "2026-04-23T07:56:41Z"
-    },
-    {
-      "name": "verkyyi",
-      "url": "https://github.com/verkyyi/verkyyi",
-      "description": "Verky Yi — software engineer building agentic tools",
-      "language": null,
-      "languageColor": null,
-      "stars": 0,
-      "pushedAt": "2026-04-21T01:05:05Z"
     }
   ]
 }
