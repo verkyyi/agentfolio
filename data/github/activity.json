@@ -1,10 +1,10 @@
 {
   "user": "verkyyi",
-  "fetchedAt": "2026-04-29T06:43:49.083Z",
+  "fetchedAt": "2026-04-30T06:45:55.580Z",
   "stats": {
     "publicRepos": 17,
-    "contributions30d": 1177,
-    "contributionsLastYear": 2394
+    "contributions30d": 1190,
+    "contributionsLastYear": 2407
   },
   "contributions": {
     "weeks": [
@@ -1583,7 +1583,11 @@
         },
         {
           "date": "2026-04-29",
-          "count": 1
+          "count": 14
+        },
+        {
+          "date": "2026-04-30",
+          "count": 0
         }
       ]
     ]
@@ -1617,6 +1621,24 @@
   ],
   "repos": [
     {
+      "name": "github-agent-runner",
+      "url": "https://github.com/verkyyi/github-agent-runner",
+      "description": "Claude Code plugin to discover and install GitHub agentic workflows (gh-aw) into your repo",
+      "language": "Shell",
+      "languageColor": "#89e051",
+      "stars": 9,
+      "pushedAt": "2026-04-29T11:12:04Z"
+    },
+    {
+      "name": "agentfolio",
+      "url": "https://github.com/verkyyi/agentfolio",
+      "description": "Open-source agentic portfolio engine — fork, drop in your resume, deploy. Adapts to each target role with Claude.",
+      "language": "TypeScript",
+      "languageColor": "#3178c6",
+      "stars": 1,
+      "pushedAt": "2026-04-29T06:43:49Z"
+    },
+    {
       "name": "ainbox-claude-plugin",
       "url": "https://github.com/verkyyi/ainbox-claude-plugin",
       "description": "Claude Code plugin for aInbox — agent-to-agent messaging via @ainbox.io",
@@ -1633,24 +1655,6 @@
       "languageColor": "#89e051",
       "stars": 5,
       "pushedAt": "2026-04-29T00:49:15Z"
-    },
-    {
-      "name": "github-agent-runner",
-      "url": "https://github.com/verkyyi/github-agent-runner",
-      "description": "Claude Code plugin to discover and install GitHub agentic workflows (gh-aw) into your repo",
-      "language": "Shell",
-      "languageColor": "#89e051",
-      "stars": 9,
-      "pushedAt": "2026-04-28T11:17:27Z"
-    },
-    {
-      "name": "agentfolio",
-      "url": "https://github.com/verkyyi/agentfolio",
-      "description": "Open-source agentic portfolio engine — fork, drop in your resume, deploy. Adapts to each target role with Claude.",
-      "language": "TypeScript",
-      "languageColor": "#3178c6",
-      "stars": 1,
-      "pushedAt": "2026-04-28T06:47:57Z"
     },
     {
       "name": "agent-team-playground",
