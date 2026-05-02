@@ -1,10 +1,10 @@
 {
   "user": "verkyyi",
-  "fetchedAt": "2026-05-01T06:48:14.231Z",
+  "fetchedAt": "2026-05-02T06:33:04.009Z",
   "stats": {
-    "publicRepos": 17,
-    "contributions30d": 1192,
-    "contributionsLastYear": 2409
+    "publicRepos": 18,
+    "contributions30d": 1201,
+    "contributionsLastYear": 2418
   },
   "contributions": {
     "weeks": [
@@ -1591,6 +1591,10 @@
         },
         {
           "date": "2026-05-01",
+          "count": 9
+        },
+        {
+          "date": "2026-05-02",
           "count": 0
         }
       ]
@@ -1600,30 +1604,39 @@
     {
       "name": "Shell",
       "color": "#89e051",
-      "pct": 44.2
-    },
-    {
-      "name": "TypeScript",
-      "color": "#3178c6",
-      "pct": 27.4
+      "pct": 42.1
     },
     {
       "name": "Python",
       "color": "#3572A5",
-      "pct": 24.4
+      "pct": 28
+    },
+    {
+      "name": "TypeScript",
+      "color": "#3178c6",
+      "pct": 26
     },
     {
       "name": "CSS",
       "color": "#663399",
-      "pct": 1.6
+      "pct": 1.5
     },
     {
       "name": "JavaScript",
       "color": "#f1e05a",
-      "pct": 1.3
+      "pct": 1.2
     }
   ],
   "repos": [
+    {
+      "name": "agentfeeds",
+      "url": "https://github.com/verkyyi/agentfeeds",
+      "description": "",
+      "language": "Python",
+      "languageColor": "#3572A5",
+      "stars": 1,
+      "pushedAt": "2026-05-02T05:12:58Z"
+    },
     {
       "name": "github-agent-runner",
       "url": "https://github.com/verkyyi/github-agent-runner",
@@ -1631,7 +1644,7 @@
       "language": "Shell",
       "languageColor": "#89e051",
       "stars": 9,
-      "pushedAt": "2026-04-30T11:14:51Z"
+      "pushedAt": "2026-05-01T11:01:59Z"
     },
     {
       "name": "agentfolio",
@@ -1640,7 +1653,7 @@
       "language": "TypeScript",
       "languageColor": "#3178c6",
       "stars": 1,
-      "pushedAt": "2026-04-30T06:45:56Z"
+      "pushedAt": "2026-05-01T06:48:14Z"
     },
     {
       "name": "ainbox-claude-plugin",
@@ -1659,15 +1672,6 @@
       "languageColor": "#89e051",
       "stars": 5,
       "pushedAt": "2026-04-29T00:49:15Z"
-    },
-    {
-      "name": "agent-team-playground",
-      "url": "https://github.com/verkyyi/agent-team-playground",
-      "description": "Long-lasting playground for dogfooding the agent-team pattern and other gh-aw workflows from github-agent-runner.",
-      "language": "Python",
-      "languageColor": "#3572A5",
-      "stars": 1,
-      "pushedAt": "2026-04-23T07:56:41Z"
     }
   ]
 }
