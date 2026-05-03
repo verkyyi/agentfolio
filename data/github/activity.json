@@ -1,43 +1,13 @@
 {
   "user": "verkyyi",
-  "fetchedAt": "2026-05-02T06:33:04.009Z",
+  "fetchedAt": "2026-05-03T06:45:52.165Z",
   "stats": {
     "publicRepos": 18,
-    "contributions30d": 1201,
-    "contributionsLastYear": 2418
+    "contributions30d": 1223,
+    "contributionsLastYear": 2440
   },
   "contributions": {
     "weeks": [
-      [
-        {
-          "date": "2025-04-27",
-          "count": 0
-        },
-        {
-          "date": "2025-04-28",
-          "count": 0
-        },
-        {
-          "date": "2025-04-29",
-          "count": 0
-        },
-        {
-          "date": "2025-04-30",
-          "count": 0
-        },
-        {
-          "date": "2025-05-01",
-          "count": 0
-        },
-        {
-          "date": "2025-05-02",
-          "count": 0
-        },
-        {
-          "date": "2025-05-03",
-          "count": 0
-        }
-      ],
       [
         {
           "date": "2025-05-04",
@@ -1595,6 +1565,12 @@
         },
         {
           "date": "2026-05-02",
+          "count": 22
+        }
+      ],
+      [
+        {
+          "date": "2026-05-03",
           "count": 0
         }
       ]
@@ -1604,38 +1580,38 @@
     {
       "name": "Shell",
       "color": "#89e051",
-      "pct": 42.1
+      "pct": 40.6
     },
     {
       "name": "Python",
       "color": "#3572A5",
-      "pct": 28
+      "pct": 30.5
     },
     {
       "name": "TypeScript",
       "color": "#3178c6",
-      "pct": 26
+      "pct": 25.1
     },
     {
       "name": "CSS",
       "color": "#663399",
-      "pct": 1.5
+      "pct": 1.4
     },
     {
       "name": "JavaScript",
       "color": "#f1e05a",
-      "pct": 1.2
+      "pct": 1.1
     }
   ],
   "repos": [
     {
       "name": "agentfeeds",
       "url": "https://github.com/verkyyi/agentfeeds",
-      "description": "",
+      "description": "Local-first ambient context streams for Hermes and personal agents",
       "language": "Python",
       "languageColor": "#3572A5",
-      "stars": 1,
-      "pushedAt": "2026-05-02T05:12:58Z"
+      "stars": 2,
+      "pushedAt": "2026-05-02T13:46:47Z"
     },
     {
       "name": "github-agent-runner",
@@ -1644,7 +1620,7 @@
       "language": "Shell",
       "languageColor": "#89e051",
       "stars": 9,
-      "pushedAt": "2026-05-01T11:01:59Z"
+      "pushedAt": "2026-05-02T10:50:33Z"
     },
     {
       "name": "agentfolio",
@@ -1653,7 +1629,7 @@
       "language": "TypeScript",
       "languageColor": "#3178c6",
       "stars": 1,
-      "pushedAt": "2026-05-01T06:48:14Z"
+      "pushedAt": "2026-05-02T06:33:04Z"
     },
     {
       "name": "ainbox-claude-plugin",
