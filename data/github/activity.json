@@ -1,10 +1,10 @@
 {
   "user": "verkyyi",
-  "fetchedAt": "2026-05-03T06:45:52.165Z",
+  "fetchedAt": "2026-05-04T06:53:25.142Z",
   "stats": {
-    "publicRepos": 18,
-    "contributions30d": 1223,
-    "contributionsLastYear": 2440
+    "publicRepos": 20,
+    "contributions30d": 1263,
+    "contributionsLastYear": 2480
   },
   "contributions": {
     "weeks": [
@@ -1571,6 +1571,10 @@
       [
         {
           "date": "2026-05-03",
+          "count": 40
+        },
+        {
+          "date": "2026-05-04",
           "count": 0
         }
       ]
@@ -1580,22 +1584,22 @@
     {
       "name": "Shell",
       "color": "#89e051",
-      "pct": 40.6
+      "pct": 37.7
     },
     {
       "name": "Python",
       "color": "#3572A5",
-      "pct": 30.5
+      "pct": 35.9
     },
     {
       "name": "TypeScript",
       "color": "#3178c6",
-      "pct": 25.1
+      "pct": 23
     },
     {
       "name": "CSS",
       "color": "#663399",
-      "pct": 1.4
+      "pct": 1.3
     },
     {
       "name": "JavaScript",
@@ -1605,13 +1609,31 @@
   ],
   "repos": [
     {
+      "name": "agentfeeds-hermes-plugin",
+      "url": "https://github.com/verkyyi/agentfeeds-hermes-plugin",
+      "description": "Hermes plugin and skill for Agent Feeds",
+      "language": "Python",
+      "languageColor": "#3572A5",
+      "stars": 1,
+      "pushedAt": "2026-05-04T05:50:06Z"
+    },
+    {
+      "name": "agentfeeds-catalog",
+      "url": "https://github.com/verkyyi/agentfeeds-catalog",
+      "description": "Built-in provider catalog for Agent Feeds",
+      "language": "Python",
+      "languageColor": "#3572A5",
+      "stars": 1,
+      "pushedAt": "2026-05-04T05:50:06Z"
+    },
+    {
       "name": "agentfeeds",
       "url": "https://github.com/verkyyi/agentfeeds",
       "description": "Local-first ambient context streams for Hermes and personal agents",
       "language": "Python",
       "languageColor": "#3572A5",
-      "stars": 2,
-      "pushedAt": "2026-05-02T13:46:47Z"
+      "stars": 3,
+      "pushedAt": "2026-05-04T05:50:06Z"
     },
     {
       "name": "github-agent-runner",
@@ -1620,7 +1642,7 @@
       "language": "Shell",
       "languageColor": "#89e051",
       "stars": 9,
-      "pushedAt": "2026-05-02T10:50:33Z"
+      "pushedAt": "2026-05-03T10:52:15Z"
     },
     {
       "name": "agentfolio",
@@ -1629,25 +1651,7 @@
       "language": "TypeScript",
       "languageColor": "#3178c6",
       "stars": 1,
-      "pushedAt": "2026-05-02T06:33:04Z"
-    },
-    {
-      "name": "ainbox-claude-plugin",
-      "url": "https://github.com/verkyyi/ainbox-claude-plugin",
-      "description": "Claude Code plugin for aInbox — agent-to-agent messaging via @ainbox.io",
-      "language": null,
-      "languageColor": null,
-      "stars": 0,
-      "pushedAt": "2026-04-29T01:53:49Z"
-    },
-    {
-      "name": "always-on-claude",
-      "url": "https://github.com/verkyyi/always-on-claude",
-      "description": "Always-on Claude Code dev environment on EC2 + Docker Compose (~$22/mo)",
-      "language": "Shell",
-      "languageColor": "#89e051",
-      "stars": 5,
-      "pushedAt": "2026-04-29T00:49:15Z"
+      "pushedAt": "2026-05-03T06:45:53Z"
     }
   ]
 }
