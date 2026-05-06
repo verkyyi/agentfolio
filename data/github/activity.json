@@ -1,10 +1,10 @@
 {
   "user": "verkyyi",
-  "fetchedAt": "2026-05-05T06:39:09.652Z",
+  "fetchedAt": "2026-05-06T06:48:24.794Z",
   "stats": {
     "publicRepos": 20,
-    "contributions30d": 1275,
-    "contributionsLastYear": 2492
+    "contributions30d": 1282,
+    "contributionsLastYear": 2501
   },
   "contributions": {
     "weeks": [
@@ -1579,7 +1579,11 @@
         },
         {
           "date": "2026-05-05",
-          "count": 1
+          "count": 8
+        },
+        {
+          "date": "2026-05-06",
+          "count": 2
         }
       ]
     ]
@@ -1613,22 +1617,22 @@
   ],
   "repos": [
     {
+      "name": "agentfeeds",
+      "url": "https://github.com/verkyyi/agentfeeds",
+      "description": "Ready-to-read fresh context for personal agents",
+      "language": "Python",
+      "languageColor": "#3572A5",
+      "stars": 4,
+      "pushedAt": "2026-05-05T13:16:52Z"
+    },
+    {
       "name": "github-agent-runner",
       "url": "https://github.com/verkyyi/github-agent-runner",
       "description": "Claude Code plugin to discover and install GitHub agentic workflows (gh-aw) into your repo",
       "language": "Shell",
       "languageColor": "#89e051",
       "stars": 9,
-      "pushedAt": "2026-05-04T11:17:29Z"
-    },
-    {
-      "name": "agentfeeds",
-      "url": "https://github.com/verkyyi/agentfeeds",
-      "description": "Local-first ambient context streams for Hermes and personal agents",
-      "language": "Python",
-      "languageColor": "#3572A5",
-      "stars": 3,
-      "pushedAt": "2026-05-04T11:08:12Z"
+      "pushedAt": "2026-05-05T11:06:55Z"
     },
     {
       "name": "agentfolio",
@@ -1637,7 +1641,7 @@
       "language": "TypeScript",
       "languageColor": "#3178c6",
       "stars": 1,
-      "pushedAt": "2026-05-04T06:53:25Z"
+      "pushedAt": "2026-05-05T06:39:10Z"
     },
     {
       "name": "agentfeeds-hermes-plugin",
