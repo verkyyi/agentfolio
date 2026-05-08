@@ -1,10 +1,10 @@
 {
   "user": "verkyyi",
-  "fetchedAt": "2026-05-07T06:52:42.212Z",
+  "fetchedAt": "2026-05-08T06:29:47.157Z",
   "stats": {
     "publicRepos": 20,
-    "contributions30d": 1309,
-    "contributionsLastYear": 2528
+    "contributions30d": 1311,
+    "contributionsLastYear": 2530
   },
   "contributions": {
     "weeks": [
@@ -1587,6 +1587,10 @@
         },
         {
           "date": "2026-05-07",
+          "count": 2
+        },
+        {
+          "date": "2026-05-08",
           "count": 0
         }
       ]
@@ -1621,6 +1625,24 @@
   ],
   "repos": [
     {
+      "name": "github-agent-runner",
+      "url": "https://github.com/verkyyi/github-agent-runner",
+      "description": "Claude Code plugin to discover and install GitHub agentic workflows (gh-aw) into your repo",
+      "language": "Shell",
+      "languageColor": "#89e051",
+      "stars": 9,
+      "pushedAt": "2026-05-07T11:19:50Z"
+    },
+    {
+      "name": "agentfolio",
+      "url": "https://github.com/verkyyi/agentfolio",
+      "description": "Open-source agentic portfolio engine — fork, drop in your resume, deploy. Adapts to each target role with Claude.",
+      "language": "TypeScript",
+      "languageColor": "#3178c6",
+      "stars": 1,
+      "pushedAt": "2026-05-07T06:52:43Z"
+    },
+    {
       "name": "always-on-claude",
       "url": "https://github.com/verkyyi/always-on-claude",
       "description": "Always-on Claude Code dev environment on EC2 + Docker Compose (~$22/mo)",
@@ -1630,30 +1652,12 @@
       "pushedAt": "2026-05-06T21:32:01Z"
     },
     {
-      "name": "github-agent-runner",
-      "url": "https://github.com/verkyyi/github-agent-runner",
-      "description": "Claude Code plugin to discover and install GitHub agentic workflows (gh-aw) into your repo",
-      "language": "Shell",
-      "languageColor": "#89e051",
-      "stars": 9,
-      "pushedAt": "2026-05-06T11:18:33Z"
-    },
-    {
-      "name": "agentfolio",
-      "url": "https://github.com/verkyyi/agentfolio",
-      "description": "Open-source agentic portfolio engine — fork, drop in your resume, deploy. Adapts to each target role with Claude.",
-      "language": "TypeScript",
-      "languageColor": "#3178c6",
-      "stars": 1,
-      "pushedAt": "2026-05-06T06:48:25Z"
-    },
-    {
       "name": "agentfeeds",
       "url": "https://github.com/verkyyi/agentfeeds",
       "description": "Ready-to-read fresh context for personal agents",
       "language": "Python",
       "languageColor": "#3572A5",
-      "stars": 4,
+      "stars": 5,
       "pushedAt": "2026-05-05T13:16:52Z"
     },
     {
