@@ -1,9 +1,9 @@
 {
   "user": "verkyyi",
-  "fetchedAt": "2026-05-18T07:12:04.312Z",
+  "fetchedAt": "2026-05-19T07:03:48.071Z",
   "stats": {
     "publicRepos": 20,
-    "contributions30d": 808,
+    "contributions30d": 770,
     "contributionsLastYear": 2530
   },
   "contributions": {
@@ -1576,6 +1576,10 @@
         {
           "date": "2026-05-18",
           "count": 0
+        },
+        {
+          "date": "2026-05-19",
+          "count": 0
         }
       ]
     ]
@@ -1584,17 +1588,17 @@
     {
       "name": "Shell",
       "color": "#89e051",
-      "pct": 41.3
+      "pct": 43.5
     },
     {
       "name": "Python",
       "color": "#3572A5",
-      "pct": 39.7
+      "pct": 36.5
     },
     {
       "name": "TypeScript",
       "color": "#3178c6",
-      "pct": 16.2
+      "pct": 17.1
     },
     {
       "name": "CSS",
@@ -1604,7 +1608,7 @@
     {
       "name": "Handlebars",
       "color": "#f7931e",
-      "pct": 0.7
+      "pct": 0.8
     }
   ],
   "repos": [
@@ -1614,8 +1618,8 @@
       "description": "Claude Code plugin to discover and install GitHub agentic workflows (gh-aw) into your repo",
       "language": "Shell",
       "languageColor": "#89e051",
-      "stars": 9,
-      "pushedAt": "2026-05-17T11:00:43Z"
+      "stars": 10,
+      "pushedAt": "2026-05-18T11:51:40Z"
     },
     {
       "name": "agentfolio",
@@ -1624,7 +1628,7 @@
       "language": "TypeScript",
       "languageColor": "#3178c6",
       "stars": 1,
-      "pushedAt": "2026-05-17T06:51:41Z"
+      "pushedAt": "2026-05-18T07:12:05Z"
     },
     {
       "name": "always-on-claude",
