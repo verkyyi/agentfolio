@@ -1,43 +1,13 @@
 {
   "user": "verkyyi",
-  "fetchedAt": "2026-05-23T06:48:50.231Z",
+  "fetchedAt": "2026-05-24T06:59:26.710Z",
   "stats": {
     "publicRepos": 20,
-    "contributions30d": 479,
+    "contributions30d": 388,
     "contributionsLastYear": 2530
   },
   "contributions": {
     "weeks": [
-      [
-        {
-          "date": "2025-05-18",
-          "count": 0
-        },
-        {
-          "date": "2025-05-19",
-          "count": 0
-        },
-        {
-          "date": "2025-05-20",
-          "count": 0
-        },
-        {
-          "date": "2025-05-21",
-          "count": 0
-        },
-        {
-          "date": "2025-05-22",
-          "count": 0
-        },
-        {
-          "date": "2025-05-23",
-          "count": 0
-        },
-        {
-          "date": "2025-05-24",
-          "count": 0
-        }
-      ],
       [
         {
           "date": "2025-05-25",
@@ -1597,6 +1567,12 @@
           "date": "2026-05-23",
           "count": 0
         }
+      ],
+      [
+        {
+          "date": "2026-05-24",
+          "count": 0
+        }
       ]
     ]
   },
@@ -1635,7 +1611,7 @@
       "language": "Shell",
       "languageColor": "#89e051",
       "stars": 10,
-      "pushedAt": "2026-05-22T11:36:07Z"
+      "pushedAt": "2026-05-23T11:04:20Z"
     },
     {
       "name": "agentfolio",
@@ -1644,7 +1620,7 @@
       "language": "TypeScript",
       "languageColor": "#3178c6",
       "stars": 1,
-      "pushedAt": "2026-05-22T07:04:07Z"
+      "pushedAt": "2026-05-23T06:48:50Z"
     },
     {
       "name": "always-on-claude",
