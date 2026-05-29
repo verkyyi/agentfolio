@@ -1,10 +1,10 @@
 {
   "user": "verkyyi",
-  "fetchedAt": "2026-05-28T07:10:11.743Z",
+  "fetchedAt": "2026-05-29T07:10:23.672Z",
   "stats": {
-    "publicRepos": 20,
-    "contributions30d": 137,
-    "contributionsLastYear": 2530
+    "publicRepos": 21,
+    "contributions30d": 130,
+    "contributionsLastYear": 2537
   },
   "contributions": {
     "weeks": [
@@ -1587,39 +1587,52 @@
         },
         {
           "date": "2026-05-28",
-          "count": 0
+          "count": 6
+        },
+        {
+          "date": "2026-05-29",
+          "count": 1
         }
       ]
     ]
   },
   "languages": [
     {
-      "name": "Shell",
-      "color": "#89e051",
-      "pct": 43.5
-    },
-    {
       "name": "Python",
       "color": "#3572A5",
-      "pct": 36.5
+      "pct": 40.7
+    },
+    {
+      "name": "Shell",
+      "color": "#89e051",
+      "pct": 39.9
     },
     {
       "name": "TypeScript",
       "color": "#3178c6",
-      "pct": 17.1
+      "pct": 15.7
     },
     {
       "name": "CSS",
       "color": "#663399",
-      "pct": 1.1
+      "pct": 1.4
     },
     {
-      "name": "Handlebars",
-      "color": "#f7931e",
-      "pct": 0.8
+      "name": "HTML",
+      "color": "#e34c26",
+      "pct": 0.7
     }
   ],
   "repos": [
+    {
+      "name": "hermesbench",
+      "url": "https://github.com/verkyyi/hermesbench",
+      "description": "Reliability-first benchmark and evaluation harness for Hermes Agent runtime configurations",
+      "language": "Python",
+      "languageColor": "#3572A5",
+      "stars": 1,
+      "pushedAt": "2026-05-29T06:59:32Z"
+    },
     {
       "name": "agentfolio",
       "url": "https://github.com/verkyyi/agentfolio",
@@ -1627,7 +1640,7 @@
       "language": "TypeScript",
       "languageColor": "#3178c6",
       "stars": 1,
-      "pushedAt": "2026-05-27T07:17:03Z"
+      "pushedAt": "2026-05-28T07:10:12Z"
     },
     {
       "name": "github-agent-runner",
@@ -1655,15 +1668,6 @@
       "languageColor": "#3572A5",
       "stars": 5,
       "pushedAt": "2026-05-05T13:16:52Z"
-    },
-    {
-      "name": "agentfeeds-hermes-plugin",
-      "url": "https://github.com/verkyyi/agentfeeds-hermes-plugin",
-      "description": "Hermes plugin and skill for Agent Feeds",
-      "language": "Python",
-      "languageColor": "#3572A5",
-      "stars": 1,
-      "pushedAt": "2026-05-04T05:50:06Z"
     }
   ]
 }
