@@ -1,43 +1,13 @@
 {
   "user": "verkyyi",
-  "fetchedAt": "2026-05-30T06:53:57.392Z",
+  "fetchedAt": "2026-05-31T07:10:56.631Z",
   "stats": {
     "publicRepos": 21,
-    "contributions30d": 164,
-    "contributionsLastYear": 2573
+    "contributions30d": 163,
+    "contributionsLastYear": 2581
   },
   "contributions": {
     "weeks": [
-      [
-        {
-          "date": "2025-05-25",
-          "count": 0
-        },
-        {
-          "date": "2025-05-26",
-          "count": 0
-        },
-        {
-          "date": "2025-05-27",
-          "count": 0
-        },
-        {
-          "date": "2025-05-28",
-          "count": 0
-        },
-        {
-          "date": "2025-05-29",
-          "count": 0
-        },
-        {
-          "date": "2025-05-30",
-          "count": 0
-        },
-        {
-          "date": "2025-05-31",
-          "count": 0
-        }
-      ],
       [
         {
           "date": "2025-06-01",
@@ -1595,6 +1565,12 @@
         },
         {
           "date": "2026-05-30",
+          "count": 8
+        }
+      ],
+      [
+        {
+          "date": "2026-05-31",
           "count": 0
         }
       ]
@@ -1604,27 +1580,27 @@
     {
       "name": "Python",
       "color": "#3572A5",
-      "pct": 38.4
-    },
-    {
-      "name": "Shell",
-      "color": "#89e051",
-      "pct": 24.7
+      "pct": 37.6
     },
     {
       "name": "HTML",
       "color": "#e34c26",
-      "pct": 24.1
+      "pct": 26.4
+    },
+    {
+      "name": "Shell",
+      "color": "#89e051",
+      "pct": 23.7
     },
     {
       "name": "TypeScript",
       "color": "#3178c6",
-      "pct": 9.7
+      "pct": 9.3
     },
     {
       "name": "CSS",
       "color": "#663399",
-      "pct": 2.1
+      "pct": 2
     }
   ],
   "repos": [
@@ -1634,8 +1610,8 @@
       "description": "Reliability-first benchmark and evaluation harness for Hermes Agent runtime configurations",
       "language": "HTML",
       "languageColor": "#e34c26",
-      "stars": 1,
-      "pushedAt": "2026-05-30T04:19:34Z"
+      "stars": 3,
+      "pushedAt": "2026-05-30T22:35:34Z"
     },
     {
       "name": "agentfolio",
@@ -1644,7 +1620,7 @@
       "language": "TypeScript",
       "languageColor": "#3178c6",
       "stars": 1,
-      "pushedAt": "2026-05-29T07:10:24Z"
+      "pushedAt": "2026-05-30T06:53:58Z"
     },
     {
       "name": "github-agent-runner",
