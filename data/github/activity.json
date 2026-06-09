@@ -1,6 +1,6 @@
 {
   "user": "verkyyi",
-  "fetchedAt": "2026-06-08T07:29:35.211Z",
+  "fetchedAt": "2026-06-09T07:05:26.424Z",
   "stats": {
     "publicRepos": 21,
     "contributions30d": 52,
@@ -1576,6 +1576,10 @@
         {
           "date": "2026-06-08",
           "count": 0
+        },
+        {
+          "date": "2026-06-09",
+          "count": 0
         }
       ]
     ]
@@ -1609,6 +1613,15 @@
   ],
   "repos": [
     {
+      "name": "agentfolio",
+      "url": "https://github.com/verkyyi/agentfolio",
+      "description": "Open-source agentic portfolio engine — fork, drop in your resume, deploy. Adapts to each target role with Claude.",
+      "language": "TypeScript",
+      "languageColor": "#3178c6",
+      "stars": 1,
+      "pushedAt": "2026-06-08T07:29:36Z"
+    },
+    {
       "name": "github-agent-runner",
       "url": "https://github.com/verkyyi/github-agent-runner",
       "description": "Claude Code plugin to discover and install GitHub agentic workflows (gh-aw) into your repo",
@@ -1616,15 +1629,6 @@
       "languageColor": "#89e051",
       "stars": 10,
       "pushedAt": "2026-06-08T05:14:53Z"
-    },
-    {
-      "name": "agentfolio",
-      "url": "https://github.com/verkyyi/agentfolio",
-      "description": "Open-source agentic portfolio engine — fork, drop in your resume, deploy. Adapts to each target role with Claude.",
-      "language": "TypeScript",
-      "languageColor": "#3178c6",
-      "stars": 1,
-      "pushedAt": "2026-06-07T07:16:12Z"
     },
     {
       "name": "hermesbench",
