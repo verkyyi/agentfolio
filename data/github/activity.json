@@ -1,43 +1,13 @@
 {
   "user": "verkyyi",
-  "fetchedAt": "2026-06-27T06:57:42.737Z",
+  "fetchedAt": "2026-06-28T07:13:43.341Z",
   "stats": {
     "publicRepos": 21,
-    "contributions30d": 669,
+    "contributions30d": 632,
     "contributionsLastYear": 3205
   },
   "contributions": {
     "weeks": [
-      [
-        {
-          "date": "2025-06-22",
-          "count": 0
-        },
-        {
-          "date": "2025-06-23",
-          "count": 0
-        },
-        {
-          "date": "2025-06-24",
-          "count": 0
-        },
-        {
-          "date": "2025-06-25",
-          "count": 0
-        },
-        {
-          "date": "2025-06-26",
-          "count": 0
-        },
-        {
-          "date": "2025-06-27",
-          "count": 0
-        },
-        {
-          "date": "2025-06-28",
-          "count": 0
-        }
-      ],
       [
         {
           "date": "2025-06-29",
@@ -1597,6 +1567,12 @@
           "date": "2026-06-27",
           "count": 0
         }
+      ],
+      [
+        {
+          "date": "2026-06-28",
+          "count": 0
+        }
       ]
     ]
   },
@@ -1635,7 +1611,7 @@
       "language": "TypeScript",
       "languageColor": "#3178c6",
       "stars": 1,
-      "pushedAt": "2026-06-26T07:09:10Z"
+      "pushedAt": "2026-06-27T06:57:43Z"
     },
     {
       "name": "github-agent-runner",
@@ -1670,7 +1646,7 @@
       "description": "Ready-to-read fresh context for personal agents",
       "language": "Python",
       "languageColor": "#3572A5",
-      "stars": 5,
+      "stars": 4,
       "pushedAt": "2026-05-05T13:16:52Z"
     }
   ]
