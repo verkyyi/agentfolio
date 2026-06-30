@@ -1,10 +1,10 @@
 {
   "user": "verkyyi",
-  "fetchedAt": "2026-06-29T07:29:21.252Z",
+  "fetchedAt": "2026-06-30T07:09:12.514Z",
   "stats": {
     "publicRepos": 21,
-    "contributions30d": 717,
-    "contributionsLastYear": 3298
+    "contributions30d": 803,
+    "contributionsLastYear": 3384
   },
   "contributions": {
     "weeks": [
@@ -1575,6 +1575,10 @@
         },
         {
           "date": "2026-06-29",
+          "count": 86
+        },
+        {
+          "date": "2026-06-30",
           "count": 6
         }
       ]
@@ -1582,29 +1586,29 @@
   },
   "languages": [
     {
-      "name": "HTML",
-      "color": "#e34c26",
-      "pct": 45
-    },
-    {
-      "name": "Python",
-      "color": "#3572A5",
-      "pct": 30.2
-    },
-    {
       "name": "TypeScript",
       "color": "#3178c6",
-      "pct": 15.8
+      "pct": 70.1
     },
     {
       "name": "Shell",
       "color": "#89e051",
-      "pct": 4.3
+      "pct": 19.1
     },
     {
       "name": "CSS",
       "color": "#663399",
-      "pct": 3.4
+      "pct": 4.6
+    },
+    {
+      "name": "Handlebars",
+      "color": "#f7931e",
+      "pct": 3.2
+    },
+    {
+      "name": "JavaScript",
+      "color": "#f1e05a",
+      "pct": 2.8
     }
   ],
   "repos": [
@@ -1615,7 +1619,7 @@
       "language": "TypeScript",
       "languageColor": "#3178c6",
       "stars": 1,
-      "pushedAt": "2026-06-28T07:13:44Z"
+      "pushedAt": "2026-06-29T07:29:22Z"
     },
     {
       "name": "github-agent-runner",
