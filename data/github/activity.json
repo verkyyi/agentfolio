@@ -1,10 +1,10 @@
 {
   "user": "verkyyi",
-  "fetchedAt": "2026-07-03T06:59:14.569Z",
+  "fetchedAt": "2026-07-04T06:55:28.564Z",
   "stats": {
     "publicRepos": 21,
-    "contributions30d": 1368,
-    "contributionsLastYear": 3950
+    "contributions30d": 1753,
+    "contributionsLastYear": 4335
   },
   "contributions": {
     "weeks": [
@@ -1587,10 +1587,14 @@
         },
         {
           "date": "2026-07-02",
-          "count": 200
+          "count": 275
         },
         {
           "date": "2026-07-03",
+          "count": 310
+        },
+        {
+          "date": "2026-07-04",
           "count": 0
         }
       ]
@@ -1598,32 +1602,41 @@
   },
   "languages": [
     {
-      "name": "TypeScript",
-      "color": "#3178c6",
-      "pct": 70.1
-    },
-    {
       "name": "Shell",
       "color": "#89e051",
-      "pct": 19.1
+      "pct": 53.5
+    },
+    {
+      "name": "Python",
+      "color": "#3572A5",
+      "pct": 22.5
+    },
+    {
+      "name": "TypeScript",
+      "color": "#3178c6",
+      "pct": 20.5
     },
     {
       "name": "CSS",
       "color": "#663399",
-      "pct": 4.6
+      "pct": 1.4
     },
     {
       "name": "Handlebars",
       "color": "#f7931e",
-      "pct": 3.2
-    },
-    {
-      "name": "JavaScript",
-      "color": "#f1e05a",
-      "pct": 2.8
+      "pct": 0.9
     }
   ],
   "repos": [
+    {
+      "name": "always-on-claude",
+      "url": "https://github.com/verkyyi/always-on-claude",
+      "description": "Always-on Claude Code dev environment on EC2 + Docker Compose (~$22/mo)",
+      "language": "Shell",
+      "languageColor": "#89e051",
+      "stars": 6,
+      "pushedAt": "2026-07-03T21:12:19Z"
+    },
     {
       "name": "agentfolio",
       "url": "https://github.com/verkyyi/agentfolio",
@@ -1631,7 +1644,7 @@
       "language": "TypeScript",
       "languageColor": "#3178c6",
       "stars": 1,
-      "pushedAt": "2026-07-02T07:00:26Z"
+      "pushedAt": "2026-07-03T06:59:15Z"
     },
     {
       "name": "github-agent-runner",
@@ -1650,15 +1663,6 @@
       "languageColor": "#e34c26",
       "stars": 7,
       "pushedAt": "2026-05-30T22:35:34Z"
-    },
-    {
-      "name": "always-on-claude",
-      "url": "https://github.com/verkyyi/always-on-claude",
-      "description": "Always-on Claude Code dev environment on EC2 + Docker Compose (~$22/mo)",
-      "language": "Shell",
-      "languageColor": "#89e051",
-      "stars": 6,
-      "pushedAt": "2026-05-06T21:32:01Z"
     },
     {
       "name": "agentfeeds",
