@@ -1,10 +1,10 @@
 {
   "user": "verkyyi",
-  "fetchedAt": "2026-07-07T07:04:34.269Z",
+  "fetchedAt": "2026-07-08T06:44:43.313Z",
   "stats": {
-    "publicRepos": 21,
-    "contributions30d": 2772,
-    "contributionsLastYear": 5354
+    "publicRepos": 22,
+    "contributions30d": 3110,
+    "contributionsLastYear": 5692
   },
   "contributions": {
     "weeks": [
@@ -1575,10 +1575,14 @@
         },
         {
           "date": "2026-07-06",
-          "count": 237
+          "count": 273
         },
         {
           "date": "2026-07-07",
+          "count": 302
+        },
+        {
+          "date": "2026-07-08",
           "count": 0
         }
       ]
@@ -1588,22 +1592,22 @@
     {
       "name": "Shell",
       "color": "#89e051",
-      "pct": 53.5
+      "pct": 56.6
     },
     {
       "name": "Python",
       "color": "#3572A5",
-      "pct": 22.5
+      "pct": 20.8
     },
     {
       "name": "TypeScript",
       "color": "#3178c6",
-      "pct": 20.5
+      "pct": 18.9
     },
     {
       "name": "CSS",
       "color": "#663399",
-      "pct": 1.4
+      "pct": 1.2
     },
     {
       "name": "Handlebars",
@@ -1613,13 +1617,22 @@
   ],
   "repos": [
     {
+      "name": "claude-fleet",
+      "url": "https://github.com/verkyyi/claude-fleet",
+      "description": "Run a fleet of parallel Claude Code sessions in tmux — GitHub issues as the backlog, live attention signals in the status bar",
+      "language": "Shell",
+      "languageColor": "#89e051",
+      "stars": 1,
+      "pushedAt": "2026-07-08T06:13:53Z"
+    },
+    {
       "name": "agentfolio",
       "url": "https://github.com/verkyyi/agentfolio",
       "description": "Open-source agentic portfolio engine — fork, drop in your resume, deploy. Adapts to each target role with Claude.",
       "language": "TypeScript",
       "languageColor": "#3178c6",
       "stars": 1,
-      "pushedAt": "2026-07-06T07:22:21Z"
+      "pushedAt": "2026-07-07T07:04:35Z"
     },
     {
       "name": "always-on-claude",
@@ -1647,15 +1660,6 @@
       "languageColor": "#e34c26",
       "stars": 7,
       "pushedAt": "2026-05-30T22:35:34Z"
-    },
-    {
-      "name": "agentfeeds",
-      "url": "https://github.com/verkyyi/agentfeeds",
-      "description": "Ready-to-read fresh context for personal agents",
-      "language": "Python",
-      "languageColor": "#3572A5",
-      "stars": 4,
-      "pushedAt": "2026-05-05T13:16:52Z"
     }
   ]
 }
