@@ -1,10 +1,10 @@
 {
   "user": "verkyyi",
-  "fetchedAt": "2026-07-08T06:44:43.313Z",
+  "fetchedAt": "2026-07-09T07:07:39.468Z",
   "stats": {
     "publicRepos": 22,
-    "contributions30d": 3110,
-    "contributionsLastYear": 5692
+    "contributions30d": 3387,
+    "contributionsLastYear": 5969
   },
   "contributions": {
     "weeks": [
@@ -1549,7 +1549,7 @@
         },
         {
           "date": "2026-06-30",
-          "count": 164
+          "count": 167
         },
         {
           "date": "2026-07-01",
@@ -1561,7 +1561,7 @@
         },
         {
           "date": "2026-07-03",
-          "count": 337
+          "count": 343
         },
         {
           "date": "2026-07-04",
@@ -1579,11 +1579,15 @@
         },
         {
           "date": "2026-07-07",
-          "count": 302
+          "count": 312
         },
         {
           "date": "2026-07-08",
-          "count": 0
+          "count": 257
+        },
+        {
+          "date": "2026-07-09",
+          "count": 1
         }
       ]
     ]
@@ -1592,27 +1596,27 @@
     {
       "name": "Shell",
       "color": "#89e051",
-      "pct": 56.6
+      "pct": 60.3
     },
     {
       "name": "Python",
       "color": "#3572A5",
-      "pct": 20.8
+      "pct": 18.9
     },
     {
       "name": "TypeScript",
       "color": "#3178c6",
-      "pct": 18.9
+      "pct": 17.2
     },
     {
       "name": "CSS",
       "color": "#663399",
-      "pct": 1.2
+      "pct": 1.1
     },
     {
       "name": "Handlebars",
       "color": "#f7931e",
-      "pct": 0.9
+      "pct": 0.8
     }
   ],
   "repos": [
@@ -1623,7 +1627,7 @@
       "language": "Shell",
       "languageColor": "#89e051",
       "stars": 1,
-      "pushedAt": "2026-07-08T06:13:53Z"
+      "pushedAt": "2026-07-09T07:01:54Z"
     },
     {
       "name": "agentfolio",
@@ -1632,7 +1636,7 @@
       "language": "TypeScript",
       "languageColor": "#3178c6",
       "stars": 1,
-      "pushedAt": "2026-07-07T07:04:35Z"
+      "pushedAt": "2026-07-08T06:44:44Z"
     },
     {
       "name": "always-on-claude",
