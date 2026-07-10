@@ -1,10 +1,10 @@
 {
   "user": "verkyyi",
-  "fetchedAt": "2026-07-09T07:07:39.468Z",
+  "fetchedAt": "2026-07-10T07:04:10.135Z",
   "stats": {
     "publicRepos": 22,
-    "contributions30d": 3387,
-    "contributionsLastYear": 5969
+    "contributions30d": 3577,
+    "contributionsLastYear": 6159
   },
   "contributions": {
     "weeks": [
@@ -1587,7 +1587,11 @@
         },
         {
           "date": "2026-07-09",
-          "count": 1
+          "count": 191
+        },
+        {
+          "date": "2026-07-10",
+          "count": 0
         }
       ]
     ]
@@ -1596,27 +1600,27 @@
     {
       "name": "Shell",
       "color": "#89e051",
-      "pct": 60.3
+      "pct": 69.8
     },
     {
       "name": "Python",
       "color": "#3572A5",
-      "pct": 18.9
+      "pct": 14.5
     },
     {
       "name": "TypeScript",
       "color": "#3178c6",
-      "pct": 17.2
+      "pct": 12.8
     },
     {
       "name": "CSS",
       "color": "#663399",
-      "pct": 1.1
+      "pct": 0.8
     },
     {
-      "name": "Handlebars",
-      "color": "#f7931e",
-      "pct": 0.8
+      "name": "Go Template",
+      "color": "#00ADD8",
+      "pct": 0.6
     }
   ],
   "repos": [
@@ -1627,7 +1631,7 @@
       "language": "Shell",
       "languageColor": "#89e051",
       "stars": 1,
-      "pushedAt": "2026-07-09T07:01:54Z"
+      "pushedAt": "2026-07-10T05:32:53Z"
     },
     {
       "name": "agentfolio",
@@ -1636,7 +1640,7 @@
       "language": "TypeScript",
       "languageColor": "#3178c6",
       "stars": 1,
-      "pushedAt": "2026-07-08T06:44:44Z"
+      "pushedAt": "2026-07-09T07:07:40Z"
     },
     {
       "name": "always-on-claude",
