@@ -1,43 +1,13 @@
 {
   "user": "verkyyi",
-  "fetchedAt": "2026-07-11T06:40:05.106Z",
+  "fetchedAt": "2026-07-12T06:48:23.946Z",
   "stats": {
     "publicRepos": 22,
-    "contributions30d": 3725,
-    "contributionsLastYear": 6307
+    "contributions30d": 3919,
+    "contributionsLastYear": 6508
   },
   "contributions": {
     "weeks": [
-      [
-        {
-          "date": "2025-07-06",
-          "count": 0
-        },
-        {
-          "date": "2025-07-07",
-          "count": 0
-        },
-        {
-          "date": "2025-07-08",
-          "count": 0
-        },
-        {
-          "date": "2025-07-09",
-          "count": 0
-        },
-        {
-          "date": "2025-07-10",
-          "count": 0
-        },
-        {
-          "date": "2025-07-11",
-          "count": 0
-        },
-        {
-          "date": "2025-07-12",
-          "count": 0
-        }
-      ],
       [
         {
           "date": "2025-07-13",
@@ -1591,10 +1561,16 @@
         },
         {
           "date": "2026-07-10",
-          "count": 148
+          "count": 158
         },
         {
           "date": "2026-07-11",
+          "count": 191
+        }
+      ],
+      [
+        {
+          "date": "2026-07-12",
           "count": 0
         }
       ]
@@ -1604,22 +1580,22 @@
     {
       "name": "Shell",
       "color": "#89e051",
-      "pct": 72.6
+      "pct": 75.5
     },
     {
       "name": "Python",
       "color": "#3572A5",
-      "pct": 13.2
+      "pct": 11.8
     },
     {
       "name": "TypeScript",
       "color": "#3178c6",
-      "pct": 11.6
+      "pct": 10.4
     },
     {
       "name": "CSS",
       "color": "#663399",
-      "pct": 0.8
+      "pct": 0.7
     },
     {
       "name": "Go Template",
@@ -1635,7 +1611,7 @@
       "language": "Shell",
       "languageColor": "#89e051",
       "stars": 1,
-      "pushedAt": "2026-07-11T02:35:48Z"
+      "pushedAt": "2026-07-12T06:36:38Z"
     },
     {
       "name": "agentfolio",
@@ -1644,7 +1620,7 @@
       "language": "TypeScript",
       "languageColor": "#3178c6",
       "stars": 1,
-      "pushedAt": "2026-07-10T07:04:11Z"
+      "pushedAt": "2026-07-11T06:40:06Z"
     },
     {
       "name": "always-on-claude",
