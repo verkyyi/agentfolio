@@ -1,43 +1,13 @@
 {
   "user": "verkyyi",
-  "fetchedAt": "2026-07-16T06:43:45.472Z",
+  "fetchedAt": "2026-07-22T06:46:32.288Z",
   "stats": {
     "publicRepos": 22,
-    "contributions30d": 4369,
-    "contributionsLastYear": 7028
+    "contributions30d": 4639,
+    "contributionsLastYear": 7540
   },
   "contributions": {
     "weeks": [
-      [
-        {
-          "date": "2025-07-13",
-          "count": 0
-        },
-        {
-          "date": "2025-07-14",
-          "count": 0
-        },
-        {
-          "date": "2025-07-15",
-          "count": 0
-        },
-        {
-          "date": "2025-07-16",
-          "count": 0
-        },
-        {
-          "date": "2025-07-17",
-          "count": 0
-        },
-        {
-          "date": "2025-07-18",
-          "count": 0
-        },
-        {
-          "date": "2025-07-19",
-          "count": 0
-        }
-      ],
       [
         {
           "date": "2025-07-20",
@@ -1583,10 +1553,36 @@
         },
         {
           "date": "2026-07-15",
-          "count": 51
+          "count": 52
         },
         {
           "date": "2026-07-16",
+          "count": 106
+        },
+        {
+          "date": "2026-07-17",
+          "count": 80
+        },
+        {
+          "date": "2026-07-18",
+          "count": 127
+        }
+      ],
+      [
+        {
+          "date": "2026-07-19",
+          "count": 94
+        },
+        {
+          "date": "2026-07-20",
+          "count": 104
+        },
+        {
+          "date": "2026-07-21",
+          "count": 0
+        },
+        {
+          "date": "2026-07-22",
           "count": 0
         }
       ]
@@ -1596,22 +1592,22 @@
     {
       "name": "Shell",
       "color": "#89e051",
-      "pct": 76.5
+      "pct": 78.3
     },
     {
       "name": "Python",
       "color": "#3572A5",
-      "pct": 11.2
+      "pct": 10.3
     },
     {
       "name": "TypeScript",
       "color": "#3178c6",
-      "pct": 9.1
+      "pct": 8.4
     },
     {
       "name": "JavaScript",
       "color": "#f1e05a",
-      "pct": 1.5
+      "pct": 1.4
     },
     {
       "name": "CSS",
@@ -1627,7 +1623,7 @@
       "language": "Shell",
       "languageColor": "#89e051",
       "stars": 1,
-      "pushedAt": "2026-07-16T06:17:51Z"
+      "pushedAt": "2026-07-21T00:04:16Z"
     },
     {
       "name": "agentfolio",
@@ -1636,7 +1632,7 @@
       "language": "TypeScript",
       "languageColor": "#3178c6",
       "stars": 1,
-      "pushedAt": "2026-07-15T06:39:02Z"
+      "pushedAt": "2026-07-16T06:43:46Z"
     },
     {
       "name": "always-on-claude",
