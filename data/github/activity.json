@@ -1,9 +1,9 @@
 {
   "user": "verkyyi",
-  "fetchedAt": "2026-07-22T06:46:32.288Z",
+  "fetchedAt": "2026-07-23T06:45:15.176Z",
   "stats": {
     "publicRepos": 22,
-    "contributions30d": 4639,
+    "contributions30d": 4555,
     "contributionsLastYear": 7540
   },
   "contributions": {
@@ -1584,6 +1584,10 @@
         {
           "date": "2026-07-22",
           "count": 0
+        },
+        {
+          "date": "2026-07-23",
+          "count": 0
         }
       ]
     ]
@@ -1617,6 +1621,15 @@
   ],
   "repos": [
     {
+      "name": "agentfolio",
+      "url": "https://github.com/verkyyi/agentfolio",
+      "description": "Open-source agentic portfolio engine — fork, drop in your resume, deploy. Adapts to each target role with Claude.",
+      "language": "TypeScript",
+      "languageColor": "#3178c6",
+      "stars": 1,
+      "pushedAt": "2026-07-22T06:46:33Z"
+    },
+    {
       "name": "claude-fleet",
       "url": "https://github.com/verkyyi/claude-fleet",
       "description": "Run a fleet of parallel Claude Code sessions in tmux — GitHub issues as the backlog, live attention signals in the status bar",
@@ -1624,15 +1637,6 @@
       "languageColor": "#89e051",
       "stars": 1,
       "pushedAt": "2026-07-21T00:04:16Z"
-    },
-    {
-      "name": "agentfolio",
-      "url": "https://github.com/verkyyi/agentfolio",
-      "description": "Open-source agentic portfolio engine — fork, drop in your resume, deploy. Adapts to each target role with Claude.",
-      "language": "TypeScript",
-      "languageColor": "#3178c6",
-      "stars": 1,
-      "pushedAt": "2026-07-16T06:43:46Z"
     },
     {
       "name": "always-on-claude",
