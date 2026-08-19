@@ -1,10 +1,10 @@
 {
   "user": "verkyyi",
-  "fetchedAt": "2026-08-18T06:18:58.098Z",
+  "fetchedAt": "2026-08-19T06:19:48.447Z",
   "stats": {
     "publicRepos": 22,
-    "contributions30d": 441,
-    "contributionsLastYear": 7877
+    "contributions30d": 477,
+    "contributionsLastYear": 8017
   },
   "contributions": {
     "weeks": [
@@ -1575,10 +1575,14 @@
         },
         {
           "date": "2026-08-17",
-          "count": 54
+          "count": 57
         },
         {
           "date": "2026-08-18",
+          "count": 137
+        },
+        {
+          "date": "2026-08-19",
           "count": 0
         }
       ]
@@ -1588,12 +1592,12 @@
     {
       "name": "Shell",
       "color": "#89e051",
-      "pct": 81.6
+      "pct": 82
     },
     {
       "name": "TypeScript",
       "color": "#3178c6",
-      "pct": 12.5
+      "pct": 12.3
     },
     {
       "name": "JavaScript",
@@ -1613,22 +1617,22 @@
   ],
   "repos": [
     {
-      "name": "agentfolio",
-      "url": "https://github.com/verkyyi/agentfolio",
-      "description": "Open-source agentic portfolio engine — fork, drop in your resume, deploy. Adapts to each target role with Claude.",
-      "language": "TypeScript",
-      "languageColor": "#3178c6",
-      "stars": 1,
-      "pushedAt": "2026-08-17T06:25:12Z"
-    },
-    {
       "name": "claude-fleet",
       "url": "https://github.com/verkyyi/claude-fleet",
       "description": "Run a fleet of parallel Claude Code sessions in tmux — GitHub issues as the backlog, live attention signals in the status bar",
       "language": "Shell",
       "languageColor": "#89e051",
       "stars": 1,
-      "pushedAt": "2026-08-09T00:09:06Z"
+      "pushedAt": "2026-08-19T05:35:26Z"
+    },
+    {
+      "name": "agentfolio",
+      "url": "https://github.com/verkyyi/agentfolio",
+      "description": "Open-source agentic portfolio engine — fork, drop in your resume, deploy. Adapts to each target role with Claude.",
+      "language": "TypeScript",
+      "languageColor": "#3178c6",
+      "stars": 1,
+      "pushedAt": "2026-08-18T06:18:59Z"
     },
     {
       "name": "always-on-claude",
