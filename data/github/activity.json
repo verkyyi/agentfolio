@@ -1,43 +1,13 @@
 {
   "user": "verkyyi",
-  "fetchedAt": "2026-08-22T06:16:07.333Z",
+  "fetchedAt": "2026-08-23T06:17:42.966Z",
   "stats": {
     "publicRepos": 22,
-    "contributions30d": 1132,
-    "contributionsLastYear": 8672
+    "contributions30d": 1647,
+    "contributionsLastYear": 9188
   },
   "contributions": {
     "weeks": [
-      [
-        {
-          "date": "2025-08-17",
-          "count": 0
-        },
-        {
-          "date": "2025-08-18",
-          "count": 0
-        },
-        {
-          "date": "2025-08-19",
-          "count": 0
-        },
-        {
-          "date": "2025-08-20",
-          "count": 0
-        },
-        {
-          "date": "2025-08-21",
-          "count": 0
-        },
-        {
-          "date": "2025-08-22",
-          "count": 0
-        },
-        {
-          "date": "2025-08-23",
-          "count": 0
-        }
-      ],
       [
         {
           "date": "2025-08-24",
@@ -1591,10 +1561,16 @@
         },
         {
           "date": "2026-08-21",
-          "count": 229
+          "count": 245
         },
         {
           "date": "2026-08-22",
+          "count": 500
+        }
+      ],
+      [
+        {
+          "date": "2026-08-23",
           "count": 0
         }
       ]
@@ -1604,17 +1580,17 @@
     {
       "name": "Shell",
       "color": "#89e051",
-      "pct": 83.5
+      "pct": 83.8
     },
     {
       "name": "TypeScript",
       "color": "#3178c6",
-      "pct": 11.1
+      "pct": 10.9
     },
     {
       "name": "JavaScript",
       "color": "#f1e05a",
-      "pct": 1.9
+      "pct": 1.8
     },
     {
       "name": "Python",
@@ -1635,7 +1611,7 @@
       "language": "Shell",
       "languageColor": "#89e051",
       "stars": 1,
-      "pushedAt": "2026-08-22T04:12:50Z"
+      "pushedAt": "2026-08-23T05:54:51Z"
     },
     {
       "name": "agentfolio",
@@ -1644,7 +1620,7 @@
       "language": "TypeScript",
       "languageColor": "#3178c6",
       "stars": 1,
-      "pushedAt": "2026-08-21T06:20:51Z"
+      "pushedAt": "2026-08-22T06:16:08Z"
     },
     {
       "name": "always-on-claude",
