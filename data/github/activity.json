@@ -1,10 +1,10 @@
 {
   "user": "verkyyi",
-  "fetchedAt": "2026-09-01T10:34:29.231Z",
+  "fetchedAt": "2026-09-02T10:00:04.485Z",
   "stats": {
-    "publicRepos": 22,
-    "contributions30d": 4156,
-    "contributionsLastYear": 11750
+    "publicRepos": 23,
+    "contributions30d": 4598,
+    "contributionsLastYear": 12212
   },
   "contributions": {
     "weeks": [
@@ -1579,7 +1579,11 @@
         },
         {
           "date": "2026-09-01",
-          "count": 86
+          "count": 471
+        },
+        {
+          "date": "2026-09-02",
+          "count": 77
         }
       ]
     ]
@@ -1588,27 +1592,27 @@
     {
       "name": "Shell",
       "color": "#89e051",
-      "pct": 84.4
+      "pct": 64.8
+    },
+    {
+      "name": "Go",
+      "color": "#00ADD8",
+      "pct": 23.3
     },
     {
       "name": "TypeScript",
       "color": "#3178c6",
-      "pct": 10.5
+      "pct": 8
     },
     {
       "name": "JavaScript",
       "color": "#f1e05a",
-      "pct": 1.8
+      "pct": 1.3
     },
     {
       "name": "Python",
       "color": "#3572A5",
-      "pct": 1.5
-    },
-    {
-      "name": "CSS",
-      "color": "#663399",
-      "pct": 0.7
+      "pct": 1.2
     }
   ],
   "repos": [
@@ -1619,7 +1623,16 @@
       "language": "Shell",
       "languageColor": "#89e051",
       "stars": 1,
-      "pushedAt": "2026-09-01T10:13:55Z"
+      "pushedAt": "2026-09-02T09:07:26Z"
+    },
+    {
+      "name": "ccquota",
+      "url": "https://github.com/verkyyi/ccquota",
+      "description": "Cross-endpoint Claude Code usage monitor: exact account-wide limits, per-machine attribution, a live dashboard, and read-only MCP.",
+      "language": "Go",
+      "languageColor": "#00ADD8",
+      "stars": 0,
+      "pushedAt": "2026-09-02T06:22:38Z"
     },
     {
       "name": "agentfolio",
@@ -1628,7 +1641,7 @@
       "language": "TypeScript",
       "languageColor": "#3178c6",
       "stars": 1,
-      "pushedAt": "2026-08-31T11:55:08Z"
+      "pushedAt": "2026-09-01T10:34:30Z"
     },
     {
       "name": "always-on-claude",
@@ -1647,15 +1660,6 @@
       "languageColor": "#89e051",
       "stars": 10,
       "pushedAt": "2026-06-08T05:14:53Z"
-    },
-    {
-      "name": "hermesbench",
-      "url": "https://github.com/verkyyi/hermesbench",
-      "description": "Reliability-first benchmark and evaluation harness for Hermes Agent runtime configurations",
-      "language": "HTML",
-      "languageColor": "#e34c26",
-      "stars": 8,
-      "pushedAt": "2026-05-30T22:35:34Z"
     }
   ]
 }
