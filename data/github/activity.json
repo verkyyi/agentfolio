@@ -1,10 +1,10 @@
 {
   "user": "verkyyi",
-  "fetchedAt": "2026-09-02T10:00:04.485Z",
+  "fetchedAt": "2026-09-03T10:10:43.970Z",
   "stats": {
     "publicRepos": 23,
-    "contributions30d": 4598,
-    "contributionsLastYear": 12212
+    "contributions30d": 4913,
+    "contributionsLastYear": 12569
   },
   "contributions": {
     "weeks": [
@@ -1583,7 +1583,11 @@
         },
         {
           "date": "2026-09-02",
-          "count": 77
+          "count": 430
+        },
+        {
+          "date": "2026-09-03",
+          "count": 4
         }
       ]
     ]
@@ -1592,27 +1596,27 @@
     {
       "name": "Shell",
       "color": "#89e051",
-      "pct": 64.8
+      "pct": 66.3
     },
     {
       "name": "Go",
       "color": "#00ADD8",
-      "pct": 23.3
+      "pct": 22
     },
     {
       "name": "TypeScript",
       "color": "#3178c6",
-      "pct": 8
+      "pct": 7.5
+    },
+    {
+      "name": "Python",
+      "color": "#3572A5",
+      "pct": 1.6
     },
     {
       "name": "JavaScript",
       "color": "#f1e05a",
       "pct": 1.3
-    },
-    {
-      "name": "Python",
-      "color": "#3572A5",
-      "pct": 1.2
     }
   ],
   "repos": [
@@ -1623,7 +1627,16 @@
       "language": "Shell",
       "languageColor": "#89e051",
       "stars": 1,
-      "pushedAt": "2026-09-02T09:07:26Z"
+      "pushedAt": "2026-09-03T01:42:49Z"
+    },
+    {
+      "name": "agentfolio",
+      "url": "https://github.com/verkyyi/agentfolio",
+      "description": "Open-source agentic portfolio engine — fork, drop in your resume, deploy. Adapts to each target role with Claude.",
+      "language": "TypeScript",
+      "languageColor": "#3178c6",
+      "stars": 1,
+      "pushedAt": "2026-09-02T10:00:06Z"
     },
     {
       "name": "ccquota",
@@ -1633,15 +1646,6 @@
       "languageColor": "#00ADD8",
       "stars": 0,
       "pushedAt": "2026-09-02T06:22:38Z"
-    },
-    {
-      "name": "agentfolio",
-      "url": "https://github.com/verkyyi/agentfolio",
-      "description": "Open-source agentic portfolio engine — fork, drop in your resume, deploy. Adapts to each target role with Claude.",
-      "language": "TypeScript",
-      "languageColor": "#3178c6",
-      "stars": 1,
-      "pushedAt": "2026-09-01T10:34:30Z"
     },
     {
       "name": "always-on-claude",
