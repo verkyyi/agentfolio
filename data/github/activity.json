@@ -1,10 +1,10 @@
 {
   "user": "verkyyi",
-  "fetchedAt": "2026-09-11T10:03:22.575Z",
+  "fetchedAt": "2026-09-12T09:39:04.839Z",
   "stats": {
     "publicRepos": 23,
-    "contributions30d": 5376,
-    "contributionsLastYear": 13166
+    "contributions30d": 5657,
+    "contributionsLastYear": 13480
   },
   "contributions": {
     "weeks": [
@@ -1591,7 +1591,11 @@
         },
         {
           "date": "2026-09-11",
-          "count": 35
+          "count": 290
+        },
+        {
+          "date": "2026-09-12",
+          "count": 59
         }
       ]
     ]
@@ -1600,17 +1604,17 @@
     {
       "name": "Shell",
       "color": "#89e051",
-      "pct": 66.6
+      "pct": 68.4
     },
     {
       "name": "Go",
       "color": "#00ADD8",
-      "pct": 21.8
+      "pct": 20.5
     },
     {
       "name": "TypeScript",
       "color": "#3178c6",
-      "pct": 7.4
+      "pct": 7
     },
     {
       "name": "Python",
@@ -1620,7 +1624,7 @@
     {
       "name": "JavaScript",
       "color": "#f1e05a",
-      "pct": 1.3
+      "pct": 1.2
     }
   ],
   "repos": [
@@ -1631,16 +1635,7 @@
       "language": "Shell",
       "languageColor": "#89e051",
       "stars": 1,
-      "pushedAt": "2026-09-11T00:57:54Z"
-    },
-    {
-      "name": "agentfolio",
-      "url": "https://github.com/verkyyi/agentfolio",
-      "description": "Open-source agentic portfolio engine — fork, drop in your resume, deploy. Adapts to each target role with Claude.",
-      "language": "TypeScript",
-      "languageColor": "#3178c6",
-      "stars": 1,
-      "pushedAt": "2026-09-10T10:06:41Z"
+      "pushedAt": "2026-09-12T08:35:49Z"
     },
     {
       "name": "ccquota",
@@ -1649,7 +1644,16 @@
       "language": "Go",
       "languageColor": "#00ADD8",
       "stars": 0,
-      "pushedAt": "2026-09-02T06:22:38Z"
+      "pushedAt": "2026-09-12T08:11:12Z"
+    },
+    {
+      "name": "agentfolio",
+      "url": "https://github.com/verkyyi/agentfolio",
+      "description": "Open-source agentic portfolio engine — fork, drop in your resume, deploy. Adapts to each target role with Claude.",
+      "language": "TypeScript",
+      "languageColor": "#3178c6",
+      "stars": 1,
+      "pushedAt": "2026-09-11T10:03:23Z"
     },
     {
       "name": "always-on-claude",
