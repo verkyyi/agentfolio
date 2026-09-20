@@ -1,43 +1,13 @@
 {
   "user": "verkyyi",
-  "fetchedAt": "2026-09-19T09:47:29.386Z",
+  "fetchedAt": "2026-09-20T10:09:34.851Z",
   "stats": {
     "publicRepos": 23,
-    "contributions30d": 7835,
-    "contributionsLastYear": 16278
+    "contributions30d": 7968,
+    "contributionsLastYear": 16656
   },
   "contributions": {
     "weeks": [
-      [
-        {
-          "date": "2025-09-14",
-          "count": 0
-        },
-        {
-          "date": "2025-09-15",
-          "count": 0
-        },
-        {
-          "date": "2025-09-16",
-          "count": 0
-        },
-        {
-          "date": "2025-09-17",
-          "count": 0
-        },
-        {
-          "date": "2025-09-18",
-          "count": 0
-        },
-        {
-          "date": "2025-09-19",
-          "count": 0
-        },
-        {
-          "date": "2025-09-20",
-          "count": 0
-        }
-      ],
       [
         {
           "date": "2025-09-21",
@@ -1595,7 +1565,13 @@
         },
         {
           "date": "2026-09-19",
-          "count": 52
+          "count": 311
+        }
+      ],
+      [
+        {
+          "date": "2026-09-20",
+          "count": 119
         }
       ]
     ]
@@ -1604,30 +1580,39 @@
     {
       "name": "Shell",
       "color": "#89e051",
-      "pct": 60.6
+      "pct": 56.2
     },
     {
       "name": "Go",
       "color": "#00ADD8",
-      "pct": 24.7
+      "pct": 28.4
     },
     {
       "name": "Python",
       "color": "#3572A5",
-      "pct": 9
+      "pct": 8.6
     },
     {
       "name": "TypeScript",
       "color": "#3178c6",
-      "pct": 3.4
+      "pct": 3.1
     },
     {
       "name": "JavaScript",
       "color": "#f1e05a",
-      "pct": 1.6
+      "pct": 2.9
     }
   ],
   "repos": [
+    {
+      "name": "tokenledger",
+      "url": "https://github.com/verkyyi/tokenledger",
+      "description": "Books for a team account pool: one hub that knows how much headroom each of your team's Claude subscriptions has left, across every machine. Cross-endpoint usage, per-team cost attribution, live dashboard, read-only MCP.",
+      "language": "Go",
+      "languageColor": "#00ADD8",
+      "stars": 0,
+      "pushedAt": "2026-09-20T09:56:15Z"
+    },
     {
       "name": "claude-fleet",
       "url": "https://github.com/verkyyi/claude-fleet",
@@ -1635,7 +1620,7 @@
       "language": "Shell",
       "languageColor": "#89e051",
       "stars": 2,
-      "pushedAt": "2026-09-19T09:45:28Z"
+      "pushedAt": "2026-09-20T07:54:25Z"
     },
     {
       "name": "agentfolio",
@@ -1644,16 +1629,7 @@
       "language": "TypeScript",
       "languageColor": "#3178c6",
       "stars": 1,
-      "pushedAt": "2026-09-18T10:06:35Z"
-    },
-    {
-      "name": "tokenledger",
-      "url": "https://github.com/verkyyi/tokenledger",
-      "description": "Books for a team account pool: one hub that knows how much headroom each of your team's Claude subscriptions has left, across every machine. Cross-endpoint usage, per-team cost attribution, live dashboard, read-only MCP.",
-      "language": "Go",
-      "languageColor": "#00ADD8",
-      "stars": 0,
-      "pushedAt": "2026-09-16T04:53:01Z"
+      "pushedAt": "2026-09-19T09:47:30Z"
     },
     {
       "name": "always-on-claude",
