@@ -1,10 +1,10 @@
 {
   "user": "verkyyi",
-  "fetchedAt": "2026-09-20T10:09:34.851Z",
+  "fetchedAt": "2026-09-21T11:10:55.385Z",
   "stats": {
     "publicRepos": 23,
-    "contributions30d": 7968,
-    "contributionsLastYear": 16656
+    "contributions30d": 7993,
+    "contributionsLastYear": 17187
   },
   "contributions": {
     "weeks": [
@@ -1571,7 +1571,11 @@
       [
         {
           "date": "2026-09-20",
-          "count": 119
+          "count": 549
+        },
+        {
+          "date": "2026-09-21",
+          "count": 101
         }
       ]
     ]
@@ -1580,39 +1584,30 @@
     {
       "name": "Shell",
       "color": "#89e051",
-      "pct": 56.2
+      "pct": 54.6
     },
     {
       "name": "Go",
       "color": "#00ADD8",
-      "pct": 28.4
+      "pct": 28.1
     },
     {
       "name": "Python",
       "color": "#3572A5",
-      "pct": 8.6
-    },
-    {
-      "name": "TypeScript",
-      "color": "#3178c6",
-      "pct": 3.1
+      "pct": 10.1
     },
     {
       "name": "JavaScript",
       "color": "#f1e05a",
-      "pct": 2.9
+      "pct": 3.2
+    },
+    {
+      "name": "TypeScript",
+      "color": "#3178c6",
+      "pct": 3
     }
   ],
   "repos": [
-    {
-      "name": "tokenledger",
-      "url": "https://github.com/verkyyi/tokenledger",
-      "description": "Books for a team account pool: one hub that knows how much headroom each of your team's Claude subscriptions has left, across every machine. Cross-endpoint usage, per-team cost attribution, live dashboard, read-only MCP.",
-      "language": "Go",
-      "languageColor": "#00ADD8",
-      "stars": 0,
-      "pushedAt": "2026-09-20T09:56:15Z"
-    },
     {
       "name": "claude-fleet",
       "url": "https://github.com/verkyyi/claude-fleet",
@@ -1620,7 +1615,16 @@
       "language": "Shell",
       "languageColor": "#89e051",
       "stars": 2,
-      "pushedAt": "2026-09-20T07:54:25Z"
+      "pushedAt": "2026-09-21T06:23:58Z"
+    },
+    {
+      "name": "tokenledger",
+      "url": "https://github.com/verkyyi/tokenledger",
+      "description": "Books for a team account pool: one hub that knows how much headroom each of your team's Claude subscriptions has left, across every machine. Cross-endpoint usage, per-team cost attribution, live dashboard, read-only MCP.",
+      "language": "Go",
+      "languageColor": "#00ADD8",
+      "stars": 0,
+      "pushedAt": "2026-09-20T14:34:03Z"
     },
     {
       "name": "agentfolio",
@@ -1629,7 +1633,7 @@
       "language": "TypeScript",
       "languageColor": "#3178c6",
       "stars": 1,
-      "pushedAt": "2026-09-19T09:47:30Z"
+      "pushedAt": "2026-09-20T10:09:35Z"
     },
     {
       "name": "always-on-claude",
