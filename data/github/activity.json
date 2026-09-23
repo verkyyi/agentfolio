@@ -1,10 +1,10 @@
 {
   "user": "verkyyi",
-  "fetchedAt": "2026-09-22T10:24:27.265Z",
+  "fetchedAt": "2026-09-23T10:19:34.725Z",
   "stats": {
     "publicRepos": 23,
-    "contributions30d": 8111,
-    "contributionsLastYear": 17484
+    "contributions30d": 8604,
+    "contributionsLastYear": 18207
   },
   "contributions": {
     "weeks": [
@@ -1579,7 +1579,11 @@
         },
         {
           "date": "2026-09-22",
-          "count": 28
+          "count": 597
+        },
+        {
+          "date": "2026-09-23",
+          "count": 154
         }
       ]
     ]
@@ -1588,39 +1592,30 @@
     {
       "name": "Shell",
       "color": "#89e051",
-      "pct": 54.6
+      "pct": 58.8
     },
     {
       "name": "Go",
       "color": "#00ADD8",
-      "pct": 28.1
+      "pct": 24.3
     },
     {
       "name": "Python",
       "color": "#3572A5",
-      "pct": 10.1
+      "pct": 10.5
     },
     {
       "name": "JavaScript",
       "color": "#f1e05a",
-      "pct": 3.2
+      "pct": 2.8
     },
     {
       "name": "TypeScript",
       "color": "#3178c6",
-      "pct": 3
+      "pct": 2.6
     }
   ],
   "repos": [
-    {
-      "name": "agentfolio",
-      "url": "https://github.com/verkyyi/agentfolio",
-      "description": "Open-source agentic portfolio engine — fork, drop in your resume, deploy. Adapts to each target role with Claude.",
-      "language": "TypeScript",
-      "languageColor": "#3178c6",
-      "stars": 1,
-      "pushedAt": "2026-09-21T11:10:56Z"
-    },
     {
       "name": "claude-fleet",
       "url": "https://github.com/verkyyi/claude-fleet",
@@ -1628,7 +1623,7 @@
       "language": "Shell",
       "languageColor": "#89e051",
       "stars": 2,
-      "pushedAt": "2026-09-21T06:23:58Z"
+      "pushedAt": "2026-09-23T10:18:34Z"
     },
     {
       "name": "tokenledger",
@@ -1637,7 +1632,16 @@
       "language": "Go",
       "languageColor": "#00ADD8",
       "stars": 0,
-      "pushedAt": "2026-09-20T14:34:03Z"
+      "pushedAt": "2026-09-23T06:28:54Z"
+    },
+    {
+      "name": "agentfolio",
+      "url": "https://github.com/verkyyi/agentfolio",
+      "description": "Open-source agentic portfolio engine — fork, drop in your resume, deploy. Adapts to each target role with Claude.",
+      "language": "TypeScript",
+      "languageColor": "#3178c6",
+      "stars": 1,
+      "pushedAt": "2026-09-22T10:24:28Z"
     },
     {
       "name": "always-on-claude",
