@@ -1,10 +1,10 @@
 {
   "user": "verkyyi",
-  "fetchedAt": "2026-09-25T10:37:20.579Z",
+  "fetchedAt": "2026-09-26T10:20:59.995Z",
   "stats": {
     "publicRepos": 23,
-    "contributions30d": 8424,
-    "contributionsLastYear": 18869
+    "contributions30d": 8616,
+    "contributionsLastYear": 19356
   },
   "contributions": {
     "weeks": [
@@ -1591,7 +1591,11 @@
         },
         {
           "date": "2026-09-25",
-          "count": 51
+          "count": 498
+        },
+        {
+          "date": "2026-09-26",
+          "count": 40
         }
       ]
     ]
@@ -1600,12 +1604,12 @@
     {
       "name": "Shell",
       "color": "#89e051",
-      "pct": 61.4
+      "pct": 62.9
     },
     {
       "name": "Go",
       "color": "#00ADD8",
-      "pct": 22.5
+      "pct": 21.3
     },
     {
       "name": "Python",
@@ -1615,12 +1619,12 @@
     {
       "name": "JavaScript",
       "color": "#f1e05a",
-      "pct": 2.6
+      "pct": 2.5
     },
     {
       "name": "TypeScript",
       "color": "#3178c6",
-      "pct": 2.3
+      "pct": 2.2
     }
   ],
   "repos": [
@@ -1631,7 +1635,16 @@
       "language": "Shell",
       "languageColor": "#89e051",
       "stars": 2,
-      "pushedAt": "2026-09-25T10:36:58Z"
+      "pushedAt": "2026-09-26T04:54:27Z"
+    },
+    {
+      "name": "agentfolio",
+      "url": "https://github.com/verkyyi/agentfolio",
+      "description": "Open-source agentic portfolio engine — fork, drop in your resume, deploy. Adapts to each target role with Claude.",
+      "language": "TypeScript",
+      "languageColor": "#3178c6",
+      "stars": 1,
+      "pushedAt": "2026-09-25T10:37:22Z"
     },
     {
       "name": "tokenledger",
@@ -1641,15 +1654,6 @@
       "languageColor": "#00ADD8",
       "stars": 1,
       "pushedAt": "2026-09-24T13:33:45Z"
-    },
-    {
-      "name": "agentfolio",
-      "url": "https://github.com/verkyyi/agentfolio",
-      "description": "Open-source agentic portfolio engine — fork, drop in your resume, deploy. Adapts to each target role with Claude.",
-      "language": "TypeScript",
-      "languageColor": "#3178c6",
-      "stars": 1,
-      "pushedAt": "2026-09-24T10:33:52Z"
     },
     {
       "name": "always-on-claude",
