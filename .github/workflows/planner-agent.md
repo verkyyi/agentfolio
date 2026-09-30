@@ -52,7 +52,7 @@ safe-outputs:
   dispatch-workflow:
     workflows: [implementer-agent]
     max: 1
-source: verkyyi/github-agent-runner/catalog/agent-team/planner-agent.md@cb66d12806d7f00d220f11e964bc27dfec672913
+source: verkyyi/github-agent-runner/catalog/agent-team/planner-agent.md@524090c08c194faea62a6368059258ec7d310b95
 ---
 
 # Planner Agent
