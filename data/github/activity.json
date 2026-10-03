@@ -1,10 +1,10 @@
 {
   "user": "verkyyi",
-  "fetchedAt": "2026-10-02T11:25:08.587Z",
+  "fetchedAt": "2026-10-03T10:42:22.540Z",
   "stats": {
     "publicRepos": 23,
-    "contributions30d": 7962,
-    "contributionsLastYear": 20565
+    "contributions30d": 8105,
+    "contributionsLastYear": 20903
   },
   "contributions": {
     "weeks": [
@@ -1591,7 +1591,11 @@
         },
         {
           "date": "2026-10-02",
-          "count": 119
+          "count": 360
+        },
+        {
+          "date": "2026-10-03",
+          "count": 97
         }
       ]
     ]
@@ -1600,12 +1604,12 @@
     {
       "name": "Shell",
       "color": "#89e051",
-      "pct": 62.9
+      "pct": 63.7
     },
     {
       "name": "Go",
       "color": "#00ADD8",
-      "pct": 21.3
+      "pct": 20.7
     },
     {
       "name": "Python",
@@ -1625,22 +1629,22 @@
   ],
   "repos": [
     {
-      "name": "agentfolio",
-      "url": "https://github.com/verkyyi/agentfolio",
-      "description": "Open-source agentic portfolio engine — fork, drop in your resume, deploy. Adapts to each target role with Claude.",
-      "language": "TypeScript",
-      "languageColor": "#3178c6",
-      "stars": 1,
-      "pushedAt": "2026-10-01T11:53:14Z"
-    },
-    {
       "name": "claude-fleet",
       "url": "https://github.com/verkyyi/claude-fleet",
       "description": "Run a fleet of parallel Claude Code sessions in tmux — GitHub issues as the backlog, live attention signals in the status bar",
       "language": "Shell",
       "languageColor": "#89e051",
       "stars": 2,
-      "pushedAt": "2026-10-01T03:03:25Z"
+      "pushedAt": "2026-10-03T10:30:05Z"
+    },
+    {
+      "name": "agentfolio",
+      "url": "https://github.com/verkyyi/agentfolio",
+      "description": "Open-source agentic portfolio engine — fork, drop in your resume, deploy. Adapts to each target role with Claude.",
+      "language": "TypeScript",
+      "languageColor": "#3178c6",
+      "stars": 1,
+      "pushedAt": "2026-10-02T11:25:09Z"
     },
     {
       "name": "tokenledger",
