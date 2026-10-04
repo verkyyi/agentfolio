@@ -1,43 +1,13 @@
 {
   "user": "verkyyi",
-  "fetchedAt": "2026-10-03T10:42:22.540Z",
+  "fetchedAt": "2026-10-04T11:23:13.503Z",
   "stats": {
     "publicRepos": 23,
-    "contributions30d": 8105,
-    "contributionsLastYear": 20903
+    "contributions30d": 8769,
+    "contributionsLastYear": 21844
   },
   "contributions": {
     "weeks": [
-      [
-        {
-          "date": "2025-09-28",
-          "count": 0
-        },
-        {
-          "date": "2025-09-29",
-          "count": 0
-        },
-        {
-          "date": "2025-09-30",
-          "count": 0
-        },
-        {
-          "date": "2025-10-01",
-          "count": 0
-        },
-        {
-          "date": "2025-10-02",
-          "count": 0
-        },
-        {
-          "date": "2025-10-03",
-          "count": 0
-        },
-        {
-          "date": "2025-10-04",
-          "count": 0
-        }
-      ],
       [
         {
           "date": "2025-10-05",
@@ -1459,11 +1429,11 @@
         },
         {
           "date": "2026-09-01",
-          "count": 471
+          "count": 513
         },
         {
           "date": "2026-09-02",
-          "count": 468
+          "count": 506
         },
         {
           "date": "2026-09-03",
@@ -1505,21 +1475,21 @@
         },
         {
           "date": "2026-09-12",
-          "count": 742
+          "count": 763
         }
       ],
       [
         {
           "date": "2026-09-13",
-          "count": 673
+          "count": 685
         },
         {
           "date": "2026-09-14",
-          "count": 428
+          "count": 434
         },
         {
           "date": "2026-09-15",
-          "count": 416
+          "count": 422
         },
         {
           "date": "2026-09-16",
@@ -1535,13 +1505,13 @@
         },
         {
           "date": "2026-09-19",
-          "count": 311
+          "count": 324
         }
       ],
       [
         {
           "date": "2026-09-20",
-          "count": 549
+          "count": 570
         },
         {
           "date": "2026-09-21",
@@ -1549,7 +1519,7 @@
         },
         {
           "date": "2026-09-22",
-          "count": 597
+          "count": 598
         },
         {
           "date": "2026-09-23",
@@ -1557,7 +1527,7 @@
         },
         {
           "date": "2026-09-24",
-          "count": 206
+          "count": 208
         },
         {
           "date": "2026-09-25",
@@ -1595,7 +1565,13 @@
         },
         {
           "date": "2026-10-03",
-          "count": 97
+          "count": 738
+        }
+      ],
+      [
+        {
+          "date": "2026-10-04",
+          "count": 138
         }
       ]
     ]
@@ -1604,22 +1580,22 @@
     {
       "name": "Shell",
       "color": "#89e051",
-      "pct": 63.7
+      "pct": 50.7
     },
     {
       "name": "Go",
       "color": "#00ADD8",
-      "pct": 20.7
+      "pct": 35.3
     },
     {
       "name": "Python",
       "color": "#3572A5",
-      "pct": 10.3
+      "pct": 8.2
     },
     {
       "name": "JavaScript",
       "color": "#f1e05a",
-      "pct": 2.4
+      "pct": 3.1
     },
     {
       "name": "TypeScript",
@@ -1635,16 +1611,7 @@
       "language": "Shell",
       "languageColor": "#89e051",
       "stars": 2,
-      "pushedAt": "2026-10-03T10:30:05Z"
-    },
-    {
-      "name": "agentfolio",
-      "url": "https://github.com/verkyyi/agentfolio",
-      "description": "Open-source agentic portfolio engine — fork, drop in your resume, deploy. Adapts to each target role with Claude.",
-      "language": "TypeScript",
-      "languageColor": "#3178c6",
-      "stars": 1,
-      "pushedAt": "2026-10-02T11:25:09Z"
+      "pushedAt": "2026-10-04T11:21:25Z"
     },
     {
       "name": "tokenledger",
@@ -1653,7 +1620,16 @@
       "language": "Go",
       "languageColor": "#00ADD8",
       "stars": 1,
-      "pushedAt": "2026-09-24T13:33:45Z"
+      "pushedAt": "2026-10-04T04:50:52Z"
+    },
+    {
+      "name": "agentfolio",
+      "url": "https://github.com/verkyyi/agentfolio",
+      "description": "Open-source agentic portfolio engine — fork, drop in your resume, deploy. Adapts to each target role with Claude.",
+      "language": "TypeScript",
+      "languageColor": "#3178c6",
+      "stars": 1,
+      "pushedAt": "2026-10-03T10:42:23Z"
     },
     {
       "name": "always-on-claude",
