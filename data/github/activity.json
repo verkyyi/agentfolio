@@ -1,10 +1,10 @@
 {
   "user": "verkyyi",
-  "fetchedAt": "2026-10-12T13:37:49.301Z",
+  "fetchedAt": "2026-10-13T13:00:05.048Z",
   "stats": {
-    "publicRepos": 23,
-    "contributions30d": 11608,
-    "contributionsLastYear": 25910
+    "publicRepos": 24,
+    "contributions30d": 11389,
+    "contributionsLastYear": 26376
   },
   "contributions": {
     "weeks": [
@@ -1575,7 +1575,11 @@
         },
         {
           "date": "2026-10-12",
-          "count": 218
+          "count": 537
+        },
+        {
+          "date": "2026-10-13",
+          "count": 147
         }
       ]
     ]
@@ -1584,27 +1588,27 @@
     {
       "name": "Shell",
       "color": "#89e051",
-      "pct": 51.4
+      "pct": 49.5
     },
     {
       "name": "Go",
       "color": "#00ADD8",
-      "pct": 28.5
+      "pct": 28.3
     },
     {
       "name": "Python",
       "color": "#3572A5",
-      "pct": 15.9
+      "pct": 15.8
     },
     {
       "name": "TypeScript",
       "color": "#3178c6",
-      "pct": 2.3
+      "pct": 3.3
     },
     {
       "name": "JavaScript",
       "color": "#f1e05a",
-      "pct": 1.5
+      "pct": 2.3
     }
   ],
   "repos": [
@@ -1615,7 +1619,16 @@
       "language": "Shell",
       "languageColor": "#89e051",
       "stars": 2,
-      "pushedAt": "2026-10-12T13:36:10Z"
+      "pushedAt": "2026-10-13T12:58:15Z"
+    },
+    {
+      "name": "agent-creator",
+      "url": "https://github.com/verkyyi/agent-creator",
+      "description": "CrewBrain: meet Juno and Rex, AI helpers your homeowners and crew can text or talk to. They only see what you allow, nothing goes out without your OK. HydraDB + Claude + OpenAI realtime.",
+      "language": "TypeScript",
+      "languageColor": "#3178c6",
+      "stars": 0,
+      "pushedAt": "2026-10-13T12:25:54Z"
     },
     {
       "name": "agentfolio",
@@ -1624,7 +1637,7 @@
       "language": "TypeScript",
       "languageColor": "#3178c6",
       "stars": 1,
-      "pushedAt": "2026-10-11T11:40:06Z"
+      "pushedAt": "2026-10-12T13:37:51Z"
     },
     {
       "name": "tokenledger",
@@ -1643,15 +1656,6 @@
       "languageColor": "#89e051",
       "stars": 6,
       "pushedAt": "2026-07-03T21:12:19Z"
-    },
-    {
-      "name": "github-agent-runner",
-      "url": "https://github.com/verkyyi/github-agent-runner",
-      "description": "Claude Code plugin to discover and install GitHub agentic workflows (gh-aw) into your repo",
-      "language": "Shell",
-      "languageColor": "#89e051",
-      "stars": 10,
-      "pushedAt": "2026-06-08T05:14:53Z"
     }
   ]
 }
