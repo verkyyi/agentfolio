@@ -1,10 +1,10 @@
 {
   "user": "verkyyi",
-  "fetchedAt": "2026-10-13T13:00:05.048Z",
+  "fetchedAt": "2026-10-14T10:41:02.150Z",
   "stats": {
     "publicRepos": 24,
-    "contributions30d": 11389,
-    "contributionsLastYear": 26376
+    "contributions30d": 11349,
+    "contributionsLastYear": 26770
   },
   "contributions": {
     "weeks": [
@@ -1579,7 +1579,11 @@
         },
         {
           "date": "2026-10-13",
-          "count": 147
+          "count": 540
+        },
+        {
+          "date": "2026-10-14",
+          "count": 1
         }
       ]
     ]
@@ -1588,27 +1592,27 @@
     {
       "name": "Shell",
       "color": "#89e051",
-      "pct": 49.5
+      "pct": 47.4
     },
     {
       "name": "Go",
       "color": "#00ADD8",
-      "pct": 28.3
+      "pct": 28.8
     },
     {
       "name": "Python",
       "color": "#3572A5",
-      "pct": 15.8
+      "pct": 15.3
     },
     {
       "name": "TypeScript",
       "color": "#3178c6",
-      "pct": 3.3
+      "pct": 6
     },
     {
       "name": "JavaScript",
       "color": "#f1e05a",
-      "pct": 2.3
+      "pct": 1.8
     }
   ],
   "repos": [
@@ -1619,7 +1623,16 @@
       "language": "Shell",
       "languageColor": "#89e051",
       "stars": 2,
-      "pushedAt": "2026-10-13T12:58:15Z"
+      "pushedAt": "2026-10-14T06:49:26Z"
+    },
+    {
+      "name": "agentfolio",
+      "url": "https://github.com/verkyyi/agentfolio",
+      "description": "Open-source agentic portfolio engine — fork, drop in your resume, deploy. Adapts to each target role with Claude.",
+      "language": "TypeScript",
+      "languageColor": "#3178c6",
+      "stars": 1,
+      "pushedAt": "2026-10-13T13:00:06Z"
     },
     {
       "name": "agent-creator",
@@ -1629,15 +1642,6 @@
       "languageColor": "#3178c6",
       "stars": 0,
       "pushedAt": "2026-10-13T12:25:54Z"
-    },
-    {
-      "name": "agentfolio",
-      "url": "https://github.com/verkyyi/agentfolio",
-      "description": "Open-source agentic portfolio engine — fork, drop in your resume, deploy. Adapts to each target role with Claude.",
-      "language": "TypeScript",
-      "languageColor": "#3178c6",
-      "stars": 1,
-      "pushedAt": "2026-10-12T13:37:51Z"
     },
     {
       "name": "tokenledger",
