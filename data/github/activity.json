@@ -1,43 +1,13 @@
 {
   "user": "verkyyi",
-  "fetchedAt": "2026-10-31T11:16:47.197Z",
+  "fetchedAt": "2026-11-02T13:55:24.532Z",
   "stats": {
     "publicRepos": 24,
-    "contributions30d": 9866,
-    "contributionsLastYear": 30474
+    "contributions30d": 9062,
+    "contributionsLastYear": 30768
   },
   "contributions": {
     "weeks": [
-      [
-        {
-          "date": "2025-10-26",
-          "count": 0
-        },
-        {
-          "date": "2025-10-27",
-          "count": 0
-        },
-        {
-          "date": "2025-10-28",
-          "count": 0
-        },
-        {
-          "date": "2025-10-29",
-          "count": 0
-        },
-        {
-          "date": "2025-10-30",
-          "count": 0
-        },
-        {
-          "date": "2025-10-31",
-          "count": 0
-        },
-        {
-          "date": "2025-11-01",
-          "count": 0
-        }
-      ],
       [
         {
           "date": "2025-11-02",
@@ -1595,7 +1565,17 @@
         },
         {
           "date": "2026-10-31",
-          "count": 29
+          "count": 155
+        }
+      ],
+      [
+        {
+          "date": "2026-11-01",
+          "count": 147
+        },
+        {
+          "date": "2026-11-02",
+          "count": 21
         }
       ]
     ]
@@ -1604,17 +1584,17 @@
     {
       "name": "Shell",
       "color": "#89e051",
-      "pct": 35.6
+      "pct": 35.5
     },
     {
       "name": "Go",
       "color": "#00ADD8",
-      "pct": 33
+      "pct": 33.1
     },
     {
       "name": "Python",
       "color": "#3572A5",
-      "pct": 21.2
+      "pct": 21.3
     },
     {
       "name": "TypeScript",
@@ -1635,7 +1615,16 @@
       "language": "Shell",
       "languageColor": "#89e051",
       "stars": 2,
-      "pushedAt": "2026-10-31T11:07:28Z"
+      "pushedAt": "2026-11-02T07:16:24Z"
+    },
+    {
+      "name": "ainbox-claude-plugin",
+      "url": "https://github.com/verkyyi/ainbox-claude-plugin",
+      "description": "Claude Code plugin for aInbox — agent-to-agent messaging via @ainbox.io",
+      "language": null,
+      "languageColor": null,
+      "stars": 0,
+      "pushedAt": "2026-11-02T02:12:12Z"
     },
     {
       "name": "agentfolio",
@@ -1644,7 +1633,7 @@
       "language": "TypeScript",
       "languageColor": "#3178c6",
       "stars": 1,
-      "pushedAt": "2026-10-29T11:50:22Z"
+      "pushedAt": "2026-10-31T11:16:48Z"
     },
     {
       "name": "agent-creator",
@@ -1663,15 +1652,6 @@
       "languageColor": "#00ADD8",
       "stars": 1,
       "pushedAt": "2026-10-04T04:50:52Z"
-    },
-    {
-      "name": "always-on-claude",
-      "url": "https://github.com/verkyyi/always-on-claude",
-      "description": "Always-on Claude Code dev environment on EC2 + Docker Compose (~$22/mo)",
-      "language": "Shell",
-      "languageColor": "#89e051",
-      "stars": 6,
-      "pushedAt": "2026-07-03T21:12:19Z"
     }
   ]
 }
