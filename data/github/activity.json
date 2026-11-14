@@ -1,43 +1,13 @@
 {
   "user": "verkyyi",
-  "fetchedAt": "2026-11-03T13:03:31.998Z",
+  "fetchedAt": "2026-11-14T12:33:58.409Z",
   "stats": {
     "publicRepos": 24,
-    "contributions30d": 8467,
-    "contributionsLastYear": 30856
+    "contributions30d": 5134,
+    "contributionsLastYear": 32322
   },
   "contributions": {
     "weeks": [
-      [
-        {
-          "date": "2025-11-02",
-          "count": 0
-        },
-        {
-          "date": "2025-11-03",
-          "count": 0
-        },
-        {
-          "date": "2025-11-04",
-          "count": 0
-        },
-        {
-          "date": "2025-11-05",
-          "count": 0
-        },
-        {
-          "date": "2025-11-06",
-          "count": 0
-        },
-        {
-          "date": "2025-11-07",
-          "count": 0
-        },
-        {
-          "date": "2025-11-08",
-          "count": 0
-        }
-      ],
       [
         {
           "date": "2025-11-09",
@@ -1519,67 +1489,113 @@
         },
         {
           "date": "2026-10-20",
-          "count": 369
+          "count": 284
         },
         {
           "date": "2026-10-21",
-          "count": 300
+          "count": 188
         },
         {
           "date": "2026-10-22",
-          "count": 228
+          "count": 143
         },
         {
           "date": "2026-10-23",
-          "count": 238
+          "count": 176
         },
         {
           "date": "2026-10-24",
-          "count": 306
+          "count": 290
         }
       ],
       [
         {
           "date": "2026-10-25",
-          "count": 202
+          "count": 170
         },
         {
           "date": "2026-10-26",
-          "count": 104
+          "count": 80
         },
         {
           "date": "2026-10-27",
-          "count": 55
+          "count": 49
         },
         {
           "date": "2026-10-28",
-          "count": 145
+          "count": 136
         },
         {
           "date": "2026-10-29",
-          "count": 188
+          "count": 166
         },
         {
           "date": "2026-10-30",
-          "count": 194
+          "count": 190
         },
         {
           "date": "2026-10-31",
-          "count": 155
+          "count": 138
         }
       ],
       [
         {
           "date": "2026-11-01",
-          "count": 147
+          "count": 139
         },
         {
           "date": "2026-11-02",
-          "count": 89
+          "count": 67
         },
         {
           "date": "2026-11-03",
-          "count": 20
+          "count": 87
+        },
+        {
+          "date": "2026-11-04",
+          "count": 110
+        },
+        {
+          "date": "2026-11-05",
+          "count": 75
+        },
+        {
+          "date": "2026-11-06",
+          "count": 210
+        },
+        {
+          "date": "2026-11-07",
+          "count": 202
+        }
+      ],
+      [
+        {
+          "date": "2026-11-08",
+          "count": 127
+        },
+        {
+          "date": "2026-11-09",
+          "count": 184
+        },
+        {
+          "date": "2026-11-10",
+          "count": 74
+        },
+        {
+          "date": "2026-11-11",
+          "count": 425
+        },
+        {
+          "date": "2026-11-12",
+          "count": 174
+        },
+        {
+          "date": "2026-11-13",
+          "count": 319
+        },
+        {
+          "date": "2026-11-14",
+          "count": 3
         }
       ]
     ]
@@ -1593,22 +1609,22 @@
     {
       "name": "Go",
       "color": "#00ADD8",
-      "pct": 29.6
+      "pct": 31
     },
     {
       "name": "Python",
       "color": "#3572A5",
-      "pct": 22.8
+      "pct": 23.2
     },
     {
       "name": "TypeScript",
       "color": "#3178c6",
-      "pct": 7
+      "pct": 6.1
     },
     {
       "name": "JavaScript",
       "color": "#f1e05a",
-      "pct": 2.5
+      "pct": 1.8
     }
   ],
   "repos": [
@@ -1619,7 +1635,7 @@
       "language": "Shell",
       "languageColor": "#89e051",
       "stars": 2,
-      "pushedAt": "2026-11-03T10:38:01Z"
+      "pushedAt": "2026-11-14T10:50:06Z"
     },
     {
       "name": "agentfolio",
@@ -1628,7 +1644,7 @@
       "language": "TypeScript",
       "languageColor": "#3178c6",
       "stars": 1,
-      "pushedAt": "2026-11-02T13:55:25Z"
+      "pushedAt": "2026-11-03T13:03:32Z"
     },
     {
       "name": "ainbox-claude-plugin",
@@ -1645,7 +1661,7 @@
       "description": "CrewBrain: meet Juno and Rex, AI helpers your homeowners and crew can text or talk to. They only see what you allow, nothing goes out without your OK. HydraDB + Claude + OpenAI realtime.",
       "language": "TypeScript",
       "languageColor": "#3178c6",
-      "stars": 0,
+      "stars": 1,
       "pushedAt": "2026-10-13T12:25:54Z"
     },
     {
