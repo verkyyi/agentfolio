@@ -1,43 +1,13 @@
 {
   "user": "verkyyi",
-  "fetchedAt": "2026-11-14T12:33:58.409Z",
+  "fetchedAt": "2026-11-15T12:59:52.592Z",
   "stats": {
-    "publicRepos": 24,
-    "contributions30d": 5134,
-    "contributionsLastYear": 32322
+    "publicRepos": 25,
+    "contributions30d": 5069,
+    "contributionsLastYear": 32385
   },
   "contributions": {
     "weeks": [
-      [
-        {
-          "date": "2025-11-09",
-          "count": 0
-        },
-        {
-          "date": "2025-11-10",
-          "count": 0
-        },
-        {
-          "date": "2025-11-11",
-          "count": 0
-        },
-        {
-          "date": "2025-11-12",
-          "count": 0
-        },
-        {
-          "date": "2025-11-13",
-          "count": 0
-        },
-        {
-          "date": "2025-11-14",
-          "count": 0
-        },
-        {
-          "date": "2025-11-15",
-          "count": 0
-        }
-      ],
       [
         {
           "date": "2025-11-16",
@@ -1489,7 +1459,7 @@
         },
         {
           "date": "2026-10-20",
-          "count": 284
+          "count": 280
         },
         {
           "date": "2026-10-21",
@@ -1595,6 +1565,12 @@
         },
         {
           "date": "2026-11-14",
+          "count": 67
+        }
+      ],
+      [
+        {
+          "date": "2026-11-15",
           "count": 3
         }
       ]
@@ -1604,17 +1580,17 @@
     {
       "name": "Shell",
       "color": "#89e051",
-      "pct": 37.4
+      "pct": 37.2
     },
     {
       "name": "Go",
       "color": "#00ADD8",
-      "pct": 31
+      "pct": 30.8
     },
     {
       "name": "Python",
       "color": "#3572A5",
-      "pct": 23.2
+      "pct": 23.4
     },
     {
       "name": "TypeScript",
@@ -1624,10 +1600,19 @@
     {
       "name": "JavaScript",
       "color": "#f1e05a",
-      "pct": 1.8
+      "pct": 1.7
     }
   ],
   "repos": [
+    {
+      "name": "tally",
+      "url": "https://github.com/verkyyi/tally",
+      "description": "Know the moment your pipeline moves: live numbers on funding, hiring and launches, each with its source. For angels, scouts and pre-seed funds.",
+      "language": "Python",
+      "languageColor": "#3572A5",
+      "stars": 1,
+      "pushedAt": "2026-11-15T11:06:27Z"
+    },
     {
       "name": "claude-fleet",
       "url": "https://github.com/verkyyi/claude-fleet",
@@ -1635,7 +1620,7 @@
       "language": "Shell",
       "languageColor": "#89e051",
       "stars": 2,
-      "pushedAt": "2026-11-14T10:50:06Z"
+      "pushedAt": "2026-11-15T08:27:07Z"
     },
     {
       "name": "agentfolio",
@@ -1644,7 +1629,7 @@
       "language": "TypeScript",
       "languageColor": "#3178c6",
       "stars": 1,
-      "pushedAt": "2026-11-03T13:03:32Z"
+      "pushedAt": "2026-11-14T12:33:59Z"
     },
     {
       "name": "ainbox-claude-plugin",
@@ -1663,15 +1648,6 @@
       "languageColor": "#3178c6",
       "stars": 1,
       "pushedAt": "2026-10-13T12:25:54Z"
-    },
-    {
-      "name": "tokenledger",
-      "url": "https://github.com/verkyyi/tokenledger",
-      "description": "Books for a team account pool: one hub that knows how much headroom each of your team's Claude subscriptions has left, across every machine. Cross-endpoint usage, per-team cost attribution, live dashboard, read-only MCP.",
-      "language": "Go",
-      "languageColor": "#00ADD8",
-      "stars": 1,
-      "pushedAt": "2026-10-04T04:50:52Z"
     }
   ]
 }
